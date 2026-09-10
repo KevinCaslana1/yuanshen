@@ -7,16 +7,23 @@
 每次开始新任务或恢复项目时，禁止立即修改代码或文档。按以下顺序检查：
 
 1. `AGENTS.md`
-2. `docs/STATE.md`
-3. `docs/TODO.md`
-4. `docs/DECISIONS.md` 中最近且与当前任务相关的决策
-5. `docs/EXPERIMENTS.md` 中相关实验
-6. `docs/FAILURES.md` 中相关失败
-7. `docs/FINDINGS.md`
-8. `docs/ASSUMPTIONS.md`
-9. 必要时检查 `docs/VALIDATION.md` 和 `docs/CLAIMS.md`
-10. `git status` 与最近的重要 commit；若当前目录不是 Git 仓库，明确记录这一事实，不自行假设存在版本历史
-11. 当前任务涉及的代码、数据、实验结果和论文部分
+2. `docs/PROBLEM_SPEC.md`
+3. `docs/STATE.md`
+4. `docs/TODO.md`
+5. `docs/DATA_CATALOG.md`
+6. `docs/DECISIONS.md` 中最近且与当前任务相关的决策
+7. `docs/EXPERIMENTS.md` 中相关实验
+8. `docs/FAILURES.md` 中相关失败
+9. `docs/FINDINGS.md`
+10. `docs/ASSUMPTIONS.md`
+11. `docs/HYPOTHESES.md`
+12. `docs/VALIDATION.md`
+13. `docs/CLAIMS.md`
+14. `docs/RUNBOOK.md`
+15. `docs/SOURCES.md`
+16. `docs/HANDOFF.md`
+17. `git status` 与最近的重要 commit；若当前目录不是 Git 仓库，明确记录这一事实，不自行假设存在版本历史
+18. 当前任务涉及的代码、数据、实验结果和论文部分
 
 完成检查后，先输出简短的 `Current Project Status`，至少包括：当前问题、已完成内容、主模型/主方案、Baseline、最好实验、已知失败、阻塞项、最高优先级任务和推荐下一步。
 
@@ -36,6 +43,21 @@
 - `data/raw/` 只读：不修改、不覆盖、不删除。清洗和转换结果写入 `data/interim/` 或 `data/processed/`，并通过脚本尽量复现。
 - 实验详细产物放在 `experiments/EXP-xxx/`；`docs/EXPERIMENTS.md` 只保存索引和关键结果，避免日志膨胀。
 - 必须检查数据泄漏、划分方式、交叉验证、残差、异常值、敏感性、鲁棒性、稳定性、边界情况、Baseline 和现实一致性。
+
+## 3.1 Official Source Protection
+
+`A题/` 是官方题目与附件的 `OFFICIAL_SOURCE / IMMUTABLE_SOURCE` 区域。
+
+- 不得修改、覆盖、删除、重命名或直接写入 `A题/` 中的任何文件。
+- `A题/附件/附件3/result1.xlsx` 至 `result4.xlsx` 是官方结果模板，也是原始资产。
+- 任何生成结果必须从官方模板复制到 `deliverables/candidate/` 后写入，经过结构验证、数值验证、格式验证和人工确认后，才可进入 `deliverables/final/`。
+- 不得把同一批官方二进制文件机械复制到 `problem/` 或 `data/raw/`，避免出现多个“原文件”来源。`problem/README.md` 和 `docs/DATA_CATALOG.md` 负责索引实际位置。
+
+## 3.2 单位与精度
+
+所有后续程序必须显式记录原始单位、内部计算单位和输出单位。禁止隐式单位转换。至少支持并明确标记：`s`、`h`、`cm`、`m`、`°C`、`K`、`kg/kg`、`kg/m^3`、`J/(kg·K)`、`W/(m·K)`、`W/(m²·K)`、`m/s`、`m²/s`。
+
+内部计算保持完整精度。只有生成最终官方输出文件时，才按题面要求统一四舍五入。
 
 ## 4. 操作权限
 
@@ -89,4 +111,8 @@
 - 验证清单：`docs/VALIDATION.md`
 - 论文证据账本：`docs/CLAIMS.md`
 - 会话交接：`docs/HANDOFF.md`
-
+- 题目事实登记：`docs/PROBLEM_SPEC.md`
+- 官方资产目录：`docs/DATA_CATALOG.md`
+- 可复现运行手册：`docs/RUNBOOK.md`
+- 文献与来源登记：`docs/SOURCES.md`
+- 交付隔离区：`deliverables/candidate/`、`deliverables/final/`

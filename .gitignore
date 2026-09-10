@@ -1,0 +1,25 @@
+# Python and local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.ipynb_checkpoints/
+
+# Operating-system and Excel lock files
+.DS_Store
+Thumbs.db
+~$*.xlsx
+~$*.docx
+
+# Temporary inspection output and local caches
+tmp/
+cache/
+logs/
+*.log
+
+# Candidate workbooks are generated artifacts; keep the directory itself via .gitkeep.
+deliverables/candidate/*.xlsx
+
+# Do not ignore docs/, formal source code, tracked figures, experiment metadata,
+# official source assets, or final deliverables.

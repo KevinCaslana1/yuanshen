@@ -13,7 +13,7 @@
 ```markdown
 ## H-xxx 标题
 
-问题：Q1/Q2/Q3
+问题：Q1/Q2/Q3/Q4
 Hypothesis：
 为什么值得测试：
 计划实验：EXP-xxx（可先填 PLANNED）
@@ -21,4 +21,3 @@ Hypothesis：
 结果：待验证
 状态：OPEN / SUPPORTED / REJECTED / INCONCLUSIVE
 ```
-

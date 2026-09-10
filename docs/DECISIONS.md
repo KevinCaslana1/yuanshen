@@ -14,7 +14,7 @@
 ## D-xxx 标题
 
 日期：YYYY-MM-DD
-问题：Q1/Q2/Q3/全局
+问题：Q1/Q2/Q3/Q4/全局
 
 ### 背景
 
@@ -39,4 +39,3 @@
 
 ACTIVE / SUPERSEDED / PENDING_CONFIRMATION
 ```
-
