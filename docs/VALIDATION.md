@@ -36,6 +36,27 @@
 
 Remaining Open Questions are classified by blocking phase in `docs/PROBLEM_SPEC.md`. Modeling questions such as Q4 dynamic-radius synchronization block only `MODEL IMPLEMENTATION`, not this Workflow Gate.
 
+## Q1 MODEL DESIGN GATE
+
+| Gate Item | Evidence | Status |
+|---|---|---|
+| official Q1 PDF reread | `A题/A题.pdf` text extraction and visual review of pages 1 and 3 | PASS |
+| Q1 requirement matrix | `docs/Q1_PLAN.md` | PASS |
+| Q1 input data audit | `docs/Q1_PLAN.md`; 241 rows, 60 s interval, no missing/duplicate/non-finite values | PASS |
+| result1 template audit | `scripts/validate_templates.py`; two sheets, 5×6 skeleton, blank data area | PASS |
+| variable and unit registration | `docs/Q1_PLAN.md` | PASS |
+| candidate assumptions | `docs/ASSUMPTIONS.md`; high-impact items marked `NEEDS_REVIEW` | PASS |
+| candidate models and Baseline | `docs/Q1_PLAN.md`, `docs/DECISIONS.md` | PASS |
+| numerical strategy design | `docs/Q1_PLAN.md`; no solver run | PASS |
+| validation plan | `docs/Q1_PLAN.md` | PASS |
+| experiment plan | `docs/EXPERIMENTS.md`; EXP-001–EXP-007 all `PLANNED` | PASS |
+| no formal Q1 result | no `result1.xlsx` candidate/final output; no formal experiment | PASS |
+| Q2/Q3/Q4 unchanged | `docs/STATE.md` | PASS |
+
+`Q1 MODEL DESIGN GATE = PASS`
+
+该 Gate 只表示 Q1 的设计工作包完成，不表示推荐模型已验证，也不授权自动进入正式实现。
+
 ## 通用检查
 
 | 检查项 | 适用问题 | 结果 | 证据 | 状态 |

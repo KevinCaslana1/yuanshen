@@ -110,3 +110,7 @@
 | OQ-002 | INTERPRETATION | Q2“3小时展示”与“烘干一般2-3天”的关系 | MODEL IMPLEMENTATION | 人工确认官方要求、背景描述和团队解释的边界 |
 | OQ-003 | DELIVERABLE | Q3/Q4 烘干结束时间行的写入格式 | DELIVERABLE GENERATION | 人工确认后登记到 Deliverable Contract |
 | OQ-004 | MODELING | Q4 半径变化与空间网格的同步方式 | MODEL IMPLEMENTATION | 建模负责人在进入 Q4 实现时处理；不阻塞当前 PRE-MODELING WORKFLOW |
+| OQ-005 | DELIVERABLE | Q1 `result1.xlsx` 完整结果是否包含 `t=0` 行；模板示例从1开始但不应替代题面要求 | DELIVERABLE GENERATION | Q1 实现前人工确认；不在设计阶段硬编码最终行数 |
+| OQ-006 | MODELING | Q1 对流传质系数 `hm` 与干基水分浓度 `C` 的 Robin 边界物理解释及符号约定 | MODEL IMPLEMENTATION | Q1 实现前人工审查，并用 smoke test 检查边界通量方向 |
+| OQ-007 | NUMERICAL | Q1 `r=0` 与 `r=R` 的完整输出值采用节点值、边界值还是插值值 | NUMERICAL IMPLEMENTATION | 在网格定义与交付契约中登记，保持端点规则可追溯 |
+| OQ-008 | MODELING | Q1 是否需要潜热、热质交叉耦合或内部源项 | MODEL IMPLEMENTATION | 题面未给出相关参数，当前不自行扩展；需人工确认高影响假设 |

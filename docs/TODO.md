@@ -20,6 +20,16 @@
 | T-011 | P0 | 全局 | T-010 | DONE | `scripts/validate_deliverable_contract.py` | JSON 与 Markdown 契约、路径、Sheet、单位、精度、Open Question 状态检查通过 | 本轮 |
 | T-012 | P0 | 全局 | T-011 | DONE | `tests/` | 12 个 Workflow 测试通过；不包含模型测试 | 本轮 |
 | T-013 | P0 | 全局 | T-012 | DONE | `docs/VALIDATION.md` | Pre-Modeling Gate 所有必要项已审计并标记 PASS | 本轮 |
+| T-014 | P0 | Q1 | T-013 | DONE | `docs/Q1_PLAN.md` | Q1 Requirement Matrix 已回到官方 PDF、附件1和 result1 模板核对，并区分事实/解释/建模选择 | 本轮 |
+| T-015 | P0 | Q1 | T-014 | DONE | `docs/Q1_PLAN.md` | 附件1数据类型、时间范围、间隔、缺失、重复、范围和未修改状态完成审计 | 本轮 |
+| T-016 | P0 | Q1 | T-014 | DONE | `docs/Q1_PLAN.md` | Q1变量、原始/内部/输出单位和转换规则登记完成 | 本轮 |
+| T-017 | P0 | Q1 | T-016 | DONE | `docs/ASSUMPTIONS.md` | Q1正式候选假设已登记，高影响假设标记 `NEEDS_REVIEW` | 本轮 |
+| T-018 | P0 | Q1 | T-017 | DONE | `docs/Q1_PLAN.md` | Baseline、Main Candidate、Alternative Candidates 已比较并记录限制 | 本轮 |
+| T-019 | P0 | Q1 | T-018 | DONE | `docs/Q1_PLAN.md` | Baseline 设计、主候选方程和推荐进入实现的条件已登记 | 本轮 |
+| T-020 | P0 | Q1 | T-019 | DONE | `docs/Q1_PLAN.md` | 空间离散、时间离散、边界、插值、稳定性和收敛策略已设计 | 本轮 |
+| T-021 | P0 | Q1 | T-020 | DONE | `docs/Q1_PLAN.md` | Q1 Validation Plan 已覆盖适用的初值、单位、边界、范围、连续性、敏感性、收敛和 Baseline 检查 | 本轮 |
+| T-022 | P0 | Q1 | T-021 | DONE | `docs/EXPERIMENTS.md` | EXP-001 至 EXP-007 已登记为 `PLANNED`，未运行且无正式结果产物 | 本轮 |
+| T-023 | P0 | Q1 | T-022 | DONE | `docs/Q1_PLAN.md`, `docs/DECISIONS.md` | Q1 Model Design Review 完成；推荐候选仍等待实现授权 | 本轮 |
 
 ## 任务记录模板
 
