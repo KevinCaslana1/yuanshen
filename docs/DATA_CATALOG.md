@@ -23,14 +23,14 @@
 
 ## Workbook Structure
 
-| Asset ID | Sheet 名称 | 行 × 列 | 主要字段/结构 | 题面规定单位 | 备注 |
-|---|---|---:|---|---|---|
-| ASSET-XLSX-001 | `Sheet1` | 242 × 3 | 时间、温度、水分浓度 | 时间 `s`；温度 `°C`；水分浓度 `kg/kg` | 附件1，供Q1初期边界输入 |
-| ASSET-XLSX-002 | `Sheet1` | 146 × 2 | 时间、半径 | 时间 `s`；半径 `cm` | 附件2，供Q4尺寸变化输入 |
-| ASSET-TPL-001 | `温度`、`水分浓度` | 5 × 6 / Sheet | A列时间；第1行到药材中心距离；示例列 `0, 0.1, 0.2, …, 2` | 时间 `s`；距离 `cm`；温度 `°C`；水分浓度 `kg/kg` | Q1官方空模板 |
-| ASSET-TPL-002 | `温度`、`水分浓度` | 5 × 6 / Sheet | A列时间；第1行到药材中心距离；示例列 `0, 0.1, 0.2, …, 2` | 完整Excel时间 `s`；距离 `cm`；温度 `°C`；水分浓度 `kg/kg` | Q2官方空模板 |
-| ASSET-TPL-003 | `Sheet1` | 5 × 6 | A列时间；第1行到药材中心距离；示例列 `0, 0.1, 0.2, …, 2` | 时间 `s`；距离 `cm`；水分浓度 `kg/kg` | Q3官方空模板 |
-| ASSET-TPL-004 | `Sheet1` | 5 × 6 | A列时间；第1行到药材中心距离；末列为“药材表面”示例 | 时间 `s`；距离 `cm`；水分浓度 `kg/kg` | Q4官方空模板；空间列数需按半径变化确认 |
+| Asset ID | Sheet 名称 | Skeleton Shape | Final Shape | Expansion Rule | Final Shape Status | 主要字段/结构 | 题面规定单位 | 备注 |
+|---|---|---|---|---|---|---|---|---|
+| ASSET-XLSX-001 | `Sheet1` | N/A | N/A | N/A | STATEMENT_FACT | 242 × 3；时间、温度、水分浓度 | 时间 `s`；温度 `°C`；水分浓度 `kg/kg` | 附件1，供Q1初期边界输入 |
+| ASSET-XLSX-002 | `Sheet1` | N/A | N/A | N/A | STATEMENT_FACT | 146 × 2；时间、半径 | 时间 `s`；半径 `cm` | 附件2，供Q4尺寸变化输入 |
+| ASSET-TPL-001 | `温度`、`水分浓度`；5 × 6 / Sheet | `TEMPLATE_SKELETON` | 题面约束已知，端点/计数待确认 | 时间每隔 `1 s` 至 `1800 s`；距离每隔 `0.1 cm` 至 `2 cm` | OPEN_QUESTION | A列时间；第1行到药材中心距离；示例列 `0, 0.1, 0.2, …, 2` | 时间 `s`；距离 `cm`；温度 `°C`；水分浓度 `kg/kg` | Q1官方空模板 |
+| ASSET-TPL-002 | `温度`、`水分浓度`；5 × 6 / Sheet | `TEMPLATE_SKELETON` | 题面展示区间明确，完整矩阵端点/计数待确认 | 完整结果每隔 `1 s`；空间每隔 `0.1 cm`；展示表为3 h | OPEN_QUESTION | A列时间；第1行到药材中心距离；示例列 `0, 0.1, 0.2, …, 2` | 完整Excel时间 `s`；论文表时间 `h`；距离 `cm`；温度 `°C`；水分浓度 `kg/kg` | Q2官方空模板 |
+| ASSET-TPL-003 | `Sheet1`；5 × 6 | `TEMPLATE_SKELETON` | 烘干结束时间决定行数，待确认 | 时间每隔 `60 s`；距离每隔 `0.1 cm` | OPEN_QUESTION | A列时间；第1行到药材中心距离；示例列 `0, 0.1, 0.2, …, 2` | 时间 `s`；距离 `cm`；水分浓度 `kg/kg` | Q3官方空模板 |
+| ASSET-TPL-004 | `Sheet1`；5 × 6 | `TEMPLATE_SKELETON` | 烘干结束时间、动态半径和表面列数待确认 | 时间每隔 `60 s`；空间每隔 `0.1 cm`，终点为药材表面 | OPEN_QUESTION | A列时间；第1行到药材中心距离；末列为“药材表面”示例 | 时间 `s`；距离 `cm`；水分浓度 `kg/kg` | Q4官方空模板 |
 
 ## Validation Baseline
 

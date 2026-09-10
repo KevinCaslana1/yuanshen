@@ -1,0 +1,149 @@
+{
+  "schema_version": "1.0",
+  "contract_status": "OPEN_QUESTION",
+  "official_source_root": "A题",
+  "candidate_root": "deliverables/candidate",
+  "final_root": "deliverables/final",
+  "precision_decimals": 4,
+  "shape_policy": "TEMPLATE_SKELETON_IS_NOT_FINAL_OUTPUT_DIMENSION",
+  "deliverables": [
+    {
+      "question": "Q1",
+      "file": "result1.xlsx",
+      "official_template": "A题/附件/附件3/result1.xlsx",
+      "candidate_path": "deliverables/candidate/result1.xlsx",
+      "final_path": "deliverables/final/result1.xlsx",
+      "sheets": [
+        {
+          "name": "温度",
+          "time_unit": "s",
+          "time_sampling": {"status": "STATEMENT_FACT", "rule": "每隔1s至1800s"},
+          "space_unit": "cm",
+          "space_sampling": {"status": "STATEMENT_FACT", "rule": "每隔0.1cm至2cm"},
+          "value_unit": "°C",
+          "decimal_precision": 4,
+          "skeleton_shape": [5, 6],
+          "expected_final_shape": {"status": "OPEN_QUESTION", "known_rule": "端点是否包含及最终行列计数待确认"},
+          "required_cells": ["完整时间-空间结果矩阵", "官方表头"],
+          "forbidden_changes": ["写入A题官方模板", "改变Sheet名称", "写入未验证数值"],
+          "validation_status": "OPEN_QUESTION",
+          "open_questions": ["OQ-001"]
+        },
+        {
+          "name": "水分浓度",
+          "time_unit": "s",
+          "time_sampling": {"status": "STATEMENT_FACT", "rule": "每隔1s至1800s"},
+          "space_unit": "cm",
+          "space_sampling": {"status": "STATEMENT_FACT", "rule": "每隔0.1cm至2cm"},
+          "value_unit": "kg/kg",
+          "decimal_precision": 4,
+          "skeleton_shape": [5, 6],
+          "expected_final_shape": {"status": "OPEN_QUESTION", "known_rule": "端点是否包含及最终行列计数待确认"},
+          "required_cells": ["完整时间-空间结果矩阵", "官方表头"],
+          "forbidden_changes": ["写入A题官方模板", "改变Sheet名称", "写入未验证数值"],
+          "validation_status": "OPEN_QUESTION",
+          "open_questions": ["OQ-001"]
+        }
+      ]
+    },
+    {
+      "question": "Q2",
+      "file": "result2.xlsx",
+      "official_template": "A题/附件/附件3/result2.xlsx",
+      "candidate_path": "deliverables/candidate/result2.xlsx",
+      "final_path": "deliverables/final/result2.xlsx",
+      "sheets": [
+        {
+          "name": "温度",
+          "time_unit": "s",
+          "time_sampling": {"status": "OPEN_QUESTION", "rule": "完整结果每隔1s，完整时间范围待确认"},
+          "paper_time_unit": "h",
+          "paper_time_sampling": {"status": "STATEMENT_FACT", "rule": "每隔0.5h至3h"},
+          "space_unit": "cm",
+          "space_sampling": {"status": "STATEMENT_FACT", "rule": "完整结果每隔0.1cm"},
+          "paper_space_sampling": {"status": "STATEMENT_FACT", "rule": "每隔0.5cm，范围0至2cm"},
+          "value_unit": "°C",
+          "decimal_precision": 4,
+          "skeleton_shape": [5, 6],
+          "expected_final_shape": {"status": "OPEN_QUESTION", "known_rule": "完整时间范围与端点计数待确认"},
+          "required_cells": ["完整时间-空间结果矩阵", "官方表头"],
+          "forbidden_changes": ["写入A题官方模板", "改变Sheet名称", "把论文小时直接写入秒列"],
+          "validation_status": "OPEN_QUESTION",
+          "open_questions": ["OQ-001", "OQ-002"]
+        },
+        {
+          "name": "水分浓度",
+          "time_unit": "s",
+          "time_sampling": {"status": "OPEN_QUESTION", "rule": "完整结果每隔1s，完整时间范围待确认"},
+          "paper_time_unit": "h",
+          "paper_time_sampling": {"status": "STATEMENT_FACT", "rule": "每隔0.5h至3h"},
+          "space_unit": "cm",
+          "space_sampling": {"status": "STATEMENT_FACT", "rule": "完整结果每隔0.1cm"},
+          "paper_space_sampling": {"status": "STATEMENT_FACT", "rule": "每隔0.5cm，范围0至2cm"},
+          "value_unit": "kg/kg",
+          "decimal_precision": 4,
+          "skeleton_shape": [5, 6],
+          "expected_final_shape": {"status": "OPEN_QUESTION", "known_rule": "完整时间范围与端点计数待确认"},
+          "required_cells": ["完整时间-空间结果矩阵", "官方表头"],
+          "forbidden_changes": ["写入A题官方模板", "改变Sheet名称", "把论文小时直接写入秒列"],
+          "validation_status": "OPEN_QUESTION",
+          "open_questions": ["OQ-001", "OQ-002"]
+        }
+      ]
+    },
+    {
+      "question": "Q3",
+      "file": "result3.xlsx",
+      "official_template": "A题/附件/附件3/result3.xlsx",
+      "candidate_path": "deliverables/candidate/result3.xlsx",
+      "final_path": "deliverables/final/result3.xlsx",
+      "sheets": [
+        {
+          "name": "Sheet1",
+          "time_unit": "s",
+          "time_sampling": {"status": "OPEN_QUESTION", "rule": "完整结果每隔60s，结束时间决定范围"},
+          "paper_time_unit": "h",
+          "paper_time_sampling": {"status": "STATEMENT_FACT", "rule": "每隔6h，包含烘干结束时间行"},
+          "space_unit": "cm",
+          "space_sampling": {"status": "STATEMENT_FACT", "rule": "完整结果每隔0.1cm"},
+          "paper_space_sampling": {"status": "STATEMENT_FACT", "rule": "每隔0.5cm"},
+          "value_unit": "kg/kg",
+          "decimal_precision": 4,
+          "skeleton_shape": [5, 6],
+          "expected_final_shape": {"status": "OPEN_QUESTION", "known_rule": "结束时间行和最终行数待确认"},
+          "required_cells": ["水分浓度矩阵", "时间列", "距离表头", "烘干结束时间行"],
+          "forbidden_changes": ["写入A题官方模板", "改变Sheet名称", "结束时间未确认前硬编码结束行"],
+          "validation_status": "OPEN_QUESTION",
+          "open_questions": ["OQ-003"]
+        }
+      ]
+    },
+    {
+      "question": "Q4",
+      "file": "result4.xlsx",
+      "official_template": "A题/附件/附件3/result4.xlsx",
+      "candidate_path": "deliverables/candidate/result4.xlsx",
+      "final_path": "deliverables/final/result4.xlsx",
+      "sheets": [
+        {
+          "name": "Sheet1",
+          "time_unit": "s",
+          "time_sampling": {"status": "OPEN_QUESTION", "rule": "完整结果每隔60s，结束时间决定范围"},
+          "paper_time_unit": "h",
+          "paper_time_sampling": {"status": "STATEMENT_FACT", "rule": "每隔6h，包含烘干结束时间行"},
+          "space_unit": "cm",
+          "space_sampling": {"status": "OPEN_QUESTION", "rule": "完整结果每隔0.1cm，终点为药材表面"},
+          "paper_space_sampling": {"status": "STATEMENT_FACT", "rule": "每隔0.5cm，终点为药材表面"},
+          "value_unit": "kg/kg",
+          "decimal_precision": 4,
+          "skeleton_shape": [5, 6],
+          "expected_final_shape": {"status": "OPEN_QUESTION", "known_rule": "动态半径、表面列数、结束时间和最终行数待确认"},
+          "required_cells": ["水分浓度矩阵", "时间列", "距离表头", "药材表面列", "烘干结束时间行"],
+          "forbidden_changes": ["写入A题官方模板", "改变Sheet名称", "未经确认写入固定空间终点"],
+          "validation_status": "OPEN_QUESTION",
+          "open_questions": ["OQ-003", "OQ-004"]
+        }
+      ]
+    }
+  ]
+}

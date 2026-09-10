@@ -106,7 +106,7 @@
 
 | ID | 未决事项 | 来源 | 进入建模前的处理 |
 |---|---|---|---|
-| OQ-001 | 题面输出表与完整 Excel 的时间单位不同，需在实现和论文中分别保留 | 题面/附件3说明 | 显式记录，不做隐式转换 |
-| OQ-002 | Q2“3小时展示”与“烘干一般2-3天”的关系 | 题面问题2 | 人工确认任务范围，不在本阶段推断 |
-| OQ-003 | Q3/Q4 烘干结束时间行的写入格式 | 表5/表6与模板 | 人工确认后登记 |
-| OQ-004 | Q4 半径变化与空间网格的同步方式 | 附件2、附录4 | 人工确认后登记 |
+| OQ-001 | DELIVERABLE | 题面输出表与完整 Excel 的时间单位不同，需在实现和论文中分别保留 | DELIVERABLE GENERATION | 团队与人工审查；显式记录，不做隐式转换 |
+| OQ-002 | INTERPRETATION | Q2“3小时展示”与“烘干一般2-3天”的关系 | MODEL IMPLEMENTATION | 人工确认官方要求、背景描述和团队解释的边界 |
+| OQ-003 | DELIVERABLE | Q3/Q4 烘干结束时间行的写入格式 | DELIVERABLE GENERATION | 人工确认后登记到 Deliverable Contract |
+| OQ-004 | MODELING | Q4 半径变化与空间网格的同步方式 | MODEL IMPLEMENTATION | 建模负责人在进入 Q4 实现时处理；不阻塞当前 PRE-MODELING WORKFLOW |

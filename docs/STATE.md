@@ -7,7 +7,7 @@
 - 比赛：2026 高教社杯全国大学生数学建模竞赛
 - 赛题：A题《药材的烘干问题》
 - 官方源：`A题/`（OFFICIAL_SOURCE / IMMUTABLE_SOURCE）
-- 当前阶段：Workflow Hardening / Problem Registration
+- 当前阶段：PRE-MODELING READY
 
 ## 各问题状态
 
@@ -29,10 +29,10 @@
 ## 风险与下一步
 
 - 主要问题：尚未进入建模阶段
-- Blockers：等待人工确认 Workflow Hardening 结果；运行环境与依赖尚未正式固定
-- 最高优先级任务：人工确认题目规格、资产哈希和交付隔离规则
-- 推荐下一步：获得批准后再单独建立建模任务，禁止本阶段自动进入 Q1
+- Blockers：无当前阶段 Workflow 阻塞；OQ-004 的 Blocking Phase 为 MODEL IMPLEMENTATION
+- 最高优先级任务：人工授权具体 Q1/Q2/Q3/Q4 建模任务
+- 推荐下一步：等待人工授权；不得自动开始 Q1
 
 ## 更新时间
 
-- 最后更新时间：2026-09-10（Workflow Hardening / Problem Registration）
+- 最后更新时间：2026-09-10（PRE-MODELING GATE PASS）

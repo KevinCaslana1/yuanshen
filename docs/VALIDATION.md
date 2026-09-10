@@ -13,6 +13,29 @@
 | 官方源文件未被修改 | `git diff -- A题` | 无差异 | Git 状态 | PASS |
 | 交付隔离 | 人工检查 `deliverables/README.md` | candidate/final 已建立，当前无结果文件 | 交付说明 | PASS |
 
+## PRE-MODELING GATE
+
+| Gate Item | Evidence | Status |
+|---|---|---|
+| official assets | `scripts/validate_inputs.py` | PASS |
+| official SHA | `scripts/validate_inputs.py` | PASS |
+| official source git diff clean | `git diff -- A题` | PASS |
+| template skeleton validation | `scripts/validate_templates.py` | PASS |
+| deliverable contract validation | `scripts/validate_deliverable_contract.py` | PASS |
+| environment reproducibility | `.venv`, requirements files, Python 3.12.14 | PASS |
+| tests | `pytest -q` | PASS: 12 passed |
+| Q1-Q4 registration | `docs/STATE.md`, `config/deliverables.json` | PASS |
+| candidate empty | `deliverables/candidate/` | PASS |
+| final empty | `deliverables/final/` | PASS |
+| no formal experiments | `docs/EXPERIMENTS.md` | PASS |
+| no findings | `docs/FINDINGS.md` | PASS |
+| no claims | `docs/CLAIMS.md` | PASS |
+| no generated answers | source/template/result audit | PASS |
+
+`PRE-MODELING GATE = PASS`
+
+Remaining Open Questions are classified by blocking phase in `docs/PROBLEM_SPEC.md`. Modeling questions such as Q4 dynamic-radius synchronization block only `MODEL IMPLEMENTATION`, not this Workflow Gate.
+
 ## 通用检查
 
 | 检查项 | 适用问题 | 结果 | 证据 | 状态 |

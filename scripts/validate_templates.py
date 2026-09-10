@@ -14,7 +14,10 @@ try:
 except ImportError as exc:  # pragma: no cover - environment failure
     raise SystemExit("openpyxl is required for read-only XLSX validation") from exc
 
-from validate_inputs import EXPECTED, sha256
+try:
+    from scripts.validate_inputs import EXPECTED, sha256
+except ModuleNotFoundError:  # direct invocation: python scripts/validate_templates.py
+    from validate_inputs import EXPECTED, sha256
 
 
 TEMPLATES = {

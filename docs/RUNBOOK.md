@@ -4,11 +4,15 @@
 
 ## Current Environment
 
-- Python：已用 Codex bundled runtime 验证为 `3.12.14`
-- 环境创建方式：`NOT YET ESTABLISHED`
-- 依赖安装方法：`NOT YET ESTABLISHED`
-- 当前校验脚本依赖：Python 标准库与运行环境中的 `openpyxl`（仅只读检查 XLSX）
-- 依赖版本锁定：`NOT YET ESTABLISHED`
+- 默认 PATH Python：`3.8.10`，无 pip 且无 openpyxl，不能作为当前验证环境。
+- 推荐 Python：`3.12.14`，使用 Codex bundled runtime 验证。
+- Python 兼容范围：`>=3.8,<3.13`；尚未在所有 patch 版本上验证，不能宣称严格 patch 级复现。
+- bundled bootstrap pip：`26.2.1`
+- 当前项目 `.venv` pip：`25.0.1`；该版本由 `venv` 创建时随解释器提供，应用依赖仍由 requirements 文件固定
+- 运行时依赖：见 `requirements.txt` 和 `requirements-dev.txt`。
+- 当前校验脚本只读依赖：`openpyxl==3.1.5`。
+- 测试依赖：`pytest==8.4.2`。
+- 环境创建方式：使用 Python `venv`，不引入 Poetry、Conda 或 Docker。
 
 ## Established Entries
 
@@ -17,6 +21,23 @@
 | 官方输入资产检查 | `scripts/validate_inputs.py` | 已建立；只读 |
 | 官方模板结构检查 | `scripts/validate_templates.py` | 已建立；只读 |
 | 题目阅读 | `A题/A题.pdf` | 官方人工阅读材料 |
+| 交付契约检查 | `scripts/validate_deliverable_contract.py` | 本阶段建立；只读 |
+| 自动测试 | `pytest -q` | 本阶段建立；不包含模型测试 |
+
+## Setup and Validation Commands
+
+```powershell
+<python-3.12> -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt -r requirements-dev.txt
+.\.venv\Scripts\python.exe scripts\validate_inputs.py
+.\.venv\Scripts\python.exe scripts\validate_templates.py
+.\.venv\Scripts\python.exe scripts\validate_deliverable_contract.py
+.\.venv\Scripts\python.exe -m pytest -q
+```
+
+其中 `<python-3.12>` 表示已安装的 Python 3.12 解释器路径；不要把 `D:\python.exe` 这个无 pip 的 Python 3.8.10 当作冻结环境。
+
+仓库当前为 Public。此阶段不将 GitHub CI 作为 Gate 依赖，按本 Runbook 在本地执行全部校验即可。
 
 ## Future Entries
 
@@ -25,7 +46,7 @@
 - 实验运行命令：`NOT YET ESTABLISHED`
 - 结果生成命令：`NOT YET ESTABLISHED`
 - 数值结果验证命令：`NOT YET ESTABLISHED`
-- 完整复现顺序：`NOT YET ESTABLISHED`
+- 完整复现顺序：环境安装 → 输入校验 → 模板校验 → 交付契约校验 → Workflow 测试；模型和结果生成顺序仍为 `NOT YET ESTABLISHED`
 
 ## Official Template Delivery
 
