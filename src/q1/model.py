@@ -96,6 +96,77 @@ def implicit_radial_step(
     return thomas_solve(*system[:3], system[3])
 
 
+def assemble_bdf2_radial_system(
+    old_values: Sequence[float],
+    previous_values: Sequence[float],
+    grid: RadialGrid,
+    dt_s: float,
+    capacity: float,
+    face_diffusivities: Sequence[float],
+    surface_transfer: float,
+    environment_value: float,
+    surface_boundary: str = "robin",
+) -> Tuple[List[float], List[float], List[float], List[float]]:
+    """Assemble the BDF2 system for the same radial operator as BE.
+
+    For Robin rows, the operator and boundary forcing are scaled by 2/3 and
+    the history is ``4/3*u_n - 1/3*u_(n-1)``. Dirichlet rows remain explicit
+    algebraic boundary values. This is a numerical-method candidate only; it
+    does not change the Q1 physical model.
+    """
+
+    if len(previous_values) != len(old_values):
+        raise ValueError("BDF2 history vectors must have the same length")
+    be_lower, be_diagonal, be_upper, be_rhs = assemble_radial_system(
+        old_values,
+        grid,
+        dt_s,
+        capacity,
+        face_diffusivities,
+        surface_transfer,
+        environment_value,
+        surface_boundary,
+    )
+    if surface_boundary == "dirichlet":
+        rhs = [4.0 / 3.0 * old - 1.0 / 3.0 * previous for old, previous in zip(old_values, previous_values)]
+        rhs[-1] = environment_value
+        return [0.0] * len(old_values), [1.0] * len(old_values), [0.0] * len(old_values), rhs
+
+    operator_scale = 2.0 / 3.0
+    lower = [operator_scale * value for value in be_lower]
+    diagonal = [1.0 + operator_scale * (value - 1.0) for value in be_diagonal]
+    upper = [operator_scale * value for value in be_upper]
+    history = [4.0 / 3.0 * old - 1.0 / 3.0 * previous for old, previous in zip(old_values, previous_values)]
+    boundary_forcing = [be_value - old for be_value, old in zip(be_rhs, old_values)]
+    rhs = [value + operator_scale * forcing for value, forcing in zip(history, boundary_forcing)]
+    return lower, diagonal, upper, rhs
+
+
+def implicit_bdf2_radial_step(
+    old_values: Sequence[float],
+    previous_values: Sequence[float],
+    grid: RadialGrid,
+    dt_s: float,
+    capacity: float,
+    face_diffusivities: Sequence[float],
+    surface_transfer: float,
+    environment_value: float,
+    surface_boundary: str = "robin",
+) -> List[float]:
+    system = assemble_bdf2_radial_system(
+        old_values,
+        previous_values,
+        grid,
+        dt_s,
+        capacity,
+        face_diffusivities,
+        surface_transfer,
+        environment_value,
+        surface_boundary,
+    )
+    return thomas_solve(*system[:3], system[3])
+
+
 def radial_control_volume_factors(grid: RadialGrid) -> List[float]:
     dr = grid.dr_m
     factors = [0.125 * dr * dr]
