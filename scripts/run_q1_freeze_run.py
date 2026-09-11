@@ -92,8 +92,11 @@ def _write_internal_reference(result: Q1Result, path: Path) -> str:
     assert_not_official_output(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     payload = _result_payload(result)
-    with gzip.open(path, "wb", compresslevel=6) as stream:
-        pickle.dump(payload, stream, protocol=pickle.HIGHEST_PROTOCOL)
+    # Fix the gzip header timestamp so a byte hash tests numerical
+    # determinism rather than wall-clock metadata.
+    with path.open("wb") as raw_stream:
+        with gzip.GzipFile(fileobj=raw_stream, mode="wb", compresslevel=6, mtime=0) as stream:
+            pickle.dump(payload, stream, protocol=pickle.HIGHEST_PROTOCOL)
     return sha256(path)
 
 
