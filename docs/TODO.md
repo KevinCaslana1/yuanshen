@@ -39,6 +39,7 @@
 | T-030 | P0 | Q1 | T-029 | DONE | Q1 RESULT & DELIVERABLE GATE | 全时域温度/含水率估计不确定度均 `<5e-5`，生产配置冻结并完成候选验证 | 本轮 |
 | T-031 | P0 | Q1 | T-030 | DONE | Human Q1 freeze approval and final handoff | 人工批准已登记；candidate 已 COPY ONLY 到 `deliverables/final/`，final 工作簿/清单、最终校验、图表包和审计记录均完成；不得自动进入 Q2 | 2026-09-11 |
 | T-032 | P0 | Q2 | T-031 | DONE | `docs/Q2_PLAN.md`、Q2 实验审计与相关登记文档 | 官方要求、附录3、delta matrix、团队资料 reconciliation、模型/数值候选、验证和交付契约草案全部完成；不实现 solver | 本轮 |
+| T-037 | P0 | Q1 | T-031 | DONE | `experiments/EXP-Q1-SURFACE-DECAY/`、`experiments/EXP-003/`、`experiments/EXP-004/` | signed/absolute 原始误差、15–45 s 表、signed 图、absolute semilogy 图、0–60 s 边界/求解轨迹、固定 dt/dr 的全时域 L∞/L2/observed order 和谷值移动检查完成；不修改 final result1.xlsx | 2026-09-11 |
 | T-033 | P0 | Q2 | T-032 | TODO | Human authorization for Q2 implementation | 人工明确批准进入 `src/q2/` 实现；批准范围不自动包含 final `result2.xlsx` | 待确认 |
 | T-034 | P1 | Q2 | T-032 | TODO | Decide post-14400 s environment | 关闭或批准 `OQ-Q2-ENV-001`；记录常值、尾窗和切换规则 | Q2 实现前 |
 | T-035 | P1 | Q2 | T-032 | TODO | Decide variable-coefficient interface mean | 关闭 `OQ-Q2-FVM-001` 或批准算术/调和双方案验证 | Q2 数值实现前 |

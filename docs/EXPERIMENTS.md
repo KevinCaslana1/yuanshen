@@ -8,8 +8,8 @@
 |---|---|---|---|---|---|---|---|
 | EXP-001 | Q1 | M1 smoke | 检查输入、插值、单位、边界方向和最小离散 | 10 s、N=8、附件1原始点 | 所有运行检查通过，Picard max=2 | COMPLETED | `experiments/EXP-001/` |
 | EXP-002 | Q1 | B0 vs M1 vs M2 | 比较均匀 Baseline、非线性径向和常-D径向模型 | 1800 s、dt=1 s、N=80 | M1/M2验证通过；平均响应与径向差异已记录 | COMPLETED | `experiments/EXP-002/` |
-| EXP-003 | Q1 | M1 | 时间离散敏感性与收敛 | `dt=1/0.5/0.25 s` | 1→0.5 s最大差异 `0.000600 K/4.40e-5 kg/kg`；0.5→0.25 s进一步减半 | COMPLETED | `experiments/EXP-003/` |
-| EXP-004 | Q1 | M1 | 空间网格收敛 | `N=40/80/160`，`dr=0.5/0.25/0.125 mm` | 80→160最大差异 `1.33e-5 K/1.41e-4 kg/kg` | COMPLETED | `experiments/EXP-004/` |
+| EXP-003 | Q1 | M1/BE | 固定空间网格的完整时间收敛审计 | 固定 `dr=0.025 cm`；`dt=1/0.5/0.25/0.125 s`；`dt=0.0625 s` reference；0–1800 s | 相邻直接差分 observed order：表面 L∞ `0.929/0.962`，内部约 `0.999–1.010`；各位置 L∞/L2 均随 dt 下降 | COMPLETED | `experiments/EXP-003/` |
+| EXP-004 | Q1 | M1/BE | 固定时间步的完整空间收敛审计 | 固定 `dt=0.0625 s`；`dr=0.1/0.05/0.025 cm`；`dr=0.0125 cm` reference；0–1800 s | 相邻直接差分 observed order：表面 L∞ `0.941`、L2 `1.747`；r=1.5/1.0 cm L∞ `1.933/1.978` | COMPLETED | `experiments/EXP-004/` |
 | EXP-005 | Q1 | M1 vs M3 | Robin 与 Dirichlet 边界敏感性 | 相同输入、dt=1 s、N=80 | 最大差异 `4.727 K/1.477 kg/kg`；Robin验证通过 | COMPLETED | `experiments/EXP-005/` |
 | EXP-006 | Q1 | M1 | 分段线性与零阶保持输入敏感性 | 同一附件1原始点、dt=1 s、N=80 | 最大差异 `0.178 K/1.02e-4 kg/kg`；两种运行检查通过 | COMPLETED | `experiments/EXP-006/` |
 | EXP-007 | Q1 | M1 | 通量、储量和物理范围 sanity check | 1800 s、dt=1 s、N=80 | 质量残差 `-5.42e-20`，能量残差 `1.13e-7`，范围有限 | COMPLETED | `experiments/EXP-007/` |
@@ -20,7 +20,7 @@
 | EXP-Q1-NUM-REMEDIATION | Q1 | M1-NUM-T2 | 评估 BE→“BE 首步+BDF2”时间积分候选；不生成工作簿 | N=320、dt=1/0.5/0.25 s；与 BE dt=0.25 对照；完整网格及论文 7×5 | BDF2 论文点差异降至温度 `0/35`、水分 `0/35`（dt0.5→0.25）；全网格估计误差仍未通过 | COMPLETED | `experiments/EXP-Q1-NUM-REMEDIATION/` |
 | EXP-Q1-INITIAL-LAYER | Q1 | M1/BE diagnostic | 检查 t=0 温度/水分 Robin 相容性、扩散尺度和 0–10 s 早期层 | N=320/640/1280；dt=.25/.125/.0625/.03125 s；t=.25/.5/1/2/5/10 s；R、R-dr、R-2dr、1.9 cm | 水分初始 Robin 残差 `-2.024296e-6 m/s`；t=1 s 均匀 N1280 表面保守不确定度 `8.7151e-5 kg/kg` | COMPLETED | `experiments/EXP-Q1-INITIAL-LAYER/` |
 | EXP-Q1-BDF2-STARTUP | Q1 | M1-NUM-T2 | 对照标准 BE 首步与 0–1 s 早期 BE 子步启动 | N=640、正常 dt=.25 s；启动 dt=.25/.125/.0625 s；t=.25/.5/1/2/5/10 s | 早期子步未相对标准启动稳定改善；最大标准/早期差异 `1.5769e-3 kg/kg` | COMPLETED | `experiments/EXP-Q1-BDF2-STARTUP/` |
-| EXP-Q1-SURFACE-DECAY | Q1 | M1/BE | 测量 1–100 s 表面空间误差衰减并绘图 | N320/N640/N1280，共同 dt=.0625 s；r=1.9/2.0 cm | r=2.0 cm N640→N1280 误差从 t=1 的 `3.0796e-4` 降到 t=100 的 `2.1780e-5 kg/kg`，比值约 `14.14` | COMPLETED | `experiments/EXP-Q1-SURFACE-DECAY/` |
+| EXP-Q1-SURFACE-DECAY | Q1 | M1/BE | signed/absolute 表面误差、早期深谷与边界求解过程审计 | N640/N1280，共同 `dt=.0625 s`；1–100 s；r=1.9/2.0 cm；0–60 s solver trace | r=1.9 cm 在 35–36 s signed error 穿零，估计 `35.2521507920 s`；r=2.0 cm 无穿零；归类 cancellation dip | COMPLETED | `experiments/EXP-Q1-SURFACE-DECAY/` |
 | EXP-Q1-CLUSTER-BENCH | Q1 | Isolated nonuniform FVM benchmark | 验证边界聚类保守 FVM 的中心/内部/表面空间与时间阶 | 制造解；聚类幂 `p=2`；多级空间/时间细化 | 空间 L∞ 阶约 `1.95–1.96`，时间 L∞ 阶约 `1.01–1.06`；中心/表面趋势正常 | COMPLETED | `experiments/EXP-Q1-CLUSTER-BENCH/` |
 | EXP-Q1-CLUSTER-SHORT | Q1 | M1/BE nonuniform candidate | 在真实 Q1 上比较均匀与边界聚类网格的 0–10 s 空间误差 | 均匀 N320/N640；聚类 base320/base640/base1280；dt=.0625 s；显式保留官方输出节点 | t=1 s 聚类 base640→base1280 表面差 `3.6753e-6`，远低于均匀 N320→N640 的 `1.3891e-3` | COMPLETED | `experiments/EXP-Q1-CLUSTER-SHORT/` |
 | EXP-Q1-CLUSTER-TEMPORAL | Q1 | M1/BE nonuniform candidate | 对聚类候选执行固定网格时间梯、t=1 全 21 点空间/时间误差与舍入认证 | base640 dt=.25/.125/.0625/.03125；base1280 dt=.0625/.03125/.015625/.0078125；base320/base640/base1280 dt=.03125 | `C(R,1s)=2.5177587784`；时间剩余 `3.1850e-5`、空间剩余 `1.2259e-6 kg/kg`；20/21 certified，表面 ambiguous | COMPLETED | `experiments/EXP-Q1-CLUSTER-TEMPORAL/` |
@@ -68,6 +68,16 @@ Notes:
 EXP-001 至 EXP-007 已在实现授权后按序完成。后续完成初始层诊断、BDF2 启动对照、表面误差衰减、聚类 benchmark、真实 Q1 短时聚类对照、聚类时间梯及全时域空间/时间收敛。`D-Q1-NUM-ACCURACY-CRITERION` 下，3 层空间与 3 层时间的逐点估计不确定度均通过 `<5e-5`；随后 `Q1_FREEZE_RUN` 双跑确定性通过，并从 run_1 生成候选。人工 freeze approval 已批准并完成 candidate-to-final 复制、最终验证和图表生成；Q1 现已冻结，Q2 不启动。历史实验中的 BLOCKED 记录保留为历史证据，不代表当前冻结配置失败。
 
 每个实验目录均包含 `config.json`、`metrics.json` 和 `notes.md`，记录命令、代码提交、输入 SHA-256、求解器配置、运行时间、验证状态和产物路径。
+
+## Q1 Surface Signed-Error Audit Addendum
+
+本轮按用户要求暂停 Q2/Q3/Q4，并对早期表面误差单独复核。历史表面比较脚本曾只把 `abs(C_test-C_ref)` 写入指标；本次审计保留完整浮点的 `signed_error=e=C_test-C_ref` 与 `absolute_error=abs(e)`，并同时生成未取绝对值图和 absolute-error semilogy 图。N640 与 N1280 使用共同 `dt=0.0625 s`，1–100 s 逐秒输出；15–45 s 原始表和 0–60 s 边界/求解轨迹均在 `experiments/EXP-Q1-SURFACE-DECAY/`。
+
+在 r=1.9 cm 处，35 s 的 signed error 为 `-7.767662335567138e-08`，36 s 为 `+2.303796104996536e-07`，线性穿零估计为 `35.252150792027635 s`；r=2.0 cm 字面表面在 15–45 s 没有穿零。固定 `dt=0.0625 s` 的空间对照中，r=1.9 cm 谷值/穿零随 `dr=0.1/0.05/0.025 cm` 移动至约 `43.817/40.089/37.124 s`，而全局 L∞/L2 仍随细化下降。该现象应记录为 `pointwise error zero-crossing / cancellation dip`，不能作为算法精度突然提高两个数量级的证据。
+
+独立过程检查确认 0–60 s 的 `C_inf` 使用同一线性段（原始端点 `0.01963`、`0.02002 kg/kg`，斜率 `6.4999999999999666e-06 kg/kg/s`，整数采样最大二阶差 `3.469446951953614e-18`）；`dt=0.0625 s` 固定，960 个步的 Picard 次数均为 2，最终归一化非线性残差最大 `9.959320862560113e-09`，归一化 time-step residual 最大 `5.662603714766902e-16`，时间/索引对齐误差为 0。15–45 s 的 literal one-sided Robin 通量差最大 `5.341027496999451e-07`，face 通量差最大 `5.267304447720662e-07`，但表面控制体积方程残差最大 `3.4778292694089816e-17`；未发现与深谷同步的边界或迭代突变。
+
+EXP-003/004 是与冻结生产配置隔离的 uniform-grid BE 诊断：时间审计固定 `dr=0.025 cm`，空间审计固定 `dt=0.0625 s`，两者都保留固定 reference 的全时域 L∞/L2 以及相邻方案的 observed order。Q1 final workbook、`figures/q1/final/` 和 `A题/` 在本轮均未修改。
 
 ## Q2 Design Gate Execution Note
 

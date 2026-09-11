@@ -1,46 +1,34 @@
 {
-  "experiment_id": "EXP-Q1-SURFACE-DECAY",
-  "code_commit": "3b0785a6ff5bf0f3e2a27845c6707d0b98b7bb13",
+  "code_commit_at_run": "6822a4ed33eb61616fb6fd0741b5b6772928b0b1",
+  "python": "3.12.14",
   "input_hashes": {
-    "A题/附件/附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7"
+    "A题\\附件\\附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7"
   },
-  "scope": {
-    "end_time_s": 100.0,
-    "comparison_times_s": "1..100 s",
-    "comparison_positions_cm": [
-      1.9,
-      2.0
-    ],
-    "strategy": "N320/N640/N1280 at common dt=0.0625 for spatial comparisons; N1280 dt=0.03125 retained only for time-resolution context"
-  },
+  "solver": "src.q1.solver.run_m1, uniform conservative radial FVM, backward Euler, linear boundary interpolation, Robin surface",
+  "floating_point_policy": "signed and absolute errors are calculated from full-precision Python floats; CSV uses repr; no pre-error rounding",
+  "official_source_modified": false,
+  "final_result1_regenerated": false,
+  "experiment_id": "EXP-Q1-SURFACE-DECAY",
   "cases": {
-    "N320_dt0.0625": {
-      "n_intervals": 320,
-      "dr_m": 6.25e-05,
-      "dt_s": 0.0625,
-      "runtime_seconds": 2.1900884000006045,
-      "picard_max_iterations": 3
-    },
-    "N640_dt0.0625": {
+    "test": {
+      "label": "N640_dt0.0625_short",
       "n_intervals": 640,
       "dr_m": 3.125e-05,
+      "dr_cm": 0.003125,
       "dt_s": 0.0625,
-      "runtime_seconds": 4.309052599999632,
-      "picard_max_iterations": 3
+      "end_time_s": 100.0,
+      "runtime_seconds": 3.788294900001347,
+      "sample_count": 1601
     },
-    "N1280_dt0.0625": {
+    "reference": {
+      "label": "N1280_dt0.0625_short",
       "n_intervals": 1280,
       "dr_m": 1.5625e-05,
+      "dr_cm": 0.0015625,
       "dt_s": 0.0625,
-      "runtime_seconds": 8.50530450000042,
-      "picard_max_iterations": 3
-    },
-    "N1280_dt0.03125": {
-      "n_intervals": 1280,
-      "dr_m": 1.5625e-05,
-      "dt_s": 0.03125,
-      "runtime_seconds": 18.174956500000917,
-      "picard_max_iterations": 3
+      "end_time_s": 100.0,
+      "runtime_seconds": 7.561634499998036,
+      "sample_count": 1601
     }
   }
 }

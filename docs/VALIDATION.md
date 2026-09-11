@@ -130,7 +130,7 @@ Remaining Open Questions are classified by blocking phase in `docs/PROBLEM_SPEC.
 | t=0 temperature compatibility | `EXP-Q1-INITIAL-LAYER/metrics.json` | PASS; residual `-0.0 W/m²` within representation |
 | t=0 moisture compatibility | `EXP-Q1-INITIAL-LAYER/metrics.json` | SUPPORTED INITIAL LAYER; residual `-2.024296e-6 m/s`, no physical input changed |
 | diffusion-scale diagnostic | `EXP-Q1-INITIAL-LAYER/metrics.json` | PASS as diagnostic; not used as an error theorem |
-| surface error decay | `EXP-Q1-SURFACE-DECAY/metrics.json`, `surface_moisture_error_decay.svg` | PASS as diagnosis; t=1 peak decays and later order returns near 2 |
+| surface error decay | `EXP-Q1-SURFACE-DECAY/metrics.json`, signed/absolute raw CSV and plots | PASS as diagnosis; signed error is retained and the 20–40 s near-surface dip is classified as cancellation, not sudden accuracy improvement |
 | BDF2 startup comparison | `EXP-Q1-BDF2-STARTUP/metrics.json` | PASS as comparison; early BE substeps not selected |
 | clustered-grid manufactured benchmark | `EXP-Q1-CLUSTER-BENCH/metrics.json` | PASS; space about 1.95–1.96 and time about 1.01–1.06 |
 | clustered-grid real-Q1 short test | `EXP-Q1-CLUSTER-SHORT/metrics.json` | PASS as candidate evidence; explicit official nodes preserved |
@@ -140,6 +140,21 @@ Remaining Open Questions are classified by blocking phase in `docs/PROBLEM_SPEC.
 | final-gate re-entry | `docs/Q1_INITIAL_LAYER_AUDIT.md` | BLOCKED; waiting for human review |
 
 `Q1 INITIAL-LAYER & SURFACE-ACCURACY GATE` 的早期阻塞已由后续 `EXP-Q1-FULL-SPATIAL`、`EXP-Q1-FULL-TEMPORAL` 和 `Q1_FREEZE_RUN` 复验关闭；其诊断结论仍保留为支持性证据。Q1 随后已完成人工 freeze approval、final 验证和图表交付；不得启动 Q2，除非获得新的明确授权。
+
+## Q1 EARLY SURFACE SIGNED-ERROR AUDIT（本轮）
+
+| Gate Item | Evidence | Status |
+|---|---|---|
+| error definition | `experiments/EXP-Q1-SURFACE-DECAY/metrics.json`、`surface_signed_error_15_45s.csv` | PASS；同时保存 `e=C_test-C_ref` 与 `abs(e)`，误差计算使用完整浮点 |
+| 15–45 s raw table | `experiments/EXP-Q1-SURFACE-DECAY/surface_signed_error_15_45s.csv` | PASS；1 s 间隔，含 20/25/30/35/40 s，未先四舍五入 |
+| signed/absolute plots | `signed_error_vs_time.svg`、`absolute_error_semilogy.svg` | PASS；无 smoothing、无 error interpolation、无 epsilon clip，x/y 对齐检查为 0 |
+| boundary and solver trace | `boundary_solver_trace_0_60s.csv`、surface `metrics.json` | PASS；C_inf 单线性段、dt 固定、Picard、非线性/线性残差和时间对齐均有记录 |
+| Robin independent check | trace CSV；surface metrics | PASS；surface control-volume residual `3.4778292694089816e-17`，15–45 s 无同步突变 |
+| separated time convergence | `experiments/EXP-003/` | PASS as diagnosis；固定 `dr=0.025 cm`，BE 相邻直接差分 observed order 进入约一阶 |
+| separated space convergence | `experiments/EXP-004/` | PASS as diagnosis；固定 `dt=0.0625 s`，全局 L∞/L2 随 dr 细化下降，近表面谷值发生移动 |
+| final workbook / official source | `deliverables/final/result1.xlsx`、`A题/` | PASS；本轮未修改、未重新生成 |
+
+诊断结论限定为 A：r=1.9 cm 的 signed error 在 35–36 s 穿过 0，绝对误差深谷是 `pointwise error zero-crossing / cancellation dip`；字面 r=2.0 cm 表面在 15–45 s 没有穿零。不得把该深谷作为模型优越性或快速收敛证据。Q2/Q3/Q4 在本轮暂停。
 
 ## 通用检查
 

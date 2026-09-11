@@ -20,6 +20,7 @@
 | FIND-Q1-012 | t=0 温度场与温度 Robin 表示相容，而均匀初始水分场与表面水分 Robin 条件不相容；短时表面误差随后衰减，支持初始表面层诊断 | Q1 | EXP-Q1-INITIAL-LAYER、EXP-Q1-SURFACE-DECAY | SUPPORTED（数值诊断，不是模型错误判定） |
 | FIND-Q1-013 | 边界聚类保守 FVM 在独立制造解 benchmark 中保持近二阶空间/一阶时间趋势，并显著降低真实 Q1 早期表面空间差异 | Q1 | EXP-Q1-CLUSTER-BENCH、EXP-Q1-CLUSTER-SHORT | SUPPORTED（候选未冻结） |
 | FIND-Q1-014 | 早期 BE 子步启动没有显示出相对标准 BE 首步的稳定改善 | Q1 | EXP-Q1-BDF2-STARTUP | SUPPORTED（当前 M1-NUM-T2 对照范围） |
+| FIND-Q1-017 | r=1.9 cm 的早期表面误差谷值由 signed error 穿零造成；字面 r=2.0 cm 表面无穿零，且空间细化时谷值移动而全局 L∞/L2 下降 | Q1 | EXP-Q1-SURFACE-DECAY、EXP-003、EXP-004 | SUPPORTED（pointwise error zero-crossing / cancellation dip；不得作为突然提速证据） |
 
 ## 发现记录模板
 
@@ -114,6 +115,24 @@
 适用范围：M1-NUM-T2、N640、0–10 s 对照窗口。
 
 限制：不能据此证明其他启动策略在全时段都无效；当前只决定不把早期子步直接冻结为生产策略。
+
+状态：SUPPORTED
+
+## FIND-Q1-017 早期表面误差谷值是 signed-error zero-crossing
+
+问题：Q1
+
+发现：本轮重新审计后，表面误差明确保存为 `e(t)=C_test(R,t)-C_ref(R,t)` 和 `E(t)=abs(e(t))` 两列。N640（test）与 N1280（reference）在共同 `dt=0.0625 s` 下的 r=1.9 cm 数据中，20/25/30/35/40 s signed error 分别为 `-3.771722694612123e-06`、`-2.9872553728438334e-06`、`-1.6189237888042385e-06`、`-7.767662335567138e-08`、`+1.4272639048407143e-06`；35–36 s 发生符号改变，线性穿零估计为 `35.252150792027635 s`。因此绝对误差从约 `1e-6` 进入 `1e-8` 的深谷定性为 `pointwise error zero-crossing / cancellation dip`，不定性为算法精度突然提高两个数量级。字面 r=2.0 cm 表面在 15–45 s signed error 始终为正，没有对应穿零。
+
+独立的固定 `dt=0.0625 s` 空间审计中，r=1.9 cm 相对于 `dr=0.0125 cm` reference 的穿零/谷值随 `dr=0.1/0.05/0.025 cm` 移动，穿零约为 `43.817/40.089/37.124 s`；对应的全局 L∞/L2 均下降。固定 `dr=0.025 cm` 的时间审计中，相邻 dt 直接差分的 L∞ observed order 为：表面 `0.929、0.962`，r=1.5 cm `0.998、0.999`，r=1.0 cm `0.999、1.000`，中心 `1.010、1.005`，符合 BE 进入渐近区后大致一阶的判断。
+
+证据：`experiments/EXP-Q1-SURFACE-DECAY/metrics.json`、`experiments/EXP-Q1-SURFACE-DECAY/surface_signed_error_15_45s.csv`、`experiments/EXP-003/metrics.json`、`experiments/EXP-004/metrics.json`。
+
+适用范围：当前 Q1 M1 uniform-grid BE 诊断；表面短时比较为 N640/N1280、共同 `dt=0.0625 s`，收敛审计 reference 分别为 `dt=0.0625 s` 和 `dr=0.0125 cm`。
+
+限制：r=1.9 cm 是靠近表面的输出节点，不等同于字面 r=2.0 cm 表面；局部点态穿零不代表整个时间区间误差变小，也不改变 Q1 冻结生产配置或 final workbook。
+
+对模型/论文的影响：禁止把 20–40 s 的绝对误差深谷写成模型优越性、快速收敛或算法精度突然提高的证据；如需描述，应使用 cancellation dip 的定性。
 
 状态：SUPPORTED
 

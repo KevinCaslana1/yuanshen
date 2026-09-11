@@ -21,6 +21,7 @@
 | F-Q1-005 | EXP-Q1-NUM-REMEDIATION | BDF2 候选的完整网格安全裕量 | 论文点已稳定，但 BDF2 `dt=0.5→0.25 s` 的全网格含水率 L∞ 差 `0.0011151`，Richardson 剩余估计 `0.0006163`，超过四位小数半单位 | 候选有效改善但不能冻结为最终配置 | 人工审查是否做针对早期/表面误差的最小附加诊断 |
 | F-Q1-006 | EXP-Q1-SURFACE-DECAY | 初版误将不同空间与时间步长混合为表面空间误差 | 误差不再代表单一离散维度 | 已改为 N320/N640/N1280 共同 dt=.0625 s；dt=.03125 仅作时间分辨率上下文 | 保持同一离散维度比较 |
 | F-Q1-007 | EXP-Q1-CLUSTER-TEMPORAL | 初版参考键切片混入空间/时间比较，且未覆盖 base320 空间层级 | Richardson 参考不具备同一网格/同一物理时刻的可解释性 | 改为显式空间键和显式时间键，并加入 base320/base640/base1280 dt=.03125 | 任何新收敛脚本禁止依赖字典顺序切片 |
+| F-Q1-008 | EXP-Q1-SURFACE-DECAY audit | 初次审计脚本将字面表面标签与近表面标签混用，且旧 helper 只保存绝对误差 | 首次长时运行在写完短时表后因标签 KeyError 停止；不能证明数值失败 | 统一位置标签；所有审计数据同时保存 signed/absolute，补充直接 signed 图与 semilogy 图后完整重跑通过 | 保持 signed/absolute 字段并显式检查位置映射 |
 
 ## 失败记录模板
 
@@ -126,6 +127,24 @@
 是否放弃：是，初版参考计算不作为证据。
 
 重新尝试条件：新实验必须显式列出 coarse/fine/reference 键，禁止依赖字典顺序切片。
+
+## F-Q1-008 表面误差审计 harness 初次标签与误差字段问题
+
+对应实验：`EXP-Q1-SURFACE-DECAY`、`EXP-003`、`EXP-004`
+
+方法：执行新的 Q1 表面 signed-error、边界轨迹和分离收敛审计。
+
+现象：首次长时审计在 N640/N1280 短时对照、原始表和时间收敛运行完成后，因脚本把 `surface_2.0cm` 与收敛表使用的 `surface` 混用而触发 `KeyError`；同时审计发现历史表面 helper 只持久化了 `abs(C_test-C_ref)`，不满足 signed-error 复核契约。
+
+失败原因：实验 harness 的位置标签契约不统一，且旧误差输出接口没有同时保留 signed 字段。这不是生产 `src/q1` 求解器的数值失败。
+
+已尝试修复：统一位置标签为 `surface`、`near_surface_1.9cm`、`r_1.5cm`、`r_1.0cm`、`center`；更新旧表面 helper 保留 `r1.9cm_signed`/`r2.0cm_signed`；新审计脚本同时写出 signed/absolute 原始 CSV、signed 线性图和 absolute semilogy 图，并显式记录无 smoothing、无 error interpolation、无 epsilon clip 和 x/y 对齐检查。修复后完整审计重跑成功。
+
+最终判断：这是已修复的实验记录/可观测性缺陷，不是 Q1 数值算法 bug；最终诊断由修复后的完整证据决定。
+
+是否放弃：是，首次中断运行和只含绝对误差的旧输出不作为本轮诊断证据；修复后的实验产物保留。
+
+重新尝试条件：任何表面误差实验必须同时输出 `e=C_test-C_ref` 与 `abs(e)`，并在执行前验证位置标签和 reference role。
 
 ## F-Q1-005 BDF2 候选未通过完整网格安全门
 
