@@ -1,0 +1,23 @@
+{
+  "raw_output": {
+    "status": "PASS",
+    "mode": "byte/hash identical",
+    "left_sha256": "48584714d347aed619d56b564f737668cc418d63067daca49b0bceaf75bd548c",
+    "right_sha256": "48584714d347aed619d56b564f737668cc418d63067daca49b0bceaf75bd548c"
+  },
+  "sampled_output": {
+    "status": "PASS",
+    "mode": "byte/hash identical",
+    "left_sha256": "604a323955c2ab5cd1299975231997b3dc6e5c0c6a2e16d6e52d6314a6050eae",
+    "right_sha256": "604a323955c2ab5cd1299975231997b3dc6e5c0c6a2e16d6e52d6314a6050eae"
+  },
+  "diagnostics": {
+    "status": "PASS",
+    "mode": "byte/hash identical",
+    "left_sha256": "219f7a38f130f11ad8c896278f2fc4ce4bc881196b7f0a7f2a133d9af14819b5",
+    "right_sha256": "219f7a38f130f11ad8c896278f2fc4ce4bc881196b7f0a7f2a133d9af14819b5"
+  },
+  "event_bracket_equal": true,
+  "final_horizon_equal": true,
+  "status": "PASS"
+}

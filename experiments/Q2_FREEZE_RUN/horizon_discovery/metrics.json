@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "fresh_start": true,
+  "runtime_s": 1066.7567824999996,
+  "config": {
+    "end_time_s": 259200.0,
+    "time_step_s": 0.25,
+    "candidate": "A",
+    "n_intervals": 80,
+    "cluster_power": 2.0,
+    "scheme": "bdf2",
+    "interface_mean": "harmonic",
+    "interpolation": "linear",
+    "post_attachment_mode": "constant",
+    "post_temperature_c": 49.99525,
+    "post_moisture_kg_kg": 0.049988,
+    "output_interval_s": 1.0,
+    "picard_tolerance": 1e-08,
+    "picard_max_iterations": 50,
+    "picard_relaxation": 1.0,
+    "input_path": "A题\\附件\\附件1.xlsx",
+    "parameters": {
+      "radius_m": 0.02,
+      "length_m": 0.25,
+      "heat_transfer_w_m2_k": 25.0,
+      "mass_transfer_m_s": 8e-07,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55
+    }
+  },
+  "passive_threshold_kg_kg": 0.15,
+  "passive_event_bracket_s": [
+    207034.5,
+    207034.75
+  ],
+  "safety_tail_s": 21600.0,
+  "final_horizon_s": 228635,
+  "validated_envelope_s": 259200.0,
+  "diagnostics_path": "experiments/Q2_FREEZE_RUN/horizon_discovery/diagnostics_3600s.csv"
+}

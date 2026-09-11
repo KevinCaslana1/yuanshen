@@ -22,6 +22,7 @@
 | F-Q1-006 | EXP-Q1-SURFACE-DECAY | 初版误将不同空间与时间步长混合为表面空间误差 | 误差不再代表单一离散维度 | 已改为 N320/N640/N1280 共同 dt=.0625 s；dt=.03125 仅作时间分辨率上下文 | 保持同一离散维度比较 |
 | F-Q1-007 | EXP-Q1-CLUSTER-TEMPORAL | 初版参考键切片混入空间/时间比较，且未覆盖 base320 空间层级 | Richardson 参考不具备同一网格/同一物理时刻的可解释性 | 改为显式空间键和显式时间键，并加入 base320/base640/base1280 dt=.03125 | 任何新收敛脚本禁止依赖字典顺序切片 |
 | F-Q1-008 | EXP-Q1-SURFACE-DECAY audit | 初次审计脚本将字面表面标签与近表面标签混用，且旧 helper 只保存绝对误差 | 首次长时运行在写完短时表后因标签 KeyError 停止；不能证明数值失败 | 统一位置标签；所有审计数据同时保存 signed/absolute，补充直接 signed 图与 semilogy 图后完整重跑通过 | 保持 signed/absolute 字段并显式检查位置映射 |
+| F-Q2-009 | Q2_FREEZE_RUN | 独立时间/空间全时域精度确认 | 冻结候选 T/C L∞ 超过 `2.5e-5` gate；峰值分别位于 `14401 s` 环境跳变和 `1 s` 初始表面层 | 候选阻塞；当前证据不证明 solver assembly bug | 新人工决定 post-14400、dt/grid 或 accuracy gate 后重跑 |
 
 ## 失败记录模板
 
@@ -312,3 +313,19 @@ sampler只登记 21600/86400/172800/259200 s，因此后处理抛出 `KeyError: 
 测试/审查不得把 solver 完成等同于后处理证据完整。
 
 状态：RESOLVED；保留本记录作为审计 provenance。
+
+## FAIL-Q2-009 Q2 production freeze accuracy gate failed
+
+问题：Q2
+
+症状：批准的 Q2 production freeze 双跑完成且完全确定，但独立同输入参考比较没有通过已冻结的内部 `2.5e-5` field uncertainty gate。温度 L∞=`1.9082196854469657e-4 °C`、水分 L∞=`2.0357404664261836e-4 kg/kg`；水分 L2 RMS 也为 `3.0182278875418313e-5 kg/kg`。
+
+定位：最大 temporal temperature difference 位于 `t=14401 s,r=2.0 cm`，对应环境在 `14400 s` 到 `14400 s+epsilon` 的真实跳变 `-0.16975 °C`；最大 spatial moisture difference 位于 `t=1 s,r=2.0 cm`，对应初始表面层在当前网格下的分辨率敏感性。时间 observed order（全局 L∞）为 temperature `1.6685`、moisture `3.0631`。
+
+影响：`deliverables/candidate/result2.xlsx`、Q2 production figures 和 Table 3/4 traceability 均未生成；Q2 candidate/result gate 阻塞。该失败不应被改写为算法优越性、突然收敛或 Q3 终点。
+
+已检查：Run1/Run2 fresh start、raw/sampled/diagnostic/checkpoint hash、environment transition assertion、Picard/finite-range/property/mass/heat/Robin/center checks、逐点全时域对比和参考运行 lineage。未发现随机性、绘图平滑、误差插值或 source index shift 证据；当前证据不足以宣称 solver assembly bug。
+
+下一步：任何改变 post-14400 连续性、dt/grid 分辨率或 accuracy criterion 的 remediation 都需新的人工授权；在授权前不重跑 production、不生成 result2、不启动 Q3/Q4。
+
+状态：OPEN / BLOCKED_PENDING_HUMAN_REMEDIATION_DECISION

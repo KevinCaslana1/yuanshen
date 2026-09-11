@@ -126,3 +126,23 @@ decision-target runs，不允许生成 `result2.xlsx` 或 candidate/final workbo
 的 JSON/CSV/compact diagnostics，不写 workbook。canonical consumer 必须经由
 `src.q2.lineage.canonical_path` 或 `canonical_csv_path`；默认 hash verification
 开启，raw duplicate 文件被拒绝。
+
+## Q2 Production Freeze Run（2026-09-12）
+
+人工批准后，冻结基线和配置，执行：
+
+```powershell
+.\\.venv\\Scripts\\python.exe scripts\\run_q2_production_freeze.py
+.\\.venv\\Scripts\\python.exe scripts\\build_q2_production_manifest.py
+.\\.venv\\Scripts\\python.exe scripts\\run_q2_accuracy_confirmation.py
+```
+
+本次生产双跑和独立参考均已完成，但 `accuracy_confirmation.json` 为 `FAIL`。因此以下命令被故意阻止：
+
+```powershell
+node scripts\\build_q2_candidate.mjs
+.\\.venv\\Scripts\\python.exe scripts\\validate_q2_candidate.py
+.\\.venv\\Scripts\\python.exe scripts\\generate_q2_figures.py
+```
+
+候选工作簿只有在 field L∞/L2、时间/空间参考、事件邻域、结构/格式/溯源和确定性全部 PASS 后才可生成；任何改变 post-14400 环境规则、dt/grid 或内部精度门的动作都必须先获得新的人工授权。当前只允许本地审计提交，不推送远端。

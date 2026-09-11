@@ -41,20 +41,21 @@
 | T-032 | P0 | Q2 | T-031 | DONE | `docs/Q2_PLAN.md`、Q2 实验审计与相关登记文档 | 官方要求、附录3、delta matrix、团队资料 reconciliation、模型/数值候选、验证和交付契约草案全部完成；不实现 solver | 本轮 |
 | T-037 | P0 | Q1 | T-031 | DONE | `experiments/EXP-Q1-SURFACE-DECAY/`、`experiments/EXP-003/`、`experiments/EXP-004/` | signed/absolute 原始误差、15–45 s 表、signed 图、absolute semilogy 图、0–60 s 边界/求解轨迹、固定 dt/dr 的全时域 L∞/L2/observed order 和谷值移动检查完成；不修改 final result1.xlsx | 2026-09-11 |
 | T-033 | P0 | Q2 | T-032 | DONE | Human authorization for Q2 implementation | 已收到人工批准，范围仅含 Q2 implementation、短时验证和0–3 h内部验证；不含 final `result2.xlsx`、Q3/Q4 | 2026-09-11 |
-| T-034 | P1 | Q2 | T-032 | TODO | Decide post-14400 s environment | 关闭或批准 `OQ-Q2-ENV-001`；记录常值、尾窗和切换规则 | Q2 实现前 |
-| T-035 | P1 | Q2 | T-032 | TODO | Decide variable-coefficient interface mean | 关闭 `OQ-Q2-FVM-001` 或批准算术/调和双方案验证 | Q2 数值实现前 |
-| T-036 | P1 | Q2 | T-032 | TODO | Decide Q2 end/accuracy contract | 关闭 `OQ-Q2-END-001`、`OQ-Q2-ACC-001`；不把 Q3 阈值静默升级为 Q2 终点 | Q2 交付前 |
+| T-034 | P1 | Q2 | T-032 | DONE | Decide post-14400 s environment | 已批准 `t>14400 s` 常值 `T_inf=49.99525 °C`、`C_inf=0.049988 kg/kg`，并记录切换跳变 | 2026-09-12 |
+| T-035 | P1 | Q2 | T-032 | DONE | Decide variable-coefficient interface mean | 已批准 production 使用 harmonic；arithmetic 仅保留 sensitivity | 2026-09-12 |
+| T-036 | P1 | Q2 | T-032 | DONE | Decide Q2 end/accuracy contract | 已批准 passive bracket+safety tail horizon 和内部 `2.5e-5` gate；不把 Q3 threshold 当 Q2 endpoint | 2026-09-12 |
 | T-038 | P0 | Q2 | T-033 | DONE | Q2 implementation & short-horizon validation | `src/q2/`、属性/环境/变量系数 FVM、coupled Picard、EXP-Q2-001 至 EXP-Q2-011、测试、checkpoint/restart 和0–3 h内部验证完成；无 `result2.xlsx` | 2026-09-11 |
-| T-039 | P1 | Q2 | T-038 | TODO | Human review of Q2 open decisions | 人工确认环境尾段、linear/PCHIP、h/hm、界面平均、Q2终点和精度门后，才可另行授权正式交付 | 待确认 |
+| T-039 | P1 | Q2 | T-038 | DONE | Human review of Q2 open decisions | 最新人工批准已转入 production freeze；实际值记录于 `docs/Q2_PRODUCTION_FREEZE.md` | 2026-09-12 |
 | T-040 | P0 | Q2 | T-039 | DONE | Q2 long-horizon boundary & production config gate | `EXP-Q2-012`–`EXP-Q2-020` 完成环境尾段/插值/边界/界面平均/0–72 h、被动事件、低含水率物性、守恒/Robin、重启、长时收敛和 B0 对照；raw/recovered 证据完整；未生成 `result2.xlsx` | 2026-09-11 |
-| T-041 | P0 | Q2 | T-040 | TODO | Freeze Q2 production configuration | 人工决定 post-14400 环境、linear/PCHIP、h/hm、界面平均、终点/行数和精度门；将推荐候选从 pending review 改为明确冻结 | 待确认 |
-| T-042 | P0 | Q2 | T-041 | TODO | Generate and validate Q2 candidate deliverable | 仅在 T-041 后从官方 result2 模板 COPY 到 `deliverables/candidate/`，完成结构/数值/格式/确定性/论文点校验；仍需人工确认后才能进入 final | 待确认 |
+| T-041 | P0 | Q2 | T-040 | DONE | Freeze Q2 production configuration | 配置已冻结并执行双跑；环境跳变与内部精度门均显式记录 | 2026-09-12 |
+| T-042 | P0 | Q2 | T-041 | BLOCKED | Generate and validate Q2 candidate deliverable | accuracy confirmation FAIL；只有整改后重新取得 PASS 才能从官方模板生成 candidate | `docs/Q2_RESULT_AUDIT.md` |
 | T-043 | P0 | Q3/Q4 | T-042 | TODO | Start Q3/Q4 only after explicit authorization | Q3/Q4 当前保持 NOT STARTED，不因 Q2 被动事件观察 bracket 自动启动 | 待确认 |
 
 | T-044 | P0 | Q2 human model-decision packet | T-040 | DONE | `docs/Q2_HUMAN_DECISION_PACKET.md`、`experiments/Q2_CANONICAL_DATA_MANIFEST.json` | D1–D7 证据、定向关键数据、recommendation、risk 和人工审批表完整；无 result2；Q1/Q3/Q4边界保持 | 2026-09-11 |
-| T-045 | P0 | Human approval of Q2 production decisions | T-044 | TODO | D-Q2-ENVIRONMENT 等七项 | 人工逐项 APPROVE/REJECT/REQUEST MORE EVIDENCE；Agent 不自行关闭 open decisions | 待确认 |
-| T-046 | P0 | Q2 production candidate and result2 validation | T-045 | TODO | `deliverables/candidate/result2.xlsx` | 仅在 T-045 后且获得单独 production authorization 时从官方模板 COPY；完成结构/数值/格式/lineage 验证；不得自动进入 final | 待确认 |
+| T-045 | P0 | Human approval of Q2 production decisions | T-044 | DONE | D-Q2-ENVIRONMENT 等七项 | latest authorization approved production freeze decisions；不豁免 accuracy gate | 2026-09-12 |
+| T-046 | P0 | Q2 production candidate and result2 validation | T-045 | BLOCKED | `deliverables/candidate/result2.xlsx` | production accuracy gate FAIL；candidate 不得生成，Q3/Q4 不得启动 | `experiments/Q2_FREEZE_RUN/accuracy_confirmation.json` |
 | T-047 | P1 | Start Q3/Q4 after explicit authorization | T-045 | TODO | Q3/Q4 实验与计划 | Q3/Q4 仍 NOT STARTED；不得把 Q2 passive bracket 当作 Q3 answer | 待确认 |
+| T-048 | P0 | Q2 accuracy remediation decision and rerun | T-046 | BLOCKED | Accuracy remediation decision and rerun | 需要新的人工决定处理 post-14400 jump、初始层分辨率或内部门；重新运行并通过完整 L∞/L2/order/lineage gate | `docs/Q2_RESULT_AUDIT.md` |
 
 ## 任务记录模板
 

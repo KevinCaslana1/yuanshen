@@ -37,6 +37,8 @@
 | FIND-Q2-014 | hm 对被动阈值时刻比 h 更敏感 | Q2 | EXP-Q2-021 | SUPPORTED（targeted screen） |
 | FIND-Q2-015 | 长时 arithmetic/harmonic 差异不能按短时结果冻结 | Q2 | EXP-Q2-015、021 | SUPPORTED |
 | FIND-Q2-016 | Recovered canonical loader 已阻断 raw duplicate 消费 | Q2 | manifest、lineage guard、tests | SUPPORTED |
+| FIND-Q2-017 | 批准的 Q2 冻结生产双跑可重复但精度门未通过 | Q2 | Q2_FREEZE_RUN、accuracy_confirmation | SUPPORTED（候选阻塞） |
+| FIND-Q2-018 | 14400 s 环境跳变和 1 s 初始表面层分别主导最大误差峰 | Q2 | Q2_FREEZE_RUN/environment.json、accuracy_diagnosis | SUPPORTED（需新整改决定） |
 
 ## 发现记录模板
 
@@ -63,6 +65,30 @@
 适用范围：当前 `N=80`、`dt=1 s`、线性插值、Robin 边界和未加入潜热/交叉耦合的 Q1 候选方程。
 
 限制：这些检查验证数值实现和当前方程的内部一致性，不证明被省略的物理效应不存在，也不构成论文结论。
+
+状态：SUPPORTED
+
+## FIND-Q2-017 Q2 冻结生产双跑具有确定性，但精度门未通过
+
+问题：Q2
+
+发现：按批准的 Q2 production freeze 配置，Run1/Run2 均从 `t=0` 新鲜推进到 `228635 s`；raw、sampled、diagnostics 和 checkpoint 的 SHA-256 均相同。生产诊断中 Picard 次数为 `min/median/p95/max=2/2/3/3`，没有非收敛步；温度、水分、物性和中心对称检查为有限且有效。
+
+证据：`experiments/Q2_FREEZE_RUN/metrics.json`、`determinism.json`、`output_hashes.json`。
+
+限制：确定性只说明实现可重复，不等于离散精度门通过，也不等于官方结果接受。
+
+状态：SUPPORTED
+
+## FIND-Q2-018 冻结环境跳变和初始层分别主导两个最大误差峰
+
+问题：Q2
+
+发现：Attachment 1 在 `14400 s` 的值为 `(50.165 °C,0.04986 kg/kg)`，冻结 post-attachment 常值为 `(49.99525 °C,0.049988 kg/kg)`，存在 `(-0.16975 °C,+0.000128 kg/kg)` 的输入跳变。生产与 `dt=.125 s` 比较的最大温度误差为 `1.9082196854469657e-4 °C`，位于 `14401 s,r=2.0 cm`；生产与 `n=160` 比较的最大水分误差为 `2.0357404664261836e-4 kg/kg`，位于 `1 s,r=2.0 cm`。
+
+证据：`experiments/Q2_FREEZE_RUN/environment.json`、`accuracy_diagnosis.json`、三份 `accuracy_confirmation/*_by_time.csv`。
+
+限制：该证据支持“当前冻结候选未通过内部精度门”，不单独证明 solver assembly bug；post-14400 连续性、初始层分辨率和 accuracy gate 若要改变，必须重新人工决策。
 
 状态：SUPPORTED
 

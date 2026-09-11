@@ -278,3 +278,21 @@ Remaining Open Questions are classified by blocking phase in `docs/PROBLEM_SPEC.
 本 Gate 的完成条件是 decision packet、量化证据和 lineage guard 完整，不能等同于
 Agent 自动完成模型冻结。`result2.xlsx`、candidate/final workbook 均不存在；Q3/Q4
 仍未启动；Q1 保持冻结。
+
+## CUMCM Q2 HUMAN PRODUCTION FREEZE RUN & RESULT CANDIDATE GATE（2026-09-12）
+
+| Gate item | Evidence | Status |
+|---|---|---|
+| Human production freeze approval | latest user authorization | PASS；配置冻结 |
+| Frozen config and baseline capture | `docs/Q2_PRODUCTION_FREEZE.md`、`config.json`、preflight | PASS |
+| Fresh production Run1/Run2 | `metrics.json` | PASS；均从 `t=0` 到 `228635 s` |
+| Deterministic raw/sampled/diagnostic/checkpoint output | `determinism.json`、`output_hashes.json` | PASS；byte/hash identical |
+| Environment transition assertion | `environment.json` | PASS as assertion；发现真实 `14400 s` jump |
+| Field/Picard/property/mass/heat/Robin/center checks | `run_1/metrics.json`、`diagnostics_1s.csv` | PASS |
+| Temporal/spatial full-region accuracy | `accuracy_confirmation.json`、by-time CSV | FAIL；T/C L∞=`1.9082e-4/2.0357e-4` |
+| Candidate result2 structure/format/rounding/traceability | `scripts/validate_q2_candidate.py` | NOT RUN；fail-closed |
+| Q2 figures and manifest | `scripts/generate_q2_figures.py` | NOT RUN；fail-closed |
+| Q1/A题 integrity | `git diff -- A题`、Q1 hashes | PASS |
+| Q3/Q4 boundary | `docs/STATE.md`、`docs/HANDOFF.md` | PASS；仍 NOT STARTED |
+
+结论：`Q2 PRODUCTION CONFIG FROZEN; ACCURACY GATE FAILED; RESULT CANDIDATE BLOCKED`。不得生成 candidate/final result2，不得把 passive event bracket 写成 Q3 最终烘干时间；后续整改需要新的人工数值/模型决定。

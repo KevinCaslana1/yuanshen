@@ -1,0 +1,519 @@
+{
+  "status": "FAIL",
+  "criterion": {
+    "temperature_uncertainty_max_C": 2.5e-05,
+    "moisture_uncertainty_max_kg_kg": 2.5e-05,
+    "official_requirement": false
+  },
+  "comparison_interval_s": [
+    1,
+    228635
+  ],
+  "reference_runs": {
+    "temporal_dt0.125": {
+      "name": "temporal_dt0.125",
+      "runtime_s": 1736.4262815000002,
+      "config": {
+        "end_time_s": 228635.0,
+        "time_step_s": 0.125,
+        "candidate": "A",
+        "n_intervals": 80,
+        "cluster_power": 2.0,
+        "scheme": "bdf2",
+        "interface_mean": "harmonic",
+        "interpolation": "linear",
+        "post_attachment_mode": "constant",
+        "post_temperature_c": 49.99525,
+        "post_moisture_kg_kg": 0.049988,
+        "output_interval_s": 1.0,
+        "picard_tolerance": 1e-08,
+        "picard_max_iterations": 50,
+        "picard_relaxation": 1.0,
+        "input_path": "A题\\附件\\附件1.xlsx",
+        "parameters": {
+          "radius_m": 0.02,
+          "length_m": 0.25,
+          "heat_transfer_w_m2_k": 25.0,
+          "mass_transfer_m_s": 8e-07,
+          "initial_temperature_c": 28.0,
+          "initial_moisture_kg_kg": 2.55
+        }
+      },
+      "raw_path": "experiments/Q2_FREEZE_RUN/accuracy_reference/temporal_dt0.125/official_samples_raw.csv",
+      "raw_sha256": "08042a613e0bcd5f524cf4c0a2251421dc919c412f4a3eed65ab189fa247d6f3",
+      "diagnostics_path": "experiments/Q2_FREEZE_RUN/accuracy_reference/temporal_dt0.125/diagnostics_3600s.csv",
+      "complete": true
+    },
+    "temporal_dt0.5": {
+      "name": "temporal_dt0.5",
+      "runtime_s": 508.8086308000002,
+      "config": {
+        "end_time_s": 228635.0,
+        "time_step_s": 0.5,
+        "candidate": "A",
+        "n_intervals": 80,
+        "cluster_power": 2.0,
+        "scheme": "bdf2",
+        "interface_mean": "harmonic",
+        "interpolation": "linear",
+        "post_attachment_mode": "constant",
+        "post_temperature_c": 49.99525,
+        "post_moisture_kg_kg": 0.049988,
+        "output_interval_s": 1.0,
+        "picard_tolerance": 1e-08,
+        "picard_max_iterations": 50,
+        "picard_relaxation": 1.0,
+        "input_path": "A题\\附件\\附件1.xlsx",
+        "parameters": {
+          "radius_m": 0.02,
+          "length_m": 0.25,
+          "heat_transfer_w_m2_k": 25.0,
+          "mass_transfer_m_s": 8e-07,
+          "initial_temperature_c": 28.0,
+          "initial_moisture_kg_kg": 2.55
+        }
+      },
+      "raw_path": "experiments/Q2_FREEZE_RUN/accuracy_reference/temporal_dt0.5/official_samples_raw.csv",
+      "raw_sha256": "8e0999d349671dce3015c754bc13df51b98f19f08afcb1776058e9f7c8876850",
+      "diagnostics_path": "experiments/Q2_FREEZE_RUN/accuracy_reference/temporal_dt0.5/diagnostics_3600s.csv",
+      "complete": true
+    },
+    "spatial_n160": {
+      "name": "spatial_n160",
+      "runtime_s": 1671.1777385000005,
+      "config": {
+        "end_time_s": 228635.0,
+        "time_step_s": 0.25,
+        "candidate": "A",
+        "n_intervals": 160,
+        "cluster_power": 2.0,
+        "scheme": "bdf2",
+        "interface_mean": "harmonic",
+        "interpolation": "linear",
+        "post_attachment_mode": "constant",
+        "post_temperature_c": 49.99525,
+        "post_moisture_kg_kg": 0.049988,
+        "output_interval_s": 1.0,
+        "picard_tolerance": 1e-08,
+        "picard_max_iterations": 50,
+        "picard_relaxation": 1.0,
+        "input_path": "A题\\附件\\附件1.xlsx",
+        "parameters": {
+          "radius_m": 0.02,
+          "length_m": 0.25,
+          "heat_transfer_w_m2_k": 25.0,
+          "mass_transfer_m_s": 8e-07,
+          "initial_temperature_c": 28.0,
+          "initial_moisture_kg_kg": 2.55
+        }
+      },
+      "raw_path": "experiments/Q2_FREEZE_RUN/accuracy_reference/spatial_n160/official_samples_raw.csv",
+      "raw_sha256": "39b7b76db72b834faa92536ae714c40df3fa228f65bc160affe6f9b3d03c6f4c",
+      "diagnostics_path": "experiments/Q2_FREEZE_RUN/accuracy_reference/spatial_n160/diagnostics_3600s.csv",
+      "complete": true
+    }
+  },
+  "temporal": {
+    "against_dt0.125": {
+      "time_layers": 228635,
+      "official_points": 4801335,
+      "temperature_Linf_C": 0.00019082196854469657,
+      "temperature_L2_RMS_C": 4.849128315172295e-07,
+      "moisture_Linf_kg_kg": 0.00010007524800181855,
+      "moisture_L2_RMS_kg_kg": 4.8847452105832484e-08,
+      "temperature_max_abs_by_radius_C": [
+        6.408888680198288e-06,
+        6.408919830391824e-06,
+        6.409268848983629e-06,
+        6.410754224361881e-06,
+        6.414898052753415e-06,
+        6.424268804039457e-06,
+        6.44310915731694e-06,
+        6.478548414179386e-06,
+        6.5435294231974694e-06,
+        6.663187434696738e-06,
+        6.886902440328413e-06,
+        7.2877742809396295e-06,
+        7.923753798877442e-06,
+        8.848323943766445e-06,
+        1.0169184463393321e-05,
+        1.210356441561089e-05,
+        1.5102896782082098e-05,
+        2.0242732887254533e-05,
+        3.0853951443532424e-05,
+        6.464801850825097e-05,
+        0.00019082196854469657
+      ],
+      "moisture_max_abs_by_radius_kg_kg": [
+        2.1711060949058947e-08,
+        2.1641706648978243e-08,
+        2.143348587502203e-08,
+        2.1085884149840695e-08,
+        2.0598053263043425e-08,
+        1.9968866338260227e-08,
+        1.9197014866634277e-08,
+        1.8280761793221245e-08,
+        1.721961018219531e-08,
+        1.6016446835465104e-08,
+        1.4684941485043623e-08,
+        1.3271772125733605e-08,
+        1.1916553299684551e-08,
+        1.0878431710992231e-08,
+        1.0219216362017391e-08,
+        1.2513079461484722e-08,
+        2.390517828132488e-08,
+        5.576224015868547e-08,
+        1.85368907335004e-07,
+        1.460329993818732e-06,
+        0.00010007524800181855
+      ],
+      "selected_times": {
+        "1800": {
+          "temperature_Linf_C": 4.6327556901815115e-08,
+          "moisture_Linf_kg_kg": 1.404654614844958e-09,
+          "temperature_surface_C": 1.7946433672477724e-08,
+          "moisture_surface_kg_kg": 1.0389611393435416e-09
+        },
+        "3600": {
+          "temperature_Linf_C": 6.386551376635907e-08,
+          "moisture_Linf_kg_kg": 1.1483529682720928e-09,
+          "temperature_surface_C": 1.9407536910875933e-08,
+          "moisture_surface_kg_kg": 3.9802960927204367e-10
+        },
+        "5400": {
+          "temperature_Linf_C": 3.992460051449598e-08,
+          "moisture_Linf_kg_kg": 2.2181323444669943e-10,
+          "temperature_surface_C": 8.456822797597852e-09,
+          "moisture_surface_kg_kg": 2.2181323444669943e-10
+        },
+        "7200": {
+          "temperature_Linf_C": 9.83419568001409e-09,
+          "moisture_Linf_kg_kg": 1.8389822997733063e-10,
+          "temperature_surface_C": 2.1334471966838464e-09,
+          "moisture_surface_kg_kg": 6.057576662499287e-11
+        },
+        "9000": {
+          "temperature_Linf_C": 1.2403336313582258e-07,
+          "moisture_Linf_kg_kg": 3.940547887992807e-10,
+          "temperature_surface_C": 3.350658062117873e-08,
+          "moisture_surface_kg_kg": 3.940547887992807e-10
+        },
+        "10800": {
+          "temperature_Linf_C": 2.074676785923657e-08,
+          "moisture_Linf_kg_kg": 4.817390930611509e-11,
+          "temperature_surface_C": 6.404491159628378e-09,
+          "moisture_surface_kg_kg": 2.8352431513667398e-11
+        },
+        "207033": {
+          "temperature_Linf_C": 3.3082869776990265e-11,
+          "moisture_Linf_kg_kg": 4.073735793141964e-11,
+          "temperature_surface_C": 5.7411853049416095e-12,
+          "moisture_surface_kg_kg": 3.328920472611685e-12
+        },
+        "207034": {
+          "temperature_Linf_C": 3.3651303965598345e-11,
+          "moisture_Linf_kg_kg": 4.0736858331058556e-11,
+          "temperature_surface_C": 7.560174708487466e-12,
+          "moisture_surface_kg_kg": 3.3288649614604537e-12
+        },
+        "207035": {
+          "temperature_Linf_C": 3.342393029015511e-11,
+          "moisture_Linf_kg_kg": 4.073646975299994e-11,
+          "temperature_surface_C": 9.322320693172514e-12,
+          "moisture_surface_kg_kg": 3.3287470002640873e-12
+        },
+        "207036": {
+          "temperature_Linf_C": 3.382183422218077e-11,
+          "moisture_Linf_kg_kg": 4.0735914641487625e-11,
+          "temperature_surface_C": 1.5120349416974932e-11,
+          "moisture_surface_kg_kg": 3.3288857781421655e-12
+        },
+        "228635": {
+          "temperature_Linf_C": 3.211653165635653e-11,
+          "moisture_Linf_kg_kg": 3.323383235276367e-11,
+          "temperature_surface_C": 1.0970779840135947e-11,
+          "moisture_surface_kg_kg": 2.394272280437093e-12
+        }
+      }
+    },
+    "coarse_dt0.5_against_dt0.125": {
+      "time_layers": 228635,
+      "official_points": 4801335,
+      "temperature_Linf_C": 0.0006066044771841916,
+      "temperature_L2_RMS_C": 1.461315514797196e-06,
+      "moisture_Linf_kg_kg": 0.0008363817833600962,
+      "moisture_L2_RMS_kg_kg": 3.933196284230666e-07,
+      "temperature_max_abs_by_radius_C": [
+        1.9226964241170208e-05,
+        1.9227061557103298e-05,
+        1.9228132089210703e-05,
+        1.9232616409681214e-05,
+        1.9245098258124926e-05,
+        1.927327753037389e-05,
+        1.9329882434249157e-05,
+        1.943630735468105e-05,
+        1.963137157190431e-05,
+        1.999044161493657e-05,
+        2.0661378130171215e-05,
+        2.1862720700482896e-05,
+        2.3768033599935734e-05,
+        2.6538826034538943e-05,
+        3.0499124193283933e-05,
+        3.630339318760889e-05,
+        4.531795849516129e-05,
+        6.082365644033416e-05,
+        9.318335287389345e-05,
+        0.00020003532813461788,
+        0.0006066044771841916
+      ],
+      "moisture_max_abs_by_radius_kg_kg": [
+        6.524150863995715e-08,
+        6.503322613760076e-08,
+        6.440791500139653e-08,
+        6.336401003892433e-08,
+        6.189894996566636e-08,
+        6.000936791927813e-08,
+        5.769135036359785e-08,
+        5.493964283509456e-08,
+        5.175278960933838e-08,
+        4.813947862558621e-08,
+        4.414065202240636e-08,
+        3.989623231781536e-08,
+        3.5824927469008117e-08,
+        3.27044555881173e-08,
+        3.7310261102874165e-08,
+        6.257554208133342e-08,
+        1.1956407242053047e-07,
+        2.789826463178713e-07,
+        9.280047565951577e-07,
+        7.319003663130985e-06,
+        0.0008363817833600962
+      ],
+      "selected_times": {
+        "1800": {
+          "temperature_Linf_C": 2.3181377173386863e-07,
+          "moisture_Linf_kg_kg": 7.021073944457612e-09,
+          "temperature_surface_C": 8.953975338954479e-08,
+          "moisture_surface_kg_kg": 5.249374712690269e-09
+        },
+        "3600": {
+          "temperature_Linf_C": 3.1964157187758246e-07,
+          "moisture_Linf_kg_kg": 5.742832875910153e-09,
+          "temperature_surface_C": 9.758133501236443e-08,
+          "moisture_surface_kg_kg": 1.961223627944264e-09
+        },
+        "5400": {
+          "temperature_Linf_C": 1.9998009292976349e-07,
+          "moisture_Linf_kg_kg": 1.1304734925943194e-09,
+          "temperature_surface_C": 4.2678607314883266e-08,
+          "moisture_surface_kg_kg": 1.1304734925943194e-09
+        },
+        "7200": {
+          "temperature_Linf_C": 4.918206286674831e-08,
+          "moisture_Linf_kg_kg": 9.160254776929833e-10,
+          "temperature_surface_C": 1.054962694979622e-08,
+          "moisture_surface_kg_kg": 3.249753799394739e-10
+        },
+        "9000": {
+          "temperature_Linf_C": 6.209656930877827e-07,
+          "moisture_Linf_kg_kg": 1.94654514729109e-09,
+          "temperature_surface_C": 1.68471217421029e-07,
+          "moisture_surface_kg_kg": 1.94654514729109e-09
+        },
+        "10800": {
+          "temperature_Linf_C": 1.0385753057562397e-07,
+          "moisture_Linf_kg_kg": 2.3556667727575586e-10,
+          "temperature_surface_C": 3.2197306154557737e-08,
+          "moisture_surface_kg_kg": 1.7856871536992003e-10
+        },
+        "207033": {
+          "temperature_Linf_C": 7.537437340943143e-11,
+          "moisture_Linf_kg_kg": 1.2901010815191682e-10,
+          "temperature_surface_C": 2.751221472863108e-11,
+          "moisture_surface_kg_kg": 1.0785324022766218e-11
+        },
+        "207034": {
+          "temperature_Linf_C": 7.560174708487466e-11,
+          "moisture_Linf_kg_kg": 1.2900888690658974e-10,
+          "temperature_surface_C": 2.5352164811920375e-11,
+          "moisture_surface_kg_kg": 1.0785067283691774e-11
+        },
+        "207035": {
+          "temperature_Linf_C": 7.548806024715304e-11,
+          "moisture_Linf_kg_kg": 1.2900772117241388e-10,
+          "temperature_surface_C": 2.9615421226480976e-11,
+          "moisture_surface_kg_kg": 1.0784907689131984e-11
+        },
+        "207036": {
+          "temperature_Linf_C": 7.554490366601385e-11,
+          "moisture_Linf_kg_kg": 1.2900641666035995e-10,
+          "temperature_surface_C": 3.495870259939693e-11,
+          "moisture_surface_kg_kg": 1.0784872994662464e-11
+        },
+        "228635": {
+          "temperature_Linf_C": 6.16751094639767e-11,
+          "moisture_Linf_kg_kg": 1.0639775172016641e-10,
+          "temperature_surface_C": 2.7284841053187847e-11,
+          "moisture_surface_kg_kg": 7.866804430101126e-12
+        }
+      }
+    },
+    "observed_order": {
+      "temporal_dt0.5_to_dt0.25_against_dt0.125": {
+        "temperature": 1.6685288737215114,
+        "moisture": 3.063076449000129
+      }
+    }
+  },
+  "spatial": {
+    "against_n160": {
+      "time_layers": 228635,
+      "official_points": 4801335,
+      "temperature_Linf_C": 5.745306611970591e-05,
+      "temperature_L2_RMS_C": 4.400124076121024e-06,
+      "moisture_Linf_kg_kg": 0.00020357404664261836,
+      "moisture_L2_RMS_kg_kg": 3.0182278875418313e-05,
+      "temperature_max_abs_by_radius_C": [
+        3.011861150525874e-05,
+        3.0109304759662336e-05,
+        3.0085084176789678e-05,
+        3.0081599106779322e-05,
+        3.013387589589911e-05,
+        3.052558975014108e-05,
+        3.1817042440707155e-05,
+        3.303529911136138e-05,
+        3.457956057673073e-05,
+        3.711595951472191e-05,
+        3.922964526736905e-05,
+        4.100900048342737e-05,
+        4.349109542545193e-05,
+        4.541867809848554e-05,
+        4.816050272893335e-05,
+        5.182023568295335e-05,
+        5.477651461660571e-05,
+        5.661075618945688e-05,
+        5.745306611970591e-05,
+        5.682323899236508e-05,
+        5.567681802176594e-05
+      ],
+      "moisture_max_abs_by_radius_kg_kg": [
+        5.568454042537141e-05,
+        5.432566655816373e-05,
+        5.032637456192646e-05,
+        4.5448556089677794e-05,
+        4.169593685920958e-05,
+        3.782356175774382e-05,
+        2.8910484903388323e-05,
+        2.6483748542804886e-05,
+        2.716281161396772e-05,
+        2.7999288543245626e-05,
+        2.9056657312370726e-05,
+        3.0362529862937304e-05,
+        3.2698401470909744e-05,
+        3.8460180050492454e-05,
+        4.629604455930192e-05,
+        5.858883405496229e-05,
+        7.67402070169787e-05,
+        9.365591959964448e-05,
+        0.00011412505499208692,
+        0.00013952697981611806,
+        0.00020357404664261836
+      ],
+      "selected_times": {
+        "1800": {
+          "temperature_Linf_C": 3.445140100666322e-05,
+          "moisture_Linf_kg_kg": 7.605949323874484e-05,
+          "temperature_surface_C": 2.5374096935593116e-05,
+          "moisture_surface_kg_kg": 5.506501926144658e-05
+        },
+        "3600": {
+          "temperature_Linf_C": 2.4445744486456533e-05,
+          "moisture_Linf_kg_kg": 5.373604735892101e-05,
+          "temperature_surface_C": 2.1998323973093648e-05,
+          "moisture_surface_kg_kg": 2.1087186302004568e-05
+        },
+        "5400": {
+          "temperature_Linf_C": 3.4644181653220585e-05,
+          "moisture_Linf_kg_kg": 2.8786094508514992e-05,
+          "temperature_surface_C": 3.329567709897674e-05,
+          "moisture_surface_kg_kg": 8.359025816639942e-06
+        },
+        "7200": {
+          "temperature_Linf_C": 2.0839136368522304e-05,
+          "moisture_Linf_kg_kg": 1.0469694218917525e-05,
+          "temperature_surface_C": 1.927054654515814e-05,
+          "moisture_surface_kg_kg": 1.2453398277045835e-06
+        },
+        "9000": {
+          "temperature_Linf_C": 1.248579872026312e-05,
+          "moisture_Linf_kg_kg": 1.5212915244866565e-05,
+          "temperature_surface_C": 2.324580123058695e-06,
+          "moisture_surface_kg_kg": 2.6910730270834904e-06
+        },
+        "10800": {
+          "temperature_Linf_C": 7.519655753185361e-06,
+          "moisture_Linf_kg_kg": 1.569193049411055e-05,
+          "temperature_surface_C": 1.543234134260274e-06,
+          "moisture_surface_kg_kg": 4.460815292262055e-06
+        },
+        "207033": {
+          "temperature_Linf_C": 1.807620719773695e-11,
+          "moisture_Linf_kg_kg": 6.711299820805205e-05,
+          "temperature_surface_C": 9.72022462519817e-12,
+          "moisture_surface_kg_kg": 1.056273148385134e-06
+        },
+        "207034": {
+          "temperature_Linf_C": 2.5977442419389263e-11,
+          "moisture_Linf_kg_kg": 6.711281385941847e-05,
+          "temperature_surface_C": 1.91562321560923e-11,
+          "moisture_surface_kg_kg": 1.0562698939398096e-06
+        },
+        "207035": {
+          "temperature_Linf_C": 2.432898327242583e-11,
+          "moisture_Linf_kg_kg": 6.711262951179797e-05,
+          "temperature_surface_C": 1.2278178473934531e-11,
+          "moisture_surface_kg_kg": 1.056266639321013e-06
+        },
+        "207036": {
+          "temperature_Linf_C": 1.8189894035458565e-11,
+          "moisture_Linf_kg_kg": 6.711244516498238e-05,
+          "temperature_surface_C": 1.517719283583574e-11,
+          "moisture_surface_kg_kg": 1.056263384528744e-06
+        },
+        "228635": {
+          "temperature_Linf_C": 2.4442670110147446e-11,
+          "moisture_Linf_kg_kg": 6.33382996726578e-05,
+          "temperature_surface_C": 4.490630090003833e-12,
+          "moisture_surface_kg_kg": 9.790722961186549e-07
+        }
+      }
+    }
+  },
+  "formal_output_region_estimate": {
+    "temperature_Linf_C": 0.00019082196854469657,
+    "temperature_L2_RMS_C": 4.400124076121024e-06,
+    "moisture_Linf_kg_kg": 0.00020357404664261836,
+    "moisture_L2_RMS_kg_kg": 3.0182278875418313e-05
+  },
+  "required_checkpoints_s": [
+    1800,
+    3600,
+    5400,
+    7200,
+    9000,
+    10800,
+    228635
+  ],
+  "passive_event_neighborhood": {
+    "bracket_s": [
+      207034.5,
+      207034.75
+    ],
+    "integer_seconds_checked": [
+      207033,
+      207034,
+      207035,
+      207036
+    ]
+  }
+}

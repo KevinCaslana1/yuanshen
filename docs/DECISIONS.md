@@ -498,3 +498,21 @@ ENV-A 主运行完成 0–72 h，最终阶段场有限且正，Picard `2/2/2/2`�
 | D-Q2-CANONICAL-LINEAGE | 通过 fail-closed manifest guard 使用 recovered ENV-A 文件 | `RECOMMENDED_FOR_HUMAN_APPROVAL` | `Q2_CANONICAL_DATA_MANIFEST.json`、packet D7 |
 
 本轮不自动关闭原有 `OQ-Q2-ENV-001/002`、`OQ-Q2-BC-001`、`OQ-Q2-FVM-001`、`OQ-Q2-END-001`、`OQ-Q2-ACC-001`；等待人工逐项选择 APPROVE/REJECT/REQUEST MORE EVIDENCE。
+
+## D-Q2-PRODUCTION-FREEZE-20260912 Q2 生产冻结批准与失败关闭
+
+问题：Q2
+
+最新人工授权为 `Q2 HUMAN PRODUCTION FREEZE APPROVAL = APPROVED`。据此冻结并执行了 Candidate A 的正式双跑：ENV-B（Attachment 1 在 `0..14400 s` 分段线性，之后常值 `T_inf=49.99525 °C`、`C_inf=0.049988 kg/kg`）、linear、h/hm carried-forward、harmonic interface mean、`dt=.25 s`、实际 98-cell boundary-clustered FVM、BE startup/BDF2、`final_horizon=228635 s`。
+
+生产双跑从 `t=0` 新鲜启动，Run1/Run2 raw、sampled、diagnostics 和 checkpoint 均 byte/hash identical；生产场、Picard、有限性、属性范围、守恒/Robin、中心对称和事件 bracket 检查通过。正式来源固定为 `experiments/Q2_FREEZE_RUN/run_1`。
+
+但独立 `dt=.125/.5 s` 与 `n=160` 参考确认显示温度 L∞ `1.9082196854469657e-4 °C`、水分 L∞ `2.0357404664261836e-4 kg/kg`，均超过已批准的内部 `2.5e-5` 门；温度/水分 L2 RMS 分别为 `4.400124076121024e-6`、`3.0182278875418313e-5`。因此配置冻结不等于结果候选通过，候选工作簿和图表必须 fail-closed 阻止。
+
+### 状态
+
+`PRODUCTION_CONFIG_FROZEN; ACCURACY_GATE_FAILED; RESULT_CANDIDATE_BLOCKED`
+
+后续若要改变 post-14400 处理、步长/网格或精度门，均属于新的人工数值/模型决定；在新授权前不得重跑生产、生成 `result2.xlsx` 或启动 Q3/Q4。
+
+证据：`docs/Q2_PRODUCTION_FREEZE.md`、`docs/Q2_RESULT_AUDIT.md`、`experiments/Q2_FREEZE_RUN/`。

@@ -1,0 +1,105 @@
+{
+  "manifest_version": "Q2_PRODUCTION_LINEAGE_V1",
+  "formal_result_source": "experiments/Q2_FREEZE_RUN/run_1",
+  "run_1_status": "PRODUCTION_CANONICAL",
+  "run_2_status": "DETERMINISM_REFERENCE",
+  "entries": [
+    {
+      "path": "experiments/Q2_FREEZE_RUN/run_1/official_samples_raw.csv",
+      "status": "PRODUCTION_CANONICAL",
+      "sha256": "48584714d347aed619d56b564f737668cc418d63067daca49b0bceaf75bd548c",
+      "run": "run_1",
+      "role": "raw_output"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN/run_1/official_samples.csv",
+      "status": "PRODUCTION_CANONICAL",
+      "sha256": "604a323955c2ab5cd1299975231997b3dc6e5c0c6a2e16d6e52d6314a6050eae",
+      "run": "run_1",
+      "role": "sampled_output"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN/run_1/diagnostics_1s.csv",
+      "status": "PRODUCTION_CANONICAL",
+      "sha256": "219f7a38f130f11ad8c896278f2fc4ce4bc881196b7f0a7f2a133d9af14819b5",
+      "run": "run_1",
+      "role": "diagnostics"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN/run_1/checkpoint_final.json",
+      "status": "PRODUCTION_CANONICAL",
+      "sha256": "7a19676261efc9c2f96d4a8c34b6302a14a63d5cf84bcf408b90f623c6cbf104",
+      "run": "run_1",
+      "role": "checkpoint"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN/run_2/official_samples_raw.csv",
+      "status": "DETERMINISM_REFERENCE",
+      "sha256": "48584714d347aed619d56b564f737668cc418d63067daca49b0bceaf75bd548c",
+      "run": "run_2",
+      "role": "raw_output"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN/run_2/official_samples.csv",
+      "status": "DETERMINISM_REFERENCE",
+      "sha256": "604a323955c2ab5cd1299975231997b3dc6e5c0c6a2e16d6e52d6314a6050eae",
+      "run": "run_2",
+      "role": "sampled_output"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN/run_2/diagnostics_1s.csv",
+      "status": "DETERMINISM_REFERENCE",
+      "sha256": "219f7a38f130f11ad8c896278f2fc4ce4bc881196b7f0a7f2a133d9af14819b5",
+      "run": "run_2",
+      "role": "diagnostics"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN/run_2/checkpoint_final.json",
+      "status": "DETERMINISM_REFERENCE",
+      "sha256": "7a19676261efc9c2f96d4a8c34b6302a14a63d5cf84bcf408b90f623c6cbf104",
+      "run": "run_2",
+      "role": "checkpoint"
+    },
+    {
+      "path": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/official_samples_recovered.csv",
+      "status": "VALIDATION_ONLY",
+      "reason": "old recovered validation source; not formal production"
+    },
+    {
+      "path": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/diagnostics_1s_recovered.csv",
+      "status": "VALIDATION_ONLY",
+      "reason": "old recovered validation source; not formal production"
+    },
+    {
+      "path": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/official_samples.csv",
+      "status": "NONCANONICAL_DUPLICATE",
+      "reason": "old interrupted raw duplicate"
+    },
+    {
+      "path": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/diagnostics_1s.csv",
+      "status": "NONCANONICAL_DUPLICATE",
+      "reason": "old interrupted diagnostic duplicate"
+    },
+    {
+      "path": "experiments/EXP-Q2-012-ENVIRONMENT",
+      "status": "VALIDATION_ONLY",
+      "reason": "old sensitivity/decision evidence"
+    },
+    {
+      "path": "experiments/EXP-Q2-013-INTERPOLATION",
+      "status": "VALIDATION_ONLY",
+      "reason": "old sensitivity/decision evidence"
+    },
+    {
+      "path": "experiments/EXP-Q2-014-BC-SENSITIVITY",
+      "status": "VALIDATION_ONLY",
+      "reason": "old sensitivity evidence"
+    },
+    {
+      "path": "experiments/EXP-Q2-015-INTERFACE-MEAN",
+      "status": "VALIDATION_ONLY",
+      "reason": "old sensitivity evidence"
+    }
+  ],
+  "fail_closed_policy": "formal loaders require PRODUCTION_CANONICAL and verified SHA-256"
+}

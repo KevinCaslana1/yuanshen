@@ -136,7 +136,20 @@ The numerical candidate is suitable for human review, but no open modeling choic
 |---|---|---|---|---|---|
 | EXP-Q2-021-DECISION-TARGETS-BC-LONG | h/hm 3 h、6 h、24 h、48 h、72 h 检查点和 passive bracket | Candidate A；n=80；BDF2；linear；harmonic；`dt=2 s`；只写紧凑 diagnostics | h±10% 的72 h moisture L∞ `4.91–6.03e-6`；hm±10% 为 `3.94–5.10e-4`；hm bracket shift `-2076/+2646 s` | PASS；targeted screen，不是 production accuracy | `experiments/EXP-Q2-021-DECISION-TARGETS/boundary_long_target_metrics.json` |
 | EXP-Q2-021-DECISION-TARGETS-INTERFACE-LONG | arithmetic/harmonic 长时代表点 | arithmetic；ENV-A；n=80；BDF2；linear；`dt=.25 s`；同 canonical checkpoint | 6/24/48/72 h moisture L∞ `1.52e-6/1.40e-4/1.27e-4/1.01e-4`；temperature L∞ `2.00e-9` 以下 | PASS；decision evidence | `experiments/EXP-Q2-021-DECISION-TARGETS/interface_long_target_metrics.json` |
+| Q2_FREEZE_RUN | Q2 | Approved Candidate A production double run | ENV-B；实际98 cells；`dt=.25 s`；BDF2；linear；harmonic；`0..228635 s` | 双跑 hash identical；accuracy gate FAIL；candidate blocked | BLOCKED | `experiments/Q2_FREEZE_RUN/` |
+| Q2-ACCURACY-CONFIRMATION | Q2 | Independent full-region temporal/spatial confirmation | same input/code；`dt=.125/.5 s`；`n=160`；fresh `t=0` | T/C L∞=`1.9082e-4/2.0357e-4`；T/C L2=`4.4001e-6/3.0182e-5`；order=`1.6685/3.0631` | FAILED | `experiments/Q2_FREEZE_RUN/accuracy_confirmation.json` |
 
 第一次 interface target 的后处理曾请求 canonical 未保存的 `10800 s` 键而退出；solver 已完整运行但该次结果未被采纳，修复后只用 canonical 已存在的 6/24/48/72 h 键重跑并通过。详情写入 `docs/FAILURES.md`。
 
 本轮推荐状态统一为 `RECOMMENDED_FOR_HUMAN_APPROVAL`；D4 根据长时 moisture 差异撤回“arithmetic 可直接冻结”的 provisional 解释，当前推荐保留 harmonic，仍等待人工决定。
+
+## Q2 Production Freeze Run and Accuracy Confirmation（2026-09-12）
+
+最新人工授权批准 Q2 production freeze 后，执行了独立 fresh-from-`t=0` Run1/Run2 及精度确认。正式来源固定为 Run1；Run2 只作确定性参考。配置为 Candidate A、实际 98-cell boundary-clustered conservative FVM、`dt=.25 s`、BE startup/BDF2、linear、harmonic、ENV-B post-14400 constants、`final_horizon=228635 s`。两次生产 raw/sampled/diagnostics/checkpoint 均 byte/hash identical，生产场和迭代/属性/守恒/Robin/中心对称检查通过。
+
+| Experiment | Purpose | Key result | Status | Evidence |
+|---|---|---|---|---|
+| Q2_FREEZE_RUN | Approved production freeze double run | Run1/Run2 complete and deterministic；formal source `run_1`；passive observer bracket `[207034.5,207034.75] s`；no workbook | BLOCKED at accuracy gate | `experiments/Q2_FREEZE_RUN/` |
+| Q2-ACCURACY-CONFIRMATION | Same-input temporal/spatial reference confirmation | Against dt=.125/n=160: T L∞ `1.9082196854469657e-4 °C`、C L∞ `2.0357404664261836e-4 kg/kg`；T/C L2 `4.400124076121024e-6`/`3.0182278875418313e-5`；observed order T/C `1.6685/3.0631` | FAILED | `experiments/Q2_FREEZE_RUN/accuracy_confirmation.json` |
+
+诊断显示 temporal 温度峰位于 `t=14401 s,r=2.0 cm`，与冻结环境在 `14400 s` 后的 `-0.16975 °C` 跳变一致；spatial 水分峰位于 `t=1 s,r=2.0 cm`，属于初始表面层分辨率敏感点。该结果证明当前候选未达到内部精度门，不证明存在随机性或绘图 artifact；未生成 candidate workbook、Q2 figures、Table 3/4 traceability 或 final result2。

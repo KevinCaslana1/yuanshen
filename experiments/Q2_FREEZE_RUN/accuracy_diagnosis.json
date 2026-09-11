@@ -1,0 +1,38 @@
+{
+  "status": "FAIL_ACCURACY_GATE",
+  "criterion": {
+    "temperature_max_C": 2.5e-05,
+    "moisture_max_kg_kg": 2.5e-05,
+    "official_requirement": false
+  },
+  "observed": {
+    "formal_temperature_Linf_C": 0.00019082196854469657,
+    "formal_temperature_L2_RMS_C": 4.400124076121024e-06,
+    "formal_moisture_Linf_kg_kg": 0.00020357404664261836,
+    "formal_moisture_L2_RMS_kg_kg": 3.0182278875418313e-05
+  },
+  "max_locations": {
+    "production_vs_temporal_dt0.125": {
+      "temperature": {"time_s": 14401, "radius_cm": 2.0, "absolute_error_C": 0.00019082196854469657},
+      "moisture": {"time_s": 1, "radius_cm": 2.0, "absolute_error_kg_kg": 0.00010007524800181855}
+    },
+    "production_vs_spatial_n160": {
+      "temperature": {"time_s": 670, "radius_cm": 1.8, "absolute_error_C": 5.745306611970591e-05},
+      "moisture": {"time_s": 1, "radius_cm": 2.0, "absolute_error_kg_kg": 0.00020357404664261836}
+    },
+    "temporal_dt0.5_vs_dt0.125": {
+      "temperature": {"time_s": 14401, "radius_cm": 2.0, "absolute_error_C": 0.0006066044771841916},
+      "moisture": {"time_s": 1, "radius_cm": 2.0, "absolute_error_kg_kg": 0.0008363817833600962}
+    }
+  },
+  "environment_transition": {
+    "at_14400_s": [50.165, 0.04986],
+    "at_14400_plus_epsilon_s": [49.99525, 0.049988],
+    "jump": [-0.1697500000000005, 0.00012799999999999617]
+  },
+  "temporal_observed_order_Linf": {
+    "temperature": 1.6685288737215114,
+    "moisture": 3.063076449000129
+  },
+  "interpretation": "The production candidate is deterministic and finite, but the approved configuration does not satisfy the internal uncertainty gate. No candidate workbook or final claim is authorized."
+}
