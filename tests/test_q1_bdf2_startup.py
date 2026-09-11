@@ -58,3 +58,26 @@ def test_sampled_bdf2_runs_on_clustered_grid_and_preserves_output_nodes() -> Non
     assert result.internal_step_count == 8
     assert result.max_picard_iterations >= 1
     assert result.max_mass_balance_residual < 1.0e-10
+
+
+def test_full_bdf2_runner_uses_nonuniform_assembly_for_be_start() -> None:
+    root = Path(__file__).resolve().parents[1]
+    boundary = BoundaryProvider.from_attachment1(root / "A题" / "附件" / "附件1.xlsx")
+    config = Q1RunConfig(
+        end_time_s=0.5,
+        time_step_s=0.25,
+        n_intervals=16,
+        interpolation="linear",
+        surface_boundary="robin",
+    )
+    result = run_m1_bdf2(
+        config,
+        boundary,
+        DEFAULT_PARAMETERS,
+        cluster_power=2.0,
+        required_output_positions_m=(0.0, 0.01, 0.02),
+    )
+
+    assert result.grid.n_intervals > config.n_intervals
+    assert result.times_s == (0.0, 0.25, 0.5)
+    assert all(value == value for row in result.temperatures_k for value in row)

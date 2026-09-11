@@ -389,7 +389,12 @@ def run_m1_bdf2(
         temperature_environment_k = celsius_to_kelvin(temperature_environment_c)
 
         if not use_bdf2:
-            temperature_new = implicit_radial_step(
+            temperature_step = (
+                implicit_nonuniform_radial_step
+                if isinstance(grid, NonuniformRadialGrid)
+                else implicit_radial_step
+            )
+            temperature_new = temperature_step(
                 temperature,
                 grid,
                 step_dt,
@@ -417,7 +422,12 @@ def run_m1_bdf2(
         for iteration in range(1, config.picard_max_iterations + 1):
             node_diffusivities = [parameters.diffusivity_m2_s(value) for value in moisture_guess]
             if not use_bdf2:
-                moisture_new = implicit_radial_step(
+                moisture_step = (
+                    implicit_nonuniform_radial_step
+                    if isinstance(grid, NonuniformRadialGrid)
+                    else implicit_radial_step
+                )
+                moisture_new = moisture_step(
                     moisture,
                     grid,
                     step_dt,
