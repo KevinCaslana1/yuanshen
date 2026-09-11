@@ -238,7 +238,15 @@ def run_experiment(experiment_id: str) -> Dict[str, Any]:
         "code_commit": commit,
         "input_hashes": {"A题/附件/附件1.xlsx": sha256(input_path)},
         "runtime_seconds": elapsed,
+        "model_parameters": {
+            field: value for field, value in vars(DEFAULT_PARAMETERS).items()
+        },
         "solver_parameters": serializable_configs,
+        "validation_thresholds": {
+            "mass_balance_abs_max": 1.0e-10,
+            "energy_balance_abs_max": 1.0e-5,
+            "moisture_min_min": -1.0e-12,
+        },
         "metrics": metrics,
         "validation_result": validation_result,
         "notes": notes,
@@ -260,7 +268,9 @@ def write_evidence(payload: Dict[str, Any]) -> Path:
                 "command": payload["command"],
                 "code_commit": payload["code_commit"],
                 "input_hashes": payload["input_hashes"],
+                "model_parameters": payload["model_parameters"],
                 "solver_parameters": payload["solver_parameters"],
+                "validation_thresholds": payload["validation_thresholds"],
                 "artifact_paths": payload["artifact_paths"],
             },
             ensure_ascii=False,

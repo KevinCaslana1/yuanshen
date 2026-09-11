@@ -28,8 +28,11 @@
 | T-019 | P0 | Q1 | T-018 | DONE | `docs/Q1_PLAN.md` | Baseline 设计、主候选方程和推荐进入实现的条件已登记 | 本轮 |
 | T-020 | P0 | Q1 | T-019 | DONE | `docs/Q1_PLAN.md` | 空间离散、时间离散、边界、插值、稳定性和收敛策略已设计 | 本轮 |
 | T-021 | P0 | Q1 | T-020 | DONE | `docs/Q1_PLAN.md` | Q1 Validation Plan 已覆盖适用的初值、单位、边界、范围、连续性、敏感性、收敛和 Baseline 检查 | 本轮 |
-| T-022 | P0 | Q1 | T-021 | DONE | `docs/EXPERIMENTS.md` | EXP-001 至 EXP-007 已登记为 `PLANNED`，未运行且无正式结果产物 | 本轮 |
-| T-023 | P0 | Q1 | T-022 | DONE | `docs/Q1_PLAN.md`, `docs/DECISIONS.md` | Q1 Model Design Review 完成；推荐候选仍等待实现授权 | 本轮 |
+| T-022 | P0 | Q1 | T-021 | DONE | `docs/EXPERIMENTS.md`, `experiments/EXP-001/`–`EXP-007/` | EXP-001 至 EXP-007 按序完成；配置、指标、命令、代码提交和输入哈希可追溯；无最终结果产物 | 本轮 |
+| T-023 | P0 | Q1 | T-022 | DONE | `docs/Q1_PLAN.md`, `docs/DECISIONS.md` | Q1 Model Design Review 完成；实现候选仍等待 Result Gate 冻结 | 本轮 |
+| T-024 | P0 | Q1 | T-023 | DONE | `src/q1/`, `src/common/numerics.py`, `tests/test_q1_numerics.py` | M1、M2、B0、M3 可重复运行；中心、Robin、通量、单位、路径保护和确定性测试通过 | 本轮 |
+| T-025 | P0 | Q1 | T-024 | DONE | `docs/VALIDATION.md`, `experiments/EXP-001/`–`EXP-007/` | 烟雾、时间/空间敏感性、边界/插值敏感性、Baseline 和守恒/范围检查均有证据 | 本轮 |
+| T-026 | P0 | Q1 | T-025 | TODO | 人工确认与 `Q1 RESULT & DELIVERABLE GATE` | OQ-005/006/007/008 得到明确决策后，才允许 candidate 结果生成 | 等待人工 |
 
 ## 任务记录模板
 

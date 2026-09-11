@@ -1,14 +1,14 @@
 # Q1 Modeling Plan
 
-> 状态：`MODEL DESIGN COMPLETE / WAITING IMPLEMENTATION APPROVAL`
+> 状态：`Q1 IMPLEMENTATION & NUMERICAL VALIDATION COMPLETE / WAITING RESULT GATE APPROVAL`
 >
-> 本文件是 Q1 的问题分析与模型设计工作包，不是论文正文，不包含正式仿真结果、结果表或 `result1.xlsx`。本轮只完成题意核对、数据审计、候选模型、Baseline、假设、数值策略、验证计划和实验计划。
+> 本文件是 Q1 的问题分析、实现和内部数值验证工作包，不是论文正文，不包含最终结果表或 `result1.xlsx`。实验结果仅用于实现审计和模型比较，不能直接作为论文最终结论。
 
 ## Scope and Gate Boundary
 
 - 本轮授权范围仅为 Q1。
 - Q2、Q3、Q4 保持 `NOT STARTED`。
-- 可以提出数学模型和算法设计，但不得进入正式求解、正式结果实验或最终交付文件生成。
+- 已获授权执行 Q1 内部实现、数值验证和模型对照；不得生成最终交付文件或自动填充 `result1.xlsx`。
 - `A题/` 是 `OFFICIAL_SOURCE / IMMUTABLE_SOURCE`；本轮只读。
 - 推荐模型表示“建议进入实现”，不表示已经证明最好。
 
@@ -304,7 +304,7 @@ B0 保留的理由是它简单、可复现且不是故意错误的模型；它�
 - 计算成本和验证复杂度仍可控；
 - 可以与 B0、M2、M3 形成清晰对照。
 
-该推荐不是“已经证明最好”。`A-Q1-001`、`A-Q1-005`、`A-Q1-006` 需要在实现前进行人工复核，标记为 `REQUIRES HUMAN REVIEW`。
+该推荐不是“已经证明最好”。`A-Q1-001`、`A-Q1-005`、`A-Q1-006` 仍需人工复核，标记为 `REQUIRES HUMAN REVIEW`；本轮实验只验证了候选实现的内部数值性质。
 
 ## 14. Numerical Strategy Candidates
 
@@ -326,7 +326,7 @@ B0 保留的理由是它简单、可复现且不是故意错误的模型；它�
 
 ### Numerical implementation contract
 
-实现批准后，必须记录：网格节点定义、中心离散公式、表面 Robin 离散公式、内部步长、非线性容差、最大迭代数、收敛失败处理、输出采样和单位转换。任何插值、平滑、外推或边界替代都必须先登记为 `MODELING_CHOICE`。
+实现配置必须记录：网格节点定义、中心离散公式、表面 Robin 离散公式、内部步长、非线性容差、最大迭代数、收敛失败处理、输出采样和单位转换。任何插值、平滑、外推或边界替代都必须先登记为 `MODELING_CHOICE`。
 
 ## 15. Validation Plan
 
@@ -347,14 +347,14 @@ B0 保留的理由是它简单、可复现且不是故意错误的模型；它�
 | Data leakage / CV | No for Q1 PDE | 不做机器学习划分 | 记录为不适用，不机械执行 |
 | Residual analysis | Conditional | 仅在参数校准或外部观测拟合时启用 | 当前无拟合，不虚构残差结论 |
 
-## 16. Experiment Plan
+## 16. Experiment Plan and Execution
 
-以下实验均为 `PLANNED`，本轮未运行，不能作为论文证据。
+以下实验已在实现授权后按 `EXP-001` → `EXP-007` 顺序运行。它们是内部实现与数值验证证据，不是论文最终结论。
 
 | ID | Purpose / Question | Model | Config / Input | Expected Evidence | Acceptance Criteria | Estimated Runtime |
 |---|---|---|---|---|---|---|
 | EXP-001 | 检查输入读取、插值、单位转换、边界方向和最小离散是否可运行 | M1 smoke | 极小径向网格、短时间窗口、附件1原始点 | 日志、边界输入曲线、无写入官方模板 | 可重复运行；无 NaN/Inf；初值和边界方向检查通过 | <1 min |
-| EXP-002 | 判断空间扩散是否相对均匀 Baseline 必要 | B0 vs M1 | 同一 Q1 输入、短时和完整设计时长两档 | 均匀平均响应与径向响应对照 | 差异有明确解释；不以单一指标决定模型 | <2 min |
+| EXP-002 | 判断空间扩散是否相对均匀 Baseline 必要，并加入常-D消融 | B0 vs M1 vs M2 | 同一 Q1 输入、完整设计时长；M2取 `C_ref=2.55 kg/kg` | 均匀平均响应、非线性/常-D径向响应对照 | 差异有明确解释；不以单一指标决定模型 | <2 min |
 | EXP-003 | 检查时间离散敏感性和刚性处理 | M1 | 内部 `Δt` 候选：输出步长及更小步长 | 关键位置/时刻差异表 | 差异低于预设容差，或记录不稳定原因 | <5 min |
 | EXP-004 | 检查空间网格收敛 | M1 | `Δr=0.5, 0.25, 0.125 mm`，即 `N=40,80,160` | 网格细化误差和剖面 | 关键输出量趋于稳定，中心/表面不出现伪振荡 | <10 min |
 | EXP-005 | 检查 Robin 与 Dirichlet 边界处理影响 | M1 vs M3 | 相同输入和网格 | 表面滞后、中心响应和边界通量对照 | 说明边界假设对结果的影响；不预设谁“更好” | <5 min |
@@ -396,17 +396,18 @@ Q1 Model Design Gate 只有在以下事项全部完成后才算完成：
 - [x] 设计数值离散、边界实现、插值、稳定性和收敛检查。
 - [x] 建立 Q1 Validation Plan 和 `EXP-001`–`EXP-007` 计划。
 - [x] 完成 Model Design Review，并将推荐候选标记为“建议进入实现”。
-- [x] 没有生成正式结果、正式实验、论文结论或 `result1.xlsx`。
+- [x] 按序完成 EXP-001–EXP-007 内部实现与数值验证；证据保存于 `experiments/EXP-xxx/`。
+- [x] 没有生成最终结果、论文结论或 `result1.xlsx`。
 
 ## 20. Model Design Review
 
 | Role | Candidate | Review status |
 |---|---|---|
 | Baseline | B0 lumped exchange model | Registered; required for later comparison |
-| Main Candidate | M1 nonlinear radial diffusion with Robin boundaries | Recommended for implementation, not yet approved |
-| Alternative 1 | M2 constant-D radial diffusion | Registered for ablation/stability comparison |
+| Main Candidate | M1 nonlinear radial diffusion with Robin boundaries | Implemented candidate; result gate not frozen |
+| Alternative 1 | M2 constant-D radial diffusion, `C_ref=2.55 kg/kg` | Implemented ablation/stability comparison |
 | Alternative 2 | M3 Dirichlet surface approximation | Registered for boundary sensitivity only |
 | Alternative 3 | M4 2D axisymmetric model | Not recommended before new boundary information and human review |
-| Recommended Candidate | M1 | `REQUIRES HUMAN REVIEW` for A-Q1-001/A-Q1-005/A-Q1-006 and OQ-006/OQ-008 |
+| Recommended Candidate | M1 | `REQUIRES HUMAN REVIEW` for A-Q1-001/A-Q1-005/A-Q1-006 and OQ-006/OQ-008; EXP evidence does not replace approval |
 
-**Gate result**：Q1 设计材料已完成，但正式实现仍需人工授权。本文件不授权自动启动数值求解。
+**Gate result**：Q1 实现与内部数值验证已完成，等待人工授权进入 `Q1 RESULT & DELIVERABLE GATE`。Q2–Q4 不得启动；本文件不授权自动生成最终 `result1.xlsx`。

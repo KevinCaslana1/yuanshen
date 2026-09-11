@@ -6,13 +6,13 @@
 
 | ID | Question | Model | Purpose | Key Config | Metrics | Status | Evidence |
 |---|---|---|---|---|---|---|---|
-| EXP-001 | Q1 | M1 smoke | 检查输入、插值、单位、边界方向和最小离散 | 极小网格、短时间、附件1原始点 | 可运行性、NaN/Inf、初值、通量方向 | PLANNED | `docs/Q1_PLAN.md` |
-| EXP-002 | Q1 | B0 vs M1 | 比较空间扩散模型相对均匀 Baseline 的必要性 | 同一输入、短时与设计时长两档 | 平均响应、径向差异、方向一致性 | PLANNED | `docs/Q1_PLAN.md` |
-| EXP-003 | Q1 | M1 | 时间离散敏感性与收敛 | 内部时间步长候选 | 关键点差异、非线性残差 | PLANNED | `docs/Q1_PLAN.md` |
-| EXP-004 | Q1 | M1 | 空间网格收敛 | `Δr=0.1,0.05,0.025 cm` 候选 | 关键点差异、剖面平滑性 | PLANNED | `docs/Q1_PLAN.md` |
-| EXP-005 | Q1 | M1 vs M3 | Robin 与 Dirichlet 边界敏感性 | 相同输入和网格 | 表面滞后、中心响应、通量 | PLANNED | `docs/Q1_PLAN.md` |
-| EXP-006 | Q1 | M1 | 分段线性与零阶保持输入敏感性 | 不修改附件1原始点 | 关键输出差异、边界曲线 | PLANNED | `docs/Q1_PLAN.md` |
-| EXP-007 | Q1 | M1 | 通量、储量和物理范围 sanity check | 完整设计时长、收敛配置 | 守恒残差、范围、异常日志 | PLANNED | `docs/Q1_PLAN.md` |
+| EXP-001 | Q1 | M1 smoke | 检查输入、插值、单位、边界方向和最小离散 | 10 s、N=8、附件1原始点 | 所有运行检查通过，Picard max=2 | COMPLETED | `experiments/EXP-001/` |
+| EXP-002 | Q1 | B0 vs M1 vs M2 | 比较均匀 Baseline、非线性径向和常-D径向模型 | 1800 s、dt=1 s、N=80 | M1/M2验证通过；平均响应与径向差异已记录 | COMPLETED | `experiments/EXP-002/` |
+| EXP-003 | Q1 | M1 | 时间离散敏感性与收敛 | `dt=1/0.5/0.25 s` | 1→0.5 s最大差异 `0.000600 K/4.40e-5 kg/kg`；0.5→0.25 s进一步减半 | COMPLETED | `experiments/EXP-003/` |
+| EXP-004 | Q1 | M1 | 空间网格收敛 | `N=40/80/160`，`dr=0.5/0.25/0.125 mm` | 80→160最大差异 `1.33e-5 K/1.41e-4 kg/kg` | COMPLETED | `experiments/EXP-004/` |
+| EXP-005 | Q1 | M1 vs M3 | Robin 与 Dirichlet 边界敏感性 | 相同输入、dt=1 s、N=80 | 最大差异 `4.727 K/1.477 kg/kg`；Robin验证通过 | COMPLETED | `experiments/EXP-005/` |
+| EXP-006 | Q1 | M1 | 分段线性与零阶保持输入敏感性 | 同一附件1原始点、dt=1 s、N=80 | 最大差异 `0.178 K/1.02e-4 kg/kg`；两种运行检查通过 | COMPLETED | `experiments/EXP-006/` |
+| EXP-007 | Q1 | M1 | 通量、储量和物理范围 sanity check | 1800 s、dt=1 s、N=80 | 质量残差 `-5.42e-20`，能量残差 `1.13e-7`，范围有限 | COMPLETED | `experiments/EXP-007/` |
 
 状态建议使用：`PLANNED` / `RUNNING` / `COMPLETED` / `FAILED` / `ABANDONED`。
 
@@ -40,6 +40,8 @@ Notes:
 
 必要时保存 `predictions.csv`、`logs.txt` 和 `artifacts/`。论文数字优先引用这里登记的结果。
 
-## Q1 Planning Note
+## Q1 Execution Note
 
-EXP-001 至 EXP-007 当前全部为 `PLANNED`，尚未运行，均不是论文证据。本轮只完成设计登记，不创建 `experiments/EXP-xxx/` 正式产物，不生成 `result1.xlsx`。
+EXP-001 至 EXP-007 已在实现授权后按顺序运行，状态均为 `COMPLETED`。这些是内部实现与数值验证证据，不是论文最终结论；尚未生成 `result1.xlsx`，也未写入 `deliverables/candidate/` 或 `deliverables/final/`。
+
+每个实验目录均包含 `config.json`、`metrics.json` 和 `notes.md`，记录命令、代码提交、输入 SHA-256、求解器配置、运行时间、验证状态和产物路径。
