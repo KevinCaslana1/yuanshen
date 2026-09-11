@@ -119,3 +119,82 @@ def run_m1(
         heat_flux_in_w_m2=tuple(heat_fluxes),
         moisture_flux_out_m_s=tuple(moisture_fluxes),
     )
+
+
+def run_m2(
+    config: Q1RunConfig,
+    boundary: BoundaryProvider,
+    parameters: Q1Parameters = DEFAULT_PARAMETERS,
+    reference_moisture_kg_kg: float | None = None,
+) -> Q1Result:
+    """Run the constant-D radial comparison model without writing files.
+
+    M2 shares M1's heat equation, grid, implicit step, and boundary. Only
+    moisture diffusivity is fixed at ``D(C_ref)``; by default ``C_ref`` is
+    the configured initial moisture.
+    """
+
+    if config.end_time_s > boundary.times_s[-1]:
+        raise ValueError("Q1 run would require boundary extrapolation")
+    reference = config.initial_moisture_kg_kg if reference_moisture_kg_kg is None else reference_moisture_kg_kg
+    if reference <= 0.0:
+        raise ValueError("M2 reference moisture must be positive")
+    grid = make_radial_grid(parameters.radius_m, config.n_intervals)
+    node_count = config.n_intervals + 1
+    temperature = [celsius_to_kelvin(config.initial_temperature_c)] * node_count
+    moisture = [config.initial_moisture_kg_kg] * node_count
+    times = [0.0]
+    temperatures = [tuple(temperature)]
+    moistures = [tuple(moisture)]
+    picard_iterations = [0]
+    heat_fluxes = [0.0]
+    moisture_fluxes = [0.0]
+
+    heat_capacity = parameters.density_kg_m3 * parameters.heat_capacity_j_kg_k
+    constant_diffusivity = parameters.diffusivity_m2_s(reference)
+    current_time = 0.0
+    steps = int(round(config.end_time_s / config.time_step_s))
+    for _ in range(steps):
+        next_time = current_time + config.time_step_s
+        temperature_environment_c, moisture_environment = boundary.at(next_time)
+        temperature_environment_k = celsius_to_kelvin(temperature_environment_c)
+        temperature = implicit_radial_step(
+            temperature,
+            grid,
+            config.time_step_s,
+            heat_capacity,
+            [parameters.conductivity_w_m_k] * config.n_intervals,
+            parameters.heat_transfer_w_m2_k,
+            temperature_environment_k,
+            config.surface_boundary,
+        )
+        moisture = implicit_radial_step(
+            moisture,
+            grid,
+            config.time_step_s,
+            1.0,
+            [constant_diffusivity] * config.n_intervals,
+            parameters.mass_transfer_m_s,
+            moisture_environment,
+            config.surface_boundary,
+        )
+        _assert_finite(temperature, "temperature")
+        _assert_finite(moisture, "moisture")
+        current_time = next_time
+        times.append(current_time)
+        temperatures.append(tuple(temperature))
+        moistures.append(tuple(moisture))
+        picard_iterations.append(1)
+        heat_fluxes.append(parameters.heat_transfer_w_m2_k * (temperature_environment_k - temperature[-1]))
+        moisture_fluxes.append(boundary_flux_outward(moisture[-1], moisture_environment, parameters.mass_transfer_m_s))
+
+    return Q1Result(
+        config=config,
+        grid=grid,
+        times_s=tuple(times),
+        temperatures_k=tuple(temperatures),
+        moistures_kg_kg=tuple(moistures),
+        picard_iterations=tuple(picard_iterations),
+        heat_flux_in_w_m2=tuple(heat_fluxes),
+        moisture_flux_out_m_s=tuple(moisture_fluxes),
+    )

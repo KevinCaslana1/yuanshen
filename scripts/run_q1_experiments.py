@@ -27,7 +27,7 @@ from src.common.paths import assert_not_official_output
 from src.q1.baseline import run_b0
 from src.q1.config import DEFAULT_PARAMETERS, Q1RunConfig
 from src.q1.inputs import BoundaryProvider
-from src.q1.solver import Q1Result, run_m1
+from src.q1.solver import Q1Result, run_m1, run_m2
 from src.q1.validation import validate_m1_result
 
 
@@ -76,6 +76,34 @@ def _m1_summary(result: Q1Result) -> Dict[str, Any]:
         "final_temperature_mean_c": _weighted_mean(result.temperatures_k[-1], result.grid) - 273.15,
         "final_moisture_mean_kg_kg": _weighted_mean(final_c, result.grid),
         "max_picard_iterations": max(result.picard_iterations),
+        "picard_iteration_stats": {
+            "steps": len(result.picard_iterations) - 1,
+            "min": min(result.picard_iterations[1:]),
+            "max": max(result.picard_iterations[1:]),
+            "mean": sum(result.picard_iterations[1:]) / (len(result.picard_iterations) - 1),
+        },
+    }
+
+
+def _validation_record(result: Q1Result) -> Dict[str, Any]:
+    metrics = validate_m1_result(result)
+    moisture_values = [value for row in result.moistures_kg_kg for value in row]
+    checks = {
+        "finite": bool(metrics["finite"]),
+        "initial_ok": bool(metrics["initial_ok"]),
+        "time_ok": bool(metrics["time_ok"]),
+        "mass_balance_abs_le_1e-10": abs(float(metrics["mass_balance_residual"])) <= 1.0e-10,
+        "energy_balance_abs_le_1e-5": abs(float(metrics["energy_balance_residual"])) <= 1.0e-5,
+        "moisture_nonnegative": min(moisture_values) >= -1.0e-12,
+    }
+    return {
+        "status": "PASS" if all(checks.values()) else "FAIL",
+        "checks": checks,
+        "observed": {
+            "max_picard_iterations": metrics["max_picard_iterations"],
+            "mass_balance_residual": metrics["mass_balance_residual"],
+            "energy_balance_residual": metrics["energy_balance_residual"],
+        },
     }
 
 
@@ -101,26 +129,34 @@ def _run_m1(config: Q1RunConfig) -> Q1Result:
 
 def run_experiment(experiment_id: str) -> Dict[str, Any]:
     started = time.perf_counter()
+    validation_result: Dict[str, Any]
     if experiment_id == "EXP-001":
         config = _config(end_time_s=10.0, n_intervals=8)
         result = _run_m1(config)
         metrics = validate_m1_result(result)
+        metrics.update(_m1_summary(result))
         metrics.update({"boundary_raw_count": _boundary(config).raw_count, "formal_result_generated": False})
+        validation_result = _validation_record(result)
         notes = "Non-formal smoke test. No official or candidate workbook was generated."
         configs = {"smoke": config}
     elif experiment_id == "EXP-002":
         config = _config()
         m1 = _run_m1(config)
+        m2 = run_m2(config, _boundary(config), DEFAULT_PARAMETERS)
         b0 = run_b0(config, _boundary(config), DEFAULT_PARAMETERS)
         metrics = {
             "m1": _m1_summary(m1),
+            "m2": _m1_summary(m2),
             "b0_final_temperature_c": b0.temperatures_k[-1] - 273.15,
             "b0_final_moisture_kg_kg": b0.moistures_kg_kg[-1],
             "m1_minus_b0_final_mean_temperature_c": _weighted_mean(m1.temperatures_k[-1], m1.grid) - 273.15 - (b0.temperatures_k[-1] - 273.15),
             "m1_minus_b0_final_mean_moisture_kg_kg": _weighted_mean(m1.moistures_kg_kg[-1], m1.grid) - b0.moistures_kg_kg[-1],
+            "m1_minus_m2_final_mean_temperature_c": _weighted_mean(m1.temperatures_k[-1], m1.grid) - _weighted_mean(m2.temperatures_k[-1], m2.grid),
+            "m1_minus_m2_final_mean_moisture_kg_kg": _weighted_mean(m1.moistures_kg_kg[-1], m1.grid) - _weighted_mean(m2.moistures_kg_kg[-1], m2.grid),
         }
-        notes = "Baseline comparison only; it does not select a final model."
-        configs = {"m1": config, "b0": config}
+        validation_result = {"m1": _validation_record(m1), "m2": _validation_record(m2)}
+        notes = "B0 baseline plus M2 constant-D ablation comparison; it does not select a final model."
+        configs = {"m1": config, "m2": config, "b0": config}
     elif experiment_id == "EXP-003":
         runs = {str(dt): _run_m1(_config(time_step_s=dt)) for dt in (1.0, 0.5, 0.25)}
         metrics = {
@@ -128,6 +164,7 @@ def run_experiment(experiment_id: str) -> Dict[str, Any]:
             "dt_1_vs_0_5": _max_output_difference(runs["1.0"], runs["0.5"]),
             "dt_0_5_vs_0_25": _max_output_difference(runs["0.5"], runs["0.25"]),
         }
+        validation_result = {key: _validation_record(value) for key, value in runs.items()}
         notes = "Time-step sensitivity; differences are reported, not assumed acceptable in advance."
         configs = {key: value.config for key, value in runs.items()}
     elif experiment_id == "EXP-004":
@@ -137,6 +174,7 @@ def run_experiment(experiment_id: str) -> Dict[str, Any]:
             "n_40_vs_80": _max_output_difference(runs["40"], runs["80"]),
             "n_80_vs_160": _max_output_difference(runs["80"], runs["160"]),
         }
+        validation_result = {key: _validation_record(value) for key, value in runs.items()}
         notes = "Spatial grid convergence; internal grid is separate from the 0.1 cm output grid."
         configs = {key: value.config for key, value in runs.items()}
     elif experiment_id == "EXP-005":
@@ -148,6 +186,10 @@ def run_experiment(experiment_id: str) -> Dict[str, Any]:
             "robin": _m1_summary(robin),
             "dirichlet": _m1_summary(dirichlet),
             "robin_vs_dirichlet": _max_output_difference(robin, dirichlet),
+        }
+        validation_result = {
+            "robin": _validation_record(robin),
+            "dirichlet": {"status": "NOT_APPLICABLE", "reason": "The Dirichlet comparison does not use the Robin boundary-flux accounting check."},
         }
         notes = "Boundary sensitivity comparison; Dirichlet is an alternative, not the default."
         configs = {"robin": robin_config, "dirichlet": dirichlet_config}
@@ -161,6 +203,7 @@ def run_experiment(experiment_id: str) -> Dict[str, Any]:
             "zero_order": _m1_summary(hold),
             "linear_vs_zero_order": _max_output_difference(linear, hold),
         }
+        validation_result = {"linear": _validation_record(linear), "zero_order": _validation_record(hold)}
         notes = "Input interpolation sensitivity; no smoothing or extrapolation was used."
         configs = {"linear": linear_config, "zero_order": hold_config}
     elif experiment_id == "EXP-007":
@@ -172,6 +215,7 @@ def run_experiment(experiment_id: str) -> Dict[str, Any]:
         metrics["temperature_max_c"] = max(value for row in result.temperatures_c for value in row)
         metrics["moisture_min_kg_kg"] = min(value for row in result.moistures_kg_kg for value in row)
         metrics["moisture_max_kg_kg"] = max(value for row in result.moistures_kg_kg for value in row)
+        validation_result = _validation_record(result)
         notes = "Formal numerical validation evidence for M1. No result workbook was generated."
         configs = {"m1": config}
     else:
@@ -196,7 +240,7 @@ def run_experiment(experiment_id: str) -> Dict[str, Any]:
         "runtime_seconds": elapsed,
         "solver_parameters": serializable_configs,
         "metrics": metrics,
-        "validation_result": "see metrics; all checks are recorded without prefilled answer values",
+        "validation_result": validation_result,
         "notes": notes,
     }
 
@@ -204,6 +248,11 @@ def run_experiment(experiment_id: str) -> Dict[str, Any]:
 def write_evidence(payload: Dict[str, Any]) -> Path:
     output_dir = assert_not_official_output(ROOT / "experiments" / payload["experiment_id"])
     output_dir.mkdir(parents=True, exist_ok=True)
+    payload["artifact_paths"] = [
+        f"experiments/{payload['experiment_id']}/config.json",
+        f"experiments/{payload['experiment_id']}/metrics.json",
+        f"experiments/{payload['experiment_id']}/notes.md",
+    ]
     (output_dir / "config.json").write_text(
         json.dumps(
             {
@@ -212,6 +261,7 @@ def write_evidence(payload: Dict[str, Any]) -> Path:
                 "code_commit": payload["code_commit"],
                 "input_hashes": payload["input_hashes"],
                 "solver_parameters": payload["solver_parameters"],
+                "artifact_paths": payload["artifact_paths"],
             },
             ensure_ascii=False,
             indent=2,

@@ -10,7 +10,7 @@ from src.q1.baseline import run_b0
 from src.q1.config import Q1RunConfig
 from src.q1.inputs import BoundaryProvider, celsius_to_kelvin, cm_to_m, kelvin_to_celsius
 from src.q1.model import arithmetic_face_values, assemble_radial_system, implicit_radial_step
-from src.q1.solver import run_m1
+from src.q1.solver import run_m1, run_m2
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -84,3 +84,11 @@ def test_b0_baseline_is_reproducible_and_spatially_uniform() -> None:
     result = run_b0(config, boundary)
     assert result.times_s[-1] == 3.0
     assert result.moistures_kg_kg[0] == 2.55
+
+
+def test_m2_constant_diffusivity_comparison_runs_without_picard() -> None:
+    config = Q1RunConfig(end_time_s=2.0, time_step_s=1.0, n_intervals=8)
+    boundary = BoundaryProvider.from_attachment1(ROOT / config.input_path)
+    result = run_m2(config, boundary)
+    assert result.picard_iterations == (0, 1, 1)
+    assert all(value >= 0.0 for row in result.moistures_kg_kg for value in row)

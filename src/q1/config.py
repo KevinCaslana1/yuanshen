@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from math import exp
 from pathlib import Path
 
 
@@ -19,7 +20,7 @@ class Q1Parameters:
     def diffusivity_m2_s(self, moisture_kg_kg: float) -> float:
         if moisture_kg_kg <= 0.0:
             raise ValueError("Q1 diffusivity is undefined for non-positive moisture")
-        return 7.0e-9 * pow(2.718281828459045, -0.89 / moisture_kg_kg)
+        return 7.0e-9 * exp(-0.89 / moisture_kg_kg)
 
 
 @dataclass(frozen=True)
