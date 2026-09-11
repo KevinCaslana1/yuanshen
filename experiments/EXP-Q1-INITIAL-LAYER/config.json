@@ -1,0 +1,113 @@
+{
+  "experiment_id": "EXP-Q1-INITIAL-LAYER",
+  "code_commit": "3b0785a6ff5bf0f3e2a27845c6707d0b98b7bb13",
+  "input_hashes": {
+    "A题/附件/附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7"
+  },
+  "scope": {
+    "short_end_time_s": 10.0,
+    "early_times_s": [
+      0.25,
+      0.5,
+      1.0,
+      2.0,
+      5.0,
+      10.0
+    ],
+    "common_positions_cm": [
+      1.95,
+      1.975,
+      2.0,
+      1.9
+    ],
+    "local_positions": "R, R-dr, R-2dr per grid",
+    "staged_non_cartesian_ladder": "space N=320/640/1280 at dt=0.03125; time N=640 at dt=0.25/0.125/0.0625; reference N=1280 at dt=0.0625/0.03125/0.015625"
+  },
+  "compatibility": {
+    "time_s": 0.0,
+    "temperature": {
+      "initial_field_c": 28.0,
+      "environment_c": 28.0,
+      "initial_radial_gradient_c_per_m": 0.0,
+      "robin_residual_w_m2": -0.0,
+      "status": "COMPATIBLE_WITHIN_REPRESENTATION"
+    },
+    "moisture": {
+      "initial_field_kg_kg": 2.55,
+      "environment_kg_kg": 0.01963,
+      "initial_radial_gradient_kg_kg_per_m": 0.0,
+      "D_at_initial_m2_s": 4.937655094173937e-09,
+      "initial_jump_kg_kg": 2.53037,
+      "robin_residual_m_s": -2.0242959999999997e-06,
+      "outward_flux_m_s": 2.0242959999999997e-06,
+      "status": "INCOMPATIBLE_INITIAL_TRACE"
+    },
+    "interpretation": "diagnostic hypothesis only; do not modify initial field or official input"
+  },
+  "diffusion_scale": {
+    "D_definition": "D(C0) with C0=2.55 kg/kg",
+    "D0_m2_s": 4.937655094173937e-09,
+    "values": [
+      {
+        "time_s": 0.25,
+        "sqrt_Dt_m": 3.513422510236257e-05,
+        "sqrt_Dt_cm": 0.0035134225102362573,
+        "mesh_cells_across_scale": {
+          "160": 0.14053690040945027,
+          "320": 0.28107380081890054,
+          "640": 0.5621476016378011
+        }
+      },
+      {
+        "time_s": 0.5,
+        "sqrt_Dt_m": 4.9687297643230396e-05,
+        "sqrt_Dt_cm": 0.00496872976432304,
+        "mesh_cells_across_scale": {
+          "160": 0.1987491905729216,
+          "320": 0.3974983811458432,
+          "640": 0.7949967622916864
+        }
+      },
+      {
+        "time_s": 1.0,
+        "sqrt_Dt_m": 7.026845020472514e-05,
+        "sqrt_Dt_cm": 0.007026845020472515,
+        "mesh_cells_across_scale": {
+          "160": 0.28107380081890054,
+          "320": 0.5621476016378011,
+          "640": 1.1242952032756022
+        }
+      },
+      {
+        "time_s": 2.0,
+        "sqrt_Dt_m": 9.937459528646079e-05,
+        "sqrt_Dt_cm": 0.00993745952864608,
+        "mesh_cells_across_scale": {
+          "160": 0.3974983811458432,
+          "320": 0.7949967622916864,
+          "640": 1.5899935245833727
+        }
+      },
+      {
+        "time_s": 5.0,
+        "sqrt_Dt_m": 0.00015712503133132443,
+        "sqrt_Dt_cm": 0.015712503133132442,
+        "mesh_cells_across_scale": {
+          "160": 0.6285001253252976,
+          "320": 1.2570002506505953,
+          "640": 2.5140005013011906
+        }
+      },
+      {
+        "time_s": 10.0,
+        "sqrt_Dt_m": 0.0002222083502970565,
+        "sqrt_Dt_cm": 0.02222083502970565,
+        "mesh_cells_across_scale": {
+          "160": 0.888833401188226,
+          "320": 1.777666802376452,
+          "640": 3.555333604752904
+        }
+      }
+    ]
+  }
+}

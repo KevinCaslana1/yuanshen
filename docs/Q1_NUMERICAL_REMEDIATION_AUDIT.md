@@ -6,6 +6,8 @@
 官方输入：`A题/附件/附件1.xlsx`，SHA-256=`7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7`。  
 交付约束：本轮不生成 `result1.xlsx`，不写入 `A题/`、`deliverables/candidate/` 或 `deliverables/final/`。
 
+> 历史审计说明：本文件记录前一阶段的 Q1 NUMERICAL CONVERGENCE DIAGNOSIS & REMEDIATION GATE。其后续初始层/表面精度诊断以 `docs/Q1_INITIAL_LAYER_AUDIT.md` 为当前审计入口；本文件中的 BDF2 结论仍保留为历史候选证据。
+
 ## Current Project Status
 
 Q1 当前仍处于 `NUMERICAL REMEDIATION BLOCKED`。M1 生产实现的径向有限体积装配、中心/表面半控制体积、Robin 行、BE 时间层级、Picard 迭代和输出对齐已完成代码审计；独立制造解 benchmark 支持空间二阶、BE 时间一阶。真实 Q1 的 BE 误差诊断显示温度时间误差和含水率早期/表面误差仍是主要风险。

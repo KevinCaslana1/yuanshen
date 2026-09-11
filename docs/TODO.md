@@ -34,7 +34,9 @@
 | T-025 | P0 | Q1 | T-024 | DONE | `docs/VALIDATION.md`, `experiments/EXP-001/`–`EXP-007/` | 烟雾、时间/空间敏感性、边界/插值敏感性、Baseline 和守恒/范围检查均有证据 | 本轮 |
 | T-026 | P0 | Q1 | T-025 | BLOCKED | `Q1 FINAL NUMERICAL ACCURACY & DELIVERABLE GATE` | OQ-005/006/007/008 已解决，但完整输出网格四位小数稳定性未通过；不得生成 candidate | 等待人工数值审查 |
 | T-027 | P0 | Q1 | T-026 | BLOCKED | `docs/Q1_NUMERICAL_REMEDIATION_AUDIT.md`、`experiments/EXP-Q1-NUM-*` | 已完成实现审计、独立 benchmark、误差定位、Picard 敏感性和 BDF2 候选；但完整网格估计误差仍未通过，不能生成 candidate | 等待人工审查 |
-| T-028 | P0 | Q1 | T-027 | TODO | 局部数值整改决策与复验 | 人工确认是否针对早期/表面含水率误差做最小诊断；若继续，保留 Level 1–3、benchmark、守恒和无工作簿约束 | 人工决定 |
+| T-028 | P0 | Q1 | T-027 | DONE | 局部数值整改决策与复验 | 已按人工授权完成初始层兼容性、表面误差衰减、BDF2 启动和边界聚类 benchmark/短时复验；无工作簿写入 | `docs/Q1_INITIAL_LAYER_AUDIT.md`、EXP-Q1-INITIAL-LAYER 至 EXP-Q1-CLUSTER-TEMPORAL |
+| T-029 | P0 | Q1 | T-028 | BLOCKED | 聚类候选 0–1800 s 全网格复验 | 固定候选网格/时间策略后，完成 raw、Richardson、守恒/范围、全网格舍入认证；保持官方资产只读 | 人工确认后运行 |
+| T-030 | P0 | Q1 | T-029 | BLOCKED | Q1 FINAL NUMERICAL ACCURACY & DELIVERABLE GATE 重入 | t=1 表面不确定度显著下降、全网格 raw 可接受、边界层策略和启动策略冻结，并经人工审查 | `docs/Q1_INITIAL_LAYER_AUDIT.md`、最终审计包 |
 
 ## 任务记录模板
 

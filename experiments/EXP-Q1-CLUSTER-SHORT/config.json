@@ -1,0 +1,210 @@
+{
+  "experiment_id": "EXP-Q1-CLUSTER-SHORT",
+  "code_commit": "3b0785a6ff5bf0f3e2a27845c6707d0b98b7bb13",
+  "input_hashes": {
+    "A题/附件/附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7"
+  },
+  "scope": {
+    "end_time_s": 10.0,
+    "time_step_s": 0.0625,
+    "official_output_positions_cm": [
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7000000000000001,
+      0.8,
+      0.9000000000000001,
+      1.0,
+      1.0999999999999999,
+      1.2,
+      1.3,
+      1.4000000000000001,
+      1.5,
+      1.6,
+      1.7000000000000002,
+      1.8000000000000003,
+      1.9,
+      2.0
+    ],
+    "focus_positions_cm": [
+      1.7999999999999998,
+      1.9,
+      2.0
+    ],
+    "cluster_definition": "r=R*(1-(1-i/N)^2), plus explicit official output nodes"
+  },
+  "cases": {
+    "uniform_N320": {
+      "runtime_seconds": 0.2085372000001371,
+      "n_intervals_actual": 320,
+      "node_count": 321,
+      "min_dr_m": 6.25e-05,
+      "max_dr_m": 6.25e-05,
+      "history_length": 161,
+      "picard_max_iterations": 3,
+      "surface_moisture_at_times": {
+        "0.25": 2.5381595746390793,
+        "0.5": 2.5303369369378603,
+        "1.0": 2.519776503816148,
+        "2.0": 2.505825859919109,
+        "5.0": 2.4792648747953927,
+        "10.0": 2.4500451824157636
+      },
+      "local_layer_positions_cm": [
+        2.0,
+        1.9937500000000001,
+        1.9875
+      ],
+      "local_layer_moisture_at_t1": [
+        2.519776503816148,
+        2.5381715916800673,
+        2.5461368922226026
+      ],
+      "official_output_nodes_present": true
+    },
+    "uniform_N640": {
+      "runtime_seconds": 0.4061182000004919,
+      "n_intervals_actual": 640,
+      "node_count": 641,
+      "min_dr_m": 3.125e-05,
+      "max_dr_m": 3.125e-05,
+      "history_length": 161,
+      "picard_max_iterations": 3,
+      "surface_moisture_at_times": {
+        "0.25": 2.5353112599346317,
+        "0.5": 2.528106572822042,
+        "1.0": 2.5183874089353306,
+        "2.0": 2.504949930860736,
+        "5.0": 2.47874919747325,
+        "10.0": 2.4496958245233014
+      },
+      "local_layer_positions_cm": [
+        2.0,
+        1.996875,
+        1.9937500000000001
+      ],
+      "local_layer_moisture_at_t1": [
+        2.5183874089353306,
+        2.52944047525899,
+        2.5373692978912405
+      ],
+      "official_output_nodes_present": true
+    },
+    "cluster_base320": {
+      "runtime_seconds": 0.2481738000005862,
+      "n_intervals_actual": 338,
+      "node_count": 339,
+      "min_dr_m": 1.953124999995448e-07,
+      "max_dr_m": 0.00012480468750000195,
+      "history_length": 161,
+      "picard_max_iterations": 3,
+      "surface_moisture_at_times": {
+        "0.25": 2.534324033387239,
+        "0.5": 2.527507062464585,
+        "1.0": 2.517998727823121,
+        "2.0": 2.5046913412758083,
+        "5.0": 2.478599334413252,
+        "10.0": 2.449599087496869
+      },
+      "local_layer_positions_cm": [
+        2.0,
+        1.99998046875,
+        1.9999218750000003
+      ],
+      "local_layer_moisture_at_t1": [
+        2.517998727823121,
+        2.51807807515122,
+        2.518315352176778
+      ],
+      "official_output_nodes_present": true
+    },
+    "cluster_base640": {
+      "runtime_seconds": 0.48884429999998247,
+      "n_intervals_actual": 658,
+      "node_count": 659,
+      "min_dr_m": 4.8828125001620926e-08,
+      "max_dr_m": 6.245117187499982e-05,
+      "history_length": 161,
+      "picard_max_iterations": 3,
+      "surface_moisture_at_times": {
+        "0.25": 2.5343091959716295,
+        "0.5": 2.527492282875185,
+        "1.0": 2.5179840349373226,
+        "2.0": 2.5046767731965622,
+        "5.0": 2.478585013890886,
+        "10.0": 2.449585042513538
+      },
+      "local_layer_positions_cm": [
+        2.0,
+        1.9999951171875,
+        1.99998046875
+      ],
+      "local_layer_moisture_at_t1": [
+        2.5179840349373226,
+        2.518003883646195,
+        2.5180633819623726
+      ],
+      "official_output_nodes_present": true
+    },
+    "cluster_base1280": {
+      "runtime_seconds": 0.9092961999995168,
+      "n_intervals_actual": 1298,
+      "node_count": 1299,
+      "min_dr_m": 1.2207031250405231e-08,
+      "max_dr_m": 3.1237792968747956e-05,
+      "history_length": 161,
+      "picard_max_iterations": 3,
+      "surface_moisture_at_times": {
+        "0.25": 2.5343054821190987,
+        "0.5": 2.527488584990142,
+        "1.0": 2.517980359682312,
+        "2.0": 2.5046731297803375,
+        "5.0": 2.4785814329130234,
+        "10.0": 2.4495815306931816
+      },
+      "local_layer_positions_cm": [
+        2.0,
+        1.999998779296875,
+        1.9999951171875
+      ],
+      "local_layer_moisture_at_t1": [
+        2.517980359682312,
+        2.5179853226018305,
+        2.518000208372225
+      ],
+      "official_output_nodes_present": true
+    },
+    "uniform_N1280_reference": {
+      "runtime_seconds": 0.8354222999987542,
+      "n_intervals_actual": 1280,
+      "node_count": 1281,
+      "min_dr_m": 1.5625e-05,
+      "max_dr_m": 1.5625e-05,
+      "history_length": 161,
+      "picard_max_iterations": 3,
+      "surface_moisture_at_times": {
+        "0.25": 2.5345316207990383,
+        "0.5": 2.5276352127273287,
+        "1.0": 2.518079446252704,
+        "2.0": 2.504740869425713,
+        "5.0": 2.478622348262651,
+        "10.0": 2.449609180974923
+      },
+      "local_layer_positions_cm": [
+        2.0,
+        1.9984375000000003,
+        1.996875
+      ],
+      "local_layer_moisture_at_t1": [
+        2.518079446252704,
+        2.524023333393179,
+        2.5291598368676973
+      ],
+      "official_output_nodes_present": true
+    }
+  }
+}

@@ -16,6 +16,7 @@
 | D-Q1-OQ008 | 2026-09-11 | Q1 | 不加入潜热、内部蒸发源项、Soret/Dufour 或其他需要新增未知参数的耦合项 | ACCEPTED_MODELING_SIMPLIFICATION | 本轮人工授权、EXP-007 |
 | D-Q1-FREEZE-CANDIDATE | 2026-09-11 | Q1 | 冻结验证对象为 M1；B0/M2/M3 只作验证与敏感性证据；最终配置须由四位小数稳定性决定 | BLOCKED_BY_NUMERICAL_ACCURACY | 本轮人工授权、`experiments/EXP-Q1-FINAL-CONV/` |
 | D-Q1-NUM-T2 | 2026-09-11 | Q1 | 将“BE 首步+BDF2”作为数值整改候选进行验证，不自动替换 M1/BE 主方案；论文点改善但完整网格安全裕量不足 | CANDIDATE_NOT_FROZEN | `experiments/EXP-Q1-NUM-BENCH/`、`experiments/EXP-Q1-NUM-REMEDIATION/` |
+| D-Q1-INITIAL-LAYER | 2026-09-11 | Q1 | 支持初始水分场与表面 Robin 条件形成短时边界层的数值诊断；保持官方初值/边界不变，边界聚类仅作为候选 | DIAGNOSTIC_SUPPORTED_CANDIDATE_NOT_FROZEN | `docs/Q1_INITIAL_LAYER_AUDIT.md`、EXP-Q1-INITIAL-LAYER 至 EXP-Q1-CLUSTER-TEMPORAL |
 
 ## 决策记录模板
 
@@ -258,3 +259,35 @@ EXP-005 的 Robin/Dirichlet 对照、EXP-007 的通量与守恒检查若显示�
 ### 状态
 
 ACCEPTED_MODELING_ASSUMPTION
+
+## D-Q1-INITIAL-LAYER Q1 初始表面层诊断与聚类候选边界
+
+日期：2026-09-11
+
+问题：Q1
+
+### 背景
+
+完整网格诊断将含水率误差定位到早期表面；人工授权要求优先检查 t=0 相容性、扩散尺度、启动策略和边界聚类候选，不得通过修改官方初始条件或 Robin 物理口径来消除误差。
+
+### 决定
+
+1. 将 `H-Q1-INITIAL-LAYER` 标记为 `SUPPORTED`，其含义限于数值诊断：当前数值困难主要由初始水分场与表面 Robin 条件不相容产生的短时表面边界层导致。
+2. 保持官方初始水分场、附件1和 Robin 边界不变；不将诊断结果表述为模型错误。
+3. 保留均匀 M1/BE 作为可追溯参考，并把 `p=2` 的边界聚类保守 FVM 登记为数值候选。聚类候选必须显式保留全部官方输出节点，尚未冻结为生产主方案。
+4. 标准 BE 首步+BDF2 继续作为既有候选；早期 BE 子步没有显示出稳定改善，不直接升级为生产策略。
+
+### 支持证据
+
+- `EXP-Q1-INITIAL-LAYER`：温度残差 `-0.0 W/m²`，水分残差 `-2.024296e-6 m/s`。
+- `EXP-Q1-SURFACE-DECAY`：均匀网格表面误差从 t=1 到 t=100 s 显著衰减，后期阶数恢复。
+- `EXP-Q1-CLUSTER-BENCH` 与 `EXP-Q1-CLUSTER-SHORT`：聚类 FVM benchmark 正常，真实 Q1 早期表面差异下降。
+- `EXP-Q1-CLUSTER-TEMPORAL`：t=1 表面时间剩余约 `3.1850e-5 kg/kg`，20/21 个官方位置可舍入认证，表面仍歧义。
+
+### 未决事项
+
+聚类候选尚未完成 0–1800 s 全网格 raw、Richardson、守恒/范围和交付级舍入复验；因此不改写 `D-Q1-FREEZE-CANDIDATE`，不生成 candidate/final 工作簿。
+
+### 状态
+
+DIAGNOSTIC_SUPPORTED_CANDIDATE_NOT_FROZEN

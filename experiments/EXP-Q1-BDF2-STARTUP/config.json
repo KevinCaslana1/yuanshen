@@ -1,0 +1,42 @@
+{
+  "experiment_id": "EXP-Q1-BDF2-STARTUP",
+  "code_commit": "3b0785a6ff5bf0f3e2a27845c6707d0b98b7bb13",
+  "input_hashes": {
+    "A题/附件/附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7"
+  },
+  "scope": {
+    "end_time_s": 10.0,
+    "normal_time_step_s": 0.25,
+    "n_intervals": 640,
+    "startup_duration_s": 1.0,
+    "comparison_times_s": [
+      0.25,
+      0.5,
+      1.0,
+      2.0,
+      5.0,
+      10.0
+    ],
+    "comparison_positions_cm": [
+      2.0,
+      1.975,
+      1.95,
+      1.9
+    ],
+    "standard_definition": "BE at first normal step, then fixed-step BDF2",
+    "early_definition": "BE substeps through 1 s, one normal-size BE restart step, then fixed-step BDF2"
+  },
+  "reference": {
+    "definition": "independent short standard-BDF2 reference, N=1280, dt=0.015625 s",
+    "runtime_seconds": 3.6649239999987913,
+    "history_length": 641,
+    "surface_moisture_at_times": {
+      "0.25": 2.534010449218482,
+      "0.5": 2.5272724361884684,
+      "1.0": 2.5178240669203036,
+      "2.0": 2.504560539491028,
+      "5.0": 2.4785082944050694,
+      "10.0": 2.449528475923704
+    }
+  }
+}

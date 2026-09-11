@@ -12,6 +12,7 @@
 | H-Q1-004 | 分段线性输入与零阶保持的差异处于可解释范围 | Q1 | EXP-006 | INCONCLUSIVE | 差异已量化，但尚无预先批准的领域容差 |
 | H-Q1-005 | Q1 中不加入潜热/交叉耦合不会破坏设计目标 | Q1 | EXP-007、人工审查 | INCONCLUSIVE | 简化方程数值检查通过，物理遗漏仍需人工审查 |
 | H-Q1-006 | 在保持 Q1 物理模型不变时，BDF2 可降低时间离散误差并满足最终输出安全门 | Q1 | EXP-Q1-NUM-BENCH、EXP-Q1-NUM-REMEDIATION | INCONCLUSIVE | benchmark 与论文点支持候选，但完整网格含水率安全裕量仍不足 |
+| H-Q1-INITIAL-LAYER | 初始均匀水分场与表面 Robin 条件的不相容会形成短时表面边界层，并主导 t=1 s 附近的表面误差 | Q1 | EXP-Q1-INITIAL-LAYER、EXP-Q1-SURFACE-DECAY、EXP-Q1-CLUSTER-SHORT | SUPPORTED | 相容残差、误差衰减和聚类网格对照支持；不修改物理初值 |
 
 ## 假设记录模板
 
@@ -42,6 +43,22 @@ Hypothesis：使用 `h` 和 `hm` 的 Robin 边界相对于直接 Dirichlet 边�
 结果：Robin 与 Dirichlet 的最终温度/水分最大差异分别为 `4.727 K`/`1.477 kg/kg`；差异存在，但其物理可接受性仍需 OQ-006 人工确认。
 
 状态：INCONCLUSIVE
+
+## H-Q1-INITIAL-LAYER 初始水分场与表面 Robin 条件形成短时边界层
+
+问题：Q1
+
+Hypothesis：均匀初始水分场与 t=0 的表面 Robin 传质条件不相容，会形成短时、薄的表面边界层，并主导早期表面离散误差；这首先是数值诊断假设，不是对物理模型错误的判定。
+
+为什么值得测试：早期真实 Q1 含水率误差集中在 `r=R`，而独立 benchmark 表明离散本身具有正常阶数，需要区分初始层效应与生产装配缺陷。
+
+计划实验：`EXP-Q1-INITIAL-LAYER`、`EXP-Q1-SURFACE-DECAY`、`EXP-Q1-CLUSTER-BENCH`、`EXP-Q1-CLUSTER-SHORT`、`EXP-Q1-CLUSTER-TEMPORAL`（COMPLETED）
+
+预期可证伪条件：t=0 水分残差接近零，或表面误差不在早期达到最大、随时间不衰减，或制造解/聚类对照显示离散阶数异常。
+
+结果：t=0 水分 Robin 残差为 `-2.024296e-6 m/s`，初始水分跳跃为 `2.53037 kg/kg`；均匀 N640→N1280 的 r=2.0 cm 误差由 t=1 的 `3.0796e-4` 降到 t=100 的 `2.1780e-5 kg/kg`，后期观测阶约为 `2`；聚类网格显著压低早期表面空间差异。因此该数值诊断假设获支持。
+
+状态：SUPPORTED；不得将其写成“模型错误”，不得修改官方初始场或边界条件来强行消除误差。
 
 ## H-Q1-006 BDF2 时间积分可满足交付安全门
 

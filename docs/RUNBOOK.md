@@ -27,6 +27,12 @@
 | Q1 收敛诊断 | `scripts/run_q1_num_diag.py` | 已建立；比较相同物理时刻/位置，写入 Level 1–3、Richardson 和 SVG 定位图 |
 | Q1 Picard 敏感性 | `scripts/run_q1_picard_sensitivity.py` | 已建立；比较 `1e-6/1e-8/1e-10`，写入 EXP-Q1-PICARD-SENS |
 | Q1 BDF2 整改候选 | `scripts/run_q1_num_remediation.py` | 已建立；比较 M1-NUM-T2 与 BE，不生成 `result1.xlsx` |
+| Q1 初始层诊断 | `scripts/run_q1_initial_layer.py` | 已建立；只运行 0–10 s 相容性、空间/时间梯和扩散尺度诊断 |
+| Q1 BDF2 启动对照 | `scripts/run_q1_bdf2_startup.py` | 已建立；标准启动与早期 BE 子步对照，不生成工作簿 |
+| Q1 表面误差衰减 | `scripts/run_q1_surface_decay.py` | 已建立；1–100 s 表面空间误差和 SVG 图 |
+| Q1 聚类 benchmark | `scripts/run_q1_cluster_benchmark.py` | 已建立；独立制造解的非均匀保守 FVM benchmark |
+| Q1 聚类短时对照 | `scripts/run_q1_cluster_short.py` | 已建立；真实 Q1 0–10 s 均匀/聚类网格对照 |
+| Q1 聚类时间与舍入认证 | `scripts/run_q1_cluster_temporal.py` | 已建立；t=1 全官方节点空间/时间误差与半单位阈值认证 |
 | Q1 candidate 校验 | `scripts/validate_q1_candidate.py` | 已建立；只读、候选缺失时 fail-closed |
 | 自动测试 | `pytest -q` | 本阶段建立；不包含模型测试 |
 
@@ -43,6 +49,12 @@
 .\.venv\Scripts\python.exe scripts\run_q1_num_diag.py
 .\.venv\Scripts\python.exe scripts\run_q1_picard_sensitivity.py
 .\.venv\Scripts\python.exe scripts\run_q1_num_remediation.py
+.\.venv\Scripts\python.exe scripts\run_q1_initial_layer.py
+.\.venv\Scripts\python.exe scripts\run_q1_bdf2_startup.py
+.\.venv\Scripts\python.exe scripts\run_q1_surface_decay.py
+.\.venv\Scripts\python.exe scripts\run_q1_cluster_benchmark.py
+.\.venv\Scripts\python.exe scripts\run_q1_cluster_short.py
+.\.venv\Scripts\python.exe scripts\run_q1_cluster_temporal.py
 .\.venv\Scripts\python.exe scripts\validate_q1_candidate.py
 .\.venv\Scripts\python.exe -m pytest -q
 ```
@@ -69,3 +81,5 @@
 5. 通过人工确认后复制到 `deliverables/final/`。
 
 当前 Q1 数值整改门为 `BLOCKED`，因此不生成 candidate 结果文件；若未来通过精度门，仍必须先运行 candidate 校验和格式/结构检查，并经人工确认后才能进入 final。上述数值实验只写入 `experiments/`，不写官方模板、不生成 `result1.xlsx`。
+
+本轮初始层/表面精度诊断的可复现顺序为：先运行 `run_q1_initial_layer.py`，再运行 `run_q1_bdf2_startup.py`、`run_q1_surface_decay.py`、`run_q1_cluster_benchmark.py`、`run_q1_cluster_short.py` 和 `run_q1_cluster_temporal.py`。最后一个脚本会写出 `reference_t1_official_values` 与 `rounding_certification`；其结果只覆盖短时候选审计，不替代 0–1800 s 全网格最终门。

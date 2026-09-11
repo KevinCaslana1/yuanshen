@@ -427,3 +427,27 @@ Q1 Model Design Gate 只有在以下事项全部完成后才算完成：
 已测试 `M1-NUM-T2`：BE 首步后使用 BDF2，物理方程、Robin 边界、空间网格和 Picard 设置不变。BDF2 的论文点在 `dt=0.5→0.25 s` 下达到温度/含水率 `0/35` 四位小数差异，但全网格保守 Richardson 估计仍未通过，因此只作为候选，不改变主方案冻结状态。
 
 当前结论：`Q1 NUMERICAL REMEDIATION GATE = BLOCKED`。不得生成 candidate/final `result1.xlsx`，不得启动 Q2–Q4。详细证据见 `docs/Q1_NUMERICAL_REMEDIATION_AUDIT.md`。
+
+## 23. Q1 Initial-Layer & Surface-Accuracy Gate
+
+在人工授权下，针对早期/表面含水率误差执行最小附加诊断，范围严格限于 Q1，且不改变官方输入、初始条件、Robin 边界或交付契约。
+
+### 23.1 Diagnostic design
+
+- t=0 分别计算温度和水分 Robin 相容性残差；初始层判断只作为假设，不直接写成物理事实。
+- 短时先覆盖 `0–10 s`，并在均匀网格 N320/N640/N1280、时间步 `.25/.125/.0625/.03125 s` 上比较 `t=.25,.5,1,2,5,10 s`。
+- 用 `δ≈sqrt(D(C0)t)` 做尺度诊断，不把它当成误差定理；同时观察 `R、R-dr、R-2dr` 和 `r=1.9/2.0 cm`。
+- 表面衰减实验固定 `dt=.0625 s`，比较 N320/N640/N1280 在 `1–100 s` 的同一空间误差；时间误差与空间误差不得混合。
+- BDF2 启动对照区分标准 BE 首步和 0–1 s BE 子步，不因早期子步结果好看就冻结启动策略。
+
+### 23.2 Candidate nonuniform grid
+
+独立制造解 benchmark 采用保守非均匀径向有限体积装配，聚类映射为 `r=R[1-(1-x)^2]`，并通过节点并集强制保留官方输出位置 `0,0.001,...,0.020 m`。这是数值网格候选，不是物理几何修改。候选在 benchmark 中保持近二阶空间、一阶时间趋势，在真实 Q1 的短时表面误差上显著优于均匀对照；但尚未完成完整 1800 s 生产复验。
+
+### 23.3 Current evidence
+
+`EXP-Q1-INITIAL-LAYER` 支持水分初始层假设：t=0 水分 Robin 残差为 `-2.024296e-6 m/s`，温度残差为 `-0.0 W/m²`。`EXP-Q1-SURFACE-DECAY` 显示均匀 N640→N1280 的表面误差从 t=1 的 `3.0796e-4` 降到 t=100 的 `2.1780e-5 kg/kg`，后期观测阶约为 2。`EXP-Q1-CLUSTER-TEMPORAL` 的聚类 t=1 参考为 `C(R,1s)=2.5177587784 kg/kg`，时间剩余 `3.1850e-5`、空间剩余 `1.2259e-6 kg/kg`，21 个官方位置中 20 个 `ROUNDING_CERTIFIED`、表面 1 个 `ROUNDING_AMBIGUOUS`。
+
+### 23.4 Gate boundary
+
+初始层诊断结果可记录为 `FIND-Q1-INITIAL-LAYER`，但当前不能重新进入 `Q1 FINAL NUMERICAL ACCURACY & DELIVERABLE GATE`：聚类候选尚未完成 `0–1800 s` 全网格 raw、Richardson、守恒/范围和交付级舍入复验，生产时间策略也尚未冻结。因此不得生成 `result1.xlsx`，不得启动 Q2–Q4。

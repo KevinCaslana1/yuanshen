@@ -23,7 +23,7 @@
 | template skeleton validation | `scripts/validate_templates.py` | PASS |
 | deliverable contract validation | `scripts/validate_deliverable_contract.py` | PASS |
 | environment reproducibility | `.venv`, requirements files, Python 3.12.14 | PASS |
-| tests | `pytest -q` | PASS: 29 passed |
+| tests | `pytest -q` | PASS: 32 passed |
 | Q1-Q4 registration | `docs/STATE.md`, `config/deliverables.json` | PASS |
 | candidate empty | `deliverables/candidate/` | PASS |
 | final empty | `deliverables/final/` | PASS |
@@ -62,7 +62,7 @@ Remaining Open Questions are classified by blocking phase in `docs/PROBLEM_SPEC.
 |---|---|---|
 | implementation scope | `src/q1/` contains M1 nonlinear-D, M2 constant-D, and M3 boundary comparison; `src/q1/baseline.py` contains B0 | PASS |
 | reusable numerical kernel | `src/common/numerics.py`; deterministic Thomas solver and radial grid | PASS |
-| implementation tests | `pytest -q` | PASS: 29 passed |
+| implementation tests | `pytest -q` | PASS: 32 passed |
 | EXP-001 smoke | `experiments/EXP-001/metrics.json` | PASS |
 | EXP-002 B0/M1/M2 comparison | `experiments/EXP-002/metrics.json` | PASS; comparison recorded, no model freeze |
 | EXP-003 time sensitivity | `experiments/EXP-003/metrics.json` | PASS; differences decrease under refinement |
@@ -102,13 +102,32 @@ Remaining Open Questions are classified by blocking phase in `docs/PROBLEM_SPEC.
 | Level 3 rounded stability | `EXP-Q1-FINAL-CONV`、`EXP-Q1-NUM-REMEDIATION` | AUXILIARY；BDF2 论文点 `0/35`，但全网格估计安全裕量未全通过 |
 | error localization | `experiments/EXP-Q1-NUM-DIAG/*.svg` | PASS；已定位早期时间和表面带为含水率主要误差区域 |
 | independent benchmark | `experiments/EXP-Q1-NUM-BENCH/metrics.json` | PASS；BE 空间约二阶、时间约一阶，支持生产离散的基本阶数 |
-| Robin/boundary verification | `tests/test_q1_robin_boundary.py`, `pytest -q` | PASS；29 tests passed，含独立 Robin 行、中心几何和 BDF2 边界缩放测试 |
+| Robin/boundary verification | `tests/test_q1_robin_boundary.py`, `pytest -q` | PASS；32 tests passed，含独立 Robin 行、中心几何、BDF2 边界缩放和聚类节点测试 |
 | Picard sensitivity | `experiments/EXP-Q1-PICARD-SENS/metrics.json` | PASS；非线性迭代误差远小于离散误差 |
 | remediation candidate | `experiments/EXP-Q1-NUM-REMEDIATION/metrics.json` | PARTIAL；BDF2 改善论文点，但未通过全网格保守估计误差门 |
 | result workbook generation | `deliverables/candidate/`, `deliverables/final/` | NOT RUN；本阶段明确禁止生成 `result1.xlsx` |
 | Q2 boundary | `docs/STATE.md` | PASS；Q2–Q4 仍为 `NOT STARTED` |
 
 `Q1 NUMERICAL REMEDIATION GATE = BLOCKED`。BDF2 仅登记为 `M1-NUM-T2` 候选；不得生成 `result1.xlsx`，不得启动 Q2。
+
+## Q1 INITIAL-LAYER & SURFACE-ACCURACY GATE
+
+| Gate Item | Evidence | Status |
+|---|---|---|
+| scope boundary | Latest authorized prompt; Q2/Q3/Q4 unchanged | PASS; Q1 only |
+| t=0 temperature compatibility | `EXP-Q1-INITIAL-LAYER/metrics.json` | PASS; residual `-0.0 W/m²` within representation |
+| t=0 moisture compatibility | `EXP-Q1-INITIAL-LAYER/metrics.json` | SUPPORTED INITIAL LAYER; residual `-2.024296e-6 m/s`, no physical input changed |
+| diffusion-scale diagnostic | `EXP-Q1-INITIAL-LAYER/metrics.json` | PASS as diagnostic; not used as an error theorem |
+| surface error decay | `EXP-Q1-SURFACE-DECAY/metrics.json`, `surface_moisture_error_decay.svg` | PASS as diagnosis; t=1 peak decays and later order returns near 2 |
+| BDF2 startup comparison | `EXP-Q1-BDF2-STARTUP/metrics.json` | PASS as comparison; early BE substeps not selected |
+| clustered-grid manufactured benchmark | `EXP-Q1-CLUSTER-BENCH/metrics.json` | PASS; space about 1.95–1.96 and time about 1.01–1.06 |
+| clustered-grid real-Q1 short test | `EXP-Q1-CLUSTER-SHORT/metrics.json` | PASS as candidate evidence; explicit official nodes preserved |
+| t=1 reference and uncertainty | `EXP-Q1-CLUSTER-TEMPORAL/metrics.json` | PARTIAL; `C(R,1s)=2.5177587784`, combined surface uncertainty `3.1850e-5 kg/kg` |
+| rounding certification | `EXP-Q1-CLUSTER-TEMPORAL/metrics.json` | PARTIAL; 20 certified, 1 ambiguous of 21 official positions |
+| full 0–1800 s candidate verification | not run by this gate | BLOCKED; do not generate `result1.xlsx` |
+| final-gate re-entry | `docs/Q1_INITIAL_LAYER_AUDIT.md` | BLOCKED; waiting for human review |
+
+`Q1 INITIAL-LAYER & SURFACE-ACCURACY GATE = BLOCKED`。`FIND-Q1-INITIAL-LAYER` is supported as a numerical diagnosis, but full production verification and strategy freeze remain outstanding. Do not generate candidate/final workbooks and do not start Q2.
 
 ## 通用检查
 

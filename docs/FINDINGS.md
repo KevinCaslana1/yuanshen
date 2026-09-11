@@ -17,6 +17,9 @@
 | FIND-Q1-009 | 真实 Q1 空间误差的温度在表面/早期端部较明显，含水率 L∞ 主要集中在早期表面；BE 时间误差同样由早期/表面含水率主导 | Q1 | EXP-Q1-NUM-DIAG | SUPPORTED（限当前 M1） |
 | FIND-Q1-010 | Picard 容差从 `1e-6` 收紧到 `1e-8`、`1e-10` 引起的场值变化远小于空间/时间离散差异 | Q1 | EXP-Q1-PICARD-SENS | SUPPORTED |
 | FIND-Q1-011 | BDF2 候选显著改善论文 7×5 点时间稳定性，但完整网格含水率 Richardson 剩余误差仍超过 `0.5e-4` 四舍五入半单位 | Q1 | EXP-Q1-NUM-REMEDIATION | SUPPORTED（候选未冻结） |
+| FIND-Q1-012 | t=0 温度场与温度 Robin 表示相容，而均匀初始水分场与表面水分 Robin 条件不相容；短时表面误差随后衰减，支持初始表面层诊断 | Q1 | EXP-Q1-INITIAL-LAYER、EXP-Q1-SURFACE-DECAY | SUPPORTED（数值诊断，不是模型错误判定） |
+| FIND-Q1-013 | 边界聚类保守 FVM 在独立制造解 benchmark 中保持近二阶空间/一阶时间趋势，并显著降低真实 Q1 早期表面空间差异 | Q1 | EXP-Q1-CLUSTER-BENCH、EXP-Q1-CLUSTER-SHORT | SUPPORTED（候选未冻结） |
+| FIND-Q1-014 | 早期 BE 子步启动没有显示出相对标准 BE 首步的稳定改善 | Q1 | EXP-Q1-BDF2-STARTUP | SUPPORTED（当前 M1-NUM-T2 对照范围） |
 
 ## 发现记录模板
 
@@ -43,6 +46,48 @@
 适用范围：当前 `N=80`、`dt=1 s`、线性插值、Robin 边界和未加入潜热/交叉耦合的 Q1 候选方程。
 
 限制：这些检查验证数值实现和当前方程的内部一致性，不证明被省略的物理效应不存在，也不构成论文结论。
+
+状态：SUPPORTED
+
+## FIND-Q1-012 Q1 初始水分层与表面 Robin 条件不相容
+
+问题：Q1
+
+发现：当前数值困难主要由初始水分场与表面 Robin 条件不相容产生的短时表面边界层导致。t=0 温度 Robin 残差为 `-0.0 W/m²`，而水分 Robin 残差为 `-2.024296e-6 m/s`，初始场与环境的水分跳跃为 `2.53037 kg/kg`。均匀网格 N640→N1280 的 r=2.0 cm 误差在 t=1 s 为 `3.0796e-4 kg/kg`，t=100 s 降为 `2.1780e-5 kg/kg`，前后比值约 `14.14`；后期空间观测阶回到约 `2`。
+
+证据：`experiments/EXP-Q1-INITIAL-LAYER/metrics.json`、`experiments/EXP-Q1-SURFACE-DECAY/metrics.json` 及 `surface_moisture_error_decay.svg`。
+
+适用范围：当前 M1、均匀初始水分场、Robin 表面边界、0–100 s 诊断窗口。
+
+限制：这是数值相容性和误差分布证据，不证明物理模型错误；不得据此修改官方初始条件或强行改成 Dirichlet 边界，也不能外推为完整 1800 s 交付已通过。
+
+状态：SUPPORTED
+
+## FIND-Q1-013 边界聚类候选降低早期表面空间差异
+
+问题：Q1
+
+发现：独立制造解 benchmark 的边界聚类保守 FVM 空间 L∞ 观测阶约 `1.95–1.96`，时间 L∞ 观测阶约 `1.01–1.06`。真实 Q1、共同 `dt=0.0625 s` 下，均匀 N320→N640 的 t=1 s 表面差为 `1.3891e-3 kg/kg`，聚类 base640→base1280 的对应差为 `3.6753e-6 kg/kg`。聚类网格通过显式节点并集保留了 `0,0.001,...,0.020 m` 全部官方输出位置。
+
+证据：`experiments/EXP-Q1-CLUSTER-BENCH/metrics.json`、`experiments/EXP-Q1-CLUSTER-SHORT/metrics.json`、`src/common/numerics.py`、`src/q1/model.py`。
+
+适用范围：聚类幂 `p=2` 的当前候选和 0–10 s 窗口。
+
+限制：聚类 base640/base1280 与均匀 N1280 的跨网格族差异不能直接当作误差估计；聚类候选尚未完成 0–1800 s 全网格验证和主方案冻结。
+
+状态：SUPPORTED
+
+## FIND-Q1-014 早期 BE 子步未显示改善
+
+问题：Q1
+
+发现：在 N640、正常步长 `0.25 s` 下，将 0–1 s 改为 BE 子步并重新启动 BDF2，与标准“第一步 BE、随后 BDF2”比较时，启动子步 `0.25/0.125/0.0625 s` 的标准/早期最大差异分别为 `9.3725e-4`、`9.9496e-4`、`1.5769e-3 kg/kg`；t=1 s 表面对同一高精度标准参考的早期子步值没有显示单调改善。
+
+证据：`experiments/EXP-Q1-BDF2-STARTUP/metrics.json`。
+
+适用范围：M1-NUM-T2、N640、0–10 s 对照窗口。
+
+限制：不能据此证明其他启动策略在全时段都无效；当前只决定不把早期子步直接冻结为生产策略。
 
 状态：SUPPORTED
 

@@ -1,0 +1,134 @@
+{
+  "experiment_id": "EXP-Q1-CLUSTER-TEMPORAL",
+  "code_commit": "3b0785a6ff5bf0f3e2a27845c6707d0b98b7bb13",
+  "input_hashes": {
+    "A题/附件/附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7"
+  },
+  "scope": {
+    "end_time_s": 10.0,
+    "cluster_power": 2.0,
+    "fixed_cluster_base_intervals": 640,
+    "temporal_steps_s": [
+      0.25,
+      0.125,
+      0.0625,
+      0.03125
+    ],
+    "spatial_reference": "cluster base320/base640/base1280 at dt=0.03125",
+    "reference": "cluster base1280 at dt=0.0625/0.03125/0.015625/0.0078125",
+    "comparison_times_s": [
+      0.25,
+      0.5,
+      1.0,
+      2.0,
+      5.0,
+      10.0
+    ],
+    "comparison_positions_cm": [
+      1.7999999999999998,
+      1.9,
+      2.0
+    ]
+  },
+  "cases": {
+    "cluster640_dt0.25": {
+      "runtime_seconds": 0.14734410000164644,
+      "n_intervals_actual": 658,
+      "min_dr_m": 4.8828125001620926e-08,
+      "max_dr_m": 6.245117187499982e-05,
+      "history_length": 41,
+      "picard_max_iterations": 3,
+      "surface_moisture_at_t1": 2.5187299482119627,
+      "surface_node_cm": 2.0,
+      "official_output_nodes_present": true
+    },
+    "cluster640_dt0.125": {
+      "runtime_seconds": 0.24289409999983036,
+      "n_intervals_actual": 658,
+      "min_dr_m": 4.8828125001620926e-08,
+      "max_dr_m": 6.245117187499982e-05,
+      "history_length": 81,
+      "picard_max_iterations": 3,
+      "surface_moisture_at_t1": 2.5182351769627456,
+      "surface_node_cm": 2.0,
+      "official_output_nodes_present": true
+    },
+    "cluster640_dt0.0625": {
+      "runtime_seconds": 0.5104338000001007,
+      "n_intervals_actual": 658,
+      "min_dr_m": 4.8828125001620926e-08,
+      "max_dr_m": 6.245117187499982e-05,
+      "history_length": 161,
+      "picard_max_iterations": 3,
+      "surface_moisture_at_t1": 2.5179840349373226,
+      "surface_node_cm": 2.0,
+      "official_output_nodes_present": true
+    },
+    "cluster640_dt0.03125": {
+      "runtime_seconds": 0.916080699998929,
+      "n_intervals_actual": 658,
+      "min_dr_m": 4.8828125001620926e-08,
+      "max_dr_m": 6.245117187499982e-05,
+      "history_length": 321,
+      "picard_max_iterations": 3,
+      "surface_moisture_at_t1": 2.5178576157666237,
+      "surface_node_cm": 2.0,
+      "official_output_nodes_present": true
+    },
+    "cluster320_dt0.03125": {
+      "runtime_seconds": 0.470081499999651,
+      "n_intervals_actual": 338,
+      "min_dr_m": 1.953124999995448e-07,
+      "max_dr_m": 0.00012480468750000195,
+      "history_length": 321,
+      "picard_max_iterations": 3,
+      "surface_moisture_at_t1": 2.5178723075842493,
+      "surface_node_cm": 2.0,
+      "official_output_nodes_present": true
+    },
+    "cluster1280_dt0.0625": {
+      "runtime_seconds": 1.0006460999993578,
+      "n_intervals_actual": 1298,
+      "min_dr_m": 1.2207031250405231e-08,
+      "max_dr_m": 3.1237792968747956e-05,
+      "history_length": 161,
+      "picard_max_iterations": 3,
+      "surface_moisture_at_t1": 2.517980359682312,
+      "surface_node_cm": 2.0,
+      "official_output_nodes_present": true
+    },
+    "cluster1280_dt0.03125": {
+      "runtime_seconds": 1.9154428000001644,
+      "n_intervals_actual": 1298,
+      "min_dr_m": 1.2207031250405231e-08,
+      "max_dr_m": 3.1237792968747956e-05,
+      "history_length": 321,
+      "picard_max_iterations": 3,
+      "surface_moisture_at_t1": 2.5178539408047276,
+      "surface_node_cm": 2.0,
+      "official_output_nodes_present": true
+    },
+    "cluster1280_dt0.015625_reference": {
+      "runtime_seconds": 3.9387530999993032,
+      "n_intervals_actual": 1298,
+      "min_dr_m": 1.2207031250405231e-08,
+      "max_dr_m": 3.1237792968747956e-05,
+      "history_length": 641,
+      "picard_max_iterations": 3,
+      "surface_moisture_at_t1": 2.5177905314642537,
+      "surface_node_cm": 2.0,
+      "official_output_nodes_present": true
+    },
+    "cluster1280_dt0.0078125_reference": {
+      "runtime_seconds": 6.147205299999769,
+      "n_intervals_actual": 1298,
+      "min_dr_m": 1.2207031250405231e-08,
+      "max_dr_m": 3.1237792968747956e-05,
+      "history_length": 1281,
+      "picard_max_iterations": 3,
+      "surface_moisture_at_t1": 2.517758778370132,
+      "surface_node_cm": 2.0,
+      "official_output_nodes_present": true
+    }
+  }
+}

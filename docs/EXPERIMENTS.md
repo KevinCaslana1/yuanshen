@@ -18,6 +18,12 @@
 | EXP-Q1-NUM-DIAG | Q1 | M1 | 对相同物理时刻/位置执行 Level 1–3 收敛诊断、Richardson 估计和误差定位 | N=80/160/320、dt=1/0.5/0.25 s；完整 1800×21 及论文 7×5 | 空间温度阶约 `2`；BE 时间阶约 `1`；水分误差集中早期/表面；完整网格仍未满足估计误差门 | COMPLETED | `experiments/EXP-Q1-NUM-DIAG/` |
 | EXP-Q1-PICARD-SENS | Q1 | M1 | 检查 Picard 容差 `1e-6/1e-8/1e-10` 对场值和迭代次数的影响 | 300 s、N=160、dt=0.25 s | 温度差为 `0`；含水率 L∞ 差分别为 `1.59e-9`、`1.70e-13`；相对离散误差可忽略 | COMPLETED | `experiments/EXP-Q1-PICARD-SENS/` |
 | EXP-Q1-NUM-REMEDIATION | Q1 | M1-NUM-T2 | 评估 BE→“BE 首步+BDF2”时间积分候选；不生成工作簿 | N=320、dt=1/0.5/0.25 s；与 BE dt=0.25 对照；完整网格及论文 7×5 | BDF2 论文点差异降至温度 `0/35`、水分 `0/35`（dt0.5→0.25）；全网格估计误差仍未通过 | COMPLETED | `experiments/EXP-Q1-NUM-REMEDIATION/` |
+| EXP-Q1-INITIAL-LAYER | Q1 | M1/BE diagnostic | 检查 t=0 温度/水分 Robin 相容性、扩散尺度和 0–10 s 早期层 | N=320/640/1280；dt=.25/.125/.0625/.03125 s；t=.25/.5/1/2/5/10 s；R、R-dr、R-2dr、1.9 cm | 水分初始 Robin 残差 `-2.024296e-6 m/s`；t=1 s 均匀 N1280 表面保守不确定度 `8.7151e-5 kg/kg` | COMPLETED | `experiments/EXP-Q1-INITIAL-LAYER/` |
+| EXP-Q1-BDF2-STARTUP | Q1 | M1-NUM-T2 | 对照标准 BE 首步与 0–1 s 早期 BE 子步启动 | N=640、正常 dt=.25 s；启动 dt=.25/.125/.0625 s；t=.25/.5/1/2/5/10 s | 早期子步未相对标准启动稳定改善；最大标准/早期差异 `1.5769e-3 kg/kg` | COMPLETED | `experiments/EXP-Q1-BDF2-STARTUP/` |
+| EXP-Q1-SURFACE-DECAY | Q1 | M1/BE | 测量 1–100 s 表面空间误差衰减并绘图 | N320/N640/N1280，共同 dt=.0625 s；r=1.9/2.0 cm | r=2.0 cm N640→N1280 误差从 t=1 的 `3.0796e-4` 降到 t=100 的 `2.1780e-5 kg/kg`，比值约 `14.14` | COMPLETED | `experiments/EXP-Q1-SURFACE-DECAY/` |
+| EXP-Q1-CLUSTER-BENCH | Q1 | Isolated nonuniform FVM benchmark | 验证边界聚类保守 FVM 的中心/内部/表面空间与时间阶 | 制造解；聚类幂 `p=2`；多级空间/时间细化 | 空间 L∞ 阶约 `1.95–1.96`，时间 L∞ 阶约 `1.01–1.06`；中心/表面趋势正常 | COMPLETED | `experiments/EXP-Q1-CLUSTER-BENCH/` |
+| EXP-Q1-CLUSTER-SHORT | Q1 | M1/BE nonuniform candidate | 在真实 Q1 上比较均匀与边界聚类网格的 0–10 s 空间误差 | 均匀 N320/N640；聚类 base320/base640/base1280；dt=.0625 s；显式保留官方输出节点 | t=1 s 聚类 base640→base1280 表面差 `3.6753e-6`，远低于均匀 N320→N640 的 `1.3891e-3` | COMPLETED | `experiments/EXP-Q1-CLUSTER-SHORT/` |
+| EXP-Q1-CLUSTER-TEMPORAL | Q1 | M1/BE nonuniform candidate | 对聚类候选执行固定网格时间梯、t=1 全 21 点空间/时间误差与舍入认证 | base640 dt=.25/.125/.0625/.03125；base1280 dt=.0625/.03125/.015625/.0078125；base320/base640/base1280 dt=.03125 | `C(R,1s)=2.5177587784`；时间剩余 `3.1850e-5`、空间剩余 `1.2259e-6 kg/kg`；20/21 certified，表面 ambiguous | COMPLETED | `experiments/EXP-Q1-CLUSTER-TEMPORAL/` |
 
 状态建议使用：`PLANNED` / `RUNNING` / `COMPLETED` / `FAILED` / `BLOCKED` / `ABANDONED`。
 
@@ -47,6 +53,6 @@ Notes:
 
 ## Q1 Execution Note
 
-EXP-001 至 EXP-007 已在实现授权后按顺序运行，状态均为 `COMPLETED`。`EXP-Q1-FINAL-CONV` 先判定为 `BLOCKED`，随后在人工授权的数值整改门中完成实现审计、独立制造解基准、误差定位、Picard 敏感性和 BDF2 候选对照。BDF2 改善了论文 7×5 点的时间稳定性，但完整网格的保守估计误差仍未通过，因此 Q1 Result & Deliverable Gate 仍为 `BLOCKED`。这些是内部实现与数值验证证据，不是论文最终结论；尚未生成 `result1.xlsx`，也未写入 `deliverables/candidate/` 或 `deliverables/final/`。
+EXP-001 至 EXP-007 已在实现授权后按序完成。`EXP-Q1-FINAL-CONV` 和 `EXP-Q1-NUM-REMEDIATION` 先判定为 `BLOCKED`；本轮进一步完成初始层诊断、BDF2 启动对照、表面误差衰减、聚类 benchmark、真实 Q1 短时聚类对照和聚类时间/舍入认证。结果支持初始水分场与表面 Robin 条件不相容的短时边界层解释，但候选尚未完成 0–1800 s 全网格复验，因此 Q1 Result & Deliverable Gate 仍为 `BLOCKED`。这些是内部实现与数值验证证据，不是论文最终结论；尚未生成 `result1.xlsx`，也未写入 `deliverables/candidate/` 或 `deliverables/final/`。
 
 每个实验目录均包含 `config.json`、`metrics.json` 和 `notes.md`，记录命令、代码提交、输入 SHA-256、求解器配置、运行时间、验证状态和产物路径。
