@@ -926,8 +926,10 @@ def main() -> int:
         "full-precision floats. The signed plot is direct data with a zero line; the "
         "absolute plot uses semilogy and masks only exact non-positive points for display, "
         "without replacing their CSV values by epsilon.\n\n"
-        "The historical `surface_moisture_error_decay.svg` is preserved. These new plots "
-        "are explicit audit artifacts.\n",
+        "The historical `surface_moisture_error_decay.svg` is preserved; its legacy custom "
+        "SVG uses a linear y-axis. The new `absolute_error_semilogy.svg` is the explicit "
+        "semilogy audit artifact, and the frozen final figure generator's semilogy output "
+        "was not regenerated in this audit.\n",
         encoding="utf-8",
     )
 
