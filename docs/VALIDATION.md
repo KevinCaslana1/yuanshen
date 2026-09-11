@@ -11,7 +11,7 @@
 | 官方 Workbook Sheet 与行列骨架 | `scripts/validate_inputs.py` | 附件1/2与4个模板结构一致 | 脚本输出 | PASS |
 | 官方结果模板完整性 | `scripts/validate_templates.py` | Sheet、表头、占位时间和数据区空白通过 | 脚本输出 | PASS |
 | 官方源文件未被修改 | `git diff -- A题` | 无差异 | Git 状态 | PASS |
-| 交付隔离 | 人工检查 `deliverables/README.md` | candidate 仅有 Q1 结果副本，final 仍为空 | 交付说明、`deliverables/candidate/result1.xlsx` | PASS |
+| 交付隔离 | 人工检查 `deliverables/README.md` | candidate 与 final 均只含 Q1 结果交付；final 由 candidate COPY ONLY 产生 | 交付说明、`deliverables/candidate/result1.xlsx`、`deliverables/final/result1.xlsx` | PASS |
 
 ## PRE-MODELING GATE
 
@@ -26,7 +26,7 @@
 | tests | `pytest -q` | PASS: 32 passed |
 | Q1-Q4 registration | `docs/STATE.md`, `config/deliverables.json` | PASS |
 | candidate state | `deliverables/candidate/` | Q1 candidate 在最终门之后生成并已验证；Q2–Q4 无 candidate | PASS |
-| final empty | `deliverables/final/` | PASS；等待人工 Q1 freeze approval |
+| final state | `deliverables/final/` | PASS；Q1 final 已经人工批准并验证，Q2–Q4 无 final |
 | experiment scope | `docs/EXPERIMENTS.md`; internal Q1 evidence only after implementation authorization | PASS |
 | findings/claims boundary | `docs/FINDINGS.md`, `docs/CLAIMS.md`; no paper claims generated | PASS |
 | no generated answers | source/template/result audit | PASS |
@@ -49,7 +49,7 @@ Remaining Open Questions are classified by blocking phase in `docs/PROBLEM_SPEC.
 | numerical strategy design | `docs/Q1_PLAN.md`; no solver run | PASS |
 | validation plan | `docs/Q1_PLAN.md` | PASS |
 | experiment plan | `docs/EXPERIMENTS.md`; EXP-001–EXP-007 registered before implementation | PASS |
-| no final Q1 result | no `result1.xlsx` candidate/final output; internal evidence is isolated | PASS |
+| no final Q1 result | historical design gate; final output is created only after later approval | PASS |
 | Q2/Q3/Q4 unchanged | `docs/STATE.md` | PASS |
 
 `Q1 MODEL DESIGN GATE = PASS`
@@ -71,7 +71,7 @@ Remaining Open Questions are classified by blocking phase in `docs/PROBLEM_SPEC.
 | EXP-006 interpolation sensitivity | `experiments/EXP-006/metrics.json` | PASS; material temperature sensitivity recorded |
 | EXP-007 conservation/range checks | `experiments/EXP-007/metrics.json` | PASS |
 | official source integrity | `git diff -- A题`; official validators | PASS |
-| final result isolation | `deliverables/candidate/`, `deliverables/final/` | PASS; no `result1.xlsx` generated |
+| final result isolation | `deliverables/candidate/`, `deliverables/final/` | PASS; Q1 final only, official source untouched |
 | Q2/Q3/Q4 boundary | `docs/STATE.md` | PASS; all remain `NOT STARTED` |
 
 `Q1 IMPLEMENTATION & NUMERICAL VALIDATION GATE = PASS`；OQ-005/OQ-006/OQ-007/OQ-008 已分别登记为交付决策、建模假设、数值决策和建模简化。最终结果交付仍须通过下方 `Q1 FINAL NUMERICAL ACCURACY & DELIVERABLE GATE`。
@@ -88,11 +88,21 @@ Remaining Open Questions are classified by blocking phase in `docs/PROBLEM_SPEC.
 | Accuracy criterion | `EXP-Q1-FULL-SPATIAL/metrics.json`、`EXP-Q1-FULL-TEMPORAL/metrics.json` | PASS；选定最低成本配置温度 `1.4012e-6 °C`、含水率 `2.7414e-5 kg/kg`，均 `<5e-5` |
 | Rounding diagnostics | `criterion_reference` in full-horizon metrics | AUXILIARY；温度 129、含水率 108 个 ambiguous，未用于自动否决 |
 | Freeze rerun | `experiments/Q1_FREEZE_RUN/` | PASS；同一配置从零双跑，完整内部场 SHA-256 一致，两个运行验证 PASS |
-| Candidate generation | `deliverables/candidate/result1.xlsx` | PASS；仅由 `Q1_FREEZE_RUN/run_1` 源生成，未写 final |
+| Candidate generation | `deliverables/candidate/result1.xlsx` | PASS；仅由 `Q1_FREEZE_RUN/run_1` 源生成 |
 | Candidate workbook validation | `scripts/validate_q1_candidate.py`、`experiments/Q1_FREEZE_RUN/candidate_validation.json` | PASS；结构、有限数值、4位 ROUND_HALF_UP、随机20单元格和表1/2各35点均通过 |
-| Human audit package | `experiments/Q1_FREEZE_RUN/`、`deliverables/candidate/result1.xlsx` | READY；等待人工 Q1 freeze approval 后决定是否复制到 final |
+| Human audit package | `experiments/Q1_FREEZE_RUN/`、`deliverables/candidate/result1.xlsx` | PASS；`Q1 HUMAN FREEZE APPROVAL = APPROVED` |
 
-`Q1 RESULT & DELIVERABLE GATE = COMPLETE`；candidate 已生成但仍等待人工 Q1 freeze approval。不得启动 Q2。
+## Q1 FINAL FREEZE, VISUALIZATION & HANDOFF GATE
+
+| Gate Item | Evidence | Status |
+|---|---|---|
+| Human freeze approval | `docs/Q1_FINAL_FREEZE_AUDIT.md`、`deliverables/final/Q1_MANIFEST.json` | PASS；APPROVED |
+| Candidate-to-final byte copy | candidate/final SHA-256 | PASS；两者均为 `06b67b1f688d84a701ac4d2f4b0f47a1624069877df6724faf071a48af177b5c` |
+| Final workbook validation | `scripts/validate_q1_final.py`、`experiments/Q1_FINAL_FREEZE/final_result1_validation.json` | PASS |
+| Figure generation and validation | `figures/q1/FIGURE_MANIFEST.json`、`FIGURE_VALIDATION.json` | PASS；9 figures，纸面点 70/70，随机图表数据点 20/20 |
+| Q2 boundary | `docs/STATE.md`、`docs/HANDOFF.md` | PASS；Q2/Q3/Q4 remain `NOT STARTED` |
+
+`Q1 FINAL FREEZE, VISUALIZATION & HANDOFF GATE = COMPLETE`；Q1 已冻结并完成最终交付。不得启动 Q2，除非获得新的明确授权。
 
 ## Q1 NUMERICAL CONVERGENCE DIAGNOSIS & REMEDIATION GATE（历史阶段记录）
 
@@ -129,7 +139,7 @@ Remaining Open Questions are classified by blocking phase in `docs/PROBLEM_SPEC.
 | full 0–1800 s candidate verification | not run by this gate | BLOCKED; do not generate `result1.xlsx` |
 | final-gate re-entry | `docs/Q1_INITIAL_LAYER_AUDIT.md` | BLOCKED; waiting for human review |
 
-`Q1 INITIAL-LAYER & SURFACE-ACCURACY GATE` 的早期阻塞已由后续 `EXP-Q1-FULL-SPATIAL`、`EXP-Q1-FULL-TEMPORAL` 和 `Q1_FREEZE_RUN` 复验关闭；其诊断结论仍保留为支持性证据。当前仅等待人工 Q1 freeze approval，不得启动 Q2。
+`Q1 INITIAL-LAYER & SURFACE-ACCURACY GATE` 的早期阻塞已由后续 `EXP-Q1-FULL-SPATIAL`、`EXP-Q1-FULL-TEMPORAL` 和 `Q1_FREEZE_RUN` 复验关闭；其诊断结论仍保留为支持性证据。Q1 随后已完成人工 freeze approval、final 验证和图表交付；不得启动 Q2，除非获得新的明确授权。
 
 ## 通用检查
 

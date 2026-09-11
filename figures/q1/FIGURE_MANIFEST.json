@@ -1,0 +1,353 @@
+{
+  "schema_version": "Q1_FIGURE_MANIFEST_V1",
+  "status": "PASS",
+  "source_run": "experiments\\Q1_FREEZE_RUN\\run_1\\internal_output_reference.pkl.gz",
+  "source_hash": "f13667b5fe8e4c1e1a7635b18ab4c7aaa9e3fef5111b893a9ce79b6deb3fad17",
+  "generation_script": "scripts/generate_q1_figures.py",
+  "commit": "457bedcd8ebfcb4cf6e2da19c2d8a5aeaee39fbb",
+  "generated_at": "2026-09-11T16:49:08+08:00",
+  "figures": [
+    {
+      "figure_id": "FIG-Q1-01",
+      "title": "不同时刻药材内部温度径向分布",
+      "source_run": "experiments/Q1_FREEZE_RUN/run_1/internal_output_reference.pkl.gz",
+      "source_hash": "f13667b5fe8e4c1e1a7635b18ab4c7aaa9e3fef5111b893a9ce79b6deb3fad17",
+      "variables": [
+        "temperature_c"
+      ],
+      "time_selection": [
+        100,
+        300,
+        600,
+        900,
+        1200,
+        1500,
+        1800
+      ],
+      "radius_selection": "all 339 frozen nodal positions, including official points",
+      "data_file": "figures\\q1\\data\\FIG-Q1-01_temperature_radial_profiles.csv",
+      "data_sha256": "f62d1b22a85d21d59a663cfe0fa6522258c82057dff5c962a8c4de607e60d994",
+      "png_path": "figures\\q1\\final\\FIG-Q1-01_temperature_radial_profiles.png",
+      "svg_path": "figures\\q1\\final\\FIG-Q1-01_temperature_radial_profiles.svg",
+      "generation_script": "scripts/generate_q1_figures.py",
+      "commit": "457bedcd8ebfcb4cf6e2da19c2d8a5aeaee39fbb",
+      "generated_at": "2026-09-11T16:49:08+08:00"
+    },
+    {
+      "figure_id": "FIG-Q1-02",
+      "title": "不同时刻药材内部水分浓度径向分布",
+      "source_run": "experiments/Q1_FREEZE_RUN/run_1/internal_output_reference.pkl.gz",
+      "source_hash": "f13667b5fe8e4c1e1a7635b18ab4c7aaa9e3fef5111b893a9ce79b6deb3fad17",
+      "variables": [
+        "moisture_kg_kg"
+      ],
+      "time_selection": [
+        100,
+        300,
+        600,
+        900,
+        1200,
+        1500,
+        1800
+      ],
+      "radius_selection": "all 339 frozen nodal positions, including official points",
+      "data_file": "figures\\q1\\data\\FIG-Q1-02_moisture_radial_profiles.csv",
+      "data_sha256": "b9f7c12eb73149c815dbe5ad6b13068d99eb0cc532afae64a3e902add5d9f797",
+      "png_path": "figures\\q1\\final\\FIG-Q1-02_moisture_radial_profiles.png",
+      "svg_path": "figures\\q1\\final\\FIG-Q1-02_moisture_radial_profiles.svg",
+      "generation_script": "scripts/generate_q1_figures.py",
+      "commit": "457bedcd8ebfcb4cf6e2da19c2d8a5aeaee39fbb",
+      "generated_at": "2026-09-11T16:49:08+08:00"
+    },
+    {
+      "figure_id": "FIG-Q1-03",
+      "title": "药材内部温度时空分布",
+      "source_run": "experiments/Q1_FREEZE_RUN/run_1/internal_output_reference.pkl.gz",
+      "source_hash": "f13667b5fe8e4c1e1a7635b18ab4c7aaa9e3fef5111b893a9ce79b6deb3fad17",
+      "variables": [
+        "temperature_c"
+      ],
+      "time_selection": "all 7201 internal time layers, 0..1800 s at dt=0.25 s",
+      "radius_selection": "all 339 frozen nodal positions",
+      "data_file": "figures\\q1\\data\\FIG-Q1-03_temperature_time_radius_heatmap.npz",
+      "data_sha256": "d10aecf634d1059aae65a6cf5f820efbf47be477981f66151c4ac544cf49bf4b",
+      "png_path": "figures\\q1\\final\\FIG-Q1-03_temperature_time_radius_heatmap.png",
+      "svg_path": "figures\\q1\\final\\FIG-Q1-03_temperature_time_radius_heatmap.svg",
+      "generation_script": "scripts/generate_q1_figures.py",
+      "commit": "457bedcd8ebfcb4cf6e2da19c2d8a5aeaee39fbb",
+      "generated_at": "2026-09-11T16:49:08+08:00"
+    },
+    {
+      "figure_id": "FIG-Q1-04",
+      "title": "药材内部水分浓度时空分布",
+      "source_run": "experiments/Q1_FREEZE_RUN/run_1/internal_output_reference.pkl.gz",
+      "source_hash": "f13667b5fe8e4c1e1a7635b18ab4c7aaa9e3fef5111b893a9ce79b6deb3fad17",
+      "variables": [
+        "moisture_kg_kg"
+      ],
+      "time_selection": "all 7201 internal time layers, 0..1800 s at dt=0.25 s",
+      "radius_selection": "all 339 frozen nodal positions",
+      "data_file": "figures\\q1\\data\\FIG-Q1-04_moisture_time_radius_heatmap.npz",
+      "data_sha256": "5c818ecd890447a069a7df97218e446e2bdd56575361eaeb83219bc0d7678a91",
+      "png_path": "figures\\q1\\final\\FIG-Q1-04_moisture_time_radius_heatmap.png",
+      "svg_path": "figures\\q1\\final\\FIG-Q1-04_moisture_time_radius_heatmap.svg",
+      "generation_script": "scripts/generate_q1_figures.py",
+      "commit": "457bedcd8ebfcb4cf6e2da19c2d8a5aeaee39fbb",
+      "generated_at": "2026-09-11T16:49:08+08:00"
+    },
+    {
+      "figure_id": "FIG-Q1-05",
+      "title": "不同径向位置温度随时间的变化",
+      "source_run": "experiments/Q1_FREEZE_RUN/run_1/internal_output_reference.pkl.gz",
+      "source_hash": "f13667b5fe8e4c1e1a7635b18ab4c7aaa9e3fef5111b893a9ce79b6deb3fad17",
+      "variables": [
+        "temperature_c"
+      ],
+      "time_selection": "all 7201 internal time layers, 0..1800 s at dt=0.25 s",
+      "radius_selection": [
+        0.0,
+        0.5,
+        1.0,
+        1.5,
+        2.0
+      ],
+      "data_file": "figures\\q1\\data\\FIG-Q1-05_temperature_time_histories.csv",
+      "data_sha256": "2f0dfb2ae9ad26238269555208a4c4743b0182720be8590e213d3b87a7605e78",
+      "png_path": "figures\\q1\\final\\FIG-Q1-05_temperature_time_histories.png",
+      "svg_path": "figures\\q1\\final\\FIG-Q1-05_temperature_time_histories.svg",
+      "generation_script": "scripts/generate_q1_figures.py",
+      "commit": "457bedcd8ebfcb4cf6e2da19c2d8a5aeaee39fbb",
+      "generated_at": "2026-09-11T16:49:08+08:00"
+    },
+    {
+      "figure_id": "FIG-Q1-06",
+      "title": "不同径向位置水分浓度随时间的变化",
+      "source_run": "experiments/Q1_FREEZE_RUN/run_1/internal_output_reference.pkl.gz",
+      "source_hash": "f13667b5fe8e4c1e1a7635b18ab4c7aaa9e3fef5111b893a9ce79b6deb3fad17",
+      "variables": [
+        "moisture_kg_kg"
+      ],
+      "time_selection": "all 7201 internal time layers, 0..1800 s at dt=0.25 s",
+      "radius_selection": [
+        0.0,
+        0.5,
+        1.0,
+        1.5,
+        2.0
+      ],
+      "data_file": "figures\\q1\\data\\FIG-Q1-06_moisture_time_histories.csv",
+      "data_sha256": "fca2c1a748db6a55aafe3fb25571daa3dfe7686dcb66428e1f7d0d2aa3245d5a",
+      "png_path": "figures\\q1\\final\\FIG-Q1-06_moisture_time_histories.png",
+      "svg_path": "figures\\q1\\final\\FIG-Q1-06_moisture_time_histories.svg",
+      "generation_script": "scripts/generate_q1_figures.py",
+      "commit": "457bedcd8ebfcb4cf6e2da19c2d8a5aeaee39fbb",
+      "generated_at": "2026-09-11T16:49:08+08:00"
+    },
+    {
+      "figure_id": "FIG-Q1-V01a",
+      "title": "Q1 空间收敛性检验",
+      "source_run": [
+        "experiments\\EXP-Q1-FULL-SPATIAL\\metrics.json",
+        "experiments\\EXP-Q1-FULL-TEMPORAL\\metrics.json"
+      ],
+      "source_hash": [
+        "7d3b55710259253438b6af8473b14bd66cb2a77686124ad01bdf2c328b2a4781",
+        "1fc6a6d40992cd77ae5105dc53fb30a7af87eb50a7fd4ce2e83d184ecb95241d"
+      ],
+      "variables": [
+        "temperature_c",
+        "moisture_kg_kg"
+      ],
+      "time_selection": "full-horizon validation evidence, 1..1800 s",
+      "radius_selection": "full official 1800×21 grid",
+      "data_file": "figures\\q1\\data\\FIG-Q1-V01a_spatial_convergence.csv",
+      "data_sha256": "87e7501ebd2b5c5abaca48c8cb92dd1c6019c7264e68692e715bfac0164634ab",
+      "png_path": "figures\\q1\\final\\FIG-Q1-V01a_spatial_convergence.png",
+      "svg_path": "figures\\q1\\final\\FIG-Q1-V01a_spatial_convergence.svg",
+      "generation_script": "scripts/generate_q1_figures.py",
+      "commit": "457bedcd8ebfcb4cf6e2da19c2d8a5aeaee39fbb",
+      "generated_at": "2026-09-11T16:49:08+08:00"
+    },
+    {
+      "figure_id": "FIG-Q1-V01b",
+      "title": "Q1 时间收敛性检验",
+      "source_run": [
+        "experiments\\EXP-Q1-FULL-SPATIAL\\metrics.json",
+        "experiments\\EXP-Q1-FULL-TEMPORAL\\metrics.json"
+      ],
+      "source_hash": [
+        "7d3b55710259253438b6af8473b14bd66cb2a77686124ad01bdf2c328b2a4781",
+        "1fc6a6d40992cd77ae5105dc53fb30a7af87eb50a7fd4ce2e83d184ecb95241d"
+      ],
+      "variables": [
+        "temperature_c",
+        "moisture_kg_kg"
+      ],
+      "time_selection": "full-horizon validation evidence, 1..1800 s",
+      "radius_selection": "full official 1800×21 grid",
+      "data_file": "figures\\q1\\data\\FIG-Q1-V01b_temporal_convergence.csv",
+      "data_sha256": "3c6b27aa83faaecee5d9adb23ceb79282ac55dcdfb61982719d59eebaf946039",
+      "png_path": "figures\\q1\\final\\FIG-Q1-V01b_temporal_convergence.png",
+      "svg_path": "figures\\q1\\final\\FIG-Q1-V01b_temporal_convergence.svg",
+      "generation_script": "scripts/generate_q1_figures.py",
+      "commit": "457bedcd8ebfcb4cf6e2da19c2d8a5aeaee39fbb",
+      "generated_at": "2026-09-11T16:49:08+08:00"
+    },
+    {
+      "figure_id": "FIG-Q1-V02",
+      "title": "早期表面水分数值误差衰减",
+      "source_run": "experiments\\EXP-Q1-SURFACE-DECAY\\metrics.json",
+      "source_hash": "f8bd58d4b7a803eb1713f04fcb098cae98d7f34f1ebe157b378a8e2af7f95bd0",
+      "variables": [
+        "surface_moisture_numerical_error"
+      ],
+      "time_selection": "1..100 s",
+      "radius_selection": [
+        1.9,
+        2.0
+      ],
+      "data_file": "figures\\q1\\data\\fig_q1_v02_initial_layer_surface_decay.csv",
+      "data_sha256": "289df736c7a0a2fdb19baaa35f645b305178766cf1ab9e0469db759c7be5de9a",
+      "png_path": "figures\\q1\\final\\FIG-Q1-V02_initial_layer_surface_decay.png",
+      "svg_path": "figures\\q1\\final\\FIG-Q1-V02_initial_layer_surface_decay.svg",
+      "generation_script": "scripts/generate_q1_figures.py",
+      "commit": "457bedcd8ebfcb4cf6e2da19c2d8a5aeaee39fbb",
+      "generated_at": "2026-09-11T16:49:08+08:00"
+    }
+  ],
+  "validation": {
+    "paper_official_point_spot_check": {
+      "count": 70,
+      "pass_count": 70,
+      "status": "PASS"
+    },
+    "random_figure_data_spot_check": {
+      "seed": 20260911,
+      "count": 20,
+      "pass_count": 20,
+      "status": "PASS",
+      "checks": [
+        {
+          "figure_id": "FIG-Q1-06",
+          "time_s": 1679.25,
+          "distance_cm": 0.0,
+          "pass": true
+        },
+        {
+          "figure_id": "FIG-Q1-01",
+          "time_s": 1500,
+          "distance_cm": 1.98123046875,
+          "pass": true
+        },
+        {
+          "figure_id": "FIG-Q1-06",
+          "time_s": 910.5,
+          "distance_cm": 1.0,
+          "pass": true
+        },
+        {
+          "figure_id": "FIG-Q1-05",
+          "time_s": 4.5,
+          "distance_cm": 0.5,
+          "pass": true
+        },
+        {
+          "figure_id": "FIG-Q1-05",
+          "time_s": 908.0,
+          "distance_cm": 1.0,
+          "pass": true
+        },
+        {
+          "figure_id": "FIG-Q1-06",
+          "time_s": 951.75,
+          "distance_cm": 1.5,
+          "pass": true
+        },
+        {
+          "figure_id": "FIG-Q1-06",
+          "time_s": 1437.25,
+          "distance_cm": 0.5,
+          "pass": true
+        },
+        {
+          "figure_id": "FIG-Q1-06",
+          "time_s": 390.25,
+          "distance_cm": 0.0,
+          "pass": true
+        },
+        {
+          "figure_id": "FIG-Q1-06",
+          "time_s": 434.25,
+          "distance_cm": 1.5,
+          "pass": true
+        },
+        {
+          "figure_id": "FIG-Q1-05",
+          "time_s": 1696.75,
+          "distance_cm": 1.5,
+          "pass": true
+        },
+        {
+          "figure_id": "FIG-Q1-05",
+          "time_s": 1466.5,
+          "distance_cm": 0.5,
+          "pass": true
+        },
+        {
+          "figure_id": "FIG-Q1-06",
+          "time_s": 1242.5,
+          "distance_cm": 2.0,
+          "pass": true
+        },
+        {
+          "figure_id": "FIG-Q1-05",
+          "time_s": 446.5,
+          "distance_cm": 2.0,
+          "pass": true
+        },
+        {
+          "figure_id": "FIG-Q1-06",
+          "time_s": 956.75,
+          "distance_cm": 1.5,
+          "pass": true
+        },
+        {
+          "figure_id": "FIG-Q1-05",
+          "time_s": 1677.25,
+          "distance_cm": 0.0,
+          "pass": true
+        },
+        {
+          "figure_id": "FIG-Q1-06",
+          "time_s": 540.25,
+          "distance_cm": 1.0,
+          "pass": true
+        },
+        {
+          "figure_id": "FIG-Q1-06",
+          "time_s": 370.0,
+          "distance_cm": 0.5,
+          "pass": true
+        },
+        {
+          "figure_id": "FIG-Q1-05",
+          "time_s": 991.75,
+          "distance_cm": 0.5,
+          "pass": true
+        },
+        {
+          "figure_id": "FIG-Q1-06",
+          "time_s": 150.0,
+          "distance_cm": 2.0,
+          "pass": true
+        },
+        {
+          "figure_id": "FIG-Q1-06",
+          "time_s": 987.25,
+          "distance_cm": 1.5,
+          "pass": true
+        }
+      ]
+    }
+  }
+}

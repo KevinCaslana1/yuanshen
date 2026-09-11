@@ -6,18 +6,44 @@
 
 | ID | 日期 | 问题 | 决策 | 状态 | 证据 |
 |---|---|---|---|---|---|
-| D-Q1-001 | 2026-09-10 | Q1 | M1（一维径向非线性扩散 + Robin 边界）已完成实现与内部验证；B0 作为 Baseline，M2/M3 作为对照；最终主模型仍待 Result Gate 确认 | PENDING_CONFIRMATION | `docs/Q1_PLAN.md`、`docs/EXPERIMENTS.md`、EXP-001–EXP-007 |
-| D-Q1-NUMGRID | 2026-09-11 | Q1 | 主计算网格采用 `N=80, Δr=0.25 mm`；官方 `0.1 cm` 仅为输出网格；敏感性采用 `N=40/80/160` | ACTIVE | `docs/Q1_PLAN.md`、TEAM_REFERENCE |
+| D-Q1-001 | 2026-09-10 | Q1 | M1（一维径向非线性扩散 + Robin 边界）获人工冻结批准；B0 作为 Baseline，M2/M3 作为对照 | APPROVED_FROZEN | `docs/DECISIONS.md`、`docs/Q1_FINAL_FREEZE_AUDIT.md` |
+| D-Q1-NUMGRID | 2026-09-11 | Q1 | 历史敏感性使用均匀 `N=40/80/160`；生产网格由 Q1 freeze 决策单独规定 | SUPERSEDED_FOR_PRODUCTION | `docs/Q1_PLAN.md`、`docs/DECISIONS.md` |
 | D-Q1-HM | 2026-09-11 | Q1 | 在实现候选中按团队建模口径令 `hm` 直接作用于干基浓度 `C`，不乘空气密度；保留为建模假设并做 M3 对照 | ACCEPTED_MODELING_ASSUMPTION | `docs/Q1_PLAN.md`、OQ-006 |
 | D-Q1-M2 | 2026-09-11 | Q1 | M2 对照模型固定 `D=D(C_ref)`，默认 `C_ref=2.55 kg/kg` 初始干基含水率；不替代 M1 | ACTIVE | `src/q1/solver.py`、EXP-002 |
 | D-Q1-OQ005 | 2026-09-11 | Q1 | `result1.xlsx` A列采用 `1,2,...,1800 s`，不写 `t=0` 行；这是团队交付约定，不是官方事实 | ACCEPTED_TEAM_DELIVERABLE_DECISION | 本轮人工授权、`docs/DELIVERABLE_SPEC.md` |
 | D-Q1-OQ006 | 2026-09-11 | Q1 | `hm` 直接作用于干基浓度 `C`，不乘空气密度、材料密度或其他未给因子 | ACCEPTED_MODELING_ASSUMPTION | 本轮人工授权、EXP-005、EXP-007 |
 | D-Q1-OQ007 | 2026-09-11 | Q1 | 中心与表面采用内部 solver 节点值；最终网格必须严格对齐 `0.0,0.1,...,2.0 cm` | ACCEPTED_NUMERICAL_DECISION | 本轮人工授权、`D-Q1-NUMGRID` |
 | D-Q1-OQ008 | 2026-09-11 | Q1 | 不加入潜热、内部蒸发源项、Soret/Dufour 或其他需要新增未知参数的耦合项 | ACCEPTED_MODELING_SIMPLIFICATION | 本轮人工授权、EXP-007 |
-| D-Q1-FREEZE-CANDIDATE | 2026-09-11 | Q1 | 冻结验证对象为 M1；B0/M2/M3 只作验证与敏感性证据；最终配置满足 D-Q1-NUM-ACCURACY-CRITERION，舍入一致性仅作辅助 | FROZEN_PENDING_HUMAN_APPROVAL | `experiments/EXP-Q1-FULL-SPATIAL/`、`experiments/EXP-Q1-FULL-TEMPORAL/`、`experiments/Q1_FREEZE_RUN/` |
+| D-Q1-FREEZE-CANDIDATE | 2026-09-11 | Q1 | 冻结验证对象为 M1；B0/M2/M3 只作验证与敏感性证据；最终配置满足 D-Q1-NUM-ACCURACY-CRITERION，舍入一致性仅作辅助 | APPROVED_FROZEN | `experiments/EXP-Q1-FULL-SPATIAL/`、`experiments/EXP-Q1-FULL-TEMPORAL/`、`experiments/Q1_FREEZE_RUN/` |
 | D-Q1-NUM-T2 | 2026-09-11 | Q1 | 将“BE 首步+BDF2”作为数值整改候选进行验证，不自动替换 M1/BE 主方案；论文点改善但完整网格安全裕量不足 | CANDIDATE_NOT_FROZEN | `experiments/EXP-Q1-NUM-BENCH/`、`experiments/EXP-Q1-NUM-REMEDIATION/` |
 | D-Q1-INITIAL-LAYER | 2026-09-11 | Q1 | 支持初始水分场与表面 Robin 条件形成短时边界层的数值诊断；保持官方初值/边界不变，边界聚类已通过全时域验证 | DIAGNOSTIC_SUPPORTED_PRODUCTION_FROZEN | `docs/Q1_INITIAL_LAYER_AUDIT.md`、`experiments/EXP-Q1-FULL-SPATIAL/`、`experiments/Q1_FREEZE_RUN/` |
 | D-Q1-NUM-ACCURACY-CRITERION | 2026-09-11 | Q1 | 将 estimated discretization uncertainty 作为主要内部数值门：温度和含水率均要求 `<5e-5`（各自输出单位）；四舍五入状态只作辅助证据，不因少量 ambiguous 自动失败 | TEAM_NUMERICAL_CRITERION | 本轮人工授权、后续全时域收敛实验 |
+| D-Q1-HUMAN-FREEZE | 2026-09-11 | Q1 | 人工批准 Q1 M1、生产网格、时间积分、候选到 final 的字节复制、最终验证和可视化交付；代码冻结基线与审计文档提交保持分离 | APPROVED | `docs/Q1_FINAL_FREEZE_AUDIT.md`、`deliverables/final/Q1_MANIFEST.json` |
+
+## D-Q1-HUMAN-FREEZE Q1 人工最终冻结与可视化交付
+
+日期：2026-09-11
+问题：Q1
+
+### 背景
+
+Q1 全时域空间/时间收敛和 `Q1_FREEZE_RUN` 双跑均已通过。人工授权明确批准冻结 Q1，并要求完成 candidate-to-final 交付、最终校验、图表生成和交接；该批准不扩大到 Q2/Q3/Q4。
+
+### 最终决策
+
+批准并冻结 M1 及其生产配置：边界聚簇保守径向 FVM（`cluster_power=2`，base320 请求网格，实际 338 个区间、339 个节点），首步 BE 后固定步长 BDF2，`dt=0.25 s`，时间范围 `0..1800 s`，官方输出位置 `0..2 cm`、间隔 `0.1 cm`。允许将已验证 candidate 原样复制到 final，并生成仅消费冻结源的 Q1 图表包。
+
+### 证据与完整性
+
+- 冻结运行源 SHA-256：`f13667b5fe8e4c1e1a7635b18ab4c7aaa9e3fef5111b893a9ce79b6deb3fad17`。
+- candidate/final `result1.xlsx` SHA-256：`06b67b1f688d84a701ac4d2f4b0f47a1624069877df6724faf071a48af177b5c`，字节级一致。
+- 温度/含水率最大估计不确定度：`1.4012174801763968e-06 °C` / `2.7414224748183296e-05 kg/kg`，均 `<5e-5`。
+- 最终工作簿校验、70 个论文点追踪、9 张图表和 20 个随机图表数据点均 PASS。
+- 详见 `docs/Q1_FINAL_FREEZE_AUDIT.md`、`deliverables/final/Q1_MANIFEST.json` 和 `figures/q1/FIGURE_MANIFEST.json`。
+
+### 状态
+
+APPROVED
 
 ## 决策记录模板
 
@@ -71,7 +97,7 @@ Q1要求输出圆柱药材内部的温度与水分浓度空间分布，而官方
 
 ### 最终决定
 
-当前不冻结最终主模型；M1 已进入实现候选并完成内部验证，B0 必须保留作 Baseline，M2/M3 已完成对照实验。
+冻结主模型为 M1；B0 保留作 Baseline，M2/M3 保留为对照实验。
 
 ### 原因
 
@@ -89,11 +115,11 @@ M1 能表达题面要求的径向输出，并使用附录2给出的 `h、hm` 与
 
 ### 重新评估条件
 
-smoke test、时间/空间敏感性和 Baseline/M2/M3 对比已完成；OQ-005/OQ-006/OQ-007/OQ-008 已登记解决，但 M1 是否成为最终主模型仍取决于最终数值精度门和人工冻结批准。
+smoke test、时间/空间敏感性、Baseline/M2/M3 对比、全时域收敛、冻结双跑和 final 验证均已完成；OQ-005/OQ-006/OQ-007/OQ-008 已登记解决，人工 freeze approval 已于 2026-09-11 获得。
 
 ### 状态
 
-PENDING_CONFIRMATION
+APPROVED_FROZEN
 
 ## D-Q1-FREEZE-CANDIDATE Q1 结果交付冻结对象
 
@@ -107,7 +133,7 @@ PENDING_CONFIRMATION
 
 ### 最终决定
 
-只验证 M1 作为冻结候选；B0、M2、M3 仅作为 Baseline、消融和敏感性证据。候选配置必须同时通过完整 `1..1800 s × 0.0..2.0 cm` 网格和论文 7×5 点的估计离散不确定度标准；四位小数舍入差异作为辅助证据，主要数值标准未通过时不得生成 candidate 或 final 文件。
+只验证 M1 作为冻结对象；B0、M2、M3 仅作为 Baseline、消融和敏感性证据。冻结配置已通过完整 `1..1800 s × 0.0..2.0 cm` 网格和论文 7×5 点的估计离散不确定度标准；四位小数舍入差异作为辅助证据。
 
 ### 结果
 
@@ -115,11 +141,11 @@ PENDING_CONFIRMATION
 
 ### 重新评估条件
 
-人工确认 Q1 冻结配置和 candidate 后，才可将 candidate 复制到 final；不得修改已接受的交付契约或物理模型。主要数值门按 `D-Q1-NUM-ACCURACY-CRITERION`，舍入状态保留为辅助信息。
+人工已确认 Q1 冻结配置和 candidate，按 COPY ONLY 将 candidate 复制到 final；candidate/final SHA-256 完全一致。不得修改已接受的交付契约或物理模型。主要数值门按 `D-Q1-NUM-ACCURACY-CRITERION`，舍入状态保留为辅助信息。
 
 ### 状态
 
-FROZEN_PENDING_HUMAN_APPROVAL
+APPROVED_FROZEN
 
 ## D-Q1-NUM-T2 BDF2 时间积分整改候选
 
@@ -291,7 +317,7 @@ ACCEPTED_MODELING_ASSUMPTION
 
 ### 状态
 
-DIAGNOSTIC_SUPPORTED_PRODUCTION_FROZEN_PENDING_HUMAN_APPROVAL
+DIAGNOSTIC_SUPPORTED_PRODUCTION_FROZEN
 
 ## D-Q1-NUM-ACCURACY-CRITERION Q1 全时域内部数值精度标准
 

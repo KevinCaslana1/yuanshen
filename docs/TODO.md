@@ -37,7 +37,7 @@
 | T-028 | P0 | Q1 | T-027 | DONE | 局部数值整改决策与复验 | 已按人工授权完成初始层兼容性、表面误差衰减、BDF2 启动和边界聚类 benchmark/短时复验；无工作簿写入 | `docs/Q1_INITIAL_LAYER_AUDIT.md`、EXP-Q1-INITIAL-LAYER 至 EXP-Q1-CLUSTER-TEMPORAL |
 | T-029 | P0 | Q1 | T-028 | DONE | 聚类候选 0–1800 s 全网格复验 | 固定候选网格/时间策略后，raw、Richardson、守恒/范围、初始层和全网格舍入辅助认证完成；官方资产只读 | 本轮 |
 | T-030 | P0 | Q1 | T-029 | DONE | Q1 RESULT & DELIVERABLE GATE | 全时域温度/含水率估计不确定度均 `<5e-5`，生产配置冻结并完成候选验证 | 本轮 |
-| T-031 | P0 | Q1 | T-030 | TODO | Human Q1 freeze approval | 人工确认 `Q1_FREEZE_RUN`、candidate、论文表追踪后，决定是否允许复制到 final；不得自动进入 Q2 | 等待人工确认 |
+| T-031 | P0 | Q1 | T-030 | DONE | Human Q1 freeze approval and final handoff | 人工批准已登记；candidate 已 COPY ONLY 到 `deliverables/final/`，final 工作簿/清单、最终校验、图表包和审计记录均完成；不得自动进入 Q2 | 2026-09-11 |
 
 ## 任务记录模板
 

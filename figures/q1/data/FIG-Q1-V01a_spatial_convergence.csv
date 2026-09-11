@@ -1,0 +1,5 @@
+comparison_type,refinement,field,x,linf_difference,observed_order
+spatial,base320→640,temperature_c,640,4.115883712074719e-06,
+spatial,base640→1280,temperature_c,1280,1.0453402978782833e-06,
+spatial,base320→640,moisture_kg_kg,640,1.4691073225492346e-05,
+spatial,base640→1280,moisture_kg_kg,1280,3.674745107762334e-06,

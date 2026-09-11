@@ -1,0 +1,5 @@
+comparison_type,refinement,field,x,linf_difference,observed_order
+temporal,dt .25→.125,temperature_c,0.125,4.035641495647724e-06,
+temporal,dt .125→.0625,temperature_c,0.0625,9.592801006874652e-07,
+temporal,dt .25→.125,moisture_kg_kg,0.125,0.00010705632822105571,
+temporal,dt .125→.0625,moisture_kg_kg,0.0625,2.1825345235537696e-05,

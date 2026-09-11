@@ -1,0 +1,91 @@
+{
+  "schema_version": "Q1_FINAL_MANIFEST_V1",
+  "problem": "Q1",
+  "model": "M1",
+  "human_freeze_decision": "APPROVED",
+  "code_freeze_commit": "a40ca421c33a2bd688c8f6e3b72816a03c49b2b0",
+  "audit_commit": "3068ff1eb86cc1657d856cc0796350fa6533ae91",
+  "figure_pipeline_commit": "457bedcd8ebfcb4cf6e2da19c2d8a5aeaee39fbb",
+  "freeze_run_output_hash": "f13667b5fe8e4c1e1a7635b18ab4c7aaa9e3fef5111b893a9ce79b6deb3fad17",
+  "candidate_hash": "06b67b1f688d84a701ac4d2f4b0f47a1624069877df6724faf071a48af177b5c",
+  "final_hash": "06b67b1f688d84a701ac4d2f4b0f47a1624069877df6724faf071a48af177b5c",
+  "candidate_final_hash_equal": true,
+  "input_hashes": {
+    "A题/A题.pdf": "052d8014bff5727c019b72e44fdffaf5c145ce04050dd938baaf3527db331736",
+    "A题/附件/附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+    "A题/附件/附件2.xlsx": "5563acbfa4b4afb10cc6c03e2207e5369bf39da27576672aff14cc5c32e704af",
+    "A题/附件/附件3/result1.xlsx": "23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4",
+    "A题/附件/附件3/result2.xlsx": "23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4",
+    "A题/附件/附件3/result3.xlsx": "07e4793d620a7f899804c0298d49a16a197960440fd47f8bb780c57ec27e2859",
+    "A题/附件/附件3/result4.xlsx": "86e9300ffa3d30c43de895ea6723da943e85b8740b137bcae5af7107f076eeac"
+  },
+  "template_hash": "23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4",
+  "production_config": {
+    "physical_model": "Q1 M1: 1D radial, fixed radius, constant heat properties, nonlinear D(C), Robin heat/mass, original initial condition",
+    "geometry": {
+      "radius_m": 0.02,
+      "length_m": 0.25,
+      "symmetry": "radial axisymmetric"
+    },
+    "spatial": {
+      "method": "conservative boundary-clustered radial FVM",
+      "requested_base_intervals": 320,
+      "actual_intervals": 338,
+      "spatial_nodes": 339,
+      "cluster_power": 2.0,
+      "mapping": "r_i = R * (1 - (1 - i/320)^2), i=0..320",
+      "required_output_nodes_m": [0.0, 0.001, 0.002, 0.003, 0.004, 0.005, 0.006, 0.007, 0.008, 0.009, 0.01, 0.011, 0.012, 0.013, 0.014, 0.015, 0.016, 0.017, 0.018, 0.019, 0.02],
+      "node_generation": "sorted union of mapped nodes and explicit official output nodes",
+      "face_generation": "midpoints between adjacent nodes; center and surface half-control-volumes",
+      "minimum_spacing_m": 1.953124999995448e-07,
+      "maximum_spacing_m": 0.00012480468750000195,
+      "maximum_to_minimum_spacing_ratio": 639.0000000014992
+    },
+    "time": {
+      "simulation_start_s": 0.0,
+      "simulation_end_s": 1800.0,
+      "time_step_s": 0.25,
+      "startup": "one standard Backward Euler step, then fixed-step BDF2",
+      "internal_step_count": 7200,
+      "formal_output_times": "1..1800 s at 1 s interval"
+    },
+    "picard": {
+      "tolerance": 1e-08,
+      "max_iterations": 50
+    },
+    "boundary_interpolation": "linear",
+    "surface_boundary": "Robin",
+    "official_output": {
+      "time_range_s": [1, 1800],
+      "distance_range_cm": [0.0, 2.0],
+      "distance_interval_cm": 0.1,
+      "shape": [1800, 21]
+    },
+    "units": {
+      "time": "s",
+      "radius_internal": "m",
+      "temperature_internal": "K",
+      "temperature_output": "°C",
+      "moisture": "kg/kg"
+    }
+  },
+  "accuracy_criterion": {
+    "name": "D-Q1-NUM-ACCURACY-CRITERION",
+    "estimated_numerical_uncertainty_temperature_c_lt": 5e-05,
+    "estimated_numerical_uncertainty_moisture_kg_kg_lt": 5e-05,
+    "rounding_certification": "auxiliary only"
+  },
+  "maximum_uncertainty": {
+    "temperature_c": 1.4012174801763968e-06,
+    "moisture_kg_kg": 2.7414224748183296e-05
+  },
+  "creation_timestamp": "2026-09-11T16:49:33+08:00",
+  "source_run_path": "experiments/Q1_FREEZE_RUN/run_1/internal_output_reference.pkl.gz",
+  "final_validation_report": "experiments/Q1_FINAL_FREEZE/final_result1_validation.json",
+  "validator_status": {
+    "FINAL_RESULT1_VALIDATION": "PASS",
+    "candidate_final_sha256": "PASS",
+    "official_source_integrity": "PASS",
+    "Q1_FINAL_FREEZE": "PASS"
+  }
+}

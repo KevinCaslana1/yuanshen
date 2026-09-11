@@ -399,7 +399,7 @@ Q1 Model Design Gate 只有在以下事项全部完成后才算完成：
 - [x] 按序完成 EXP-001–EXP-007 内部实现与数值验证；证据保存于 `experiments/EXP-xxx/`。
 - [x] 没有生成最终结果、论文结论或 `result1.xlsx`。
 
-## 20. Model Design Review
+## 20. Model Design Review (Historical Gate Record)
 
 | Role | Candidate | Review status |
 |---|---|---|
@@ -412,7 +412,7 @@ Q1 Model Design Gate 只有在以下事项全部完成后才算完成：
 
 **Gate result**：Q1 实现与内部数值验证通过；`EXP-Q1-FINAL-CONV` 先判定为 `BLOCKED`，随后已完成人工授权的数值整改诊断和 BDF2 候选对照，但完整网格安全裕量仍未通过。未生成 candidate 或 final `result1.xlsx`；Q2–Q4 不得启动，等待人工审查下一步方案。
 
-## 21. Q1 Final Numerical Accuracy Gate
+## 21. Q1 Final Numerical Accuracy Gate (Historical Gate Record)
 
 - 完整交付网格：`1800 × 21`，时间 `1..1800 s`，距离 `0.0..2.0 cm`。
 - 论文追踪网格：7 个时刻 `100,300,600,900,1200,1500,1800 s` × 5 个距离 `0,0.5,1,1.5,2 cm`。
@@ -420,7 +420,7 @@ Q1 Model Design Gate 只有在以下事项全部完成后才算完成：
 - 实际测试了空间 `N=80/160/320`（固定 `dt=0.25 s`）和时间 `dt=1/0.5/0.25 s`（固定 `N=320`）。最细比较仍未达到全网格和论文点全量稳定，故 Gate 状态为 `BLOCKED`。
 - `deliverables/candidate/result1.xlsx` 不存在；不得在当前状态生成。
 
-## 22. Q1 Numerical Convergence Diagnosis & Remediation
+## 22. Q1 Numerical Convergence Diagnosis & Remediation (Historical Gate Record)
 
 在 `EXP-Q1-FINAL-CONV` 阻塞后，按人工授权执行了独立制造解 benchmark、生产装配审计、相同物理时刻/位置的 Level 1 原始误差、Level 2 观测阶与 Richardson 估计、Level 3 四舍五入辅助检查、误差定位和 Picard 敏感性。结果支持当前中心/表面有限体积装配和 BE 的理论阶，但真实 Q1 含水率的早期/表面误差仍主导完整网格风险。
 
@@ -428,7 +428,7 @@ Q1 Model Design Gate 只有在以下事项全部完成后才算完成：
 
 当前结论：`Q1 NUMERICAL REMEDIATION GATE = BLOCKED`。不得生成 candidate/final `result1.xlsx`，不得启动 Q2–Q4。详细证据见 `docs/Q1_NUMERICAL_REMEDIATION_AUDIT.md`。
 
-## 23. Q1 Initial-Layer & Surface-Accuracy Gate
+## 23. Q1 Initial-Layer & Surface-Accuracy Gate (Historical Gate Record)
 
 在人工授权下，针对早期/表面含水率误差执行最小附加诊断，范围严格限于 Q1，且不改变官方输入、初始条件、Robin 边界或交付契约。
 
@@ -450,4 +450,14 @@ Q1 Model Design Gate 只有在以下事项全部完成后才算完成：
 
 ### 23.4 Gate boundary
 
-初始层诊断结果可记录为 `FIND-Q1-INITIAL-LAYER`，但当前不能重新进入 `Q1 FINAL NUMERICAL ACCURACY & DELIVERABLE GATE`：聚类候选尚未完成 `0–1800 s` 全网格 raw、Richardson、守恒/范围和交付级舍入复验，生产时间策略也尚未冻结。因此不得生成 `result1.xlsx`，不得启动 Q2–Q4。
+初始层诊断结果可记录为 `FIND-Q1-INITIAL-LAYER`，但在该历史 Gate 时不能重新进入 `Q1 FINAL NUMERICAL ACCURACY & DELIVERABLE GATE`：聚类候选尚未完成 `0–1800 s` 全网格 raw、Richardson、守恒/范围和交付级舍入复验，生产时间策略也尚未冻结。因此不得生成 `result1.xlsx`，不得启动 Q2–Q4。
+
+## 24. Current Post-Freeze Status
+
+前述第 20–23 节保留各历史 Gate 当时的状态，不代表当前状态。后续全时域复验、`Q1_FREEZE_RUN` 双跑和人工冻结批准已经关闭这些阻塞：
+
+- 当前 Q1 阶段为 `Q1 FINAL FREEZE, VISUALIZATION & HANDOFF GATE`，Q1 状态为 `FROZEN / COMPLETE`。
+- 生产配置为边界聚簇保守 FVM（base320 请求、实际 338 区间）、首步 BE 后固定步长 BDF2、`dt=0.25 s`；全时域温度/含水率最大估计不确定度分别为 `1.4012174801763968e-06 °C` 和 `2.7414224748183296e-05 kg/kg`，均低于 `<5e-5` 门槛。
+- `deliverables/candidate/result1.xlsx` 已按人工批准 COPY ONLY 到 `deliverables/final/result1.xlsx`；candidate/final SHA-256 完全一致，最终校验 PASS。
+- Q1 图表包位于 `figures/q1/`，9 个 Figure ID、70/70 论文点和 20/20 随机图表数据点验证 PASS。
+- Q2/Q3/Q4 仍为 `NOT STARTED`；下一步必须等待 Q2 model design authorization。

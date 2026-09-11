@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "validation_id": "FINAL_RESULT1_VALIDATION",
+  "final_path": "deliverables\\final\\result1.xlsx",
+  "candidate_path": "deliverables\\candidate\\result1.xlsx",
+  "candidate_sha256": "06b67b1f688d84a701ac4d2f4b0f47a1624069877df6724faf071a48af177b5c",
+  "final_sha256": "06b67b1f688d84a701ac4d2f4b0f47a1624069877df6724faf071a48af177b5c",
+  "official_template_sha256": "23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4",
+  "expected_template_sha256": "23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4",
+  "expected_shape": {
+    "rows": 1801,
+    "columns": 22
+  },
+  "sheet_reports": {
+    "温度": {
+      "rows": 1800,
+      "columns": 22,
+      "finite_values": true,
+      "four_decimal_values": true
+    },
+    "水分浓度": {
+      "rows": 1800,
+      "columns": 22,
+      "finite_values": true,
+      "four_decimal_values": true
+    }
+  },
+  "checks": {
+    "final_exists": true,
+    "candidate_exists": true,
+    "official_template_hash_unchanged": true,
+    "candidate_final_sha256_equal": true,
+    "required_sheets_and_shape": true,
+    "strict_time_and_space_axes": true,
+    "finite_four_decimal_values": true,
+    "no_extra_sheets": true
+  },
+  "errors": []
+}

@@ -1,19 +1,19 @@
 # Q1 Initial-Layer & Surface-Accuracy Audit
 
 日期：2026-09-11  
-范围：仅 Q1；只生成并审计 candidate `result1.xlsx`，不写入 `deliverables/final/`；不修改 `A题/`、官方初始条件或官方输入。
+范围：仅 Q1；先生成并审计 candidate `result1.xlsx`，再按人工批准 COPY ONLY 到 `deliverables/final/`；不修改 `A题/`、官方初始条件或官方输入。
 初始层诊断提交：`3b0785a6ff5bf0f3e2a27845c6707d0b98b7bb13`；冻结运行代码提交：`a40ca42`
 
 ## 后续全时域复验结论（2026-09-11）
 
-本文件前述“尚未完成全时域验证”的状态已由后续实验关闭：`EXP-Q1-FULL-SPATIAL`、`EXP-Q1-FULL-TEMPORAL` 和 `Q1_FREEZE_RUN` 完成并通过。生产配置冻结为边界聚簇保守 FVM（`cluster_power=2`、base320 请求网格/实际338区间）、首步 BE 后固定步长 BDF2 `dt=0.25 s`。候选 `deliverables/candidate/result1.xlsx` 已从 `Q1_FREEZE_RUN/run_1` 生成并通过验证；`deliverables/final/` 仍等待人工批准，Q2 不启动。
+本文件前述“尚未完成全时域验证”的状态已由后续实验关闭：`EXP-Q1-FULL-SPATIAL`、`EXP-Q1-FULL-TEMPORAL` 和 `Q1_FREEZE_RUN` 完成并通过。生产配置冻结为边界聚簇保守 FVM（`cluster_power=2`、base320 请求网格/实际338区间）、首步 BE 后固定步长 BDF2 `dt=0.25 s`。候选 `deliverables/candidate/result1.xlsx` 已从 `Q1_FREEZE_RUN/run_1` 生成并通过验证；人工批准已执行，`deliverables/final/result1.xlsx`、最终清单和图表包均已通过验证，Q2 不启动。
 
 ## Current Project Status
 
-- 当前阶段：`Q1 FULL-HORIZON PRODUCTION CONFIG FREEZE & CANDIDATE DELIVERABLE GATE`。
+- 当前阶段：`Q1 FINAL FREEZE, VISUALIZATION & HANDOFF GATE`。
 - Q1 的 M1/BE 仍作为可追溯均匀网格参考；边界聚类保守 FVM（聚类幂 `p=2`、显式保留全部官方输出节点）已通过全时段验证并冻结为生产候选。
 - 温度初始场与温度 Robin 表示相容；均匀初始水分场与表面水分 Robin 条件不相容，且短时表面误差随时间衰减，支持 `H-Q1-INITIAL-LAYER`。
-- 当前 gate 结论：`Q1 RESULT & DELIVERABLE GATE COMPLETE / WAITING FOR HUMAN Q1 FREEZE APPROVAL`。候选已验证，最终目录仍为空。
+- 当前 gate 结论：`Q1 FINAL FREEZE, VISUALIZATION & HANDOFF GATE = COMPLETE`。人工批准已登记，candidate/final 字节一致，最终校验和图表包均 PASS。
 
 ## Compatibility Analysis
 
@@ -103,7 +103,7 @@
 1. 保持 M1 物理方程、Robin 边界和官方初始水分场不变。
 2. 已采用显式保留官方输出节点的边界聚类保守 FVM，并完成 0–1800 s 全网格复验。
 3. 已冻结标准首步 BE、随后固定步长 BDF2；未经全时段证据支持的早期子步切换不进入生产配置。
-4. 全网格 raw、Richardson、守恒/范围、辅助舍入诊断和双次冻结复跑均通过；候选已生成，最终目录仍等待人工确认。
+4. 全网格 raw、Richardson、守恒/范围、辅助舍入诊断和双次冻结复跑均通过；candidate 已完成到 final 的字节复制和最终验证。
 
 ## Validation Summary
 
@@ -118,14 +118,14 @@
 | t=1 reference | Historical short-time diagnostic; superseded by full-horizon freeze evidence |
 | rounding certification | Auxiliary only; full-horizon ambiguity does not auto-fail |
 | full 0–1800 s candidate verification | PASS |
-| candidate/final workbook | candidate PASS / final pending human approval |
+| candidate/final workbook | candidate PASS / final PASS; SHA-256 identical |
 | Q2/Q3/Q4 | NOT STARTED |
 
 ## Remaining Risks
 
 - 候选已在完整 `1..1800 s × 0.0..2.0 cm` 网格完成原始值、Richardson、守恒、范围和辅助舍入诊断；当前不确定度满足团队数值门。
 - 短时 t=1 s 表面歧义属于舍入辅助诊断，不构成自动失败；不得把该短时参考单独当作最终交付值。
-- 生产配置已完成双次从零冻结复跑并通过确定性检查；最终目录复制仍需人工批准。
+- 生产配置已完成双次从零冻结复跑并通过确定性检查；人工批准后 final 已完成 COPY ONLY 复制并通过验证。
 - `A-Q1-001` 一维径向假设、`A-Q1-005` Robin 建模口径和 `A-Q1-006` 物理简化仍按项目账本管理；本轮不重开这些物理决策。
 
 ## Git Status
@@ -138,4 +138,4 @@
 
 `a40ca42`（Q1 冻结运行代码提交；后续文档提交将更新交接记录）
 
-结论：`Q1 RESULT & DELIVERABLE GATE COMPLETE`；`WAITING FOR HUMAN Q1 FREEZE APPROVAL`；`DO NOT START Q2`。
+结论：`Q1 FINAL FREEZE, VISUALIZATION & HANDOFF GATE COMPLETE`；`Q1 HUMAN FREEZE APPROVAL = APPROVED`；`DO NOT START Q2`。

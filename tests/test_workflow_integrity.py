@@ -14,13 +14,15 @@ def test_q1_design_and_pre_modeling_files_exist() -> None:
     assert (ROOT / "config" / "deliverables.json").is_file()
 
 
-def test_candidate_and_final_are_empty_of_workbooks() -> None:
+def test_candidate_and_final_follow_q1_approval_state() -> None:
     assert CANDIDATE_ROOT.is_dir()
     candidate_workbooks = list(CANDIDATE_ROOT.glob("*.xlsx"))
     assert all(path.name == "result1.xlsx" for path in candidate_workbooks)
+    assert (CANDIDATE_ROOT / "result1.xlsx").is_file()
     assert not list(CANDIDATE_ROOT.glob("*.xls"))
     assert FINAL_ROOT.is_dir()
-    assert not list(FINAL_ROOT.glob("*.xlsx"))
+    assert (FINAL_ROOT / "result1.xlsx").is_file()
+    assert (FINAL_ROOT / "Q1_MANIFEST.json").is_file()
     assert not list(FINAL_ROOT.glob("*.xls"))
 
 
@@ -47,7 +49,7 @@ def test_formal_evidence_records_are_scoped_and_traceable() -> None:
         assert (evidence_dir / "metrics.json").is_file()
         assert (evidence_dir / "notes.md").is_file()
     assert all(path.name == "result1.xlsx" for path in CANDIDATE_ROOT.glob("*.xlsx"))
-    assert not list(FINAL_ROOT.glob("*.xlsx"))
+    assert [path.name for path in FINAL_ROOT.glob("*.xlsx")] == ["result1.xlsx"]
 
 
 def test_state_preserves_question_boundaries() -> None:

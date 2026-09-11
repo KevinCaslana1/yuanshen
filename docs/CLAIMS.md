@@ -10,7 +10,7 @@
 |---|---|---|---|---|---|---|
 | — | — | — | — | — | — | 尚无论文主张 |
 
-Q1 candidate 的数值和论文表追踪已完成，但在人工 freeze approval 前，不将 candidate 数值写成论文最终主张；当前仍未新增 VERIFIED 论文主张。
+Q1 candidate 的数值和论文表追踪已完成，人工 freeze approval、final 工作簿校验和可视化包也已完成。当前仍未新增 VERIFIED 论文主张；后续论文写作必须逐条从 `Q1_FINAL_FREEZE_AUDIT.md`、冻结实验和图表源数据登记可核验主张，不得把模型假设写成官方事实。
 
 ## 主张记录模板
 

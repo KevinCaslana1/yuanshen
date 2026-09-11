@@ -27,6 +27,8 @@
 | EXP-Q1-FULL-SPATIAL | Q1 | M1-NUM-T2 clustered FVM | 全时域空间收敛与逐点离散不确定度 | cluster base320/base640/base1280，固定 BDF2 `dt=0.125 s`；`1800×21` 与论文 `7×5` | 空间细层最大估计不确定度：温度 `3.5588e-7 °C`、含水率 `1.2258e-6 kg/kg`；3 层空间阶和 Richardson 已记录 | COMPLETED | `experiments/EXP-Q1-FULL-SPATIAL/` |
 | EXP-Q1-FULL-TEMPORAL | Q1 | M1-NUM-T2 clustered FVM | 全时域时间收敛与逐点离散不确定度 | cluster base1280，BDF2 `dt=0.25/0.125/0.0625 s`；`1800×21` 与论文 `7×5` | 时间细层最大估计不确定度：温度 `4.2626e-7 °C`、含水率 `5.5889e-6 kg/kg`；局部 Richardson 不稳定点保留原始细层差值包络 | COMPLETED | `experiments/EXP-Q1-FULL-TEMPORAL/` |
 | Q1_FREEZE_RUN | Q1 | Frozen M1-NUM-T2 production | 从零双跑冻结生产配置、内部全场保存、确定性与候选溯源 | cluster base320（实际 `338` intervals），BDF2 `dt=0.25 s`，`0..1800 s` | 两次完整内部场 SHA-256 相同；运行验证均 PASS；candidate 与论文 35/35 点 trace PASS | COMPLETED | `experiments/Q1_FREEZE_RUN/` |
+| Q1_FINAL_FREEZE | Q1 | Frozen M1-NUM-T2 production | 人工批准后的 candidate-to-final 隔离复制、最终工作簿结构/数值/格式和哈希校验 | `deliverables/candidate/result1.xlsx` → `deliverables/final/result1.xlsx`；无 solver 重跑 | candidate/final SHA-256 相同；final validator PASS；官方模板哈希与 `A题/` 完整性 PASS | COMPLETED | `experiments/Q1_FINAL_FREEZE/`、`deliverables/final/Q1_MANIFEST.json` |
+| Q1-FIGURES | Q1 | Frozen M1-NUM-T2 production | 从冻结内部输出生成论文候选图表及验证数据，不改变数值结果 | 9 figures；PNG/SVG；核心图表与空间/时间验证图 | 图表源哈希受保护；纸面点 70/70；随机图表数据点 20/20；视觉 QA PASS | COMPLETED | `figures/q1/`、`docs/Q1_VISUALIZATION.md` |
 
 状态建议使用：`PLANNED` / `RUNNING` / `COMPLETED` / `FAILED` / `BLOCKED` / `ABANDONED`。
 
@@ -56,6 +58,6 @@ Notes:
 
 ## Q1 Execution Note
 
-EXP-001 至 EXP-007 已在实现授权后按序完成。后续完成初始层诊断、BDF2 启动对照、表面误差衰减、聚类 benchmark、真实 Q1 短时聚类对照、聚类时间梯及全时域空间/时间收敛。`D-Q1-NUM-ACCURACY-CRITERION` 下，3 层空间与 3 层时间的逐点估计不确定度均通过 `<5e-5`；随后 `Q1_FREEZE_RUN` 双跑确定性通过，并从 run_1 生成候选。Q1 结果门已完成，当前只等待人工冻结批准；`deliverables/final/` 仍不写入。这些是可追溯内部数值证据和候选交付，不应在人工批准前写成最终论文主张。
+EXP-001 至 EXP-007 已在实现授权后按序完成。后续完成初始层诊断、BDF2 启动对照、表面误差衰减、聚类 benchmark、真实 Q1 短时聚类对照、聚类时间梯及全时域空间/时间收敛。`D-Q1-NUM-ACCURACY-CRITERION` 下，3 层空间与 3 层时间的逐点估计不确定度均通过 `<5e-5`；随后 `Q1_FREEZE_RUN` 双跑确定性通过，并从 run_1 生成候选。人工 freeze approval 已批准并完成 candidate-to-final 复制、最终验证和图表生成；Q1 现已冻结，Q2 不启动。历史实验中的 BLOCKED 记录保留为历史证据，不代表当前冻结配置失败。
 
 每个实验目录均包含 `config.json`、`metrics.json` 和 `notes.md`，记录命令、代码提交、输入 SHA-256、求解器配置、运行时间、验证状态和产物路径。

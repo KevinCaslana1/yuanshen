@@ -1,18 +1,18 @@
 # Q1 Result & Deliverable Audit
 
-状态：`COMPLETE_PENDING_HUMAN_Q1_FREEZE_APPROVAL`
+状态：`COMPLETE / HUMAN FREEZE APPROVED`
 
 日期：2026-09-11
 
 冻结运行代码提交：`a40ca42`
 
-本文件是 Q1 最终数值精度与交付门的人工审查包，不是论文正文。candidate 已生成但不是 final；最终复制仍需人工确认。
+本文件是 Q1 最终数值精度与交付门的人工审查包，不是论文正文。人工冻结批准已登记，candidate 已按 COPY ONLY 规则进入 final。
 
 ## Gate Decision
 
 `Q1 RESULT & DELIVERABLE GATE = COMPLETE`
 
-按 `D-Q1-NUM-ACCURACY-CRITERION`，完整交付网格和论文展示点的估计离散不确定度均已通过；四位小数差异仅作辅助诊断。`Q1_FREEZE_RUN` 已双跑通过，`deliverables/candidate/result1.xlsx` 已从 `run_1` 冻结源生成并通过验证；`deliverables/final/` 仍为空。
+按 `D-Q1-NUM-ACCURACY-CRITERION`，完整交付网格和论文展示点的估计离散不确定度均已通过；四位小数差异仅作辅助诊断。`Q1_FREEZE_RUN` 已双跑通过，`deliverables/candidate/result1.xlsx` 已从 `run_1` 冻结源生成并通过验证；人工批准后已复制为 `deliverables/final/result1.xlsx`，最终工作簿和清单均通过验证。
 
 ## Resolved Q1 Decisions
 
@@ -56,10 +56,13 @@
 - Q1 交付契约：已冻结为 `1801 × 22`（含表头行）；candidate 已按该契约生成。
 - 官方模板：`A题/附件/附件3/result1.xlsx`，只读；官方源未被写入。
 - Candidate：`deliverables/candidate/result1.xlsx` 存在；`scripts/validate_q1_candidate.py` PASS。
-- Final：`deliverables/final/result1.xlsx` 不存在。
+- Final：`deliverables/final/result1.xlsx` 已存在；candidate/final SHA-256 完全一致。
+- Final workbook validation：`scripts/validate_q1_final.py` PASS；报告为 `experiments/Q1_FINAL_FREEZE/final_result1_validation.json`。
+- Q1 manifest：`deliverables/final/Q1_MANIFEST.json` PASS，记录冻结模型、配置、官方输入哈希、结果哈希和验证关系。
+- Visualization package：`figures/q1/FIGURE_MANIFEST.json` 与 `FIGURE_VALIDATION.json` PASS，共 9 个图表，论文点 70/70、随机图表数据点 20/20。
 - 候选校验器：`scripts/validate_q1_candidate.py` 已建立，候选不存在时 fail-closed。
-- 论文表追踪：温度 35/35、含水率 35/35 均来自冻结 run_1；随机20个单元格追踪 PASS。论文主张账本仍不自动写入未经人工批准的最终结论。
+- 论文表追踪：温度 35/35、含水率 35/35 均来自冻结 run_1；随机20个单元格追踪 PASS。论文主张账本仍未自动新增 VERIFIED 主张，后续论文写作须逐条登记证据。
 
-## Human Audit Decision Required
+## Human Audit Decision
 
-请人工审查并批准 Q1 冻结配置及 candidate 是否进入 final。批准前不得写入 `deliverables/final/`，不得修改物理模型或数值配置，不得启动 Q2。
+`Q1 HUMAN FREEZE APPROVAL = APPROVED`。Q1 冻结配置、candidate/final 字节复制、最终工作簿校验和可视化交付均已完成；不得修改物理模型或数值配置，不得启动 Q2，除非获得新的明确授权。

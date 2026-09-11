@@ -18,4 +18,5 @@ deliverables/final/result*.xlsx
 - 任何程序不得直接打开官方模板进行写入。
 - `candidate/` 是可检查、可丢弃的候选结果区。
 - 只有通过验证并获得人工确认的文件才能进入 `final/`。
-- 当前阶段不创建、不填写 candidate 或 final 结果文件。
+- 当前 Q1 状态：`deliverables/candidate/result1.xlsx` 已通过候选校验，人工批准后已按 COPY ONLY 规则写入 `deliverables/final/result1.xlsx`；final 工作簿和 `Q1_MANIFEST.json` 已通过最终验证。Q2–Q4 尚未授权，不创建其结果文件。
+- 生成 Q1 图表时只读取冻结运行源，图表位于 `figures/q1/`，不修改工作簿或官方源。
