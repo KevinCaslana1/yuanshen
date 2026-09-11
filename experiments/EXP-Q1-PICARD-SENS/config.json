@@ -1,0 +1,54 @@
+{
+  "experiment_id": "EXP-Q1-PICARD-SENS",
+  "code_commit": "843d62861b7137f93222f01df61609a228ceab5a",
+  "input_hashes": {
+    "A题/附件/附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7"
+  },
+  "scope": {
+    "end_time_s": 300.0,
+    "n_intervals": 160,
+    "time_step_s": 0.25,
+    "output_times_s": "1..300",
+    "output_positions_cm": "0.0..2.0 step 0.1",
+    "cells_per_field": 6300
+  },
+  "cases": {
+    "1e-06": {
+      "picard_tolerance": 1e-06,
+      "max_iterations": 2,
+      "mean_iterations": 2.0,
+      "min_iterations": 2,
+      "end_time_s": 300.0,
+      "n_intervals": 160,
+      "time_step_s": 0.25
+    },
+    "1e-08": {
+      "picard_tolerance": 1e-08,
+      "max_iterations": 3,
+      "mean_iterations": 3.0,
+      "min_iterations": 3,
+      "end_time_s": 300.0,
+      "n_intervals": 160,
+      "time_step_s": 0.25
+    },
+    "1e-10": {
+      "picard_tolerance": 1e-10,
+      "max_iterations": 4,
+      "mean_iterations": 3.0841666666666665,
+      "min_iterations": 3,
+      "end_time_s": 300.0,
+      "n_intervals": 160,
+      "time_step_s": 0.25
+    }
+  },
+  "reference_discretization_differences": {
+    "space_N160_vs_N320_full_grid_linf": {
+      "temperature_c": 2.2996181030521257e-05,
+      "moisture_kg_kg": 0.005651324501566801
+    },
+    "time_dt0.5_vs_dt0.25_full_grid_linf": {
+      "temperature_c": 0.0004776183058083916,
+      "moisture_kg_kg": 0.0011657392001822586
+    }
+  }
+}

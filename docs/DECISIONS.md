@@ -15,6 +15,7 @@
 | D-Q1-OQ007 | 2026-09-11 | Q1 | 中心与表面采用内部 solver 节点值；最终网格必须严格对齐 `0.0,0.1,...,2.0 cm` | ACCEPTED_NUMERICAL_DECISION | 本轮人工授权、`D-Q1-NUMGRID` |
 | D-Q1-OQ008 | 2026-09-11 | Q1 | 不加入潜热、内部蒸发源项、Soret/Dufour 或其他需要新增未知参数的耦合项 | ACCEPTED_MODELING_SIMPLIFICATION | 本轮人工授权、EXP-007 |
 | D-Q1-FREEZE-CANDIDATE | 2026-09-11 | Q1 | 冻结验证对象为 M1；B0/M2/M3 只作验证与敏感性证据；最终配置须由四位小数稳定性决定 | BLOCKED_BY_NUMERICAL_ACCURACY | 本轮人工授权、`experiments/EXP-Q1-FINAL-CONV/` |
+| D-Q1-NUM-T2 | 2026-09-11 | Q1 | 将“BE 首步+BDF2”作为数值整改候选进行验证，不自动替换 M1/BE 主方案；论文点改善但完整网格安全裕量不足 | CANDIDATE_NOT_FROZEN | `experiments/EXP-Q1-NUM-BENCH/`、`experiments/EXP-Q1-NUM-REMEDIATION/` |
 
 ## 决策记录模板
 
@@ -117,6 +118,38 @@ PENDING_CONFIRMATION
 ### 状态
 
 BLOCKED_BY_NUMERICAL_ACCURACY
+
+## D-Q1-NUM-T2 BDF2 时间积分整改候选
+
+日期：2026-09-11
+
+问题：Q1
+
+### 背景
+
+Q1 的真实运行诊断显示 BE 时间误差在完整网格上明显大于空间温度误差，且含水率误差集中在早期和表面。人工授权要求在需要时评估 BDF2 候选，同时不得未经证据把数值方法升级为最终主方案。
+
+### 候选方案
+
+- 保留 M1 的 Backward Euler（现有参考）。
+- 一阶 BE 启动一步，随后使用 BDF2，保持相同径向 FVM、Robin 边界、物性、输入插值和 Picard 过程（M1-NUM-T2）。
+
+### 当前决定
+
+只将 M1-NUM-T2 登记为可复核候选，不改变 `D-Q1-FREEZE-CANDIDATE`，不生成 `result1.xlsx`。论文 7×5 点的 `dt=0.5→0.25 s` 四舍五入差异降为温度 `0/35`、含水率 `0/35`；但全网格含水率的 Richardson 剩余误差仍为 `0.0006163 kg/kg`，高于 `0.5e-4`，故不能冻结。
+
+### 支持证据
+
+- `EXP-Q1-NUM-BENCH`：独立制造解支持 BE 一阶时间阶，并为 BDF2 提供二阶候选的首个细化证据。
+- `EXP-Q1-NUM-REMEDIATION`：BDF2 与 BE 的完整网格、论文点、Picard、运行时间和阈值距离比较。
+
+### 重新评估条件
+
+完成针对早期时间/表面含水率误差的最小附加诊断，并重新通过完整网格 Level 1–3、守恒/范围和四舍五入安全裕量；在此之前不得把候选写入交付文件。
+
+### 状态
+
+CANDIDATE_NOT_FROZEN
 
 ## D-Q1-M2 常扩散系数对照口径
 

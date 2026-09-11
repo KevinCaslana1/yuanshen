@@ -1,0 +1,83 @@
+{
+  "experiment_id": "EXP-Q1-NUM-DIAG",
+  "code_commit": "843d62861b7137f93222f01df61609a228ceab5a",
+  "input_hashes": {
+    "A题/附件/附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7"
+  },
+  "configs": {
+    "N80_dt0.25": {
+      "n_intervals": 80,
+      "dr_m": 0.00025,
+      "time_step_s": 0.25,
+      "end_time_s": 1800.0,
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50
+    },
+    "N160_dt0.25": {
+      "n_intervals": 160,
+      "dr_m": 0.000125,
+      "time_step_s": 0.25,
+      "end_time_s": 1800.0,
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50
+    },
+    "N320_dt0.25": {
+      "n_intervals": 320,
+      "dr_m": 6.25e-05,
+      "time_step_s": 0.25,
+      "end_time_s": 1800.0,
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50
+    },
+    "N320_dt1.0": {
+      "n_intervals": 320,
+      "dr_m": 6.25e-05,
+      "time_step_s": 1.0,
+      "end_time_s": 1800.0,
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50
+    },
+    "N320_dt0.5": {
+      "n_intervals": 320,
+      "dr_m": 6.25e-05,
+      "time_step_s": 0.5,
+      "end_time_s": 1800.0,
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50
+    }
+  },
+  "scope": {
+    "full_grid": {
+      "times_s": "1..1800",
+      "positions_cm": "0.0..2.0 step 0.1",
+      "cells_per_field": 37800
+    },
+    "paper_table_points": {
+      "times_s": [
+        100,
+        300,
+        600,
+        900,
+        1200,
+        1500,
+        1800
+      ],
+      "positions_cm": [
+        0.0,
+        0.5,
+        1.0,
+        1.5,
+        2.0
+      ],
+      "cells_per_field": 35
+    },
+    "same_physical_times_and_positions": true
+  },
+  "artifact_paths": [
+    "experiments/EXP-Q1-NUM-DIAG/metrics.json",
+    "experiments\\EXP-Q1-NUM-DIAG\\temperature_error_by_time.svg",
+    "experiments\\EXP-Q1-NUM-DIAG\\temperature_error_by_radius.svg",
+    "experiments\\EXP-Q1-NUM-DIAG\\moisture_error_by_time.svg",
+    "experiments\\EXP-Q1-NUM-DIAG\\moisture_error_by_radius.svg"
+  ]
+}

@@ -1,6 +1,6 @@
 # Q1 Modeling Plan
 
-> 状态：`Q1 NUMERICAL ACCURACY BLOCKED`
+> 状态：`Q1 NUMERICAL REMEDIATION BLOCKED`
 >
 > 本文件是 Q1 的问题分析、实现和内部数值验证工作包，不是论文正文，不包含最终结果表或 `result1.xlsx`。实验结果仅用于实现审计和模型比较，不能直接作为论文最终结论。
 
@@ -410,7 +410,7 @@ Q1 Model Design Gate 只有在以下事项全部完成后才算完成：
 | Alternative 3 | M4 2D axisymmetric model | Not recommended before new boundary information and human review |
 | Recommended Candidate | M1 | A-Q1-005/A-Q1-006 与 OQ-006/OQ-008 已按授权登记；最终模型冻结仍被 EXP-Q1-FINAL-CONV 数值门阻塞，EXP evidence does not replace final approval |
 
-**Gate result**：Q1 实现与内部数值验证通过，但最终输出级四位小数收敛检查由 `EXP-Q1-FINAL-CONV` 判定为 `BLOCKED`。未生成 candidate 或 final `result1.xlsx`；Q2–Q4 不得启动，等待人工审查数值整改方案。
+**Gate result**：Q1 实现与内部数值验证通过；`EXP-Q1-FINAL-CONV` 先判定为 `BLOCKED`，随后已完成人工授权的数值整改诊断和 BDF2 候选对照，但完整网格安全裕量仍未通过。未生成 candidate 或 final `result1.xlsx`；Q2–Q4 不得启动，等待人工审查下一步方案。
 
 ## 21. Q1 Final Numerical Accuracy Gate
 
@@ -419,3 +419,11 @@ Q1 Model Design Gate 只有在以下事项全部完成后才算完成：
 - Level A 同时记录原始值的最大绝对差和平均绝对差；Level B 比较 `ROUND_HALF_UP` 四位小数后的每个单元格。
 - 实际测试了空间 `N=80/160/320`（固定 `dt=0.25 s`）和时间 `dt=1/0.5/0.25 s`（固定 `N=320`）。最细比较仍未达到全网格和论文点全量稳定，故 Gate 状态为 `BLOCKED`。
 - `deliverables/candidate/result1.xlsx` 不存在；不得在当前状态生成。
+
+## 22. Q1 Numerical Convergence Diagnosis & Remediation
+
+在 `EXP-Q1-FINAL-CONV` 阻塞后，按人工授权执行了独立制造解 benchmark、生产装配审计、相同物理时刻/位置的 Level 1 原始误差、Level 2 观测阶与 Richardson 估计、Level 3 四舍五入辅助检查、误差定位和 Picard 敏感性。结果支持当前中心/表面有限体积装配和 BE 的理论阶，但真实 Q1 含水率的早期/表面误差仍主导完整网格风险。
+
+已测试 `M1-NUM-T2`：BE 首步后使用 BDF2，物理方程、Robin 边界、空间网格和 Picard 设置不变。BDF2 的论文点在 `dt=0.5→0.25 s` 下达到温度/含水率 `0/35` 四位小数差异，但全网格保守 Richardson 估计仍未通过，因此只作为候选，不改变主方案冻结状态。
+
+当前结论：`Q1 NUMERICAL REMEDIATION GATE = BLOCKED`。不得生成 candidate/final `result1.xlsx`，不得启动 Q2–Q4。详细证据见 `docs/Q1_NUMERICAL_REMEDIATION_AUDIT.md`。

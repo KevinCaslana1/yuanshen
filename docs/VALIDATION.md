@@ -23,7 +23,7 @@
 | template skeleton validation | `scripts/validate_templates.py` | PASS |
 | deliverable contract validation | `scripts/validate_deliverable_contract.py` | PASS |
 | environment reproducibility | `.venv`, requirements files, Python 3.12.14 | PASS |
-| tests | `pytest -q` | PASS: 24 passed |
+| tests | `pytest -q` | PASS: 29 passed |
 | Q1-Q4 registration | `docs/STATE.md`, `config/deliverables.json` | PASS |
 | candidate empty | `deliverables/candidate/` | PASS |
 | final empty | `deliverables/final/` | PASS |
@@ -62,7 +62,7 @@ Remaining Open Questions are classified by blocking phase in `docs/PROBLEM_SPEC.
 |---|---|---|
 | implementation scope | `src/q1/` contains M1 nonlinear-D, M2 constant-D, and M3 boundary comparison; `src/q1/baseline.py` contains B0 | PASS |
 | reusable numerical kernel | `src/common/numerics.py`; deterministic Thomas solver and radial grid | PASS |
-| implementation tests | `pytest -q` | PASS: 24 passed |
+| implementation tests | `pytest -q` | PASS: 29 passed |
 | EXP-001 smoke | `experiments/EXP-001/metrics.json` | PASS |
 | EXP-002 B0/M1/M2 comparison | `experiments/EXP-002/metrics.json` | PASS; comparison recorded, no model freeze |
 | EXP-003 time sensitivity | `experiments/EXP-003/metrics.json` | PASS; differences decrease under refinement |
@@ -88,9 +88,27 @@ Remaining Open Questions are classified by blocking phase in `docs/PROBLEM_SPEC.
 | Candidate generation | `deliverables/candidate/result1.xlsx` | NOT RUN；按阻塞规则不得生成 |
 | Freeze rerun | `Q1_FREEZE_RUN` | NOT RUN；精度门未通过，不得进入双跑确认 |
 | Candidate workbook validation | `scripts/validate_q1_candidate.py` | READY；候选不存在时 fail-closed |
-| Human audit package | `docs/Q1_RESULT_AUDIT.md` | READY；等待数值整改/人工审查 |
+| Human audit package | `docs/Q1_RESULT_AUDIT.md`, `docs/Q1_NUMERICAL_REMEDIATION_AUDIT.md` | READY；数值整改已完成但最终门仍等待人工审查 |
 
 `Q1 FINAL NUMERICAL ACCURACY & DELIVERABLE GATE = BLOCKED`。不得生成 candidate 或 final `result1.xlsx`，不得启动 Q2。
+
+## Q1 NUMERICAL CONVERGENCE DIAGNOSIS & REMEDIATION GATE
+
+| Gate Item | Evidence | Status |
+|---|---|---|
+| implementation audit | `docs/Q1_NUMERICAL_REMEDIATION_AUDIT.md`；`src/q1/model.py`、`src/q1/solver.py` | PASS；中心半体积、内部几何、表面 Robin 行、BE 层级、Picard 和输出对齐均已逐项映射，未发现生产实现缺陷 |
+| Level 1 raw convergence | `experiments/EXP-Q1-NUM-DIAG/metrics.json` | PASS as diagnosis；已记录 L∞/mean/RMSE、中心/表面/论文点/全网格及最大位置 |
+| Level 2 order/Richardson | `experiments/EXP-Q1-NUM-DIAG/metrics.json` | PASS as diagnosis；空间温度阶约 2，BE 时间阶约 1；含水率的全网格 L∞ 受早期/表面误差主导 |
+| Level 3 rounded stability | `EXP-Q1-FINAL-CONV`、`EXP-Q1-NUM-REMEDIATION` | AUXILIARY；BDF2 论文点 `0/35`，但全网格估计安全裕量未全通过 |
+| error localization | `experiments/EXP-Q1-NUM-DIAG/*.svg` | PASS；已定位早期时间和表面带为含水率主要误差区域 |
+| independent benchmark | `experiments/EXP-Q1-NUM-BENCH/metrics.json` | PASS；BE 空间约二阶、时间约一阶，支持生产离散的基本阶数 |
+| Robin/boundary verification | `tests/test_q1_robin_boundary.py`, `pytest -q` | PASS；29 tests passed，含独立 Robin 行、中心几何和 BDF2 边界缩放测试 |
+| Picard sensitivity | `experiments/EXP-Q1-PICARD-SENS/metrics.json` | PASS；非线性迭代误差远小于离散误差 |
+| remediation candidate | `experiments/EXP-Q1-NUM-REMEDIATION/metrics.json` | PARTIAL；BDF2 改善论文点，但未通过全网格保守估计误差门 |
+| result workbook generation | `deliverables/candidate/`, `deliverables/final/` | NOT RUN；本阶段明确禁止生成 `result1.xlsx` |
+| Q2 boundary | `docs/STATE.md` | PASS；Q2–Q4 仍为 `NOT STARTED` |
+
+`Q1 NUMERICAL REMEDIATION GATE = BLOCKED`。BDF2 仅登记为 `M1-NUM-T2` 候选；不得生成 `result1.xlsx`，不得启动 Q2。
 
 ## 通用检查
 

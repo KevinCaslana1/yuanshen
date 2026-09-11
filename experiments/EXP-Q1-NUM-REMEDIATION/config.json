@@ -1,0 +1,85 @@
+{
+  "experiment_id": "EXP-Q1-NUM-REMEDIATION",
+  "code_commit": "843d62861b7137f93222f01df61609a228ceab5a",
+  "method": "M1-NUM-T2",
+  "method_change_scope": "time_integrator_only; one BE startup step then BDF2; same physics and spatial FVM",
+  "input_hashes": {
+    "A题/附件/附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7"
+  },
+  "scope": {
+    "n_intervals": 320,
+    "full_grid": "1..1800 s x 0.0..2.0 cm",
+    "paper_table_points": "100,300,600,900,1200,1500,1800 s x 0,0.5,1,1.5,2 cm",
+    "picard_tolerance": 1e-08
+  },
+  "bdf2_runs": {
+    "dt1.0": {
+      "time_step_s": 1.0,
+      "n_intervals": 320,
+      "runtime_seconds": 2.4277486000000863,
+      "picard_max_iterations": 3,
+      "picard_mean_iterations": 3.0,
+      "temperature_range_c": [
+        27.999999999999204,
+        36.785559432068794
+      ],
+      "moisture_range_kg_kg": [
+        1.5102413716032537,
+        2.550000000000003
+      ],
+      "history_length": 1801,
+      "final_time_s": 1800.0
+    },
+    "dt0.5": {
+      "time_step_s": 0.5,
+      "n_intervals": 320,
+      "runtime_seconds": 4.824089400000048,
+      "picard_max_iterations": 3,
+      "picard_mean_iterations": 3.0,
+      "temperature_range_c": [
+        27.99999999999949,
+        36.785559324454596
+      ],
+      "moisture_range_kg_kg": [
+        1.5102413591115356,
+        2.5500000000000016
+      ],
+      "history_length": 3601,
+      "final_time_s": 1800.0
+    },
+    "dt0.25": {
+      "time_step_s": 0.25,
+      "n_intervals": 320,
+      "runtime_seconds": 9.80903219999982,
+      "picard_max_iterations": 3,
+      "picard_mean_iterations": 3.0,
+      "temperature_range_c": [
+        27.99999999999949,
+        36.7855592970638
+      ],
+      "moisture_range_kg_kg": [
+        1.5102413561033057,
+        2.5500000000000025
+      ],
+      "history_length": 7201,
+      "final_time_s": 1800.0
+    }
+  },
+  "backward_euler_reference": {
+    "time_step_s": 0.25,
+    "n_intervals": 320,
+    "runtime_seconds": 8.575294100000065,
+    "picard_max_iterations": 3,
+    "picard_mean_iterations": 3.0,
+    "temperature_range_c": [
+      27.999999999999034,
+      36.78573627749449
+    ],
+    "moisture_range_kg_kg": [
+      1.5102632663567,
+      2.550000000000001
+    ],
+    "history_length": 7201,
+    "final_time_s": 1800.0
+  }
+}

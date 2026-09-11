@@ -23,6 +23,10 @@
 | 题目阅读 | `A题/A题.pdf` | 官方人工阅读材料 |
 | 交付契约检查 | `scripts/validate_deliverable_contract.py` | 本阶段建立；只读 |
 | Q1 最终输出精度审计 | `scripts/run_q1_final_accuracy.py` | 已建立；写入独立 EXP-Q1-FINAL-CONV 证据，不写工作簿 |
+| Q1 数值制造解基准 | `scripts/run_q1_num_benchmark.py` | 已建立；隔离 benchmark，写入 EXP-Q1-NUM-BENCH，不读取生产输入、不写工作簿 |
+| Q1 收敛诊断 | `scripts/run_q1_num_diag.py` | 已建立；比较相同物理时刻/位置，写入 Level 1–3、Richardson 和 SVG 定位图 |
+| Q1 Picard 敏感性 | `scripts/run_q1_picard_sensitivity.py` | 已建立；比较 `1e-6/1e-8/1e-10`，写入 EXP-Q1-PICARD-SENS |
+| Q1 BDF2 整改候选 | `scripts/run_q1_num_remediation.py` | 已建立；比较 M1-NUM-T2 与 BE，不生成 `result1.xlsx` |
 | Q1 candidate 校验 | `scripts/validate_q1_candidate.py` | 已建立；只读、候选缺失时 fail-closed |
 | 自动测试 | `pytest -q` | 本阶段建立；不包含模型测试 |
 
@@ -35,6 +39,10 @@
 .\.venv\Scripts\python.exe scripts\validate_templates.py
 .\.venv\Scripts\python.exe scripts\validate_deliverable_contract.py
 .\.venv\Scripts\python.exe scripts\run_q1_final_accuracy.py
+.\.venv\Scripts\python.exe scripts\run_q1_num_benchmark.py
+.\.venv\Scripts\python.exe scripts\run_q1_num_diag.py
+.\.venv\Scripts\python.exe scripts\run_q1_picard_sensitivity.py
+.\.venv\Scripts\python.exe scripts\run_q1_num_remediation.py
 .\.venv\Scripts\python.exe scripts\validate_q1_candidate.py
 .\.venv\Scripts\python.exe -m pytest -q
 ```
@@ -60,4 +68,4 @@
 4. 运行结构、数值和格式验证。
 5. 通过人工确认后复制到 `deliverables/final/`。
 
-当前 Q1 精度门为 `BLOCKED`，因此不生成 candidate 结果文件；若未来通过精度门，仍必须先运行 candidate 校验和格式/结构检查，并经人工确认后才能进入 final。
+当前 Q1 数值整改门为 `BLOCKED`，因此不生成 candidate 结果文件；若未来通过精度门，仍必须先运行 candidate 校验和格式/结构检查，并经人工确认后才能进入 final。上述数值实验只写入 `experiments/`，不写官方模板、不生成 `result1.xlsx`。
