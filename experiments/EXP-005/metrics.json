@@ -1,0 +1,204 @@
+{
+  "experiment_id": "EXP-005",
+  "status": "COMPLETED",
+  "command": ".\\.venv\\Scripts\\python.exe scripts\\run_q1_experiments.py EXP-005",
+  "code_commit": "bbc8d90a3dc320585c65f806f48f49a92f0eecd6",
+  "input_hashes": {
+    "A题/附件/附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7"
+  },
+  "runtime_seconds": 1.4498852000001534,
+  "model_parameters": {
+    "density_kg_m3": 820.0,
+    "heat_capacity_j_kg_k": 2600.0,
+    "conductivity_w_m_k": 0.36,
+    "heat_transfer_w_m2_k": 25.0,
+    "mass_transfer_m_s": 8e-07,
+    "radius_m": 0.02,
+    "length_m": 0.25
+  },
+  "solver_parameters": {
+    "robin": {
+      "end_time_s": 1800.0,
+      "time_step_s": 1.0,
+      "n_intervals": 80,
+      "interpolation": "linear",
+      "surface_boundary": "robin",
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55,
+      "input_path": "A题\\附件\\附件1.xlsx"
+    },
+    "dirichlet": {
+      "end_time_s": 1800.0,
+      "time_step_s": 1.0,
+      "n_intervals": 80,
+      "interpolation": "linear",
+      "surface_boundary": "dirichlet",
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55,
+      "input_path": "A题\\附件\\附件1.xlsx"
+    }
+  },
+  "validation_thresholds": {
+    "mass_balance_abs_max": 1e-10,
+    "energy_balance_abs_max": 1e-05,
+    "moisture_min_min": -1e-12
+  },
+  "metrics": {
+    "robin": {
+      "end_time_s": 1800.0,
+      "n_intervals": 80,
+      "dr_m": 0.00025,
+      "final_temperature_c_at_output_grid": [
+        33.576535462999914,
+        33.58439580268151,
+        33.607979165494726,
+        33.647292878954204,
+        33.702350129063916,
+        33.77317143561305,
+        33.85978672190299,
+        33.96223793231684,
+        34.080582066004354,
+        34.21489436546568,
+        34.36527123213551,
+        34.53183226265048,
+        34.71472065705143,
+        34.91410121118611,
+        35.130155243225886,
+        35.36307217088523,
+        35.61303804887416,
+        35.88022210979619,
+        36.164763054572916,
+        36.46675728877466,
+        36.786251299769674
+      ],
+      "final_moisture_at_output_grid": [
+        2.549991610994493,
+        2.5499886682210717,
+        2.549977279474422,
+        2.549947872027235,
+        2.5498772571558943,
+        2.5497143042575727,
+        2.549352514178094,
+        2.5485816417357796,
+        2.5470089359918577,
+        2.5439417013228462,
+        2.5382290454459735,
+        2.5280734422359585,
+        2.510840972747206,
+        2.482917307982387,
+        2.4396649632946112,
+        2.3755251750064854,
+        2.284266927793003,
+        2.1593114799106465,
+        1.9939389530526195,
+        1.7809343434928153,
+        1.5104305654013181
+      ],
+      "final_temperature_mean_c": 35.16900988372322,
+      "final_moisture_mean_kg_kg": 2.2934818268283457,
+      "max_picard_iterations": 3,
+      "picard_iteration_stats": {
+        "steps": 1800,
+        "min": 3,
+        "max": 3,
+        "mean": 3.0
+      }
+    },
+    "dirichlet": {
+      "end_time_s": 1800.0,
+      "n_intervals": 80,
+      "dr_m": 0.00025,
+      "final_temperature_c_at_output_grid": [
+        37.72078429715316,
+        37.7301245496983,
+        37.758144067812225,
+        37.804840781338214,
+        37.870216611040064,
+        37.95428500652014,
+        38.057080342555196,
+        38.178667766483215,
+        38.319151425382586,
+        38.47867832520927,
+        38.657434601037494,
+        38.85563103075003,
+        39.073475570211485,
+        39.31113279529126,
+        39.56867337582963,
+        39.846020562475644,
+        40.14290408309529,
+        40.45883342982029,
+        40.79310103428253,
+        41.144820829641844,
+        41.51299999999998
+      ],
+      "final_moisture_at_output_grid": [
+        2.5499604276583034,
+        2.5499475487664864,
+        2.5498987520288767,
+        2.5497770400816817,
+        2.549496613858801,
+        2.54887803657562,
+        2.5475689711073373,
+        2.5449172670130396,
+        2.5397872884847037,
+        2.530323871813798,
+        2.513692505265635,
+        2.485854641302248,
+        2.441460826393305,
+        2.3739430687991363,
+        2.2758436588464974,
+        2.139317362104993,
+        1.9565648786083645,
+        1.719580733818888,
+        1.4173330016058305,
+        1.0204131520989475,
+        0.03307
+      ],
+      "final_temperature_mean_c": 39.611313301118514,
+      "final_moisture_mean_kg_kg": 2.0037082211417614,
+      "max_picard_iterations": 6,
+      "picard_iteration_stats": {
+        "steps": 1800,
+        "min": 3,
+        "max": 6,
+        "mean": 3.1494444444444443
+      }
+    },
+    "robin_vs_dirichlet": {
+      "max_temperature_difference_k": 4.726748700230303,
+      "max_moisture_difference_kg_kg": 1.4773605654013182
+    }
+  },
+  "validation_result": {
+    "robin": {
+      "status": "PASS",
+      "checks": {
+        "finite": true,
+        "initial_ok": true,
+        "time_ok": true,
+        "mass_balance_abs_le_1e-10": true,
+        "energy_balance_abs_le_1e-5": true,
+        "moisture_nonnegative": true
+      },
+      "observed": {
+        "max_picard_iterations": 3,
+        "mass_balance_residual": -5.421010862427522e-20,
+        "energy_balance_residual": 1.1333395377732813e-07
+      }
+    },
+    "dirichlet": {
+      "status": "NOT_APPLICABLE",
+      "reason": "The Dirichlet comparison does not use the Robin boundary-flux accounting check."
+    }
+  },
+  "notes": "Boundary sensitivity comparison; Dirichlet is an alternative, not the default.",
+  "artifact_paths": [
+    "experiments/EXP-005/config.json",
+    "experiments/EXP-005/metrics.json",
+    "experiments/EXP-005/notes.md"
+  ]
+}

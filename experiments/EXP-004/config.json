@@ -1,0 +1,65 @@
+{
+  "experiment_id": "EXP-004",
+  "command": ".\\.venv\\Scripts\\python.exe scripts\\run_q1_experiments.py EXP-004",
+  "code_commit": "bbc8d90a3dc320585c65f806f48f49a92f0eecd6",
+  "input_hashes": {
+    "A题/附件/附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7"
+  },
+  "model_parameters": {
+    "density_kg_m3": 820.0,
+    "heat_capacity_j_kg_k": 2600.0,
+    "conductivity_w_m_k": 0.36,
+    "heat_transfer_w_m2_k": 25.0,
+    "mass_transfer_m_s": 8e-07,
+    "radius_m": 0.02,
+    "length_m": 0.25
+  },
+  "solver_parameters": {
+    "40": {
+      "end_time_s": 1800.0,
+      "time_step_s": 1.0,
+      "n_intervals": 40,
+      "interpolation": "linear",
+      "surface_boundary": "robin",
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55,
+      "input_path": "A题\\附件\\附件1.xlsx"
+    },
+    "80": {
+      "end_time_s": 1800.0,
+      "time_step_s": 1.0,
+      "n_intervals": 80,
+      "interpolation": "linear",
+      "surface_boundary": "robin",
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55,
+      "input_path": "A题\\附件\\附件1.xlsx"
+    },
+    "160": {
+      "end_time_s": 1800.0,
+      "time_step_s": 1.0,
+      "n_intervals": 160,
+      "interpolation": "linear",
+      "surface_boundary": "robin",
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55,
+      "input_path": "A题\\附件\\附件1.xlsx"
+    }
+  },
+  "validation_thresholds": {
+    "mass_balance_abs_max": 1e-10,
+    "energy_balance_abs_max": 1e-05,
+    "moisture_min_min": -1e-12
+  },
+  "artifact_paths": [
+    "experiments/EXP-004/config.json",
+    "experiments/EXP-004/metrics.json",
+    "experiments/EXP-004/notes.md"
+  ]
+}

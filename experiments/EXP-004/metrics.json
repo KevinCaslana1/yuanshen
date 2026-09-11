@@ -1,0 +1,310 @@
+{
+  "experiment_id": "EXP-004",
+  "status": "COMPLETED",
+  "command": ".\\.venv\\Scripts\\python.exe scripts\\run_q1_experiments.py EXP-004",
+  "code_commit": "bbc8d90a3dc320585c65f806f48f49a92f0eecd6",
+  "input_hashes": {
+    "A题/附件/附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7"
+  },
+  "runtime_seconds": 2.4697516000001087,
+  "model_parameters": {
+    "density_kg_m3": 820.0,
+    "heat_capacity_j_kg_k": 2600.0,
+    "conductivity_w_m_k": 0.36,
+    "heat_transfer_w_m2_k": 25.0,
+    "mass_transfer_m_s": 8e-07,
+    "radius_m": 0.02,
+    "length_m": 0.25
+  },
+  "solver_parameters": {
+    "40": {
+      "end_time_s": 1800.0,
+      "time_step_s": 1.0,
+      "n_intervals": 40,
+      "interpolation": "linear",
+      "surface_boundary": "robin",
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55,
+      "input_path": "A题\\附件\\附件1.xlsx"
+    },
+    "80": {
+      "end_time_s": 1800.0,
+      "time_step_s": 1.0,
+      "n_intervals": 80,
+      "interpolation": "linear",
+      "surface_boundary": "robin",
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55,
+      "input_path": "A题\\附件\\附件1.xlsx"
+    },
+    "160": {
+      "end_time_s": 1800.0,
+      "time_step_s": 1.0,
+      "n_intervals": 160,
+      "interpolation": "linear",
+      "surface_boundary": "robin",
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55,
+      "input_path": "A题\\附件\\附件1.xlsx"
+    }
+  },
+  "validation_thresholds": {
+    "mass_balance_abs_max": 1e-10,
+    "energy_balance_abs_max": 1e-05,
+    "moisture_min_min": -1e-12
+  },
+  "metrics": {
+    "runs": {
+      "40": {
+        "end_time_s": 1800.0,
+        "n_intervals": 40,
+        "dr_m": 0.0005,
+        "final_temperature_c_at_output_grid": [
+          33.57650785763019,
+          33.584368276732505,
+          33.60795185694673,
+          33.64726592528871,
+          33.70232365289121,
+          33.77314552506084,
+          33.85976140031892,
+          33.96221311782199,
+          34.08055752541384,
+          34.214869672115356,
+          34.365245742383706,
+          34.53180512935819,
+          34.71469089742868,
+          34.9140678383057,
+          35.13011745422773,
+          35.363029562807924,
+          35.612990811915665,
+          35.88017113731428,
+          36.164709917965126,
+          36.46670405604851,
+          36.78620022186374
+        ],
+        "final_moisture_at_output_grid": [
+          2.549989937114903,
+          2.549986627048112,
+          2.5499740019182804,
+          2.5499419990330052,
+          2.54986656876404,
+          2.5496953448107713,
+          2.5493203842131407,
+          2.548530276605409,
+          2.5469323033959466,
+          2.5438362844428712,
+          2.5380975840799374,
+          2.5279291402232373,
+          2.510710463072499,
+          2.482840107042584,
+          2.439687532723862,
+          2.375689288562516,
+          2.2845943506000532,
+          2.1597888416260593,
+          1.9945065669396664,
+          1.781478228950954,
+          1.5107582611541022
+        ],
+        "final_temperature_mean_c": 35.169358597199505,
+        "final_moisture_mean_kg_kg": 2.293210147149104,
+        "max_picard_iterations": 3,
+        "picard_iteration_stats": {
+          "steps": 1800,
+          "min": 3,
+          "max": 3,
+          "mean": 3.0
+        }
+      },
+      "80": {
+        "end_time_s": 1800.0,
+        "n_intervals": 80,
+        "dr_m": 0.00025,
+        "final_temperature_c_at_output_grid": [
+          33.576535462999914,
+          33.58439580268151,
+          33.607979165494726,
+          33.647292878954204,
+          33.702350129063916,
+          33.77317143561305,
+          33.85978672190299,
+          33.96223793231684,
+          34.080582066004354,
+          34.21489436546568,
+          34.36527123213551,
+          34.53183226265048,
+          34.71472065705143,
+          34.91410121118611,
+          35.130155243225886,
+          35.36307217088523,
+          35.61303804887416,
+          35.88022210979619,
+          36.164763054572916,
+          36.46675728877466,
+          36.786251299769674
+        ],
+        "final_moisture_at_output_grid": [
+          2.549991610994493,
+          2.5499886682210717,
+          2.549977279474422,
+          2.549947872027235,
+          2.5498772571558943,
+          2.5497143042575727,
+          2.549352514178094,
+          2.5485816417357796,
+          2.5470089359918577,
+          2.5439417013228462,
+          2.5382290454459735,
+          2.5280734422359585,
+          2.510840972747206,
+          2.482917307982387,
+          2.4396649632946112,
+          2.3755251750064854,
+          2.284266927793003,
+          2.1593114799106465,
+          1.9939389530526195,
+          1.7809343434928153,
+          1.5104305654013181
+        ],
+        "final_temperature_mean_c": 35.16900988372322,
+        "final_moisture_mean_kg_kg": 2.2934818268283457,
+        "max_picard_iterations": 3,
+        "picard_iteration_stats": {
+          "steps": 1800,
+          "min": 3,
+          "max": 3,
+          "mean": 3.0
+        }
+      },
+      "160": {
+        "end_time_s": 1800.0,
+        "n_intervals": 160,
+        "dr_m": 0.000125,
+        "final_temperature_c_at_output_grid": [
+          33.57654236119987,
+          33.58440268208096,
+          33.6079859903752,
+          33.64729961454833,
+          33.70235674450976,
+          33.773177908845526,
+          33.85979304725902,
+          33.96224413067421,
+          34.08058819628684,
+          34.214900535096206,
+          34.365277602721505,
+          34.53183904634585,
+          34.71472809930901,
+          34.914109557696634,
+          35.13016469294155,
+          35.36308282246995,
+          35.61304985307686,
+          35.88023484270502,
+          36.164776324373804,
+          36.46677058104336,
+          36.786264055196966
+        ],
+        "final_moisture_at_output_grid": [
+          2.549992011557762,
+          2.549989158321605,
+          2.549978075790562,
+          2.5499493147417795,
+          2.5498799051229364,
+          2.5497190301921213,
+          2.5493605564704342,
+          2.5485945309806564,
+          2.5470281871051776,
+          2.543968181446186,
+          2.5382620307433257,
+          2.528109570394456,
+          2.510873524170542,
+          2.482936378385323,
+          2.439658980822832,
+          2.37548381436973,
+          2.284184905242341,
+          2.159192266030988,
+          1.993797495327177,
+          1.7807990247818661,
+          1.5103492818663693
+        ],
+        "final_temperature_mean_c": 35.16892270153323,
+        "final_moisture_mean_kg_kg": 2.2935497140433942,
+        "max_picard_iterations": 3,
+        "picard_iteration_stats": {
+          "steps": 1800,
+          "min": 3,
+          "max": 3,
+          "mean": 3.0
+        }
+      }
+    },
+    "n_40_vs_80": {
+      "max_temperature_difference_k": 5.3232726145324705e-05,
+      "max_moisture_difference_kg_kg": 0.0005676138870469583
+    },
+    "n_80_vs_160": {
+      "max_temperature_difference_k": 1.3292268704390153e-05,
+      "max_moisture_difference_kg_kg": 0.00014145772544238433
+    }
+  },
+  "validation_result": {
+    "40": {
+      "status": "PASS",
+      "checks": {
+        "finite": true,
+        "initial_ok": true,
+        "time_ok": true,
+        "mass_balance_abs_le_1e-10": true,
+        "energy_balance_abs_le_1e-5": true,
+        "moisture_nonnegative": true
+      },
+      "observed": {
+        "max_picard_iterations": 3,
+        "mass_balance_residual": -4.228388472693467e-18,
+        "energy_balance_residual": -1.4351826393976808e-08
+      }
+    },
+    "80": {
+      "status": "PASS",
+      "checks": {
+        "finite": true,
+        "initial_ok": true,
+        "time_ok": true,
+        "mass_balance_abs_le_1e-10": true,
+        "energy_balance_abs_le_1e-5": true,
+        "moisture_nonnegative": true
+      },
+      "observed": {
+        "max_picard_iterations": 3,
+        "mass_balance_residual": -5.421010862427522e-20,
+        "energy_balance_residual": 1.1333395377732813e-07
+      }
+    },
+    "160": {
+      "status": "PASS",
+      "checks": {
+        "finite": true,
+        "initial_ok": true,
+        "time_ok": true,
+        "mass_balance_abs_le_1e-10": true,
+        "energy_balance_abs_le_1e-5": true,
+        "moisture_nonnegative": true
+      },
+      "observed": {
+        "max_picard_iterations": 3,
+        "mass_balance_residual": 4.065758146820642e-18,
+        "energy_balance_residual": 3.523382474668324e-08
+      }
+    }
+  },
+  "notes": "Spatial grid convergence; internal grid is separate from the 0.1 cm output grid.",
+  "artifact_paths": [
+    "experiments/EXP-004/config.json",
+    "experiments/EXP-004/metrics.json",
+    "experiments/EXP-004/notes.md"
+  ]
+}

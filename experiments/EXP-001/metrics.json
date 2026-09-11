@@ -1,0 +1,132 @@
+{
+  "experiment_id": "EXP-001",
+  "status": "COMPLETED",
+  "command": ".\\.venv\\Scripts\\python.exe scripts\\run_q1_experiments.py EXP-001",
+  "code_commit": "bbc8d90a3dc320585c65f806f48f49a92f0eecd6",
+  "input_hashes": {
+    "A题/附件/附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7"
+  },
+  "runtime_seconds": 0.014987200000177836,
+  "model_parameters": {
+    "density_kg_m3": 820.0,
+    "heat_capacity_j_kg_k": 2600.0,
+    "conductivity_w_m_k": 0.36,
+    "heat_transfer_w_m2_k": 25.0,
+    "mass_transfer_m_s": 8e-07,
+    "radius_m": 0.02,
+    "length_m": 0.25
+  },
+  "solver_parameters": {
+    "smoke": {
+      "end_time_s": 10.0,
+      "time_step_s": 1.0,
+      "n_intervals": 8,
+      "interpolation": "linear",
+      "surface_boundary": "robin",
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55,
+      "input_path": "A题\\附件\\附件1.xlsx"
+    }
+  },
+  "validation_thresholds": {
+    "mass_balance_abs_max": 1e-10,
+    "energy_balance_abs_max": 1e-05,
+    "moisture_min_min": -1e-12
+  },
+  "metrics": {
+    "finite": true,
+    "initial_ok": true,
+    "time_ok": true,
+    "max_picard_iterations": 2,
+    "mass_balance_residual": 3.6422416731934915e-20,
+    "energy_balance_residual": -3.7452041468100106e-10,
+    "temperature_initial_c": 28.0,
+    "temperature_final_surface_c": 28.003781962272456,
+    "moisture_initial_center": 2.55,
+    "moisture_final_center": 2.55,
+    "moisture_final_surface": 2.533482467702126,
+    "end_time_s": 10.0,
+    "n_intervals": 8,
+    "dr_m": 0.0025,
+    "final_temperature_c_at_output_grid": [
+      28.000000000011198,
+      28.000000000011198,
+      28.00000000006287,
+      28.00000000006287,
+      28.000000000815362,
+      28.000000000815362,
+      28.000000000815362,
+      28.000000012121518,
+      28.000000012121518,
+      28.000000180181644,
+      28.000000180181644,
+      28.000000180181644,
+      28.000002553409445,
+      28.000002553409445,
+      28.000033328065683,
+      28.000033328065683,
+      28.000033328065683,
+      28.000386188292055,
+      28.000386188292055,
+      28.003781962272456,
+      28.003781962272456
+    ],
+    "final_moisture_at_output_grid": [
+      2.55,
+      2.55,
+      2.5500000000000043,
+      2.5500000000000043,
+      2.55,
+      2.55,
+      2.55,
+      2.5499999999999994,
+      2.5499999999999994,
+      2.5499999999981706,
+      2.5499999999981706,
+      2.5499999999981706,
+      2.549999999262332,
+      2.549999999262332,
+      2.5499997383174287,
+      2.5499997383174287,
+      2.5499997383174287,
+      2.5499233974408306,
+      2.5499233974408306,
+      2.533482467702126,
+      2.533482467702126
+    ],
+    "final_temperature_mean_c": 28.000549122377436,
+    "final_moisture_mean_kg_kg": 2.5479830240825145,
+    "picard_iteration_stats": {
+      "steps": 10,
+      "min": 2,
+      "max": 2,
+      "mean": 2.0
+    },
+    "boundary_raw_count": 241,
+    "formal_result_generated": false
+  },
+  "validation_result": {
+    "status": "PASS",
+    "checks": {
+      "finite": true,
+      "initial_ok": true,
+      "time_ok": true,
+      "mass_balance_abs_le_1e-10": true,
+      "energy_balance_abs_le_1e-5": true,
+      "moisture_nonnegative": true
+    },
+    "observed": {
+      "max_picard_iterations": 2,
+      "mass_balance_residual": 3.6422416731934915e-20,
+      "energy_balance_residual": -3.7452041468100106e-10
+    }
+  },
+  "notes": "Non-formal smoke test. No official or candidate workbook was generated.",
+  "artifact_paths": [
+    "experiments/EXP-001/config.json",
+    "experiments/EXP-001/metrics.json",
+    "experiments/EXP-001/notes.md"
+  ]
+}

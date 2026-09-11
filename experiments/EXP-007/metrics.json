@@ -1,0 +1,134 @@
+{
+  "experiment_id": "EXP-007",
+  "status": "COMPLETED",
+  "command": ".\\.venv\\Scripts\\python.exe scripts\\run_q1_experiments.py EXP-007",
+  "code_commit": "bbc8d90a3dc320585c65f806f48f49a92f0eecd6",
+  "input_hashes": {
+    "A题/附件/附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7"
+  },
+  "runtime_seconds": 0.7443364000000656,
+  "model_parameters": {
+    "density_kg_m3": 820.0,
+    "heat_capacity_j_kg_k": 2600.0,
+    "conductivity_w_m_k": 0.36,
+    "heat_transfer_w_m2_k": 25.0,
+    "mass_transfer_m_s": 8e-07,
+    "radius_m": 0.02,
+    "length_m": 0.25
+  },
+  "solver_parameters": {
+    "m1": {
+      "end_time_s": 1800.0,
+      "time_step_s": 1.0,
+      "n_intervals": 80,
+      "interpolation": "linear",
+      "surface_boundary": "robin",
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55,
+      "input_path": "A题\\附件\\附件1.xlsx"
+    }
+  },
+  "validation_thresholds": {
+    "mass_balance_abs_max": 1e-10,
+    "energy_balance_abs_max": 1e-05,
+    "moisture_min_min": -1e-12
+  },
+  "metrics": {
+    "finite": true,
+    "initial_ok": true,
+    "time_ok": true,
+    "max_picard_iterations": 3,
+    "mass_balance_residual": -5.421010862427522e-20,
+    "energy_balance_residual": 1.1333395377732813e-07,
+    "temperature_initial_c": 28.0,
+    "temperature_final_surface_c": 36.786251299769674,
+    "moisture_initial_center": 2.55,
+    "moisture_final_center": 2.549991610994493,
+    "moisture_final_surface": 1.5104305654013181,
+    "end_time_s": 1800.0,
+    "n_intervals": 80,
+    "dr_m": 0.00025,
+    "final_temperature_c_at_output_grid": [
+      33.576535462999914,
+      33.58439580268151,
+      33.607979165494726,
+      33.647292878954204,
+      33.702350129063916,
+      33.77317143561305,
+      33.85978672190299,
+      33.96223793231684,
+      34.080582066004354,
+      34.21489436546568,
+      34.36527123213551,
+      34.53183226265048,
+      34.71472065705143,
+      34.91410121118611,
+      35.130155243225886,
+      35.36307217088523,
+      35.61303804887416,
+      35.88022210979619,
+      36.164763054572916,
+      36.46675728877466,
+      36.786251299769674
+    ],
+    "final_moisture_at_output_grid": [
+      2.549991610994493,
+      2.5499886682210717,
+      2.549977279474422,
+      2.549947872027235,
+      2.5498772571558943,
+      2.5497143042575727,
+      2.549352514178094,
+      2.5485816417357796,
+      2.5470089359918577,
+      2.5439417013228462,
+      2.5382290454459735,
+      2.5280734422359585,
+      2.510840972747206,
+      2.482917307982387,
+      2.4396649632946112,
+      2.3755251750064854,
+      2.284266927793003,
+      2.1593114799106465,
+      1.9939389530526195,
+      1.7809343434928153,
+      1.5104305654013181
+    ],
+    "final_temperature_mean_c": 35.16900988372322,
+    "final_moisture_mean_kg_kg": 2.2934818268283457,
+    "picard_iteration_stats": {
+      "steps": 1800,
+      "min": 3,
+      "max": 3,
+      "mean": 3.0
+    },
+    "temperature_min_c": 27.999999999999602,
+    "temperature_max_c": 36.786251299769674,
+    "moisture_min_kg_kg": 1.5104305654013181,
+    "moisture_max_kg_kg": 2.5500000000000047
+  },
+  "validation_result": {
+    "status": "PASS",
+    "checks": {
+      "finite": true,
+      "initial_ok": true,
+      "time_ok": true,
+      "mass_balance_abs_le_1e-10": true,
+      "energy_balance_abs_le_1e-5": true,
+      "moisture_nonnegative": true
+    },
+    "observed": {
+      "max_picard_iterations": 3,
+      "mass_balance_residual": -5.421010862427522e-20,
+      "energy_balance_residual": 1.1333395377732813e-07
+    }
+  },
+  "notes": "Formal numerical validation evidence for M1. No result workbook was generated.",
+  "artifact_paths": [
+    "experiments/EXP-007/config.json",
+    "experiments/EXP-007/metrics.json",
+    "experiments/EXP-007/notes.md"
+  ]
+}

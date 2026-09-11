@@ -1,0 +1,216 @@
+{
+  "experiment_id": "EXP-006",
+  "status": "COMPLETED",
+  "command": ".\\.venv\\Scripts\\python.exe scripts\\run_q1_experiments.py EXP-006",
+  "code_commit": "bbc8d90a3dc320585c65f806f48f49a92f0eecd6",
+  "input_hashes": {
+    "A题/附件/附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7"
+  },
+  "runtime_seconds": 1.4205006000001958,
+  "model_parameters": {
+    "density_kg_m3": 820.0,
+    "heat_capacity_j_kg_k": 2600.0,
+    "conductivity_w_m_k": 0.36,
+    "heat_transfer_w_m2_k": 25.0,
+    "mass_transfer_m_s": 8e-07,
+    "radius_m": 0.02,
+    "length_m": 0.25
+  },
+  "solver_parameters": {
+    "linear": {
+      "end_time_s": 1800.0,
+      "time_step_s": 1.0,
+      "n_intervals": 80,
+      "interpolation": "linear",
+      "surface_boundary": "robin",
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55,
+      "input_path": "A题\\附件\\附件1.xlsx"
+    },
+    "zero_order": {
+      "end_time_s": 1800.0,
+      "time_step_s": 1.0,
+      "n_intervals": 80,
+      "interpolation": "zero_order",
+      "surface_boundary": "robin",
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55,
+      "input_path": "A题\\附件\\附件1.xlsx"
+    }
+  },
+  "validation_thresholds": {
+    "mass_balance_abs_max": 1e-10,
+    "energy_balance_abs_max": 1e-05,
+    "moisture_min_min": -1e-12
+  },
+  "metrics": {
+    "linear": {
+      "end_time_s": 1800.0,
+      "n_intervals": 80,
+      "dr_m": 0.00025,
+      "final_temperature_c_at_output_grid": [
+        33.576535462999914,
+        33.58439580268151,
+        33.607979165494726,
+        33.647292878954204,
+        33.702350129063916,
+        33.77317143561305,
+        33.85978672190299,
+        33.96223793231684,
+        34.080582066004354,
+        34.21489436546568,
+        34.36527123213551,
+        34.53183226265048,
+        34.71472065705143,
+        34.91410121118611,
+        35.130155243225886,
+        35.36307217088523,
+        35.61303804887416,
+        35.88022210979619,
+        36.164763054572916,
+        36.46675728877466,
+        36.786251299769674
+      ],
+      "final_moisture_at_output_grid": [
+        2.549991610994493,
+        2.5499886682210717,
+        2.549977279474422,
+        2.549947872027235,
+        2.5498772571558943,
+        2.5497143042575727,
+        2.549352514178094,
+        2.5485816417357796,
+        2.5470089359918577,
+        2.5439417013228462,
+        2.5382290454459735,
+        2.5280734422359585,
+        2.510840972747206,
+        2.482917307982387,
+        2.4396649632946112,
+        2.3755251750064854,
+        2.284266927793003,
+        2.1593114799106465,
+        1.9939389530526195,
+        1.7809343434928153,
+        1.5104305654013181
+      ],
+      "final_temperature_mean_c": 35.16900988372322,
+      "final_moisture_mean_kg_kg": 2.2934818268283457,
+      "max_picard_iterations": 3,
+      "picard_iteration_stats": {
+        "steps": 1800,
+        "min": 3,
+        "max": 3,
+        "mean": 3.0
+      }
+    },
+    "zero_order": {
+      "end_time_s": 1800.0,
+      "n_intervals": 80,
+      "dr_m": 0.00025,
+      "final_temperature_c_at_output_grid": [
+        33.4200211287461,
+        33.42786988903043,
+        33.451416747830876,
+        33.49066361991953,
+        33.54561435885324,
+        33.61627597354692,
+        33.702660765228245,
+        33.8047897558568,
+        33.92269770912122,
+        34.056439715171905,
+        34.20609858386689,
+        34.37179109816191,
+        34.5536696314972,
+        34.751914137734786,
+        34.966708806989175,
+        35.19819865368004,
+        35.446424889965954,
+        35.71124691810792,
+        35.992302441735035,
+        36.28945967797972,
+        36.60847564000602
+      ],
+      "final_moisture_at_output_grid": [
+        2.5499916103335023,
+        2.549988667325369,
+        2.549977277667996,
+        2.5499478678601197,
+        2.5498772472978923,
+        2.549714281221282,
+        2.5493524617989816,
+        2.5485815266970544,
+        2.547008692919495,
+        2.543941208313421,
+        2.5382280867132496,
+        2.528071655321788,
+        2.5108377797049464,
+        2.482911832941746,
+        2.439655942385968,
+        2.375510868418654,
+        2.2842450453704,
+        2.1592791163370673,
+        1.9938924396859543,
+        1.7808686434196546,
+        1.5103287043051166
+      ],
+      "final_temperature_mean_c": 35.00380518563122,
+      "final_moisture_mean_kg_kg": 2.293459879974647,
+      "max_picard_iterations": 3,
+      "picard_iteration_stats": {
+        "steps": 1800,
+        "min": 3,
+        "max": 3,
+        "mean": 3.0
+      }
+    },
+    "linear_vs_zero_order": {
+      "max_temperature_difference_k": 0.17777565976365395,
+      "max_moisture_difference_kg_kg": 0.00010186109620158312
+    }
+  },
+  "validation_result": {
+    "linear": {
+      "status": "PASS",
+      "checks": {
+        "finite": true,
+        "initial_ok": true,
+        "time_ok": true,
+        "mass_balance_abs_le_1e-10": true,
+        "energy_balance_abs_le_1e-5": true,
+        "moisture_nonnegative": true
+      },
+      "observed": {
+        "max_picard_iterations": 3,
+        "mass_balance_residual": -5.421010862427522e-20,
+        "energy_balance_residual": 1.1333395377732813e-07
+      }
+    },
+    "zero_order": {
+      "status": "PASS",
+      "checks": {
+        "finite": true,
+        "initial_ok": true,
+        "time_ok": true,
+        "mass_balance_abs_le_1e-10": true,
+        "energy_balance_abs_le_1e-5": true,
+        "moisture_nonnegative": true
+      },
+      "observed": {
+        "max_picard_iterations": 3,
+        "mass_balance_residual": 2.222614453595284e-18,
+        "energy_balance_residual": 1.0866278898902237e-07
+      }
+    }
+  },
+  "notes": "Input interpolation sensitivity; no smoothing or extrapolation was used.",
+  "artifact_paths": [
+    "experiments/EXP-006/config.json",
+    "experiments/EXP-006/metrics.json",
+    "experiments/EXP-006/notes.md"
+  ]
+}
