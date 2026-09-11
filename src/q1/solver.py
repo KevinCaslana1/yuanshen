@@ -11,6 +11,7 @@ from src.common.numerics import NonuniformRadialGrid, RadialGrid, make_boundary_
 from .config import DEFAULT_PARAMETERS, Q1Parameters, Q1RunConfig
 from .inputs import BoundaryProvider, celsius_to_kelvin
 from .model import (
+    assemble_radial_system,
     arithmetic_face_values,
     boundary_flux_outward,
     implicit_bdf2_radial_step,
@@ -71,12 +72,38 @@ def _assert_finite(values: List[float], label: str) -> None:
         raise FloatingPointError(f"non-finite values in {label}")
 
 
+def _tridiagonal_residual_linf(
+    lower: Sequence[float],
+    diagonal: Sequence[float],
+    upper: Sequence[float],
+    right_hand_side: Sequence[float],
+    solution: Sequence[float],
+) -> float:
+    """Return the unscaled infinity-norm residual of a tridiagonal system."""
+
+    residuals = []
+    for index, value in enumerate(solution):
+        lhs = diagonal[index] * value
+        if index > 0:
+            lhs += lower[index] * solution[index - 1]
+        if index + 1 < len(solution):
+            lhs += upper[index] * solution[index + 1]
+        residuals.append(abs(lhs - right_hand_side[index]))
+    return max(residuals, default=0.0)
+
+
 def run_m1(
     config: Q1RunConfig,
     boundary: BoundaryProvider,
     parameters: Q1Parameters = DEFAULT_PARAMETERS,
+    diagnostics: list[dict[str, float | int]] | None = None,
 ) -> Q1Result:
-    """Run M1 without writing any workbook or modifying official inputs."""
+    """Run M1 without writing any workbook or modifying official inputs.
+
+    ``diagnostics`` is an optional append-only trace.  It is deliberately
+    separated from the result object so normal production runs retain their
+    historical behavior and memory footprint.
+    """
 
     if config.end_time_s > boundary.times_s[-1]:
         raise ValueError("Q1 run would require boundary extrapolation")
@@ -98,6 +125,8 @@ def run_m1(
         next_time = current_time + config.time_step_s
         temperature_environment_c, moisture_environment = boundary.at(next_time)
         temperature_environment_k = celsius_to_kelvin(temperature_environment_c)
+        old_temperature = list(temperature)
+        old_moisture = list(moisture)
 
         temperature = implicit_radial_step(
             temperature,
@@ -112,8 +141,11 @@ def run_m1(
         _assert_finite(temperature, "temperature")
 
         moisture_guess = list(moisture)
+        last_face_diffusivities = [parameters.diffusivity_m2_s(value) for value in moisture_guess]
+        final_picard_error = float("nan")
         for iteration in range(1, config.picard_max_iterations + 1):
             node_diffusivities = [parameters.diffusivity_m2_s(value) for value in moisture_guess]
+            last_face_diffusivities = arithmetic_face_values(node_diffusivities)
             moisture_new = implicit_radial_step(
                 moisture,
                 grid,
@@ -127,6 +159,7 @@ def run_m1(
             _assert_finite(moisture_new, "moisture")
             scale = max(1.0e-30, max(abs(value) for value in moisture_new))
             error = max(abs(new - old) for new, old in zip(moisture_new, moisture_guess)) / scale
+            final_picard_error = error
             moisture_guess = moisture_new
             if error < config.picard_tolerance:
                 break
@@ -141,6 +174,41 @@ def run_m1(
         picard_iterations.append(iteration)
         heat_fluxes.append(parameters.heat_transfer_w_m2_k * (temperature_environment_k - temperature[-1]))
         moisture_fluxes.append(boundary_flux_outward(moisture[-1], moisture_environment, parameters.mass_transfer_m_s))
+
+        if diagnostics is not None:
+            temperature_system = assemble_radial_system(
+                old_temperature,
+                grid,
+                config.time_step_s,
+                heat_capacity,
+                [parameters.conductivity_w_m_k] * config.n_intervals,
+                parameters.heat_transfer_w_m2_k,
+                temperature_environment_k,
+                config.surface_boundary,
+            )
+            moisture_system = assemble_radial_system(
+                old_moisture,
+                grid,
+                config.time_step_s,
+                1.0,
+                last_face_diffusivities,
+                parameters.mass_transfer_m_s,
+                moisture_environment,
+                config.surface_boundary,
+            )
+            diagnostics.append({
+                "time_s": float(current_time),
+                "step_dt_s": float(config.time_step_s),
+                "temperature_environment_c": float(temperature_environment_c),
+                "moisture_environment_kg_kg": float(moisture_environment),
+                "surface_temperature_c": float(temperature[-1] - 273.15),
+                "surface_moisture_kg_kg": float(moisture[-1]),
+                "surface_diffusivity_m2_s": float(parameters.diffusivity_m2_s(moisture[-1])),
+                "picard_iterations": int(iteration),
+                "picard_final_normalized_residual": float(final_picard_error),
+                "temperature_matrix_residual_linf": _tridiagonal_residual_linf(*temperature_system, temperature),
+                "moisture_matrix_residual_linf": _tridiagonal_residual_linf(*moisture_system, moisture),
+            })
 
     return Q1Result(
         config=config,

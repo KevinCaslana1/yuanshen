@@ -78,6 +78,21 @@ def test_same_configuration_is_deterministic() -> None:
     assert first.moistures_kg_kg == second.moistures_kg_kg
 
 
+def test_m1_optional_diagnostics_do_not_change_solution() -> None:
+    config = Q1RunConfig(end_time_s=2.0, time_step_s=1.0, n_intervals=8)
+    boundary = BoundaryProvider.from_attachment1(ROOT / config.input_path)
+    trace = []
+    plain = run_m1(config, boundary)
+    instrumented = run_m1(config, boundary, diagnostics=trace)
+    assert instrumented.moistures_kg_kg == plain.moistures_kg_kg
+    assert instrumented.temperatures_k == plain.temperatures_k
+    assert len(trace) == 2
+    assert [row["time_s"] for row in trace] == [1.0, 2.0]
+    assert all(row["picard_iterations"] >= 1 for row in trace)
+    assert all(row["picard_final_normalized_residual"] < config.picard_tolerance for row in trace)
+    assert max(row["moisture_matrix_residual_linf"] for row in trace) < 1.0e-12
+
+
 def test_b0_baseline_is_reproducible_and_spatially_uniform() -> None:
     config = Q1RunConfig(end_time_s=3.0, time_step_s=1.0, n_intervals=8)
     boundary = BoundaryProvider.from_attachment1(ROOT / config.input_path)
