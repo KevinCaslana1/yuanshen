@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "candidate_validator_errors": [],
+  "trace_status": "PASS",
+  "random_cell_trace_count": 20,
+  "paper_table_trace": {
+    "temperature_c": {
+      "count": 35,
+      "pass_count": 35
+    },
+    "moisture_kg_kg": {
+      "count": 35,
+      "pass_count": 35
+    }
+  }
+}

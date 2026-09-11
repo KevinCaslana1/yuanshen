@@ -78,10 +78,12 @@ def _raw_value(payload: Dict[str, Any], field: str, time_s: int, position_m: flo
     return float(payload["moistures_kg_kg"][ti][pi])
 
 
-def _copy_and_fill(payload: Dict[str, Any]) -> None:
+def _copy_and_fill(payload: Dict[str, Any], reuse_existing: bool = False) -> None:
     assert_not_official_output(CANDIDATE)
     CANDIDATE.parent.mkdir(parents=True, exist_ok=True)
     if CANDIDATE.exists():
+        if reuse_existing:
+            return
         raise FileExistsError(f"refusing to overwrite existing candidate: {CANDIDATE}")
     shutil.copy2(OFFICIAL_TEMPLATE, CANDIDATE)
     workbook = openpyxl.load_workbook(CANDIDATE)
@@ -100,16 +102,24 @@ def _copy_and_fill(payload: Dict[str, Any]) -> None:
         workbook.close()
 
 
-def _candidate_cell_value(sheet_name: str, row: int, column: int) -> Any:
+def _load_candidate_values() -> Dict[str, Tuple[Tuple[Any, ...], ...]]:
     workbook = openpyxl.load_workbook(CANDIDATE, read_only=True, data_only=False)
     try:
-        return workbook[sheet_name].cell(row, column).value
+        return {
+            sheet_name: tuple(tuple(row) for row in workbook[sheet_name].iter_rows(values_only=True))
+            for sheet_name, _ in EXPECTED_SHEETS
+        }
     finally:
         workbook.close()
 
 
 def _trace(payload: Dict[str, Any], freeze_metrics: Dict[str, Any]) -> Dict[str, Any]:
     rng = random.Random(20260911)
+    candidate_values = _load_candidate_values()
+
+    def candidate_value(sheet_name: str, row: int, column: int) -> Any:
+        return candidate_values[sheet_name][row - 1][column - 1]
+
     cells = []
     for sample_index in rng.sample(range(1800 * 21), 20):
         time_offset, position_index = divmod(sample_index, 21)
@@ -119,7 +129,7 @@ def _trace(payload: Dict[str, Any], freeze_metrics: Dict[str, Any]) -> Dict[str,
         row = time_offset + 2
         column = position_index + 2
         raw_value = _raw_value(payload, field, time_s, position_m)
-        candidate_value = _candidate_cell_value(sheet_name, row, column)
+        candidate_cell = candidate_value(sheet_name, row, column)
         expected_value = _rounded(raw_value)
         cells.append({
             "sheet": sheet_name,
@@ -129,9 +139,9 @@ def _trace(payload: Dict[str, Any], freeze_metrics: Dict[str, Any]) -> Dict[str,
             "time_s": time_s,
             "distance_cm": position_m * 100.0,
             "freeze_raw_value": raw_value,
-            "candidate_value": candidate_value,
+            "candidate_value": candidate_cell,
             "expected_round_half_up": expected_value,
-            "pass": candidate_value == expected_value,
+            "pass": candidate_cell == expected_value,
         })
 
     paper = {}
@@ -143,15 +153,15 @@ def _trace(payload: Dict[str, Any], freeze_metrics: Dict[str, Any]) -> Dict[str,
                 row = time_s + 1
                 column = position_index + 2
                 raw_value = _raw_value(payload, field, time_s, position_m)
-                candidate_value = _candidate_cell_value(sheet_name, row, column)
+                candidate_cell = candidate_value(sheet_name, row, column)
                 expected_value = _rounded(raw_value)
                 entries.append({
                     "time_s": time_s,
                     "distance_cm": position_m * 100.0,
                     "freeze_raw_value": raw_value,
-                    "candidate_value": candidate_value,
+                    "candidate_value": candidate_cell,
                     "expected_round_half_up": expected_value,
-                    "pass": candidate_value == expected_value,
+                    "pass": candidate_cell == expected_value,
                 })
         paper[field] = {
             "count": len(entries),
@@ -180,6 +190,9 @@ def _trace(payload: Dict[str, Any], freeze_metrics: Dict[str, Any]) -> Dict[str,
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--reuse-existing", action="store_true", help="audit an already-generated candidate without overwriting it")
+    args = parser.parse_args()
     if not SOURCE_REFERENCE.is_file():
         raise SystemExit(f"missing freeze source: {SOURCE_REFERENCE}")
     freeze_metrics_path = FREEZE_DIR / "metrics.json"
@@ -198,7 +211,7 @@ def main() -> int:
             raise SystemExit(f"{label} full-horizon production candidate is absent")
 
     payload = _load_payload(SOURCE_REFERENCE)
-    _copy_and_fill(payload)
+    _copy_and_fill(payload, reuse_existing=args.reuse_existing)
     trace = _trace(payload, freeze_metrics)
     trace_path = FREEZE_DIR / "candidate_trace.json"
     trace_path.write_text(json.dumps(trace, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

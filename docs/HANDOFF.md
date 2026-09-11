@@ -4,15 +4,15 @@
 
 ## 当前做到哪里
 
-已完成 PRE-MODELING GATE、Q1 MODEL DESIGN GATE、Q1 IMPLEMENTATION & NUMERICAL VALIDATION GATE 和 Q1 NUMERICAL CONVERGENCE DIAGNOSIS & REMEDIATION GATE；当前进入 Q1 INITIAL-LAYER & SURFACE-ACCURACY GATE。初始水分层诊断获支持，边界聚类为短时数值候选，但最终全时段精度门仍阻塞。Q2/Q3/Q4 仍为 NOT STARTED。
+已完成 PRE-MODELING GATE、Q1 MODEL DESIGN GATE、Q1 IMPLEMENTATION & NUMERICAL VALIDATION GATE、Q1 NUMERICAL CONVERGENCE DIAGNOSIS & REMEDIATION GATE、Q1 INITIAL-LAYER & SURFACE-ACCURACY GATE 和 Q1 FULL-HORIZON PRODUCTION CONFIG FREEZE & CANDIDATE DELIVERABLE GATE。Q1 结果与交付门已完成：候选 `deliverables/candidate/result1.xlsx` 已生成并通过验证，`deliverables/final/` 仍为空，等待人工批准后再进入最终交付。Q2/Q3/Q4 仍为 NOT STARTED。
 
 ## 刚刚完成什么
 
-已冻结 Python/依赖和 Q1 交付契约；OQ-005/OQ-006/OQ-007/OQ-008 已登记决策。完成 M1/M2/B0/M3 对照、EXP-001–EXP-007、最终精度初审、制造解 benchmark、误差诊断、Picard 敏感性、BDF2 启动对照、表面衰减、聚类 benchmark/短时对照/时间梯。新增非均匀保守 FVM 和全 21 个官方位置的舍入认证；未生成任何结果工作簿。
+已冻结 Python/依赖和 Q1 交付契约；OQ-005/OQ-006/OQ-007/OQ-008 已登记决策。完成 M1/M2/B0/M3 对照、EXP-001–EXP-007、制造解 benchmark、误差诊断、Picard 敏感性、BDF2 启动对照、表面衰减、聚类 benchmark/短时对照/时间梯、全时段空间与时间收敛验证。完成 `Q1_FREEZE_RUN` 双次从零复跑、确定性检查、内部输出留档、候选工作簿生成、随机 20 单元追溯和纸面表格 35/35 追溯；未生成最终目录工作簿。
 
 ## 当前最好结果
 
-独立 benchmark 支持均匀和边界聚类保守 FVM 的近二阶空间阶、BE 近一阶时间阶；真实 Q1 聚类 base1280、`dt=.0078125 s` 的 t=1 s 表面参考为 `2.5177587784 kg/kg`，保守时间剩余 `3.1850e-5 kg/kg`、空间剩余 `1.2259e-6 kg/kg`，21 个官方位置中 20 个舍入认证、表面 1 个歧义。早期 BDF2 子步未显示改善。这些不是论文最终结论，且尚未生成 `result1.xlsx`。
+生产候选为边界聚类保守径向 FVM + BE 首步/BDF2 + Picard：base320、实际 338 个径向控制体、`dt=.25 s`、0–1800 s 全时段、21 个官方位置。全时段综合估计数值不确定度最大为温度 `1.4012175e-6 °C`、水分 `2.7414225e-5 kg/kg`，均严格小于 `5e-5`。候选已通过格式、有限值、轴线、随机 20 单元和纸面表格追溯验证；舍入歧义仅作为辅助诊断，不构成自动失败。
 
 ## 当前主要决策
 
@@ -20,11 +20,11 @@
 
 ## 不要重复尝试什么
 
-已记录并修复一次 smoke 入口问题和一次 EXP-003 比较助手问题；不要把内部实验直接写成论文结论，不要生成 `result1.xlsx`，不要修改官方 result 模板，不要把 HYPOTHESIS 写成 FINDING。
+已记录并修复一次 smoke 入口问题、一次 EXP-003 比较助手问题、一次聚类 BDF2 首步装配分派问题和一次冻结产物时间戳哈希问题；不要把候选工作簿直接放入 `deliverables/final/`，不要修改官方 result 模板，不要把 HYPOTHESIS 写成 FINDING，不要启动 Q2。
 
 ## 下一步
 
-等待人工审查 `docs/Q1_INITIAL_LAYER_AUDIT.md`，决定是否批准边界聚类候选及固定生产时间策略的 0–1800 s 全网格复验；在最终门通过和人工确认前不得生成 candidate `result1.xlsx`、进入 freeze run 或启动 Q2/Q3/Q4。
+请人工审查 `docs/Q1_RESULT_AUDIT.md`、`docs/Q1_INITIAL_LAYER_AUDIT.md` 和 `experiments/Q1_FREEZE_RUN/`，确认冻结生产配置及候选 `result1.xlsx`。获得明确批准后，才可将候选复制到 `deliverables/final/` 并执行最终交付检查；在此之前不得启动 Q2/Q3/Q4。
 
 ## 重点阅读文件
 
@@ -32,4 +32,4 @@
 
 ## 风险与注意事项
 
-官方资产位于 `A题/`，必须保持只读。M1/BE 是当前可追溯参考但未通过精度门，边界聚类和 M1-NUM-T2 都只是候选；B0 必须保留为 Baseline。Q4 动态半径问题仍只阻塞 Q4 MODEL IMPLEMENTATION。仓库为 Public，CI 未作为 Gate 依赖；本轮提交 `3b0785a`，按授权不推送远端。
+官方资产位于 `A题/`，必须保持只读。当前唯一剩余门是人工 Q1 freeze approval：批准前不得写入 `deliverables/final/`。B0 必须保留为 Baseline；Q4 动态半径问题仍只阻塞 Q4 MODEL IMPLEMENTATION。仓库为 Public，CI 未作为 Gate 依赖；当前源代码提交为 `a40ca42`，本轮应只做本地提交，不推送远端。

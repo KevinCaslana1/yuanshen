@@ -1,0 +1,58 @@
+{
+  "status": "Q1_PRODUCTION_CONFIG_FROZEN",
+  "selection_basis": "lowest-cost passing candidate from EXP-Q1-FULL-SPATIAL and EXP-Q1-FULL-TEMPORAL",
+  "config": {
+    "end_time_s": 1800.0,
+    "time_step_s": 0.25,
+    "n_intervals": 320,
+    "interpolation": "linear",
+    "surface_boundary": "robin",
+    "picard_tolerance": 1e-08,
+    "picard_max_iterations": 50,
+    "initial_temperature_c": 28.0,
+    "initial_moisture_kg_kg": 2.55,
+    "input_path": "A题\\附件\\附件1.xlsx"
+  },
+  "parameters": {
+    "density_kg_m3": 820.0,
+    "heat_capacity_j_kg_k": 2600.0,
+    "conductivity_w_m_k": 0.36,
+    "heat_transfer_w_m2_k": 25.0,
+    "mass_transfer_m_s": 8e-07,
+    "radius_m": 0.02,
+    "length_m": 0.25
+  },
+  "cluster_power": 2.0,
+  "startup": "one standard BE step at dt=0.25 s, then fixed-step BDF2",
+  "grid": "conservative radial FVM; boundary-clustered grid; explicit official output nodes",
+  "physical_model": "Q1 M1 frozen: 1D radial, fixed radius, constant heat properties, nonlinear D(C), Robin heat/mass, original initial condition, Attachment 1 linear interpolation",
+  "units": {
+    "time_internal": "s",
+    "radius_internal": "m",
+    "temperature_internal": "K",
+    "temperature_output": "°C",
+    "moisture": "kg/kg",
+    "heat_flux": "W/m²",
+    "moisture_flux": "m/s"
+  },
+  "code_commit": "a40ca421c33a2bd688c8f6e3b72816a03c49b2b0",
+  "input_hashes": {
+    "A题/A题.pdf": "052d8014bff5727c019b72e44fdffaf5c145ce04050dd938baaf3527db331736",
+    "A题/附件/附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+    "A题/附件/附件2.xlsx": "5563acbfa4b4afb10cc6c03e2207e5369bf39da27576672aff14cc5c32e704af",
+    "A题/附件/附件3/result1.xlsx": "23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4",
+    "A题/附件/附件3/result2.xlsx": "23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4",
+    "A题/附件/附件3/result3.xlsx": "07e4793d620a7f899804c0298d49a16a197960440fd47f8bb780c57ec27e2859",
+    "A题/附件/附件3/result4.xlsx": "86e9300ffa3d30c43de895ea6723da943e85b8740b137bcae5af7107f076eeac"
+  },
+  "environment": {
+    "python": "3.12.14",
+    "python_executable": "D:\\数学建模（原神）\\.venv\\Scripts\\python.exe",
+    "platform": "Windows-11-10.0.26220-SP0",
+    "machine": "AMD64",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "os_name": "nt",
+    "cwd": "D:\\数学建模（原神）",
+    "implementation": "CPython"
+  }
+}

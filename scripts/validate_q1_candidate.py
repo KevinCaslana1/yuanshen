@@ -21,6 +21,7 @@ except AttributeError:
 
 try:
     import openpyxl
+    from openpyxl.utils import get_column_letter
 except ImportError as exc:  # pragma: no cover - environment failure
     raise SystemExit("openpyxl is required for Q1 candidate validation") from exc
 
@@ -123,25 +124,38 @@ def validate_candidate(root: Path, candidate_path: Path | None = None) -> list[s
                 if sheet["A1"].value != template_sheet["A1"].value:
                     errors.append(f"{sheet_name}!A1 does not match official template header")
 
+            # Read each sheet sequentially.  Random ``cell(row, column)``
+            # access on a read-only worksheet rescans the XML from row 1 and
+            # turns this otherwise linear validation into an O(rows^2) pass.
+            rows = sheet.iter_rows(
+                min_row=1,
+                max_row=EXPECTED_ROWS,
+                min_col=1,
+                max_col=EXPECTED_COLUMNS,
+                values_only=True,
+            )
+            header = tuple(next(rows, ()))
             for column, distance in enumerate(EXPECTED_DISTANCES, start=2):
-                if not _same_decimal(sheet.cell(1, column).value, distance):
+                value = header[column - 1] if len(header) >= column else None
+                if not _same_decimal(value, distance):
                     errors.append(
-                        f"{sheet_name}!{sheet.cell(1, column).coordinate} distance header "
+                        f"{sheet_name}!{get_column_letter(column)}1 distance header "
                         f"is not exactly {distance} cm"
                     )
 
             for row, expected_time in enumerate(EXPECTED_TIMES, start=2):
-                if not _same_decimal(sheet.cell(row, 1).value, Decimal(expected_time)):
+                values = tuple(next(rows, ()))
+                time_value = values[0] if values else None
+                if not _same_decimal(time_value, Decimal(expected_time)):
                     errors.append(
                         f"{sheet_name}!A{row} time is not the strict 1..1800 sequence"
                     )
 
-            for row in range(2, EXPECTED_ROWS + 1):
                 for column in range(2, EXPECTED_COLUMNS + 1):
-                    value = sheet.cell(row, column).value
+                    value = values[column - 1] if len(values) >= column else None
                     if not _reported_value_ok(value):
                         errors.append(
-                            f"{sheet_name}!{sheet.cell(row, column).coordinate} is not a finite "
+                            f"{sheet_name}!{get_column_letter(column)}{row} is not a finite "
                             "numeric value already rounded to 4 decimals (ROUND_HALF_UP)"
                         )
                         if len(errors) >= 100:

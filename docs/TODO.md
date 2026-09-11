@@ -32,11 +32,12 @@
 | T-023 | P0 | Q1 | T-022 | DONE | `docs/Q1_PLAN.md`, `docs/DECISIONS.md` | Q1 Model Design Review 完成；实现候选仍等待 Result Gate 冻结 | 本轮 |
 | T-024 | P0 | Q1 | T-023 | DONE | `src/q1/`, `src/common/numerics.py`, `tests/test_q1_numerics.py` | M1、M2、B0、M3 可重复运行；中心、Robin、通量、单位、路径保护和确定性测试通过 | 本轮 |
 | T-025 | P0 | Q1 | T-024 | DONE | `docs/VALIDATION.md`, `experiments/EXP-001/`–`EXP-007/` | 烟雾、时间/空间敏感性、边界/插值敏感性、Baseline 和守恒/范围检查均有证据 | 本轮 |
-| T-026 | P0 | Q1 | T-025 | BLOCKED | `Q1 FINAL NUMERICAL ACCURACY & DELIVERABLE GATE` | OQ-005/006/007/008 已解决，但完整输出网格四位小数稳定性未通过；不得生成 candidate | 等待人工数值审查 |
-| T-027 | P0 | Q1 | T-026 | BLOCKED | `docs/Q1_NUMERICAL_REMEDIATION_AUDIT.md`、`experiments/EXP-Q1-NUM-*` | 已完成实现审计、独立 benchmark、误差定位、Picard 敏感性和 BDF2 候选；但完整网格估计误差仍未通过，不能生成 candidate | 等待人工审查 |
+| T-026 | P0 | Q1 | T-025 | DONE | `Q1 FULL-HORIZON PRODUCTION CONFIG FREEZE & CANDIDATE DELIVERABLE GATE` | OQ-005/006/007/008 已解决；完整输出网格按团队离散不确定度标准通过，舍入仅作辅助 | 本轮 |
+| T-027 | P0 | Q1 | T-026 | DONE | `docs/Q1_NUMERICAL_REMEDIATION_AUDIT.md`、`experiments/EXP-Q1-NUM-*` | 实现审计、独立 benchmark、误差定位、Picard、BDF2、聚簇网格和全时域收敛证据已完成 | 本轮 |
 | T-028 | P0 | Q1 | T-027 | DONE | 局部数值整改决策与复验 | 已按人工授权完成初始层兼容性、表面误差衰减、BDF2 启动和边界聚类 benchmark/短时复验；无工作簿写入 | `docs/Q1_INITIAL_LAYER_AUDIT.md`、EXP-Q1-INITIAL-LAYER 至 EXP-Q1-CLUSTER-TEMPORAL |
-| T-029 | P0 | Q1 | T-028 | BLOCKED | 聚类候选 0–1800 s 全网格复验 | 固定候选网格/时间策略后，完成 raw、Richardson、守恒/范围、全网格舍入认证；保持官方资产只读 | 人工确认后运行 |
-| T-030 | P0 | Q1 | T-029 | BLOCKED | Q1 FINAL NUMERICAL ACCURACY & DELIVERABLE GATE 重入 | t=1 表面不确定度显著下降、全网格 raw 可接受、边界层策略和启动策略冻结，并经人工审查 | `docs/Q1_INITIAL_LAYER_AUDIT.md`、最终审计包 |
+| T-029 | P0 | Q1 | T-028 | DONE | 聚类候选 0–1800 s 全网格复验 | 固定候选网格/时间策略后，raw、Richardson、守恒/范围、初始层和全网格舍入辅助认证完成；官方资产只读 | 本轮 |
+| T-030 | P0 | Q1 | T-029 | DONE | Q1 RESULT & DELIVERABLE GATE | 全时域温度/含水率估计不确定度均 `<5e-5`，生产配置冻结并完成候选验证 | 本轮 |
+| T-031 | P0 | Q1 | T-030 | TODO | Human Q1 freeze approval | 人工确认 `Q1_FREEZE_RUN`、candidate、论文表追踪后，决定是否允许复制到 final；不得自动进入 Q2 | 等待人工确认 |
 
 ## 任务记录模板
 

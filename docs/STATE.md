@@ -7,32 +7,32 @@
 - 比赛：2026 高教社杯全国大学生数学建模竞赛
 - 赛题：A题《药材的烘干问题》
 - 官方源：`A题/`（OFFICIAL_SOURCE / IMMUTABLE_SOURCE）
-- 当前阶段：Q1 INITIAL-LAYER & SURFACE-ACCURACY GATE
+- 当前阶段：Q1 FULL-HORIZON PRODUCTION CONFIG FREEZE & CANDIDATE DELIVERABLE GATE
 
 ## 各问题状态
 
 | 问题 | 状态 | 当前结论 | 证据 |
 |---|---|---|---|
-| Q1 | INITIAL-LAYER DIAGNOSIS SUPPORTED / FINAL ACCURACY BLOCKED | 温度初始 Robin 表示相容；均匀初始水分场与表面 Robin 条件不相容，早期表面边界层证据成立；边界聚类保守 FVM 显著降低短时表面空间差异；t=1 s 聚类候选 21 个官方位置中 20 个舍入可认证、表面 1 个仍歧义；未生成 candidate/final 结果 | `docs/Q1_INITIAL_LAYER_AUDIT.md`、`experiments/EXP-Q1-INITIAL-LAYER/`、`experiments/EXP-Q1-SURFACE-DECAY/`、`experiments/EXP-Q1-CLUSTER-TEMPORAL/` |
+| Q1 | RESULT & DELIVERABLE GATE COMPLETE / WAITING FOR HUMAN Q1 FREEZE APPROVAL | 温度初始 Robin 表示相容；水分初始层诊断成立；边界聚类保守 FVM + 首步 BE/随后 BDF2 完成全时域空间/时间门；最低成本生产配置 base320（实际338区间）、dt=0.25 s；candidate 已生成并通过结构/精度/追踪验证，final 未写 | `experiments/EXP-Q1-FULL-SPATIAL/`、`experiments/EXP-Q1-FULL-TEMPORAL/`、`experiments/Q1_FREEZE_RUN/`、`deliverables/candidate/result1.xlsx` |
 | Q2 | NOT STARTED | 尚未建立模型 | — |
 | Q3 | NOT STARTED | 尚未建立模型 | — |
 | Q4 | NOT STARTED | 尚未建立模型 | — |
 
 ## 当前方案
 
-- 已完成：官方题目与资产登记、Q1-Q4 注册、输入与模板校验基础设施、Q1 Model Design Gate、Q1 实现与内部数值验证
-- 当前主模型/主方案：M1/BE 仍是冻结验证对象；边界聚类保守 FVM 是已 benchmark 并完成短时 Q1 对照的数值候选，尚未冻结；M1-NUM-T2（BE 首步+BDF2）仍是已测试候选，但早期子步未显示优于标准启动
+- 已完成：官方题目与资产登记、Q1-Q4 注册、输入与模板校验基础设施、Q1 Model Design Gate、Q1 实现与内部数值验证、全时域收敛、冻结双跑和 Q1 candidate 生成
+- 当前主模型/主方案：Q1 M1 物理模型保持不变；生产数值配置为边界聚簇保守 FVM（cluster_power=2）、首步 BE、随后固定步长 BDF2，base320 请求网格实际338区间，dt=0.25 s
 - Baseline：B0；M2 常-D径向模型和 M3 Dirichlet 模型已完成对照
-- 当前最好结果：聚类 base1280、`dt=0.0078125 s` 的短时参考给出 `C(R,1s)=2.5177587784 kg/kg`；时间 Richardson 剩余约 `3.1850e-5 kg/kg`，空间剩余约 `1.2259e-6 kg/kg`；独立制造解仍支持空间二阶、BE 时间一阶
-- 正在进行的实验：NONE；`EXP-Q1-INITIAL-LAYER`、`EXP-Q1-BDF2-STARTUP`、`EXP-Q1-SURFACE-DECAY`、`EXP-Q1-CLUSTER-BENCH`、`EXP-Q1-CLUSTER-SHORT`、`EXP-Q1-CLUSTER-TEMPORAL` 已完成，最终门仍 BLOCKED
+- 当前最好结果：全时域生产候选温度最大估计不确定度 `1.4012e-6 °C`，含水率最大估计不确定度 `2.7414e-5 kg/kg`；空间细层最大值分别 `3.5588e-7 °C` / `1.2258e-6 kg/kg`，时间细层最大值分别 `4.2626e-7 °C` / `5.5889e-6 kg/kg`
+- 正在进行的实验：NONE；`Q1_FREEZE_RUN` 两次内部全场 SHA-256 一致，candidate trace 的随机20个单元格、表1和表2各35个点均通过
 
 ## 风险与下一步
 
-- 主要问题：真实 Q1 表面含水率在 t=1 s 的时间误差仍接近四位小数半单位，聚类候选的表面舍入仍有 1 个歧义位置；聚类策略尚未完成 0–1800 s 全网格复验
-- Blockers：完整生产网格 raw/Richardson/舍入门、候选生产配置冻结和人工确认；Q2/Q3/Q4 仍未授权
-- 最高优先级任务：审查 `docs/Q1_INITIAL_LAYER_AUDIT.md`，决定是否批准聚类网格及固定启动/切换策略的全时段复验；不得修改初始水分场、放宽门槛或生成工作簿
-- 推荐下一步：保持 Q1 BLOCKED；可在人工确认后运行候选全时段验证，当前不生成 candidate/final、不进入最终交付门、不启动 Q2
+- 主要问题：候选中仍可能存在少量 `ROUNDING_AMBIGUOUS`，但这是辅助诊断，不影响已通过的 `<5e-5` 团队数值门；等待人工确认是否将 candidate 升级到 final
+- Blockers：人工 Q1 freeze approval；Q2/Q3/Q4 仍未授权
+- 最高优先级任务：人工审查 `experiments/Q1_FREEZE_RUN/candidate_trace.json`、candidate 和官方源完整性；批准后才可复制到 final。不得修改物理模型、初值、Robin 参数或启动策略
+- 推荐下一步：保持 `Q1 RESULT & DELIVERABLE GATE COMPLETE`，等待人工 Q1 freeze approval；不要启动 Q2
 
 ## 更新时间
 
-- 最后更新时间：2026-09-11（Q1 INITIAL-LAYER & SURFACE-ACCURACY BLOCKED）
+- 最后更新时间：2026-09-11（Q1 RESULT & DELIVERABLE GATE COMPLETE，等待人工 Q1 freeze approval）

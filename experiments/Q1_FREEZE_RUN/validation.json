@@ -1,0 +1,47 @@
+{
+  "status": "COMPLETED",
+  "run_validations": [
+    {
+      "status": "PASS",
+      "checks": {
+        "finite_and_bounded_temperature": true,
+        "finite_and_nonnegative_moisture": true,
+        "formal_output_shape": true,
+        "formal_output_times_present": true,
+        "official_output_positions_present": true,
+        "picard_converged_within_config": true,
+        "mass_balance_abs_le_1e-10": true,
+        "energy_balance_abs_le_1e-5": true
+      },
+      "observed": {
+        "max_mass_balance_residual": 2.781527158607564e-19,
+        "max_energy_balance_residual": 6.704516941624661e-10,
+        "max_picard_iterations": 3
+      }
+    },
+    {
+      "status": "PASS",
+      "checks": {
+        "finite_and_bounded_temperature": true,
+        "finite_and_nonnegative_moisture": true,
+        "formal_output_shape": true,
+        "formal_output_times_present": true,
+        "official_output_positions_present": true,
+        "picard_converged_within_config": true,
+        "mass_balance_abs_le_1e-10": true,
+        "energy_balance_abs_le_1e-5": true
+      },
+      "observed": {
+        "max_mass_balance_residual": 2.781527158607564e-19,
+        "max_energy_balance_residual": 6.704516941624661e-10,
+        "max_picard_iterations": 3
+      }
+    }
+  ],
+  "determinism": {
+    "status": "PASS",
+    "comparison": "exact SHA-256 equality of complete compressed internal output payloads",
+    "run_1_sha256": "f13667b5fe8e4c1e1a7635b18ab4c7aaa9e3fef5111b893a9ce79b6deb3fad17",
+    "run_2_sha256": "f13667b5fe8e4c1e1a7635b18ab4c7aaa9e3fef5111b893a9ce79b6deb3fad17"
+  }
+}

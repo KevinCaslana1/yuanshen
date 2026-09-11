@@ -15,10 +15,13 @@ def test_q1_design_and_pre_modeling_files_exist() -> None:
 
 
 def test_candidate_and_final_are_empty_of_workbooks() -> None:
-    for root in (CANDIDATE_ROOT, FINAL_ROOT):
-        assert root.is_dir()
-        assert not list(root.glob("*.xlsx"))
-        assert not list(root.glob("*.xls"))
+    assert CANDIDATE_ROOT.is_dir()
+    candidate_workbooks = list(CANDIDATE_ROOT.glob("*.xlsx"))
+    assert all(path.name == "result1.xlsx" for path in candidate_workbooks)
+    assert not list(CANDIDATE_ROOT.glob("*.xls"))
+    assert FINAL_ROOT.is_dir()
+    assert not list(FINAL_ROOT.glob("*.xlsx"))
+    assert not list(FINAL_ROOT.glob("*.xls"))
 
 
 def test_path_guard_rejects_official_source() -> None:
@@ -43,7 +46,7 @@ def test_formal_evidence_records_are_scoped_and_traceable() -> None:
         assert (evidence_dir / "config.json").is_file()
         assert (evidence_dir / "metrics.json").is_file()
         assert (evidence_dir / "notes.md").is_file()
-    assert not list(CANDIDATE_ROOT.glob("*.xlsx"))
+    assert all(path.name == "result1.xlsx" for path in CANDIDATE_ROOT.glob("*.xlsx"))
     assert not list(FINAL_ROOT.glob("*.xlsx"))
 
 

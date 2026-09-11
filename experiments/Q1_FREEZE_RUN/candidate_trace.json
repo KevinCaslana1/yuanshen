@@ -1,0 +1,833 @@
+{
+  "status": "PASS",
+  "source": {
+    "freeze_experiment": "experiments/Q1_FREEZE_RUN",
+    "reference_path": "experiments\\Q1_FREEZE_RUN\\run_1\\internal_output_reference.pkl.gz",
+    "reference_sha256": "f13667b5fe8e4c1e1a7635b18ab4c7aaa9e3fef5111b893a9ce79b6deb3fad17",
+    "official_template_path": "A题\\附件\\附件3\\result1.xlsx",
+    "official_template_sha256": "23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4"
+  },
+  "random_seed": 20260911,
+  "random_cell_trace_count": 20,
+  "random_cell_trace": [
+    {
+      "sheet": "温度",
+      "field": "temperature_c",
+      "row": 1132,
+      "column": 6,
+      "time_s": 1131,
+      "distance_cm": 0.4,
+      "freeze_raw_value": 30.341946228352754,
+      "candidate_value": 30.3419,
+      "expected_round_half_up": 30.3419,
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "field": "moisture_kg_kg",
+      "row": 49,
+      "column": 16,
+      "time_s": 48,
+      "distance_cm": 1.4000000000000001,
+      "freeze_raw_value": 2.5500000000000007,
+      "candidate_value": 2.55,
+      "expected_round_half_up": 2.55,
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "field": "moisture_kg_kg",
+      "row": 1401,
+      "column": 20,
+      "time_s": 1400,
+      "distance_cm": 1.8000000000000003,
+      "freeze_raw_value": 2.0904453644294123,
+      "candidate_value": 2.0904,
+      "expected_round_half_up": 2.0904,
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "field": "temperature_c",
+      "row": 286,
+      "column": 20,
+      "time_s": 285,
+      "distance_cm": 1.8000000000000003,
+      "freeze_raw_value": 28.55887668518153,
+      "candidate_value": 28.5589,
+      "expected_round_half_up": 28.5589,
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "field": "temperature_c",
+      "row": 544,
+      "column": 10,
+      "time_s": 543,
+      "distance_cm": 0.8,
+      "freeze_raw_value": 28.528488624413455,
+      "candidate_value": 28.5285,
+      "expected_round_half_up": 28.5285,
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "field": "temperature_c",
+      "row": 1577,
+      "column": 7,
+      "time_s": 1576,
+      "distance_cm": 0.5,
+      "freeze_raw_value": 32.585262963797845,
+      "candidate_value": 32.5853,
+      "expected_round_half_up": 32.5853,
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "field": "temperature_c",
+      "row": 1280,
+      "column": 14,
+      "time_s": 1279,
+      "distance_cm": 1.2,
+      "freeze_raw_value": 31.934312523063227,
+      "candidate_value": 31.9343,
+      "expected_round_half_up": 31.9343,
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "field": "temperature_c",
+      "row": 1009,
+      "column": 11,
+      "time_s": 1008,
+      "distance_cm": 0.9000000000000001,
+      "freeze_raw_value": 30.216478570860318,
+      "candidate_value": 30.2165,
+      "expected_round_half_up": 30.2165,
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "field": "moisture_kg_kg",
+      "row": 1527,
+      "column": 22,
+      "time_s": 1526,
+      "distance_cm": 2.0,
+      "freeze_raw_value": 1.5723979816239597,
+      "candidate_value": 1.5724,
+      "expected_round_half_up": 1.5724,
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "field": "temperature_c",
+      "row": 790,
+      "column": 22,
+      "time_s": 789,
+      "distance_cm": 2.0,
+      "freeze_raw_value": 31.168260078535525,
+      "candidate_value": 31.1683,
+      "expected_round_half_up": 31.1683,
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "field": "temperature_c",
+      "row": 426,
+      "column": 4,
+      "time_s": 425,
+      "distance_cm": 0.2,
+      "freeze_raw_value": 28.15872523143912,
+      "candidate_value": 28.1587,
+      "expected_round_half_up": 28.1587,
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "field": "temperature_c",
+      "row": 1776,
+      "column": 10,
+      "time_s": 1775,
+      "distance_cm": 0.8,
+      "freeze_raw_value": 33.94572694118381,
+      "candidate_value": 33.9457,
+      "expected_round_half_up": 33.9457,
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "field": "temperature_c",
+      "row": 843,
+      "column": 9,
+      "time_s": 842,
+      "distance_cm": 0.7000000000000001,
+      "freeze_raw_value": 29.371396746321466,
+      "candidate_value": 29.3714,
+      "expected_round_half_up": 29.3714,
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "field": "temperature_c",
+      "row": 1577,
+      "column": 17,
+      "time_s": 1576,
+      "distance_cm": 1.5,
+      "freeze_raw_value": 34.151922961390994,
+      "candidate_value": 34.1519,
+      "expected_round_half_up": 34.1519,
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "field": "moisture_kg_kg",
+      "row": 274,
+      "column": 17,
+      "time_s": 273,
+      "distance_cm": 1.5,
+      "freeze_raw_value": 2.549529686111668,
+      "candidate_value": 2.5495,
+      "expected_round_half_up": 2.5495,
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "field": "moisture_kg_kg",
+      "row": 1366,
+      "column": 15,
+      "time_s": 1365,
+      "distance_cm": 1.3,
+      "freeze_raw_value": 2.517132026745302,
+      "candidate_value": 2.5171,
+      "expected_round_half_up": 2.5171,
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "field": "temperature_c",
+      "row": 1178,
+      "column": 22,
+      "time_s": 1177,
+      "distance_cm": 2.0,
+      "freeze_raw_value": 33.292786688761,
+      "candidate_value": 33.2928,
+      "expected_round_half_up": 33.2928,
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "field": "moisture_kg_kg",
+      "row": 380,
+      "column": 21,
+      "time_s": 379,
+      "distance_cm": 1.9,
+      "freeze_raw_value": 2.2777104585401005,
+      "candidate_value": 2.2777,
+      "expected_round_half_up": 2.2777,
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "field": "moisture_kg_kg",
+      "row": 1672,
+      "column": 9,
+      "time_s": 1671,
+      "distance_cm": 0.7000000000000001,
+      "freeze_raw_value": 2.5491154000729392,
+      "candidate_value": 2.5491,
+      "expected_round_half_up": 2.5491,
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "field": "moisture_kg_kg",
+      "row": 1580,
+      "column": 15,
+      "time_s": 1579,
+      "distance_cm": 1.3,
+      "freeze_raw_value": 2.501337153666713,
+      "candidate_value": 2.5013,
+      "expected_round_half_up": 2.5013,
+      "pass": true
+    }
+  ],
+  "paper_tables": {
+    "temperature_c": {
+      "count": 35,
+      "pass_count": 35,
+      "trace": [
+        {
+          "time_s": 100,
+          "distance_cm": 0.0,
+          "freeze_raw_value": 28.00005343467842,
+          "candidate_value": 28.0001,
+          "expected_round_half_up": 28.0001,
+          "pass": true
+        },
+        {
+          "time_s": 100,
+          "distance_cm": 0.5,
+          "freeze_raw_value": 28.000347676810065,
+          "candidate_value": 28.0003,
+          "expected_round_half_up": 28.0003,
+          "pass": true
+        },
+        {
+          "time_s": 100,
+          "distance_cm": 1.0,
+          "freeze_raw_value": 28.004046147795464,
+          "candidate_value": 28.004,
+          "expected_round_half_up": 28.004,
+          "pass": true
+        },
+        {
+          "time_s": 100,
+          "distance_cm": 1.5,
+          "freeze_raw_value": 28.03270225883756,
+          "candidate_value": 28.0327,
+          "expected_round_half_up": 28.0327,
+          "pass": true
+        },
+        {
+          "time_s": 100,
+          "distance_cm": 2.0,
+          "freeze_raw_value": 28.180069652109353,
+          "candidate_value": 28.1801,
+          "expected_round_half_up": 28.1801,
+          "pass": true
+        },
+        {
+          "time_s": 300,
+          "distance_cm": 0.0,
+          "freeze_raw_value": 28.040794085379332,
+          "candidate_value": 28.0408,
+          "expected_round_half_up": 28.0408,
+          "pass": true
+        },
+        {
+          "time_s": 300,
+          "distance_cm": 0.5,
+          "freeze_raw_value": 28.06348980021511,
+          "candidate_value": 28.0635,
+          "expected_round_half_up": 28.0635,
+          "pass": true
+        },
+        {
+          "time_s": 300,
+          "distance_cm": 1.0,
+          "freeze_raw_value": 28.151395474160893,
+          "candidate_value": 28.1514,
+          "expected_round_half_up": 28.1514,
+          "pass": true
+        },
+        {
+          "time_s": 300,
+          "distance_cm": 1.5,
+          "freeze_raw_value": 28.368067316579868,
+          "candidate_value": 28.3681,
+          "expected_round_half_up": 28.3681,
+          "pass": true
+        },
+        {
+          "time_s": 300,
+          "distance_cm": 2.0,
+          "freeze_raw_value": 28.848849839232003,
+          "candidate_value": 28.8488,
+          "expected_round_half_up": 28.8488,
+          "pass": true
+        },
+        {
+          "time_s": 600,
+          "distance_cm": 0.0,
+          "freeze_raw_value": 28.4533319461338,
+          "candidate_value": 28.4533,
+          "expected_round_half_up": 28.4533,
+          "pass": true
+        },
+        {
+          "time_s": 600,
+          "distance_cm": 0.5,
+          "freeze_raw_value": 28.53603145615034,
+          "candidate_value": 28.536,
+          "expected_round_half_up": 28.536,
+          "pass": true
+        },
+        {
+          "time_s": 600,
+          "distance_cm": 1.0,
+          "freeze_raw_value": 28.80394216399003,
+          "candidate_value": 28.8039,
+          "expected_round_half_up": 28.8039,
+          "pass": true
+        },
+        {
+          "time_s": 600,
+          "distance_cm": 1.5,
+          "freeze_raw_value": 29.31591173039908,
+          "candidate_value": 29.3159,
+          "expected_round_half_up": 29.3159,
+          "pass": true
+        },
+        {
+          "time_s": 600,
+          "distance_cm": 2.0,
+          "freeze_raw_value": 30.165224099579234,
+          "candidate_value": 30.1652,
+          "expected_round_half_up": 30.1652,
+          "pass": true
+        },
+        {
+          "time_s": 900,
+          "distance_cm": 0.0,
+          "freeze_raw_value": 29.324294717103953,
+          "candidate_value": 29.3243,
+          "expected_round_half_up": 29.3243,
+          "pass": true
+        },
+        {
+          "time_s": 900,
+          "distance_cm": 0.5,
+          "freeze_raw_value": 29.458249836427342,
+          "candidate_value": 29.4582,
+          "expected_round_half_up": 29.4582,
+          "pass": true
+        },
+        {
+          "time_s": 900,
+          "distance_cm": 1.0,
+          "freeze_raw_value": 29.875451196734844,
+          "candidate_value": 29.8755,
+          "expected_round_half_up": 29.8755,
+          "pass": true
+        },
+        {
+          "time_s": 900,
+          "distance_cm": 1.5,
+          "freeze_raw_value": 30.616137842217825,
+          "candidate_value": 30.6161,
+          "expected_round_half_up": 30.6161,
+          "pass": true
+        },
+        {
+          "time_s": 900,
+          "distance_cm": 2.0,
+          "freeze_raw_value": 31.730396201821975,
+          "candidate_value": 31.7304,
+          "expected_round_half_up": 31.7304,
+          "pass": true
+        },
+        {
+          "time_s": 1200,
+          "distance_cm": 0.0,
+          "freeze_raw_value": 30.54271791641935,
+          "candidate_value": 30.5427,
+          "expected_round_half_up": 30.5427,
+          "pass": true
+        },
+        {
+          "time_s": 1200,
+          "distance_cm": 0.5,
+          "freeze_raw_value": 30.70976689549684,
+          "candidate_value": 30.7098,
+          "expected_round_half_up": 30.7098,
+          "pass": true
+        },
+        {
+          "time_s": 1200,
+          "distance_cm": 1.0,
+          "freeze_raw_value": 31.22234566226348,
+          "candidate_value": 31.2223,
+          "expected_round_half_up": 31.2223,
+          "pass": true
+        },
+        {
+          "time_s": 1200,
+          "distance_cm": 1.5,
+          "freeze_raw_value": 32.11255488698686,
+          "candidate_value": 32.1126,
+          "expected_round_half_up": 32.1126,
+          "pass": true
+        },
+        {
+          "time_s": 1200,
+          "distance_cm": 2.0,
+          "freeze_raw_value": 33.42763194024241,
+          "candidate_value": 33.4276,
+          "expected_round_half_up": 33.4276,
+          "pass": true
+        },
+        {
+          "time_s": 1500,
+          "distance_cm": 0.0,
+          "freeze_raw_value": 31.995718163098104,
+          "candidate_value": 31.9957,
+          "expected_round_half_up": 31.9957,
+          "pass": true
+        },
+        {
+          "time_s": 1500,
+          "distance_cm": 0.5,
+          "freeze_raw_value": 32.18673153749279,
+          "candidate_value": 32.1867,
+          "expected_round_half_up": 32.1867,
+          "pass": true
+        },
+        {
+          "time_s": 1500,
+          "distance_cm": 1.0,
+          "freeze_raw_value": 32.76601766530041,
+          "candidate_value": 32.766,
+          "expected_round_half_up": 32.766,
+          "pass": true
+        },
+        {
+          "time_s": 1500,
+          "distance_cm": 1.5,
+          "freeze_raw_value": 33.7462741835227,
+          "candidate_value": 33.7463,
+          "expected_round_half_up": 33.7463,
+          "pass": true
+        },
+        {
+          "time_s": 1500,
+          "distance_cm": 2.0,
+          "freeze_raw_value": 35.12025908767208,
+          "candidate_value": 35.1203,
+          "expected_round_half_up": 35.1203,
+          "pass": true
+        },
+        {
+          "time_s": 1800,
+          "distance_cm": 0.0,
+          "freeze_raw_value": 33.57534218781802,
+          "candidate_value": 33.5753,
+          "expected_round_half_up": 33.5753,
+          "pass": true
+        },
+        {
+          "time_s": 1800,
+          "distance_cm": 0.5,
+          "freeze_raw_value": 33.77199935441314,
+          "candidate_value": 33.772,
+          "expected_round_half_up": 33.772,
+          "pass": true
+        },
+        {
+          "time_s": 1800,
+          "distance_cm": 1.0,
+          "freeze_raw_value": 34.36415825951127,
+          "candidate_value": 34.3642,
+          "expected_round_half_up": 34.3642,
+          "pass": true
+        },
+        {
+          "time_s": 1800,
+          "distance_cm": 1.5,
+          "freeze_raw_value": 35.36212189981211,
+          "candidate_value": 35.3621,
+          "expected_round_half_up": 35.3621,
+          "pass": true
+        },
+        {
+          "time_s": 1800,
+          "distance_cm": 2.0,
+          "freeze_raw_value": 36.7855581216844,
+          "candidate_value": 36.7856,
+          "expected_round_half_up": 36.7856,
+          "pass": true
+        }
+      ]
+    },
+    "moisture_kg_kg": {
+      "count": 35,
+      "pass_count": 35,
+      "trace": [
+        {
+          "time_s": 100,
+          "distance_cm": 0.0,
+          "freeze_raw_value": 2.549999999999998,
+          "candidate_value": 2.55,
+          "expected_round_half_up": 2.55,
+          "pass": true
+        },
+        {
+          "time_s": 100,
+          "distance_cm": 0.5,
+          "freeze_raw_value": 2.5500000000000003,
+          "candidate_value": 2.55,
+          "expected_round_half_up": 2.55,
+          "pass": true
+        },
+        {
+          "time_s": 100,
+          "distance_cm": 1.0,
+          "freeze_raw_value": 2.55,
+          "candidate_value": 2.55,
+          "expected_round_half_up": 2.55,
+          "pass": true
+        },
+        {
+          "time_s": 100,
+          "distance_cm": 1.5,
+          "freeze_raw_value": 2.5499999565527367,
+          "candidate_value": 2.55,
+          "expected_round_half_up": 2.55,
+          "pass": true
+        },
+        {
+          "time_s": 100,
+          "distance_cm": 2.0,
+          "freeze_raw_value": 2.2470612200992885,
+          "candidate_value": 2.2471,
+          "expected_round_half_up": 2.2471,
+          "pass": true
+        },
+        {
+          "time_s": 300,
+          "distance_cm": 0.0,
+          "freeze_raw_value": 2.549999999999998,
+          "candidate_value": 2.55,
+          "expected_round_half_up": 2.55,
+          "pass": true
+        },
+        {
+          "time_s": 300,
+          "distance_cm": 0.5,
+          "freeze_raw_value": 2.5500000000000003,
+          "candidate_value": 2.55,
+          "expected_round_half_up": 2.55,
+          "pass": true
+        },
+        {
+          "time_s": 300,
+          "distance_cm": 1.0,
+          "freeze_raw_value": 2.5499999989678397,
+          "candidate_value": 2.55,
+          "expected_round_half_up": 2.55,
+          "pass": true
+        },
+        {
+          "time_s": 300,
+          "distance_cm": 1.5,
+          "freeze_raw_value": 2.5491986385445906,
+          "candidate_value": 2.5492,
+          "expected_round_half_up": 2.5492,
+          "pass": true
+        },
+        {
+          "time_s": 300,
+          "distance_cm": 2.0,
+          "freeze_raw_value": 2.0508502050460597,
+          "candidate_value": 2.0509,
+          "expected_round_half_up": 2.0509,
+          "pass": true
+        },
+        {
+          "time_s": 600,
+          "distance_cm": 0.0,
+          "freeze_raw_value": 2.549999999999998,
+          "candidate_value": 2.55,
+          "expected_round_half_up": 2.55,
+          "pass": true
+        },
+        {
+          "time_s": 600,
+          "distance_cm": 0.5,
+          "freeze_raw_value": 2.549999999778801,
+          "candidate_value": 2.55,
+          "expected_round_half_up": 2.55,
+          "pass": true
+        },
+        {
+          "time_s": 600,
+          "distance_cm": 1.0,
+          "freeze_raw_value": 2.549988535041697,
+          "candidate_value": 2.55,
+          "expected_round_half_up": 2.55,
+          "pass": true
+        },
+        {
+          "time_s": 600,
+          "distance_cm": 1.5,
+          "freeze_raw_value": 2.5352753314962015,
+          "candidate_value": 2.5353,
+          "expected_round_half_up": 2.5353,
+          "pass": true
+        },
+        {
+          "time_s": 600,
+          "distance_cm": 2.0,
+          "freeze_raw_value": 1.8769735514378114,
+          "candidate_value": 1.877,
+          "expected_round_half_up": 1.877,
+          "pass": true
+        },
+        {
+          "time_s": 900,
+          "distance_cm": 0.0,
+          "freeze_raw_value": 2.5499999999413485,
+          "candidate_value": 2.55,
+          "expected_round_half_up": 2.55,
+          "pass": true
+        },
+        {
+          "time_s": 900,
+          "distance_cm": 0.5,
+          "freeze_raw_value": 2.5499997935366374,
+          "candidate_value": 2.55,
+          "expected_round_half_up": 2.55,
+          "pass": true
+        },
+        {
+          "time_s": 900,
+          "distance_cm": 1.0,
+          "freeze_raw_value": 2.5496832950932307,
+          "candidate_value": 2.5497,
+          "expected_round_half_up": 2.5497,
+          "pass": true
+        },
+        {
+          "time_s": 900,
+          "distance_cm": 1.5,
+          "freeze_raw_value": 2.5045450395406226,
+          "candidate_value": 2.5045,
+          "expected_round_half_up": 2.5045,
+          "pass": true
+        },
+        {
+          "time_s": 900,
+          "distance_cm": 2.0,
+          "freeze_raw_value": 1.7547230669791383,
+          "candidate_value": 1.7547,
+          "expected_round_half_up": 1.7547,
+          "pass": true
+        },
+        {
+          "time_s": 1200,
+          "distance_cm": 0.0,
+          "freeze_raw_value": 2.549999979906886,
+          "candidate_value": 2.55,
+          "expected_round_half_up": 2.55,
+          "pass": true
+        },
+        {
+          "time_s": 1200,
+          "distance_cm": 0.5,
+          "freeze_raw_value": 2.5499929408293913,
+          "candidate_value": 2.55,
+          "expected_round_half_up": 2.55,
+          "pass": true
+        },
+        {
+          "time_s": 1200,
+          "distance_cm": 1.0,
+          "freeze_raw_value": 2.5481791461310674,
+          "candidate_value": 2.5482,
+          "expected_round_half_up": 2.5482,
+          "pass": true
+        },
+        {
+          "time_s": 1200,
+          "distance_cm": 1.5,
+          "freeze_raw_value": 2.464572214423084,
+          "candidate_value": 2.4646,
+          "expected_round_half_up": 2.4646,
+          "pass": true
+        },
+        {
+          "time_s": 1200,
+          "distance_cm": 2.0,
+          "freeze_raw_value": 1.6585663635424606,
+          "candidate_value": 1.6586,
+          "expected_round_half_up": 1.6586,
+          "pass": true
+        },
+        {
+          "time_s": 1500,
+          "distance_cm": 0.0,
+          "freeze_raw_value": 2.549999300486842,
+          "candidate_value": 2.55,
+          "expected_round_half_up": 2.55,
+          "pass": true
+        },
+        {
+          "time_s": 1500,
+          "distance_cm": 0.5,
+          "freeze_raw_value": 2.5499376249094827,
+          "candidate_value": 2.5499,
+          "expected_round_half_up": 2.5499,
+          "pass": true
+        },
+        {
+          "time_s": 1500,
+          "distance_cm": 1.0,
+          "freeze_raw_value": 2.544539829915269,
+          "candidate_value": 2.5445,
+          "expected_round_half_up": 2.5445,
+          "pass": true
+        },
+        {
+          "time_s": 1500,
+          "distance_cm": 1.5,
+          "freeze_raw_value": 2.420614939330774,
+          "candidate_value": 2.4206,
+          "expected_round_half_up": 2.4206,
+          "pass": true
+        },
+        {
+          "time_s": 1500,
+          "distance_cm": 2.0,
+          "freeze_raw_value": 1.5787313799909986,
+          "candidate_value": 1.5787,
+          "expected_round_half_up": 1.5787,
+          "pass": true
+        },
+        {
+          "time_s": 1800,
+          "distance_cm": 0.0,
+          "freeze_raw_value": 2.5499923429024873,
+          "candidate_value": 2.55,
+          "expected_round_half_up": 2.55,
+          "pass": true
+        },
+        {
+          "time_s": 1800,
+          "distance_cm": 0.5,
+          "freeze_raw_value": 2.5497233851129812,
+          "candidate_value": 2.5497,
+          "expected_round_half_up": 2.5497,
+          "pass": true
+        },
+        {
+          "time_s": 1800,
+          "distance_cm": 1.0,
+          "freeze_raw_value": 2.538298430145497,
+          "candidate_value": 2.5383,
+          "expected_round_half_up": 2.5383,
+          "pass": true
+        },
+        {
+          "time_s": 1800,
+          "distance_cm": 1.5,
+          "freeze_raw_value": 2.3754754023459532,
+          "candidate_value": 2.3755,
+          "expected_round_half_up": 2.3755,
+          "pass": true
+        },
+        {
+          "time_s": 1800,
+          "distance_cm": 2.0,
+          "freeze_raw_value": 1.5102423656178832,
+          "candidate_value": 1.5102,
+          "expected_round_half_up": 1.5102,
+          "pass": true
+        }
+      ]
+    }
+  },
+  "candidate_sha256": "06b67b1f688d84a701ac4d2f4b0f47a1624069877df6724faf071a48af177b5c",
+  "freeze_metrics_reference": {
+    "production_config_status": "Q1_PRODUCTION_CONFIG_FROZEN",
+    "code_commit": "a40ca421c33a2bd688c8f6e3b72816a03c49b2b0"
+  }
+}

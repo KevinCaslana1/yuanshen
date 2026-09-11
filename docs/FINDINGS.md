@@ -49,6 +49,32 @@
 
 状态：SUPPORTED
 
+## FIND-Q1-015 全时域边界聚簇 BDF2 配置通过团队数值门
+
+问题：Q1
+
+发现：在保持 Q1 M1 物理方程、Robin 边界、原始初值、附件1线性插值和非线性 `D(C)` 不变的条件下，边界聚簇保守径向 FVM（cluster power `2`）配合首步 BE、随后固定步长 BDF2，通过了完整 `1..1800 s × 0.0..2.0 cm` 的 3 层空间/3 层时间收敛门。最低成本通过配置为 base320（实际 338 个空间区间）、`dt=0.25 s`；温度最大估计不确定度为 `1.4012175e-6 °C`，含水率最大估计不确定度为 `2.7414225e-5 kg/kg`，两者均小于团队标准 `5e-5`。
+
+证据：`experiments/EXP-Q1-FULL-SPATIAL/metrics.json`、`experiments/EXP-Q1-FULL-TEMPORAL/metrics.json`、`experiments/Q1_FREEZE_RUN/metrics.json`
+
+适用范围：Q1 当前冻结配置、完整 `1800×21` 正式输出网格和论文 `7×5` 追踪点；数值标准是 `TEAM_NUMERICAL_CRITERION`，不是官方题面要求。
+
+限制：局部 Richardson 阶数病态点使用登记的原始相邻细层差值包络；四位小数歧义仅作辅助诊断。该发现不证明物理模型误差为零，也不替代人工批准。
+
+状态：SUPPORTED_PENDING_HUMAN_APPROVAL
+
+## FIND-Q1-016 Q1 冻结运行与候选溯源可重复
+
+问题：Q1
+
+发现：`Q1_FREEZE_RUN` 按同一配置从零运行两次，两个包含完整内部时间层和空间节点的压缩输出参考 SHA-256 完全一致；两个运行的有限性、范围、Picard、质量/能量离散平衡检查均 PASS。候选 `deliverables/candidate/result1.xlsx` 只由 `run_1` 冻结参考生成；固定随机种子的 20 个单元格和温度/含水率两张论文表各 `35/35` 个点均逐点追踪通过。
+
+证据：`experiments/Q1_FREEZE_RUN/metrics.json`、`experiments/Q1_FREEZE_RUN/validation.json`、`experiments/Q1_FREEZE_RUN/candidate_trace.json`、`experiments/Q1_FREEZE_RUN/candidate_validation.json`
+
+限制：candidate 仍不是 final；需要人工 Q1 冻结批准后才可复制到 `deliverables/final/`。Q2/Q3/Q4 未启动。
+
+状态：SUPPORTED_PENDING_HUMAN_APPROVAL
+
 ## FIND-Q1-012 Q1 初始水分层与表面 Robin 条件不相容
 
 问题：Q1
@@ -73,7 +99,7 @@
 
 适用范围：聚类幂 `p=2` 的当前候选和 0–10 s 窗口。
 
-限制：聚类 base640/base1280 与均匀 N1280 的跨网格族差异不能直接当作误差估计；聚类候选尚未完成 0–1800 s 全网格验证和主方案冻结。
+限制：聚类 base640/base1280 与均匀 N1280 的跨网格族差异不能直接当作误差估计；该短时发现已由独立的 `EXP-Q1-FULL-SPATIAL` / `EXP-Q1-FULL-TEMPORAL` 全时域验证补充，生产冻结仍需人工批准。
 
 状态：SUPPORTED
 

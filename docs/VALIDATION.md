@@ -11,7 +11,7 @@
 | 官方 Workbook Sheet 与行列骨架 | `scripts/validate_inputs.py` | 附件1/2与4个模板结构一致 | 脚本输出 | PASS |
 | 官方结果模板完整性 | `scripts/validate_templates.py` | Sheet、表头、占位时间和数据区空白通过 | 脚本输出 | PASS |
 | 官方源文件未被修改 | `git diff -- A题` | 无差异 | Git 状态 | PASS |
-| 交付隔离 | 人工检查 `deliverables/README.md` | candidate/final 已建立，当前无结果文件 | 交付说明 | PASS |
+| 交付隔离 | 人工检查 `deliverables/README.md` | candidate 仅有 Q1 结果副本，final 仍为空 | 交付说明、`deliverables/candidate/result1.xlsx` | PASS |
 
 ## PRE-MODELING GATE
 
@@ -25,8 +25,8 @@
 | environment reproducibility | `.venv`, requirements files, Python 3.12.14 | PASS |
 | tests | `pytest -q` | PASS: 32 passed |
 | Q1-Q4 registration | `docs/STATE.md`, `config/deliverables.json` | PASS |
-| candidate empty | `deliverables/candidate/` | PASS |
-| final empty | `deliverables/final/` | PASS |
+| candidate state | `deliverables/candidate/` | Q1 candidate 在最终门之后生成并已验证；Q2–Q4 无 candidate | PASS |
+| final empty | `deliverables/final/` | PASS；等待人工 Q1 freeze approval |
 | experiment scope | `docs/EXPERIMENTS.md`; internal Q1 evidence only after implementation authorization | PASS |
 | findings/claims boundary | `docs/FINDINGS.md`, `docs/CLAIMS.md`; no paper claims generated | PASS |
 | no generated answers | source/template/result audit | PASS |
@@ -82,17 +82,19 @@ Remaining Open Questions are classified by blocking phase in `docs/PROBLEM_SPEC.
 |---|---|---|
 | OQ-005/OQ-006/OQ-007/OQ-008 resolution | `docs/DECISIONS.md`、`docs/PROBLEM_SPEC.md` | PASS |
 | Q1 output contract freeze | `config/deliverables.json`、`docs/DELIVERABLE_SPEC.md` | PASS（Q1 contract frozen; Q2–Q4 remain open） |
-| Full output-grid convergence | `experiments/EXP-Q1-FINAL-CONV/metrics.json` | BLOCKED；N160→N320 后温度 1398/37800、水分 4468/37800 个四位小数差异 |
-| Paper-point convergence | `experiments/EXP-Q1-FINAL-CONV/metrics.json` | BLOCKED；N160→N320 温度 1/35、水分 4/35；dt1→dt0.25 温度 33/35、水分 7/35 |
-| Time-step convergence at selected spatial grid | `experiments/EXP-Q1-FINAL-CONV/metrics.json` | BLOCKED；dt1→dt0.25 完整网格温度 36498/37800、水分 6926/37800 |
-| Candidate generation | `deliverables/candidate/result1.xlsx` | NOT RUN；按阻塞规则不得生成 |
-| Freeze rerun | `Q1_FREEZE_RUN` | NOT RUN；精度门未通过，不得进入双跑确认 |
-| Candidate workbook validation | `scripts/validate_q1_candidate.py` | READY；候选不存在时 fail-closed |
-| Human audit package | `docs/Q1_RESULT_AUDIT.md`, `docs/Q1_NUMERICAL_REMEDIATION_AUDIT.md` | READY；数值整改已完成但最终门仍等待人工审查 |
+| Full-horizon spatial convergence | `experiments/EXP-Q1-FULL-SPATIAL/metrics.json` | PASS；3 层 cluster base320/640/1280，细层温度 `3.5588e-7 °C`、含水率 `1.2258e-6 kg/kg` |
+| Full-horizon temporal convergence | `experiments/EXP-Q1-FULL-TEMPORAL/metrics.json` | PASS；3 层 BDF2 dt `.25/.125/.0625 s`，细层温度 `4.2626e-7 °C`、含水率 `5.5889e-6 kg/kg` |
+| Initial-layer full-horizon check | `EXP-Q1-FULL-SPATIAL/metrics.json` | PASS；表面 t=1/10/60/100/300/600/1800 s 均低于门，未出现晚期反弹 |
+| Accuracy criterion | `EXP-Q1-FULL-SPATIAL/metrics.json`、`EXP-Q1-FULL-TEMPORAL/metrics.json` | PASS；选定最低成本配置温度 `1.4012e-6 °C`、含水率 `2.7414e-5 kg/kg`，均 `<5e-5` |
+| Rounding diagnostics | `criterion_reference` in full-horizon metrics | AUXILIARY；温度 129、含水率 108 个 ambiguous，未用于自动否决 |
+| Freeze rerun | `experiments/Q1_FREEZE_RUN/` | PASS；同一配置从零双跑，完整内部场 SHA-256 一致，两个运行验证 PASS |
+| Candidate generation | `deliverables/candidate/result1.xlsx` | PASS；仅由 `Q1_FREEZE_RUN/run_1` 源生成，未写 final |
+| Candidate workbook validation | `scripts/validate_q1_candidate.py`、`experiments/Q1_FREEZE_RUN/candidate_validation.json` | PASS；结构、有限数值、4位 ROUND_HALF_UP、随机20单元格和表1/2各35点均通过 |
+| Human audit package | `experiments/Q1_FREEZE_RUN/`、`deliverables/candidate/result1.xlsx` | READY；等待人工 Q1 freeze approval 后决定是否复制到 final |
 
-`Q1 FINAL NUMERICAL ACCURACY & DELIVERABLE GATE = BLOCKED`。不得生成 candidate 或 final `result1.xlsx`，不得启动 Q2。
+`Q1 RESULT & DELIVERABLE GATE = COMPLETE`；candidate 已生成但仍等待人工 Q1 freeze approval。不得启动 Q2。
 
-## Q1 NUMERICAL CONVERGENCE DIAGNOSIS & REMEDIATION GATE
+## Q1 NUMERICAL CONVERGENCE DIAGNOSIS & REMEDIATION GATE（历史阶段记录）
 
 | Gate Item | Evidence | Status |
 |---|---|---|
@@ -110,7 +112,7 @@ Remaining Open Questions are classified by blocking phase in `docs/PROBLEM_SPEC.
 
 `Q1 NUMERICAL REMEDIATION GATE = BLOCKED`。BDF2 仅登记为 `M1-NUM-T2` 候选；不得生成 `result1.xlsx`，不得启动 Q2。
 
-## Q1 INITIAL-LAYER & SURFACE-ACCURACY GATE
+## Q1 INITIAL-LAYER & SURFACE-ACCURACY GATE（历史早期记录；阻塞已由上方全时段复验关闭）
 
 | Gate Item | Evidence | Status |
 |---|---|---|
@@ -127,7 +129,7 @@ Remaining Open Questions are classified by blocking phase in `docs/PROBLEM_SPEC.
 | full 0–1800 s candidate verification | not run by this gate | BLOCKED; do not generate `result1.xlsx` |
 | final-gate re-entry | `docs/Q1_INITIAL_LAYER_AUDIT.md` | BLOCKED; waiting for human review |
 
-`Q1 INITIAL-LAYER & SURFACE-ACCURACY GATE = BLOCKED`。`FIND-Q1-INITIAL-LAYER` is supported as a numerical diagnosis, but full production verification and strategy freeze remain outstanding. Do not generate candidate/final workbooks and do not start Q2.
+`Q1 INITIAL-LAYER & SURFACE-ACCURACY GATE` 的早期阻塞已由后续 `EXP-Q1-FULL-SPATIAL`、`EXP-Q1-FULL-TEMPORAL` 和 `Q1_FREEZE_RUN` 复验关闭；其诊断结论仍保留为支持性证据。当前仅等待人工 Q1 freeze approval，不得启动 Q2。
 
 ## 通用检查
 

@@ -24,6 +24,9 @@
 | EXP-Q1-CLUSTER-BENCH | Q1 | Isolated nonuniform FVM benchmark | 验证边界聚类保守 FVM 的中心/内部/表面空间与时间阶 | 制造解；聚类幂 `p=2`；多级空间/时间细化 | 空间 L∞ 阶约 `1.95–1.96`，时间 L∞ 阶约 `1.01–1.06`；中心/表面趋势正常 | COMPLETED | `experiments/EXP-Q1-CLUSTER-BENCH/` |
 | EXP-Q1-CLUSTER-SHORT | Q1 | M1/BE nonuniform candidate | 在真实 Q1 上比较均匀与边界聚类网格的 0–10 s 空间误差 | 均匀 N320/N640；聚类 base320/base640/base1280；dt=.0625 s；显式保留官方输出节点 | t=1 s 聚类 base640→base1280 表面差 `3.6753e-6`，远低于均匀 N320→N640 的 `1.3891e-3` | COMPLETED | `experiments/EXP-Q1-CLUSTER-SHORT/` |
 | EXP-Q1-CLUSTER-TEMPORAL | Q1 | M1/BE nonuniform candidate | 对聚类候选执行固定网格时间梯、t=1 全 21 点空间/时间误差与舍入认证 | base640 dt=.25/.125/.0625/.03125；base1280 dt=.0625/.03125/.015625/.0078125；base320/base640/base1280 dt=.03125 | `C(R,1s)=2.5177587784`；时间剩余 `3.1850e-5`、空间剩余 `1.2259e-6 kg/kg`；20/21 certified，表面 ambiguous | COMPLETED | `experiments/EXP-Q1-CLUSTER-TEMPORAL/` |
+| EXP-Q1-FULL-SPATIAL | Q1 | M1-NUM-T2 clustered FVM | 全时域空间收敛与逐点离散不确定度 | cluster base320/base640/base1280，固定 BDF2 `dt=0.125 s`；`1800×21` 与论文 `7×5` | 空间细层最大估计不确定度：温度 `3.5588e-7 °C`、含水率 `1.2258e-6 kg/kg`；3 层空间阶和 Richardson 已记录 | COMPLETED | `experiments/EXP-Q1-FULL-SPATIAL/` |
+| EXP-Q1-FULL-TEMPORAL | Q1 | M1-NUM-T2 clustered FVM | 全时域时间收敛与逐点离散不确定度 | cluster base1280，BDF2 `dt=0.25/0.125/0.0625 s`；`1800×21` 与论文 `7×5` | 时间细层最大估计不确定度：温度 `4.2626e-7 °C`、含水率 `5.5889e-6 kg/kg`；局部 Richardson 不稳定点保留原始细层差值包络 | COMPLETED | `experiments/EXP-Q1-FULL-TEMPORAL/` |
+| Q1_FREEZE_RUN | Q1 | Frozen M1-NUM-T2 production | 从零双跑冻结生产配置、内部全场保存、确定性与候选溯源 | cluster base320（实际 `338` intervals），BDF2 `dt=0.25 s`，`0..1800 s` | 两次完整内部场 SHA-256 相同；运行验证均 PASS；candidate 与论文 35/35 点 trace PASS | COMPLETED | `experiments/Q1_FREEZE_RUN/` |
 
 状态建议使用：`PLANNED` / `RUNNING` / `COMPLETED` / `FAILED` / `BLOCKED` / `ABANDONED`。
 
@@ -53,6 +56,6 @@ Notes:
 
 ## Q1 Execution Note
 
-EXP-001 至 EXP-007 已在实现授权后按序完成。`EXP-Q1-FINAL-CONV` 和 `EXP-Q1-NUM-REMEDIATION` 先判定为 `BLOCKED`；本轮进一步完成初始层诊断、BDF2 启动对照、表面误差衰减、聚类 benchmark、真实 Q1 短时聚类对照和聚类时间/舍入认证。结果支持初始水分场与表面 Robin 条件不相容的短时边界层解释，但候选尚未完成 0–1800 s 全网格复验，因此 Q1 Result & Deliverable Gate 仍为 `BLOCKED`。这些是内部实现与数值验证证据，不是论文最终结论；尚未生成 `result1.xlsx`，也未写入 `deliverables/candidate/` 或 `deliverables/final/`。
+EXP-001 至 EXP-007 已在实现授权后按序完成。后续完成初始层诊断、BDF2 启动对照、表面误差衰减、聚类 benchmark、真实 Q1 短时聚类对照、聚类时间梯及全时域空间/时间收敛。`D-Q1-NUM-ACCURACY-CRITERION` 下，3 层空间与 3 层时间的逐点估计不确定度均通过 `<5e-5`；随后 `Q1_FREEZE_RUN` 双跑确定性通过，并从 run_1 生成候选。Q1 结果门已完成，当前只等待人工冻结批准；`deliverables/final/` 仍不写入。这些是可追溯内部数值证据和候选交付，不应在人工批准前写成最终论文主张。
 
 每个实验目录均包含 `config.json`、`metrics.json` 和 `notes.md`，记录命令、代码提交、输入 SHA-256、求解器配置、运行时间、验证状态和产物路径。

@@ -40,5 +40,6 @@ def test_open_questions_are_not_verified() -> None:
 
 
 def test_q1_candidate_validator_fails_closed_when_candidate_is_absent() -> None:
-    errors = validate_candidate(ROOT)
+    missing = ROOT / "deliverables" / "candidate" / "missing-result1.xlsx"
+    errors = validate_candidate(ROOT, missing)
     assert any("missing Q1 candidate workbook" in error for error in errors)

@@ -33,6 +33,10 @@
 | Q1 聚类 benchmark | `scripts/run_q1_cluster_benchmark.py` | 已建立；独立制造解的非均匀保守 FVM benchmark |
 | Q1 聚类短时对照 | `scripts/run_q1_cluster_short.py` | 已建立；真实 Q1 0–10 s 均匀/聚类网格对照 |
 | Q1 聚类时间与舍入认证 | `scripts/run_q1_cluster_temporal.py` | 已建立；t=1 全官方节点空间/时间误差与半单位阈值认证 |
+| Q1 全时域空间收敛 | `scripts/run_q1_full_horizon_validation.py` | 已建立；3 层边界聚簇空间层级，写入 `EXP-Q1-FULL-SPATIAL/` |
+| Q1 全时域时间收敛 | `scripts/run_q1_full_horizon_validation.py` | 已建立；3 层 BDF2 时间层级，写入 `EXP-Q1-FULL-TEMPORAL/` |
+| Q1 生产配置冻结双跑 | `scripts/run_q1_freeze_run.py` | 已建立；只写 `experiments/Q1_FREEZE_RUN/`，保存完整内部输出和确定性证据 |
+| Q1 candidate 生成 | `scripts/generate_q1_candidate_from_freeze.py` | 已建立；只消费 `Q1_FREEZE_RUN/run_1`，写入 candidate，不写 final |
 | Q1 candidate 校验 | `scripts/validate_q1_candidate.py` | 已建立；只读、候选缺失时 fail-closed |
 | 自动测试 | `pytest -q` | 本阶段建立；不包含模型测试 |
 
@@ -56,6 +60,9 @@
 .\.venv\Scripts\python.exe scripts\run_q1_cluster_short.py
 .\.venv\Scripts\python.exe scripts\run_q1_cluster_temporal.py
 .\.venv\Scripts\python.exe scripts\validate_q1_candidate.py
+.\.venv\Scripts\python.exe scripts\run_q1_full_horizon_validation.py
+.\.venv\Scripts\python.exe scripts\run_q1_freeze_run.py
+.\.venv\Scripts\python.exe scripts\generate_q1_candidate_from_freeze.py
 .\.venv\Scripts\python.exe -m pytest -q
 ```
 
@@ -80,6 +87,8 @@
 4. 运行结构、数值和格式验证。
 5. 通过人工确认后复制到 `deliverables/final/`。
 
-当前 Q1 数值整改门为 `BLOCKED`，因此不生成 candidate 结果文件；若未来通过精度门，仍必须先运行 candidate 校验和格式/结构检查，并经人工确认后才能进入 final。上述数值实验只写入 `experiments/`，不写官方模板、不生成 `result1.xlsx`。
+当前 Q1 全时域数值门和冻结双跑已通过，candidate `deliverables/candidate/result1.xlsx` 已生成并通过结构/格式/追踪验证；仍必须经人工确认后才能进入 final。所有实验只写入 `experiments/`，官方模板 `A题/` 保持只读。
 
 本轮初始层/表面精度诊断的可复现顺序为：先运行 `run_q1_initial_layer.py`，再运行 `run_q1_bdf2_startup.py`、`run_q1_surface_decay.py`、`run_q1_cluster_benchmark.py`、`run_q1_cluster_short.py` 和 `run_q1_cluster_temporal.py`。最后一个脚本会写出 `reference_t1_official_values` 与 `rounding_certification`；其结果只覆盖短时候选审计，不替代 0–1800 s 全网格最终门。
+
+全时域冻结顺序：运行 `run_q1_full_horizon_validation.py`；确认两个 full-horizon metrics 的 criterion 通过后，运行 `run_q1_freeze_run.py`（创建一次 `Q1_FREEZE_RUN` 并内部双跑）；最后运行 `generate_q1_candidate_from_freeze.py`。候选生成器拒绝未完成或不确定的冻结源；人工批准前不得复制到 `deliverables/final/`，也不得启动 Q2。

@@ -14,9 +14,9 @@
 | D-Q1-OQ006 | 2026-09-11 | Q1 | `hm` 直接作用于干基浓度 `C`，不乘空气密度、材料密度或其他未给因子 | ACCEPTED_MODELING_ASSUMPTION | 本轮人工授权、EXP-005、EXP-007 |
 | D-Q1-OQ007 | 2026-09-11 | Q1 | 中心与表面采用内部 solver 节点值；最终网格必须严格对齐 `0.0,0.1,...,2.0 cm` | ACCEPTED_NUMERICAL_DECISION | 本轮人工授权、`D-Q1-NUMGRID` |
 | D-Q1-OQ008 | 2026-09-11 | Q1 | 不加入潜热、内部蒸发源项、Soret/Dufour 或其他需要新增未知参数的耦合项 | ACCEPTED_MODELING_SIMPLIFICATION | 本轮人工授权、EXP-007 |
-| D-Q1-FREEZE-CANDIDATE | 2026-09-11 | Q1 | 冻结验证对象为 M1；B0/M2/M3 只作验证与敏感性证据；最终配置须满足 D-Q1-NUM-ACCURACY-CRITERION，舍入一致性仅作辅助 | PENDING_FULL_HORIZON_VALIDATION | 本轮人工授权、`docs/DECISIONS.md` |
+| D-Q1-FREEZE-CANDIDATE | 2026-09-11 | Q1 | 冻结验证对象为 M1；B0/M2/M3 只作验证与敏感性证据；最终配置满足 D-Q1-NUM-ACCURACY-CRITERION，舍入一致性仅作辅助 | FROZEN_PENDING_HUMAN_APPROVAL | `experiments/EXP-Q1-FULL-SPATIAL/`、`experiments/EXP-Q1-FULL-TEMPORAL/`、`experiments/Q1_FREEZE_RUN/` |
 | D-Q1-NUM-T2 | 2026-09-11 | Q1 | 将“BE 首步+BDF2”作为数值整改候选进行验证，不自动替换 M1/BE 主方案；论文点改善但完整网格安全裕量不足 | CANDIDATE_NOT_FROZEN | `experiments/EXP-Q1-NUM-BENCH/`、`experiments/EXP-Q1-NUM-REMEDIATION/` |
-| D-Q1-INITIAL-LAYER | 2026-09-11 | Q1 | 支持初始水分场与表面 Robin 条件形成短时边界层的数值诊断；保持官方初值/边界不变，边界聚类仅作为候选 | DIAGNOSTIC_SUPPORTED_CANDIDATE_NOT_FROZEN | `docs/Q1_INITIAL_LAYER_AUDIT.md`、EXP-Q1-INITIAL-LAYER 至 EXP-Q1-CLUSTER-TEMPORAL |
+| D-Q1-INITIAL-LAYER | 2026-09-11 | Q1 | 支持初始水分场与表面 Robin 条件形成短时边界层的数值诊断；保持官方初值/边界不变，边界聚类已通过全时域验证 | DIAGNOSTIC_SUPPORTED_PRODUCTION_FROZEN | `docs/Q1_INITIAL_LAYER_AUDIT.md`、`experiments/EXP-Q1-FULL-SPATIAL/`、`experiments/Q1_FREEZE_RUN/` |
 | D-Q1-NUM-ACCURACY-CRITERION | 2026-09-11 | Q1 | 将 estimated discretization uncertainty 作为主要内部数值门：温度和含水率均要求 `<5e-5`（各自输出单位）；四舍五入状态只作辅助证据，不因少量 ambiguous 自动失败 | TEAM_NUMERICAL_CRITERION | 本轮人工授权、后续全时域收敛实验 |
 
 ## 决策记录模板
@@ -111,15 +111,15 @@ PENDING_CONFIRMATION
 
 ### 结果
 
-`EXP-Q1-FINAL-CONV` 的旧四舍五入差异已证明原配置需要进一步审查，但不再单独作为自动失败判据；新的全时域候选验证按 `D-Q1-NUM-ACCURACY-CRITERION` 执行，当前尚未生成 `result1.xlsx`。
+`EXP-Q1-FINAL-CONV` 的旧四舍五入差异已证明原配置需要进一步审查，但不再单独作为自动失败判据。新的全时域验证完成 3 层空间和 3 层 BDF2 时间比较；最低成本通过配置为边界聚簇 base320（实际 338 个区间）、`dt=0.25 s`。温度最大估计不确定度 `1.4012e-6 °C`，含水率最大估计不确定度 `2.7414e-5 kg/kg`，均满足 `<5e-5`。
 
 ### 重新评估条件
 
-由人工审查决定后续数值精度整改方案；不得修改已接受的交付契约或物理模型。主要数值门按 `D-Q1-NUM-ACCURACY-CRITERION`，舍入状态保留为辅助信息。
+人工确认 Q1 冻结配置和 candidate 后，才可将 candidate 复制到 final；不得修改已接受的交付契约或物理模型。主要数值门按 `D-Q1-NUM-ACCURACY-CRITERION`，舍入状态保留为辅助信息。
 
 ### 状态
 
-BLOCKED_BY_NUMERICAL_ACCURACY
+FROZEN_PENDING_HUMAN_APPROVAL
 
 ## D-Q1-NUM-T2 BDF2 时间积分整改候选
 
@@ -138,7 +138,7 @@ Q1 的真实运行诊断显示 BE 时间误差在完整网格上明显大于空�
 
 ### 当前决定
 
-只将 M1-NUM-T2 登记为可复核候选，不改变 `D-Q1-FREEZE-CANDIDATE`，不生成 `result1.xlsx`。论文 7×5 点的 `dt=0.5→0.25 s` 四舍五入差异降为温度 `0/35`、含水率 `0/35`；但全网格含水率的 Richardson 剩余误差仍为 `0.0006163 kg/kg`，高于 `0.5e-4`，故不能冻结。
+只将 M1-NUM-T2 登记为可复核候选，不改变物理模型。旧 `N=320`、`dt=0.5→0.25 s` 证据曾未通过完整网格安全门；在保持同一方程的边界聚簇实现和全时域复验后，生产配置已按新的团队数值标准冻结，不能把旧失败证据误写为当前冻结配置失败。
 
 ### 支持证据
 
@@ -287,11 +287,11 @@ ACCEPTED_MODELING_ASSUMPTION
 
 ### 未决事项
 
-聚类候选尚未完成 0–1800 s 全网格 raw、Richardson、守恒/范围和交付级舍入复验；因此不改写 `D-Q1-FREEZE-CANDIDATE`，不生成 candidate/final 工作簿。
+聚类候选已完成 0–1800 s 全网格 raw、Richardson、守恒/范围、初始层和舍入辅助复验；`Q1_FREEZE_RUN` 双跑确定性通过，并生成候选副本。仍需人工确认后才允许进入 final。
 
 ### 状态
 
-DIAGNOSTIC_SUPPORTED_CANDIDATE_NOT_FROZEN
+DIAGNOSTIC_SUPPORTED_PRODUCTION_FROZEN_PENDING_HUMAN_APPROVAL
 
 ## D-Q1-NUM-ACCURACY-CRITERION Q1 全时域内部数值精度标准
 
@@ -309,6 +309,7 @@ DIAGNOSTIC_SUPPORTED_CANDIDATE_NOT_FROZEN
 - `NUMERICAL ACCURACY`：采用 `estimated discretization uncertainty` 作为团队内部主要数值门，不是官方题面事实。
 - `TEAM_NUMERICAL_CRITERION`：温度自身单位的估计离散不确定度 `<5e-5 °C`；含水率自身单位的估计离散不确定度 `<5e-5 kg/kg`。
 - `ROUNDING CERTIFICATION`：逐点保存 raw value、estimated uncertainty、距最近舍入边界距离和 rounding status，仅作辅助证据；少量 `ROUNDING_AMBIGUOUS` 不自动导致数值 Gate 失败。
+- 局部 Richardson 阶数若为非正或处于病态区间 `[0,0.5)` / `(4,+∞)`，不使用发散的局部外推；改用相邻粗/中/细三层中的最大原始差值作为 `RAW_ADJACENT_FINE_ENVELOPE`，并在指标中保留阶数、原始差值和方法标记。`<5e-5` 门槛不变。
 
 ### 原因
 
@@ -322,7 +323,7 @@ DIAGNOSTIC_SUPPORTED_CANDIDATE_NOT_FROZEN
 
 ### 被否决方案
 
-不再使用 `rounded disagreement count > 0 => 自动 FAIL`。在没有新的证据前，不额外加入未经依据的 safety factor，也不因追求 `ROUNDING_AMBIGUOUS=0` 无限加密网格或减小时间步。
+不再使用 `rounded disagreement count > 0 => 自动 FAIL`。在没有新的证据前，不额外加入未经依据的 safety factor，也不因追求 `ROUNDING_AMBIGUOUS=0` 无限加密网格或减小时间步。局部 Richardson 病态时也不使用无界外推值，而使用明确标记的原始细层差值包络。
 
 ### 重新评估条件
 
