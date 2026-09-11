@@ -1,0 +1,951 @@
+{
+  "experiment": "EXP-Q2-021-DECISION-TARGETS-BC-LONG",
+  "status": "PASS",
+  "purpose": "Targeted 3 h and 72 h h/hm sensitivity evidence for D-Q2-BOUNDARY-COEFFICIENTS",
+  "screen_is_not_production_accuracy": true,
+  "base_config": {
+    "end_time_s": 259200.0,
+    "time_step_s": 2.0,
+    "candidate": "A",
+    "n_intervals": 80,
+    "cluster_power": 2.0,
+    "scheme": "bdf2",
+    "interface_mean": "harmonic",
+    "interpolation": "linear",
+    "post_attachment_mode": "constant",
+    "post_temperature_c": 50.165,
+    "post_moisture_kg_kg": 0.04986,
+    "output_interval_s": 2.0,
+    "picard_tolerance": 1e-08,
+    "picard_max_iterations": 50,
+    "picard_relaxation": 1.0,
+    "input_path": "A题\\附件\\附件1.xlsx",
+    "parameters": {
+      "radius_m": 0.02,
+      "length_m": 0.25,
+      "heat_transfer_w_m2_k": 25.0,
+      "mass_transfer_m_s": 8e-07,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55
+    }
+  },
+  "target_times_s": [
+    10800.0,
+    21600.0,
+    86400.0,
+    172800.0,
+    259200.0
+  ],
+  "diagnostics_interval_s": 21600.0,
+  "runs": {
+    "base": {
+      "config": {
+        "end_time_s": 259200.0,
+        "time_step_s": 2.0,
+        "candidate": "A",
+        "n_intervals": 80,
+        "cluster_power": 2.0,
+        "scheme": "bdf2",
+        "interface_mean": "harmonic",
+        "interpolation": "linear",
+        "post_attachment_mode": "constant",
+        "post_temperature_c": 50.165,
+        "post_moisture_kg_kg": 0.04986,
+        "output_interval_s": 2.0,
+        "picard_tolerance": 1e-08,
+        "picard_max_iterations": 50,
+        "picard_relaxation": 1.0,
+        "input_path": "A题\\附件\\附件1.xlsx",
+        "parameters": {
+          "radius_m": 0.02,
+          "length_m": 0.25,
+          "heat_transfer_w_m2_k": 25.0,
+          "mass_transfer_m_s": 8e-07,
+          "initial_temperature_c": 28.0,
+          "initial_moisture_kg_kg": 2.55
+        }
+      },
+      "runtime_s": 176.94497490000003,
+      "complete": true,
+      "diagnostic_summary": {
+        "steps": 129600,
+        "picard_min": 2,
+        "picard_median": 3.0,
+        "picard_p95": 4.0,
+        "picard_max": 4,
+        "temperature_residual_max": 1.0547898584767287e-11,
+        "moisture_residual_max": 9.999855839215588e-09,
+        "temperature_boundary_residual_max_w_m2": 0.013593677317658148,
+        "moisture_boundary_residual_max_kg_m2_s": 2.9071322102579303e-08,
+        "mass_step_residual_max": 1.2427524003250843e-07,
+        "heat_step_residual_max_j": 9.719138311087175,
+        "temperature_linear_residual_max": 9.46693035075441e-09,
+        "moisture_linear_residual_max": 1.3171685964152857e-12,
+        "temperature_boundary_residual_at_last_step_w_m2": -3.986214335529213e-09,
+        "moisture_boundary_residual_at_last_step_kg_m2_s": 9.13108487565751e-14,
+        "center_heat_flux_max_abs_w_m2": 0.0,
+        "center_moisture_flux_max_abs_kg_m2_s": 0.0,
+        "temperature_min_k": 301.14999999999986,
+        "temperature_max_k": 323.3150000000622,
+        "moisture_min_kg_kg": 0.051627325508862155,
+        "moisture_max_kg_kg": 2.5500000000000087,
+        "rho_min": 656.6082976651344,
+        "cp_min": 1584.317889204617,
+        "k_min": 0.2286552623895301,
+        "D_min": 2.6499174923853637e-12,
+        "rho_max": 976.4000000000011,
+        "cp_max": 3415.295774647889,
+        "k_max": 0.48295774647887346,
+        "D_max": 1.2521894313773177e-08
+      },
+      "passive_event_bracket_s": [
+        205912.0,
+        205914.0
+      ],
+      "checkpoint_fields": {
+        "10800": {
+          "temperature_C": {
+            "0.0": 49.849506722871695,
+            "1.0": 49.87461714555519,
+            "1.5": 49.910153236802216,
+            "2.0": 49.966415689490475
+          },
+          "moisture_kg_kg": {
+            "0.0": 1.7661993448238738,
+            "1.0": 1.5702067947626044,
+            "1.5": 1.3332629722483484,
+            "2.0": 1.0081173689749114
+          }
+        },
+        "21600": {
+          "temperature_C": {
+            "0.0": 50.164519483064566,
+            "1.0": 50.16457705950961,
+            "1.5": 50.16464475209739,
+            "2.0": 50.164733000049694
+          },
+          "moisture_kg_kg": {
+            "0.0": 1.0155593591592584,
+            "1.0": 0.9005549090970235,
+            "1.5": 0.7546317896599916,
+            "2.0": 0.5334481504115668
+          }
+        },
+        "86400": {
+          "temperature_C": {
+            "0.0": 50.16500000000349,
+            "1.0": 50.165000000001555,
+            "1.5": 50.16499999999661,
+            "2.0": 50.16499999999786
+          },
+          "moisture_kg_kg": {
+            "0.0": 0.2371287594533336,
+            "1.0": 0.21616194217425616,
+            "1.5": 0.1851375035776867,
+            "2.0": 0.06626374442967956
+          }
+        },
+        "172800": {
+          "temperature_C": {
+            "0.0": 50.16500000000025,
+            "1.0": 50.164999999995985,
+            "1.5": 50.16499999998916,
+            "2.0": 50.16499999998172
+          },
+          "moisture_kg_kg": {
+            "0.0": 0.16149129110697721,
+            "1.0": 0.15039713039617195,
+            "1.5": 0.1332144264569807,
+            "2.0": 0.05358210101036845
+          }
+        },
+        "259200": {
+          "temperature_C": {
+            "0.0": 50.16499999999223,
+            "1.0": 50.164999999992006,
+            "1.5": 50.16499999999138,
+            "2.0": 50.164999999992915
+          },
+          "moisture_kg_kg": {
+            "0.0": 0.1374341285008801,
+            "1.0": 0.12901544524618233,
+            "1.5": 0.11574029462470273,
+            "2.0": 0.051627325508862155
+          }
+        }
+      }
+    },
+    "h_minus10": {
+      "config": {
+        "end_time_s": 259200.0,
+        "time_step_s": 2.0,
+        "candidate": "A",
+        "n_intervals": 80,
+        "cluster_power": 2.0,
+        "scheme": "bdf2",
+        "interface_mean": "harmonic",
+        "interpolation": "linear",
+        "post_attachment_mode": "constant",
+        "post_temperature_c": 50.165,
+        "post_moisture_kg_kg": 0.04986,
+        "output_interval_s": 2.0,
+        "picard_tolerance": 1e-08,
+        "picard_max_iterations": 50,
+        "picard_relaxation": 1.0,
+        "input_path": "A题\\附件\\附件1.xlsx",
+        "parameters": {
+          "radius_m": 0.02,
+          "length_m": 0.25,
+          "heat_transfer_w_m2_k": 22.5,
+          "mass_transfer_m_s": 8e-07,
+          "initial_temperature_c": 28.0,
+          "initial_moisture_kg_kg": 2.55
+        }
+      },
+      "runtime_s": 180.62029919999998,
+      "complete": true,
+      "diagnostic_summary": {
+        "steps": 129600,
+        "picard_min": 2,
+        "picard_median": 3.0,
+        "picard_p95": 4.0,
+        "picard_max": 4,
+        "temperature_residual_max": 1.0037670485236509e-11,
+        "moisture_residual_max": 9.999937378157853e-09,
+        "temperature_boundary_residual_max_w_m2": 0.012843080955732944,
+        "moisture_boundary_residual_max_kg_m2_s": 2.907134810875702e-08,
+        "mass_step_residual_max": 1.2427523486405492e-07,
+        "heat_step_residual_max_j": 9.323744496779861,
+        "temperature_linear_residual_max": 9.820723789744079e-09,
+        "moisture_linear_residual_max": 1.2991829834163582e-12,
+        "temperature_boundary_residual_at_last_step_w_m2": 4.489209004532313e-10,
+        "moisture_boundary_residual_at_last_step_kg_m2_s": 9.132749626870816e-14,
+        "center_heat_flux_max_abs_w_m2": 0.0,
+        "center_moisture_flux_max_abs_kg_m2_s": 0.0,
+        "temperature_min_k": 301.1499999999998,
+        "temperature_max_k": 323.315000000054,
+        "moisture_min_kg_kg": 0.05162770443554084,
+        "moisture_max_kg_kg": 2.5500000000000096,
+        "rho_min": 656.6083461677492,
+        "cp_min": 1584.3188266530665,
+        "k_min": 0.2286553925907037,
+        "D_min": 2.650087024311042e-12,
+        "rho_max": 976.4000000000012,
+        "cp_max": 3415.2957746478896,
+        "k_max": 0.4829577464788736,
+        "D_max": 1.2473686993985394e-08
+      },
+      "passive_event_bracket_s": [
+        205944.0,
+        205946.0
+      ],
+      "checkpoint_fields": {
+        "10800": {
+          "temperature_C": {
+            "0.0": 49.79871629120015,
+            "1.0": 49.827091971397806,
+            "1.5": 49.86617967744178,
+            "2.0": 49.926606116573
+          },
+          "moisture_kg_kg": {
+            "0.0": 1.7707444473520495,
+            "1.0": 1.5732944334055685,
+            "1.5": 1.335042888117868,
+            "2.0": 1.0088780446302004
+          }
+        },
+        "21600": {
+          "temperature_C": {
+            "0.0": 50.1642367698812,
+            "1.0": 50.16432182086686,
+            "1.5": 50.16442233046507,
+            "2.0": 50.164554289932425
+          },
+          "moisture_kg_kg": {
+            "0.0": 1.0170910612550972,
+            "1.0": 0.9019154806431905,
+            "1.5": 0.7558031331414549,
+            "2.0": 0.5344233728991277
+          }
+        },
+        "86400": {
+          "temperature_C": {
+            "0.0": 50.16499999998905,
+            "1.0": 50.16499999998297,
+            "1.5": 50.164999999981546,
+            "2.0": 50.16499999999081
+          },
+          "moisture_kg_kg": {
+            "0.0": 0.23718977381052408,
+            "1.0": 0.21621426694301155,
+            "1.5": 0.18517793162483073,
+            "2.0": 0.06627820831684093
+          }
+        },
+        "172800": {
+          "temperature_C": {
+            "0.0": 50.164999999988765,
+            "1.0": 50.16499999998598,
+            "1.5": 50.16499999998314,
+            "2.0": 50.16499999998399
+          },
+          "moisture_kg_kg": {
+            "0.0": 0.16150432783812854,
+            "1.0": 0.15040864801005377,
+            "1.5": 0.1332237498080652,
+            "2.0": 0.05358341238114409
+          }
+        },
+        "259200": {
+          "temperature_C": {
+            "0.0": 50.16499999999127,
+            "1.0": 50.1649999999928,
+            "1.5": 50.16499999999263,
+            "2.0": 50.16499999998007
+          },
+          "moisture_kg_kg": {
+            "0.0": 0.13744016017326985,
+            "1.0": 0.1290208394395269,
+            "1.5": 0.11574474656917157,
+            "2.0": 0.05162770443554084
+          }
+        }
+      }
+    },
+    "h_plus10": {
+      "config": {
+        "end_time_s": 259200.0,
+        "time_step_s": 2.0,
+        "candidate": "A",
+        "n_intervals": 80,
+        "cluster_power": 2.0,
+        "scheme": "bdf2",
+        "interface_mean": "harmonic",
+        "interpolation": "linear",
+        "post_attachment_mode": "constant",
+        "post_temperature_c": 50.165,
+        "post_moisture_kg_kg": 0.04986,
+        "output_interval_s": 2.0,
+        "picard_tolerance": 1e-08,
+        "picard_max_iterations": 50,
+        "picard_relaxation": 1.0,
+        "input_path": "A题\\附件\\附件1.xlsx",
+        "parameters": {
+          "radius_m": 0.02,
+          "length_m": 0.25,
+          "heat_transfer_w_m2_k": 27.500000000000004,
+          "mass_transfer_m_s": 8e-07,
+          "initial_temperature_c": 28.0,
+          "initial_moisture_kg_kg": 2.55
+        }
+      },
+      "runtime_s": 179.86686050000003,
+      "complete": true,
+      "diagnostic_summary": {
+        "steps": 129600,
+        "picard_min": 2,
+        "picard_median": 3.0,
+        "picard_p95": 4.0,
+        "picard_max": 4,
+        "temperature_residual_max": 1.0906245621935883e-11,
+        "moisture_residual_max": 9.999908866242802e-09,
+        "temperature_boundary_residual_max_w_m2": 0.01427324708646438,
+        "moisture_boundary_residual_max_kg_m2_s": 2.9071296238834834e-08,
+        "mass_step_residual_max": 1.2427524516957537e-07,
+        "heat_step_residual_max_j": 10.05887587580757,
+        "temperature_linear_residual_max": 9.171344572678208e-09,
+        "moisture_linear_residual_max": 1.304956143144409e-12,
+        "temperature_boundary_residual_at_last_step_w_m2": 3.948126800025525e-09,
+        "moisture_boundary_residual_at_last_step_kg_m2_s": 9.129728755849826e-14,
+        "center_heat_flux_max_abs_w_m2": 0.0,
+        "center_moisture_flux_max_abs_kg_m2_s": 0.0,
+        "temperature_min_k": 301.14999999999986,
+        "temperature_max_k": 323.3150000000517,
+        "moisture_min_kg_kg": 0.051627016846080974,
+        "moisture_max_kg_kg": 2.5500000000000087,
+        "rho_min": 656.6082581562983,
+        "cp_min": 1584.317125585555,
+        "k_min": 0.22865515633132708,
+        "D_min": 2.6497794027281076e-12,
+        "rho_max": 976.4000000000011,
+        "cp_max": 3415.295774647889,
+        "k_max": 0.48295774647887346,
+        "D_max": 1.2558192181836498e-08
+      },
+      "passive_event_bracket_s": [
+        205886.0,
+        205888.0
+      ],
+      "checkpoint_fields": {
+        "10800": {
+          "temperature_C": {
+            "0.0": 49.88358675750766,
+            "1.0": 49.90652058088796,
+            "1.5": 49.93978868233279,
+            "2.0": 49.99357030833147
+          },
+          "moisture_kg_kg": {
+            "0.0": 1.7625796996777794,
+            "1.0": 1.5677175543194481,
+            "1.5": 1.3317750387668534,
+            "2.0": 1.007394888855227
+          }
+        },
+        "21600": {
+          "temperature_C": {
+            "0.0": 50.16468546941974,
+            "1.0": 50.164725617086674,
+            "1.5": 50.164772591160556,
+            "2.0": 50.16483342185842
+          },
+          "moisture_kg_kg": {
+            "0.0": 1.0143160942289262,
+            "1.0": 0.8994488727033912,
+            "1.5": 0.7536781650731715,
+            "2.0": 0.5326531771246363
+          }
+        },
+        "86400": {
+          "temperature_C": {
+            "0.0": 50.16499999999684,
+            "1.0": 50.164999999994166,
+            "1.5": 50.16499999999394,
+            "2.0": 50.165000000011844
+          },
+          "moisture_kg_kg": {
+            "0.0": 0.2370790838924288,
+            "1.0": 0.21611934064901442,
+            "1.5": 0.1851045872392842,
+            "2.0": 0.06625197362592393
+          }
+        },
+        "172800": {
+          "temperature_C": {
+            "0.0": 50.16500000000195,
+            "1.0": 50.16500000000224,
+            "1.5": 50.164999999996496,
+            "2.0": 50.165000000002976
+          },
+          "moisture_kg_kg": {
+            "0.0": 0.16148067180970094,
+            "1.0": 0.15038774846918596,
+            "1.5": 0.13320683184700532,
+            "2.0": 0.053581033020155024
+          }
+        },
+        "259200": {
+          "temperature_C": {
+            "0.0": 50.16499999999587,
+            "1.0": 50.164999999999964,
+            "1.5": 50.16500000000042,
+            "2.0": 50.165000000007865
+          },
+          "moisture_kg_kg": {
+            "0.0": 0.13742921465394634,
+            "1.0": 0.12901105072403046,
+            "1.5": 0.11573666771359867,
+            "2.0": 0.051627016846080974
+          }
+        }
+      }
+    },
+    "hm_minus10": {
+      "config": {
+        "end_time_s": 259200.0,
+        "time_step_s": 2.0,
+        "candidate": "A",
+        "n_intervals": 80,
+        "cluster_power": 2.0,
+        "scheme": "bdf2",
+        "interface_mean": "harmonic",
+        "interpolation": "linear",
+        "post_attachment_mode": "constant",
+        "post_temperature_c": 50.165,
+        "post_moisture_kg_kg": 0.04986,
+        "output_interval_s": 2.0,
+        "picard_tolerance": 1e-08,
+        "picard_max_iterations": 50,
+        "picard_relaxation": 1.0,
+        "input_path": "A题\\附件\\附件1.xlsx",
+        "parameters": {
+          "radius_m": 0.02,
+          "length_m": 0.25,
+          "heat_transfer_w_m2_k": 25.0,
+          "mass_transfer_m_s": 7.2e-07,
+          "initial_temperature_c": 28.0,
+          "initial_moisture_kg_kg": 2.55
+        }
+      },
+      "runtime_s": 180.97240550000015,
+      "complete": true,
+      "diagnostic_summary": {
+        "steps": 129600,
+        "picard_min": 2,
+        "picard_median": 3.0,
+        "picard_p95": 4.0,
+        "picard_max": 4,
+        "temperature_residual_max": 8.328148778982904e-12,
+        "moisture_residual_max": 9.999995262410799e-09,
+        "temperature_boundary_residual_max_w_m2": 0.013874908787414597,
+        "moisture_boundary_residual_max_kg_m2_s": 2.620068880399628e-08,
+        "mass_step_residual_max": 1.1210573000461614e-07,
+        "heat_step_residual_max_j": 9.74416467975317,
+        "temperature_linear_residual_max": 9.548784873913974e-09,
+        "moisture_linear_residual_max": 1.3089529460330596e-12,
+        "temperature_boundary_residual_at_last_step_w_m2": -4.521908534142409e-09,
+        "moisture_boundary_residual_at_last_step_kg_m2_s": 9.055243594590135e-14,
+        "center_heat_flux_max_abs_w_m2": 0.0,
+        "center_moisture_flux_max_abs_kg_m2_s": 0.0,
+        "temperature_min_k": 301.14999999999986,
+        "temperature_max_k": 323.3150000000634,
+        "moisture_min_kg_kg": 0.05185955379510858,
+        "moisture_max_kg_kg": 2.550000000000007,
+        "rho_min": 656.6380228857739,
+        "cp_min": 1584.8922854495986,
+        "k_min": 0.22873503964577757,
+        "D_min": 2.75539377328681e-12,
+        "rho_max": 976.4000000000009,
+        "cp_max": 3415.2957746478887,
+        "k_max": 0.48295774647887346,
+        "D_max": 1.2565447782763534e-08
+      },
+      "passive_event_bracket_s": [
+        208558.0,
+        208560.0
+      ],
+      "checkpoint_fields": {
+        "10800": {
+          "temperature_C": {
+            "0.0": 49.84358659299755,
+            "1.0": 49.86899294704642,
+            "1.5": 49.90490218635722,
+            "2.0": 49.961541592187075
+          },
+          "moisture_kg_kg": {
+            "0.0": 1.8096504205063622,
+            "1.0": 1.6226204457167144,
+            "1.5": 1.3965629809321758,
+            "2.0": 1.0877774339150628
+          }
+        },
+        "21600": {
+          "temperature_C": {
+            "0.0": 50.1644559134827,
+            "1.0": 50.16452031621685,
+            "1.5": 50.1645959831547,
+            "2.0": 50.164694316511884
+          },
+          "moisture_kg_kg": {
+            "0.0": 1.0729364869809939,
+            "1.0": 0.9595208216472549,
+            "1.5": 0.8162708342961733,
+            "2.0": 0.6037423374269656
+          }
+        },
+        "86400": {
+          "temperature_C": {
+            "0.0": 50.165000000002465,
+            "1.0": 50.16500000000303,
+            "1.5": 50.16500000000724,
+            "2.0": 50.16500000001912
+          },
+          "moisture_kg_kg": {
+            "0.0": 0.2423797598275737,
+            "1.0": 0.22068572508913165,
+            "1.5": 0.18866086622332837,
+            "2.0": 0.0695313745723094
+          }
+        },
+        "172800": {
+          "temperature_C": {
+            "0.0": 50.1650000000007,
+            "1.0": 50.16500000000542,
+            "1.5": 50.16500000000423,
+            "2.0": 50.164999999998884
+          },
+          "moisture_kg_kg": {
+            "0.0": 0.16259870302089324,
+            "1.0": 0.15137606605085638,
+            "1.5": 0.1340080296341129,
+            "2.0": 0.054120898015200584
+          }
+        },
+        "259200": {
+          "temperature_C": {
+            "0.0": 50.16499999999223,
+            "1.0": 50.164999999990414,
+            "1.5": 50.16499999999172,
+            "2.0": 50.16500000001429
+          },
+          "moisture_kg_kg": {
+            "0.0": 0.13794426718143676,
+            "1.0": 0.12947195664319394,
+            "1.5": 0.11611771875285537,
+            "2.0": 0.05185955379510858
+          }
+        }
+      }
+    },
+    "hm_plus10": {
+      "config": {
+        "end_time_s": 259200.0,
+        "time_step_s": 2.0,
+        "candidate": "A",
+        "n_intervals": 80,
+        "cluster_power": 2.0,
+        "scheme": "bdf2",
+        "interface_mean": "harmonic",
+        "interpolation": "linear",
+        "post_attachment_mode": "constant",
+        "post_temperature_c": 50.165,
+        "post_moisture_kg_kg": 0.04986,
+        "output_interval_s": 2.0,
+        "picard_tolerance": 1e-08,
+        "picard_max_iterations": 50,
+        "picard_relaxation": 1.0,
+        "input_path": "A题\\附件\\附件1.xlsx",
+        "parameters": {
+          "radius_m": 0.02,
+          "length_m": 0.25,
+          "heat_transfer_w_m2_k": 25.0,
+          "mass_transfer_m_s": 8.8e-07,
+          "initial_temperature_c": 28.0,
+          "initial_moisture_kg_kg": 2.55
+        }
+      },
+      "runtime_s": 182.13509090000002,
+      "complete": true,
+      "diagnostic_summary": {
+        "steps": 129600,
+        "picard_min": 2,
+        "picard_median": 3.0,
+        "picard_p95": 4.0,
+        "picard_max": 4,
+        "temperature_residual_max": 1.2978633747459946e-11,
+        "moisture_residual_max": 9.999949340810943e-09,
+        "temperature_boundary_residual_max_w_m2": 0.013321924551064512,
+        "moisture_boundary_residual_max_kg_m2_s": 3.193396693853054e-08,
+        "mass_step_residual_max": 1.3638853967748277e-07,
+        "heat_step_residual_max_j": 9.695102269287787,
+        "temperature_linear_residual_max": 9.54150891629979e-09,
+        "moisture_linear_residual_max": 1.1899370377932428e-12,
+        "temperature_boundary_residual_at_last_step_w_m2": 4.064720780827531e-09,
+        "moisture_boundary_residual_at_last_step_kg_m2_s": 9.191046526321988e-14,
+        "center_heat_flux_max_abs_w_m2": 0.0,
+        "center_moisture_flux_max_abs_kg_m2_s": 0.0,
+        "temperature_min_k": 301.14999999999986,
+        "temperature_max_k": 323.31500000005815,
+        "moisture_min_kg_kg": 0.05144426627485175,
+        "moisture_max_kg_kg": 2.550000000000005,
+        "rho_min": 656.584866083181,
+        "cp_min": 1583.8649294523818,
+        "k_min": 0.2285923513128308,
+        "D_min": 2.568988852187542e-12,
+        "rho_max": 976.4000000000007,
+        "cp_max": 3415.2957746478883,
+        "k_max": 0.48295774647887335,
+        "D_max": 1.2481963835005354e-08
+      },
+      "passive_event_bracket_s": [
+        203836.0,
+        203838.0
+      ],
+      "checkpoint_fields": {
+        "10800": {
+          "temperature_C": {
+            "0.0": 49.854773229855084,
+            "1.0": 49.87962483077649,
+            "1.5": 49.91483557158824,
+            "2.0": 49.97079363011693
+          },
+          "moisture_kg_kg": {
+            "0.0": 1.7271882245026982,
+            "1.0": 1.5234428653813463,
+            "1.5": 1.27704621474929,
+            "2.0": 0.9371317847739906
+          }
+        },
+        "21600": {
+          "temperature_C": {
+            "0.0": 50.164570215181755,
+            "1.0": 50.164622268326696,
+            "1.5": 50.16468350799943,
+            "2.0": 50.164763604960626
+          },
+          "moisture_kg_kg": {
+            "0.0": 0.9671100535939231,
+            "1.0": 0.8512170703636374,
+            "1.5": 0.7035144875701294,
+            "2.0": 0.47424019301627124
+          }
+        },
+        "86400": {
+          "temperature_C": {
+            "0.0": 50.164999999987515,
+            "1.0": 50.164999999992176,
+            "1.5": 50.16499999999809,
+            "2.0": 50.16500000000053
+          },
+          "moisture_kg_kg": {
+            "0.0": 0.2332685498268939,
+            "1.0": 0.2128385396253721,
+            "1.5": 0.18255232876495311,
+            "2.0": 0.06394161448532328
+          }
+        },
+        "172800": {
+          "temperature_C": {
+            "0.0": 50.16500000001463,
+            "1.0": 50.16500000000883,
+            "1.5": 50.16500000000531,
+            "2.0": 50.16500000000303
+          },
+          "moisture_kg_kg": {
+            "0.0": 0.16064599524415585,
+            "1.0": 0.14964963384593788,
+            "1.5": 0.13260811542488893,
+            "2.0": 0.053166825087650686
+          }
+        },
+        "259200": {
+          "temperature_C": {
+            "0.0": 50.164999999999736,
+            "1.0": 50.16500000000252,
+            "1.5": 50.16500000000997,
+            "2.0": 50.16500000000394
+          },
+          "moisture_kg_kg": {
+            "0.0": 0.13704058221971155,
+            "1.0": 0.1286631940200056,
+            "1.5": 0.11544896688006323,
+            "2.0": 0.05144426627485175
+          }
+        }
+      }
+    }
+  },
+  "impacts_vs_base": {
+    "h_minus10": {
+      "runtime_s": 180.62029919999998,
+      "passive_event_bracket_s": [
+        205944.0,
+        205946.0
+      ],
+      "passive_event_bracket_shift_s_vs_base": [
+        32.0,
+        32.0
+      ],
+      "checkpoints": {
+        "10800": {
+          "temperature_Linf_K": 0.050790431671543956,
+          "temperature_L2_RMS_K": 0.045198451300021085,
+          "moisture_Linf": 0.0045451025281757484,
+          "moisture_L2_RMS": 0.002703476478382471,
+          "inventory_abs": 4.435433510187282e-07
+        },
+        "21600": {
+          "temperature_Linf_K": 0.00028271318336692275,
+          "temperature_L2_RMS_K": 0.00023339553309755147,
+          "moisture_Linf": 0.0015317020958387495,
+          "moisture_L2_RMS": 0.0012486963030571233,
+          "inventory_abs": 2.442558253751455e-07
+        },
+        "86400": {
+          "temperature_Linf_K": 1.8701484805205837e-11,
+          "temperature_L2_RMS_K": 1.4081792182491064e-11,
+          "moisture_Linf": 6.1014357190497526e-05,
+          "moisture_L2_RMS": 4.386173352367825e-05,
+          "inventory_abs": 8.298905562943324e-09
+        },
+        "172800": {
+          "temperature_Linf_K": 1.2391865311656147e-11,
+          "temperature_L2_RMS_K": 8.042922255804773e-12,
+          "moisture_Linf": 1.3036731151327974e-05,
+          "moisture_L2_RMS": 9.73259249254419e-06,
+          "inventory_abs": 1.8825698430803897e-09
+        },
+        "259200": {
+          "temperature_Linf_K": 1.2846612662542611e-11,
+          "temperature_L2_RMS_K": 5.0401358992933e-12,
+          "moisture_Linf": 6.031672389744669e-06,
+          "moisture_L2_RMS": 4.581806430831817e-06,
+          "inventory_abs": 8.93818933475713e-10
+        }
+      },
+      "max_over_checkpoints": {
+        "temperature_Linf_K": 0.050790431671543956,
+        "temperature_L2_RMS_K": 0.045198451300021085,
+        "moisture_Linf": 0.0045451025281757484,
+        "moisture_L2_RMS": 0.002703476478382471,
+        "inventory_abs": 4.435433510187282e-07
+      }
+    },
+    "h_plus10": {
+      "runtime_s": 179.86686050000003,
+      "passive_event_bracket_s": [
+        205886.0,
+        205888.0
+      ],
+      "passive_event_bracket_shift_s_vs_base": [
+        -26.0,
+        -26.0
+      ],
+      "checkpoints": {
+        "10800": {
+          "temperature_Linf_K": 0.034080034635962875,
+          "temperature_L2_RMS_K": 0.030467050821086014,
+          "moisture_Linf": 0.0036196451460943635,
+          "moisture_L2_RMS": 0.0021852314636303907,
+          "inventory_abs": 3.654699897186935e-07
+        },
+        "21600": {
+          "temperature_Linf_K": 0.00016598635517084404,
+          "temperature_L2_RMS_K": 0.0001349885876501408,
+          "moisture_Linf": 0.0012432649303322219,
+          "moisture_L2_RMS": 0.0010155130670049198,
+          "inventory_abs": 1.9873056760982637e-07
+        },
+        "86400": {
+          "temperature_Linf_K": 1.3983481039758772e-11,
+          "temperature_L2_RMS_K": 7.034300731683684e-12,
+          "moisture_Linf": 4.967556090479386e-05,
+          "moisture_L2_RMS": 3.571117915149349e-05,
+          "inventory_abs": 6.756855484385494e-09
+        },
+        "172800": {
+          "temperature_Linf_K": 2.3533175408374518e-11,
+          "temperature_L2_RMS_K": 1.2994881460882636e-11,
+          "moisture_Linf": 1.0619297276276418e-05,
+          "moisture_L2_RMS": 7.927916024703565e-06,
+          "inventory_abs": 1.5334984953830613e-09
+        },
+        "259200": {
+          "temperature_Linf_K": 1.5063505998114124e-11,
+          "temperature_L2_RMS_K": 8.51234954268949e-12,
+          "moisture_Linf": 4.9138469337683954e-06,
+          "moisture_L2_RMS": 3.7326945807026016e-06,
+          "inventory_abs": 7.281756178157512e-10
+        }
+      },
+      "max_over_checkpoints": {
+        "temperature_Linf_K": 0.034080034635962875,
+        "temperature_L2_RMS_K": 0.030467050821086014,
+        "moisture_Linf": 0.0036196451460943635,
+        "moisture_L2_RMS": 0.0021852314636303907,
+        "inventory_abs": 3.654699897186935e-07
+      }
+    },
+    "hm_minus10": {
+      "runtime_s": 180.97240550000015,
+      "passive_event_bracket_s": [
+        208558.0,
+        208560.0
+      ],
+      "passive_event_bracket_shift_s_vs_base": [
+        2646.0,
+        2646.0
+      ],
+      "checkpoints": {
+        "10800": {
+          "temperature_Linf_K": 0.005920129874141367,
+          "temperature_L2_RMS_K": 0.005379174458598996,
+          "moisture_Linf": 0.07966006494015132,
+          "moisture_L2_RMS": 0.062326196450133875,
+          "inventory_abs": 1.2247743994874395e-05
+        },
+        "21600": {
+          "temperature_Linf_K": 6.356958186870543e-05,
+          "temperature_L2_RMS_K": 5.163707932347803e-05,
+          "moisture_Linf": 0.0702941870153988,
+          "moisture_L2_RMS": 0.06235051823379601,
+          "inventory_abs": 1.2366496553474536e-05
+        },
+        "86400": {
+          "temperature_Linf_K": 2.1316282072803006e-11,
+          "temperature_L2_RMS_K": 1.2129548184677457e-11,
+          "moisture_Linf": 0.005251000374240117,
+          "moisture_L2_RMS": 0.003838605877685155,
+          "inventory_abs": 7.251711823100438e-07
+        },
+        "172800": {
+          "temperature_Linf_K": 2.5579538487363607e-11,
+          "temperature_L2_RMS_K": 1.5550462111560026e-11,
+          "moisture_Linf": 0.0011074119139160288,
+          "moisture_L2_RMS": 0.0008323910159222158,
+          "inventory_abs": 1.6061233737171783e-07
+        },
+        "259200": {
+          "temperature_Linf_K": 2.1373125491663814e-11,
+          "temperature_L2_RMS_K": 7.980840872618173e-12,
+          "moisture_Linf": 0.0005101386805566599,
+          "moisture_L2_RMS": 0.00039053940027212845,
+          "inventory_abs": 7.600734578230487e-08
+        }
+      },
+      "max_over_checkpoints": {
+        "temperature_Linf_K": 0.005920129874141367,
+        "temperature_L2_RMS_K": 0.005379174458598996,
+        "moisture_Linf": 0.07966006494015132,
+        "moisture_L2_RMS": 0.06235051823379601,
+        "inventory_abs": 1.2366496553474536e-05
+      }
+    },
+    "hm_plus10": {
+      "runtime_s": 182.13509090000002,
+      "passive_event_bracket_s": [
+        203836.0,
+        203838.0
+      ],
+      "passive_event_bracket_shift_s_vs_base": [
+        -2076.0,
+        -2076.0
+      ],
+      "checkpoints": {
+        "10800": {
+          "temperature_Linf_K": 0.005266506983389263,
+          "temperature_L2_RMS_K": 0.004798745422165727,
+          "moisture_Linf": 0.07098558420092083,
+          "moisture_L2_RMS": 0.05549687744700748,
+          "inventory_abs": 1.0901026578054762e-05
+        },
+        "21600": {
+          "temperature_Linf_K": 5.073211718809034e-05,
+          "temperature_L2_RMS_K": 4.1088174782248974e-05,
+          "moisture_Linf": 0.05920795739529555,
+          "moisture_L2_RMS": 0.052114598681968986,
+          "inventory_abs": 1.0310651499532086e-05
+        },
+        "86400": {
+          "temperature_Linf_K": 1.6768808563938364e-11,
+          "temperature_L2_RMS_K": 1.0524728435338819e-11,
+          "moisture_Linf": 0.0038602096264396812,
+          "moisture_L2_RMS": 0.002812734906113588,
+          "inventory_abs": 5.31427062582257e-07
+        },
+        "172800": {
+          "temperature_Linf_K": 2.717115421546623e-11,
+          "temperature_L2_RMS_K": 1.7263702389863576e-11,
+          "moisture_Linf": 0.0008452958628213658,
+          "moisture_L2_RMS": 0.0006356310352919406,
+          "inventory_abs": 1.2267394948053614e-07
+        },
+        "259200": {
+          "temperature_Linf_K": 2.376054908381775e-11,
+          "temperature_L2_RMS_K": 1.4292962383225424e-11,
+          "moisture_Linf": 0.0003935462811685553,
+          "moisture_L2_RMS": 0.000301426778429387,
+          "inventory_abs": 5.866516784815815e-08
+        }
+      },
+      "max_over_checkpoints": {
+        "temperature_Linf_K": 0.005266506983389263,
+        "temperature_L2_RMS_K": 0.004798745422165727,
+        "moisture_Linf": 0.07098558420092083,
+        "moisture_L2_RMS": 0.05549687744700748,
+        "inventory_abs": 1.0901026578054762e-05
+      }
+    }
+  },
+  "workbook_written": false,
+  "q3_event_stop": false
+}

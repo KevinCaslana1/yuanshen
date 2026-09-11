@@ -262,3 +262,19 @@ Remaining Open Questions are classified by blocking phase in `docs/PROBLEM_SPEC.
 长时门结论：数值验证包完成，Q2 生产候选可供人工审核；`OQ-Q2-ENV-001/002`、`OQ-Q2-BC-001`、`OQ-Q2-FVM-001`、`OQ-Q2-END-001` 和 `OQ-Q2-ACC-001` 不因本轮运行而自动关闭。推荐候选为 ENV-A last raw point 后常值、linear、arithmetic face mean、Q1-carried h/hm、内部稳定性窗口至72 h，但仍需人工冻结和单独的 Q2 production/result authorization。
 
 `Q2 LONG-HORIZON BOUNDARY & PRODUCTION CONFIG GATE = COMPLETE / WAITING FOR Q2 PRODUCTION & RESULT AUTHORIZATION`
+
+## Q2 HUMAN MODEL-DECISION FREEZE GATE（2026-09-11）
+
+| Gate item | Evidence | Status |
+|---|---|---|
+| D1 post-14400 environment | `EXP-Q2-012` tail/transition；`EXP-Q2-018` A/B checkpoints | COMPLETE AS EVIDENCE / HUMAN DECISION PENDING |
+| D2 linear/PCHIP | `EXP-Q2-013` exact knots、Table 3/4 points、0–4 h field/flux difference | COMPLETE AS EVIDENCE / HUMAN DECISION PENDING |
+| D3 h/hm posture | `EXP-Q2-014` + `EXP-Q2-021` 3 h/72 h targeted screen | COMPLETE AS EVIDENCE / HUMAN DECISION PENDING |
+| D4 interface mean | `EXP-Q2-015` benchmark/0–3 h + `EXP-Q2-021` long target | COMPLETE AS EVIDENCE / HUMAN DECISION PENDING |
+| D5 Q2 accuracy criterion | packet field/L∞/L2/order/reporting/event separation | PROPOSED / HUMAN DECISION PENDING |
+| D6 production horizon | packet passive bracket + safety-tail rule, storage/runtime estimate | PROPOSED / HUMAN DECISION PENDING |
+| D7 canonical lineage | `Q2_CANONICAL_DATA_MANIFEST.json` + fail-closed loader tests | COMPLETE AS EVIDENCE / HUMAN DECISION PENDING |
+
+本 Gate 的完成条件是 decision packet、量化证据和 lineage guard 完整，不能等同于
+Agent 自动完成模型冻结。`result2.xlsx`、candidate/final workbook 均不存在；Q3/Q4
+仍未启动；Q1 保持冻结。

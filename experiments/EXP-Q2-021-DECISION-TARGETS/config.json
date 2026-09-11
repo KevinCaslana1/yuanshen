@@ -1,0 +1,35 @@
+{
+  "experiment": "EXP-Q2-021-DECISION-TARGETS",
+  "purpose": "Targeted evidence required by the Q2 human model-decision packet",
+  "boundary_long": {
+    "end_time_s": 259200.0,
+    "time_step_s": 2.0,
+    "n_intervals": 80,
+    "scheme": "bdf2",
+    "interface_mean": "harmonic",
+    "interpolation": "linear",
+    "post_attachment_mode": "constant",
+    "post_temperature_c": 50.165,
+    "post_moisture_kg_kg": 0.04986,
+    "perturbations": ["h_minus10", "h_plus10", "hm_minus10", "hm_plus10"],
+    "record_times_s": [10800.0, 21600.0, 86400.0, 172800.0, 259200.0],
+    "diagnostics_interval_s": 21600.0,
+    "production_accuracy_run": false
+  },
+  "interface_long": {
+    "end_time_s": 259200.0,
+    "time_step_s": 0.25,
+    "n_intervals": 80,
+    "scheme": "bdf2",
+    "interface_mean": "arithmetic",
+    "interpolation": "linear",
+    "post_attachment_mode": "constant",
+    "post_temperature_c": 50.165,
+    "post_moisture_kg_kg": 0.04986,
+    "comparison_source": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/official_samples_recovered.csv",
+    "comparison_times_s": [21600.0, 86400.0, 172800.0, 259200.0],
+    "production_accuracy_run": false
+  },
+  "workbook_written": false,
+  "q3_event_stop": false
+}

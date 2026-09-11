@@ -1,0 +1,11 @@
+{
+  "experiment": "EXP-Q2-021-DECISION-TARGETS",
+  "status": "PASS",
+  "subexperiments": {
+    "boundary": "boundary_long_target_metrics.json",
+    "interface": "interface_long_target_metrics.json"
+  },
+  "purpose": "Decision-critical targeted evidence only; not a production-accuracy certification",
+  "workbook_written": false,
+  "q3_event_stop": false
+}

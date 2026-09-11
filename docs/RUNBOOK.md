@@ -109,3 +109,20 @@ Q2 当前只允许执行设计阶段的只读审计：
 本轮初始层/表面精度诊断的可复现顺序为：先运行 `run_q1_initial_layer.py`，再运行 `run_q1_bdf2_startup.py`、`run_q1_surface_decay.py`、`run_q1_cluster_benchmark.py`、`run_q1_cluster_short.py` 和 `run_q1_cluster_temporal.py`。最后一个脚本会写出 `reference_t1_official_values` 与 `rounding_certification`；其结果只覆盖短时候选审计，不替代 0–1800 s 全网格最终门。
 
 全时域冻结顺序：运行 `run_q1_full_horizon_validation.py`；确认两个 full-horizon metrics 的 criterion 通过后，运行 `run_q1_freeze_run.py`（创建一次 `Q1_FREEZE_RUN` 并内部双跑）；最后运行 `generate_q1_candidate_from_freeze.py`。人工批准后只允许将 candidate 字节复制到 `deliverables/final/`，随后运行 `validate_q1_final.py`、`generate_q1_figures.py` 和 `validate_q1_figures.py`，并把清单、审计和验证报告纳入本地提交。当前 Q1 已完成该流程；不得重新运行 solver 或启动 Q2，除非获得新的明确授权。
+
+## Q2 Human Decision Packet
+
+决策证据入口：`docs/Q2_HUMAN_DECISION_PACKET.md`。当前只允许审核和小规模
+decision-target runs，不允许生成 `result2.xlsx` 或 candidate/final workbook。
+
+```powershell
+.\.venv\Scripts\python.exe scripts\run_q2_decision_targets.py boundary-long
+.\.venv\Scripts\python.exe scripts\run_q2_decision_targets.py interface-long
+.\.venv\Scripts\python.exe -m pytest -q
+```
+
+`boundary-long` 是 `dt=2 s` 的定向 h/hm 影响筛查；`interface-long` 使用 canonical
+`n=80, dt=.25 s` 长时检查点。两者都只写 `experiments/EXP-Q2-021-DECISION-TARGETS/`
+的 JSON/CSV/compact diagnostics，不写 workbook。canonical consumer 必须经由
+`src.q2.lineage.canonical_path` 或 `canonical_csv_path`；默认 hash verification
+开启，raw duplicate 文件被拒绝。

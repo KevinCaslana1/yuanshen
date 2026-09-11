@@ -27,6 +27,7 @@ if str(ROOT) not in sys.path:
 
 from src.q2 import Q2RunConfig, run_q2, run_q2_b0
 from src.q2.environment import EnvironmentProvider
+from src.q2.lineage import canonical_csv_path
 from src.q2.model import boundary_flux_pair, interface_values
 from src.q2.properties import diffusivity
 from src.q2.solver import grid_for_config
@@ -365,7 +366,7 @@ def compare_environment_checkpoints() -> dict:
 
 def plot_recovered_long_samples() -> dict:
     path = EXP / "EXP-Q2-016-LONG-ENV-A-last-raw"
-    source = path / "official_samples_recovered.csv"
+    source = canonical_csv_path("experiments/EXP-Q2-016-LONG-ENV-A-last-raw/official_samples_recovered.csv")
     times, surface_temperature, center_temperature, surface_moisture, center_moisture = [], [], [], [], []
     with source.open(newline="", encoding="utf-8") as handle:
         reader = csv.DictReader(handle)
@@ -399,7 +400,7 @@ def run_long_restart_audit() -> dict:
 
 
 def load_main_official_snapshots() -> dict[float, dict[float, tuple[float, float]]]:
-    source = EXP / "EXP-Q2-016-LONG-ENV-A-last-raw" / "official_samples_recovered.csv"
+    source = canonical_csv_path("experiments/EXP-Q2-016-LONG-ENV-A-last-raw/official_samples_recovered.csv")
     wanted = {float(value) for value in (21600, 43200, 86400, 172800, 259200)}
     output: dict[float, dict[float, tuple[float, float]]] = {}
     with source.open(newline="", encoding="utf-8") as handle:

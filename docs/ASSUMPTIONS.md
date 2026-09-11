@@ -20,6 +20,8 @@
 | A-Q2-005 | 暂不新增潜热、内部源项或无参数支持的交叉项 | Q2 | HIGH IMPACT | 物理审查；若新增参数须重开 | NEEDS_REVIEW |
 | A-Q2-006 | 变系数 FVM 界面先采用算术平均 | Q2 | MEDIUM/HIGH IMPACT | 算术/调和平均 benchmark | NEEDS_REVIEW |
 | A-Q2-007 | Q2 终点与 Q3 阈值接口按共享长时轨迹处理 | Q2 | HIGH IMPACT | 事件观察器和交付范围审查 | NEEDS_REVIEW |
+| A-Q2-008 | h/hm 作为 carried-forward modeling assumptions，不称为 official Q2 parameters | Q2 | HIGH IMPACT | EXP-Q2-014、021 ±10% 敏感性 | PROPOSED |
+| A-Q2-009 | Q2 field accuracy gate 与四位小数 reporting、Q3 event-time tolerance 分离 | Q2 | HIGH IMPACT | EXP-Q2-005、006、017；packet D5 | PROPOSED |
 
 ## 假设记录模板
 
@@ -106,6 +108,35 @@
 验证或依据：附件1时间间隔审计；未进行拟合。
 
 状态：PROPOSED；MEDIUM IMPACT
+
+## A-Q2-008 h / hm 的 Q2 来源口径
+
+问题：Q2
+
+假设内容：若 Q2/附录3没有重新给出独立的换热/传质系数，则继续使用
+`h=25 W/(m²·K)`、`hm=8e-7 m/s`，但明确标注为
+`CARRIED-FORWARD MODELING ASSUMPTION`，不称为 official Q2 parameter，也不在
+当前数据上拟合。
+
+依据与验证：`EXP-Q2-014` 与 targeted `EXP-Q2-021` 的独立 ±10% 敏感性；hm 对
+moisture 和 passive bracket 的影响明显高于 h。
+
+状态：PROPOSED；HIGH IMPACT；等待 `D-Q2-BOUNDARY-COEFFICIENTS` 人工决定。
+
+## A-Q2-009 Q2 field accuracy gate 与输出舍入分离
+
+问题：Q2
+
+假设内容：拟议 production field gate 为全声明时域上的温度/水分绝对数值不确定度
+分别不超过 `2.5e-5 °C`、`2.5e-5 kg/kg`，同时报告 L∞、L2 和独立时间/空间 observed
+order；四位小数只是 official workbook 的输出格式。Q2 只记录 passive bracket，不冻结
+Q3 event-time tolerance。
+
+理由：`2.5e-5` 是四位小数一个单位的四分之一，给舍入保留数值余量，且避免只把
+Q1 的半单位门原样复制。当前 packet 将该门标为 recommendation，不宣称 production
+candidate 已完成全时域正式 pass。
+
+状态：PROPOSED；HIGH IMPACT；等待 `D-Q2-NUM-ACCURACY` 人工决定。
 
 ## A-Q2-001 Q2 固定半径一维径向候选
 

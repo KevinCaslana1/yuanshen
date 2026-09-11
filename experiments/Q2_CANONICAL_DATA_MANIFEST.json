@@ -1,0 +1,184 @@
+{
+  "manifest_version": "Q2_CANONICAL_DATA_MANIFEST_V1",
+  "generated_by": "scripts/build_q2_canonical_manifest.py",
+  "canonical_run": {
+    "run_id": "EXP-Q2-016-LONG-ENV-A-last-raw",
+    "interpretation": "ENV-A: Attachment 1 last raw point held constant after 14400 s",
+    "horizon_s": 259200.0,
+    "status": "RECOMMENDED_FOR_HUMAN_APPROVAL",
+    "production_consumers": [
+      "Q2 figures",
+      "paper tables",
+      "future result2 candidate generator"
+    ]
+  },
+  "canonical_recovered_files": [
+    "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/official_samples_recovered.csv",
+    "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/diagnostics_1s_recovered.csv"
+  ],
+  "noncanonical_interrupted_or_duplicate_files": [
+    "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/official_samples.csv",
+    "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/diagnostics_1s.csv"
+  ],
+  "consumer_policy": {
+    "required_loader": "src.q2.lineage.canonical_path / canonical_csv_path",
+    "reject_noncanonical": true,
+    "raw_files_retained": true,
+    "result2_written": false
+  },
+  "status_vocabulary": [
+    "CANONICAL",
+    "RECOVERED_CANONICAL",
+    "NONCANONICAL_INTERRUPTED",
+    "NONCANONICAL_DUPLICATE"
+  ],
+  "entries": [
+    {
+      "path": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/config.json",
+      "sha256": "fec9b7da8a8108de7de873cfcbf28b69398e2f7acfed50f9da814eb6af6c42ea",
+      "status": "CANONICAL",
+      "role": "solver_config",
+      "reason": "Canonical ENV-A run configuration."
+    },
+    {
+      "path": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/metrics.json",
+      "sha256": "5012fd9deabbc5864f974767d2c80616e6455b519284239b32bdbd362e048015",
+      "status": "CANONICAL",
+      "role": "run_metrics",
+      "reason": "Metrics point to the recovered sampler for downstream use."
+    },
+    {
+      "path": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/output_recovery_metrics.json",
+      "sha256": "21ce8b6cd384d89b59b39f3ed14d0b871f5d24f29fa0342dbf13f67a0275b1fe",
+      "status": "CANONICAL",
+      "role": "lineage_audit",
+      "reason": "Records raw duplication and recovered-key validation."
+    },
+    {
+      "path": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/output_recovery_notes.md",
+      "sha256": "788908e5617f6f10af73adf87074e88aea6bf37d32ef9c75d49deafb12027c41",
+      "status": "CANONICAL",
+      "role": "lineage_notes",
+      "reason": "Human-readable recovery provenance."
+    },
+    {
+      "path": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/notes.md",
+      "sha256": "91d75e7609ea7be70a64d95dbf2d2482baaa0161992fceb5b9269b82cf24d9d3",
+      "status": "CANONICAL",
+      "role": "run_notes",
+      "reason": "Canonical run scope and non-workbook boundary."
+    },
+    {
+      "path": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/checkpoint_21600s.json",
+      "sha256": "0ab1e3196306c0173b56d08ef40081aac293b0533d6ac12afa4c4a2283a4bea5",
+      "status": "CANONICAL",
+      "role": "checkpoint",
+      "reason": "6 h checkpoint."
+    },
+    {
+      "path": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/checkpoint_43200s.json",
+      "sha256": "27bb9e3d00fb09649df8f29e0feef79b42dc6d2bfd5a65b5420f5501483730b6",
+      "status": "CANONICAL",
+      "role": "checkpoint",
+      "reason": "12 h checkpoint used for restart audit."
+    },
+    {
+      "path": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/checkpoint_86400s.json",
+      "sha256": "c06fb5d3ecf12873a547b1d7f32e095c157e869ad0f476896791225bb9af5641",
+      "status": "CANONICAL",
+      "role": "checkpoint",
+      "reason": "24 h checkpoint."
+    },
+    {
+      "path": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/checkpoint_172800s.json",
+      "sha256": "0935ce7517fe34d1d3ca077664ae38a67b120f4659b7db53c565e19bcbbeaaac",
+      "status": "CANONICAL",
+      "role": "checkpoint",
+      "reason": "48 h checkpoint."
+    },
+    {
+      "path": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/checkpoint_259200s.json",
+      "sha256": "4f19d03489f1fb1015e560556e27d5902f1a39e4e1190b1d9d0e69022c4a46a3",
+      "status": "CANONICAL",
+      "role": "checkpoint",
+      "reason": "72 h checkpoint."
+    },
+    {
+      "path": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/stage_21600s.json",
+      "sha256": "a19098622196382ab37da00b70ca45ce5add1d364b928488153d82189b1b18b6",
+      "status": "CANONICAL",
+      "role": "stage_diagnostics",
+      "reason": "6 h stage summary."
+    },
+    {
+      "path": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/stage_43200s.json",
+      "sha256": "9e4ea771e376e8921910064dfd20703110081343655b80bd954e4f1abf8e7aaa",
+      "status": "CANONICAL",
+      "role": "stage_diagnostics",
+      "reason": "12 h recovery stage summary."
+    },
+    {
+      "path": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/stage_86400s.json",
+      "sha256": "b09698e9a8e1364240245245d97a12fa4e375f42d70dc4d2019293775e2bdc0e",
+      "status": "CANONICAL",
+      "role": "stage_diagnostics",
+      "reason": "24 h stage summary."
+    },
+    {
+      "path": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/stage_172800s.json",
+      "sha256": "46668dfa67523f75c05a938942f7f72b532a1b8a2ed42bb3b83d56ab306fef46",
+      "status": "CANONICAL",
+      "role": "stage_diagnostics",
+      "reason": "48 h stage summary."
+    },
+    {
+      "path": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/stage_259200s.json",
+      "sha256": "a265ae1c0eff38b56b5b2e47504cb7f89f962171c0bcd8b58577b57b0ec6cb4c",
+      "status": "CANONICAL",
+      "role": "stage_diagnostics",
+      "reason": "72 h stage summary."
+    },
+    {
+      "path": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/temperature_center_surface.png",
+      "sha256": "573925d4a2f8ca20be445d0987d61f8e9a174b6e22c084aface9bba5072b79cf",
+      "status": "CANONICAL",
+      "role": "figure",
+      "reason": "Generated only from recovered canonical samples."
+    },
+    {
+      "path": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/moisture_center_surface.png",
+      "sha256": "babfd15219c76a87e8b836a62f8187705a5a4fbae7264a07d8c44209b60d0936",
+      "status": "CANONICAL",
+      "role": "figure",
+      "reason": "Generated only from recovered canonical samples."
+    },
+    {
+      "path": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/official_samples_recovered.csv",
+      "sha256": "3e15c6c8ec799d1ae32113829694b4211f95565ae494df069e5aa3e423cdf7da",
+      "status": "RECOVERED_CANONICAL",
+      "role": "canonical_sampler",
+      "reason": "Complete one-second official-radius sampler; first row per (time_s,radius_cm) key retained."
+    },
+    {
+      "path": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/diagnostics_1s_recovered.csv",
+      "sha256": "fdb86397f3d226d0afb1c8ec3515f3451bcc306992d6b2fa7c6354c8fe62d3b6",
+      "status": "RECOVERED_CANONICAL",
+      "role": "canonical_diagnostics",
+      "reason": "Complete one-second diagnostic sampler; first row per time_s key retained."
+    },
+    {
+      "path": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/official_samples.csv",
+      "sha256": "226f62bc5c7757d3bc5d0c2b7172f574ab5160a75a6688d3a12f4c3b6c49aa43",
+      "status": "NONCANONICAL_DUPLICATE",
+      "role": "raw_sampler",
+      "reason": "Interrupted resume advanced beyond the old checkpoint and duplicate rows were appended; retained only for provenance."
+    },
+    {
+      "path": "experiments/EXP-Q2-016-LONG-ENV-A-last-raw/diagnostics_1s.csv",
+      "sha256": "6cb1f3543f098f5df79828b4f5499a3735d9601d896d621504f862cdedf37bab",
+      "status": "NONCANONICAL_DUPLICATE",
+      "role": "raw_diagnostics",
+      "reason": "Interrupted resume appended duplicate diagnostic times; retained only for provenance."
+    }
+  ]
+}

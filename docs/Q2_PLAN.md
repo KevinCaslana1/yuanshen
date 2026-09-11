@@ -388,3 +388,17 @@ EXP-Q2-012–020 已覆盖环境尾段/插值、h/hm、界面平均、ENV-A/ENV-
 数值上推荐 ENV-A last raw point 后常值、linear、arithmetic face mean、Q1-carried h/hm 和 Candidate A；但推荐状态为 `PENDING_HUMAN_APPROVAL`。`OQ-Q2-ENV-001/002`、`OQ-Q2-BC-001`、`OQ-Q2-FVM-001`、`OQ-Q2-END-001` 和 `OQ-Q2-ACC-001` 继续 OPEN。72 h 仅是内部稳定性窗口，不能据此冻结 Q2 官方终点/行数或生成 `result2.xlsx`。
 
 `Q2 LONG-HORIZON BOUNDARY & PRODUCTION CONFIG GATE COMPLETE / WAITING FOR Q2 PRODUCTION & RESULT AUTHORIZATION`
+
+## Q2 Human Model-Decision Freeze Packet Addendum（2026-09-11）
+
+`docs/Q2_HUMAN_DECISION_PACKET.md` 汇总 D1–D7，所有 decision status 为
+`RECOMMENDED_FOR_HUMAN_APPROVAL`。当前 packet 的推荐顺序为：ENV-A last raw 后常值、
+linear、Q1 carried-forward h/hm、harmonic face mean、quarter-output-unit field
+gate，以及由 passive bracket 加预注册安全尾段构成的 rule-driven horizon。72 h
+只是已验证 envelope candidate，不是 official fixed stop；passive `C<0.15` bracket
+不是 Q3 answer。
+
+canonical lineage 已写入 `experiments/Q2_CANONICAL_DATA_MANIFEST.json`，并由
+`src/q2/lineage.py` fail-closed 保护。raw duplicate files 保留 provenance，future
+figure/paper/result2 loader 只能读取 canonical/recovered status。Q2 production 和
+`result2.xlsx` 仍需人工批准后另行授权；Q3/Q4 未启动。

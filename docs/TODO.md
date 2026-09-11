@@ -51,6 +51,11 @@
 | T-042 | P0 | Q2 | T-041 | TODO | Generate and validate Q2 candidate deliverable | 仅在 T-041 后从官方 result2 模板 COPY 到 `deliverables/candidate/`，完成结构/数值/格式/确定性/论文点校验；仍需人工确认后才能进入 final | 待确认 |
 | T-043 | P0 | Q3/Q4 | T-042 | TODO | Start Q3/Q4 only after explicit authorization | Q3/Q4 当前保持 NOT STARTED，不因 Q2 被动事件观察 bracket 自动启动 | 待确认 |
 
+| T-044 | P0 | Q2 human model-decision packet | T-040 | DONE | `docs/Q2_HUMAN_DECISION_PACKET.md`、`experiments/Q2_CANONICAL_DATA_MANIFEST.json` | D1–D7 证据、定向关键数据、recommendation、risk 和人工审批表完整；无 result2；Q1/Q3/Q4边界保持 | 2026-09-11 |
+| T-045 | P0 | Human approval of Q2 production decisions | T-044 | TODO | D-Q2-ENVIRONMENT 等七项 | 人工逐项 APPROVE/REJECT/REQUEST MORE EVIDENCE；Agent 不自行关闭 open decisions | 待确认 |
+| T-046 | P0 | Q2 production candidate and result2 validation | T-045 | TODO | `deliverables/candidate/result2.xlsx` | 仅在 T-045 后且获得单独 production authorization 时从官方模板 COPY；完成结构/数值/格式/lineage 验证；不得自动进入 final | 待确认 |
+| T-047 | P1 | Start Q3/Q4 after explicit authorization | T-045 | TODO | Q3/Q4 实验与计划 | Q3/Q4 仍 NOT STARTED；不得把 Q2 passive bracket 当作 Q3 answer | 待确认 |
+
 ## 任务记录模板
 
 ```text

@@ -469,7 +469,7 @@ OPEN_INTERPRETATION / OPEN_TEAM_CRITERION。
 - post-14400 s：ENV-A `last raw point`（`50.165 °C`、`0.04986 kg/kg`）后常值保持，数值上避免 tail40 mean 在接口产生的 `-0.16975 °C` 环境跳变；`OQ-Q2-ENV-001` 仍 OPEN。
 - `0..14400 s` 插值：linear 作为较简单、可追溯的候选；与 PCHIP 的 0–4 h 最大差异为 `0.0089368847 °C` / `1.6431732e-5 kg/kg`，不能视为等价；`OQ-Q2-ENV-002` 仍 OPEN。
 - h/hm：保留 Q1 口径作为候选，附带 ±10% 敏感性；h 影响低、hm 影响中等；`OQ-Q2-BC-001` 仍 OPEN。
-- 界面平均：arithmetic 作为低成本 provisional recommendation；真实运行 arithmetic/harmonic 最大差异 `1.36852384e-6 K` / `4.94771902e-7 kg/kg`，benchmark 通过；`OQ-Q2-FVM-001` 仍 OPEN。
+- 界面平均：短时 arithmetic/harmonic 差异很小且 benchmark 通过；但 EXP-Q2-021 长时 moisture 差异达到 `1.39570893e-4 kg/kg`，当前 packet 推荐暂保留 harmonic；`OQ-Q2-FVM-001` 仍 OPEN。
 - 数值生产候选：Candidate A，clustered conservative FVM、BE startup/BDF2、`n=80`、`dt=.25 s`；不是 FINAL。
 - 长时范围：0–72 h 只作为内部稳定性/敏感性窗口；被动 `C<0.15` bracket `205913–205913.25 s` 不自动成为 Q2 终点，也不启动 Q3。
 
@@ -482,3 +482,19 @@ ENV-A 主运行完成 0–72 h，最终阶段场有限且正，Picard `2/2/2/2`�
 `Q2_LONG_HORIZON_GATE_COMPLETE_PENDING_HUMAN_PRODUCTION_FREEZE`。
 
 证据：`docs/EXPERIMENTS.md`、`docs/VALIDATION.md`、`experiments/EXP-Q2-012-ENVIRONMENT/`–`experiments/EXP-Q2-020-BASELINE/`。
+
+## Q2 HUMAN MODEL-DECISION FREEZE PACKET（2026-09-11）
+
+本轮依据人工授权建立 `docs/Q2_HUMAN_DECISION_PACKET.md`，补充 ENV-A/ENV-B 长时差异、Table 3/4 纸面点插值差异、h/hm 的3 h/72 h定向敏感性、长时 arithmetic/harmonic 对照、Q2 数值门草案、生产时域规则和 recovered-data lineage。所有以下决定均只写成推荐，不是 FINAL/APPROVED：
+
+| Decision ID | 当前推荐 | 状态 | 证据 |
+|---|---|---|---|
+| D-Q2-ENVIRONMENT | ENV-A last raw point 后常值；优先连续性和可追溯性 | `RECOMMENDED_FOR_HUMAN_APPROVAL` | EXP-Q2-012、018；packet D1 |
+| D-Q2-INTERPOLATION | linear；承认与 PCHIP 存在非忽略差异 | `RECOMMENDED_FOR_HUMAN_APPROVAL` | EXP-Q2-013；packet D2 |
+| D-Q2-BOUNDARY-COEFFICIENTS | h/hm 作为 carried-forward modeling assumptions，保留敏感性 | `RECOMMENDED_FOR_HUMAN_APPROVAL` | EXP-Q2-014、021；packet D3 |
+| D-Q2-INTERFACE-MEAN | harmonic；长时 moisture 差异未低于拟议精度门 | `RECOMMENDED_FOR_HUMAN_APPROVAL` | EXP-Q2-015、021；packet D4 |
+| D-Q2-NUM-ACCURACY | quarter-output-unit field gate + 独立 L∞/L2/order 审计 | `RECOMMENDED_FOR_HUMAN_APPROVAL` | EXP-Q2-005、006、017；packet D5 |
+| D-Q2-PRODUCTION-HORIZON | 预注册的 passive bracket + 安全尾段规则；72 h 仅为当前 envelope candidate | `RECOMMENDED_FOR_HUMAN_APPROVAL` | EXP-Q2-016、packet D6 |
+| D-Q2-CANONICAL-LINEAGE | 通过 fail-closed manifest guard 使用 recovered ENV-A 文件 | `RECOMMENDED_FOR_HUMAN_APPROVAL` | `Q2_CANONICAL_DATA_MANIFEST.json`、packet D7 |
+
+本轮不自动关闭原有 `OQ-Q2-ENV-001/002`、`OQ-Q2-BC-001`、`OQ-Q2-FVM-001`、`OQ-Q2-END-001`、`OQ-Q2-ACC-001`；等待人工逐项选择 APPROVE/REJECT/REQUEST MORE EVIDENCE。

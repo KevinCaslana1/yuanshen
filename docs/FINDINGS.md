@@ -32,6 +32,11 @@
 | FIND-Q2-009 | post-14400 s 环境规则会改变长时场 | Q2 | EXP-Q2-012、EXP-Q2-018 | SUPPORTED（环境选择仍 OPEN） |
 | FIND-Q2-010 | linear/PCHIP 非等价，而 arithmetic/harmonic 在当前真实运行差异很小 | Q2 | EXP-Q2-013、EXP-Q2-015 | SUPPORTED（选择仍待人工冻结） |
 | FIND-Q2-011 | 长时收敛无失控、重启一致且 B0 仅为有限成本控制 | Q2 | EXP-Q2-017、019、020 | SUPPORTED（proxy/控制证据） |
+| FIND-Q2-012 | ENV-A 与 tail40 的长时差异不可忽略 | Q2 | EXP-Q2-018 | SUPPORTED（环境仍待冻结） |
+| FIND-Q2-013 | Linear 与 PCHIP 不是数值等价替换 | Q2 | EXP-Q2-013 | SUPPORTED |
+| FIND-Q2-014 | hm 对被动阈值时刻比 h 更敏感 | Q2 | EXP-Q2-021 | SUPPORTED（targeted screen） |
+| FIND-Q2-015 | 长时 arithmetic/harmonic 差异不能按短时结果冻结 | Q2 | EXP-Q2-015、021 | SUPPORTED |
+| FIND-Q2-016 | Recovered canonical loader 已阻断 raw duplicate 消费 | Q2 | manifest、lineage guard、tests | SUPPORTED |
 
 ## 发现记录模板
 
@@ -60,6 +65,60 @@
 限制：这些检查验证数值实现和当前方程的内部一致性，不证明被省略的物理效应不存在，也不构成论文结论。
 
 状态：SUPPORTED
+
+## FIND-Q2-012 ENV-A 与 tail40 的长时差异不可忽略
+
+问题：Q2
+
+发现：在相同 `n=80, dt=.25 s` 和相同 solver 配置下，ENV-A last raw 与 ENV-B tail40 mean 在 6/24/48/72 h 的温度 L∞ 分别为 `0.169486/0.169750/0.169750/0.169750 °C`，水分 L∞ 分别为 `0.0014492/0.0007154/0.0003763/0.0002776 kg/kg`；passive bracket 从 `205913–205913.25 s` 移至 `207034.5–207034.75 s`。
+
+证据：`experiments/EXP-Q2-018-ENV-COMPARISON/metrics.json`、`docs/Q2_HUMAN_DECISION_PACKET.md`。
+
+适用范围：当前固定半径 Q2-M1、ENV-A/B 后常值规则；不等同于官方终点或 Q3 答案。
+
+状态：SUPPORTED；环境选择仍需人工冻结。
+
+## FIND-Q2-013 Linear 与 PCHIP 不是数值等价替换
+
+问题：Q2
+
+发现：两种插值都精确经过附件1原始 knots，但在 Table 3/4 五个官方半径的纸面点上，0–3 h 温度最大差为 `2.3889714e-3 °C`、水分最大差为 `7.9729742e-6 kg/kg`；0–4 h 全节点最大差为 `8.9368847e-3 °C`、`1.6431732e-5 kg/kg`。
+
+证据：`experiments/EXP-Q2-013-INTERPOLATION/metrics.json`、其 `samples_linear.csv`/`samples_pchip.csv`。
+
+状态：SUPPORTED；不能因实现简单而把二者写成等价。
+
+## FIND-Q2-014 hm 对被动阈值时刻比 h 更敏感
+
+问题：Q2
+
+发现：±10% h 在 targeted 72 h screen 中只造成约 `4.9–6.0e-6 kg/kg` 的 moisture L∞，passive bracket 位移为 `-26/+32 s`；±10% hm 造成约 `3.94–5.10e-4 kg/kg` 的 moisture L∞，bracket 位移为 `-2076/+2646 s`。
+
+证据：`experiments/EXP-Q2-021-DECISION-TARGETS/boundary_long_target_metrics.json`。
+
+限制：targeted screen 使用 `dt=2 s`，用于边界假设影响诊断，不替代 production accuracy gate；bracket 仍是 passive diagnostic。
+
+状态：SUPPORTED；h/hm 仍是 carried-forward modeling assumptions。
+
+## FIND-Q2-015 长时 arithmetic/harmonic 差异不能按短时结果冻结
+
+问题：Q2
+
+发现：manufactured benchmark 与 0–3 h 实际 Q2 对照均通过；但同一 canonical 时空配置下，arithmetic 相对 harmonic 的 moisture L∞ 在 24/48/72 h 为 `1.3957089e-4/1.2652593e-4/1.0147461e-4 kg/kg`，高于 packet 拟议的 `2.5e-5` field gate，因此当前证据支持保留 harmonic，而不支持直接冻结 arithmetic。
+
+证据：`experiments/EXP-Q2-015-INTERFACE-MEAN/metrics.json`、`experiments/EXP-Q2-021-DECISION-TARGETS/interface_long_target_metrics.json`。
+
+状态：SUPPORTED；界面平均仍需人工决定。
+
+## FIND-Q2-016 Recovered canonical loader 已阻断 raw duplicate 消费
+
+问题：Q2
+
+发现：主长时 run 的 raw sample 有 `97104` 个重复 rows、raw diagnostic 有 `4624` 个重复 keys；recovered files 完整且通过 SHA-256 manifest guard。`canonical_path/canonical_csv_path` 对非 canonical status fail-closed。
+
+证据：`experiments/Q2_CANONICAL_DATA_MANIFEST.json`、`src/q2/lineage.py`、`tests/test_q2_lineage.py`。
+
+状态：SUPPORTED；manifest 本身及生产配置仍等待人工冻结。
 
 ## FIND-Q2-001 附录3变物性实现与单位测试通过
 

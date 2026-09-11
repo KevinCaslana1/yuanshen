@@ -291,3 +291,24 @@
 是否放弃：是，初次失败不产生有效收敛结论。
 
 状态：RESOLVED
+
+## FAIL-Q2-001 Targeted interface post-processing requested an unavailable checkpoint key
+
+问题：Q2
+
+症状：第一次运行 `scripts/run_q2_decision_targets.py interface-long` 时，arithmetic
+solver 已完成 0–259200 s，但比较函数请求 `10800 s`；canonical recovered long
+sampler只登记 21600/86400/172800/259200 s，因此后处理抛出 `KeyError: 10800.0`。
+
+影响：该次运行没有写出 decision metrics，未被采纳；没有 workbook 写入，也没有
+修改 canonical/raw 文件。
+
+修复：将 interface targeted comparison 限定为 canonical 已存在的
+6/24/48/72 h keys；3 h 继续引用已存在的 `EXP-Q2-015` 短时 evidence。修复后重跑
+生成 `interface_long_target_metrics.json`，状态 `PASS`。
+
+根因：targeted runner 的 requested snapshot set 与 canonical sampler contract 不一致。
+预防：后续 compare loader 必须先检查 requested keys 是否由 canonical source 完整提供；
+测试/审查不得把 solver 完成等同于后处理证据完整。
+
+状态：RESOLVED；保留本记录作为审计 provenance。
