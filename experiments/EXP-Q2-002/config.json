@@ -1,0 +1,10 @@
+{
+  "experiment": "EXP-Q2-002",
+  "end_time_s": 1800.0,
+  "time_step_s": 0.25,
+  "candidate": "A",
+  "n_intervals": 80,
+  "scheme": "bdf2",
+  "reference": "Q1 frozen implementation run; comparison only",
+  "input_path": "A题/附件/附件1.xlsx"
+}

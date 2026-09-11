@@ -55,6 +55,6 @@ def test_formal_evidence_records_are_scoped_and_traceable() -> None:
 def test_state_preserves_question_boundaries() -> None:
     state = (ROOT / "docs" / "STATE.md").read_text(encoding="utf-8")
     assert "Q1" in state
-    assert "Q2 | NOT STARTED" in state or "| Q2 | NOT STARTED" in state
+    assert "Q2 IMPLEMENTATION & SHORT-HORIZON VALIDATION COMPLETE" in state
     assert "Q3 | NOT STARTED" in state or "| Q3 | NOT STARTED" in state
     assert "Q4 | NOT STARTED" in state or "| Q4 | NOT STARTED" in state

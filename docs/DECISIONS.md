@@ -28,6 +28,7 @@
 | D-Q2-FVM-001 | 2026-09-11 | Q2 | 变系数 FVM 的算术/调和界面平均不在设计 Gate 预先裁决 | OPEN_NUMERICAL_DECISION | `docs/Q2_PLAN.md` |
 | D-Q2-END-001 | 2026-09-11 | Q2 | 不把 Q3 的 `C<0.15 kg/kg` 自动写成 Q2 官方终点；Q2 长时覆盖范围和最终行数待确认 | OPEN_INTERPRETATION | `docs/Q2_PLAN.md`、`docs/PROBLEM_SPEC.md` |
 | D-Q2-ACC-001 | 2026-09-11 | Q2 | Q1 `<5e-5` 只作为 Q2 精度候选起点；需重新检查长时累积误差、事件时刻、耦合误差和运行成本 | OPEN_TEAM_CRITERION | `docs/Q2_PLAN.md` |
+| D-Q2-IMPLEMENTATION-20260911 | 2026-09-11 | Q2 | implementation & short-horizon validation 完成；Candidate A BDF2 仅记为 `RECOMMENDED_FOR_Q2_FREEZE`；不生成 result2、不启动 Q3/Q4 | IMPLEMENTATION_COMPLETE_PENDING_HUMAN_FREEZE | `experiments/EXP-Q2-001/`–`EXP-Q2-011/` |
 
 ## D-Q1-HUMAN-FREEZE Q1 人工最终冻结与可视化交付
 
@@ -443,3 +444,14 @@ OPEN_NUMERICAL_DECISION。
 ### 状态
 
 OPEN_INTERPRETATION / OPEN_TEAM_CRITERION。
+## D-Q2-IMPLEMENTATION-20260911 Q2 实施与短时验证状态
+
+问题：Q2
+
+人工授权后，按 Q2 implementation gate 实现 `src/q2/` 独立组件并完成 EXP-Q2-001 至 EXP-Q2-011。Candidate A 的 clustered conservative FVM + BE startup/BDF2 在 EXP-Q2-007 的 accuracy proxy 中优于同配置 BE，因此仅记录为 `RECOMMENDED_FOR_Q2_FREEZE`。该记录不是 FINAL，不关闭 `OQ-Q2-ENV-001/002`、`OQ-Q2-BC-001`、`OQ-Q2-FVM-001`、`OQ-Q2-END-001` 或 `OQ-Q2-ACC-001`。
+
+本决定同时确认：Q2 0–3 h内部验证的环境严格限制在附件1 `0..14400 s` 范围；不启用14400 s后常值、不实现 Q3 结束事件、不生成 `result2.xlsx`；Q1 冻结行为和 `A题/` 官方源保持不变。
+
+状态：IMPLEMENTATION_COMPLETE_PENDING_HUMAN_FREEZE
+
+证据：`docs/EXPERIMENTS.md`、`docs/VALIDATION.md`、`experiments/EXP-Q2-001/`–`EXP-Q2-011/`

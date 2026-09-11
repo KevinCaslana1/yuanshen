@@ -1,0 +1,9 @@
+{
+  "experiment": "EXP-Q2-007",
+  "end_time_s": 600.0,
+  "time_step_s": 0.25,
+  "candidates": ["A", "B"],
+  "schemes": ["be", "bdf2"],
+  "reference": "A, n=160, BDF2, dt=0.0625 s",
+  "input_path": "A题/附件/附件1.xlsx"
+}

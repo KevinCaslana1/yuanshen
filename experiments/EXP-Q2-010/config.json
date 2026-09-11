@@ -1,0 +1,11 @@
+{
+  "experiment": "EXP-Q2-010",
+  "end_time_s": 600.0,
+  "restart_time_s": 300.0,
+  "time_step_s": 0.25,
+  "candidate": "A",
+  "n_intervals": 80,
+  "scheme": "bdf2",
+  "checkpoint_format": "Q2_CHECKPOINT_V1",
+  "input_path": "A题/附件/附件1.xlsx"
+}

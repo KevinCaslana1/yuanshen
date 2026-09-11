@@ -2,7 +2,7 @@
 
 > Gate：`CUMCM Q2 MODEL DESIGN & CONTRACT GATE`
 >
-> 当前状态：设计与契约已冻结为候选方案；Q2 求解器尚未实现，未运行正式长时仿真，未生成 `result2.xlsx`，Q3/Q4 未启动。
+> 当前状态：设计与契约已冻结为候选方案；Q2 implementation & short-horizon validation 已完成，未生成 `result2.xlsx`，Q3/Q4 未启动。
 
 ## 0. Current Project Status
 
@@ -10,18 +10,18 @@
 |---|---|
 | 当前问题 | Q2：整个烘干过程的温度与水分浓度场设计 |
 | Q1 | `FROZEN / COMPLETE`；冻结提交 `a752e3a423dc48118b4bc8171c2a7bf9eb79f670`，本地标签 `q1-final` |
-| Q2 | `MODEL DESIGN COMPLETE / IMPLEMENTATION NOT STARTED` |
+| Q2 | `IMPLEMENTATION & SHORT-HORIZON VALIDATION COMPLETE / WAITING LONG-HORIZON AUTHORIZATION` |
 | Q3/Q4 | `NOT STARTED` |
 | Q2 主模型 | `Q2-M1`：固定半径一维圆柱径向、变物性、温度–水分耦合模型；仅设计候选 |
 | Q2 数值候选 | `Q2-NUM-CANDIDATE-A/B`；尚未选择最终方案 |
 | Baseline | `Q2-B0`：冻结物性/简化控制模型；尚未运行 |
-| 最好 Q2 实验 | 无；本阶段只完成官方源复核、物性点检验设计和附件1尾段审计 |
+| 最好 Q2 实验 | `EXP-Q2-011`；0–10800 s内部验证完成，Candidate A BDF2 仅为推荐候选 |
 | 已知失败/限制 | 团队 DOCX 无法用当前环境的 LibreOffice 做视觉渲染；正文与公式已用 `python-docx` 提取，并以官方 PDF 附录3复核公式；不影响官方源结论 |
-| 当前阻塞 | 等待人工授权进入 Q2 implementation；同时保留环境尾段、接口平均、结束条件和精度门等开放决策 |
+| 当前阻塞 | 正式 `result2.xlsx`/长时全程仍需人工确认环境、界面平均、结束条件和精度门 |
 
 ## 1. Scope Boundary and Source Priority
 
-本文件只完成问题分析、模型候选、数值候选、验证设计和交付契约草案。以下工作明确不在本 Gate：Q2 solver、正式 2–3 天长时仿真、任何正式 Q2 数值结论、`result2.xlsx`、Q2 论文结论、Q3/Q4 实现。
+本文件的主体记录 Q2 设计 Gate；以下实施范围由末尾 addendum 登记：Q2 solver、短时验证和0–3 h内部验证已完成。正式 2–3 天长时仿真、任何正式 Q2 交付数值结论、`result2.xlsx`、Q2 论文结论、Q3/Q4 实现仍不在当前授权范围。
 
 来源优先级固定为：
 
@@ -343,18 +343,24 @@ checkpoint 至少保存：物理时间、`T/C` 当前场与必要历史层、空
 - [x] 五份团队 DOCX 已标为 `TEAM_REFERENCE`，并与官方来源分离。
 - [x] 附件1尾段环境统计和两阶段 OQ 已登记。
 - [x] Q2 终止条件未把 Q3 阈值升级为官方事实。
-- [x] Q2-M1、Q2-B0、A/B/C 数值候选已设计但未选择/实现。
+- [x] Q2-M1、Q2-B0、A/B/C 数值候选已设计；A/B 已在 implementation gate 中实现并比较，未冻结最终方案。
 - [x] 耦合 Picard、变量系数 FVM、长时存储、checkpoint/restart 已设计。
 - [x] 验证矩阵和 result2 契约草案已建立。
 - [x] Q1 final、Q1 figures、冻结 solver behavior 和 `A题/` 未修改。
-- [x] Q2 solver、正式长时仿真、`result2.xlsx`、Q2 论文结论、Q3/Q4 均未开始。
+- [x] Q2 solver、短时/0–3 h内部验证已完成；正式 `result2.xlsx`、Q2最终论文结论、Q3/Q4均未开始。
 
 `Q2 MODEL DESIGN & CONTRACT GATE COMPLETE`
 
-`WAITING FOR HUMAN Q2 IMPLEMENTATION AUTHORIZATION`
+`Q2 IMPLEMENTATION & SHORT-HORIZON VALIDATION COMPLETE / WAITING LONG-HORIZON AUTHORIZATION`
 
 `Q1 = FROZEN`
 
 `Q3 = NOT STARTED`
 
 `Q4 = NOT STARTED`
+
+## Q2 Implementation Gate Addendum (2026-09-11)
+
+在收到人工 implementation authorization 后，设计中规划的 Q2 独立组件已实现并完成短时验证。实现文件为 `src/q2/properties.py`、`src/q2/environment.py`、`src/q2/model.py`、`src/q2/config.py`、`src/q2/solver.py`、`src/q2/validation.py` 和 `src/q2/benchmark.py`；测试和实验证据位于 `tests/test_q2_*.py` 与 `experiments/EXP-Q2-001/` 至 `EXP-Q2-011/`。
+
+Candidate A 的 BDF2 只在 EXP-Q2-007 中记录为 `RECOMMENDED_FOR_Q2_FREEZE`，不是最终冻结方案。PCHIP、14400 s 后环境、h/hm、界面平均、Q2 终点和精度门仍是开放问题；0–3 h运行只使用 Attachment 1 范围内输入，没有实现 Q3 事件停止逻辑。此 addendum 不改变 Q2 设计阶段的官方源优先级和 `result2.xlsx` 保护规则。

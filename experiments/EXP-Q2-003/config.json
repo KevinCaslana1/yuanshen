@@ -1,0 +1,8 @@
+{
+  "experiment": "EXP-Q2-003",
+  "benchmark": "manufactured variable-coefficient radial heat and diffusion",
+  "spatial_levels": [10, 20, 40, 80],
+  "temporal_levels_s": [0.02, 0.01, 0.005, 0.0025],
+  "interface_means": ["harmonic"],
+  "result2_generated": false
+}

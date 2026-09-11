@@ -1,0 +1,19 @@
+"""Question 2 implementation: coupled variable-property radial model."""
+
+from .config import Q2Parameters, Q2RunConfig
+from .environment import EnvironmentProvider
+from .properties import cp, diffusivity, conductivity, density
+from .solver import Q2NonConvergenceError, Q2RunResult, run_q2
+
+__all__ = [
+    "EnvironmentProvider",
+    "Q2NonConvergenceError",
+    "Q2Parameters",
+    "Q2RunConfig",
+    "Q2RunResult",
+    "cp",
+    "diffusivity",
+    "conductivity",
+    "density",
+    "run_q2",
+]

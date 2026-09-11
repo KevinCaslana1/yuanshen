@@ -1,0 +1,9 @@
+{
+  "experiment": "EXP-Q2-005",
+  "end_time_s": 1800.0,
+  "fixed_space": "uniform dr=0.025 cm",
+  "dt_s": [1.0, 0.5, 0.25, 0.125],
+  "reference_dt_s": 0.03125,
+  "scheme": "be",
+  "input_path": "A题/附件/附件1.xlsx"
+}

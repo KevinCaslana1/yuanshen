@@ -82,3 +82,23 @@ EXP-003/004 是与冻结生产配置隔离的 uniform-grid BE 诊断：时间审
 ## Q2 Design Gate Execution Note
 
 `EXP-Q2-PROPERTY-POINTS` 和 `EXP-Q2-ENV-TAIL` 是设计阶段的只读审计，已分别由 `scripts/audit_q2_property_spec.py` 和 `scripts/audit_q2_environment_tail.py` 复现；两者均明确 `formal_Q2_solver_run=false`、`workbook_written=false`。其余 Q2 实验保持 `PLANNED`，必须等待人工 implementation authorization，且先解决或显式承认 `OQ-Q2-ENV-001/002`、`OQ-Q2-END-001`、`OQ-Q2-FVM-001` 和 `OQ-Q2-ACC-001`。
+
+## Q2 Implementation & Short-Horizon Validation Addendum
+
+收到人工授权后，Q2 实施和短时验证已完成。以下实验均只写入 `experiments/EXP-Q2-xxx/` 的 CSV/JSON/PNG/诊断文件；没有生成、复制或修改 `result2.xlsx`，没有启动 Q3/Q4。
+
+| ID | Purpose | Key Config | Key Result | Status | Evidence |
+|---|---|---|---|---|---|
+| EXP-Q2-001 | 0–60 s smoke | Candidate A；clustered FVM；BDF2 after BE startup；`dt=.25 s`；80 requested intervals | 240 steps；Picard `min/median/p95/max=3/3/3/3`；有限值、范围、边界/线性残差检查通过 | COMPLETED | `experiments/EXP-Q2-001/` |
+| EXP-Q2-002 | Q1/Q2 0–1800 s overlap sanity | Q1 frozen run vs Q2 A；相同附件1窗口；`dt=.25 s` | 量级、连续性、中心/表面和求解稳定性检查通过；Q1/Q2 数值不要求相等 | COMPLETED | `experiments/EXP-Q2-002/` |
+| EXP-Q2-003 | 独立变系数 FVM benchmark | 制造解；变量径向 heat/moisture coefficient；BE；空间/时间细化 | 空间约一阶、BE 时间约一阶；结果与当前 Robin 节点闭合一致 | COMPLETED | `experiments/EXP-Q2-003/` |
+| EXP-Q2-004 | Coupled Picard convergence | 0–300 s；Candidate A；`dt=.25 s`；80 intervals | 1200 步全部收敛；Picard `3/3/3/3`；双场残差与线性残差记录完整 | COMPLETED | `experiments/EXP-Q2-004/` |
+| EXP-Q2-005 | Time sensitivity | 固定 uniform `dr=.025 cm`；BE；`dt=1,.5,.25,.125 s`；`dt=.03125 s` reference | 温度 observed order `1.047/1.099/1.222/1.585`；水分 `0.999/1.072/1.206/1.577` | COMPLETED | `experiments/EXP-Q2-005/` |
+| EXP-Q2-006 | Space sensitivity | 固定 `dt=.125 s`；uniform `dr=.1,.05,.025 cm`；`.0125 cm` reference | 温度 L∞、L2 与水分 L∞、L2 均随细化下降；同一物理半径比较 | COMPLETED | `experiments/EXP-Q2-006/` |
+| EXP-Q2-007 | BE/BDF2 comparison | Candidate A/B；`dt=.25 s`；0–600 s；共同细参考 | A 上 BDF2 的温度/水分 accuracy proxy 均低于 BE；状态仅记为 `RECOMMENDED_FOR_Q2_FREEZE` | COMPLETED | `experiments/EXP-Q2-007/` |
+| EXP-Q2-008 | Environment interpolation | linear executable；PCHIP optional | linear 保持原始点；SciPy 不可用，PCHIP 未伪造，`OQ-Q2-ENV-002` 保持 OPEN | PARTIAL_OPEN | `experiments/EXP-Q2-008/` |
+| EXP-Q2-009 | Mass/heat/Robin residual | 0–300 s；Candidate A；BDF2 | 逐步质量、热量、Robin 通量差和线性残差均有完整日志 | COMPLETED | `experiments/EXP-Q2-009/` |
+| EXP-Q2-010 | Checkpoint/restart | 0–600 s；300 s checkpoint；Candidate A；BDF2 | 连续/重启末场最大差值为 0；checkpoint 含输入哈希、commit、网格、配置和历史层 | COMPLETED | `experiments/EXP-Q2-010/` |
+| EXP-Q2-011 | Internal 0–3 h validation | Candidate A；160 intervals；BDF2；`dt=.25 s`；0–10800 s | 43200 步完成；Picard `2/2/3/3`；性质范围和纸面时刻 1800–10800 s 已记录 | COMPLETED | `experiments/EXP-Q2-011/` |
+
+正式设计表中的 `EXP-Q2-ENV-INTERPOLATION`、`EXP-Q2-COUPLED-PICARD`、`EXP-Q2-VARCOEF-FVM`、`EXP-Q2-Q1-OVERLAP`、`EXP-Q2-RESTART` 是设计阶段名称；本附录的 `EXP-Q2-008/004/003/002/010` 为实施阶段实际证据编号。开放问题不因实验完成而静默关闭。

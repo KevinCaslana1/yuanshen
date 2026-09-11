@@ -1,0 +1,44 @@
+{
+  "experiment": "EXP-Q2-009",
+  "status": "PASS",
+  "config": {
+    "end_time_s": 300,
+    "time_step_s": 0.25,
+    "candidate": "A",
+    "n_intervals": 80,
+    "cluster_power": 2.0,
+    "scheme": "bdf2",
+    "interface_mean": "harmonic",
+    "interpolation": "linear",
+    "post_attachment_mode": "raise",
+    "output_interval_s": 1.0,
+    "picard_tolerance": 1e-08,
+    "picard_max_iterations": 50,
+    "picard_relaxation": 1.0,
+    "input_path": "A题\\附件\\附件1.xlsx",
+    "parameters": {
+      "radius_m": 0.02,
+      "length_m": 0.25,
+      "heat_transfer_w_m2_k": 25.0,
+      "mass_transfer_m_s": 8e-07,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55
+    }
+  },
+  "diagnostics": {
+    "steps": 1200,
+    "picard_min": 3,
+    "picard_median": 3.0,
+    "picard_p95": 3.0,
+    "picard_max": 3,
+    "temperature_residual_max": 1.454327327910276e-13,
+    "moisture_residual_max": 2.4673422346638154e-10,
+    "temperature_boundary_residual_max_w_m2": 0.012889056924755948,
+    "moisture_boundary_residual_max_kg_m2_s": 8.204296759880902e-08,
+    "mass_step_residual_max": 1.576988380489457e-08,
+    "heat_step_residual_max_j": 0.42984418291382864,
+    "temperature_linear_residual_max": 6.108393790782429e-10,
+    "moisture_linear_residual_max": 1.461053500406706e-13
+  },
+  "interpretation": "residual audit of the implemented discrete equations; not a claim about physical drying mechanism"
+}

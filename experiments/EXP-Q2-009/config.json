@@ -1,0 +1,10 @@
+{
+  "experiment": "EXP-Q2-009",
+  "end_time_s": 300.0,
+  "time_step_s": 0.25,
+  "candidate": "A",
+  "n_intervals": 80,
+  "scheme": "bdf2",
+  "residuals": ["mass step/cumulative", "heat step/cumulative", "Robin flux difference"],
+  "input_path": "A题/附件/附件1.xlsx"
+}

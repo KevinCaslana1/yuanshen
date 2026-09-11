@@ -1,0 +1,7 @@
+{
+  "experiment": "EXP-Q2-008",
+  "linear": "executed",
+  "pchip": "not executed; optional SciPy dependency unavailable",
+  "post_attachment_mode": "raise for formal validation",
+  "result2_generated": false
+}

@@ -21,6 +21,13 @@
 | FIND-Q1-013 | 边界聚类保守 FVM 在独立制造解 benchmark 中保持近二阶空间/一阶时间趋势，并显著降低真实 Q1 早期表面空间差异 | Q1 | EXP-Q1-CLUSTER-BENCH、EXP-Q1-CLUSTER-SHORT | SUPPORTED（候选未冻结） |
 | FIND-Q1-014 | 早期 BE 子步启动没有显示出相对标准 BE 首步的稳定改善 | Q1 | EXP-Q1-BDF2-STARTUP | SUPPORTED（当前 M1-NUM-T2 对照范围） |
 | FIND-Q1-017 | r=1.9 cm 的早期表面误差谷值由 signed error 穿零造成；字面 r=2.0 cm 表面无穿零，且空间细化时谷值移动而全局 L∞/L2 下降 | Q1 | EXP-Q1-SURFACE-DECAY、EXP-003、EXP-004 | SUPPORTED（pointwise error zero-crossing / cancellation dip；不得作为突然提速证据） |
+| FIND-Q2-001 | 附录3变物性、单位和 Kelvin 输入测试通过 | Q2 | EXP-Q2-PROPERTY-POINTS、tests/test_q2_properties.py | SUPPORTED（属性实现范围） |
+| FIND-Q2-002 | 变量系数 benchmark 的当前 Robin 节点闭合约一阶空间、BE约一阶时间 | Q2 | EXP-Q2-003 | SUPPORTED（隔离数值证据） |
+| FIND-Q2-003 | 已运行短时和3小时配置的 coupled Picard 全部收敛且诊断完整 | Q2 | EXP-Q2-001、004、009、011 | SUPPORTED（实现状态，不是物理结论） |
+| FIND-Q2-004 | 固定非比较维度的时间/空间细化误差均下降 | Q2 | EXP-Q2-005、EXP-Q2-006 | SUPPORTED（数值敏感性） |
+| FIND-Q2-005 | Candidate A BDF2 在当前短时 accuracy proxy 中优于 BE，但仅推荐不冻结 | Q2 | EXP-Q2-007 | SUPPORTED（RECOMMENDED_FOR_Q2_FREEZE） |
+| FIND-Q2-006 | checkpoint/restart 测试配置下逐点复现 | Q2 | EXP-Q2-010 | SUPPORTED（当前版本/配置） |
+| FIND-Q2-007 | 0–3 h内部运行未触发14400 s后外推或Q3事件逻辑 | Q2 | EXP-Q2-011 | SUPPORTED（范围边界） |
 
 ## 发现记录模板
 
@@ -47,6 +54,90 @@
 适用范围：当前 `N=80`、`dt=1 s`、线性插值、Robin 边界和未加入潜热/交叉耦合的 Q1 候选方程。
 
 限制：这些检查验证数值实现和当前方程的内部一致性，不证明被省略的物理效应不存在，也不构成论文结论。
+
+状态：SUPPORTED
+
+## FIND-Q2-001 附录3变物性实现与单位测试通过
+
+问题：Q2
+
+发现：实现严格采用官方 PDF 附录3的 `rho(C)`、`cp(C)`、`k(C)` 和 `D(C,T_K)`；已知点、正值/有限性、`C`/`T_K` 变化和摄氏误传保护测试通过。`T` 只在显式摄氏转 Kelvin 后进入 `D`。
+
+证据：`src/q2/properties.py`、`tests/test_q2_properties.py`、`experiments/EXP-Q2-PROPERTY-POINTS/metrics.json`。
+
+适用范围：Q2-M1 属性函数；不代表整个 Q2 物理模型已经被实验验证。
+
+状态：SUPPORTED
+
+## FIND-Q2-002 变量系数 benchmark 显示当前 Robin 节点闭合约一阶空间、BE 一阶时间
+
+问题：Q2
+
+发现：独立制造解同时测试变量径向热扩散和水分扩散。当前“表面节点 + Robin 半控制体”实现的全局空间 observed order 约为 `1.01–1.04`，BE 时间 observed order 约为 `1.00–1.16`。这与当前离散闭合相符；没有把空间二阶假设写成结果。
+
+证据：`experiments/EXP-Q2-003/metrics.json`、`src/q2/benchmark.py`。
+
+限制：这是制造解和当前边界闭合的数值证据，不是对真实 Q2 场的精度保证；界面平均主方案仍为开放数值决策。
+
+状态：SUPPORTED
+
+## FIND-Q2-003 Q2 coupled Picard 在已运行短时和3小时范围内收敛
+
+问题：Q2
+
+发现：0–60 s、0–300 s 和0–10800 s 的已运行配置均完成；每步分别记录温度/水分归一化 Picard 残差、迭代历史、线性残差、性质范围、Robin 通量差和离散质量/热量残差。0–3 h 运行的 Picard 迭代统计为 `min/median/p95/max=2/2/3/3`。
+
+证据：`experiments/EXP-Q2-001/metrics.json`、`experiments/EXP-Q2-004/metrics.json`、`experiments/EXP-Q2-009/metrics.json`、`experiments/EXP-Q2-011/metrics.json`。
+
+限制：这只支持实现与数值收敛状态；不支持“温度一定加快干燥”或其他物理机制结论。
+
+状态：SUPPORTED
+
+## FIND-Q2-004 时间与空间细化在指定短时验证中均下降
+
+问题：Q2
+
+发现：时间审计固定 uniform `dr=0.025 cm`，以 `dt=0.03125 s` 为 reference；`dt=1,.5,.25,.125 s` 的温度和水分 L∞/L2 误差均下降，observed order 进入约一阶区间。空间审计固定 `dt=.125 s`，`dr=.1,.05,.025 cm` 相对 `.0125 cm` reference 的温度和水分 L∞/L2 均下降，且比较按相同物理半径而不是相同数组索引进行。
+
+证据：`experiments/EXP-Q2-005/metrics.json`、`experiments/EXP-Q2-006/metrics.json`。
+
+限制：这些是0–1800 s数值敏感性结果；不关闭 Q2 终点、环境尾段或正式输出契约开放项。
+
+状态：SUPPORTED
+
+## FIND-Q2-005 BDF2 在当前 Candidate A 短时 accuracy proxy 中优于 BE，但不是 FINAL
+
+问题：Q2
+
+发现：在0–600 s共同配置比较中，Candidate A 的 BDF2 相对 BE 的温度 L∞ proxy 从 `3.2642e-4 K` 降至 `5.2822e-5 K`，水分 proxy 从 `1.1303e-3` 降至 `3.7759e-4`；因此实验记录为 `RECOMMENDED_FOR_Q2_FREEZE`，没有写成 FINAL。
+
+证据：`experiments/EXP-Q2-007/metrics.json`。
+
+限制：Candidate B 的表现不同；最终界面平均、精度门和 Q2 交付冻结仍待人工决定。
+
+状态：SUPPORTED
+
+## FIND-Q2-006 checkpoint/restart 在测试配置下逐点复现
+
+问题：Q2
+
+发现：0–600 s 运行在300 s保存 `Q2_CHECKPOINT_V1` 后重启，末场温度最大差值为 `0` K、水分最大差值为 `0`；checkpoint 同时保存网格、配置、历史层、Attachment 1 哈希和代码 commit SHA。
+
+证据：`experiments/EXP-Q2-010/metrics.json`、`experiments/EXP-Q2-010/checkpoint.json`。
+
+适用范围：该测试配置与当前实现版本；不是跨版本重启承诺。
+
+状态：SUPPORTED
+
+## FIND-Q2-007 0–3 h 实现运行未触发未批准的环境外推
+
+问题：Q2
+
+发现：Candidate A 的0–10800 s运行完成，所有时间均在 Attachment 1 的 `0..14400 s` 数据范围内；未启用14400 s后的常值 provider，没有实现 Q3 结束事件，也没有生成 `result2.xlsx`。运行性质范围、Picard统计和纸面时刻候选已保存。
+
+证据：`experiments/EXP-Q2-011/metrics.json`、`experiments/EXP-Q2-011/diagnostics.csv`。
+
+限制：这不是“整个烘干过程”已完成的物理结论；Q2终点开放问题仍保持 OPEN。
 
 状态：SUPPORTED
 

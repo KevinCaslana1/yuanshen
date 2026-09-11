@@ -1,0 +1,11 @@
+{
+  "experiment": "EXP-Q2-004",
+  "end_time_s": 300.0,
+  "time_step_s": 0.25,
+  "candidate": "A",
+  "n_intervals": 80,
+  "scheme": "bdf2",
+  "picard_tolerance": 1e-8,
+  "picard_max_iterations": 50,
+  "input_path": "A题/附件/附件1.xlsx"
+}

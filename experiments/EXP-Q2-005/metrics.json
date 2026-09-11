@@ -1,0 +1,260 @@
+{
+  "experiment": "EXP-Q2-005",
+  "status": "PASS",
+  "fixed_space": "uniform dr=0.025 cm (n=80)",
+  "configs": {
+    "1.0": {
+      "end_time_s": 1800,
+      "time_step_s": 1.0,
+      "candidate": "B",
+      "n_intervals": 80,
+      "cluster_power": 2.0,
+      "scheme": "be",
+      "interface_mean": "harmonic",
+      "interpolation": "linear",
+      "post_attachment_mode": "raise",
+      "output_interval_s": 1.0,
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "picard_relaxation": 1.0,
+      "input_path": "A题\\附件\\附件1.xlsx",
+      "parameters": {
+        "radius_m": 0.02,
+        "length_m": 0.25,
+        "heat_transfer_w_m2_k": 25.0,
+        "mass_transfer_m_s": 8e-07,
+        "initial_temperature_c": 28.0,
+        "initial_moisture_kg_kg": 2.55
+      }
+    },
+    "0.5": {
+      "end_time_s": 1800,
+      "time_step_s": 0.5,
+      "candidate": "B",
+      "n_intervals": 80,
+      "cluster_power": 2.0,
+      "scheme": "be",
+      "interface_mean": "harmonic",
+      "interpolation": "linear",
+      "post_attachment_mode": "raise",
+      "output_interval_s": 1.0,
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "picard_relaxation": 1.0,
+      "input_path": "A题\\附件\\附件1.xlsx",
+      "parameters": {
+        "radius_m": 0.02,
+        "length_m": 0.25,
+        "heat_transfer_w_m2_k": 25.0,
+        "mass_transfer_m_s": 8e-07,
+        "initial_temperature_c": 28.0,
+        "initial_moisture_kg_kg": 2.55
+      }
+    },
+    "0.25": {
+      "end_time_s": 1800,
+      "time_step_s": 0.25,
+      "candidate": "B",
+      "n_intervals": 80,
+      "cluster_power": 2.0,
+      "scheme": "be",
+      "interface_mean": "harmonic",
+      "interpolation": "linear",
+      "post_attachment_mode": "raise",
+      "output_interval_s": 1.0,
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "picard_relaxation": 1.0,
+      "input_path": "A题\\附件\\附件1.xlsx",
+      "parameters": {
+        "radius_m": 0.02,
+        "length_m": 0.25,
+        "heat_transfer_w_m2_k": 25.0,
+        "mass_transfer_m_s": 8e-07,
+        "initial_temperature_c": 28.0,
+        "initial_moisture_kg_kg": 2.55
+      }
+    },
+    "0.125": {
+      "end_time_s": 1800,
+      "time_step_s": 0.125,
+      "candidate": "B",
+      "n_intervals": 80,
+      "cluster_power": 2.0,
+      "scheme": "be",
+      "interface_mean": "harmonic",
+      "interpolation": "linear",
+      "post_attachment_mode": "raise",
+      "output_interval_s": 1.0,
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "picard_relaxation": 1.0,
+      "input_path": "A题\\附件\\附件1.xlsx",
+      "parameters": {
+        "radius_m": 0.02,
+        "length_m": 0.25,
+        "heat_transfer_w_m2_k": 25.0,
+        "mass_transfer_m_s": 8e-07,
+        "initial_temperature_c": 28.0,
+        "initial_moisture_kg_kg": 2.55
+      }
+    },
+    "0.0625": {
+      "end_time_s": 1800,
+      "time_step_s": 0.0625,
+      "candidate": "B",
+      "n_intervals": 80,
+      "cluster_power": 2.0,
+      "scheme": "be",
+      "interface_mean": "harmonic",
+      "interpolation": "linear",
+      "post_attachment_mode": "raise",
+      "output_interval_s": 1.0,
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "picard_relaxation": 1.0,
+      "input_path": "A题\\附件\\附件1.xlsx",
+      "parameters": {
+        "radius_m": 0.02,
+        "length_m": 0.25,
+        "heat_transfer_w_m2_k": 25.0,
+        "mass_transfer_m_s": 8e-07,
+        "initial_temperature_c": 28.0,
+        "initial_moisture_kg_kg": 2.55
+      }
+    },
+    "0.03125": {
+      "end_time_s": 1800,
+      "time_step_s": 0.03125,
+      "candidate": "B",
+      "n_intervals": 80,
+      "cluster_power": 2.0,
+      "scheme": "be",
+      "interface_mean": "harmonic",
+      "interpolation": "linear",
+      "post_attachment_mode": "raise",
+      "output_interval_s": 1.0,
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "picard_relaxation": 1.0,
+      "input_path": "A题\\附件\\附件1.xlsx",
+      "parameters": {
+        "radius_m": 0.02,
+        "length_m": 0.25,
+        "heat_transfer_w_m2_k": 25.0,
+        "mass_transfer_m_s": 8e-07,
+        "initial_temperature_c": 28.0,
+        "initial_moisture_kg_kg": 2.55
+      }
+    }
+  },
+  "reference": "dt=0.03125 s",
+  "errors_vs_reference": {
+    "1.0": {
+      "temperature_Linf_K": 0.0016876905020239974,
+      "temperature_L2": 0.0011771824224496286,
+      "moisture_Linf": 0.0019489407756201338,
+      "moisture_L2": 5.3249565771950954e-05
+    },
+    "0.5": {
+      "temperature_Linf_K": 0.0008167946608068632,
+      "temperature_L2": 0.0005696942156760147,
+      "moisture_Linf": 0.0009754211922436973,
+      "moisture_L2": 2.585605483088271e-05
+    },
+    "0.25": {
+      "temperature_Linf_K": 0.0003812108279817039,
+      "temperature_L2": 0.0002658782751917839,
+      "moisture_Linf": 0.0004640670200810604,
+      "moisture_L2": 1.2088870196471745e-05
+    },
+    "0.125": {
+      "temperature_Linf_K": 0.00016338464303089495,
+      "temperature_L2": 0.00011395232767235683,
+      "moisture_Linf": 0.00020109211666330395,
+      "moisture_L2": 5.186018216858672e-06
+    },
+    "0.0625": {
+      "temperature_Linf_K": 5.446297240041531e-05,
+      "temperature_L2": 3.798485474356379e-05,
+      "moisture_Linf": 6.740629381862817e-05,
+      "moisture_L2": 1.7295374131702638e-06
+    },
+    "0.03125": {
+      "temperature_Linf_K": 0.0,
+      "temperature_L2": 0.0,
+      "moisture_Linf": 0.0,
+      "moisture_L2": 0.0
+    }
+  },
+  "picard": {
+    "1.0": {
+      "steps": 1800,
+      "picard_min": 3,
+      "picard_median": 3.0,
+      "picard_p95": 3.0,
+      "picard_max": 3,
+      "temperature_residual_max": 3.2944114758584006e-12,
+      "moisture_residual_max": 2.4367296851314837e-10
+    },
+    "0.5": {
+      "steps": 3600,
+      "picard_min": 3,
+      "picard_median": 3.0,
+      "picard_p95": 3.0,
+      "picard_max": 3,
+      "temperature_residual_max": 7.205373990937208e-13,
+      "moisture_residual_max": 3.6756828517711345e-11
+    },
+    "0.25": {
+      "steps": 7200,
+      "picard_min": 2,
+      "picard_median": 3.0,
+      "picard_p95": 3.0,
+      "picard_max": 3,
+      "temperature_residual_max": 1.10628931571038e-09,
+      "moisture_residual_max": 9.99969084803408e-09
+    },
+    "0.125": {
+      "steps": 14400,
+      "picard_min": 2,
+      "picard_median": 2.0,
+      "picard_p95": 2.0,
+      "picard_max": 3,
+      "temperature_residual_max": 3.4987780554333506e-10,
+      "moisture_residual_max": 9.995922695236216e-09
+    },
+    "0.0625": {
+      "steps": 28800,
+      "picard_min": 2,
+      "picard_median": 2.0,
+      "picard_p95": 2.0,
+      "picard_max": 2,
+      "temperature_residual_max": 1.0283825593019873e-10,
+      "moisture_residual_max": 5.047534329503073e-09
+    },
+    "0.03125": {
+      "steps": 57600,
+      "picard_min": 2,
+      "picard_median": 2.0,
+      "picard_p95": 2.0,
+      "picard_max": 2,
+      "temperature_residual_max": 2.861084857669673e-11,
+      "moisture_residual_max": 1.2727429567776355e-09
+    }
+  },
+  "observed_order": {
+    "temperature_Linf_K": {
+      "1.0_to_0.5": 1.047005018138155,
+      "0.5_to_0.25": 1.0993843372887102,
+      "0.25_to_0.125": 1.2223167113957605,
+      "0.125_to_0.0625": 1.5849247600645056
+    },
+    "moisture_Linf": {
+      "1.0_to_0.5": 0.9985930284903993,
+      "0.5_to_0.25": 1.0716921441347813,
+      "0.25_to_0.125": 1.206476647596644,
+      "0.125_to_0.0625": 1.5769013160996193
+    }
+  }
+}

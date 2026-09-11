@@ -40,10 +40,12 @@
 | T-031 | P0 | Q1 | T-030 | DONE | Human Q1 freeze approval and final handoff | 人工批准已登记；candidate 已 COPY ONLY 到 `deliverables/final/`，final 工作簿/清单、最终校验、图表包和审计记录均完成；不得自动进入 Q2 | 2026-09-11 |
 | T-032 | P0 | Q2 | T-031 | DONE | `docs/Q2_PLAN.md`、Q2 实验审计与相关登记文档 | 官方要求、附录3、delta matrix、团队资料 reconciliation、模型/数值候选、验证和交付契约草案全部完成；不实现 solver | 本轮 |
 | T-037 | P0 | Q1 | T-031 | DONE | `experiments/EXP-Q1-SURFACE-DECAY/`、`experiments/EXP-003/`、`experiments/EXP-004/` | signed/absolute 原始误差、15–45 s 表、signed 图、absolute semilogy 图、0–60 s 边界/求解轨迹、固定 dt/dr 的全时域 L∞/L2/observed order 和谷值移动检查完成；不修改 final result1.xlsx | 2026-09-11 |
-| T-033 | P0 | Q2 | T-032 | TODO | Human authorization for Q2 implementation | 人工明确批准进入 `src/q2/` 实现；批准范围不自动包含 final `result2.xlsx` | 待确认 |
+| T-033 | P0 | Q2 | T-032 | DONE | Human authorization for Q2 implementation | 已收到人工批准，范围仅含 Q2 implementation、短时验证和0–3 h内部验证；不含 final `result2.xlsx`、Q3/Q4 | 2026-09-11 |
 | T-034 | P1 | Q2 | T-032 | TODO | Decide post-14400 s environment | 关闭或批准 `OQ-Q2-ENV-001`；记录常值、尾窗和切换规则 | Q2 实现前 |
 | T-035 | P1 | Q2 | T-032 | TODO | Decide variable-coefficient interface mean | 关闭 `OQ-Q2-FVM-001` 或批准算术/调和双方案验证 | Q2 数值实现前 |
 | T-036 | P1 | Q2 | T-032 | TODO | Decide Q2 end/accuracy contract | 关闭 `OQ-Q2-END-001`、`OQ-Q2-ACC-001`；不把 Q3 阈值静默升级为 Q2 终点 | Q2 交付前 |
+| T-038 | P0 | Q2 | T-033 | DONE | Q2 implementation & short-horizon validation | `src/q2/`、属性/环境/变量系数 FVM、coupled Picard、EXP-Q2-001 至 EXP-Q2-011、测试、checkpoint/restart 和0–3 h内部验证完成；无 `result2.xlsx` | 2026-09-11 |
+| T-039 | P1 | Q2 | T-038 | TODO | Human review of Q2 open decisions | 人工确认环境尾段、linear/PCHIP、h/hm、界面平均、Q2终点和精度门后，才可另行授权正式交付 | 待确认 |
 
 ## 任务记录模板
 

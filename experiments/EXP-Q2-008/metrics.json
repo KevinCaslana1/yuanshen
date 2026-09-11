@@ -1,0 +1,8 @@
+{
+  "experiment": "EXP-Q2-008",
+  "status": "PARTIAL_OPEN",
+  "linear": "available and used",
+  "pchip": "not run: SciPy unavailable in locked environment",
+  "raw_points_preserved": true,
+  "open_question": "OQ-Q2-ENV-002 remains OPEN"
+}

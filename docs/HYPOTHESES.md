@@ -142,11 +142,11 @@ Hypothesis：在当前题面参数范围内，不加入潜热和热质交叉耦�
 
 | ID | 假设 | 问题 | 计划实验 | 状态 | 证据 |
 |---|---|---|---|---|---|
-| H-Q2-001 | Q2 变物性温度–水分耦合相对 Q1 物性会改变部分场响应 | Q2 | `EXP-Q2-Q1-OVERLAP`、物性/耦合消融 | OPEN | 尚无 Q2 solver |
+| H-Q2-001 | Q2 变物性温度–水分耦合相对 Q1 物性会改变部分场响应 | Q2 | `EXP-Q2-002`、`EXP-Q2-004` | SUPPORTED（数值响应差异；非物理机制结论） | Q1/Q2 overlap CSV 与 Q2 Picard diagnostics |
 | H-Q2-002 | `14400 s` 后 `50.00°C/0.0500` 常值足以作为环境延续 | Q2 | `EXP-Q2-ENV-TAIL`、两阶段敏感性 | OPEN | 尾窗审计仅支持候选，不支持充分性 |
-| H-Q2-003 | 分段线性与 PCHIP 对 0–3 h 论文点的差异处于可解释范围 | Q2 | `EXP-Q2-ENV-INTERPOLATION` | OPEN | 尚未运行 |
-| H-Q2-004 | 算术界面平均在 Q2 变系数 FVM 中满足守恒与精度要求 | Q2 | `EXP-Q2-VARCOEF-FVM` | OPEN | 团队建议不是证据 |
-| H-Q2-005 | 共享 checkpoint 的连续运行与重启运行可在容差内复现 | Q2 | `EXP-Q2-RESTART` | OPEN | 尚未实现 |
+| H-Q2-003 | 分段线性与 PCHIP 对 0–3 h 论文点的差异处于可解释范围 | Q2 | `EXP-Q2-008` | OPEN | SciPy 不可用，PCHIP 未运行 |
+| H-Q2-004 | 算术界面平均在 Q2 变系数 FVM 中满足守恒与精度要求 | Q2 | `EXP-Q2-003` | INCONCLUSIVE | 算术/调和均有 benchmark 点检，但不足以关闭主方案决策 |
+| H-Q2-005 | 共享 checkpoint 的连续运行与重启运行可在容差内复现 | Q2 | `EXP-Q2-010` | SUPPORTED（当前版本/配置） | 末场最大差为0 |
 
 ### Q2 Hypothesis Handling
 

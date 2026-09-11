@@ -212,3 +212,27 @@ Remaining Open Questions are classified by blocking phase in `docs/PROBLEM_SPEC.
 | Q2 implementation boundary | `src/q2/` solver、正式结果、Q3/Q4 均未开始 | PASS |
 
 `Q2 MODEL DESIGN & CONTRACT GATE = COMPLETE`；等待人工 Q2 implementation authorization。以上 OPEN 项均已显式登记，不能在实现时静默假设。
+
+## CUMCM Q2 IMPLEMENTATION & SHORT-HORIZON VALIDATION GATE
+
+本阶段依据人工授权执行 Q2 implementation、短时数值验证和0–3 h内部验证；明确不生成 `result2.xlsx`，不启动 Q3/Q4，不决定 Q3 烘干结束时间，也不写 Q2 最终论文结论。
+
+| Gate item | Evidence | Status |
+|---|---|---|
+| Q1 freeze regression | `git diff -- A题` 为空；Q1 final/reference SHA-256 未变；Q1 tests 仍通过 | PASS |
+| Appendix 3 properties and Kelvin | `src/q2/properties.py`、`tests/test_q2_properties.py`、官方 PDF page 4 | PASS |
+| Attachment 1 environment | `src/q2/environment.py`；原始点 exact；linear 可执行；PCHIP 因 SciPy 不存在保持 OPEN | PARTIAL_OPEN |
+| Variable-coefficient FVM benchmark | `experiments/EXP-Q2-003/metrics.json` | PASS；当前 Robin 节点闭合空间约一阶、BE 时间约一阶 |
+| Coupled Picard | `EXP-Q2-001/004/009/011` diagnostics | PASS；所有已运行步骤收敛，双场残差分别记录 |
+| 0–60 s smoke | `experiments/EXP-Q2-001/` | PASS |
+| 0–1800 s Q1/Q2 overlap | `experiments/EXP-Q2-002/` | PASS；sanity only，Q1/Q2不要求相等 |
+| Time convergence | `experiments/EXP-Q2-005/` | PASS；固定 `dr=.025 cm`，observed order 约一阶 |
+| Space convergence | `experiments/EXP-Q2-006/` | PASS；固定 `dt=.125 s`，L∞/L2随细化下降 |
+| BE/BDF2 | `experiments/EXP-Q2-007/` | PASS；Candidate A BDF2 记为 `RECOMMENDED_FOR_Q2_FREEZE`，不是 FINAL |
+| Mass/heat/Robin audit | `experiments/EXP-Q2-009/` | PASS；逐步诊断完整 |
+| Checkpoint/restart | `experiments/EXP-Q2-010/` | PASS；共同末场最大差为0 |
+| 0–3 h internal validation | `experiments/EXP-Q2-011/` | PASS；0–10800 s，未启用 post-14400 provider |
+| result2 protection | candidate/final 下无 `result2.xlsx`；官方 `A题/` 未修改 | PASS |
+| Q3/Q4 boundary | `docs/STATE.md`、`docs/HANDOFF.md` | PASS；Q3/Q4仍未启动 |
+
+当前状态：`Q2 IMPLEMENTATION & SHORT-HORIZON VALIDATION COMPLETE / WAITING LONG-HORIZON AUTHORIZATION`。`OQ-Q2-ENV-001/002`、`OQ-Q2-BC-001`、`OQ-Q2-FVM-001`、`OQ-Q2-END-001` 和 `OQ-Q2-ACC-001` 继续保持 OPEN；不得将本阶段的内部 candidate 表格直接转换为官方 `result2.xlsx`。

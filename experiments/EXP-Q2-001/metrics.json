@@ -1,0 +1,67 @@
+{
+  "experiment": "EXP-Q2-001",
+  "status": "PASS",
+  "config": {
+    "end_time_s": 60.0,
+    "time_step_s": 0.25,
+    "candidate": "A",
+    "n_intervals": 80,
+    "cluster_power": 2.0,
+    "scheme": "bdf2",
+    "interface_mean": "harmonic",
+    "interpolation": "linear",
+    "post_attachment_mode": "raise",
+    "output_interval_s": 1.0,
+    "picard_tolerance": 1e-08,
+    "picard_max_iterations": 50,
+    "picard_relaxation": 1.0,
+    "input_path": "A题\\附件\\附件1.xlsx",
+    "parameters": {
+      "radius_m": 0.02,
+      "length_m": 0.25,
+      "heat_transfer_w_m2_k": 25.0,
+      "mass_transfer_m_s": 8e-07,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55
+    }
+  },
+  "runtime_s": 0.33680180000374094,
+  "grid_nodes": 99,
+  "grid_intervals": 98,
+  "exact_official_nodes": true,
+  "temperature_K_range": [
+    301.1500000354698,
+    301.20805587568583
+  ],
+  "moisture_range": [
+    2.327314731556515,
+    2.550000000000008
+  ],
+  "diagnostics": {
+    "steps": 240,
+    "picard_min": 3,
+    "picard_median": 3.0,
+    "picard_p95": 3.0,
+    "picard_max": 3,
+    "temperature_residual_max": 6.662060731741085e-14,
+    "moisture_residual_max": 2.4673422346638154e-10,
+    "temperature_boundary_residual_max_w_m2": 0.0062145683022443166,
+    "moisture_boundary_residual_max_kg_m2_s": 8.204296759880902e-08,
+    "mass_step_residual_max": 1.576988380489457e-08,
+    "heat_step_residual_max_j": 0.09227331317543098,
+    "temperature_linear_residual_max": 4.6406967157963663e-10,
+    "moisture_linear_residual_max": 1.3722356584366935e-13
+  },
+  "property_ranges": {
+    "rho_min": 947.8962856392338,
+    "cp_min": 3363.7152987508034,
+    "k_min": 0.47579379149316714,
+    "D_min": 5.5609044046529756e-09,
+    "rho_max": 976.4000000000012,
+    "cp_max": 3415.2957746478896,
+    "k_max": 0.4829577464788736,
+    "D_max": 5.646708651939923e-09
+  },
+  "surface_heat_robin_sign_at_end": -11.748603107854194,
+  "surface_moisture_robin_sign_at_end": 1.8458357852452117e-06
+}
