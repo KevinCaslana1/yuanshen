@@ -12,6 +12,33 @@
 - `A题/` 是 `OFFICIAL_SOURCE / IMMUTABLE_SOURCE`；本轮只读。
 - 推荐模型表示“建议进入实现”，不表示已经证明最好。
 
+## Team Reference Reconciliation
+
+团队资料均标记为 `TEAM_REFERENCE`，不改变官方题面、官方附件或已经确认的事实。以下比较以当前 Q1 设计为基线；公式、参数、单位仍以官方 PDF 附录2为准。
+
+| Item | Current Q1 Plan | Team Reference | Status | Resolution |
+|---|---|---|---|---|
+| Main model | M1：一维径向、`D(C)` 非线性、水热 Robin | FVM + 全隐式 + 单场 Picard | `MATCH` | M1 进入实现候选，保持 B0 和 M2/M3 对照 |
+| Spatial discretization | 保守径向有限体积候选 | 径向 FVM，界面系数取相邻节点算术平均 | `MATCH` | 采用 FVM，并单独测试中心/表面控制体 |
+| Time discretization | backward Euler；BDF 为备选 | 全隐式 backward Euler/BDF1 | `MATCH` | 主实现使用全隐式 backward Euler |
+| Internal grid | 曾以 `Δr=0.001 m` 作为候选 | `Δr=0.25 mm, N=80` | `CONFLICT` | 由 `D-Q1-NUMGRID` 解决为 `N=80, Δr=0.25 mm` |
+| Time step | 输出间隔 1 s，允许内部更小步长 | 主方案 `Δt=1 s` | `MATCH` | 主计算 `Δt=1 s`；敏感性使用 0.5/0.25 s |
+| Robin boundary | `h`、`hm` 的第三类边界 | 同样采用表面对流边界 | `MATCH` | 保留 Robin；表面符号做独立测试 |
+| `hm` interpretation | 已标为 OQ-006、需人工审查 | 直接作用于干基 `C`，不乘空气密度 | `PARTIAL_MATCH` | 作为 `TEAM MODELING INTERPRETATION`；量纲/符号/极限已审查，保留 M3 敏感性 |
+| Environment interpolation | 默认分段线性 | 允许 PCHIP 或分段线性，倾向 PCHIP | `PARTIAL_MATCH` | 当前不引入额外依赖，默认 linear；EXP-006 比较替代处理 |
+| Picard handling | 水分方程单场 Picard，tol/maxiter 已规划 | 单场 Picard，归一化残差，最多50次 | `MATCH` | 实现 `tol=1e-8, max_iter=50`，不与温度场交替 |
+| Output sampling | 官方输出规则已登记，端点仍有 OQ | 团队建议 `t=1..1800 s`、`0.0..2.0 cm` | `PARTIAL_MATCH` | 团队建议不替代官方契约；内部点可直接抽取，端点由 OQ-001/OQ-005/OQ-007控制 |
+| Conservation checks | 规划质量/能量 sanity check，并区分适用范围 | 质量守恒、Q1 常物性储热一致性、极限测试 | `MATCH` | 纳入 EXP-007；能量检查限于当前常物性方程 |
+| Grid/time sensitivity | 原计划候选需调整 | `Δr=0.5/0.25/0.125 mm`、`Δt=1/0.5/0.25 s` | `CONFLICT` | 与 `D-Q1-NUMGRID` 一并采用团队细化序列，仍不预设通过结论 |
+
+### D-Q1-NUMGRID resolution
+
+主计算网格采用 `N=80` 个径向区间、`Δr=0.25 mm=0.00025 m`。官方输出网格为 `0.1 cm=0.001 m`，不是内部求解网格；由于 `0.001/0.00025=4`，Q1 输出位置 `0,0.1,...,2.0 cm` 对应内部节点 `j=0,4,...,80`，可直接抽节点，不需要输出插值。网格敏感性实验采用 `N=40,80,160`，即 `0.5,0.25,0.125 mm`。
+
+### `hm` boundary reconciliation
+
+团队口径“`hm` 直接作用于 `C` 场”被登记为 `TEAM MODELING INTERPRETATION`，不是 `STATEMENT_FACT`。在 `-D∂C/∂r=hm(C_s-C∞)` 中，`D∂C/∂r` 与 `hm(C_s-C∞)` 都具有速度乘浓度的量纲；当 `C_s>C∞` 时外向通量为正；`hm→∞` 时趋向 `C_s=C∞`。不额外乘空气密度。由于干基浓度边界的物理含义仍不是题面明文定义，结论为 `PARTIAL / MODELING ASSUMPTION`，必须通过 M3 边界敏感性对照，并保留 OQ-006 的人工复核记录。
+
 ## 1. Problem Restatement
 
 Q1 研究预热平衡阶段药材内部温度与水分浓度的时空变化。药材近似为长 25 cm、半径 2 cm 的圆柱体，初始温度为 28 °C，初始干基含水率为 2.55 kg/kg。烘房温度和水分浓度由附件1给出，相关材料参数由附录2给出。
@@ -71,7 +98,7 @@ Q1 研究预热平衡阶段药材内部温度与水分浓度的时空变化。�
 | `T∞` | `28.000–50.246 °C` | `28.000–41.513 °C` | `28.000 → 41.513 °C` |
 | `C∞` | `0.01963–0.05025 kg/kg` | `0.01963–0.03307 kg/kg` | `0.01963 → 0.03307 kg/kg` |
 
-在 Q1 区间内，附件1中的温度和水分浓度均逐点上升；这是对官方数据的描述性审计，不是模型结论，也不用于拟合参数。Q1边界曲线的必要可视化对象已确定为 `T∞(t)` 和 `C∞(t)` 两条原始点/插值曲线，后续放入非正式数据审计或 `EXP-001` 产物中；本轮不把图表写入论文或结果文件。
+在 Q1 区间内，附件1中的温度和水分浓度均逐点上升；这是对官方数据的描述性审计，不是模型结论，也不用于拟合参数。Q1边界曲线的必要可视化对象已确定为 `T∞(t)` 和 `C∞(t)` 两条原始点/插值曲线，已作为本轮非正式数据审计对象生成临时图示；不把图表写入论文或结果文件。
 
 ### 3.4 Interpolation policy
 
@@ -283,7 +310,7 @@ B0 保留的理由是它简单、可复现且不是故意错误的模型；它�
 
 ### N1: conservative radial finite volume + implicit stepping (recommended)
 
-- 在 `r∈[0,R]` 上使用包含 `r=0` 和 `r=R` 的径向网格，输出网格候选步长 `Δr=0.001 m`，与 0.1 cm 直接对齐。
+- 在 `r∈[0,R]` 上使用包含 `r=0` 和 `r=R` 的径向网格，主内部计算网格为 `N=80`、`Δr=0.00025 m`；官方 0.1 cm 输出网格与内部节点每四点对齐。
 - 以面通量离散径向扩散项，中心面通量设为 0；表面面通量由 Robin 关系计算。
 - 温度和水分分别组装离散方程；水分扩散系数在每一时间步由当前 `C` 更新。
 - 优先使用 backward Euler 作为稳健起点；内部步长可小于输出间隔，输出时再采样到每 1 s。
@@ -329,7 +356,7 @@ B0 保留的理由是它简单、可复现且不是故意错误的模型；它�
 | EXP-001 | 检查输入读取、插值、单位转换、边界方向和最小离散是否可运行 | M1 smoke | 极小径向网格、短时间窗口、附件1原始点 | 日志、边界输入曲线、无写入官方模板 | 可重复运行；无 NaN/Inf；初值和边界方向检查通过 | <1 min |
 | EXP-002 | 判断空间扩散是否相对均匀 Baseline 必要 | B0 vs M1 | 同一 Q1 输入、短时和完整设计时长两档 | 均匀平均响应与径向响应对照 | 差异有明确解释；不以单一指标决定模型 | <2 min |
 | EXP-003 | 检查时间离散敏感性和刚性处理 | M1 | 内部 `Δt` 候选：输出步长及更小步长 | 关键位置/时刻差异表 | 差异低于预设容差，或记录不稳定原因 | <5 min |
-| EXP-004 | 检查空间网格收敛 | M1 | `Δr=0.1, 0.05, 0.025 cm` 候选 | 网格细化误差和剖面 | 关键输出量趋于稳定，中心/表面不出现伪振荡 | <10 min |
+| EXP-004 | 检查空间网格收敛 | M1 | `Δr=0.5, 0.25, 0.125 mm`，即 `N=40,80,160` | 网格细化误差和剖面 | 关键输出量趋于稳定，中心/表面不出现伪振荡 | <10 min |
 | EXP-005 | 检查 Robin 与 Dirichlet 边界处理影响 | M1 vs M3 | 相同输入和网格 | 表面滞后、中心响应和边界通量对照 | 说明边界假设对结果的影响；不预设谁“更好” | <5 min |
 | EXP-006 | 检查分段线性与零阶保持输入处理差异 | M1 | 同一原始附件1，不改原始点 | 输入处理敏感性表 | 若差异显著，升级为人工审查事项 | <5 min |
 | EXP-007 | 检查通量、储量和物理范围 | M1 | 完整 Q1 设计时长、收敛配置 | 质量/能量相关 sanity 日志 | 守恒残差可解释，所有范围异常有记录 | <5 min |
@@ -349,7 +376,7 @@ B0 保留的理由是它简单、可复现且不是故意错误的模型；它�
 |---|---|---|---|---|
 | OQ-001 | `DELIVERABLE` | 完整结果的时间/空间端点计数与模板展开规则 | Deliverable Generation | 保持 `OPEN_QUESTION`，不在本轮硬编码 |
 | OQ-005 | `DELIVERABLE` | `result1.xlsx` 是否包含 `t=0` 行；模板示例从 1 开始但不应替代题面 | Deliverable Generation | 实现前人工确认 |
-| OQ-006 | `MODELING` | `hm` 与干基 `C` 的 Robin 边界物理解释及符号约定 | Model Implementation | 作为 `REQUIRES HUMAN REVIEW`，先做通量 smoke test |
+| OQ-006 | `MODELING` | `hm` 与干基 `C` 的 Robin 边界物理解释及符号约定 | Model Implementation | 已记录为 `TEAM MODELING INTERPRETATION`；结论 `PARTIAL / MODELING ASSUMPTION`，用 M3 敏感性对照并保留人工复核 |
 | OQ-007 | `NUMERICAL` | `r=0` 与 `r=R` 输出值采用节点值、边界值还是插值值 | Numerical Implementation | 在网格定义和交付契约中明确 |
 | OQ-008 | `MODELING` | 是否需要加入潜热、热质交叉耦合或内部源项 | Model Implementation | 当前标为高影响假设，缺少题面参数，不自行扩展 |
 | OQ-002 | `INTERPRETATION` | Q2 的时间背景与 Q1 无关 | Q2 Model Implementation | 保持未决，不在 Q1 处理 |
