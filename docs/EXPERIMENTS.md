@@ -29,6 +29,13 @@
 | Q1_FREEZE_RUN | Q1 | Frozen M1-NUM-T2 production | 从零双跑冻结生产配置、内部全场保存、确定性与候选溯源 | cluster base320（实际 `338` intervals），BDF2 `dt=0.25 s`，`0..1800 s` | 两次完整内部场 SHA-256 相同；运行验证均 PASS；candidate 与论文 35/35 点 trace PASS | COMPLETED | `experiments/Q1_FREEZE_RUN/` |
 | Q1_FINAL_FREEZE | Q1 | Frozen M1-NUM-T2 production | 人工批准后的 candidate-to-final 隔离复制、最终工作簿结构/数值/格式和哈希校验 | `deliverables/candidate/result1.xlsx` → `deliverables/final/result1.xlsx`；无 solver 重跑 | candidate/final SHA-256 相同；final validator PASS；官方模板哈希与 `A题/` 完整性 PASS | COMPLETED | `experiments/Q1_FINAL_FREEZE/`、`deliverables/final/Q1_MANIFEST.json` |
 | Q1-FIGURES | Q1 | Frozen M1-NUM-T2 production | 从冻结内部输出生成论文候选图表及验证数据，不改变数值结果 | 9 figures；PNG/SVG；核心图表与空间/时间验证图 | 图表源哈希受保护；纸面点 70/70；随机图表数据点 20/20；视觉 QA PASS | COMPLETED | `figures/q1/`、`docs/Q1_VISUALIZATION.md` |
+| EXP-Q2-PROPERTY-POINTS | Q2 | Q2_PROPERTY_SPEC | 审计附录3公式、单位、Kelvin 处理、正域和单调性探针 | 公式点 `C=0.15..2.55`、`T=301.15..323.15 K`；域保护 | 所有设计检查 true；不运行 solver、不写工作簿 | COMPLETED | `experiments/EXP-Q2-PROPERTY-POINTS/` |
+| EXP-Q2-ENV-TAIL | Q2 | Environment tail audit | 审计附件1最后10/20/40/80点，供 `14400 s` 后环境决策 | 只读 `Sheet1`；241点；60 s 间隔 | 尾段均值/标准差/最后点/趋势已保存；不选择环境延续 | COMPLETED | `experiments/EXP-Q2-ENV-TAIL/` |
+| EXP-Q2-ENV-INTERPOLATION | Q2 | Environment candidates | 比较分段线性与 PCHIP 的输入和 0–3 h 输出敏感性 | 原始点保持不变；A/B 候选 | 尚未实现/运行 | PLANNED | `docs/Q2_PLAN.md` |
+| EXP-Q2-COUPLED-PICARD | Q2 | Q2-M1 | 验证双场 block Gauss–Seidel/Picard 的收敛、松弛和失败关闭 | 分场归一化残差；候选 tol `1e-8`、max50 | 尚未实现/运行 | PLANNED | `docs/Q2_PLAN.md` |
+| EXP-Q2-VARCOEF-FVM | Q2 | Q2-M1 | 比较变 `k,D` 界面算术/调和平均的守恒与一致性 | 常系数、光滑变系数、强梯度 benchmark | 尚未实现/运行 | PLANNED | `docs/Q2_PLAN.md` |
+| EXP-Q2-Q1-OVERLAP | Q2 | Q2-M1 vs Q1 frozen | 在 `0..1800 s` 仅做量级/中心/表面/界面交叉检查 | 相同几何/输入窗口；物性差异显式保留 | 尚未实现/运行；不预期数值相等 | PLANNED | `docs/Q2_PLAN.md` |
+| EXP-Q2-RESTART | Q2 | Q2-M1 | 验证连续运行与 checkpoint restart 等价 | 保存场、历史层、config、环境状态、hash、commit SHA | 尚未实现/运行 | PLANNED | `docs/Q2_PLAN.md` |
 
 状态建议使用：`PLANNED` / `RUNNING` / `COMPLETED` / `FAILED` / `BLOCKED` / `ABANDONED`。
 
@@ -61,3 +68,7 @@ Notes:
 EXP-001 至 EXP-007 已在实现授权后按序完成。后续完成初始层诊断、BDF2 启动对照、表面误差衰减、聚类 benchmark、真实 Q1 短时聚类对照、聚类时间梯及全时域空间/时间收敛。`D-Q1-NUM-ACCURACY-CRITERION` 下，3 层空间与 3 层时间的逐点估计不确定度均通过 `<5e-5`；随后 `Q1_FREEZE_RUN` 双跑确定性通过，并从 run_1 生成候选。人工 freeze approval 已批准并完成 candidate-to-final 复制、最终验证和图表生成；Q1 现已冻结，Q2 不启动。历史实验中的 BLOCKED 记录保留为历史证据，不代表当前冻结配置失败。
 
 每个实验目录均包含 `config.json`、`metrics.json` 和 `notes.md`，记录命令、代码提交、输入 SHA-256、求解器配置、运行时间、验证状态和产物路径。
+
+## Q2 Design Gate Execution Note
+
+`EXP-Q2-PROPERTY-POINTS` 和 `EXP-Q2-ENV-TAIL` 是设计阶段的只读审计，已分别由 `scripts/audit_q2_property_spec.py` 和 `scripts/audit_q2_environment_tail.py` 复现；两者均明确 `formal_Q2_solver_run=false`、`workbook_written=false`。其余 Q2 实验保持 `PLANNED`，必须等待人工 implementation authorization，且先解决或显式承认 `OQ-Q2-ENV-001/002`、`OQ-Q2-END-001`、`OQ-Q2-FVM-001` 和 `OQ-Q2-ACC-001`。

@@ -1,0 +1,11 @@
+{
+  "experiment": "EXP-Q2-ENV-TAIL",
+  "question": "Q2",
+  "model": "environment tail audit",
+  "purpose": "Read-only audit of Attachment 1 tail windows before deciding the post-14400 s environment.",
+  "command": ".\\.venv\\Scripts\\python.exe scripts\\audit_q2_environment_tail.py",
+  "input": "A题/附件/附件1.xlsx",
+  "input_sha256": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+  "formal_solver": false,
+  "workbook_output": false
+}

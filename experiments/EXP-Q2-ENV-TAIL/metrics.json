@@ -1,0 +1,107 @@
+{
+  "experiment": "EXP-Q2-ENV-TAIL",
+  "status": "COMPLETED_DESIGN_STAGE_AUDIT",
+  "input": "A题/附件/附件1.xlsx",
+  "input_sha256": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+  "sheet": "Sheet1",
+  "row_count": 241,
+  "time_start_s": 0.0,
+  "time_end_s": 14400.0,
+  "constant_interval_s": [
+    60.0
+  ],
+  "finite_values": true,
+  "tail_windows": [
+    {
+      "n": 10,
+      "time_start_s": 13860.0,
+      "time_end_s": 14400.0,
+      "temperature_C": {
+        "mean": 50.0465,
+        "population_std": 0.15827649857132883,
+        "last": 50.165,
+        "min": 49.759,
+        "max": 50.233,
+        "linear_slope_per_s": -0.00030191919191919093
+      },
+      "moisture_kg_kg": {
+        "mean": 0.049928,
+        "population_std": 8.518215775618748e-05,
+        "last": 0.04986,
+        "min": 0.04981,
+        "max": 0.05007,
+        "linear_slope_per_s": 2.34343434343436e-07
+      }
+    },
+    {
+      "n": 20,
+      "time_start_s": 13260.0,
+      "time_end_s": 14400.0,
+      "temperature_C": {
+        "mean": 50.01765,
+        "population_std": 0.16031321685999594,
+        "last": 50.165,
+        "min": 49.759,
+        "max": 50.233,
+        "linear_slope_per_s": -1.981203007518872e-05
+      },
+      "moisture_kg_kg": {
+        "mean": 0.0499795,
+        "population_std": 0.00011710999103407022,
+        "last": 0.04986,
+        "min": 0.04981,
+        "max": 0.05022,
+        "linear_slope_per_s": -1.3270676691729406e-07
+      }
+    },
+    {
+      "n": 40,
+      "time_start_s": 12060.0,
+      "time_end_s": 14400.0,
+      "temperature_C": {
+        "mean": 49.99525,
+        "population_std": 0.1558534167094195,
+        "last": 50.165,
+        "min": 49.757,
+        "max": 50.236,
+        "linear_slope_per_s": 3.0009380863039627e-05
+      },
+      "moisture_kg_kg": {
+        "mean": 0.049988,
+        "population_std": 0.00013746272221951646,
+        "last": 0.04986,
+        "min": 0.04977,
+        "max": 0.05024,
+        "linear_slope_per_s": -2.91432145090673e-08
+      }
+    },
+    {
+      "n": 80,
+      "time_start_s": 9660.0,
+      "time_end_s": 14400.0,
+      "temperature_C": {
+        "mean": 50.004125,
+        "population_std": 0.15521536449398313,
+        "last": 50.165,
+        "min": 49.757,
+        "max": 50.246,
+        "linear_slope_per_s": -3.5681356461948846e-06
+      },
+      "moisture_kg_kg": {
+        "mean": 0.049995375,
+        "population_std": 0.0001561325058243798,
+        "last": 0.04986,
+        "min": 0.04975,
+        "max": 0.05025,
+        "linear_slope_per_s": -1.0026957337083542e-08
+      }
+    }
+  ],
+  "team_reference_candidate_after_14400s": {
+    "temperature_C": 50.0,
+    "moisture_kg_kg": 0.05,
+    "classification": "TEAM_REFERENCE_NUMERICAL_PROPOSAL_NOT_OFFICIAL"
+  },
+  "formal_Q2_solver_run": false,
+  "workbook_written": false
+}

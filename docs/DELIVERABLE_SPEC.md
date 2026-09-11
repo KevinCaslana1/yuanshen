@@ -56,6 +56,10 @@
 - Validation Status: `OPEN_QUESTION`
 - Open Questions: `OQ-001`, `OQ-002`
 
+### Q2 Design Gate Addendum
+
+Q2 的 `result2.xlsx` 仍处于契约草案阶段：官方 Sheet、时间/空间单位、每 `1 s`、每 `0.1 cm`、表3/4 的 `0.5..3.0 h` 追踪点和四位小数要求已核对；“整个烘干过程”的终止时间、是否含 `t=0`/终止事件行和最终行数仍为 `OQ-Q2-END-001`，不在本阶段冻结。Q2 solver、candidate/final `result2.xlsx` 均尚未生成。
+
 ## result3.xlsx
 
 - Official Template: `A题/附件/附件3/result3.xlsx`

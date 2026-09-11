@@ -19,6 +19,15 @@
 | D-Q1-INITIAL-LAYER | 2026-09-11 | Q1 | 支持初始水分场与表面 Robin 条件形成短时边界层的数值诊断；保持官方初值/边界不变，边界聚类已通过全时域验证 | DIAGNOSTIC_SUPPORTED_PRODUCTION_FROZEN | `docs/Q1_INITIAL_LAYER_AUDIT.md`、`experiments/EXP-Q1-FULL-SPATIAL/`、`experiments/Q1_FREEZE_RUN/` |
 | D-Q1-NUM-ACCURACY-CRITERION | 2026-09-11 | Q1 | 将 estimated discretization uncertainty 作为主要内部数值门：温度和含水率均要求 `<5e-5`（各自输出单位）；四舍五入状态只作辅助证据，不因少量 ambiguous 自动失败 | TEAM_NUMERICAL_CRITERION | 本轮人工授权、后续全时域收敛实验 |
 | D-Q1-HUMAN-FREEZE | 2026-09-11 | Q1 | 人工批准 Q1 M1、生产网格、时间积分、候选到 final 的字节复制、最终验证和可视化交付；代码冻结基线与审计文档提交保持分离 | APPROVED | `docs/Q1_FINAL_FREEZE_AUDIT.md`、`deliverables/final/Q1_MANIFEST.json` |
+| D-Q2-001 | 2026-09-11 | Q2 | 将 Q2-M1 设计为固定半径一维圆柱径向、附录3变物性、温度–水分双场耦合的主候选；仅登记设计，不代表实现或冻结 | DESIGN_CANDIDATE_NOT_IMPLEMENTED | `docs/Q2_PLAN.md`、官方 PDF 附录3 |
+| D-Q2-NUM-CANDIDATES | 2026-09-11 | Q2 | 保留 Q1 聚簇保守 FVM + BE/BDF2 的 Candidate A 与 uniform FVM + BE 的 Candidate B；Candidate C 仅在 A/B 诊断失败时启用 | PENDING_IMPLEMENTATION_AUTHORIZATION | `docs/Q2_PLAN.md` |
+| D-Q2-COUPLING | 2026-09-11 | Q2 | 采用 block Gauss–Seidel / coupled Picard 的实现设计：先 T、后 C、分别归一化残差、最大迭代与 fail-closed 日志 | DESIGN_ONLY | `docs/Q2_PLAN.md` |
+| D-Q2-ENV-001 | 2026-09-11 | Q2 | 附件1尾段和 `14400 s` 后环境常值尚未决定；`50.00°C/0.0500` 仅为 TEAM_REFERENCE 建议 | OPEN | `experiments/EXP-Q2-ENV-TAIL/metrics.json`、`docs/Q2_PLAN.md` |
+| D-Q2-ENV-002 | 2026-09-11 | Q2 | 分段线性与 PCHIP 均保留为环境插值候选，必须穿过官方原始点；尚未选择 | OPEN | `docs/Q2_PLAN.md` |
+| D-Q2-BC-001 | 2026-09-11 | Q2 | Q1 `h/hm` 与 Robin 口径可作为延续候选，但需 Q2 人工确认和 ±10% 敏感性 | OPEN_MODELING_ASSUMPTION | `docs/Q2_PLAN.md`、`docs/ASSUMPTIONS.md` |
+| D-Q2-FVM-001 | 2026-09-11 | Q2 | 变系数 FVM 的算术/调和界面平均不在设计 Gate 预先裁决 | OPEN_NUMERICAL_DECISION | `docs/Q2_PLAN.md` |
+| D-Q2-END-001 | 2026-09-11 | Q2 | 不把 Q3 的 `C<0.15 kg/kg` 自动写成 Q2 官方终点；Q2 长时覆盖范围和最终行数待确认 | OPEN_INTERPRETATION | `docs/Q2_PLAN.md`、`docs/PROBLEM_SPEC.md` |
+| D-Q2-ACC-001 | 2026-09-11 | Q2 | Q1 `<5e-5` 只作为 Q2 精度候选起点；需重新检查长时累积误差、事件时刻、耦合误差和运行成本 | OPEN_TEAM_CRITERION | `docs/Q2_PLAN.md` |
 
 ## D-Q1-HUMAN-FREEZE Q1 人工最终冻结与可视化交付
 
@@ -358,3 +367,79 @@ DIAGNOSTIC_SUPPORTED_PRODUCTION_FROZEN
 ### 状态
 
 ACTIVE_TEAM_NUMERICAL_CRITERION
+
+## D-Q2-001 Q2 主模型设计候选
+
+日期：2026-09-11
+问题：Q2
+
+### 背景
+
+Q2 将 Q1 的短时、常物性热/质扩散问题扩展为整个烘干过程，并由官方附录3给出同时依赖 `C` 与 `T` 的变物性公式。五份团队资料只能作为参考，不能替代官方 PDF。
+
+### 设计决定
+
+登记 `Q2-M1`：固定半径 `R=2 cm` 的一维圆柱径向模型，使用附录3的 `ρ(C)`、`cp(C)`、`k(C)`、`D(C,T)`，中心对称和表面热/质 Robin 边界作为候选，并通过耦合 Picard 交替更新 T/C。`C→ρ,cp,k`，`T,C→D` 的反馈必须显式进入时间步迭代。
+
+### 理由与限制
+
+该候选保持 Q1 可复用的几何和控制体结构，同时覆盖 Q2 官方新增的变物性与耦合要求。它不是已经验证的物理结论，也未授权修改 Q1 或生成 Q2 结果。
+
+### 状态
+
+DESIGN_CANDIDATE_NOT_IMPLEMENTED；重新评估条件为附录3单位/域测试、耦合 Picard、变量系数 benchmark 或人工物理审查失败。
+
+## D-Q2-NUM-CANDIDATES Q2 数值候选矩阵
+
+日期：2026-09-11
+问题：Q2
+
+保留 Candidate A（Q1 冻结聚簇 FVM + BE 首步/BDF2）和 Candidate B（uniform FVM + BE）用于实现后的同条件比较；Candidate C 仅在 A/B 的空间敏感性或边界层诊断需要时提出。当前不增加 Crank–Nicolson、全 Newton、FEM 等复杂方法。
+
+### 状态
+
+PENDING_IMPLEMENTATION_AUTHORIZATION；没有在本 Gate 选择胜者。
+
+## D-Q2-COUPLING Q2 耦合 Picard 设计
+
+日期：2026-09-11
+问题：Q2
+
+每个时间步以 `T^n,C^n` 作为初始猜测，按 block Gauss–Seidel 先解温度、再用最新温度解水分，并为两场分别计算归一化残差。`max_iter=50`、候选容差 `1e-8` 和可配置松弛因子均只继承为待验证候选。任何达到上限仍未收敛的步必须 fail-closed，并写出残差、松弛、物性范围、边界残差和失败位置。
+
+### 状态
+
+DESIGN_ONLY；尚未进入 `src/q2/` 实现。
+
+## D-Q2-ENV-001 / D-Q2-ENV-002 环境处理
+
+日期：2026-09-11
+问题：Q2
+
+官方附件1只覆盖到 `14400 s`。最后40点均值为 `T∞=49.99525°C`、`C∞=0.049988 kg/kg`，最后点为 `50.165°C`、`0.04986 kg/kg`；团队资料的 `50.00°C/0.0500` 是待确认常值建议。分段线性和 PCHIP 都保留，且不得修改或平滑官方数据点。
+
+### 状态
+
+OPEN；需人工决定尾段规则和插值主方案，再进入 Q2 实现。
+
+## D-Q2-FVM-001 变系数界面平均
+
+日期：2026-09-11
+问题：Q2
+
+算术平均是团队资料的方案，调和平均是梯度较强时的保守候选。设计上两者都要有可复现 benchmark、守恒/一致性/系数平滑性检查，不能在没有证据时把算术平均写成官方或最终数值决定。
+
+### 状态
+
+OPEN_NUMERICAL_DECISION。
+
+## D-Q2-END-001 / D-Q2-ACC-001 Q2 终点与精度门
+
+日期：2026-09-11
+问题：Q2
+
+题面规定表3/4展示到3 h，但“整个烘干过程”的计算终点未给出可直接冻结的行数。Q3 的 `C<0.15 kg/kg` 只能作为接口候选，不能自动成为 Q2 官方结束条件。Q1 的 `<5e-5` 团队数值门也不能直接继承为 Q2 结论；必须在长时累计误差、事件时刻敏感性、耦合迭代误差和运行成本复核后再决定。
+
+### 状态
+
+OPEN_INTERPRETATION / OPEN_TEAM_CRITERION。

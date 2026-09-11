@@ -1,0 +1,86 @@
+{
+  "experiment": "EXP-Q2-PROPERTY-POINTS",
+  "status": "COMPLETED_DESIGN_STAGE_AUDIT",
+  "source": "A题/A题.pdf Appendix 3",
+  "source_sha256": "052d8014bff5727c019b72e44fdffaf5c145ce04050dd938baaf3527db331736",
+  "formula_units": {
+    "rho": "kg/m^3",
+    "cp": "J/(kg·K)",
+    "k": "W/(m·K)",
+    "D": "m^2/s",
+    "C": "kg/kg",
+    "T": "K"
+  },
+  "values": [
+    {
+      "C": 2.55,
+      "T_K": 301.15,
+      "rho_kg_m3": 976.4,
+      "cp_J_kgK": 3415.295774647887,
+      "k_W_mK": 0.48295774647887324,
+      "D_m2_s": 5.641680373025664e-09
+    },
+    {
+      "C": 2.55,
+      "T_K": 323.15,
+      "rho_kg_m3": 976.4,
+      "cp_J_kgK": 3415.295774647887,
+      "k_W_mK": 0.48295774647887324,
+      "D_m2_s": 1.3470968217415811e-08
+    },
+    {
+      "C": 1.0,
+      "T_K": 323.15,
+      "rho_kg_m3": 778.0,
+      "cp_J_kgK": 2818.0,
+      "k_W_mK": 0.4,
+      "D_m2_s": 1.024723031208691e-08
+    },
+    {
+      "C": 0.5,
+      "T_K": 323.15,
+      "rho_kg_m3": 714.0,
+      "cp_J_kgK": 2362.0,
+      "k_W_mK": 0.33666666666666667,
+      "D_m2_s": 6.5339225231385836e-09
+    },
+    {
+      "C": 0.2,
+      "T_K": 323.15,
+      "rho_kg_m3": 675.6,
+      "cp_J_kgK": 1906.0,
+      "k_W_mK": 0.2733333333333333,
+      "D_m2_s": 1.6938557779385075e-09
+    },
+    {
+      "C": 0.15,
+      "T_K": 323.15,
+      "rho_kg_m3": 669.2,
+      "cp_J_kgK": 1806.8695652173913,
+      "k_W_mK": 0.25956521739130434,
+      "D_m2_s": 8.001208146652626e-10
+    }
+  ],
+  "D_at_C_grid_323_15K": [
+    8.001208146652626e-10,
+    1.6938557779385075e-09,
+    6.5339225231385836e-09,
+    1.024723031208691e-08,
+    1.3470968217415811e-08
+  ],
+  "D_at_T_grid_C_2_55": [
+    5.641680373025664e-09,
+    8.126691314788039e-09,
+    1.3470968217415811e-08
+  ],
+  "Celsius_misuse_probe_D_at_50": 7.292827354227798e-37,
+  "checks": {
+    "finite_positive_at_positive_domain_points": true,
+    "D_monotone_in_C_at_323_15K": true,
+    "D_monotone_in_T_at_C_2_55": true,
+    "Celsius_misuse_is_detectably_tiny": true,
+    "zero_C_guard_is_defined": true
+  },
+  "formal_Q2_solver_run": false,
+  "workbook_written": false
+}

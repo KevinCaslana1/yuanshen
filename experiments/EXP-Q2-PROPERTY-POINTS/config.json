@@ -1,0 +1,11 @@
+{
+  "experiment": "EXP-Q2-PROPERTY-POINTS",
+  "question": "Q2",
+  "model": "Q2_PROPERTY_SPEC",
+  "purpose": "Audit official Appendix 3 formulas, units, Kelvin handling, domain guard, and monotonicity probes.",
+  "command": ".\\.venv\\Scripts\\python.exe scripts\\audit_q2_property_spec.py",
+  "source": "A题/A题.pdf Appendix 3",
+  "source_sha256": "052d8014bff5727c019b72e44fdffaf5c145ce04050dd938baaf3527db331736",
+  "formal_solver": false,
+  "workbook_output": false
+}

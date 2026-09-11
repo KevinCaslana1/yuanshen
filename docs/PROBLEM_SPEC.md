@@ -61,7 +61,7 @@
 | 对应结果文件 | STATEMENT_FACT | `A题/附件/附件3/result2.xlsx` |
 | 对应 Excel Sheet | STATEMENT_FACT | `温度`、`水分浓度` |
 | 相关附件 | STATEMENT_FACT | 附件1、附录3、附件3/result2.xlsx |
-| 题面限制 | OPEN_QUESTION | 题面提到烘干过程一般持续2-3天，但本问明确的论文展示区间为3小时；更长时段的实现边界待后续人工确认 |
+| 题面限制 | OPEN_QUESTION | 本问明确论文展示区间为3小时、完整结果每隔1 s和0.1 cm；“整个烘干过程”的数值终点、是否覆盖 Q3 事件和最终行数待人工确认；不把 Q3 的 `C<0.15` 自动升级为 Q2 官方终点 |
 
 ### Q3
 
@@ -114,3 +114,14 @@
 | OQ-006 | MODELING | Q1 对流传质系数 `hm` 与干基水分浓度 `C` 的 Robin 边界物理解释及符号约定 | RESOLVED BY MODELING ASSUMPTION | 直接作用于 `C`，不乘额外密度；登记为 `D-Q1-OQ006`，保留 M3 对照 |
 | OQ-007 | NUMERICAL | Q1 `r=0` 与 `r=R` 的完整输出值采用节点值、边界值还是插值值 | RESOLVED BY NUMERICAL DECISION | 使用严格对齐网格上的内部中心/表面节点；登记为 `D-Q1-OQ007` |
 | OQ-008 | MODELING | Q1 是否需要潜热、热质交叉耦合或内部源项 | RESOLVED BY MODELING SIMPLIFICATION | 不增加需要新参数的耦合项；登记为 `D-Q1-OQ008`，不得表述为真实过程不存在这些效应 |
+
+| OQ-Q2-ENV-001 | ENVIRONMENT | 附件1结束 `14400 s` 后的烘房温度/水分浓度如何确定 | Q2 MODEL DESIGN | 保留官方尾段统计、团队 `50.00°C/0.0500` 常值建议和人工决策；详见 `docs/Q2_PLAN.md` |
+| OQ-Q2-ENV-002 | INTERPOLATION | 附件1原始点之间选分段线性还是 PCHIP | Q2 MODEL IMPLEMENTATION | 两个候选均须穿过原始点；不在本 Gate 选择 |
+| OQ-Q2-END-001 | INTERPRETATION | “整个烘干过程”的 Q2 计算终点与 Q3 阈值的接口 | Q2 MODEL DESIGN | Q3 的 `C<0.15` 仅作为接口候选，不冻结为 Q2 官方终点 |
+| OQ-Q2-BC-001 | MODELING | Q1 的 `h/hm` 与 Robin 口径是否原样延续 Q2 | Q2 MODEL IMPLEMENTATION | 以 Q1/团队资料作为候选，进行 ±10% 敏感性并等待人工确认 |
+| OQ-Q2-FVM-001 | NUMERICAL | 变系数 FVM 界面采用算术平均还是调和平均 | Q2 NUMERICAL IMPLEMENTATION | 两者均进入设计审计；团队算术平均只是建议 |
+| OQ-Q2-ACC-001 | NUMERICAL | Q1 `<5e-5` 数值门能否直接用于 Q2 | Q2 NUMERICAL VALIDATION | 仅作为候选起点，须加长时累计误差、事件时刻和运行成本验证 |
+
+## Q2 Model Design Gate Addendum
+
+Q2 的设计状态与候选矩阵、附录3物性规范、环境尾段审计、Picard 设计、验证计划和交付契约草案统一登记在 `docs/Q2_PLAN.md`。本阶段未实现 Q2 solver、未进行正式长时仿真、未生成 `result2.xlsx`，Q3/Q4 仍为 `NOT STARTED`。官方源 `A题/` 继续只读。

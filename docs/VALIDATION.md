@@ -170,3 +170,30 @@ Remaining Open Questions are classified by blocking phase in `docs/PROBLEM_SPEC.
 剩余风险：
 状态：PASS / FAIL / PARTIAL / TODO
 ```
+
+## Q2 MODEL DESIGN & CONTRACT GATE
+
+本节记录 Q2 设计 Gate，而不是 Q2 数值结果 Gate。未实现 solver、未运行正式长时仿真、未生成 `result2.xlsx`。
+
+| 检查项 | 方法/证据 | 状态 |
+|---|---|---|
+| Official requirements extracted | `docs/Q2_PLAN.md`；官方 PDF 问题2、表3/4、附录3与官方 result2 模板 | PASS |
+| Appendix 3 formula and unit verification | 官方 PDF 页面4视觉核对；`scripts/audit_q2_property_spec.py`；`EXP-Q2-PROPERTY-POINTS` | PASS（设计审计） |
+| Attachment 1 tail audit | `scripts/audit_q2_environment_tail.py`；`EXP-Q2-ENV-TAIL`；输入只读 | PASS（数据审计） |
+| Q1 → Q2 delta matrix | `docs/Q2_PLAN.md` | PASS |
+| TEAM_REFERENCE reconciliation | `docs/Q2_PLAN.md`；五份 DOCX 不升级为官方事实 | PASS |
+| Q2 physics candidate | Q2-M1 variable-property coupled radial model | PASS（候选设计） |
+| Numerical candidate matrix | Q2-NUM-CANDIDATE-A/B/C，未选择最终方案 | PASS（候选设计） |
+| Coupled Picard design | 分场归一化残差、更新时序、最大迭代、松弛与 fail-closed | PASS（接口设计） |
+| Variable-coefficient FVM audit | 算术/调和平均均保留；未裁决 | OPEN（实现前决策） |
+| Environment after 14400 s | `OQ-Q2-ENV-001`；常值候选未确认 | OPEN（人工决策） |
+| Environment interpolation | `OQ-Q2-ENV-002`；linear/PCHIP 未选择 | OPEN（人工决策） |
+| Q2 end condition | `OQ-Q2-END-001`；不把 Q3 阈值升级为 Q2 官方终点 | OPEN（人工决策） |
+| Accuracy criterion | `OQ-Q2-ACC-001`；Q1 `<5e-5` 仅候选起点 | OPEN（实现后验证） |
+| Long-horizon architecture | 流式输出、内存/行数估算、checkpoint/restart 契约 | PASS（设计） |
+| Validation plan | 属性、单位、极限、边界、守恒、耦合、收敛、重启、Q1 overlap、交付检查 | PASS（计划） |
+| Q2 deliverable contract | `docs/Q2_PLAN.md`、`docs/DELIVERABLE_SPEC.md`；终点/行数未冻结 | PASS（草案） |
+| Q1 freeze integrity | `git diff -- A题` 为空；Q1 final/figures/audit 未改 | PASS |
+| Q2 implementation boundary | `src/q2/` solver、正式结果、Q3/Q4 均未开始 | PASS |
+
+`Q2 MODEL DESIGN & CONTRACT GATE = COMPLETE`；等待人工 Q2 implementation authorization。以上 OPEN 项均已显式登记，不能在实现时静默假设。

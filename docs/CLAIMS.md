@@ -28,3 +28,7 @@ Status：UNVERIFIED / VERIFIED / OUTDATED
 ```
 
 重要数字不能由 Agent 猜测或“合理补全”。没有证据就保持 `UNVERIFIED`，并在 `TODO.md` 中建立任务。
+
+## Q2 Boundary
+
+Q2 当前仅完成设计 Gate 和只读输入审计，没有可登记的正式 Q2 论文主张。`EXP-Q2-PROPERTY-POINTS` 的公式点和 `EXP-Q2-ENV-TAIL` 的尾窗统计只用于实现前审计；不得据此宣称模型结果、环境充分性、耦合机制或 Q2 终点已经确定。

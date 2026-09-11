@@ -76,6 +76,17 @@
 
 仓库当前为 Public。此阶段不将 GitHub CI 作为 Gate 依赖，按本 Runbook 在本地执行全部校验即可。
 
+## Q2 Design Gate Audit
+
+Q2 当前只允许执行设计阶段的只读审计：
+
+```powershell
+.\.venv\Scripts\python.exe scripts\audit_q2_property_spec.py
+.\.venv\Scripts\python.exe scripts\audit_q2_environment_tail.py
+```
+
+两条命令分别写入 `experiments/EXP-Q2-PROPERTY-POINTS/metrics.json` 和 `experiments/EXP-Q2-ENV-TAIL/metrics.json`；它们不调用 Q2 solver、不修改 `A题/`、不生成 `result2.xlsx`。Q2 正式执行顺序必须等人工授权，并先审查 `docs/Q2_PLAN.md` 中的环境、边界、终点、界面平均和精度门开放项。未来 solver 入口、长时运行、checkpoint 和 result2 生成顺序均保持 `NOT ESTABLISHED`。
+
 ## Future Entries
 
 - 数据清洗入口：`NOT YET ESTABLISHED`
