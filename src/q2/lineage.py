@@ -11,10 +11,14 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_MANIFEST = ROOT / "experiments" / "Q2_CANONICAL_DATA_MANIFEST.json"
 CANONICAL_STATUSES = frozenset({"CANONICAL", "RECOVERED_CANONICAL"})
+PRODUCTION_CANONICAL_STATUS = "PRODUCTION_CANONICAL"
 KNOWN_STATUSES = frozenset(
     {
         "CANONICAL",
         "RECOVERED_CANONICAL",
+        "PRODUCTION_CANONICAL",
+        "DETERMINISM_REFERENCE",
+        "VALIDATION_ONLY",
         "NONCANONICAL_INTERRUPTED",
         "NONCANONICAL_DUPLICATE",
     }
@@ -93,4 +97,45 @@ def canonical_csv_path(relative_path: str | Path, **kwargs: Any) -> Path:
     path = canonical_path(relative_path, **kwargs)
     if path.suffix.lower() != ".csv":
         raise ValueError(f"canonical data loader requires a CSV path: {path}")
+    return path
+
+
+def production_canonical_path(
+    relative_path: str | Path,
+    *,
+    manifest_path: str | Path = DEFAULT_MANIFEST,
+    root_dir: str | Path = ROOT,
+    verify_hash: bool = True,
+) -> Path:
+    """Resolve the sole approved Q2 production source, fail-closed.
+
+    The older ``canonical_path`` API remains available for validation-era
+    evidence.  Result workbooks and formal Q2 figures must use this stricter
+    loader so recovered, duplicate, sensitivity, and determinism-reference
+    artifacts cannot become the formal result source by accident.
+    """
+    payload = load_canonical_manifest(manifest_path)
+    relative = Path(relative_path).as_posix()
+    entries = {entry["path"]: entry for entry in payload["entries"]}
+    entry = entries.get(relative)
+    if entry is None:
+        raise ValueError(f"path is not registered in the Q2 canonical manifest: {relative}")
+    if entry["status"] != PRODUCTION_CANONICAL_STATUS:
+        raise ValueError(f"refusing non-production Q2 artifact ({entry['status']}): {relative}")
+    root = Path(root_dir).resolve()
+    path = (root / relative).resolve()
+    if root != path and root not in path.parents:
+        raise ValueError(f"production canonical path escapes project root: {relative}")
+    if not path.is_file():
+        raise FileNotFoundError(f"production canonical Q2 artifact is missing: {path}")
+    if verify_hash and _sha256(path).lower() != entry["sha256"].lower():
+        raise ValueError(f"production canonical artifact hash mismatch: {relative}")
+    return path
+
+
+def production_csv_path(relative_path: str | Path, **kwargs: Any) -> Path:
+    """Resolve a production-canonical CSV through the strict guard."""
+    path = production_canonical_path(relative_path, **kwargs)
+    if path.suffix.lower() != ".csv":
+        raise ValueError(f"production data loader requires a CSV path: {path}")
     return path

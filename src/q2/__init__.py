@@ -3,7 +3,13 @@
 from .config import Q2Parameters, Q2RunConfig
 from .environment import EnvironmentProvider
 from .baseline import Q2BaselineResult, run_q2_b0
-from .lineage import canonical_csv_path, canonical_path, load_canonical_manifest
+from .lineage import (
+    canonical_csv_path,
+    canonical_path,
+    load_canonical_manifest,
+    production_canonical_path,
+    production_csv_path,
+)
 from .properties import cp, diffusivity, conductivity, density
 from .solver import Q2NonConvergenceError, Q2RunResult, run_q2
 
@@ -19,6 +25,8 @@ __all__ = [
     "conductivity",
     "canonical_csv_path",
     "canonical_path",
+    "production_canonical_path",
+    "production_csv_path",
     "density",
     "load_canonical_manifest",
     "run_q2",

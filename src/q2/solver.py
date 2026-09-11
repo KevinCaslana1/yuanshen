@@ -498,7 +498,11 @@ def run_q2(
         current_time = next_time
         if passive_event_threshold_kg_kg is not None:
             event_value = row.moisture_max_kg_kg - passive_event_threshold_kg_kg
-            if previous_event_value is not None and previous_event_value * event_value <= 0.0 and previous_event_value != event_value:
+            # Q2's observer is deliberately directional.  A zero touch is not
+            # a crossing; only the first transition from g_prev >= 0 to
+            # g_now < 0 is eligible for the saved bracket.  This keeps the
+            # Q2 horizon controller separate from Q3 root refinement.
+            if passive_event_bracket is None and previous_event_value is not None and previous_event_value >= 0.0 and event_value < 0.0:
                 passive_event_bracket = (current_time - config.time_step_s, current_time)
             previous_event_value = event_value
         step_count += 1
