@@ -2,8 +2,13 @@ from __future__ import annotations
 
 import pytest
 
-from src.common.numerics import make_radial_grid
-from src.q1.model import assemble_bdf2_radial_system, assemble_radial_system, radial_control_volume_factors
+from src.common.numerics import make_boundary_clustered_grid, make_radial_grid
+from src.q1.model import (
+    assemble_bdf2_radial_system,
+    assemble_nonuniform_radial_system,
+    assemble_radial_system,
+    radial_control_volume_factors,
+)
 
 
 def test_radial_control_volume_factors_include_center_and_surface_half_cells() -> None:
@@ -93,3 +98,40 @@ def test_bdf2_robin_row_scales_operator_and_uses_two_history_levels() -> None:
     assert bdf2[2][-1] == 0.0
     expected_rhs = 4.0 / 3.0 * old[-1] - 1.0 / 3.0 * previous[-1] + (2.0 / 3.0) * (be[3][-1] - old[-1])
     assert bdf2[3][-1] == pytest.approx(expected_rhs)
+
+
+def test_nonuniform_grid_preserves_surface_robin_balance() -> None:
+    grid = make_boundary_clustered_grid(0.02, 8, cluster_power=2.0)
+    old = [1.0] * 9
+    dt = 0.25
+    capacity = 3.0
+    diffusivity = 0.4
+    transfer = 1.5
+    environment = 5.0
+    lower, diagonal, upper, rhs = assemble_nonuniform_radial_system(
+        old,
+        grid,
+        dt,
+        capacity,
+        [diffusivity] * 8,
+        transfer,
+        environment,
+    )
+    faces = [0.5 * (left + right) for left, right in zip(grid.nodes_m, grid.nodes_m[1:])]
+    volume = 0.5 * (grid.radius_m**2 - faces[-1] ** 2)
+    inner = dt * faces[-1] * diffusivity / (capacity * volume * (grid.nodes_m[-1] - grid.nodes_m[-2]))
+    external = dt * grid.radius_m * transfer / (capacity * volume)
+    assert lower[-1] == pytest.approx(-inner)
+    assert diagonal[-1] == pytest.approx(1.0 + inner + external)
+    assert upper[-1] == 0.0
+    assert rhs[-1] == pytest.approx(1.0 + external * environment)
+
+
+def test_boundary_clustered_grid_preserves_required_output_nodes() -> None:
+    required = (0.0, 0.001, 0.019, 0.02)
+    grid = make_boundary_clustered_grid(0.02, 16, cluster_power=2.0, required_nodes_m=required)
+    assert grid.nodes_m[0] == pytest.approx(0.0)
+    assert grid.nodes_m[-1] == pytest.approx(0.02)
+    for position in required:
+        assert any(node == pytest.approx(position) for node in grid.nodes_m)
+    assert all(right > left for left, right in zip(grid.nodes_m, grid.nodes_m[1:]))

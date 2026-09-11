@@ -17,6 +17,17 @@ class RadialGrid:
     nodes_m: Tuple[float, ...]
 
 
+@dataclass(frozen=True)
+class NonuniformRadialGrid:
+    """Nodal radial grid with explicitly stored nonuniform spacing."""
+
+    radius_m: float
+    n_intervals: int
+    min_dr_m: float
+    max_dr_m: float
+    nodes_m: Tuple[float, ...]
+
+
 def make_radial_grid(radius_m: float, n_intervals: int) -> RadialGrid:
     if radius_m <= 0.0:
         raise ValueError("radius_m must be positive")
@@ -25,6 +36,37 @@ def make_radial_grid(radius_m: float, n_intervals: int) -> RadialGrid:
     dr_m = radius_m / float(n_intervals)
     nodes = tuple(index * dr_m for index in range(n_intervals + 1))
     return RadialGrid(radius_m, n_intervals, dr_m, nodes)
+
+
+def make_boundary_clustered_grid(
+    radius_m: float,
+    n_intervals: int,
+    cluster_power: float = 2.0,
+    required_nodes_m: Sequence[float] = (),
+) -> NonuniformRadialGrid:
+    """Create a monotone grid clustered near the outer radius.
+
+    The map ``r=R*(1-(1-x)**p)`` preserves the center and surface exactly;
+    it is a numerical candidate, not a change to the Q1 physical geometry.
+    """
+
+    if radius_m <= 0.0:
+        raise ValueError("radius_m must be positive")
+    if n_intervals < 2:
+        raise ValueError("n_intervals must be at least 2")
+    if cluster_power <= 1.0:
+        raise ValueError("cluster_power must be greater than 1")
+    generated_nodes = tuple(
+        radius_m * (1.0 - (1.0 - index / float(n_intervals)) ** cluster_power)
+        for index in range(n_intervals + 1)
+    )
+    nodes = tuple(sorted(set(generated_nodes).union(float(value) for value in required_nodes_m)))
+    if not nodes or abs(nodes[0]) > 1.0e-14 or abs(nodes[-1] - radius_m) > 1.0e-14:
+        raise ValueError("required nodes must stay within the radial domain and include no outside endpoint")
+    if any(value <= 0.0 or value >= radius_m for value in nodes[1:-1]):
+        raise ValueError("required nodes must be strictly inside the radial domain")
+    spacings = tuple(right - left for left, right in zip(nodes, nodes[1:]))
+    return NonuniformRadialGrid(radius_m, len(nodes) - 1, min(spacings), max(spacings), nodes)
 
 
 def thomas_solve(
