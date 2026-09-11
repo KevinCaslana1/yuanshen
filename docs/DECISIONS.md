@@ -14,9 +14,10 @@
 | D-Q1-OQ006 | 2026-09-11 | Q1 | `hm` 直接作用于干基浓度 `C`，不乘空气密度、材料密度或其他未给因子 | ACCEPTED_MODELING_ASSUMPTION | 本轮人工授权、EXP-005、EXP-007 |
 | D-Q1-OQ007 | 2026-09-11 | Q1 | 中心与表面采用内部 solver 节点值；最终网格必须严格对齐 `0.0,0.1,...,2.0 cm` | ACCEPTED_NUMERICAL_DECISION | 本轮人工授权、`D-Q1-NUMGRID` |
 | D-Q1-OQ008 | 2026-09-11 | Q1 | 不加入潜热、内部蒸发源项、Soret/Dufour 或其他需要新增未知参数的耦合项 | ACCEPTED_MODELING_SIMPLIFICATION | 本轮人工授权、EXP-007 |
-| D-Q1-FREEZE-CANDIDATE | 2026-09-11 | Q1 | 冻结验证对象为 M1；B0/M2/M3 只作验证与敏感性证据；最终配置须由四位小数稳定性决定 | BLOCKED_BY_NUMERICAL_ACCURACY | 本轮人工授权、`experiments/EXP-Q1-FINAL-CONV/` |
+| D-Q1-FREEZE-CANDIDATE | 2026-09-11 | Q1 | 冻结验证对象为 M1；B0/M2/M3 只作验证与敏感性证据；最终配置须满足 D-Q1-NUM-ACCURACY-CRITERION，舍入一致性仅作辅助 | PENDING_FULL_HORIZON_VALIDATION | 本轮人工授权、`docs/DECISIONS.md` |
 | D-Q1-NUM-T2 | 2026-09-11 | Q1 | 将“BE 首步+BDF2”作为数值整改候选进行验证，不自动替换 M1/BE 主方案；论文点改善但完整网格安全裕量不足 | CANDIDATE_NOT_FROZEN | `experiments/EXP-Q1-NUM-BENCH/`、`experiments/EXP-Q1-NUM-REMEDIATION/` |
 | D-Q1-INITIAL-LAYER | 2026-09-11 | Q1 | 支持初始水分场与表面 Robin 条件形成短时边界层的数值诊断；保持官方初值/边界不变，边界聚类仅作为候选 | DIAGNOSTIC_SUPPORTED_CANDIDATE_NOT_FROZEN | `docs/Q1_INITIAL_LAYER_AUDIT.md`、EXP-Q1-INITIAL-LAYER 至 EXP-Q1-CLUSTER-TEMPORAL |
+| D-Q1-NUM-ACCURACY-CRITERION | 2026-09-11 | Q1 | 将 estimated discretization uncertainty 作为主要内部数值门：温度和含水率均要求 `<5e-5`（各自输出单位）；四舍五入状态只作辅助证据，不因少量 ambiguous 自动失败 | TEAM_NUMERICAL_CRITERION | 本轮人工授权、后续全时域收敛实验 |
 
 ## 决策记录模板
 
@@ -102,19 +103,19 @@ PENDING_CONFIRMATION
 
 ### 背景
 
-人工授权要求在生成 `result1.xlsx` 前，对完整交付网格和论文展示点同时执行空间、时间及四位小数输出级收敛检查。
+人工授权要求在生成 `result1.xlsx` 前，对完整交付网格和论文展示点执行原始值误差及估计离散不确定度检查；四位小数一致性仅作辅助诊断。
 
 ### 最终决定
 
-只验证 M1 作为冻结候选；B0、M2、M3 仅作为 Baseline、消融和敏感性证据。候选配置必须同时通过完整 `1..1800 s × 0.0..2.0 cm` 网格和论文 7×5 点的四位小数稳定性；未通过时不得生成 candidate 或 final 文件。
+只验证 M1 作为冻结候选；B0、M2、M3 仅作为 Baseline、消融和敏感性证据。候选配置必须同时通过完整 `1..1800 s × 0.0..2.0 cm` 网格和论文 7×5 点的估计离散不确定度标准；四位小数舍入差异作为辅助证据，主要数值标准未通过时不得生成 candidate 或 final 文件。
 
 ### 结果
 
-`EXP-Q1-FINAL-CONV` 已实际运行 `N=80/160/320`、`dt=1/0.5/0.25 s`。N160→N320 的完整网格仍有温度 `1398/37800`、水分 `4468/37800` 个四位小数差异；dt1→dt0.25 的完整网格仍有温度 `36498/37800`、水分 `6926/37800` 个差异。因此本冻结候选被数值准确性门阻塞，未生成 `result1.xlsx`。
+`EXP-Q1-FINAL-CONV` 的旧四舍五入差异已证明原配置需要进一步审查，但不再单独作为自动失败判据；新的全时域候选验证按 `D-Q1-NUM-ACCURACY-CRITERION` 执行，当前尚未生成 `result1.xlsx`。
 
 ### 重新评估条件
 
-由人工审查决定后续数值精度整改方案；不得仅为通过门槛而放宽四舍五入稳定性标准或修改已接受的交付契约。
+由人工审查决定后续数值精度整改方案；不得修改已接受的交付契约或物理模型。主要数值门按 `D-Q1-NUM-ACCURACY-CRITERION`，舍入状态保留为辅助信息。
 
 ### 状态
 
@@ -291,3 +292,42 @@ ACCEPTED_MODELING_ASSUMPTION
 ### 状态
 
 DIAGNOSTIC_SUPPORTED_CANDIDATE_NOT_FROZEN
+
+## D-Q1-NUM-ACCURACY-CRITERION Q1 全时域内部数值精度标准
+
+日期：2026-09-11
+
+问题：Q1
+
+### 背景
+
+题面只要求最终结果保留四位小数；此前将全部 37,800 个输出单元格跨离散配置后四舍五入完全一致作为唯一阻塞判据，混淆了输出格式与数值误差。
+
+### 决定
+
+- `OUTPUT FORMAT`：最终 candidate 显示/写入四位小数，这是交付格式要求。
+- `NUMERICAL ACCURACY`：采用 `estimated discretization uncertainty` 作为团队内部主要数值门，不是官方题面事实。
+- `TEAM_NUMERICAL_CRITERION`：温度自身单位的估计离散不确定度 `<5e-5 °C`；含水率自身单位的估计离散不确定度 `<5e-5 kg/kg`。
+- `ROUNDING CERTIFICATION`：逐点保存 raw value、estimated uncertainty、距最近舍入边界距离和 rounding status，仅作辅助证据；少量 `ROUNDING_AMBIGUOUS` 不自动导致数值 Gate 失败。
+
+### 原因
+
+四位小数是报告分辨率，不等价于所有不同离散配置必须产生完全相同的最后一位。若 `u±ε` 的不确定度已满足内部标准，但 `u` 接近舍入边界，仍可能出现 `ROUNDING_AMBIGUOUS`；此时必须如实记录并使用冻结最高可信 raw 数值按标准四舍五入，禁止人工挑选末位。
+
+### 支持证据
+
+- 本轮人工授权的 Full-Horizon Production Config Freeze 提示词。
+- `EXP-Q1-CLUSTER-TEMPORAL` 已展示逐官方位置保存 raw、不确定度、边界距离和舍入状态的结构。
+- `docs/DELIVERABLE_SPEC.md` 的四位小数输出契约。
+
+### 被否决方案
+
+不再使用 `rounded disagreement count > 0 => 自动 FAIL`。在没有新的证据前，不额外加入未经依据的 safety factor，也不因追求 `ROUNDING_AMBIGUOUS=0` 无限加密网格或减小时间步。
+
+### 重新评估条件
+
+若全时域任一正式输出点的估计离散不确定度达到或超过 `5e-5`，才按时间/空间误差定位、局部聚类加密、减小 dt 的顺序整改；若全部满足，则停止加密并冻结最低成本可信配置。
+
+### 状态
+
+ACTIVE_TEAM_NUMERICAL_CRITERION

@@ -179,7 +179,7 @@ def implicit_nonuniform_radial_step(
 def assemble_bdf2_radial_system(
     old_values: Sequence[float],
     previous_values: Sequence[float],
-    grid: RadialGrid,
+    grid: RadialGrid | NonuniformRadialGrid,
     dt_s: float,
     capacity: float,
     face_diffusivities: Sequence[float],
@@ -197,16 +197,28 @@ def assemble_bdf2_radial_system(
 
     if len(previous_values) != len(old_values):
         raise ValueError("BDF2 history vectors must have the same length")
-    be_lower, be_diagonal, be_upper, be_rhs = assemble_radial_system(
-        old_values,
-        grid,
-        dt_s,
-        capacity,
-        face_diffusivities,
-        surface_transfer,
-        environment_value,
-        surface_boundary,
-    )
+    if isinstance(grid, NonuniformRadialGrid):
+        be_lower, be_diagonal, be_upper, be_rhs = assemble_nonuniform_radial_system(
+            old_values,
+            grid,
+            dt_s,
+            capacity,
+            face_diffusivities,
+            surface_transfer,
+            environment_value,
+            surface_boundary,
+        )
+    else:
+        be_lower, be_diagonal, be_upper, be_rhs = assemble_radial_system(
+            old_values,
+            grid,
+            dt_s,
+            capacity,
+            face_diffusivities,
+            surface_transfer,
+            environment_value,
+            surface_boundary,
+        )
     if surface_boundary == "dirichlet":
         rhs = [4.0 / 3.0 * old - 1.0 / 3.0 * previous for old, previous in zip(old_values, previous_values)]
         rhs[-1] = environment_value
@@ -225,7 +237,7 @@ def assemble_bdf2_radial_system(
 def implicit_bdf2_radial_step(
     old_values: Sequence[float],
     previous_values: Sequence[float],
-    grid: RadialGrid,
+    grid: RadialGrid | NonuniformRadialGrid,
     dt_s: float,
     capacity: float,
     face_diffusivities: Sequence[float],
@@ -247,7 +259,14 @@ def implicit_bdf2_radial_step(
     return thomas_solve(*system[:3], system[3])
 
 
-def radial_control_volume_factors(grid: RadialGrid) -> List[float]:
+def radial_control_volume_factors(grid: RadialGrid | NonuniformRadialGrid) -> List[float]:
+    if isinstance(grid, NonuniformRadialGrid):
+        nodes = grid.nodes_m
+        faces = [0.5 * (left + right) for left, right in zip(nodes, nodes[1:])]
+        factors = [0.5 * faces[0] ** 2]
+        factors.extend(0.5 * (faces[index] ** 2 - faces[index - 1] ** 2) for index in range(1, grid.n_intervals))
+        factors.append(0.5 * (grid.radius_m**2 - faces[-1] ** 2))
+        return factors
     dr = grid.dr_m
     factors = [0.125 * dr * dr]
     factors.extend(index * dr * dr for index in range(1, grid.n_intervals))

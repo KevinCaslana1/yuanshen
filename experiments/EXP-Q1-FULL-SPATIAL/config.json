@@ -1,0 +1,197 @@
+{
+  "experiment_id": "EXP-Q1-FULL-SPATIAL",
+  "code_commit": "34adc1ab6a976fc37e67001dd6548230a8e8de53",
+  "input_hashes": {
+    "A题/附件/附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7"
+  },
+  "scope": {
+    "full_horizon_s": "0..1800; formal output times 1..1800",
+    "full_grid": "1800 x 21",
+    "paper_table_points": "7 x 5",
+    "cluster_power": 2.0,
+    "official_output_positions_m": [
+      0.0,
+      0.001,
+      0.002,
+      0.003,
+      0.004,
+      0.005,
+      0.006,
+      0.007,
+      0.008,
+      0.009000000000000001,
+      0.01,
+      0.011,
+      0.012,
+      0.013000000000000001,
+      0.014,
+      0.015,
+      0.016,
+      0.017,
+      0.018000000000000002,
+      0.019,
+      0.02
+    ],
+    "accuracy_criterion": "TEAM_NUMERICAL_CRITERION: estimated uncertainty < 5e-5 in each field output unit",
+    "rounding_is_auxiliary": true,
+    "comparison": "Cluster-L1/base320 vs L2/base640 vs L3/base1280 at fixed BDF2 dt=0.125 s"
+  },
+  "cases": {
+    "Cluster-L1_base320_dt0.125": {
+      "runtime_seconds": 23.00455309999961,
+      "requested_base_intervals": 320,
+      "n_intervals_actual": 338,
+      "minimum_dr_m": 1.953124999995448e-07,
+      "maximum_dr_m": 0.00012480468750000195,
+      "clustering_ratio_max_over_min": 639.0000000014992,
+      "time_step_s": 0.125,
+      "end_time_s": 1800.0,
+      "internal_step_count": 14400,
+      "recorded_output_times": 1800,
+      "recorded_output_positions": 21,
+      "picard_max_iterations": 3,
+      "picard_mean_iterations": 3.0,
+      "temperature_range_c": [
+        27.99999999993645,
+        36.78555811563706
+      ],
+      "moisture_range_kg_kg": [
+        1.5102423648773007,
+        2.5500000000000145
+      ],
+      "max_mass_balance_residual": 5.608747774252557e-19,
+      "max_energy_balance_residual": 3.4211306010334397e-10,
+      "official_output_nodes_present": true
+    },
+    "Cluster-L2_base640_dt0.125": {
+      "runtime_seconds": 44.544929700001376,
+      "requested_base_intervals": 640,
+      "n_intervals_actual": 658,
+      "minimum_dr_m": 4.8828125001620926e-08,
+      "maximum_dr_m": 6.245117187499982e-05,
+      "clustering_ratio_max_over_min": 1278.999999957538,
+      "time_step_s": 0.125,
+      "end_time_s": 1800.0,
+      "internal_step_count": 14400,
+      "recorded_output_times": 1800,
+      "recorded_output_positions": 21,
+      "picard_max_iterations": 3,
+      "picard_mean_iterations": 3.0,
+      "temperature_range_c": [
+        27.999999999936335,
+        36.78555977566043
+      ],
+      "moisture_range_kg_kg": [
+        1.5102365492868821,
+        2.550000000000004
+      ],
+      "max_mass_balance_residual": 7.191789486944291e-19,
+      "max_energy_balance_residual": 9.259727429267173e-10,
+      "official_output_nodes_present": true
+    },
+    "Cluster-L3_base1280_dt0.125": {
+      "runtime_seconds": 87.95235129999855,
+      "requested_base_intervals": 1280,
+      "n_intervals_actual": 1298,
+      "minimum_dr_m": 1.2207031250405231e-08,
+      "maximum_dr_m": 3.1237792968747956e-05,
+      "clustering_ratio_max_over_min": 2558.9999999148827,
+      "time_step_s": 0.125,
+      "end_time_s": 1800.0,
+      "internal_step_count": 14400,
+      "recorded_output_times": 1800,
+      "recorded_output_positions": 21,
+      "picard_max_iterations": 3,
+      "picard_mean_iterations": 3.0,
+      "temperature_range_c": [
+        27.999999999977206,
+        36.78556019712738
+      ],
+      "moisture_range_kg_kg": [
+        1.5102350924495667,
+        2.5500000000000282
+      ],
+      "max_mass_balance_residual": 1.8887916553290964e-18,
+      "max_energy_balance_residual": 2.7276759845501312e-09,
+      "official_output_nodes_present": true
+    },
+    "Cluster-L3_dt0.25": {
+      "runtime_seconds": 44.33770910000021,
+      "requested_base_intervals": 1280,
+      "n_intervals_actual": 1298,
+      "minimum_dr_m": 1.2207031250405231e-08,
+      "maximum_dr_m": 3.1237792968747956e-05,
+      "clustering_ratio_max_over_min": 2558.9999999148827,
+      "time_step_s": 0.25,
+      "end_time_s": 1800.0,
+      "internal_step_count": 7200,
+      "recorded_output_times": 1800,
+      "recorded_output_positions": 21,
+      "picard_max_iterations": 3,
+      "picard_mean_iterations": 3.0,
+      "temperature_range_c": [
+        27.999999999977945,
+        36.78556011853533
+      ],
+      "moisture_range_kg_kg": [
+        1.5102350931874367,
+        2.550000000000027
+      ],
+      "max_mass_balance_residual": 4.447677361803725e-18,
+      "max_energy_balance_residual": 2.2161731005887475e-08,
+      "official_output_nodes_present": true
+    },
+    "Cluster-L3_dt0.125": {
+      "runtime_seconds": 91.52993459999925,
+      "requested_base_intervals": 1280,
+      "n_intervals_actual": 1298,
+      "minimum_dr_m": 1.2207031250405231e-08,
+      "maximum_dr_m": 3.1237792968747956e-05,
+      "clustering_ratio_max_over_min": 2558.9999999148827,
+      "time_step_s": 0.125,
+      "end_time_s": 1800.0,
+      "internal_step_count": 14400,
+      "recorded_output_times": 1800,
+      "recorded_output_positions": 21,
+      "picard_max_iterations": 3,
+      "picard_mean_iterations": 3.0,
+      "temperature_range_c": [
+        27.999999999977206,
+        36.78556019712738
+      ],
+      "moisture_range_kg_kg": [
+        1.5102350924495667,
+        2.5500000000000282
+      ],
+      "max_mass_balance_residual": 1.8887916553290964e-18,
+      "max_energy_balance_residual": 2.7276759845501312e-09,
+      "official_output_nodes_present": true
+    },
+    "Cluster-L3_dt0.0625": {
+      "runtime_seconds": 161.48589400000128,
+      "requested_base_intervals": 1280,
+      "n_intervals_actual": 1298,
+      "minimum_dr_m": 1.2207031250405231e-08,
+      "maximum_dr_m": 3.1237792968747956e-05,
+      "clustering_ratio_max_over_min": 2558.9999999148827,
+      "time_step_s": 0.0625,
+      "end_time_s": 1800.0,
+      "internal_step_count": 28800,
+      "recorded_output_times": 1800,
+      "recorded_output_positions": 21,
+      "picard_max_iterations": 3,
+      "picard_mean_iterations": 2.593090277777778,
+      "temperature_range_c": [
+        27.99999999997999,
+        36.785560149247374
+      ],
+      "moisture_range_kg_kg": [
+        1.510235092282424,
+        2.5500000000000123
+      ],
+      "max_mass_balance_residual": 1.0993470223207378e-18,
+      "max_energy_balance_residual": 3.3133624455228272e-09,
+      "official_output_nodes_present": true
+    }
+  }
+}
