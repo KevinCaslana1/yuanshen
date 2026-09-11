@@ -129,17 +129,19 @@ def validate() -> dict[str, Any]:
     csv_records: list[dict[str, str]] = []
     for entry in csv_entries:
         with (ROOT / entry["data_file"]).open(encoding="utf-8", newline="") as stream:
-            csv_records.extend(csv.DictReader(stream))
+            for record in csv.DictReader(stream):
+                record["figure_id"] = entry["figure_id"]
+                csv_records.append(record)
     sample = rng.sample(csv_records, 20)
     random_pass = 0
     for record in sample:
-        field = temperature if "temperature" in record["figure_id"].lower() else moisture
+        temperature_record = record["figure_id"] in {"FIG-Q1-01", "FIG-Q1-05"}
+        field = temperature if temperature_record else moisture
         time_index = _time_index(times, float(record["time_s"]))
         position_index = _position_index(nodes, float(record["distance_cm"]))
         expected = float(field[time_index, position_index])
-        if "temperature" in record["figure_id"].lower():
-            expected -= 273.15
-        if abs(expected - float(record["temperature_c"] if "temperature_c" in record else record["moisture_kg_kg"])) <= 1.0e-12:
+        value_key = "temperature_c" if temperature_record else "moisture_kg_kg"
+        if abs(expected - float(record[value_key])) <= 1.0e-12:
             random_pass += 1
         else:
             errors.append(f"random figure-data mismatch: {record}")

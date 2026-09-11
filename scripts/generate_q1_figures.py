@@ -332,14 +332,15 @@ def _plot_convergence(
             value = float(comparison["linf"])
             y_values.append(value)
             rows.append([metric_key, label, field, x_value, value, observed_entry.get("observed_order")])
-        axis.plot(x_values, y_values, marker="o", linewidth=1.8, color="#245a9b")
-        axis.set_xscale("log")
+        x_positions = list(range(len(x_values)))
+        axis.plot(x_positions, y_values, marker="o", linewidth=1.8, color="#245a9b")
         axis.set_yscale("log")
         axis.set_title(field_label)
         axis.set_xlabel(x_label)
         axis.set_ylabel("相邻层 L∞ 差异")
         axis.grid(True, which="both", alpha=0.25, linewidth=0.6)
-        axis.set_xticks(x_values, labels, rotation=18)
+        axis.set_xticks(x_positions, labels, rotation=0)
+        axis.set_xlim(-0.2, len(x_positions) - 0.8)
     fig.suptitle(title, y=1.02)
     fig.tight_layout()
     _write_csv(data_path, ("comparison_type", "refinement", "field", "x", "linf_difference", "observed_order"), rows)
@@ -409,8 +410,6 @@ def _paper_spot_check(
                 for position_cm, position_m in zip(PAPER_POSITIONS_CM, PAPER_POSITIONS_M):
                     position_index = _position_index(nodes_m, position_m)
                     raw_value = float(field[time_index, position_index])
-                    if field_name == "temperature_c":
-                        raw_value = raw_value - 273.15
                     expected = _round_half_up(raw_value)
                     actual = Decimal(str(sheet.cell(row=time_s + 1, column=2 + int(round(position_cm * 10))).value))
                     checks.append({"sheet": sheet_name, "time_s": time_s, "distance_cm": position_cm, "pass": actual == expected})
@@ -430,12 +429,10 @@ def _figure_data_spot_check(
     sample = rng.sample(records, 20)
     checks: list[dict[str, Any]] = []
     for item in sample:
-        field_name = "temperature_c" if "temperature" in item["figure_id"].lower() else "moisture_kg_kg"
+        field_name = "temperature_c" if item["figure_id"] in {"FIG-Q1-01", "FIG-Q1-05"} else "moisture_kg_kg"
         time_index = _time_index(times_s, item["time_s"])
         position_index = _position_index(nodes_m, item["distance_cm"] / 100.0)
         expected = float(values[field_name][time_index, position_index])
-        if field_name == "temperature_c":
-            expected -= 273.15
         checks.append({"figure_id": item["figure_id"], "time_s": item["time_s"], "distance_cm": item["distance_cm"], "pass": abs(expected - item["value"]) <= 1.0e-12})
     passed = sum(item["pass"] for item in checks)
     return {"seed": 20260911, "count": len(checks), "pass_count": passed, "status": "PASS" if passed == len(checks) else "FAIL", "checks": checks}
