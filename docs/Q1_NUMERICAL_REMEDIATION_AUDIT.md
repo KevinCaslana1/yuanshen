@@ -225,6 +225,6 @@ BE 与 BDF2 在同一 `dt=0.25 s` 下的场差为：温度 full-grid L∞ `4.776
 ## Commit SHA
 
 - 实现与实验脚本提交：`843d62861b7137f93222f01df61609a228ceab5a` (`fix(q1): diagnose and improve numerical convergence`)
-- 本轮文档提交：待提交后补记；不推送远端。
+- 本轮文档与实验证据提交：`c491cf7` (`docs(q1): record numerical remediation gate`)；不推送远端。
 
 结论：`Q1 NUMERICAL REMEDIATION GATE BLOCKED`；`DO NOT GENERATE RESULT1`；`WAITING FOR HUMAN REVIEW`；`DO NOT START Q2`。
