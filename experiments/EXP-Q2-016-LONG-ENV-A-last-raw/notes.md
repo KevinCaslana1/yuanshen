@@ -1,0 +1,1 @@
+Sequential long-horizon ENV-A run. The first harness version accidentally used a 6/12/24/48 h stage list and was stopped after the valid 12 h checkpoint; the corrected continuation uses the authorized 6/24/48/72 h gates and resumes from that checkpoint. This is a reproducibility/harness correction, not a solver result. No workbook was written.

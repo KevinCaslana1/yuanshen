@@ -23,3 +23,6 @@ deliverables/candidate/*.xlsx
 
 # Do not ignore docs/, formal source code, tracked figures, experiment metadata,
 # official source assets, or final deliverables.
+
+# Local Codex/agent memory, not a project artifact.
+.workbuddy/

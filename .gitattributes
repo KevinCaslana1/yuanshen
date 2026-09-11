@@ -1,0 +1,3 @@
+experiments/EXP-Q2-013-INTERPOLATION/samples*.csv filter=lfs diff=lfs merge=lfs -text
+experiments/EXP-Q2-016-LONG-*/official_samples*.csv filter=lfs diff=lfs merge=lfs -text
+experiments/EXP-Q2-016-LONG-*/diagnostics_1s*.csv filter=lfs diff=lfs merge=lfs -text

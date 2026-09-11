@@ -1,0 +1,1 @@
+Arithmetic versus harmonic face-coefficient audit using the manufactured benchmark and real 0–3 h Q2 fields. The result is a recommendation pending human approval, not an automatic freeze. No workbook was written.

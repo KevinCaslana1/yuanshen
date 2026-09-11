@@ -46,6 +46,10 @@
 | T-036 | P1 | Q2 | T-032 | TODO | Decide Q2 end/accuracy contract | 关闭 `OQ-Q2-END-001`、`OQ-Q2-ACC-001`；不把 Q3 阈值静默升级为 Q2 终点 | Q2 交付前 |
 | T-038 | P0 | Q2 | T-033 | DONE | Q2 implementation & short-horizon validation | `src/q2/`、属性/环境/变量系数 FVM、coupled Picard、EXP-Q2-001 至 EXP-Q2-011、测试、checkpoint/restart 和0–3 h内部验证完成；无 `result2.xlsx` | 2026-09-11 |
 | T-039 | P1 | Q2 | T-038 | TODO | Human review of Q2 open decisions | 人工确认环境尾段、linear/PCHIP、h/hm、界面平均、Q2终点和精度门后，才可另行授权正式交付 | 待确认 |
+| T-040 | P0 | Q2 | T-039 | DONE | Q2 long-horizon boundary & production config gate | `EXP-Q2-012`–`EXP-Q2-020` 完成环境尾段/插值/边界/界面平均/0–72 h、被动事件、低含水率物性、守恒/Robin、重启、长时收敛和 B0 对照；raw/recovered 证据完整；未生成 `result2.xlsx` | 2026-09-11 |
+| T-041 | P0 | Q2 | T-040 | TODO | Freeze Q2 production configuration | 人工决定 post-14400 环境、linear/PCHIP、h/hm、界面平均、终点/行数和精度门；将推荐候选从 pending review 改为明确冻结 | 待确认 |
+| T-042 | P0 | Q2 | T-041 | TODO | Generate and validate Q2 candidate deliverable | 仅在 T-041 后从官方 result2 模板 COPY 到 `deliverables/candidate/`，完成结构/数值/格式/确定性/论文点校验；仍需人工确认后才能进入 final | 待确认 |
+| T-043 | P0 | Q3/Q4 | T-042 | TODO | Start Q3/Q4 only after explicit authorization | Q3/Q4 当前保持 NOT STARTED，不因 Q2 被动事件观察 bracket 自动启动 | 待确认 |
 
 ## 任务记录模板
 

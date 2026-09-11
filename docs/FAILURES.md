@@ -211,3 +211,83 @@
 是否放弃：是，入口失败和缺少元数据的初版状态不作为最终证据。
 
 状态：RESOLVED
+
+## F-Q2-004 PCHIP fallback 初版分支缩进错误
+
+对应实验：`EXP-Q2-013-INTERPOLATION`、环境审计 harness
+
+现象：首次启用纯 Python PCHIP fallback 时，区间返回语句落在 linear 分支的错误缩进层级，审计运行在 PCHIP 计算阶段失败。
+
+失败原因：新增分段插值分支的代码审阅不足；不是官方输入数据或 Q2 求解器场值失败。
+
+已尝试修复：修正分支结构，增加 PCHIP 对所有 raw knots 精确复现和区间无 overshoot 的测试，并重新运行插值审计。
+
+最终判断：实验 harness/实现缺陷已解决；修正后的 EXP-Q2-013 才作为证据。
+
+是否放弃：是，首次失败运行不作为证据。
+
+状态：RESOLVED
+
+## F-Q2-005 长时分段 harness 初版阶段切片错误
+
+对应实验：`EXP-Q2-016-LONG-ENV-A-last-raw`
+
+现象：首次长时脚本把 `LONG_TIMES[:4]` 当作阶段终点，实际只运行到 6/12/24/48 h 规划中的前四个点并在 12 h 检查阶段时停止；未把 72 h 作为生产候选阶段终点。
+
+失败原因：阶段终点列表和代表性 checkpoint 时间列表复用，缺少独立的 stage contract。
+
+已尝试修复：建立明确的 `STAGE_ENDS=(21600,86400,172800,259200)`，保留 12 h 作为恢复 checkpoint，并从 12 h checkpoint 继续完成 24/48/72 h。
+
+最终判断：运行编排错误已解决；完整 ENV-A 长时证据保留。
+
+是否放弃：是，初次不完整阶段结果不作为最终长时门证据。
+
+状态：RESOLVED
+
+## F-Q2-006 checkpoint 恢复后的 append-only 输出重复
+
+对应实验：`EXP-Q2-016-LONG-ENV-A-last-raw`
+
+现象：一次中断进程在旧 checkpoint `43200 s` 之后已将输出文件推进到更晚时间，随后从旧 checkpoint 追加，造成 raw samples 重复 `97104` 行、raw diagnostics 重复 `4624` 行。
+
+失败原因：恢复前没有按 checkpoint 的 `output_cursor_s` 截断已有 append-only 文件。
+
+已尝试修复：保留 raw 文件作为失败证据；按确定性 `(time_s,radius_cm)`/`time_s` 键生成 recovered 文件；并在 solver restart 入口增加按 checkpoint 游标的安全截断。recovered output 有 `5443221` 行、完整 0–259200 s 每秒×21 网格，诊断有 `259200` 个唯一时间键。
+
+最终判断：输出工件问题已解决，数值场和 checkpoint 未被判为失败；长时 metrics 明确标记 `PASS_WITH_RECOVERED_OUTPUT_ARTIFACT`，raw 文件不用于绘图/收敛比较。
+
+是否放弃：是，重复 raw 文件不作为直接 sampler 证据；raw 本身不删除。
+
+状态：RESOLVED
+
+## F-Q2-007 长时重启审计初版终点参数遗漏
+
+对应实验：`EXP-Q2-019-LONG-RESTART`
+
+现象：首次连续运行审计调用未显式传入 `stop_time_s=86400`，导致连续分支按配置全时域推进，未与“12 h restart 到24 h”形成同一终点比较。
+
+失败原因：长时配置 horizon 与本次审计 stop horizon 混淆。
+
+已尝试修复：显式为 continuous/restart 两个分支设置 `stop_time_s=86400`，并重新执行 0–24 h 比较。
+
+最终判断：审计编排问题已解决；修正后两条路径的末场温度/含水率差均为 `0.0`。
+
+是否放弃：是，初次命令不作为重启证据。
+
+状态：RESOLVED
+
+## F-Q2-008 长时收敛比较的浮点半径键不一致
+
+对应实验：`EXP-Q2-017-LONG-CONVERGENCE`
+
+现象：粗网格比较在查找 `0.30000000000000004 cm` 时找不到 CSV 中的 `0.3 cm` 键，导致收敛脚本在正式比较前失败。
+
+失败原因：用浮点乘积直接作为半径字典键，没有统一 canonical rounding。
+
+已尝试修复：对官方半径键统一保留 12 位十进制，并重新运行 dt=1/.5 与 n=20/40 的 72 h 比较、CSV 和图。
+
+最终判断：比较 harness 问题已解决；修正后的 EXP-Q2-017 才作为长时证据。
+
+是否放弃：是，初次失败不产生有效收敛结论。
+
+状态：RESOLVED

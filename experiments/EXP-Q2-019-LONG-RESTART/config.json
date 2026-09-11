@@ -1,0 +1,26 @@
+{
+  "end_time_s": 259200.0,
+  "time_step_s": 0.25,
+  "candidate": "A",
+  "n_intervals": 80,
+  "cluster_power": 2.0,
+  "scheme": "bdf2",
+  "interface_mean": "harmonic",
+  "interpolation": "linear",
+  "post_attachment_mode": "constant",
+  "post_temperature_c": 50.165,
+  "post_moisture_kg_kg": 0.04986,
+  "output_interval_s": 1.0,
+  "picard_tolerance": 1e-08,
+  "picard_max_iterations": 50,
+  "picard_relaxation": 1.0,
+  "input_path": "A题\\附件\\附件1.xlsx",
+  "parameters": {
+    "radius_m": 0.02,
+    "length_m": 0.25,
+    "heat_transfer_w_m2_k": 25.0,
+    "mass_transfer_m_s": 8e-07,
+    "initial_temperature_c": 28.0,
+    "initial_moisture_kg_kg": 2.55
+  }
+}

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from bisect import bisect_right
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from hashlib import sha256
 from pathlib import Path
 from typing import Sequence, Tuple
@@ -17,9 +17,10 @@ from src.common.paths import resolve_project_path
 class EnvironmentProvider:
     """Attachment 1 interpolation with explicit post-data behavior.
 
-    ``linear`` is the reproducible default. ``pchip`` is intentionally
-    optional: it is available only when SciPy is installed and is never
-    silently substituted for linear interpolation.
+    ``linear`` is the reproducible default. ``pchip`` uses a small local
+    monotone-cubic implementation, so the candidate comparison does not
+    depend on an optional scientific-Python package. Both methods reproduce
+    every raw Attachment 1 knot exactly.
     """
 
     times_s: Tuple[float, ...]
@@ -31,6 +32,8 @@ class EnvironmentProvider:
     post_moisture_kg_kg: float = 0.05
     source_path: str = ""
     source_sha256: str = ""
+    _temperature_slopes: Tuple[float, ...] = field(default=(), init=False, repr=False, compare=False)
+    _moisture_slopes: Tuple[float, ...] = field(default=(), init=False, repr=False, compare=False)
 
     @classmethod
     def from_attachment1(
@@ -75,10 +78,10 @@ class EnvironmentProvider:
         if any(right <= left for left, right in zip(self.times_s, self.times_s[1:])):
             raise ValueError("environment times must be strictly increasing")
         if self.method == "pchip":
-            try:
-                import scipy.interpolate  # noqa: F401
-            except ImportError as exc:
-                raise RuntimeError("PCHIP requested but SciPy is not installed") from exc
+            # Build once here to fail closed on malformed data and to keep the
+            # interpolation path deterministic during long runs.
+            object.__setattr__(self, "_temperature_slopes", self._pchip_slopes(self.temperatures_c))
+            object.__setattr__(self, "_moisture_slopes", self._pchip_slopes(self.moistures_kg_kg))
 
     @property
     def raw_count(self) -> int:
@@ -100,10 +103,51 @@ class EnvironmentProvider:
         fraction = (time_s - self.times_s[left]) / (self.times_s[right] - self.times_s[left])
         return float(values[left] + fraction * (values[right] - values[left]))
 
-    def _pchip(self, values: Sequence[float], time_s: float) -> float:
-        from scipy.interpolate import PchipInterpolator
+    def _pchip(self, values: Sequence[float], time_s: float, slopes: Sequence[float]) -> float:
+        if time_s == self.times_s[0]:
+            return float(values[0])
+        if time_s == self.times_s[-1]:
+            return float(values[-1])
+        right = bisect_right(self.times_s, time_s)
+        left = right - 1
+        h = self.times_s[right] - self.times_s[left]
+        x = (time_s - self.times_s[left]) / h
+        y0, y1 = values[left], values[right]
+        h00 = (1.0 + 2.0 * x) * (1.0 - x) ** 2
+        h10 = x * (1.0 - x) ** 2
+        h01 = x * x * (3.0 - 2.0 * x)
+        h11 = x * x * (x - 1.0)
+        return float(h00 * y0 + h10 * h * slopes[left] + h01 * y1 + h11 * h * slopes[right])
 
-        return float(PchipInterpolator(self.times_s, values, extrapolate=False)(time_s))
+    def _pchip_slopes(self, values: Sequence[float]) -> Tuple[float, ...]:
+        """Return Fritsch-Carlson/PCHIP knot slopes without hidden smoothing."""
+        n = len(self.times_s)
+        if len(values) != n:
+            raise ValueError("PCHIP values do not match environment times")
+        h = [self.times_s[i + 1] - self.times_s[i] for i in range(n - 1)]
+        delta = [(values[i + 1] - values[i]) / h[i] for i in range(n - 1)]
+        if n == 2:
+            return (delta[0], delta[0])
+
+        def endpoint(h0, h1, d0, d1):
+            value = ((2.0 * h0 + h1) * d0 - h0 * d1) / (h0 + h1)
+            if value * d0 <= 0.0:
+                return 0.0
+            if d0 * d1 < 0.0 and abs(value) > 3.0 * abs(d0):
+                return 3.0 * d0
+            return value
+
+        slopes = [0.0] * n
+        slopes[0] = endpoint(h[0], h[1], delta[0], delta[1])
+        slopes[-1] = endpoint(h[-1], h[-2], delta[-1], delta[-2])
+        for i in range(1, n - 1):
+            if delta[i - 1] * delta[i] <= 0.0:
+                slopes[i] = 0.0
+            else:
+                w1 = 2.0 * h[i] + h[i - 1]
+                w2 = h[i] + 2.0 * h[i - 1]
+                slopes[i] = (w1 + w2) / (w1 / delta[i - 1] + w2 / delta[i])
+        return tuple(slopes)
 
     def at(self, time_s: float) -> Tuple[float, float]:
         time_s = float(time_s)
@@ -115,4 +159,4 @@ class EnvironmentProvider:
             return self.post_temperature_c, self.post_moisture_kg_kg
         if self.method == "linear":
             return self._linear(self.temperatures_c, time_s), self._linear(self.moistures_kg_kg, time_s)
-        return self._pchip(self.temperatures_c, time_s), self._pchip(self.moistures_kg_kg, time_s)
+        return self._pchip(self.temperatures_c, time_s, self._temperature_slopes), self._pchip(self.moistures_kg_kg, time_s, self._moisture_slopes)

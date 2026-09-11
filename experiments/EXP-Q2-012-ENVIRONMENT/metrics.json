@@ -1,0 +1,219 @@
+{
+  "experiment": "EXP-Q2-012-ENVIRONMENT",
+  "status": "PASS",
+  "input": "A题/附件/附件1.xlsx",
+  "input_sha256": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+  "raw_row_count": 241,
+  "raw_time_end_s": 14400.0,
+  "raw_interval_s": [
+    60.0
+  ],
+  "tail_windows": {
+    "10": {
+      "n": 10,
+      "time_start_s": 13860.0,
+      "time_end_s": 14400.0,
+      "temperature_C": {
+        "mean": 50.0465,
+        "population_std": 0.15827649857132883,
+        "min": 49.759,
+        "max": 50.233,
+        "last": 50.165,
+        "linear_slope_per_s": -0.00030191919191919093
+      },
+      "moisture_kg_kg": {
+        "mean": 0.049928,
+        "population_std": 8.518215775618748e-05,
+        "min": 0.04981,
+        "max": 0.05007,
+        "last": 0.04986,
+        "linear_slope_per_s": 2.34343434343436e-07
+      }
+    },
+    "20": {
+      "n": 20,
+      "time_start_s": 13260.0,
+      "time_end_s": 14400.0,
+      "temperature_C": {
+        "mean": 50.01765,
+        "population_std": 0.16031321685999594,
+        "min": 49.759,
+        "max": 50.233,
+        "last": 50.165,
+        "linear_slope_per_s": -1.981203007518872e-05
+      },
+      "moisture_kg_kg": {
+        "mean": 0.0499795,
+        "population_std": 0.00011710999103407022,
+        "min": 0.04981,
+        "max": 0.05022,
+        "last": 0.04986,
+        "linear_slope_per_s": -1.3270676691729406e-07
+      }
+    },
+    "40": {
+      "n": 40,
+      "time_start_s": 12060.0,
+      "time_end_s": 14400.0,
+      "temperature_C": {
+        "mean": 49.99525,
+        "population_std": 0.1558534167094195,
+        "min": 49.757,
+        "max": 50.236,
+        "last": 50.165,
+        "linear_slope_per_s": 3.0009380863039627e-05
+      },
+      "moisture_kg_kg": {
+        "mean": 0.049988,
+        "population_std": 0.00013746272221951646,
+        "min": 0.04977,
+        "max": 0.05024,
+        "last": 0.04986,
+        "linear_slope_per_s": -2.91432145090673e-08
+      }
+    },
+    "60": {
+      "n": 60,
+      "time_start_s": 10860.0,
+      "time_end_s": 14400.0,
+      "temperature_C": {
+        "mean": 49.995666666666665,
+        "population_std": 0.15222873870885523,
+        "min": 49.757,
+        "max": 50.236,
+        "last": 50.165,
+        "linear_slope_per_s": 6.3628785773826524e-06
+      },
+      "moisture_kg_kg": {
+        "mean": 0.04999116666666667,
+        "population_std": 0.00014743463711835888,
+        "min": 0.04975,
+        "max": 0.05024,
+        "last": 0.04986,
+        "linear_slope_per_s": -9.905529313697712e-09
+      }
+    },
+    "80": {
+      "n": 80,
+      "time_start_s": 9660.0,
+      "time_end_s": 14400.0,
+      "temperature_C": {
+        "mean": 50.004125,
+        "population_std": 0.15521536449398313,
+        "min": 49.757,
+        "max": 50.246,
+        "last": 50.165,
+        "linear_slope_per_s": -3.5681356461948846e-06
+      },
+      "moisture_kg_kg": {
+        "mean": 0.049995375,
+        "population_std": 0.0001561325058243798,
+        "min": 0.04975,
+        "max": 0.05025,
+        "last": 0.04986,
+        "linear_slope_per_s": -1.0026957337083542e-08
+      }
+    }
+  },
+  "candidates": {
+    "ENV-A-last-raw": {
+      "temperature_C": 50.165,
+      "moisture_kg_kg": 0.04986,
+      "rule": "last raw Attachment 1 point"
+    },
+    "ENV-B-tail40-mean": {
+      "temperature_C": 49.99525,
+      "moisture_kg_kg": 0.049988,
+      "rule": "mean of last 40 raw points (12060..14400 s)"
+    },
+    "TEAM-REFERENCE": {
+      "temperature_C": 50.0,
+      "moisture_kg_kg": 0.05,
+      "rule": "team numerical proposal; not official data"
+    }
+  },
+  "transition_audit": {
+    "ENV-A-last-raw": {
+      "at_14400_s": [
+        50.165,
+        0.04986
+      ],
+      "at_14400_plus_1s": [
+        50.165,
+        0.04986
+      ],
+      "delta_environment_temperature_C": 0.0,
+      "delta_environment_moisture_kg_kg": 0.0,
+      "instantaneous_delta_heat_robin_w_m2": 0.0,
+      "instantaneous_delta_moisture_robin_kg_m2_s": 0.0,
+      "representative_surface_at_14400": {
+        "temperature_C": 49.999657507981965,
+        "moisture_kg_kg": 0.8153350440144572
+      },
+      "robin_flux_if_post_constant": {
+        "heat_w_m2": -4.133562300451388,
+        "moisture_kg_m2_s": 6.123800352115657e-07,
+        "internal_heat_w_m2": -4.120507480556241,
+        "internal_moisture_kg_m2_s": 6.121038764832715e-07,
+        "heat_boundary_difference_w_m2": 0.013054819895146785,
+        "moisture_boundary_difference_kg_m2_s": -2.761587282942137e-10
+      }
+    },
+    "ENV-B-tail40-mean": {
+      "at_14400_s": [
+        50.165,
+        0.04986
+      ],
+      "at_14400_plus_1s": [
+        49.99525,
+        0.049988
+      ],
+      "delta_environment_temperature_C": -0.1697500000000005,
+      "delta_environment_moisture_kg_kg": 0.00012799999999999617,
+      "instantaneous_delta_heat_robin_w_m2": -4.243750000000013,
+      "instantaneous_delta_moisture_robin_kg_m2_s": 1.0239999999999693e-10,
+      "representative_surface_at_14400": {
+        "temperature_C": 49.999657507981965,
+        "moisture_kg_kg": 0.8153350440144572
+      },
+      "robin_flux_if_post_constant": {
+        "heat_w_m2": 0.11018769954915797,
+        "moisture_kg_m2_s": 6.122776352115658e-07,
+        "internal_heat_w_m2": -4.120507480556241,
+        "internal_moisture_kg_m2_s": 6.121038764832715e-07,
+        "heat_boundary_difference_w_m2": -4.230695180105399,
+        "moisture_boundary_difference_kg_m2_s": -1.7375872829428818e-10
+      }
+    },
+    "TEAM-REFERENCE": {
+      "at_14400_s": [
+        50.165,
+        0.04986
+      ],
+      "at_14400_plus_1s": [
+        50.0,
+        0.05
+      ],
+      "delta_environment_temperature_C": -0.16499999999999915,
+      "delta_environment_moisture_kg_kg": 0.00014000000000000123,
+      "instantaneous_delta_heat_robin_w_m2": -4.124999999999979,
+      "instantaneous_delta_moisture_robin_kg_m2_s": 1.1200000000000098e-10,
+      "representative_surface_at_14400": {
+        "temperature_C": 49.999657507981965,
+        "moisture_kg_kg": 0.8153350440144572
+      },
+      "robin_flux_if_post_constant": {
+        "heat_w_m2": -0.008562300450876137,
+        "moisture_kg_m2_s": 6.122680352115657e-07,
+        "internal_heat_w_m2": -4.120507480556241,
+        "internal_moisture_kg_m2_s": 6.121038764832715e-07,
+        "heat_boundary_difference_w_m2": -4.111945180105365,
+        "moisture_boundary_difference_kg_m2_s": -1.641587282941926e-10
+      }
+    }
+  },
+  "transition_solver_runtime_s": 13.398356199999398,
+  "team_reference_is_not_official": true,
+  "no_silent_smoothing": true,
+  "workbook_written": false
+}

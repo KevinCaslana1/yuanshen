@@ -1,0 +1,61 @@
+{
+  "experiment": "EXP-Q2-016-LONG-ENV-A-last-raw-OUTPUT-RECOVERY",
+  "status": "PASS",
+  "raw_output_validation": {
+    "rows": 5540325,
+    "expected_rows": 5443221,
+    "missing_integer_seconds": [],
+    "missing_count": 0,
+    "repeated_or_missing_radius_rows": [
+      43201.0,
+      43202.0,
+      43203.0,
+      43204.0,
+      43205.0,
+      43206.0,
+      43207.0,
+      43208.0,
+      43209.0,
+      43210.0,
+      43211.0,
+      43212.0,
+      43213.0,
+      43214.0,
+      43215.0,
+      43216.0,
+      43217.0,
+      43218.0,
+      43219.0,
+      43220.0
+    ],
+    "bad_radius_time_count": 0,
+    "time_min": 0.0,
+    "time_max": 259200.0,
+    "one_second_grid_valid": false
+  },
+  "sample_recovery": {
+    "source": "experiments\\EXP-Q2-016-LONG-ENV-A-last-raw\\official_samples.csv",
+    "target": "experiments\\EXP-Q2-016-LONG-ENV-A-last-raw\\official_samples_recovered.csv",
+    "duplicate_rows_removed": 97104,
+    "unique_keys": 5443221
+  },
+  "diagnostic_recovery": {
+    "source": "experiments\\EXP-Q2-016-LONG-ENV-A-last-raw\\diagnostics_1s.csv",
+    "target": "experiments\\EXP-Q2-016-LONG-ENV-A-last-raw\\diagnostics_1s_recovered.csv",
+    "duplicate_rows_removed": 4624,
+    "unique_keys": 259200
+  },
+  "recovered_output_validation": {
+    "rows": 5443221,
+    "expected_rows": 5443221,
+    "missing_integer_seconds": [],
+    "missing_count": 0,
+    "repeated_or_missing_radius_rows": [],
+    "bad_radius_time_count": 0,
+    "time_min": 0.0,
+    "time_max": 259200.0,
+    "one_second_grid_valid": true
+  },
+  "recovery_reason": "old checkpoint 43200 s was resumed after a prior interrupted process had already advanced the append-only files; raw files are retained as evidence",
+  "workbook_written": false
+}

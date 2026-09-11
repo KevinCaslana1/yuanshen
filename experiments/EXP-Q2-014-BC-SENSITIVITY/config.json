@@ -1,0 +1,9 @@
+{
+  "official_input": "A题/附件/附件1.xlsx",
+  "time_window_s": [0, 21600],
+  "candidate": "A",
+  "n_intervals": 80,
+  "time_step_s": 1.0,
+  "perturbations": "independent plus/minus 10 percent for h and hm",
+  "workbook_written": false
+}

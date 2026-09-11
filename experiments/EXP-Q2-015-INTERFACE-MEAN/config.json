@@ -1,0 +1,9 @@
+{
+  "official_input": "A题/附件/附件1.xlsx",
+  "time_window_s": [0, 10800],
+  "candidate": "A",
+  "n_intervals": 80,
+  "time_step_s": 0.25,
+  "interface_means": ["arithmetic", "harmonic"],
+  "workbook_written": false
+}

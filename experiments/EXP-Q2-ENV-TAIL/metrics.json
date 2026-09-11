@@ -76,6 +76,27 @@
       }
     },
     {
+      "n": 60,
+      "time_start_s": 10860.0,
+      "time_end_s": 14400.0,
+      "temperature_C": {
+        "mean": 49.995666666666665,
+        "population_std": 0.15222873870885523,
+        "last": 50.165,
+        "min": 49.757,
+        "max": 50.236,
+        "linear_slope_per_s": 6.3628785773826524e-06
+      },
+      "moisture_kg_kg": {
+        "mean": 0.04999116666666667,
+        "population_std": 0.00014743463711835888,
+        "last": 0.04986,
+        "min": 0.04975,
+        "max": 0.05024,
+        "linear_slope_per_s": -9.905529313697712e-09
+      }
+    },
+    {
       "n": 80,
       "time_start_s": 9660.0,
       "time_end_s": 14400.0,

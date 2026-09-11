@@ -1,0 +1,1 @@
+Environment tail and 14400 s transition audit. Attachment 1 is read-only; ENV-A is the last raw point, ENV-B is the last-40-point mean, and TEAM-REFERENCE is recorded as a non-official proposal. No workbook was written.

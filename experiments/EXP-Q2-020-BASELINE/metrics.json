@@ -1,0 +1,51 @@
+{
+  "experiment": "EXP-Q2-020-BASELINE",
+  "status": "PASS",
+  "config": {
+    "end_time_s": 21600.0,
+    "time_step_s": 0.5,
+    "candidate": "A",
+    "n_intervals": 80,
+    "cluster_power": 2.0,
+    "scheme": "bdf2",
+    "interface_mean": "harmonic",
+    "interpolation": "linear",
+    "post_attachment_mode": "constant",
+    "post_temperature_c": 50.0,
+    "post_moisture_kg_kg": 0.05,
+    "output_interval_s": 1.0,
+    "picard_tolerance": 1e-08,
+    "picard_max_iterations": 50,
+    "picard_relaxation": 1.0,
+    "input_path": "A题\\附件\\附件1.xlsx",
+    "parameters": {
+      "radius_m": 0.02,
+      "length_m": 0.25,
+      "heat_transfer_w_m2_k": 25.0,
+      "mass_transfer_m_s": 8e-07,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55
+    }
+  },
+  "full_coupled_runtime_s": 65.99260910000157,
+  "fixed_property_B0_runtime_s": 13.703815399996529,
+  "runtime_ratio_B0_over_full": 0.2076568207695883,
+  "comparison_full_vs_B0": {
+    "10800": {
+      "temperature_Linf_K": 0.11435583153337348,
+      "temperature_L2_RMS_K": 0.10232292274009729,
+      "moisture_Linf": 0.398024670474147,
+      "moisture_L2_RMS": 0.22858745785563742,
+      "inventory_abs": 2.3196459253723822e-05
+    },
+    "21600": {
+      "temperature_Linf_K": 0.0004392245110125259,
+      "temperature_L2_RMS_K": 0.00036299122677425856,
+      "moisture_Linf": 0.39224119990283235,
+      "moisture_L2_RMS": 0.2234595087342024,
+      "inventory_abs": 3.320141995614276e-05
+    }
+  },
+  "B0_definition": "same geometry/FVM/environment/time scheme; Appendix 3 rho/cp/k/D frozen at initial T,C; no Picard",
+  "workbook_written": false
+}

@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any, Dict
+import math
 
 
 @dataclass(frozen=True)
@@ -28,6 +29,8 @@ class Q2RunConfig:
     interface_mean: str = "harmonic"
     interpolation: str = "linear"
     post_attachment_mode: str = "raise"
+    post_temperature_c: float = 50.0
+    post_moisture_kg_kg: float = 0.05
     output_interval_s: float = 1.0
     picard_tolerance: float = 1.0e-8
     picard_max_iterations: int = 50
@@ -50,6 +53,10 @@ class Q2RunConfig:
             raise ValueError("interpolation must be linear or pchip")
         if self.post_attachment_mode not in {"raise", "constant"}:
             raise ValueError("post_attachment_mode must be raise or constant")
+        if not math.isfinite(self.post_temperature_c) or not math.isfinite(self.post_moisture_kg_kg):
+            raise ValueError("post-attachment constants must be finite")
+        if self.post_moisture_kg_kg <= 0.0:
+            raise ValueError("post_attachment moisture must be positive")
         if self.output_interval_s <= 0 or abs(self.output_interval_s / self.time_step_s - round(self.output_interval_s / self.time_step_s)) > 1e-10:
             raise ValueError("output_interval_s must be an integer number of time steps")
         if self.n_intervals < 2 or self.cluster_power <= 1.0:

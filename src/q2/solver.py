@@ -5,7 +5,9 @@ from __future__ import annotations
 import csv
 import json
 import math
+import os
 import subprocess
+import tempfile
 from dataclasses import dataclass, field
 from pathlib import Path
 from statistics import median
@@ -49,6 +51,12 @@ class StepDiagnostic:
     property_min: Dict[str, float]
     property_max: Dict[str, float]
     picard_history: Tuple[Tuple[float, float], ...]
+    temperature_min_k: float = 0.0
+    temperature_max_k: float = 0.0
+    moisture_min_kg_kg: float = 0.0
+    moisture_max_kg_kg: float = 0.0
+    center_heat_flux_w_m2: float = 0.0
+    center_moisture_flux_kg_m2_s: float = 0.0
 
 
 @dataclass
@@ -66,6 +74,7 @@ class Q2RunResult:
     output_path: str = ""
     diagnostics_path: str = ""
     checkpoint_path: str = ""
+    passive_event_bracket_s: Tuple[float, float] | None = None
     complete: bool = True
 
     @property
@@ -130,6 +139,33 @@ def _make_output_writer(path: Path | None, append: bool):
     return handle, writer
 
 
+def _truncate_csv_after_time(path: Path | None, time_s: float) -> None:
+    """Reconcile append-only evidence with the state recorded by a checkpoint."""
+    if path is None or not path.exists():
+        return
+    temporary = tempfile.NamedTemporaryFile(mode="w", newline="", encoding="utf-8", dir=path.parent, prefix=f"{path.stem}.reconcile-", suffix=path.suffix, delete=False)
+    temporary_path = Path(temporary.name)
+    try:
+        with path.open(newline="", encoding="utf-8") as source:
+            reader = csv.reader(source)
+            writer = csv.writer(temporary)
+            header = next(reader, None)
+            if header is None:
+                return
+            writer.writerow(header)
+            time_index = header.index("time_s")
+            for row in reader:
+                if row and float(row[time_index]) <= time_s + 1.0e-9:
+                    writer.writerow(row)
+        temporary.close()
+        os.replace(temporary_path, path)
+    finally:
+        if not temporary.closed:
+            temporary.close()
+        if temporary_path.exists():
+            temporary_path.unlink()
+
+
 def _official_indices(grid) -> Tuple[int, ...]:
     indices = []
     for radius_cm in (index * 0.1 for index in range(21)):
@@ -179,11 +215,13 @@ def _write_diag(writer, row: StepDiagnostic) -> None:
         repr(row.surface_k_w_m_k), repr(row.surface_D_m2_s),
         repr(row.mass_step_residual), repr(row.heat_step_residual_j),
         json.dumps(row.property_min, sort_keys=True), json.dumps(row.property_max, sort_keys=True),
-        json.dumps(row.picard_history),
+        json.dumps(row.picard_history), repr(row.temperature_min_k), repr(row.temperature_max_k),
+        repr(row.moisture_min_kg_kg), repr(row.moisture_max_kg_kg),
+        repr(row.center_heat_flux_w_m2), repr(row.center_moisture_flux_kg_m2_s),
     ])
 
 
-def save_checkpoint(path: str | Path, *, config: Q2RunConfig, env: EnvironmentProvider, grid, time_s: float, temperature_k: Sequence[float], moisture: Sequence[float], previous_temperature_k: Sequence[float] | None, previous_moisture: Sequence[float] | None, output_cursor: float, diagnostics: Sequence[StepDiagnostic]) -> Path:
+def save_checkpoint(path: str | Path, *, config: Q2RunConfig, env: EnvironmentProvider, grid, time_s: float, temperature_k: Sequence[float], moisture: Sequence[float], previous_temperature_k: Sequence[float] | None, previous_moisture: Sequence[float] | None, output_cursor: float, diagnostics: Sequence[StepDiagnostic], steps_completed: int | None = None) -> Path:
     """Write a versioned JSON checkpoint without storing the full trajectory."""
 
     path = resolve_project_path(path)
@@ -210,7 +248,7 @@ def save_checkpoint(path: str | Path, *, config: Q2RunConfig, env: EnvironmentPr
         },
         "code_commit_sha": _git_sha(),
         "diagnostics": {
-            "steps_completed": len(diagnostics),
+            "steps_completed": len(diagnostics) if steps_completed is None else int(steps_completed),
             "last_picard_iterations": diagnostics[-1].picard_iterations if diagnostics else None,
             "last_temperature_residual": diagnostics[-1].temperature_residual if diagnostics else None,
             "last_moisture_residual": diagnostics[-1].moisture_residual if diagnostics else None,
@@ -243,10 +281,18 @@ def run_q2(
     checkpoint_path: str | Path | None = None,
     restart_path: str | Path | None = None,
     stop_time_s: float | None = None,
+    passive_event_threshold_kg_kg: float | None = None,
+    diagnostics_interval_s: float | None = None,
 ) -> Q2RunResult:
     """Run Q2-M1 with streamed 1-second samples and compact diagnostics."""
 
-    env = EnvironmentProvider.from_attachment1(config.input_path, method=config.interpolation, post_attachment_mode=config.post_attachment_mode)
+    env = EnvironmentProvider.from_attachment1(
+        config.input_path,
+        method=config.interpolation,
+        post_attachment_mode=config.post_attachment_mode,
+        post_temperature_c=config.post_temperature_c,
+        post_moisture_kg_kg=config.post_moisture_kg_kg,
+    )
     grid = grid_for_config(config)
     n = len(grid.nodes_m)
     params = config.parameters
@@ -260,6 +306,10 @@ def run_q2(
         raise ValueError("stop_time_s must be an integer number of time steps")
     if any(value < -1e-12 or value > run_end + 1e-12 for value in requested):
         raise ValueError("record_times must lie inside the requested run horizon")
+    if passive_event_threshold_kg_kg is not None and not math.isfinite(passive_event_threshold_kg_kg):
+        raise ValueError("passive event threshold must be finite")
+    if diagnostics_interval_s is not None and (diagnostics_interval_s <= 0.0 or not math.isfinite(diagnostics_interval_s)):
+        raise ValueError("diagnostics_interval_s must be positive when provided")
 
     initial_temperature = [params.initial_temperature_c + 273.15] * n
     initial_moisture = [params.initial_moisture_kg_kg] * n
@@ -282,6 +332,10 @@ def run_q2(
 
     out_path = None if output_path is None else resolve_project_path(output_path)
     diag_path = None if diagnostics_path is None else resolve_project_path(diagnostics_path)
+    if restart_path is not None:
+        checkpoint_cursor = float(payload.get("output_cursor_s", current_time))
+        _truncate_csv_after_time(out_path, checkpoint_cursor)
+        _truncate_csv_after_time(diag_path, checkpoint_cursor)
     append = restart_path is not None and out_path is not None and out_path.exists()
     out_handle, out_writer = _make_output_writer(out_path, append)
     diag_handle = None
@@ -297,18 +351,25 @@ def run_q2(
                 "surface_moisture_internal_kg_m2_s", "surface_moisture_robin_kg_m2_s", "surface_moisture_boundary_residual_kg_m2_s",
                 "surface_k_w_m_k", "surface_D_m2_s",
                 "mass_step_residual", "heat_step_residual_j", "property_min_json", "property_max_json", "picard_history_json",
+                "temperature_min_k", "temperature_max_k", "moisture_min_kg_kg", "moisture_max_kg_kg",
+                "center_heat_flux_w_m2", "center_moisture_flux_kg_m2_s",
             ])
     snapshots: Dict[float, Tuple[Tuple[float, ...], Tuple[float, ...]]] = {}
     diagnostics: List[StepDiagnostic] = []
     retain_step_diagnostics = diag_path is None
     picard_count_history: List[int] = []
     last_diagnostic = None
+    passive_event_bracket = None
+    previous_event_value = None
     aggregate = {
         "temperature_residual_max": 0.0, "moisture_residual_max": 0.0,
         "temperature_boundary_residual_max_w_m2": 0.0, "moisture_boundary_residual_max_kg_m2_s": 0.0,
         "mass_step_residual_max": 0.0, "heat_step_residual_max_j": 0.0,
         "temperature_linear_residual_max": 0.0, "moisture_linear_residual_max": 0.0,
         "temperature_boundary_residual_at_last_step_w_m2": 0.0, "moisture_boundary_residual_at_last_step_kg_m2_s": 0.0,
+        "center_heat_flux_max_abs_w_m2": 0.0, "center_moisture_flux_max_abs_kg_m2_s": 0.0,
+        "temperature_min_k": float("inf"), "temperature_max_k": float("-inf"),
+        "moisture_min_kg_kg": float("inf"), "moisture_max_kg_kg": float("-inf"),
     }
     property_minimums = {key: float("inf") for key in ("rho", "cp", "k", "D")}
     property_maximums = {key: float("-inf") for key in ("rho", "cp", "k", "D")}
@@ -401,6 +462,11 @@ def run_q2(
             surface_k_w_m_k=k_nodes[-1], surface_D_m2_s=d_nodes[-1],
             mass_step_residual=mass_step_residual, heat_step_residual_j=heat_step_residual,
             property_min=property_min, property_max=property_max, picard_history=tuple(picard_history),
+            temperature_min_k=min(T), temperature_max_k=max(T),
+            moisture_min_kg_kg=min(C), moisture_max_kg_kg=max(C),
+            # The radial face at r=0 has zero area, so the discrete center
+            # flux is identically zero and is retained explicitly for audit.
+            center_heat_flux_w_m2=0.0, center_moisture_flux_kg_m2_s=0.0,
         )
         if retain_step_diagnostics:
             diagnostics.append(row)
@@ -416,13 +482,25 @@ def run_q2(
         aggregate["moisture_linear_residual_max"] = max(aggregate["moisture_linear_residual_max"], row.moisture_linear_residual)
         aggregate["temperature_boundary_residual_at_last_step_w_m2"] = row.surface_heat_boundary_residual_w_m2
         aggregate["moisture_boundary_residual_at_last_step_kg_m2_s"] = row.surface_moisture_boundary_residual_kg_m2_s
+        aggregate["center_heat_flux_max_abs_w_m2"] = max(aggregate["center_heat_flux_max_abs_w_m2"], abs(row.center_heat_flux_w_m2))
+        aggregate["center_moisture_flux_max_abs_kg_m2_s"] = max(aggregate["center_moisture_flux_max_abs_kg_m2_s"], abs(row.center_moisture_flux_kg_m2_s))
+        aggregate["temperature_min_k"] = min(aggregate["temperature_min_k"], row.temperature_min_k)
+        aggregate["temperature_max_k"] = max(aggregate["temperature_max_k"], row.temperature_max_k)
+        aggregate["moisture_min_kg_kg"] = min(aggregate["moisture_min_kg_kg"], row.moisture_min_kg_kg)
+        aggregate["moisture_max_kg_kg"] = max(aggregate["moisture_max_kg_kg"], row.moisture_max_kg_kg)
         for key in property_minimums:
             property_minimums[key] = min(property_minimums[key], row.property_min[key])
             property_maximums[key] = max(property_maximums[key], row.property_max[key])
-        _write_diag(diag_writer, row)
+        if diagnostics_interval_s is None or abs(next_time / diagnostics_interval_s - round(next_time / diagnostics_interval_s)) < 1.0e-9:
+            _write_diag(diag_writer, row)
         if diag_handle is not None:
             diag_handle.flush()
         current_time = next_time
+        if passive_event_threshold_kg_kg is not None:
+            event_value = row.moisture_max_kg_kg - passive_event_threshold_kg_kg
+            if previous_event_value is not None and previous_event_value * event_value <= 0.0 and previous_event_value != event_value:
+                passive_event_bracket = (current_time - config.time_step_s, current_time)
+            previous_event_value = event_value
         step_count += 1
         previous_temperature = list(old_T)
         previous_moisture = list(old_C)
@@ -439,7 +517,7 @@ def run_q2(
         diag_handle.close()
     saved_checkpoint = ""
     if checkpoint_path is not None:
-        saved_checkpoint = str(save_checkpoint(checkpoint_path, config=config, env=env, grid=grid, time_s=current_time, temperature_k=T, moisture=C, previous_temperature_k=previous_temperature, previous_moisture=previous_moisture, output_cursor=current_time, diagnostics=diagnostics))
+        saved_checkpoint = str(save_checkpoint(checkpoint_path, config=config, env=env, grid=grid, time_s=current_time, temperature_k=T, moisture=C, previous_temperature_k=previous_temperature, previous_moisture=previous_moisture, output_cursor=current_time, diagnostics=diagnostics, steps_completed=int(round(current_time / config.time_step_s))))
     if requested and any(abs(target - current_time) < 1.0e-9 for target in requested):
         snapshots[round(current_time, 12)] = (tuple(T), tuple(C))
     diagnostic_summary = {
@@ -457,7 +535,8 @@ def run_q2(
         diagnostics=tuple(diagnostics), diagnostic_summary=diagnostic_summary,
         picard_count_history=tuple(picard_count_history), last_diagnostic=last_diagnostic,
         final_temperature_k=tuple(T), final_moisture=tuple(C), output_path=str(out_path or ""), diagnostics_path=str(diag_path or ""),
-        checkpoint_path=saved_checkpoint, complete=abs(current_time - config.end_time_s) < 1.0e-9,
+        checkpoint_path=saved_checkpoint, passive_event_bracket_s=passive_event_bracket,
+        complete=abs(current_time - config.end_time_s) < 1.0e-9,
     )
 
 

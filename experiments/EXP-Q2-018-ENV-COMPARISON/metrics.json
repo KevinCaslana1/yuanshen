@@ -1,0 +1,177 @@
+{
+  "experiment": "EXP-Q2-018-ENV-COMPARISON",
+  "status": "PASS",
+  "same_grid_and_time_step": true,
+  "comparison_times_s": [
+    21600,
+    86400,
+    172800,
+    259200
+  ],
+  "environment_A": "last raw point",
+  "environment_B": "last 40 raw-point mean",
+  "comparisons": {
+    "21600": {
+      "temperature_Linf_C": 0.16948607116756875,
+      "temperature_L2_RMS_C": 0.16938168431895245,
+      "moisture_Linf": 0.001449165807256847,
+      "moisture_L2_RMS": 0.0008742980898705911,
+      "representative": {
+        "0.0": {
+          "temperature_A_C": 50.16451948109153,
+          "temperature_B_C": 49.99524447081717,
+          "temperature_difference_C": 0.16927501027436165,
+          "moisture_A": 1.0155593632648505,
+          "moisture_B": 1.0170085290721074,
+          "moisture_difference": -0.001449165807256847
+        },
+        "1.0": {
+          "temperature_A_C": 50.164577057777194,
+          "temperature_B_C": 49.99524513331215,
+          "temperature_difference_C": 0.16933192446504108,
+          "moisture_A": 0.9005549126795861,
+          "moisture_B": 0.9015510348426221,
+          "moisture_difference": -0.0009961221630360173
+        },
+        "1.5": {
+          "temperature_A_C": 50.16464475064697,
+          "temperature_B_C": 49.99524591222661,
+          "temperature_difference_C": 0.16939883842036352,
+          "moisture_A": 0.7546317926868935,
+          "moisture_B": 0.7550130091056155,
+          "moisture_difference": -0.00038121641872201906
+        },
+        "2.0": {
+          "temperature_A_C": 50.16473299895409,
+          "temperature_B_C": 49.995246927786525,
+          "temperature_difference_C": 0.16948607116756875,
+          "moisture_A": 0.5334481528973967,
+          "moisture_B": 0.5327550579387703,
+          "moisture_difference": 0.0006930949586263502
+        }
+      }
+    },
+    "86400": {
+      "temperature_Linf_C": 0.16975000000320506,
+      "temperature_L2_RMS_C": 0.16974999999745066,
+      "moisture_Linf": 0.000715447519197332,
+      "moisture_L2_RMS": 0.000514268312688135,
+      "representative": {
+        "0.0": {
+          "temperature_A_C": 50.165000000043506,
+          "temperature_B_C": 49.99525000004036,
+          "temperature_difference_C": 0.16975000000314822,
+          "moisture_A": 0.23712876015557774,
+          "moisture_B": 0.23784420767477507,
+          "moisture_difference": -0.000715447519197332
+        },
+        "1.0": {
+          "temperature_A_C": 50.1650000000389,
+          "temperature_B_C": 49.995250000036606,
+          "temperature_difference_C": 0.16975000000229556,
+          "moisture_A": 0.21616194277585185,
+          "moisture_B": 0.21677505906978173,
+          "moisture_difference": -0.0006131162939298773
+        },
+        "1.5": {
+          "temperature_A_C": 50.165000000034354,
+          "temperature_B_C": 49.99525000003456,
+          "temperature_difference_C": 0.16974999999979445,
+          "moisture_A": 0.1851375040409455,
+          "moisture_B": 0.1856108432272178,
+          "moisture_difference": -0.00047333918627229243
+        },
+        "2.0": {
+          "temperature_A_C": 50.165000000026055,
+          "temperature_B_C": 49.99525000003797,
+          "temperature_difference_C": 0.1697499999880847,
+          "moisture_A": 0.06626374460148964,
+          "moisture_B": 0.06645773674385834,
+          "moisture_difference": -0.0001939921423687041
+        }
+      }
+    },
+    "172800": {
+      "temperature_Linf_C": 0.1697500000059904,
+      "temperature_L2_RMS_C": 0.1697499999983435,
+      "moisture_Linf": 0.0003763090617945053,
+      "moisture_L2_RMS": 0.00028207186090053224,
+      "representative": {
+        "0.0": {
+          "temperature_A_C": 50.16500000004231,
+          "temperature_B_C": 49.995250000047236,
+          "temperature_difference_C": 0.16974999999507645,
+          "moisture_A": 0.16149129127674217,
+          "moisture_B": 0.16186760033853667,
+          "moisture_difference": -0.0003763090617945053
+        },
+        "1.0": {
+          "temperature_A_C": 50.16500000003657,
+          "temperature_B_C": 49.99525000004053,
+          "temperature_difference_C": 0.1697499999960428,
+          "moisture_A": 0.1503971305450388,
+          "moisture_B": 0.15072964899714622,
+          "moisture_difference": -0.00033251845210741093
+        },
+        "1.5": {
+          "temperature_A_C": 50.16500000003106,
+          "temperature_B_C": 49.99525000003422,
+          "temperature_difference_C": 0.1697499999968386,
+          "moisture_A": 0.13321442657565352,
+          "moisture_B": 0.13348377580151438,
+          "moisture_difference": -0.00026934922586085985
+        },
+        "2.0": {
+          "temperature_A_C": 50.16500000002566,
+          "temperature_B_C": 49.99525000001967,
+          "temperature_difference_C": 0.1697500000059904,
+          "moisture_A": 0.05358210102673101,
+          "moisture_B": 0.05372455562302464,
+          "moisture_difference": -0.00014245459629362578
+        }
+      }
+    },
+    "259200": {
+      "temperature_Linf_C": 0.16975000000974205,
+      "temperature_L2_RMS_C": 0.1697500000075906,
+      "moisture_Linf": 0.00027756883893292894,
+      "moisture_L2_RMS": 0.00021254408584821493,
+      "representative": {
+        "0.0": {
+          "temperature_A_C": 50.16500000004942,
+          "temperature_B_C": 49.99525000004314,
+          "temperature_difference_C": 0.1697500000062746,
+          "moisture_A": 0.13743412858034607,
+          "moisture_B": 0.137711697419279,
+          "moisture_difference": -0.00027756883893292894
+        },
+        "1.0": {
+          "temperature_A_C": 50.165000000043335,
+          "temperature_B_C": 49.995250000035924,
+          "temperature_difference_C": 0.16975000000741147,
+          "moisture_A": 0.12901544532007383,
+          "moisture_B": 0.129263772742263,
+          "moisture_difference": -0.00024832742218916515
+        },
+        "1.5": {
+          "temperature_A_C": 50.165000000036116,
+          "temperature_B_C": 49.99525000002831,
+          "temperature_difference_C": 0.16975000000780938,
+          "moisture_A": 0.11574029469250291,
+          "moisture_B": 0.11594551505029509,
+          "moisture_difference": -0.00020522035779217684
+        },
+        "2.0": {
+          "temperature_A_C": 50.16500000003134,
+          "temperature_B_C": 49.99525000002308,
+          "temperature_difference_C": 0.16975000000826412,
+          "moisture_A": 0.05162732551547845,
+          "moisture_B": 0.05176161527830428,
+          "moisture_difference": -0.00013428976282582605
+        }
+      }
+    }
+  },
+  "interpretation": "A/B sensitivity evidence; because the post-14400 rule changes results, this does not silently close the environment open question",
+  "workbook_written": false
+}

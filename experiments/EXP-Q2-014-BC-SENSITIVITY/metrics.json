@@ -1,0 +1,65 @@
+{
+  "experiment": "EXP-Q2-014-BC-SENSITIVITY",
+  "status": "PASS",
+  "base_config": {
+    "end_time_s": 21600.0,
+    "time_step_s": 1.0,
+    "candidate": "A",
+    "n_intervals": 80,
+    "cluster_power": 2.0,
+    "scheme": "bdf2",
+    "interface_mean": "harmonic",
+    "interpolation": "linear",
+    "post_attachment_mode": "constant",
+    "post_temperature_c": 50.0,
+    "post_moisture_kg_kg": 0.05,
+    "output_interval_s": 1.0,
+    "picard_tolerance": 1e-08,
+    "picard_max_iterations": 50,
+    "picard_relaxation": 1.0,
+    "input_path": "A题\\附件\\附件1.xlsx",
+    "parameters": {
+      "radius_m": 0.02,
+      "length_m": 0.25,
+      "heat_transfer_w_m2_k": 25.0,
+      "mass_transfer_m_s": 8e-07,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55
+    }
+  },
+  "perturbation": "independent ±10% changes; h=25 W/(m²·K), hm=8e-7 m/s remain modeling assumptions and are not fitted",
+  "classification_rule": "relative max field change <1%=low, 1–10%=medium, >=10%=high",
+  "impacts_0_6h": {
+    "h_minus10": {
+      "max_temperature_Linf_K": 0.05079045829381812,
+      "max_moisture_Linf": 0.004545102563821679,
+      "max_inventory_abs": 4.4354338394253295e-07,
+      "classification": "low",
+      "passive_event_bracket_s": null
+    },
+    "h_plus10": {
+      "max_temperature_Linf_K": 0.03408006469544489,
+      "max_moisture_Linf": 0.0036196452243904,
+      "max_inventory_abs": 3.6547002001704847e-07,
+      "classification": "low",
+      "passive_event_bracket_s": null
+    },
+    "hm_minus10": {
+      "max_temperature_Linf_K": 0.005920167513011165,
+      "max_moisture_Linf": 0.07966006457466968,
+      "max_inventory_abs": 1.2358116030956049e-05,
+      "classification": "medium",
+      "passive_event_bracket_s": null
+    },
+    "hm_plus10": {
+      "max_temperature_Linf_K": 0.005266542688161735,
+      "max_moisture_Linf": 0.07098558379112963,
+      "max_inventory_abs": 1.090102644742732e-05,
+      "classification": "medium",
+      "passive_event_bracket_s": null
+    }
+  },
+  "all_runs_converged": true,
+  "q3_event_stop": false,
+  "workbook_written": false
+}

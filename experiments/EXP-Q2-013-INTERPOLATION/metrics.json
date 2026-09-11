@@ -1,0 +1,102 @@
+{
+  "experiment": "EXP-Q2-013-INTERPOLATION",
+  "status": "PASS",
+  "configs": {
+    "linear": {
+      "end_time_s": 14400.0,
+      "time_step_s": 1.0,
+      "candidate": "A",
+      "n_intervals": 80,
+      "cluster_power": 2.0,
+      "scheme": "bdf2",
+      "interface_mean": "harmonic",
+      "interpolation": "linear",
+      "post_attachment_mode": "raise",
+      "post_temperature_c": 50.0,
+      "post_moisture_kg_kg": 0.05,
+      "output_interval_s": 1.0,
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "picard_relaxation": 1.0,
+      "input_path": "A题\\附件\\附件1.xlsx",
+      "parameters": {
+        "radius_m": 0.02,
+        "length_m": 0.25,
+        "heat_transfer_w_m2_k": 25.0,
+        "mass_transfer_m_s": 8e-07,
+        "initial_temperature_c": 28.0,
+        "initial_moisture_kg_kg": 2.55
+      }
+    },
+    "pchip": {
+      "end_time_s": 14400.0,
+      "time_step_s": 1.0,
+      "candidate": "A",
+      "n_intervals": 80,
+      "cluster_power": 2.0,
+      "scheme": "bdf2",
+      "interface_mean": "harmonic",
+      "interpolation": "pchip",
+      "post_attachment_mode": "raise",
+      "post_temperature_c": 50.0,
+      "post_moisture_kg_kg": 0.05,
+      "output_interval_s": 1.0,
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "picard_relaxation": 1.0,
+      "input_path": "A题\\附件\\附件1.xlsx",
+      "parameters": {
+        "radius_m": 0.02,
+        "length_m": 0.25,
+        "heat_transfer_w_m2_k": 25.0,
+        "mass_transfer_m_s": 8e-07,
+        "initial_temperature_c": 28.0,
+        "initial_moisture_kg_kg": 2.55
+      }
+    }
+  },
+  "runtime_s": {
+    "linear": 26.688949200004572,
+    "pchip": 25.554830600005516
+  },
+  "raw_points_preserved": true,
+  "comparison_0_4h_full_official_samples": {
+    "rows_compared": 302421,
+    "same_length": true,
+    "temperature_max_abs_C": 0.008936884727290817,
+    "moisture_max_abs": 1.643173166887557e-05,
+    "representative_times": {
+      "1800": {
+        "temperature_max_abs_C": 0.0003953583190536847,
+        "moisture_max_abs": 1.6630452457366829e-06
+      },
+      "3600": {
+        "temperature_max_abs_C": 0.0023889714432243636,
+        "moisture_max_abs": 7.972974228387386e-06
+      },
+      "5400": {
+        "temperature_max_abs_C": 0.00040936537402558315,
+        "moisture_max_abs": 5.3996464286498735e-06
+      },
+      "7200": {
+        "temperature_max_abs_C": 9.034566409127365e-05,
+        "moisture_max_abs": 5.718566997714447e-06
+      },
+      "9000": {
+        "temperature_max_abs_C": 0.0009023169641295681,
+        "moisture_max_abs": 4.222319071045533e-06
+      },
+      "10800": {
+        "temperature_max_abs_C": 0.00023126299174691667,
+        "moisture_max_abs": 2.94853848958887e-06
+      },
+      "14400": {
+        "temperature_max_abs_C": 0.0063296326698036864,
+        "moisture_max_abs": 1.196603143938102e-05
+      }
+    }
+  },
+  "decision_rule": "if differences remain below the numerical gate, prefer the simpler robust linear interpolator; no automatic PCHIP adoption",
+  "recommended_for_freeze": "human_review_required",
+  "workbook_written": false
+}

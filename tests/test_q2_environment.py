@@ -27,8 +27,13 @@ def test_linear_midpoint_and_post_attachment_are_explicit() -> None:
     assert constant.at(constant.last_time_s + 1.0) == (50.0, 0.05)
 
 
-def test_pchip_does_not_silently_fallback_without_scipy() -> None:
-    try:
-        EnvironmentProvider.from_attachment1(ROOT / "A题/附件/附件1.xlsx", method="pchip")
-    except RuntimeError as error:
-        assert "SciPy" in str(error)
+def test_pchip_is_dependency_free_and_reproduces_raw_knots() -> None:
+    provider = EnvironmentProvider.from_attachment1(ROOT / "A题/附件/附件1.xlsx", method="pchip")
+    for time_s, temperature, moisture in zip(provider.times_s, provider.temperatures_c, provider.moistures_kg_kg):
+        assert provider.at(time_s) == (temperature, moisture)
+    for left, right in zip(provider.times_s[:-1], provider.times_s[1:]):
+        midpoint = (left + right) / 2.0
+        temperature, moisture = provider.at(midpoint)
+        left_index = provider.times_s.index(left)
+        assert min(provider.temperatures_c[left_index:left_index + 2]) <= temperature <= max(provider.temperatures_c[left_index:left_index + 2])
+        assert min(provider.moistures_kg_kg[left_index:left_index + 2]) <= moisture <= max(provider.moistures_kg_kg[left_index:left_index + 2])

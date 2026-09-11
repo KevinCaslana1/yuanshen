@@ -76,7 +76,7 @@ def main() -> None:
         "time_end_s": times[-1],
         "constant_interval_s": sorted({b - a for a, b in zip(times, times[1:])}),
         "finite_values": all(math.isfinite(v) for row in rows for v in row),
-        "tail_windows": [summarize(rows, n) for n in (10, 20, 40, 80)],
+        "tail_windows": [summarize(rows, n) for n in (10, 20, 40, 60, 80)],
         "team_reference_candidate_after_14400s": {
             "temperature_C": 50.00,
             "moisture_kg_kg": 0.0500,

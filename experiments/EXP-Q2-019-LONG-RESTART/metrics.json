@@ -1,0 +1,18 @@
+{
+  "experiment": "EXP-Q2-019-LONG-RESTART",
+  "status": "PASS",
+  "checkpoint": "experiments\\EXP-Q2-016-LONG-ENV-A-last-raw\\checkpoint_43200s.json",
+  "continuous_horizon_s": 86400.0,
+  "restart_start_s": 43200.0,
+  "continuous_runtime_s": 560.0094049999971,
+  "restart_runtime_s": 261.22922149999795,
+  "field_difference_at_24h": {
+    "temperature_max_abs_K": 0.0,
+    "moisture_max_abs": 0.0
+  },
+  "machine_level_tolerance": {
+    "temperature_K": 1e-12,
+    "moisture": 1e-15
+  },
+  "workbook_written": false
+}

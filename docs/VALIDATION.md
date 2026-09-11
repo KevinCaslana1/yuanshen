@@ -236,3 +236,29 @@ Remaining Open Questions are classified by blocking phase in `docs/PROBLEM_SPEC.
 | Q3/Q4 boundary | `docs/STATE.md`、`docs/HANDOFF.md` | PASS；Q3/Q4仍未启动 |
 
 当前状态：`Q2 IMPLEMENTATION & SHORT-HORIZON VALIDATION COMPLETE / WAITING LONG-HORIZON AUTHORIZATION`。`OQ-Q2-ENV-001/002`、`OQ-Q2-BC-001`、`OQ-Q2-FVM-001`、`OQ-Q2-END-001` 和 `OQ-Q2-ACC-001` 继续保持 OPEN；不得将本阶段的内部 candidate 表格直接转换为官方 `result2.xlsx`。
+
+## CUMCM Q2 LONG-HORIZON BOUNDARY & PRODUCTION CONFIG GATE
+
+本阶段依据新的人工授权执行 0–6 h → 0–24 h → 0–48 h → 0–72 h 分段验证、环境/插值/边界/界面选择证据、低含水率物性、守恒与 Robin 独立复算、被动事件观察、checkpoint/restart、长时收敛和 Q2-B0 控制。所有官方源与 Q1 冻结资产保持只读；未生成 `result2.xlsx`，未启动 Q3/Q4。
+
+| Gate item | Evidence | Status |
+|---|---|---|
+| Environment tail statistics and transition | `EXP-Q2-012-ENVIRONMENT/metrics.json` | PASS as audit；ENV-A last raw 与 tail40 mean 的输入/场差异已量化；OQ-ENV-001 OPEN |
+| Linear/PCHIP implementation and comparison | `EXP-Q2-013-INTERPOLATION/metrics.json` | PASS as comparison；两者精确复现 knots，但输出差异非忽略；OQ-ENV-002 OPEN |
+| h/hm carryover sensitivity | `EXP-Q2-014-BC-SENSITIVITY/metrics.json` | PASS as sensitivity；h 低影响、hm 中等影响；OQ-BC-001 OPEN |
+| Arithmetic/harmonic face mean | `EXP-Q2-015-INTERFACE-MEAN/metrics.json` | PASS；真实运行差异很小且 benchmark 通过；arithmetic 仅为低成本 provisional recommendation |
+| 0–72 h ENV-A long run | `EXP-Q2-016-LONG-ENV-A-last-raw/` | PASS with recovered output artifact；所有 stage 有限/正，最终 Picard `2/2/2/2`，不触发 Q3 停止 |
+| 0–72 h ENV-B comparator | `EXP-Q2-016-LONG-ENV-B-tail40-mean/` | PASS as comparator；不能据此静默关闭环境 OQ |
+| Low-C diffusivity and property range | long stage JSON/diagnostics | PASS；最终 `D_min=2.6499e-12 m²/s`，未出现非有限或负含水率 |
+| Mass/heat/Robin residual | long diagnostics and stage summaries | PASS；最终阶段 mass `2.34e-11`、heat `1.78e-10 J`；Robin residuals separately retained |
+| Passive event observer | long stage summaries | PASS as observer；`C<0.15` bracket=`205913–205913.25 s`，不定义 Q2 endpoint |
+| Time/space long convergence | `EXP-Q2-017-LONG-CONVERGENCE/` | PASS as long stability evidence；proxy orders与短时正式 order 分开记录 |
+| ENV-A/B checkpoint comparison | `EXP-Q2-018-ENV-COMPARISON/` | PASS as decision evidence；6/24/48/72 h differences non-negligible |
+| 12 h checkpoint → 24 h restart | `EXP-Q2-019-LONG-RESTART/` | PASS；temperature/moisture final field differences both `0.0` |
+| Q2-B0 finite-cost control | `EXP-Q2-020-BASELINE/` | PASS as control；成本更低但 6 h moisture difference `0.392241 kg/kg`，不可替代 coupled model |
+| Output sampler integrity | `EXP-Q2-016.../output_recovery_metrics.json` | PASS after recovery；raw duplicate files retained, recovered 1 s grid is complete |
+| Q1/A题/result2/Q3/Q4 boundary | `docs/STATE.md`、`docs/HANDOFF.md`、source hashes | PASS；Q1 frozen，`A题/` unchanged，无 `result2.xlsx`，Q3/Q4 NOT STARTED |
+
+长时门结论：数值验证包完成，Q2 生产候选可供人工审核；`OQ-Q2-ENV-001/002`、`OQ-Q2-BC-001`、`OQ-Q2-FVM-001`、`OQ-Q2-END-001` 和 `OQ-Q2-ACC-001` 不因本轮运行而自动关闭。推荐候选为 ENV-A last raw point 后常值、linear、arithmetic face mean、Q1-carried h/hm、内部稳定性窗口至72 h，但仍需人工冻结和单独的 Q2 production/result authorization。
+
+`Q2 LONG-HORIZON BOUNDARY & PRODUCTION CONFIG GATE = COMPLETE / WAITING FOR Q2 PRODUCTION & RESULT AUTHORIZATION`

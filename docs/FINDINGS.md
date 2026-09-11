@@ -28,6 +28,10 @@
 | FIND-Q2-005 | Candidate A BDF2 在当前短时 accuracy proxy 中优于 BE，但仅推荐不冻结 | Q2 | EXP-Q2-007 | SUPPORTED（RECOMMENDED_FOR_Q2_FREEZE） |
 | FIND-Q2-006 | checkpoint/restart 测试配置下逐点复现 | Q2 | EXP-Q2-010 | SUPPORTED（当前版本/配置） |
 | FIND-Q2-007 | 0–3 h内部运行未触发14400 s后外推或Q3事件逻辑 | Q2 | EXP-Q2-011 | SUPPORTED（范围边界） |
+| FIND-Q2-008 | ENV-A 候选完成0–72 h且低含水率物性/残差保持有限 | Q2 | EXP-Q2-016-A | SUPPORTED（数值稳定性，不是物理或交付批准） |
+| FIND-Q2-009 | post-14400 s 环境规则会改变长时场 | Q2 | EXP-Q2-012、EXP-Q2-018 | SUPPORTED（环境选择仍 OPEN） |
+| FIND-Q2-010 | linear/PCHIP 非等价，而 arithmetic/harmonic 在当前真实运行差异很小 | Q2 | EXP-Q2-013、EXP-Q2-015 | SUPPORTED（选择仍待人工冻结） |
+| FIND-Q2-011 | 长时收敛无失控、重启一致且 B0 仅为有限成本控制 | Q2 | EXP-Q2-017、019、020 | SUPPORTED（proxy/控制证据） |
 
 ## 发现记录模板
 
@@ -366,5 +370,53 @@
 适用范围：1800 s、`dt=1 s`、`N=80`、线性插值、Robin 边界。
 
 限制：B0 是均匀 Baseline，M2 是消融模型；该比较不单独决定最终主模型。
+
+状态：SUPPORTED
+
+## FIND-Q2-008 长时 ENV-A 数值稳定性与低含水率物性范围
+
+问题：Q2
+
+发现：Candidate A（`n=80`、`dt=0.25 s`、BE startup/BDF2、linear、harmonic）在 ENV-A last raw point 后常值延续下完成 `0–259200 s`。各阶段场值有限且含水率为正；最终阶段 Picard 次数为 `2/2/2/2`（min/median/p95/max），`C` 范围为 `0.0516273255–2.55 kg/kg`，`D` 最小值为 `2.6499175e-12 m²/s`。最终阶段单步质量残差最大 `2.3387e-11`，热残差最大 `1.7792e-10 J`，Robin 热/质边界残差最大分别为 `1.2097e-8 W/m²` 与 `1.6771e-13 kg/m²/s`。
+
+证据：`experiments/EXP-Q2-016-LONG-ENV-A-last-raw/stage_259200s.json`、`metrics.json`、`diagnostics_1s_recovered.csv`。
+
+限制：这是数值稳定性和实现诊断证据，不是对 72 h 物理真实性、Q2 官方终点或最终结果文件的批准。`C<0.15` 只被被动观察，在 `205913–205913.25 s` 首次形成 bracket，没有触发停止。
+
+状态：SUPPORTED
+
+## FIND-Q2-009 Post-14400 s 环境规则会改变 Q2 长时场
+
+问题：Q2
+
+发现：相同网格和时间步下，ENV-A（last raw point）与 ENV-B（最后40点均值）在 6/24/48/72 h 的最大温度差分别为 `0.169486/0.169750/0.169750/0.169750 °C`，最大含水率差分别为 `0.0014492/0.0007154/0.0003763/0.0002776 kg/kg`。尾段审计显示 ENV-A 在 14400 s 后连续保持最后原始点，而 tail40 mean 会产生约 `-0.16975 °C` 的输入改变；因此环境尾段不能根据“差异很小”被静默选择。
+
+证据：`experiments/EXP-Q2-012-ENVIRONMENT/metrics.json`、`experiments/EXP-Q2-018-ENV-COMPARISON/metrics.json`。
+
+限制：该结果支持人工决策，不证明哪一种尾段规则是题面唯一解释。OQ-Q2-ENV-001 保持 OPEN。
+
+状态：SUPPORTED
+
+## FIND-Q2-010 插值与界面平均的敏感性边界
+
+问题：Q2
+
+发现：linear 与纯 Python PCHIP 均逐点复现附件1原始 knots，但在 0–4 h 的 Candidate A 比较中最大差异为 `0.0089368847 °C` 与 `1.6431732e-5 kg/kg`，因此 PCHIP 不能被视为与 linear 数值等价。真实 Q2 0–3 h 中 arithmetic/harmonic face mean 最大差异仅为 `1.36852384e-6 K` 与 `4.94771902e-7 kg/kg`，独立变量系数 benchmark 仍通过守恒/阶数检查；在当前成本和证据下 arithmetic 是待人工批准的低成本推荐。
+
+证据：`experiments/EXP-Q2-013-INTERPOLATION/metrics.json`、`experiments/EXP-Q2-015-INTERFACE-MEAN/metrics.json`。
+
+限制：linear、arithmetic 仍是 provisional recommendation，不是已冻结的官方解释；OQ-Q2-ENV-002 与 OQ-Q2-FVM-001 保持 OPEN。
+
+状态：SUPPORTED
+
+## FIND-Q2-011 长时离散、重启和 Baseline 证据
+
+问题：Q2
+
+发现：长时 `dt=1/.5 s` 与 `n=20/40` 对 `n=80, dt=.25 s` recovered reference 的比较没有出现非有限场或误差随时间失控；该组 relative-to-finest 数字只作为长时 proxy，Q2 正式短时 observed order 仍引用固定空间/固定时间的 EXP-Q2-005/006。12 h checkpoint restart 到24 h 与连续运行的最终温度/含水率字段差均为 `0.0`。Q2-B0 固定初始物性控制运行成本约为 coupled run 的 `0.2077`，但 6 h 含水率差为 `0.392241 kg/kg`，不能替代耦合模型。
+
+证据：`experiments/EXP-Q2-017-LONG-CONVERGENCE/metrics.json`、`experiments/EXP-Q2-019-LONG-RESTART/metrics.json`、`experiments/EXP-Q2-020-BASELINE/metrics.json`。
+
+限制：长时 proxy 不是完整 `dt=1/.5/.25/.125` 或 `dr=.1/.05/.025` 的新正式阶数证明；终点/行数和精度门仍待人工冻结。
 
 状态：SUPPORTED

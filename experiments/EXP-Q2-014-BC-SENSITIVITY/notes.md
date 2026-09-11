@@ -1,0 +1,1 @@
+Independent ±10% sensitivity audit for the un-fitted h and hm Robin coefficients. The reported low/medium/high labels use the declared relative-field-change rule and are not a physical calibration claim. No workbook was written.

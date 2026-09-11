@@ -1,0 +1,177 @@
+{
+  "experiment": "EXP-Q2-015-INTERFACE-MEAN",
+  "status": "PASS",
+  "configs": {
+    "arithmetic": {
+      "end_time_s": 10800.0,
+      "time_step_s": 0.25,
+      "candidate": "A",
+      "n_intervals": 80,
+      "cluster_power": 2.0,
+      "scheme": "bdf2",
+      "interface_mean": "arithmetic",
+      "interpolation": "linear",
+      "post_attachment_mode": "raise",
+      "post_temperature_c": 50.0,
+      "post_moisture_kg_kg": 0.05,
+      "output_interval_s": 1.0,
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "picard_relaxation": 1.0,
+      "input_path": "A题\\附件\\附件1.xlsx",
+      "parameters": {
+        "radius_m": 0.02,
+        "length_m": 0.25,
+        "heat_transfer_w_m2_k": 25.0,
+        "mass_transfer_m_s": 8e-07,
+        "initial_temperature_c": 28.0,
+        "initial_moisture_kg_kg": 2.55
+      }
+    },
+    "harmonic": {
+      "end_time_s": 10800.0,
+      "time_step_s": 0.25,
+      "candidate": "A",
+      "n_intervals": 80,
+      "cluster_power": 2.0,
+      "scheme": "bdf2",
+      "interface_mean": "harmonic",
+      "interpolation": "linear",
+      "post_attachment_mode": "raise",
+      "post_temperature_c": 50.0,
+      "post_moisture_kg_kg": 0.05,
+      "output_interval_s": 1.0,
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "picard_relaxation": 1.0,
+      "input_path": "A题\\附件\\附件1.xlsx",
+      "parameters": {
+        "radius_m": 0.02,
+        "length_m": 0.25,
+        "heat_transfer_w_m2_k": 25.0,
+        "mass_transfer_m_s": 8e-07,
+        "initial_temperature_c": 28.0,
+        "initial_moisture_kg_kg": 2.55
+      }
+    }
+  },
+  "runtime_s": {
+    "arithmetic": 51.86470610000106,
+    "harmonic": 69.7535343999989
+  },
+  "real_q2_0_3h_comparison": {
+    "times": {
+      "1800": {
+        "temperature_Linf_K": 6.473358098446624e-07,
+        "temperature_L2_RMS_K": 4.933528120289679e-07,
+        "moisture_Linf": 4.58004008052626e-08,
+        "moisture_L2_RMS": 2.0818087870455634e-08,
+        "inventory_abs": 1.622195216696709e-12
+      },
+      "3600": {
+        "temperature_Linf_K": 1.3685238400285016e-06,
+        "temperature_L2_RMS_K": 9.845032133604745e-07,
+        "moisture_Linf": 7.571049898125182e-08,
+        "moisture_L2_RMS": 4.185770021760511e-08,
+        "inventory_abs": 3.1643369565251267e-12
+      },
+      "5400": {
+        "temperature_Linf_K": 1.208632966154255e-06,
+        "temperature_L2_RMS_K": 8.459578252031879e-07,
+        "moisture_Linf": 1.7634519067222243e-07,
+        "moisture_L2_RMS": 1.0615688072066303e-07,
+        "inventory_abs": 6.634753185220943e-12
+      },
+      "7200": {
+        "temperature_Linf_K": 7.229682523757219e-07,
+        "temperature_L2_RMS_K": 5.141111980504604e-07,
+        "moisture_Linf": 2.906932550228447e-07,
+        "moisture_L2_RMS": 2.027644332458944e-07,
+        "inventory_abs": 1.3378962271815703e-11
+      },
+      "9000": {
+        "temperature_Linf_K": 3.489913638077269e-07,
+        "temperature_L2_RMS_K": 2.534664958937025e-07,
+        "moisture_Linf": 3.8129448043378034e-07,
+        "moisture_L2_RMS": 3.0447299880860417e-07,
+        "inventory_abs": 2.3149486179981776e-11
+      },
+      "10800": {
+        "temperature_Linf_K": 1.5581235857098363e-07,
+        "temperature_L2_RMS_K": 1.1654065030315735e-07,
+        "moisture_Linf": 4.947719021153318e-07,
+        "moisture_L2_RMS": 3.938006282749012e-07,
+        "inventory_abs": 3.497223230409727e-11
+      }
+    },
+    "max_temperature_Linf_K": 1.3685238400285016e-06,
+    "max_moisture_Linf": 4.947719021153318e-07
+  },
+  "manufactured_benchmark": {
+    "spatial_linf": {
+      "heat": {
+        "10": 0.0009108618978008742,
+        "20": 0.0004432545301245039,
+        "40": 0.00021822920384284572,
+        "80": 0.00010822949895894496
+      },
+      "moisture": {
+        "10": 0.0013137335108819315,
+        "20": 0.0006385996698061724,
+        "40": 0.00031427543299722416,
+        "80": 0.00015583458758960944
+      }
+    },
+    "spatial_observed_order": {
+      "heat": {
+        "10_to_20": 1.0390969576850206,
+        "20_to_40": 1.0222911970015183,
+        "40_to_80": 1.011750406001103
+      },
+      "moisture": {
+        "10_to_20": 1.040688944480697,
+        "20_to_40": 1.02288230629967,
+        "40_to_80": 1.0120140245929667
+      }
+    },
+    "temporal_linf": {
+      "heat": {
+        "0.02": 0.0016206661500998143,
+        "0.01": 0.000809643470508381,
+        "0.005": 0.00039531071220999525,
+        "0.0025": 0.0001858357485096107
+      },
+      "moisture": {
+        "0.02": 0.001582461560869164,
+        "0.01": 0.0007829621623547389,
+        "0.005": 0.0003742459980440316,
+        "0.0025": 0.00016754092432269552
+      }
+    },
+    "temporal_observed_order": {
+      "heat": {
+        "0.02_to_0.01": 1.0012282759464102,
+        "0.01_to_0.005": 1.0342997016151374,
+        "0.005_to_0.0025": 1.0889589960060615
+      },
+      "moisture": {
+        "0.02_to_0.01": 1.0151559617424446,
+        "0.01_to_0.005": 1.0649557000478533,
+        "0.005_to_0.0025": 1.1594733510807984
+      }
+    },
+    "interface_comparison_linf_n80": {
+      "arithmetic": {
+        "heat": 0.0001081798955073765,
+        "moisture": 0.00015573864948792426
+      },
+      "harmonic": {
+        "heat": 0.00010822949895894496,
+        "moisture": 0.00015583458758960944
+      }
+    },
+    "pass": true
+  },
+  "recommendation_status": "RECOMMENDED_FOR_FREEZE_PENDING_HUMAN_APPROVAL",
+  "workbook_written": false
+}

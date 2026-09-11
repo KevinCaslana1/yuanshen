@@ -455,3 +455,30 @@ OPEN_INTERPRETATION / OPEN_TEAM_CRITERION。
 状态：IMPLEMENTATION_COMPLETE_PENDING_HUMAN_FREEZE
 
 证据：`docs/EXPERIMENTS.md`、`docs/VALIDATION.md`、`experiments/EXP-Q2-001/`–`EXP-Q2-011/`
+
+## D-Q2-LONG-20260911 Q2 长时边界与生产候选门
+
+问题：Q2
+
+### 已执行范围
+
+本轮只执行 long-horizon boundary & production config gate：环境尾段和插值对比、h/hm 敏感性、算术/调和界面平均、0–72 h 长时场、低含水率物性、质量/热量/Robin 残差、被动事件观察、checkpoint/restart、长时收敛和 Q2-B0 控制。未生成 `result2.xlsx`，未启动 Q3/Q4。
+
+### 数据支持的候选建议（不是人工冻结）
+
+- post-14400 s：ENV-A `last raw point`（`50.165 °C`、`0.04986 kg/kg`）后常值保持，数值上避免 tail40 mean 在接口产生的 `-0.16975 °C` 环境跳变；`OQ-Q2-ENV-001` 仍 OPEN。
+- `0..14400 s` 插值：linear 作为较简单、可追溯的候选；与 PCHIP 的 0–4 h 最大差异为 `0.0089368847 °C` / `1.6431732e-5 kg/kg`，不能视为等价；`OQ-Q2-ENV-002` 仍 OPEN。
+- h/hm：保留 Q1 口径作为候选，附带 ±10% 敏感性；h 影响低、hm 影响中等；`OQ-Q2-BC-001` 仍 OPEN。
+- 界面平均：arithmetic 作为低成本 provisional recommendation；真实运行 arithmetic/harmonic 最大差异 `1.36852384e-6 K` / `4.94771902e-7 kg/kg`，benchmark 通过；`OQ-Q2-FVM-001` 仍 OPEN。
+- 数值生产候选：Candidate A，clustered conservative FVM、BE startup/BDF2、`n=80`、`dt=.25 s`；不是 FINAL。
+- 长时范围：0–72 h 只作为内部稳定性/敏感性窗口；被动 `C<0.15` bracket `205913–205913.25 s` 不自动成为 Q2 终点，也不启动 Q3。
+
+### 结果与限制
+
+ENV-A 主运行完成 0–72 h，最终阶段场有限且正，Picard `2/2/2/2`，长时重启末场与连续运行差为 `0.0`；ENV-A/B 在 6–72 h 的场差非忽略，因此环境选择确实是高影响开放项。长时 relative-to-finest 数字只作为稳定性 proxy，正式 Q2 短时 observed order 继续引用 EXP-Q2-005/006。主输出 raw 文件曾因中断恢复造成重复，raw 已保留，recovered 文件通过逐键完整性检查并用于绘图/收敛比较。
+
+### 状态
+
+`Q2_LONG_HORIZON_GATE_COMPLETE_PENDING_HUMAN_PRODUCTION_FREEZE`。
+
+证据：`docs/EXPERIMENTS.md`、`docs/VALIDATION.md`、`experiments/EXP-Q2-012-ENVIRONMENT/`–`experiments/EXP-Q2-020-BASELINE/`。

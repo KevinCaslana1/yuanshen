@@ -1,0 +1,10 @@
+{
+  "official_input": "A题/附件/附件1.xlsx",
+  "interpolation_candidates": ["linear", "pchip"],
+  "time_window_s": [0, 14400],
+  "candidate": "A",
+  "n_intervals": 80,
+  "time_step_s": 1.0,
+  "post_attachment_mode": "raise",
+  "workbook_written": false
+}

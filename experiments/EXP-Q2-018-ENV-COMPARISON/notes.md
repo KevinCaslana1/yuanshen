@@ -1,0 +1,1 @@
+Same-grid ENV-A versus ENV-B checkpoint comparison at 6/24/48/72 h. ENV-A uses the last raw point; ENV-B uses the last 40-point mean. This is sensitivity evidence and keeps the environment decision pending human approval. No workbook was written.

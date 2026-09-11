@@ -364,3 +364,27 @@ checkpoint 至少保存：物理时间、`T/C` 当前场与必要历史层、空
 在收到人工 implementation authorization 后，设计中规划的 Q2 独立组件已实现并完成短时验证。实现文件为 `src/q2/properties.py`、`src/q2/environment.py`、`src/q2/model.py`、`src/q2/config.py`、`src/q2/solver.py`、`src/q2/validation.py` 和 `src/q2/benchmark.py`；测试和实验证据位于 `tests/test_q2_*.py` 与 `experiments/EXP-Q2-001/` 至 `EXP-Q2-011/`。
 
 Candidate A 的 BDF2 只在 EXP-Q2-007 中记录为 `RECOMMENDED_FOR_Q2_FREEZE`，不是最终冻结方案。PCHIP、14400 s 后环境、h/hm、界面平均、Q2 终点和精度门仍是开放问题；0–3 h运行只使用 Attachment 1 范围内输入，没有实现 Q3 事件停止逻辑。此 addendum 不改变 Q2 设计阶段的官方源优先级和 `result2.xlsx` 保护规则。
+
+## Q2 Long-Horizon Boundary & Production Config Gate Addendum (2026-09-11)
+
+收到新的人工授权后，Q2 长时边界与生产配置门已执行完成。实现和证据脚本为 `src/q2/` 与 `scripts/run_q2_long_horizon.py`；正式产物位于 `experiments/EXP-Q2-012-ENVIRONMENT/` 至 `EXP-Q2-020-BASELINE/`。本 addendum 只更新执行状态和已验证证据，不把设计阶段的开放解释改写为官方事实。
+
+### 执行配置
+
+- 主数值候选：Candidate A，边界聚簇保守 FVM，BE 首步/BDF2，`n=80`，`dt=0.25 s`，linear，harmonic。
+- 环境候选：ENV-A 使用附件1最后原始点在 `14400 s` 后常值；ENV-B 使用最后40点均值作为独立比较，不混入主候选结论。
+- 长时阶段：`0–21600–86400–172800–259200 s`，即 6/24/48/72 h；保留 12 h checkpoint 作为重启和收敛观察点。
+- 事件逻辑：`C<0.15 kg/kg` 仅作为 passive observer；不得作为 Q2 终止条件，也不得启动 Q3。
+- 输出逻辑：内部双精度、逐秒官方空间节点采样、流式 CSV、checkpoint；当前不写 Excel，不复制官方 result2 模板。
+
+### 证据边界
+
+EXP-Q2-012–020 已覆盖环境尾段/插值、h/hm、界面平均、ENV-A/ENV-B 长时、低 `D(C,T)`、Picard、质量/热量/Robin、重启、收敛和 B0。长时 `dt=1/.5` 与 `n=20/40` 相对于 `n=80,dt=.25` 的数字是稳定性 proxy；正式短时时间/空间 observed order 仍分别引用 EXP-Q2-005/006，因为它们满足固定比较维度和更细 reference 契约。
+
+主 ENV-A 输出在一次中断后的恢复操作中暴露了 append-only 重复风险。raw 文件未删除，recovered 文件按 `(time_s,radius_cm)` / `time_s` 键完成完整性验证并用于图和收敛比较；solver 已增加按 checkpoint 游标截断逻辑。该过程记录于 `docs/FAILURES.md`。
+
+### 当前推荐与未决事项
+
+数值上推荐 ENV-A last raw point 后常值、linear、arithmetic face mean、Q1-carried h/hm 和 Candidate A；但推荐状态为 `PENDING_HUMAN_APPROVAL`。`OQ-Q2-ENV-001/002`、`OQ-Q2-BC-001`、`OQ-Q2-FVM-001`、`OQ-Q2-END-001` 和 `OQ-Q2-ACC-001` 继续 OPEN。72 h 仅是内部稳定性窗口，不能据此冻结 Q2 官方终点/行数或生成 `result2.xlsx`。
+
+`Q2 LONG-HORIZON BOUNDARY & PRODUCTION CONFIG GATE COMPLETE / WAITING FOR Q2 PRODUCTION & RESULT AUTHORIZATION`

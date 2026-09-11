@@ -1,0 +1,1 @@
+Linear versus monotone PCHIP interpolation over the official Attachment 1 window. Both candidates reproduce raw knots exactly. The comparison is a modeling sensitivity audit; no interpolation choice is silently frozen and no workbook was written.

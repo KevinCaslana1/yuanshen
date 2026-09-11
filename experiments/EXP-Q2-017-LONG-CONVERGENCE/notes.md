@@ -1,0 +1,1 @@
+Long-horizon representative-time convergence audit. Candidate A, linear environment, ENV-A post-14400 constant; time and space dimensions are varied separately. Existing EXP-Q2-005/006 remain the complete short-horizon dt/dr ladders with smaller references. No workbook was written.
