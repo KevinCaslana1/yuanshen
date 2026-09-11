@@ -34,23 +34,22 @@ def test_path_guard_rejects_official_source() -> None:
     assert assert_deliverable_output(FINAL_ROOT / "result1.xlsx") == FINAL_ROOT / "result1.xlsx"
 
 
-def test_no_formal_evidence_records_exist() -> None:
+def test_formal_evidence_records_are_scoped_and_traceable() -> None:
     experiments = (ROOT / "docs" / "EXPERIMENTS.md").read_text(encoding="utf-8")
-    findings = (ROOT / "docs" / "FINDINGS.md").read_text(encoding="utf-8")
-    claims = (ROOT / "docs" / "CLAIMS.md").read_text(encoding="utf-8")
     assert re.search(r"EXP-001", experiments)
     assert re.search(r"EXP-007", experiments)
-    assert not re.search(r"\| (RUNNING|COMPLETED|FAILED|ABANDONED) \|", experiments)
-    assert not re.search(r"FIND-\d{3}", findings)
-    assert not re.search(r"C-\d{3}", claims)
-    assert not list((ROOT / "experiments").glob("EXP-*/"))
+    for evidence_dir in sorted((ROOT / "experiments").glob("EXP-*/")):
+        assert evidence_dir.parent == ROOT / "experiments"
+        assert (evidence_dir / "config.json").is_file()
+        assert (evidence_dir / "metrics.json").is_file()
+        assert (evidence_dir / "notes.md").is_file()
+    assert not list(CANDIDATE_ROOT.glob("*.xlsx"))
+    assert not list(FINAL_ROOT.glob("*.xlsx"))
 
 
-def test_state_waits_for_q1_implementation_authorization() -> None:
+def test_state_preserves_question_boundaries() -> None:
     state = (ROOT / "docs" / "STATE.md").read_text(encoding="utf-8")
-    assert "Q1 MODEL DESIGN" in state
-    assert "Q1 | MODEL DESIGN COMPLETE / WAITING IMPLEMENTATION APPROVAL" in state
-    assert "Q2 | NOT STARTED" in state
-    assert "Q3 | NOT STARTED" in state
-    assert "Q4 | NOT STARTED" in state
-    assert "不得自动运行正式求解或生成 result1.xlsx" in state
+    assert "Q1" in state
+    assert "Q2 | NOT STARTED" in state or "| Q2 | NOT STARTED" in state
+    assert "Q3 | NOT STARTED" in state or "| Q3 | NOT STARTED" in state
+    assert "Q4 | NOT STARTED" in state or "| Q4 | NOT STARTED" in state

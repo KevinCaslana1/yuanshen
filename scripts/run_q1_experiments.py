@@ -82,7 +82,7 @@ def _m1_summary(result: Q1Result) -> Dict[str, Any]:
 def _max_output_difference(first: Q1Result, second: Q1Result) -> Dict[str, float]:
     first_indices = _output_indices(first.grid)
     second_indices = _output_indices(second.grid)
-    if len(first.times_s) != len(second.times_s) or first.times_s[-1] != second.times_s[-1]:
+    if first.times_s[-1] != second.times_s[-1]:
         raise ValueError("comparison requires matching final snapshots")
     t_diff = max(
         abs(first.temperatures_k[-1][left] - second.temperatures_k[-1][right])

@@ -1,5 +1,14 @@
 # Failures
 
+## F-Q1-002 — EXP-003 comparison helper rejected valid different time histories
+
+- **Status:** FIXED
+- **Observed:** The first EXP-003 run stopped before writing evidence because the comparison helper required the two runs to have the same number of stored snapshots. Different time steps necessarily produce different history lengths.
+- **Cause:** The helper only needs matching final times for the requested final-field sensitivity comparison, but it checked both history length and final time.
+- **Fix:** Relaxed the check to require matching final times only. Re-ran the affected experiment from EXP-003 after the fix.
+- **Impact:** No official source, deliverable workbook, or experiment evidence was overwritten; the failed attempt produced no evidence directory.
+- **Reproducibility:** The failed command was `.\\.venv\\Scripts\\python.exe scripts\\run_q1_experiments.py EXP-003` at implementation commit `ff9a4a759cb6143aaef19c5bec9074449d78e44c`.
+
 这里只记录未来值得知道、能够避免重复踩坑的失败，不记录普通语法错误或一次性调试输出。
 
 ## 失败索引
