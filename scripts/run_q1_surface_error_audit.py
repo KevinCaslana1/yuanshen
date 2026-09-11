@@ -43,7 +43,7 @@ SPATIAL_DIR = ROOT / "experiments" / "EXP-004"
 
 SURFACE_POSITIONS = (
     ("near_surface_1.9cm", 0.019),
-    ("surface_2.0cm", 0.02),
+    ("surface", 0.02),
 )
 CONVERGENCE_POSITIONS = (
     ("surface", 0.02),
@@ -330,6 +330,67 @@ def _find_zero_crossings(times_s: Sequence[float], signed_errors: Sequence[float
     return {"crossings": crossings, "exact_zero_times_s": exact_zeros}
 
 
+def _valley_comparison(test: CaseData, reference: CaseData) -> dict[str, Any]:
+    """Summarize the 15--45 s pointwise valley for the two surface nodes."""
+
+    output: dict[str, Any] = {
+        "test_case": test.label,
+        "reference_case": reference.label,
+        "test_dt_s": test.dt_s,
+        "test_dr_cm": test.dr_m * 100.0,
+        "positions": {},
+    }
+    for position_label, position_m in SURFACE_POSITIONS:
+        times = [time_s for time_s in test.times_s if 15.0 <= time_s <= 45.0]
+        signed_errors = [
+            test.value(time_s, position_m) - reference.value(time_s, position_m)
+            for time_s in times
+        ]
+        valley_index = min(range(len(times)), key=lambda index: abs(signed_errors[index]))
+        output["positions"][position_label] = {
+            "minimum_absolute_error_time_s": times[valley_index],
+            "minimum_absolute_error": abs(signed_errors[valley_index]),
+            "signed_error_at_minimum": signed_errors[valley_index],
+            "signed_error_minimum": min(signed_errors),
+            "signed_error_maximum": max(signed_errors),
+            "zero_crossings": _find_zero_crossings(times, signed_errors),
+        }
+    return output
+
+
+def _write_valley_csv(path: Path, rows: Sequence[dict[str, Any]]) -> None:
+    headers = (
+        "test_case",
+        "reference_case",
+        "test_dt_s",
+        "test_dr_cm",
+        "position_label",
+        "minimum_absolute_error_time_s",
+        "minimum_absolute_error",
+        "signed_error_at_minimum",
+        "signed_error_minimum",
+        "signed_error_maximum",
+        "zero_crossings_json",
+    )
+    output_rows = []
+    for comparison in rows:
+        for position_label, details in comparison["positions"].items():
+            output_rows.append([
+                comparison["test_case"],
+                comparison["reference_case"],
+                comparison["test_dt_s"],
+                comparison["test_dr_cm"],
+                position_label,
+                details["minimum_absolute_error_time_s"],
+                details["minimum_absolute_error"],
+                details["signed_error_at_minimum"],
+                details["signed_error_minimum"],
+                details["signed_error_maximum"],
+                json.dumps(details["zero_crossings"], ensure_ascii=False, separators=(",", ":")),
+            ])
+    _write_csv(path, headers, output_rows)
+
+
 def _surface_rows(test: CaseData, reference: CaseData) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     for time_s in range(1, 101):
@@ -496,11 +557,11 @@ def _boundary_audit(
         "step_dt_s": 0.0,
         "C_inf": boundary.at(0.0)[1],
         "D_surface": parameters.diffusivity_m2_s(result.moistures_kg_kg[0][-1]),
-        "robin_flux": 0.0,
+        "robin_flux": parameters.mass_transfer_m_s * (result.moistures_kg_kg[0][-1] - boundary.at(0.0)[1]),
         "literal_one_sided_diffusive_flux": 0.0,
-        "literal_diffusive_minus_robin": 0.0,
+        "literal_diffusive_minus_robin": -parameters.mass_transfer_m_s * (result.moistures_kg_kg[0][-1] - boundary.at(0.0)[1]),
         "face_diffusive_flux": 0.0,
-        "face_diffusive_minus_robin": 0.0,
+        "face_diffusive_minus_robin": -parameters.mass_transfer_m_s * (result.moistures_kg_kg[0][-1] - boundary.at(0.0)[1]),
         "surface_control_volume_balance": 0.0,
         "picard_iterations": 0,
         "picard_final_normalized_residual": 0.0,
@@ -703,6 +764,33 @@ def main() -> int:
     temporal_levels = [label for label, _ in temporal_specs[:-1]]
     temporal_orders_linf = _adjacent_order_rows(temporal_comparisons, temporal_levels, temporal_level_values, "linf")
     temporal_orders_l2 = _adjacent_order_rows(temporal_comparisons, temporal_levels, temporal_level_values, "l2_rms")
+    temporal_adjacent_pairs = {
+        f"{left}_vs_{right}": _compare_cases(
+            all_cases[left],
+            all_cases[right],
+            CONVERGENCE_POSITIONS,
+        )
+        for left, right in zip(temporal_levels, temporal_levels[1:])
+    }
+    temporal_pair_levels = list(temporal_adjacent_pairs)
+    temporal_pair_values = {
+        pair: temporal_level_values[pair.split("_vs_")[0]]
+        for pair in temporal_pair_levels
+    }
+    temporal_pair_orders_linf = _adjacent_order_rows(
+        temporal_adjacent_pairs,
+        temporal_pair_levels,
+        temporal_pair_values,
+        "linf",
+    )
+    temporal_pair_orders_l2 = _adjacent_order_rows(
+        temporal_adjacent_pairs,
+        temporal_pair_levels,
+        temporal_pair_values,
+        "l2_rms",
+    )
+    temporal_valleys = [_valley_comparison(all_cases[label], temporal_reference) for label in temporal_levels]
+    _write_valley_csv(TEMPORAL_DIR / "valley_error_diagnostics_15_45s.csv", temporal_valleys)
     _plot_convergence(
         TEMPORAL_DIR,
         "temporal_convergence.svg",
@@ -732,6 +820,33 @@ def main() -> int:
     spatial_levels = [label for label, _ in spatial_specs[:-1]]
     spatial_orders_linf = _adjacent_order_rows(spatial_comparisons, spatial_levels, spatial_level_values, "linf")
     spatial_orders_l2 = _adjacent_order_rows(spatial_comparisons, spatial_levels, spatial_level_values, "l2_rms")
+    spatial_adjacent_pairs = {
+        f"{left}_vs_{right}": _compare_cases(
+            spatial_cases[left],
+            spatial_cases[right],
+            CONVERGENCE_POSITIONS,
+        )
+        for left, right in zip(spatial_levels, spatial_levels[1:])
+    }
+    spatial_pair_levels = list(spatial_adjacent_pairs)
+    spatial_pair_values = {
+        pair: spatial_level_values[pair.split("_vs_")[0]]
+        for pair in spatial_pair_levels
+    }
+    spatial_pair_orders_linf = _adjacent_order_rows(
+        spatial_adjacent_pairs,
+        spatial_pair_levels,
+        spatial_pair_values,
+        "linf",
+    )
+    spatial_pair_orders_l2 = _adjacent_order_rows(
+        spatial_adjacent_pairs,
+        spatial_pair_levels,
+        spatial_pair_values,
+        "l2_rms",
+    )
+    spatial_valleys = [_valley_comparison(spatial_cases[label], spatial_reference) for label in spatial_levels]
+    _write_valley_csv(SPATIAL_DIR / "valley_error_diagnostics_15_45s.csv", spatial_valleys)
     _plot_convergence(
         SPATIAL_DIR,
         "spatial_convergence.svg",
@@ -769,6 +884,22 @@ def main() -> int:
             "note": "The literal R=2.0 cm surface and the near-surface R=1.9 cm node are both retained; the observed historical valley is checked at both.",
         },
         "raw_table_scope": "15--45 s at 1 s spacing; full 1--100 s data also written",
+        "N640_vs_N1280": {
+            "coarse": _case_metadata(surface_test),
+            "fine": _case_metadata(surface_reference),
+            "by_time": [
+                {
+                    "time_s": row["time_s"],
+                    "r1.9cm_signed": next(item["signed_error"] for item in surface_rows if item["time_s"] == row["time_s"] and item["position_label"] == "near_surface_1.9cm"),
+                    "r1.9cm_abs": next(item["absolute_error"] for item in surface_rows if item["time_s"] == row["time_s"] and item["position_label"] == "near_surface_1.9cm"),
+                    "r2.0cm_signed": next(item["signed_error"] for item in surface_rows if item["time_s"] == row["time_s"] and item["position_label"] == "surface"),
+                    "r2.0cm_abs": next(item["absolute_error"] for item in surface_rows if item["time_s"] == row["time_s"] and item["position_label"] == "surface"),
+                    "max_abs": max(item["absolute_error"] for item in surface_rows if item["time_s"] == row["time_s"]),
+                }
+                for row in surface_rows
+                if row["position_label"] == "near_surface_1.9cm"
+            ],
+        },
         "zero_crossing_diagnosis": signed_by_position,
         "plot_audit": surface_plot_audit,
         "boundary_solver_audit": boundary_payload,
@@ -812,8 +943,16 @@ def main() -> int:
         "reference_error_metrics": temporal_comparisons,
         "observed_order_to_fixed_reference_linf": temporal_orders_linf,
         "observed_order_to_fixed_reference_l2_rms": temporal_orders_l2,
+        "adjacent_pair_differences": temporal_adjacent_pairs,
+        "observed_order_from_adjacent_pair_linf": temporal_pair_orders_linf,
+        "observed_order_from_adjacent_pair_l2_rms": temporal_pair_orders_l2,
+        "valley_diagnostics_15_45s": temporal_valleys,
         "definition": "L2 is discrete RMS over all native test times in 0--1800 s; tail norms use t>=60 s; errors are test-reference.",
-        "files": {"full_data_pattern": "*_vs_dt0.0625_ref_full.csv", "plot": "temporal_convergence.svg"},
+        "files": {
+            "full_data_pattern": "*_vs_dt0.0625_ref_full.csv",
+            "valley_data": "valley_error_diagnostics_15_45s.csv",
+            "plot": "temporal_convergence.svg",
+        },
     }
     (TEMPORAL_DIR / "metrics.json").write_text(json.dumps(temporal_payload, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     (TEMPORAL_DIR / "config.json").write_text(json.dumps({
@@ -844,8 +983,16 @@ def main() -> int:
         "reference_error_metrics": spatial_comparisons,
         "observed_order_to_fixed_reference_linf": spatial_orders_linf,
         "observed_order_to_fixed_reference_l2_rms": spatial_orders_l2,
+        "adjacent_pair_differences": spatial_adjacent_pairs,
+        "observed_order_from_adjacent_pair_linf": spatial_pair_orders_linf,
+        "observed_order_from_adjacent_pair_l2_rms": spatial_pair_orders_l2,
+        "valley_diagnostics_15_45s": spatial_valleys,
         "definition": "L2 is discrete RMS over all common times in 0--1800 s; errors are test-reference.",
-        "files": {"full_data_pattern": "*_vs_dr0.0125_ref_full.csv", "plot": "spatial_convergence.svg"},
+        "files": {
+            "full_data_pattern": "*_vs_dr0.0125_ref_full.csv",
+            "valley_data": "valley_error_diagnostics_15_45s.csv",
+            "plot": "spatial_convergence.svg",
+        },
     }
     (SPATIAL_DIR / "metrics.json").write_text(json.dumps(spatial_payload, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     (SPATIAL_DIR / "config.json").write_text(json.dumps({

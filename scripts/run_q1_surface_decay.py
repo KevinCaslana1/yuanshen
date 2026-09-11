@@ -52,15 +52,22 @@ def _sample(result: Q1Result, time_s: int, position_m: float) -> float:
 def _comparison(first: Q1Result, second: Q1Result) -> Dict[str, Any]:
     by_time = []
     for time_s in TIMES_S:
-        values = [abs(_sample(first, time_s, position) - _sample(second, time_s, position)) for position in POSITIONS_M]
+        signed_values = [_sample(first, time_s, position) - _sample(second, time_s, position) for position in POSITIONS_M]
+        absolute_values = [abs(value) for value in signed_values]
         by_time.append({
             "time_s": time_s,
-            "r1.9cm_abs": values[0],
-            "r2.0cm_abs": values[1],
-            "max_abs": max(values),
+            "r1.9cm_signed": signed_values[0],
+            "r1.9cm_abs": absolute_values[0],
+            "r2.0cm_signed": signed_values[1],
+            "r2.0cm_abs": absolute_values[1],
+            "max_abs": max(absolute_values),
         })
     all_values = [value for row in by_time for value in (row["r1.9cm_abs"], row["r2.0cm_abs"])]
     return {
+        "error_definition": {
+            "signed_error": "e(t)=C_test-C_ref",
+            "absolute_error": "E(t)=abs(e(t))",
+        },
         "coarse": {"n_intervals": first.grid.n_intervals, "dt_s": first.config.time_step_s},
         "fine": {"n_intervals": second.grid.n_intervals, "dt_s": second.config.time_step_s},
         "linf": max(all_values),
@@ -143,6 +150,7 @@ def main() -> int:
             "r2.0cm_t1_to_t100_ratio": t1_row["r2.0cm_abs"] / t100_row["r2.0cm_abs"],
         },
         "plot": "surface_moisture_error_decay.svg",
+        "signed_error_data": "r1.9cm_signed and r2.0cm_signed are retained in every by_time row",
         "runtime_seconds": time.perf_counter() - started,
         "candidate_workbook_generated": False,
     }
