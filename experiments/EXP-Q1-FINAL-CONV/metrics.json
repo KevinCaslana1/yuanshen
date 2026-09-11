@@ -1,0 +1,1970 @@
+{
+  "experiment_id": "EXP-Q1-FINAL-CONV",
+  "status": "BLOCKED",
+  "command": ".\\.venv\\Scripts\\python.exe scripts\\run_q1_final_accuracy.py",
+  "code_commit": "19fc716cda5271df164b11189608cc42deb0080a",
+  "input_hashes": {
+    "A题/附件/附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7"
+  },
+  "runtime_seconds": 30.230711100000008,
+  "python": "3.12.14",
+  "model_parameters": {
+    "density_kg_m3": 820.0,
+    "heat_capacity_j_kg_k": 2600.0,
+    "conductivity_w_m_k": 0.36,
+    "heat_transfer_w_m2_k": 25.0,
+    "mass_transfer_m_s": 8e-07,
+    "radius_m": 0.02,
+    "length_m": 0.25
+  },
+  "candidate_configurations": {
+    "N80_dt0.25": {
+      "end_time_s": 1800.0,
+      "time_step_s": 0.25,
+      "n_intervals": 80,
+      "interpolation": "linear",
+      "surface_boundary": "robin",
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55,
+      "input_path": "A题\\附件\\附件1.xlsx"
+    },
+    "N160_dt0.25": {
+      "end_time_s": 1800.0,
+      "time_step_s": 0.25,
+      "n_intervals": 160,
+      "interpolation": "linear",
+      "surface_boundary": "robin",
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55,
+      "input_path": "A题\\附件\\附件1.xlsx"
+    },
+    "N320_dt0.25": {
+      "end_time_s": 1800.0,
+      "time_step_s": 0.25,
+      "n_intervals": 320,
+      "interpolation": "linear",
+      "surface_boundary": "robin",
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55,
+      "input_path": "A题\\附件\\附件1.xlsx"
+    },
+    "dt1.0": {
+      "end_time_s": 1800.0,
+      "time_step_s": 1.0,
+      "n_intervals": 320,
+      "interpolation": "linear",
+      "surface_boundary": "robin",
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55,
+      "input_path": "A题\\附件\\附件1.xlsx"
+    },
+    "dt0.5": {
+      "end_time_s": 1800.0,
+      "time_step_s": 0.5,
+      "n_intervals": 320,
+      "interpolation": "linear",
+      "surface_boundary": "robin",
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55,
+      "input_path": "A题\\附件\\附件1.xlsx"
+    },
+    "dt0.25": {
+      "end_time_s": 1800.0,
+      "time_step_s": 0.25,
+      "n_intervals": 320,
+      "interpolation": "linear",
+      "surface_boundary": "robin",
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55,
+      "input_path": "A题\\附件\\附件1.xlsx"
+    }
+  },
+  "selection": {
+    "selected_n_intervals": 320,
+    "selected_dr_m": 6.25e-05,
+    "selected_time_step_s": 0.25,
+    "spatial_reference": "N160_dt0.25",
+    "spatial_level_b_pass": false,
+    "time_level_b_pass": false,
+    "selected_config_key": "N320_dt0.25"
+  },
+  "spatial_comparisons": {
+    "N80_vs_N160": {
+      "first": "N80_dt0.25",
+      "second": "N160_dt0.25",
+      "level_a_raw_difference": {
+        "full_output_grid": {
+          "temperature_c": {
+            "max_abs": 9.197614645017893e-05,
+            "mean_abs": 1.447420399947821e-05
+          },
+          "moisture_kg_kg": {
+            "max_abs": 0.012065456152055454,
+            "mean_abs": 6.028369358333879e-05
+          }
+        },
+        "paper_table_points": {
+          "temperature_c": {
+            "max_abs": 9.197614645017893e-05,
+            "mean_abs": 1.653652802165847e-05
+          },
+          "moisture_kg_kg": {
+            "max_abs": 0.001424119676414204,
+            "mean_abs": 9.229635017479357e-05
+          }
+        },
+        "center_over_full_time": {
+          "temperature_c": {
+            "max_abs": 2.221516712097582e-05,
+            "mean_abs": 9.191781027513773e-06
+          },
+          "moisture_kg_kg": {
+            "max_abs": 3.9570031518110227e-07,
+            "mean_abs": 3.647782439072008e-08
+          }
+        },
+        "surface_over_full_time": {
+          "temperature_c": {
+            "max_abs": 9.197614645017893e-05,
+            "mean_abs": 4.152250501448407e-05
+          },
+          "moisture_kg_kg": {
+            "max_abs": 0.012065456152055454,
+            "mean_abs": 0.0004708448652753087
+          }
+        }
+      },
+      "level_b_reported_value_stability": {
+        "full_output_grid": {
+          "by_field": {
+            "temperature_c": {
+              "different_count": 5472,
+              "total_cells": 37800,
+              "different_fraction": 0.14476190476190476
+            },
+            "moisture_kg_kg": {
+              "different_count": 10235,
+              "total_cells": 37800,
+              "different_fraction": 0.27076719576719577
+            }
+          },
+          "different_count_total": 15707,
+          "total_cells_all_fields": 75600,
+          "different_locations_first_20": [
+            {
+              "field": "temperature_c",
+              "time_s": 8,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0041",
+              "second_rounded": "28.0042",
+              "raw_abs_difference": 2.3891283149168885e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 9,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0049",
+              "second_rounded": "28.0050",
+              "raw_abs_difference": 2.5146781183593703e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 11,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0066",
+              "second_rounded": "28.0067",
+              "raw_abs_difference": 2.7398387715038552e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 17,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0126",
+              "second_rounded": "28.0127",
+              "raw_abs_difference": 3.277009540170184e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 18,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0137",
+              "second_rounded": "28.0138",
+              "raw_abs_difference": 3.352378320187199e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 20,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0077",
+              "second_rounded": "28.0078",
+              "raw_abs_difference": 1.701273680509985e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 21,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0172",
+              "second_rounded": "28.0173",
+              "raw_abs_difference": 3.560954615977607e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 22,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0092",
+              "second_rounded": "28.0093",
+              "raw_abs_difference": 1.8369726376477047e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 23,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0100",
+              "second_rounded": "28.0101",
+              "raw_abs_difference": 1.9019528338048985e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 23,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0197",
+              "second_rounded": "28.0198",
+              "raw_abs_difference": 3.6875406863146054e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 24,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0108",
+              "second_rounded": "28.0109",
+              "raw_abs_difference": 1.9651526656616625e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 25,
+              "distance_cm": 1.8000000000000003,
+              "first_rounded": "28.0057",
+              "second_rounded": "28.0058",
+              "raw_abs_difference": 8.590317406742543e-06
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 26,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0236",
+              "second_rounded": "28.0237",
+              "raw_abs_difference": 3.861990001041704e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 27,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0134",
+              "second_rounded": "28.0135",
+              "raw_abs_difference": 2.144937724324336e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 28,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0143",
+              "second_rounded": "28.0144",
+              "raw_abs_difference": 2.201852748839883e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 28,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0263",
+              "second_rounded": "28.0264",
+              "raw_abs_difference": 3.9694449640137464e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 29,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0277",
+              "second_rounded": "28.0278",
+              "raw_abs_difference": 4.0208214500125905e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 30,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0162",
+              "second_rounded": "28.0163",
+              "raw_abs_difference": 2.3115713759125356e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 30,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0291",
+              "second_rounded": "28.0292",
+              "raw_abs_difference": 4.070744290629591e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 32,
+              "distance_cm": 1.7000000000000002,
+              "first_rounded": "28.0050",
+              "second_rounded": "28.0051",
+              "raw_abs_difference": 4.230955937600811e-06
+            }
+          ]
+        },
+        "paper_table_points": {
+          "by_field": {
+            "temperature_c": {
+              "different_count": 6,
+              "total_cells": 35,
+              "different_fraction": 0.17142857142857143
+            },
+            "moisture_kg_kg": {
+              "different_count": 8,
+              "total_cells": 35,
+              "different_fraction": 0.22857142857142856
+            }
+          },
+          "different_count_total": 14,
+          "total_cells_all_fields": 70,
+          "different_locations_first_20": [
+            {
+              "field": "temperature_c",
+              "time_s": 100,
+              "distance_cm": 2.0,
+              "first_rounded": "28.1801",
+              "second_rounded": "28.1802",
+              "raw_abs_difference": 7.060323781615807e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 300,
+              "distance_cm": 2.0,
+              "first_rounded": "28.8490",
+              "second_rounded": "28.8491",
+              "raw_abs_difference": 9.197614645017893e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 600,
+              "distance_cm": 0.0,
+              "first_rounded": "28.4538",
+              "second_rounded": "28.4537",
+              "raw_abs_difference": 1.8760813759399753e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 900,
+              "distance_cm": 1.0,
+              "first_rounded": "29.8758",
+              "second_rounded": "29.8759",
+              "raw_abs_difference": 7.4424111744519905e-06
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 900,
+              "distance_cm": 1.5,
+              "first_rounded": "30.6164",
+              "second_rounded": "30.6165",
+              "raw_abs_difference": 2.3729198971977894e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 1200,
+              "distance_cm": 2.0,
+              "first_rounded": "33.4278",
+              "second_rounded": "33.4279",
+              "raw_abs_difference": 3.459857924781318e-05
+            },
+            {
+              "field": "moisture_kg_kg",
+              "time_s": 100,
+              "distance_cm": 2.0,
+              "first_rounded": "2.2490",
+              "second_rounded": "2.2476",
+              "raw_abs_difference": 0.001424119676414204
+            },
+            {
+              "field": "moisture_kg_kg",
+              "time_s": 300,
+              "distance_cm": 2.0,
+              "first_rounded": "2.0517",
+              "second_rounded": "2.0511",
+              "raw_abs_difference": 0.0006279450192749891
+            },
+            {
+              "field": "moisture_kg_kg",
+              "time_s": 600,
+              "distance_cm": 2.0,
+              "first_rounded": "1.8775",
+              "second_rounded": "1.8771",
+              "raw_abs_difference": 0.00033651231633835543
+            },
+            {
+              "field": "moisture_kg_kg",
+              "time_s": 900,
+              "distance_cm": 2.0,
+              "first_rounded": "1.7550",
+              "second_rounded": "1.7548",
+              "raw_abs_difference": 0.00021780023185447028
+            },
+            {
+              "field": "moisture_kg_kg",
+              "time_s": 1200,
+              "distance_cm": 2.0,
+              "first_rounded": "1.6588",
+              "second_rounded": "1.6586",
+              "raw_abs_difference": 0.00015174662944339445
+            },
+            {
+              "field": "moisture_kg_kg",
+              "time_s": 1500,
+              "distance_cm": 2.0,
+              "first_rounded": "1.5789",
+              "second_rounded": "1.5788",
+              "raw_abs_difference": 0.0001102229590737025
+            },
+            {
+              "field": "moisture_kg_kg",
+              "time_s": 1800,
+              "distance_cm": 1.0,
+              "first_rounded": "2.5382",
+              "second_rounded": "2.5383",
+              "raw_abs_difference": 3.30102519958686e-05
+            },
+            {
+              "field": "moisture_kg_kg",
+              "time_s": 1800,
+              "distance_cm": 2.0,
+              "first_rounded": "1.5104",
+              "second_rounded": "1.5103",
+              "raw_abs_difference": 8.122839252200365e-05
+            }
+          ]
+        },
+        "pass": false
+      }
+    },
+    "N160_vs_N320": {
+      "first": "N160_dt0.25",
+      "second": "N320_dt0.25",
+      "level_a_raw_difference": {
+        "full_output_grid": {
+          "temperature_c": {
+            "max_abs": 2.2996181030521257e-05,
+            "mean_abs": 3.6186883447073714e-06
+          },
+          "moisture_kg_kg": {
+            "max_abs": 0.005651324501566801,
+            "mean_abs": 1.5049811998537634e-05
+          }
+        },
+        "paper_table_points": {
+          "temperature_c": {
+            "max_abs": 2.2996181030521257e-05,
+            "mean_abs": 4.134506632778669e-06
+          },
+          "moisture_kg_kg": {
+            "max_abs": 0.00035047413920175075,
+            "mean_abs": 2.287431813992364e-05
+          }
+        },
+        "center_over_full_time": {
+          "temperature_c": {
+            "max_abs": 5.557042584314331e-06,
+            "mean_abs": 2.299382449943247e-06
+          },
+          "moisture_kg_kg": {
+            "max_abs": 9.781104726158674e-08,
+            "mean_abs": 8.958982655984628e-09
+          }
+        },
+        "surface_over_full_time": {
+          "temperature_c": {
+            "max_abs": 2.2996181030521257e-05,
+            "mean_abs": 1.0380701574016864e-05
+          },
+          "moisture_kg_kg": {
+            "max_abs": 0.005651324501566801,
+            "mean_abs": 0.00011703388569861096
+          }
+        }
+      },
+      "level_b_reported_value_stability": {
+        "full_output_grid": {
+          "by_field": {
+            "temperature_c": {
+              "different_count": 1398,
+              "total_cells": 37800,
+              "different_fraction": 0.03698412698412699
+            },
+            "moisture_kg_kg": {
+              "different_count": 4468,
+              "total_cells": 37800,
+              "different_fraction": 0.1182010582010582
+            }
+          },
+          "different_count_total": 5866,
+          "total_cells_all_fields": 75600,
+          "different_locations_first_20": [
+            {
+              "field": "temperature_c",
+              "time_s": 5,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0004",
+              "second_rounded": "28.0005",
+              "raw_abs_difference": 8.596863949605904e-07
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 19,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0070",
+              "second_rounded": "28.0071",
+              "raw_abs_difference": 4.08633758297583e-06
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 20,
+              "distance_cm": 1.8000000000000003,
+              "first_rounded": "28.0034",
+              "second_rounded": "28.0035",
+              "raw_abs_difference": 1.536945035240933e-06
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 36,
+              "distance_cm": 1.8000000000000003,
+              "first_rounded": "28.0126",
+              "second_rounded": "28.0127",
+              "raw_abs_difference": 3.3909454941749573e-06
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 41,
+              "distance_cm": 1.8000000000000003,
+              "first_rounded": "28.0165",
+              "second_rounded": "28.0166",
+              "raw_abs_difference": 3.895260192621208e-06
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 47,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0356",
+              "second_rounded": "28.0357",
+              "raw_abs_difference": 7.690034010465752e-06
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 48,
+              "distance_cm": 1.8000000000000003,
+              "first_rounded": "28.0227",
+              "second_rounded": "28.0228",
+              "raw_abs_difference": 4.546049865439272e-06
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 51,
+              "distance_cm": 1.2,
+              "first_rounded": "28.0008",
+              "second_rounded": "28.0007",
+              "raw_abs_difference": 4.5056322051095776e-07
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 51,
+              "distance_cm": 1.7000000000000002,
+              "first_rounded": "28.0155",
+              "second_rounded": "28.0156",
+              "raw_abs_difference": 2.464340013830224e-06
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 54,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0451",
+              "second_rounded": "28.0452",
+              "raw_abs_difference": 8.311691317430814e-06
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 54,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0689",
+              "second_rounded": "28.0690",
+              "raw_abs_difference": 1.2424527710663824e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 55,
+              "distance_cm": 1.7000000000000002,
+              "first_rounded": "28.0184",
+              "second_rounded": "28.0185",
+              "raw_abs_difference": 2.7429477995610796e-06
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 57,
+              "distance_cm": 1.6,
+              "first_rounded": "28.0121",
+              "second_rounded": "28.0122",
+              "raw_abs_difference": 1.22930396173615e-06
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 59,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0784",
+              "second_rounded": "28.0785",
+              "raw_abs_difference": 1.2768100305038388e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 63,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0585",
+              "second_rounded": "28.0586",
+              "raw_abs_difference": 9.09228958789754e-06
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 70,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0702",
+              "second_rounded": "28.0703",
+              "raw_abs_difference": 1.006153456728498e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 79,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0869",
+              "second_rounded": "28.0870",
+              "raw_abs_difference": 1.110195205455966e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 84,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0969",
+              "second_rounded": "28.0970",
+              "raw_abs_difference": 1.159728964239548e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 85,
+              "distance_cm": 1.7000000000000002,
+              "first_rounded": "28.0477",
+              "second_rounded": "28.0478",
+              "raw_abs_difference": 4.7199050641211215e-06
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 89,
+              "distance_cm": 1.5,
+              "first_rounded": "28.0242",
+              "second_rounded": "28.0243",
+              "raw_abs_difference": 1.2139875025241054e-06
+            }
+          ]
+        },
+        "paper_table_points": {
+          "by_field": {
+            "temperature_c": {
+              "different_count": 1,
+              "total_cells": 35,
+              "different_fraction": 0.02857142857142857
+            },
+            "moisture_kg_kg": {
+              "different_count": 4,
+              "total_cells": 35,
+              "different_fraction": 0.11428571428571428
+            }
+          },
+          "different_count_total": 5,
+          "total_cells_all_fields": 70,
+          "different_locations_first_20": [
+            {
+              "field": "temperature_c",
+              "time_s": 600,
+              "distance_cm": 2.0,
+              "first_rounded": "30.1654",
+              "second_rounded": "30.1655",
+              "raw_abs_difference": 1.41648379212711e-05
+            },
+            {
+              "field": "moisture_kg_kg",
+              "time_s": 100,
+              "distance_cm": 2.0,
+              "first_rounded": "2.2476",
+              "second_rounded": "2.2473",
+              "raw_abs_difference": 0.00035047413920175075
+            },
+            {
+              "field": "moisture_kg_kg",
+              "time_s": 300,
+              "distance_cm": 2.0,
+              "first_rounded": "2.0511",
+              "second_rounded": "2.0509",
+              "raw_abs_difference": 0.00015603908728989424
+            },
+            {
+              "field": "moisture_kg_kg",
+              "time_s": 600,
+              "distance_cm": 1.5,
+              "first_rounded": "2.5352",
+              "second_rounded": "2.5353",
+              "raw_abs_difference": 1.278586311537211e-05
+            },
+            {
+              "field": "moisture_kg_kg",
+              "time_s": 600,
+              "distance_cm": 2.0,
+              "first_rounded": "1.8771",
+              "second_rounded": "1.8770",
+              "raw_abs_difference": 8.383157529978646e-05
+            }
+          ]
+        },
+        "pass": false
+      }
+    }
+  },
+  "time_comparisons": {
+    "dt1.0_vs_dt0.5": {
+      "first": "dt1.0",
+      "second": "dt0.5",
+      "level_a_raw_difference": {
+        "full_output_grid": {
+          "temperature_c": {
+            "max_abs": 0.0009547480976834777,
+            "mean_abs": 0.0006018372696327998
+          },
+          "moisture_kg_kg": {
+            "max_abs": 0.0019931386570442022,
+            "mean_abs": 1.3940128491481791e-05
+          }
+        },
+        "paper_table_points": {
+          "temperature_c": {
+            "max_abs": 0.0009547220590206962,
+            "mean_abs": 0.0005580426346422688
+          },
+          "moisture_kg_kg": {
+            "max_abs": 0.00020448686548268924,
+            "mean_abs": 2.1187586724507363e-05
+          }
+        },
+        "center_over_full_time": {
+          "temperature_c": {
+            "max_abs": 0.0009547480976834777,
+            "mean_abs": 0.0006886358733801343
+          },
+          "moisture_kg_kg": {
+            "max_abs": 1.3118634889508485e-07,
+            "mean_abs": 1.2014713269466644e-08
+          }
+        },
+        "surface_over_full_time": {
+          "temperature_c": {
+            "max_abs": 0.0005919025783214238,
+            "mean_abs": 0.0004241970685891437
+          },
+          "moisture_kg_kg": {
+            "max_abs": 0.0019931386570442022,
+            "mean_abs": 9.222317190359177e-05
+          }
+        }
+      },
+      "level_b_reported_value_stability": {
+        "full_output_grid": {
+          "by_field": {
+            "temperature_c": {
+              "different_count": 36316,
+              "total_cells": 37800,
+              "different_fraction": 0.9607407407407408
+            },
+            "moisture_kg_kg": {
+              "different_count": 4880,
+              "total_cells": 37800,
+              "different_fraction": 0.1291005291005291
+            }
+          },
+          "different_count_total": 41196,
+          "total_cells_all_fields": 75600,
+          "different_locations_first_20": [
+            {
+              "field": "temperature_c",
+              "time_s": 3,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0011",
+              "second_rounded": "28.0010",
+              "raw_abs_difference": 5.39117685320889e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 4,
+              "distance_cm": 1.8000000000000003,
+              "first_rounded": "28.0001",
+              "second_rounded": "28.0000",
+              "raw_abs_difference": 1.7993535209370748e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 4,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0016",
+              "second_rounded": "28.0015",
+              "raw_abs_difference": 6.282425022163807e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 5,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0022",
+              "second_rounded": "28.0021",
+              "raw_abs_difference": 7.047673125271103e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 6,
+              "distance_cm": 1.8000000000000003,
+              "first_rounded": "28.0002",
+              "second_rounded": "28.0001",
+              "raw_abs_difference": 3.299906484244275e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 6,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0008",
+              "second_rounded": "28.0007",
+              "raw_abs_difference": 6.3735644857843e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 6,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0029",
+              "second_rounded": "28.0028",
+              "raw_abs_difference": 7.725061647079201e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 7,
+              "distance_cm": 1.7000000000000002,
+              "first_rounded": "28.0001",
+              "second_rounded": "28.0000",
+              "raw_abs_difference": 1.6345152516805683e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 7,
+              "distance_cm": 1.8000000000000003,
+              "first_rounded": "28.0003",
+              "second_rounded": "28.0002",
+              "raw_abs_difference": 4.0414084708118025e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 7,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0011",
+              "second_rounded": "28.0010",
+              "raw_abs_difference": 7.12862793648128e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 7,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0036",
+              "second_rounded": "28.0035",
+              "raw_abs_difference": 8.33685314773902e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 8,
+              "distance_cm": 1.8000000000000003,
+              "first_rounded": "28.0004",
+              "second_rounded": "28.0003",
+              "raw_abs_difference": 4.758430634410615e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 8,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0014",
+              "second_rounded": "28.0013",
+              "raw_abs_difference": 7.81673322194365e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 8,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0043",
+              "second_rounded": "28.0042",
+              "raw_abs_difference": 8.897333179902489e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 9,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0051",
+              "second_rounded": "28.0050",
+              "raw_abs_difference": 9.416297336883872e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 10,
+              "distance_cm": 1.6,
+              "first_rounded": "28.0001",
+              "second_rounded": "28.0000",
+              "raw_abs_difference": 1.2958063791757013e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 10,
+              "distance_cm": 1.8000000000000003,
+              "first_rounded": "28.0007",
+              "second_rounded": "28.0006",
+              "raw_abs_difference": 6.103589629447015e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 10,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0060",
+              "second_rounded": "28.0059",
+              "raw_abs_difference": 9.900800301920754e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 11,
+              "distance_cm": 1.7000000000000002,
+              "first_rounded": "28.0003",
+              "second_rounded": "28.0002",
+              "raw_abs_difference": 3.685762141003579e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 11,
+              "distance_cm": 1.8000000000000003,
+              "first_rounded": "28.0009",
+              "second_rounded": "28.0008",
+              "raw_abs_difference": 6.730947802680021e-05
+            }
+          ]
+        },
+        "paper_table_points": {
+          "by_field": {
+            "temperature_c": {
+              "different_count": 33,
+              "total_cells": 35,
+              "different_fraction": 0.9428571428571428
+            },
+            "moisture_kg_kg": {
+              "different_count": 6,
+              "total_cells": 35,
+              "different_fraction": 0.17142857142857143
+            }
+          },
+          "different_count_total": 39,
+          "total_cells_all_fields": 70,
+          "different_locations_first_20": [
+            {
+              "field": "temperature_c",
+              "time_s": 100,
+              "distance_cm": 1.0,
+              "first_rounded": "28.0043",
+              "second_rounded": "28.0042",
+              "raw_abs_difference": 0.0001063647795263023
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 100,
+              "distance_cm": 1.5,
+              "first_rounded": "28.0332",
+              "second_rounded": "28.0330",
+              "raw_abs_difference": 0.00026484933403025934
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 100,
+              "distance_cm": 2.0,
+              "first_rounded": "28.1807",
+              "second_rounded": "28.1804",
+              "raw_abs_difference": 0.00030980093703192324
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 300,
+              "distance_cm": 0.0,
+              "first_rounded": "28.0415",
+              "second_rounded": "28.0412",
+              "raw_abs_difference": 0.0003691578037887666
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 300,
+              "distance_cm": 0.5,
+              "first_rounded": "28.0643",
+              "second_rounded": "28.0639",
+              "raw_abs_difference": 0.0003924624152773504
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 300,
+              "distance_cm": 1.0,
+              "first_rounded": "28.1523",
+              "second_rounded": "28.1518",
+              "raw_abs_difference": 0.0004425315995604251
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 300,
+              "distance_cm": 1.5,
+              "first_rounded": "28.3691",
+              "second_rounded": "28.3686",
+              "raw_abs_difference": 0.0005125296870573948
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 300,
+              "distance_cm": 2.0,
+              "first_rounded": "28.8498",
+              "second_rounded": "28.8493",
+              "raw_abs_difference": 0.000478466184631543
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 600,
+              "distance_cm": 0.0,
+              "first_rounded": "28.4549",
+              "second_rounded": "28.4541",
+              "raw_abs_difference": 0.0007978120864891025
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 600,
+              "distance_cm": 0.5,
+              "first_rounded": "28.5376",
+              "second_rounded": "28.5368",
+              "raw_abs_difference": 0.0007763210688267463
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 600,
+              "distance_cm": 1.0,
+              "first_rounded": "28.8054",
+              "second_rounded": "28.8047",
+              "raw_abs_difference": 0.0007193424950173721
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 600,
+              "distance_cm": 1.5,
+              "first_rounded": "29.3171",
+              "second_rounded": "29.3165",
+              "raw_abs_difference": 0.0006173424800408611
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 600,
+              "distance_cm": 2.0,
+              "first_rounded": "30.1662",
+              "second_rounded": "30.1657",
+              "raw_abs_difference": 0.00046522602548293435
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 900,
+              "distance_cm": 0.0,
+              "first_rounded": "29.3262",
+              "second_rounded": "29.3253",
+              "raw_abs_difference": 0.0009547220590206962
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 900,
+              "distance_cm": 0.5,
+              "first_rounded": "29.4601",
+              "second_rounded": "29.4592",
+              "raw_abs_difference": 0.0009170369340267825
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 900,
+              "distance_cm": 1.0,
+              "first_rounded": "29.8771",
+              "second_rounded": "29.8763",
+              "raw_abs_difference": 0.000802878880733715
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 900,
+              "distance_cm": 1.5,
+              "first_rounded": "30.6174",
+              "second_rounded": "30.6168",
+              "raw_abs_difference": 0.00063553257808735
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 900,
+              "distance_cm": 2.0,
+              "first_rounded": "31.7313",
+              "second_rounded": "31.7309",
+              "raw_abs_difference": 0.0004658569843059013
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 1200,
+              "distance_cm": 0.0,
+              "first_rounded": "30.5445",
+              "second_rounded": "30.5436",
+              "raw_abs_difference": 0.0009090400510558538
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 1200,
+              "distance_cm": 0.5,
+              "first_rounded": "30.7115",
+              "second_rounded": "30.7107",
+              "raw_abs_difference": 0.0008836898936692705
+            }
+          ]
+        },
+        "pass": false
+      }
+    },
+    "dt0.5_vs_dt0.25": {
+      "first": "dt0.5",
+      "second": "dt0.25",
+      "level_a_raw_difference": {
+        "full_output_grid": {
+          "temperature_c": {
+            "max_abs": 0.0004776183058083916,
+            "mean_abs": 0.0003009999597138715
+          },
+          "moisture_kg_kg": {
+            "max_abs": 0.0011657392001822586,
+            "mean_abs": 6.979365659795449e-06
+          }
+        },
+        "paper_table_points": {
+          "temperature_c": {
+            "max_abs": 0.00047760702511823183,
+            "mean_abs": 0.00027909316427862256
+          },
+          "moisture_kg_kg": {
+            "max_abs": 0.00010229222133162352,
+            "mean_abs": 1.0596158624829956e-05
+          }
+        },
+        "center_over_full_time": {
+          "temperature_c": {
+            "max_abs": 0.0004776183058083916,
+            "mean_abs": 0.00034440685962819215
+          },
+          "moisture_kg_kg": {
+            "max_abs": 6.514809625102203e-08,
+            "mean_abs": 5.948746547456017e-09
+          }
+        },
+        "surface_over_full_time": {
+          "temperature_c": {
+            "max_abs": 0.0002961580236160444,
+            "mean_abs": 0.00021216857524011503
+          },
+          "moisture_kg_kg": {
+            "max_abs": 0.0011657392001822586,
+            "mean_abs": 4.624144860311831e-05
+          }
+        }
+      },
+      "level_b_reported_value_stability": {
+        "full_output_grid": {
+          "by_field": {
+            "temperature_c": {
+              "different_count": 35825,
+              "total_cells": 37800,
+              "different_fraction": 0.9477513227513228
+            },
+            "moisture_kg_kg": {
+              "different_count": 2513,
+              "total_cells": 37800,
+              "different_fraction": 0.06648148148148147
+            }
+          },
+          "different_count_total": 38338,
+          "total_cells_all_fields": 75600,
+          "different_locations_first_20": [
+            {
+              "field": "temperature_c",
+              "time_s": 2,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0001",
+              "second_rounded": "28.0000",
+              "raw_abs_difference": 1.1710577268786437e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 2,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0006",
+              "second_rounded": "28.0005",
+              "raw_abs_difference": 2.2654920599052275e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 3,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0002",
+              "second_rounded": "28.0001",
+              "raw_abs_difference": 1.8080016104704555e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 6,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0028",
+              "second_rounded": "28.0027",
+              "raw_abs_difference": 3.937190689384806e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 7,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0010",
+              "second_rounded": "28.0009",
+              "raw_abs_difference": 3.6257555109386885e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 7,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0035",
+              "second_rounded": "28.0034",
+              "raw_abs_difference": 4.237974508214393e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 9,
+              "distance_cm": 1.8000000000000003,
+              "first_rounded": "28.0005",
+              "second_rounded": "28.0004",
+              "raw_abs_difference": 2.7459950672437117e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 9,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0017",
+              "second_rounded": "28.0016",
+              "raw_abs_difference": 4.283054943243769e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 10,
+              "distance_cm": 1.7000000000000002,
+              "first_rounded": "28.0002",
+              "second_rounded": "28.0001",
+              "raw_abs_difference": 1.5603256372287433e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 10,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0021",
+              "second_rounded": "28.0020",
+              "raw_abs_difference": 4.575035728748844e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 10,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0059",
+              "second_rounded": "28.0058",
+              "raw_abs_difference": 5.009136833677985e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 11,
+              "distance_cm": 1.6,
+              "first_rounded": "28.0001",
+              "second_rounded": "28.0000",
+              "raw_abs_difference": 7.75683957954243e-06
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 11,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0025",
+              "second_rounded": "28.0024",
+              "raw_abs_difference": 4.847745492497779e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 12,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0030",
+              "second_rounded": "28.0029",
+              "raw_abs_difference": 5.1039693460097624e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 13,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0035",
+              "second_rounded": "28.0034",
+              "raw_abs_difference": 5.345908869003324e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 13,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0086",
+              "second_rounded": "28.0085",
+              "raw_abs_difference": 5.648990008921828e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 14,
+              "distance_cm": 1.8000000000000003,
+              "first_rounded": "28.0015",
+              "second_rounded": "28.0014",
+              "raw_abs_difference": 4.2590270879827585e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 14,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0040",
+              "second_rounded": "28.0039",
+              "raw_abs_difference": 5.5753349272436026e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 14,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0096",
+              "second_rounded": "28.0095",
+              "raw_abs_difference": 5.841617610258254e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 15,
+              "distance_cm": 1.5,
+              "first_rounded": "28.0001",
+              "second_rounded": "28.0000",
+              "raw_abs_difference": 6.828510038303648e-06
+            }
+          ]
+        },
+        "paper_table_points": {
+          "by_field": {
+            "temperature_c": {
+              "different_count": 33,
+              "total_cells": 35,
+              "different_fraction": 0.9428571428571428
+            },
+            "moisture_kg_kg": {
+              "different_count": 4,
+              "total_cells": 35,
+              "different_fraction": 0.11428571428571428
+            }
+          },
+          "different_count_total": 37,
+          "total_cells_all_fields": 70,
+          "different_locations_first_20": [
+            {
+              "field": "temperature_c",
+              "time_s": 100,
+              "distance_cm": 1.0,
+              "first_rounded": "28.0042",
+              "second_rounded": "28.0041",
+              "raw_abs_difference": 5.3049921689307666e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 100,
+              "distance_cm": 1.5,
+              "first_rounded": "28.0330",
+              "second_rounded": "28.0328",
+              "raw_abs_difference": 0.00013260690826655264
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 100,
+              "distance_cm": 2.0,
+              "first_rounded": "28.1804",
+              "second_rounded": "28.1802",
+              "raw_abs_difference": 0.00015514828265850156
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 300,
+              "distance_cm": 0.0,
+              "first_rounded": "28.0412",
+              "second_rounded": "28.0410",
+              "raw_abs_difference": 0.000184692156778965
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 300,
+              "distance_cm": 0.5,
+              "first_rounded": "28.0639",
+              "second_rounded": "28.0637",
+              "raw_abs_difference": 0.00019629552832611807
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 300,
+              "distance_cm": 1.0,
+              "first_rounded": "28.1518",
+              "second_rounded": "28.1516",
+              "raw_abs_difference": 0.00022119763644923296
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 300,
+              "distance_cm": 1.5,
+              "first_rounded": "28.3686",
+              "second_rounded": "28.3683",
+              "raw_abs_difference": 0.000256422509494314
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 300,
+              "distance_cm": 2.0,
+              "first_rounded": "28.8493",
+              "second_rounded": "28.8491",
+              "raw_abs_difference": 0.00023944876608084087
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 600,
+              "distance_cm": 0.0,
+              "first_rounded": "28.4541",
+              "second_rounded": "28.4537",
+              "raw_abs_difference": 0.0003990864037177744
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 600,
+              "distance_cm": 0.5,
+              "first_rounded": "28.5368",
+              "second_rounded": "28.5364",
+              "raw_abs_difference": 0.00038831003098493966
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 600,
+              "distance_cm": 1.0,
+              "first_rounded": "28.8047",
+              "second_rounded": "28.8043",
+              "raw_abs_difference": 0.0003598268417590589
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 600,
+              "distance_cm": 1.5,
+              "first_rounded": "29.3165",
+              "second_rounded": "29.3162",
+              "raw_abs_difference": 0.00030876162281856523
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 600,
+              "distance_cm": 2.0,
+              "first_rounded": "30.1657",
+              "second_rounded": "30.1655",
+              "raw_abs_difference": 0.00023265223563839754
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 900,
+              "distance_cm": 0.0,
+              "first_rounded": "29.3253",
+              "second_rounded": "29.3248",
+              "raw_abs_difference": 0.00047760702511823183
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 900,
+              "distance_cm": 0.5,
+              "first_rounded": "29.4592",
+              "second_rounded": "29.4587",
+              "raw_abs_difference": 0.00045874038335114165
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 900,
+              "distance_cm": 1.0,
+              "first_rounded": "29.8763",
+              "second_rounded": "29.8759",
+              "raw_abs_difference": 0.00040156384687861646
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 900,
+              "distance_cm": 1.5,
+              "first_rounded": "30.6168",
+              "second_rounded": "30.6165",
+              "raw_abs_difference": 0.0003178245764274834
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 900,
+              "distance_cm": 2.0,
+              "first_rounded": "31.7309",
+              "second_rounded": "31.7306",
+              "raw_abs_difference": 0.0002329705489501066
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 1200,
+              "distance_cm": 0.0,
+              "first_rounded": "30.5436",
+              "second_rounded": "30.5432",
+              "raw_abs_difference": 0.0004546309251054481
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 1200,
+              "distance_cm": 0.5,
+              "first_rounded": "30.7107",
+              "second_rounded": "30.7102",
+              "raw_abs_difference": 0.00044197726066386167
+            }
+          ]
+        },
+        "pass": false
+      }
+    },
+    "dt1.0_vs_dt0.25": {
+      "first": "dt1.0",
+      "second": "dt0.25",
+      "level_a_raw_difference": {
+        "full_output_grid": {
+          "temperature_c": {
+            "max_abs": 0.0014323664034918693,
+            "mean_abs": 0.0009028372293326199
+          },
+          "moisture_kg_kg": {
+            "max_abs": 0.003158877857226461,
+            "mean_abs": 2.091949415125661e-05
+          }
+        },
+        "paper_table_points": {
+          "temperature_c": {
+            "max_abs": 0.001432329084138928,
+            "mean_abs": 0.0008371357989208913
+          },
+          "moisture_kg_kg": {
+            "max_abs": 0.00030677908681431276,
+            "mean_abs": 3.178374534933732e-05
+          }
+        },
+        "center_over_full_time": {
+          "temperature_c": {
+            "max_abs": 0.0014323664034918693,
+            "mean_abs": 0.0010330427329616517
+          },
+          "moisture_kg_kg": {
+            "max_abs": 1.9633444514610687e-07,
+            "mean_abs": 1.796345981692266e-08
+          }
+        },
+        "surface_over_full_time": {
+          "temperature_c": {
+            "max_abs": 0.0008880606019374682,
+            "mean_abs": 0.0006363656438292587
+          },
+          "moisture_kg_kg": {
+            "max_abs": 0.003158877857226461,
+            "mean_abs": 0.0001384646205067101
+          }
+        }
+      },
+      "level_b_reported_value_stability": {
+        "full_output_grid": {
+          "by_field": {
+            "temperature_c": {
+              "different_count": 36498,
+              "total_cells": 37800,
+              "different_fraction": 0.9655555555555555
+            },
+            "moisture_kg_kg": {
+              "different_count": 6926,
+              "total_cells": 37800,
+              "different_fraction": 0.18322751322751324
+            }
+          },
+          "different_count_total": 43424,
+          "total_cells_all_fields": 75600,
+          "different_locations_first_20": [
+            {
+              "field": "temperature_c",
+              "time_s": 2,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0001",
+              "second_rounded": "28.0000",
+              "raw_abs_difference": 3.475144103504135e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 2,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0006",
+              "second_rounded": "28.0005",
+              "raw_abs_difference": 6.563766629597012e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 3,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0002",
+              "second_rounded": "28.0001",
+              "raw_abs_difference": 5.3288826393327327e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 3,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0011",
+              "second_rounded": "28.0010",
+              "raw_abs_difference": 8.187181509811126e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 4,
+              "distance_cm": 1.8000000000000003,
+              "first_rounded": "28.0001",
+              "second_rounded": "28.0000",
+              "raw_abs_difference": 2.6663512471714057e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 4,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0016",
+              "second_rounded": "28.0015",
+              "raw_abs_difference": 9.512905427300211e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 5,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0022",
+              "second_rounded": "28.0021",
+              "raw_abs_difference": 0.000106525427042925
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 6,
+              "distance_cm": 1.8000000000000003,
+              "first_rounded": "28.0002",
+              "second_rounded": "28.0001",
+              "raw_abs_difference": 4.948223534029239e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 6,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0008",
+              "second_rounded": "28.0007",
+              "raw_abs_difference": 9.622846289403242e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 6,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0029",
+              "second_rounded": "28.0027",
+              "raw_abs_difference": 0.00011662252336464007
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 7,
+              "distance_cm": 1.7000000000000002,
+              "first_rounded": "28.0001",
+              "second_rounded": "28.0000",
+              "raw_abs_difference": 2.4134301838785177e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 7,
+              "distance_cm": 1.8000000000000003,
+              "first_rounded": "28.0003",
+              "second_rounded": "28.0002",
+              "raw_abs_difference": 6.071243080896238e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 7,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0011",
+              "second_rounded": "28.0009",
+              "raw_abs_difference": 0.00010754383447419968
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 7,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0036",
+              "second_rounded": "28.0034",
+              "raw_abs_difference": 0.00012574827655953413
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 8,
+              "distance_cm": 1.8000000000000003,
+              "first_rounded": "28.0004",
+              "second_rounded": "28.0003",
+              "raw_abs_difference": 7.154726972657954e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 8,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0014",
+              "second_rounded": "28.0013",
+              "raw_abs_difference": 0.00011784942302028867
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 8,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0043",
+              "second_rounded": "28.0042",
+              "raw_abs_difference": 0.00013411332838586532
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 9,
+              "distance_cm": 1.8000000000000003,
+              "first_rounded": "28.0005",
+              "second_rounded": "28.0004",
+              "raw_abs_difference": 8.192245906002427e-05
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 9,
+              "distance_cm": 1.9,
+              "first_rounded": "28.0017",
+              "second_rounded": "28.0016",
+              "raw_abs_difference": 0.00012733046236235168
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 9,
+              "distance_cm": 2.0,
+              "first_rounded": "28.0051",
+              "second_rounded": "28.0050",
+              "raw_abs_difference": 0.00014186227690515807
+            }
+          ]
+        },
+        "paper_table_points": {
+          "by_field": {
+            "temperature_c": {
+              "different_count": 33,
+              "total_cells": 35,
+              "different_fraction": 0.9428571428571428
+            },
+            "moisture_kg_kg": {
+              "different_count": 7,
+              "total_cells": 35,
+              "different_fraction": 0.2
+            }
+          },
+          "different_count_total": 40,
+          "total_cells_all_fields": 70,
+          "different_locations_first_20": [
+            {
+              "field": "temperature_c",
+              "time_s": 100,
+              "distance_cm": 1.0,
+              "first_rounded": "28.0043",
+              "second_rounded": "28.0041",
+              "raw_abs_difference": 0.00015941470121560997
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 100,
+              "distance_cm": 1.5,
+              "first_rounded": "28.0332",
+              "second_rounded": "28.0328",
+              "raw_abs_difference": 0.000397456242296812
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 100,
+              "distance_cm": 2.0,
+              "first_rounded": "28.1807",
+              "second_rounded": "28.1802",
+              "raw_abs_difference": 0.0004649492196904248
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 300,
+              "distance_cm": 0.0,
+              "first_rounded": "28.0415",
+              "second_rounded": "28.0410",
+              "raw_abs_difference": 0.0005538499605677316
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 300,
+              "distance_cm": 0.5,
+              "first_rounded": "28.0643",
+              "second_rounded": "28.0637",
+              "raw_abs_difference": 0.0005887579436034684
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 300,
+              "distance_cm": 1.0,
+              "first_rounded": "28.1523",
+              "second_rounded": "28.1516",
+              "raw_abs_difference": 0.000663729236009658
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 300,
+              "distance_cm": 1.5,
+              "first_rounded": "28.3691",
+              "second_rounded": "28.3683",
+              "raw_abs_difference": 0.0007689521965517088
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 300,
+              "distance_cm": 2.0,
+              "first_rounded": "28.8498",
+              "second_rounded": "28.8491",
+              "raw_abs_difference": 0.0007179149507123839
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 600,
+              "distance_cm": 0.0,
+              "first_rounded": "28.4549",
+              "second_rounded": "28.4537",
+              "raw_abs_difference": 0.0011968984902068769
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 600,
+              "distance_cm": 0.5,
+              "first_rounded": "28.5376",
+              "second_rounded": "28.5364",
+              "raw_abs_difference": 0.001164631099811686
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 600,
+              "distance_cm": 1.0,
+              "first_rounded": "28.8054",
+              "second_rounded": "28.8043",
+              "raw_abs_difference": 0.001079169336776431
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 600,
+              "distance_cm": 1.5,
+              "first_rounded": "29.3171",
+              "second_rounded": "29.3162",
+              "raw_abs_difference": 0.0009261041028594263
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 600,
+              "distance_cm": 2.0,
+              "first_rounded": "30.1662",
+              "second_rounded": "30.1655",
+              "raw_abs_difference": 0.0006978782611213319
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 900,
+              "distance_cm": 0.0,
+              "first_rounded": "29.3262",
+              "second_rounded": "29.3248",
+              "raw_abs_difference": 0.001432329084138928
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 900,
+              "distance_cm": 0.5,
+              "first_rounded": "29.4601",
+              "second_rounded": "29.4587",
+              "raw_abs_difference": 0.0013757773173779242
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 900,
+              "distance_cm": 1.0,
+              "first_rounded": "29.8771",
+              "second_rounded": "29.8759",
+              "raw_abs_difference": 0.0012044427276123315
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 900,
+              "distance_cm": 1.5,
+              "first_rounded": "30.6174",
+              "second_rounded": "30.6165",
+              "raw_abs_difference": 0.0009533571545148334
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 900,
+              "distance_cm": 2.0,
+              "first_rounded": "31.7313",
+              "second_rounded": "31.7306",
+              "raw_abs_difference": 0.0006988275332560079
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 1200,
+              "distance_cm": 0.0,
+              "first_rounded": "30.5445",
+              "second_rounded": "30.5432",
+              "raw_abs_difference": 0.001363670976161302
+            },
+            {
+              "field": "temperature_c",
+              "time_s": 1200,
+              "distance_cm": 0.5,
+              "first_rounded": "30.7115",
+              "second_rounded": "30.7102",
+              "raw_abs_difference": 0.0013256671543331322
+            }
+          ]
+        },
+        "pass": false
+      }
+    }
+  },
+  "notes": "The lowest-cost configuration is selected only when complete output and paper-table values are stable after four-decimal rounding.",
+  "artifact_paths": [
+    "experiments/EXP-Q1-FINAL-CONV/config.json",
+    "experiments/EXP-Q1-FINAL-CONV/metrics.json",
+    "experiments/EXP-Q1-FINAL-CONV/notes.md"
+  ]
+}

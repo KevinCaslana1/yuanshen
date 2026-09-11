@@ -1,6 +1,6 @@
 # Q1 Modeling Plan
 
-> 状态：`Q1 IMPLEMENTATION & NUMERICAL VALIDATION COMPLETE / WAITING RESULT GATE APPROVAL`
+> 状态：`Q1 NUMERICAL ACCURACY BLOCKED`
 >
 > 本文件是 Q1 的问题分析、实现和内部数值验证工作包，不是论文正文，不包含最终结果表或 `result1.xlsx`。实验结果仅用于实现审计和模型比较，不能直接作为论文最终结论。
 
@@ -8,7 +8,7 @@
 
 - 本轮授权范围仅为 Q1。
 - Q2、Q3、Q4 保持 `NOT STARTED`。
-- 已获授权执行 Q1 内部实现、数值验证和模型对照；不得生成最终交付文件或自动填充 `result1.xlsx`。
+- 已获授权执行 Q1 内部实现、数值验证、最终精度审计和候选交付门检查；只有完整输出级精度通过后才允许生成 candidate，永远不得写入 `A题/` 或自动进入 final。
 - `A题/` 是 `OFFICIAL_SOURCE / IMMUTABLE_SOURCE`；本轮只读。
 - 推荐模型表示“建议进入实现”，不表示已经证明最好。
 
@@ -24,10 +24,10 @@
 | Internal grid | 曾以 `Δr=0.001 m` 作为候选 | `Δr=0.25 mm, N=80` | `CONFLICT` | 由 `D-Q1-NUMGRID` 解决为 `N=80, Δr=0.25 mm` |
 | Time step | 输出间隔 1 s，允许内部更小步长 | 主方案 `Δt=1 s` | `MATCH` | 主计算 `Δt=1 s`；敏感性使用 0.5/0.25 s |
 | Robin boundary | `h`、`hm` 的第三类边界 | 同样采用表面对流边界 | `MATCH` | 保留 Robin；表面符号做独立测试 |
-| `hm` interpretation | 已标为 OQ-006、需人工审查 | 直接作用于干基 `C`，不乘空气密度 | `PARTIAL_MATCH` | 作为 `TEAM MODELING INTERPRETATION`；量纲/符号/极限已审查，保留 M3 敏感性 |
+| `hm` interpretation | OQ-006 已解决为当前建模假设 | 直接作用于干基 `C`，不乘空气密度 | `ACCEPTED_MODELING_ASSUMPTION` | 作为团队建模口径而非官方事实；保留 M3 敏感性 |
 | Environment interpolation | 默认分段线性 | 允许 PCHIP 或分段线性，倾向 PCHIP | `PARTIAL_MATCH` | 当前不引入额外依赖，默认 linear；EXP-006 比较替代处理 |
 | Picard handling | 水分方程单场 Picard，tol/maxiter 已规划 | 单场 Picard，归一化残差，最多50次 | `MATCH` | 实现 `tol=1e-8, max_iter=50`，不与温度场交替 |
-| Output sampling | 官方输出规则已登记，端点仍有 OQ | 团队建议 `t=1..1800 s`、`0.0..2.0 cm` | `PARTIAL_MATCH` | 团队建议不替代官方契约；内部点可直接抽取，端点由 OQ-001/OQ-005/OQ-007控制 |
+| Output sampling | Q1 团队交付契约已冻结 | `t=1..1800 s`、`0.0..2.0 cm` | `ACCEPTED_FOR_Q1_DELIVERY` | OQ-005/OQ-007 已解决；内部节点严格对齐输出点，不插值 |
 | Conservation checks | 规划质量/能量 sanity check，并区分适用范围 | 质量守恒、Q1 常物性储热一致性、极限测试 | `MATCH` | 纳入 EXP-007；能量检查限于当前常物性方程 |
 | Grid/time sensitivity | 原计划候选需调整 | `Δr=0.5/0.25/0.125 mm`、`Δt=1/0.5/0.25 s` | `CONFLICT` | 与 `D-Q1-NUMGRID` 一并采用团队细化序列，仍不预设通过结论 |
 
@@ -37,7 +37,7 @@
 
 ### `hm` boundary reconciliation
 
-团队口径“`hm` 直接作用于 `C` 场”被登记为 `TEAM MODELING INTERPRETATION`，不是 `STATEMENT_FACT`。在 `-D∂C/∂r=hm(C_s-C∞)` 中，`D∂C/∂r` 与 `hm(C_s-C∞)` 都具有速度乘浓度的量纲；当 `C_s>C∞` 时外向通量为正；`hm→∞` 时趋向 `C_s=C∞`。不额外乘空气密度。由于干基浓度边界的物理含义仍不是题面明文定义，结论为 `PARTIAL / MODELING ASSUMPTION`，必须通过 M3 边界敏感性对照，并保留 OQ-006 的人工复核记录。
+团队口径“`hm` 直接作用于 `C` 场”被登记为 `TEAM MODELING INTERPRETATION`，不是 `STATEMENT_FACT`。在 `-D∂C/∂r=hm(C_s-C∞)` 中，`D∂C/∂r` 与 `hm(C_s-C∞)` 都具有速度乘浓度的量纲；当 `C_s>C∞` 时外向通量为正；`hm→∞` 时趋向 `C_s=C∞`。不额外乘空气密度。该口径已由 D-Q1-OQ006 接受为当前建模假设，并保留 M3 边界敏感性对照；它不被升级为官方事实。
 
 ## 1. Problem Restatement
 
@@ -56,8 +56,8 @@ Q1 研究预热平衡阶段药材内部温度与水分浓度的时空变化。�
 | Boundary Input | 将附件1的烘房温度和水分浓度作为外部边界输入 | `STATEMENT_FACT` | 官方题面与附录1 |
 | Boundary Interpolation | 60 s 采样点之间采用不平滑的分段线性插值 | `MODELING_CHOICE` | 为获得 1 s 数值输入；不得删除或平滑原始点 |
 | Target Variable | 药材内部 `T(r,t)` 与 `C(r,t)` | `STATEMENT_FACT` + `MODELING_CHOICE` | 官方要求时空规律；采用轴对称径向场表示 |
-| Required Time Range | 论文表格：100、300、600、900、1200、1500、1800 s；完整结果：1800 s 内每隔 1 s | `STATEMENT_FACT` | 官方题面问题1；是否包含 `t=0` 保留 OQ-005 |
-| Required Spatial Range | 到药材中心距离 `0, 0.5, 1, 1.5, 2 cm`；完整结果每隔 0.1 cm | `STATEMENT_FACT` | 官方题面问题1；端点计数保留 OQ-005/OQ-007 |
+| Required Time Range | 论文表格：100、300、600、900、1200、1500、1800 s；Q1完整交付：`1..1800 s` | `STATEMENT_FACT` + `ACCEPTED_TEAM_DELIVERABLE_DECISION` | 官方题面问题1；Q1端点由 D-Q1-OQ005 冻结 |
+| Required Spatial Range | 到药材中心距离 `0, 0.5, 1, 1.5, 2 cm`；完整结果每隔 0.1 cm | `STATEMENT_FACT` + `ACCEPTED_NUMERICAL_DECISION` | 官方题面问题1；Q1端点和节点值由 D-Q1-OQ007 冻结 |
 | Output Sampling | 时间 1 s；径向距离 0.1 cm | `STATEMENT_FACT` | 完整 `result1.xlsx` 要求 |
 | Paper Table | 表1温度、表2水分浓度，行时间为指定 7 个时刻，列距离为 5 个位置 | `STATEMENT_FACT` | 官方题面第1页及 PDF 表1、表2 |
 | Excel Output | `result1.xlsx`；Sheet 为 `温度`、`水分浓度`；A列时间，首行为到中心距离 | `STATEMENT_FACT` | 官方附录1/3；官方模板只读 |
@@ -125,8 +125,8 @@ u_\infty(t)=u_j+\frac{t-t_j}{t_{j+1}-t_j}(u_{j+1}-u_j),
 - 候选输出：`deliverables/candidate/result1.xlsx`，只有在实现批准后才可由模板副本生成。
 - Sheet：`温度`、`水分浓度`。
 - A列时间单位为 s；首行空间坐标单位为 cm。
-- 输出行列的端点和精确计数需遵循最终交付契约；当前由 OQ-001、OQ-005、OQ-007 约束。
-- 本轮禁止创建或写入 `result1.xlsx`。
+- Q1 输出行列的端点和精确计数已遵循冻结交付契约：`1..1800 s × 0.0..2.0 cm`；Q2-Q4 仍各自保留未决项。
+- 在 `EXP-Q1-FINAL-CONV` 通过前禁止创建或写入 `result1.xlsx`；当前 Gate 为 BLOCKED。
 
 ## 5. Known Parameters
 
@@ -222,14 +222,14 @@ C(r,0)=2.55\ \mathrm{kg/kg},
 
 ## 10. Candidate Assumptions
 
-正式候选假设全部登记在 `docs/ASSUMPTIONS.md`。当前状态均不是已接受结论：
+正式候选假设全部登记在 `docs/ASSUMPTIONS.md`。其中 OQ-006/OQ-008 已按人工授权接受为当前模型口径，但仍不是官方题面事实：
 
 1. `A-Q1-001`：Q1采用一维径向、轴向均匀和圆柱对称，属于 `HIGH IMPACT / NEEDS_REVIEW`。
 2. `A-Q1-002`：Q1内半径固定，不考虑水分流失造成的收缩；尺寸变化留给Q4，属于 `HIGH IMPACT / PROPOSED`。
 3. `A-Q1-003`：`ρ、cp、k、h、hm` 使用附录2常数，`D` 按 `C` 变化，属于 `HIGH IMPACT / PROPOSED`。
 4. `A-Q1-004`：边界输入在 60 s 采样点之间采用分段线性插值，不做平滑或拟合，属于 `MEDIUM IMPACT / PROPOSED`。
-5. `A-Q1-005`：表面采用 Robin 换热/传质边界，不直接令内部表面等于烘房输入，属于 `HIGH IMPACT / NEEDS_REVIEW`。
-6. `A-Q1-006`：Q1忽略潜热、热质交叉耦合和内部源项，因为题面未给出所需系数；属于 `HIGH IMPACT / NEEDS_REVIEW`。
+5. `A-Q1-005`：表面采用 Robin 换热/传质边界，不直接令内部表面等于烘房输入，属于 `HIGH IMPACT / ACCEPTED_MODELING_ASSUMPTION`（OQ-006）。
+6. `A-Q1-006`：Q1忽略潜热、热质交叉耦合和内部源项，因为题面未给出所需系数；属于 `HIGH IMPACT / ACCEPTED_MODELING_SIMPLIFICATION`（OQ-008）。
 7. `A-Q1-007`：中心对称边界与表面单向通量边界足以描述 Q1 目标时段，属于 `MEDIUM IMPACT / PROPOSED`。
 
 ## 11. Candidate Models
@@ -374,11 +374,11 @@ B0 保留的理由是它简单、可复现且不是故意错误的模型；它�
 
 | ID | Type | Q1 issue | Blocking Phase | Current handling |
 |---|---|---|---|---|
-| OQ-001 | `DELIVERABLE` | 完整结果的时间/空间端点计数与模板展开规则 | Deliverable Generation | 保持 `OPEN_QUESTION`，不在本轮硬编码 |
-| OQ-005 | `DELIVERABLE` | `result1.xlsx` 是否包含 `t=0` 行；模板示例从 1 开始但不应替代题面 | Deliverable Generation | 实现前人工确认 |
-| OQ-006 | `MODELING` | `hm` 与干基 `C` 的 Robin 边界物理解释及符号约定 | Model Implementation | 已记录为 `TEAM MODELING INTERPRETATION`；结论 `PARTIAL / MODELING ASSUMPTION`，用 M3 敏感性对照并保留人工复核 |
-| OQ-007 | `NUMERICAL` | `r=0` 与 `r=R` 输出值采用节点值、边界值还是插值值 | Numerical Implementation | 在网格定义和交付契约中明确 |
-| OQ-008 | `MODELING` | 是否需要加入潜热、热质交叉耦合或内部源项 | Model Implementation | 当前标为高影响假设，缺少题面参数，不自行扩展 |
+| OQ-001 | `DELIVERABLE` | 完整结果的时间/空间端点计数与模板展开规则 | Deliverable Generation | Q1 已由交付契约关闭；Q2 仍保持未决 |
+| OQ-005 | `DELIVERABLE` | `result1.xlsx` 是否包含 `t=0` 行；模板示例从 1 开始但不应替代题面 | Deliverable Generation | 已由 D-Q1-OQ005 解决：A列 `1..1800 s`，不写 `t=0` |
+| OQ-006 | `MODELING` | `hm` 与干基 `C` 的 Robin 边界物理解释及符号约定 | Model Implementation | 已由 D-Q1-OQ006 接受为建模假设；不乘额外密度，保留 M3 对照 |
+| OQ-007 | `NUMERICAL` | `r=0` 与 `r=R` 输出值采用节点值、边界值还是插值值 | Numerical Implementation | 已由 D-Q1-OQ007 解决：使用严格对齐网格的内部中心/表面节点 |
+| OQ-008 | `MODELING` | 是否需要加入潜热、热质交叉耦合或内部源项 | Model Implementation | 已由 D-Q1-OQ008 接受为建模简化；不额外引入需要新增未知参数的耦合项 |
 | OQ-002 | `INTERPRETATION` | Q2 的时间背景与 Q1 无关 | Q2 Model Implementation | 保持未决，不在 Q1 处理 |
 | OQ-003 | `DELIVERABLE` | Q3/Q4 结束时间行与 Q1 无关 | Q3/Q4 Deliverable Generation | 保持未决，不在 Q1 处理 |
 | OQ-004 | `MODELING` | Q4 动态半径与空间网格同步与 Q1 无关 | Q4 Model Implementation | 保持未决，不在 Q1 处理 |
@@ -408,6 +408,14 @@ Q1 Model Design Gate 只有在以下事项全部完成后才算完成：
 | Alternative 1 | M2 constant-D radial diffusion, `C_ref=2.55 kg/kg` | Implemented ablation/stability comparison |
 | Alternative 2 | M3 Dirichlet surface approximation | Registered for boundary sensitivity only |
 | Alternative 3 | M4 2D axisymmetric model | Not recommended before new boundary information and human review |
-| Recommended Candidate | M1 | `REQUIRES HUMAN REVIEW` for A-Q1-001/A-Q1-005/A-Q1-006 and OQ-006/OQ-008; EXP evidence does not replace approval |
+| Recommended Candidate | M1 | A-Q1-005/A-Q1-006 与 OQ-006/OQ-008 已按授权登记；最终模型冻结仍被 EXP-Q1-FINAL-CONV 数值门阻塞，EXP evidence does not replace final approval |
 
-**Gate result**：Q1 实现与内部数值验证已完成，等待人工授权进入 `Q1 RESULT & DELIVERABLE GATE`。Q2–Q4 不得启动；本文件不授权自动生成最终 `result1.xlsx`。
+**Gate result**：Q1 实现与内部数值验证通过，但最终输出级四位小数收敛检查由 `EXP-Q1-FINAL-CONV` 判定为 `BLOCKED`。未生成 candidate 或 final `result1.xlsx`；Q2–Q4 不得启动，等待人工审查数值整改方案。
+
+## 21. Q1 Final Numerical Accuracy Gate
+
+- 完整交付网格：`1800 × 21`，时间 `1..1800 s`，距离 `0.0..2.0 cm`。
+- 论文追踪网格：7 个时刻 `100,300,600,900,1200,1500,1800 s` × 5 个距离 `0,0.5,1,1.5,2 cm`。
+- Level A 同时记录原始值的最大绝对差和平均绝对差；Level B 比较 `ROUND_HALF_UP` 四位小数后的每个单元格。
+- 实际测试了空间 `N=80/160/320`（固定 `dt=0.25 s`）和时间 `dt=1/0.5/0.25 s`（固定 `N=320`）。最细比较仍未达到全网格和论文点全量稳定，故 Gate 状态为 `BLOCKED`。
+- `deliverables/candidate/result1.xlsx` 不存在；不得在当前状态生成。

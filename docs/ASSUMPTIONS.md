@@ -10,8 +10,8 @@
 | A-Q1-002 | Q1 内半径固定，不考虑收缩 | Q1 | HIGH IMPACT | 与几何变化敏感性边界比较 | PROPOSED |
 | A-Q1-003 | `ρ、cp、k、h、hm` 取附录2常数，`D` 按 `C` 变化 | Q1 | HIGH IMPACT | 常系数/变量系数对照 | PROPOSED |
 | A-Q1-004 | 附件1边界输入采用分段线性插值，不平滑、不外推 | Q1 | MEDIUM IMPACT | 与零阶保持比较 | PROPOSED |
-| A-Q1-005 | 表面采用 Robin 换热/传质边界 | Q1 | HIGH IMPACT | 与 Dirichlet 边界比较 | NEEDS_REVIEW |
-| A-Q1-006 | 暂不加入潜热、热质交叉耦合和内部源项 | Q1 | HIGH IMPACT | 依据可获得参数审查 | NEEDS_REVIEW |
+| A-Q1-005 | 表面采用 Robin 换热/传质边界 | Q1 | HIGH IMPACT | 与 Dirichlet 边界比较 | ACCEPTED_MODELING_ASSUMPTION（OQ-006） |
+| A-Q1-006 | 在题面给定参数体系下不额外加入潜热、热质交叉耦合和内部源项 | Q1 | HIGH IMPACT | EXP-007；若物理检验失败可重开 | ACCEPTED_MODELING_SIMPLIFICATION（OQ-008） |
 | A-Q1-007 | 中心对称边界与表面单向通量边界适用于 Q1 时段 | Q1 | MEDIUM IMPACT | 中心/表面通量检查 | PROPOSED |
 
 ## 假设记录模板
@@ -116,7 +116,7 @@
 
 验证或依据：官方附录2；OQ-006。
 
-状态：NEEDS_REVIEW；HIGH IMPACT
+状态：ACCEPTED_MODELING_ASSUMPTION；HIGH IMPACT；OQ-006 已由人工确认。该状态只确认当前 `hm` 与干基浓度 `C` 的建模口径，不宣称这是官方唯一解释。
 
 ## A-Q1-006 暂不加入潜热和热质交叉耦合
 
@@ -134,7 +134,7 @@
 
 验证或依据：官方题面与附录2参数范围；OQ-008。
 
-状态：NEEDS_REVIEW；HIGH IMPACT
+状态：ACCEPTED_MODELING_SIMPLIFICATION；HIGH IMPACT；OQ-008 已由人工确认。正确表述是“在题面给定参数体系下，本模型不额外引入需要新增未知参数的耦合项”，不表述为真实过程不存在这些效应。
 
 ## A-Q1-007 中心对称与表面单向通量
 

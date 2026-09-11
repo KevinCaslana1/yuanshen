@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "contract_status": "OPEN_QUESTION",
+  "contract_status": "Q1_CONTRACT_FROZEN_Q2_Q4_OPEN",
   "official_source_root": "A题",
   "candidate_root": "deliverables/candidate",
   "final_root": "deliverables/final",
@@ -17,32 +17,32 @@
         {
           "name": "温度",
           "time_unit": "s",
-          "time_sampling": {"status": "STATEMENT_FACT", "rule": "每隔1s至1800s"},
+          "time_sampling": {"status": "ACCEPTED_TEAM_DELIVERABLE_DECISION", "rule": "1..1800s，不写t=0行"},
           "space_unit": "cm",
           "space_sampling": {"status": "STATEMENT_FACT", "rule": "每隔0.1cm至2cm"},
           "value_unit": "°C",
           "decimal_precision": 4,
           "skeleton_shape": [5, 6],
-          "expected_final_shape": {"status": "OPEN_QUESTION", "known_rule": "端点是否包含及最终行列计数待确认"},
+          "expected_final_shape": {"status": "FROZEN_Q1_CONTRACT", "rows": 1801, "columns": 22, "known_rule": "表头1行 + 1800个时间数据行；A列时间 + 21个空间列"},
           "required_cells": ["完整时间-空间结果矩阵", "官方表头"],
           "forbidden_changes": ["写入A题官方模板", "改变Sheet名称", "写入未验证数值"],
-          "validation_status": "OPEN_QUESTION",
-          "open_questions": ["OQ-001"]
+          "validation_status": "Q1_CONTRACT_FROZEN_PENDING_ACCURACY",
+          "open_questions": []
         },
         {
           "name": "水分浓度",
           "time_unit": "s",
-          "time_sampling": {"status": "STATEMENT_FACT", "rule": "每隔1s至1800s"},
+          "time_sampling": {"status": "ACCEPTED_TEAM_DELIVERABLE_DECISION", "rule": "1..1800s，不写t=0行"},
           "space_unit": "cm",
           "space_sampling": {"status": "STATEMENT_FACT", "rule": "每隔0.1cm至2cm"},
           "value_unit": "kg/kg",
           "decimal_precision": 4,
           "skeleton_shape": [5, 6],
-          "expected_final_shape": {"status": "OPEN_QUESTION", "known_rule": "端点是否包含及最终行列计数待确认"},
+          "expected_final_shape": {"status": "FROZEN_Q1_CONTRACT", "rows": 1801, "columns": 22, "known_rule": "表头1行 + 1800个时间数据行；A列时间 + 21个空间列"},
           "required_cells": ["完整时间-空间结果矩阵", "官方表头"],
           "forbidden_changes": ["写入A题官方模板", "改变Sheet名称", "写入未验证数值"],
-          "validation_status": "OPEN_QUESTION",
-          "open_questions": ["OQ-001"]
+          "validation_status": "Q1_CONTRACT_FROZEN_PENDING_ACCURACY",
+          "open_questions": []
         }
       ]
     },

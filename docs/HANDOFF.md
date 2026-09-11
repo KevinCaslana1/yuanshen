@@ -4,11 +4,11 @@
 
 ## 当前做到哪里
 
-已完成 PRE-MODELING GATE、Q1 MODEL DESIGN GATE 和 Q1 IMPLEMENTATION & NUMERICAL VALIDATION GATE；Q1 内部实现与 EXP-001–EXP-007 已完成，等待人工授权进入 Result & Deliverable Gate。Q2/Q3/Q4 仍为 NOT STARTED。
+已完成 PRE-MODELING GATE、Q1 MODEL DESIGN GATE 和 Q1 IMPLEMENTATION & NUMERICAL VALIDATION GATE；已进入 Q1 FINAL NUMERICAL ACCURACY & DELIVERABLE GATE，但 EXP-Q1-FINAL-CONV 阻塞。Q2/Q3/Q4 仍为 NOT STARTED。
 
 ## 刚刚完成什么
 
-已冻结 Python/依赖、Deliverable Contract、Contract Validator、Workflow 测试和官方路径保护。Q1 已完成官方 PDF/附件1/result1 复核、变量单位表、候选模型、Baseline、假设、数值策略、实现、M1/M2/B0/M3 对照和 EXP-001–EXP-007 验证证据。
+已冻结 Python/依赖和 Q1 交付契约；OQ-005/OQ-006/OQ-007/OQ-008 已登记决策。完成 M1/M2/B0/M3 对照、EXP-001–EXP-007 和 EXP-Q1-FINAL-CONV；新增 Q1 candidate fail-closed 校验器。由于最终精度门阻塞，未生成任何结果工作簿。
 
 ## 当前最好结果
 
@@ -24,7 +24,7 @@ M1 内部验证通过；EXP-002 的 M1 体积加权平均结果为 `35.1690 °C`
 
 ## 下一步
 
-等待人工确认 OQ-005/OQ-006/OQ-007/OQ-008 以及是否允许生成 candidate `result1.xlsx`，然后进入 Q1 RESULT & DELIVERABLE GATE。Q2/Q3/Q4 不得自动启动。
+等待人工审查 EXP-Q1-FINAL-CONV 并决定数值整改方案；整改未获批准前不得生成 candidate `result1.xlsx`、进入 freeze run 或启动 Q2/Q3/Q4。
 
 ## 重点阅读文件
 
@@ -32,4 +32,4 @@ M1 内部验证通过；EXP-002 的 M1 体积加权平均结果为 `35.1690 °C`
 
 ## 风险与注意事项
 
-官方资产位于 `A题/`，必须保持只读。Q1 推荐候选 M1 仍为 PENDING_CONFIRMATION；B0 必须保留为 Baseline。Q4 动态半径问题仍只阻塞 Q4 MODEL IMPLEMENTATION。仓库为 Public，CI 未作为 Gate 依赖；正式模型代码和实验结果不得推送到远端。
+官方资产位于 `A题/`，必须保持只读。M1 是当前冻结验证对象但未通过精度门；B0 必须保留为 Baseline。Q4 动态半径问题仍只阻塞 Q4 MODEL IMPLEMENTATION。仓库为 Public，CI 未作为 Gate 依赖；正式模型代码和实验结果不得推送到远端。

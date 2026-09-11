@@ -22,6 +22,8 @@
 | 官方模板结构检查 | `scripts/validate_templates.py` | 已建立；只读 |
 | 题目阅读 | `A题/A题.pdf` | 官方人工阅读材料 |
 | 交付契约检查 | `scripts/validate_deliverable_contract.py` | 本阶段建立；只读 |
+| Q1 最终输出精度审计 | `scripts/run_q1_final_accuracy.py` | 已建立；写入独立 EXP-Q1-FINAL-CONV 证据，不写工作簿 |
+| Q1 candidate 校验 | `scripts/validate_q1_candidate.py` | 已建立；只读、候选缺失时 fail-closed |
 | 自动测试 | `pytest -q` | 本阶段建立；不包含模型测试 |
 
 ## Setup and Validation Commands
@@ -32,6 +34,8 @@
 .\.venv\Scripts\python.exe scripts\validate_inputs.py
 .\.venv\Scripts\python.exe scripts\validate_templates.py
 .\.venv\Scripts\python.exe scripts\validate_deliverable_contract.py
+.\.venv\Scripts\python.exe scripts\run_q1_final_accuracy.py
+.\.venv\Scripts\python.exe scripts\validate_q1_candidate.py
 .\.venv\Scripts\python.exe -m pytest -q
 ```
 
@@ -56,4 +60,4 @@
 4. 运行结构、数值和格式验证。
 5. 通过人工确认后复制到 `deliverables/final/`。
 
-当前阶段只建立上述 Workflow，不生成 candidate 结果文件。
+当前 Q1 精度门为 `BLOCKED`，因此不生成 candidate 结果文件；若未来通过精度门，仍必须先运行 candidate 校验和格式/结构检查，并经人工确认后才能进入 final。

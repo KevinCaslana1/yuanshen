@@ -8,8 +8,13 @@
 |---|---|---|---|---|---|
 | D-Q1-001 | 2026-09-10 | Q1 | M1（一维径向非线性扩散 + Robin 边界）已完成实现与内部验证；B0 作为 Baseline，M2/M3 作为对照；最终主模型仍待 Result Gate 确认 | PENDING_CONFIRMATION | `docs/Q1_PLAN.md`、`docs/EXPERIMENTS.md`、EXP-001–EXP-007 |
 | D-Q1-NUMGRID | 2026-09-11 | Q1 | 主计算网格采用 `N=80, Δr=0.25 mm`；官方 `0.1 cm` 仅为输出网格；敏感性采用 `N=40/80/160` | ACTIVE | `docs/Q1_PLAN.md`、TEAM_REFERENCE |
-| D-Q1-HM | 2026-09-11 | Q1 | 在实现候选中按团队建模口径令 `hm` 直接作用于干基浓度 `C`，不乘空气密度；保留为部分建模假设并做 M3 对照 | PENDING_CONFIRMATION | `docs/Q1_PLAN.md`、OQ-006 |
+| D-Q1-HM | 2026-09-11 | Q1 | 在实现候选中按团队建模口径令 `hm` 直接作用于干基浓度 `C`，不乘空气密度；保留为建模假设并做 M3 对照 | ACCEPTED_MODELING_ASSUMPTION | `docs/Q1_PLAN.md`、OQ-006 |
 | D-Q1-M2 | 2026-09-11 | Q1 | M2 对照模型固定 `D=D(C_ref)`，默认 `C_ref=2.55 kg/kg` 初始干基含水率；不替代 M1 | ACTIVE | `src/q1/solver.py`、EXP-002 |
+| D-Q1-OQ005 | 2026-09-11 | Q1 | `result1.xlsx` A列采用 `1,2,...,1800 s`，不写 `t=0` 行；这是团队交付约定，不是官方事实 | ACCEPTED_TEAM_DELIVERABLE_DECISION | 本轮人工授权、`docs/DELIVERABLE_SPEC.md` |
+| D-Q1-OQ006 | 2026-09-11 | Q1 | `hm` 直接作用于干基浓度 `C`，不乘空气密度、材料密度或其他未给因子 | ACCEPTED_MODELING_ASSUMPTION | 本轮人工授权、EXP-005、EXP-007 |
+| D-Q1-OQ007 | 2026-09-11 | Q1 | 中心与表面采用内部 solver 节点值；最终网格必须严格对齐 `0.0,0.1,...,2.0 cm` | ACCEPTED_NUMERICAL_DECISION | 本轮人工授权、`D-Q1-NUMGRID` |
+| D-Q1-OQ008 | 2026-09-11 | Q1 | 不加入潜热、内部蒸发源项、Soret/Dufour 或其他需要新增未知参数的耦合项 | ACCEPTED_MODELING_SIMPLIFICATION | 本轮人工授权、EXP-007 |
+| D-Q1-FREEZE-CANDIDATE | 2026-09-11 | Q1 | 冻结验证对象为 M1；B0/M2/M3 只作验证与敏感性证据；最终配置须由四位小数稳定性决定 | BLOCKED_BY_NUMERICAL_ACCURACY | 本轮人工授权、`experiments/EXP-Q1-FINAL-CONV/` |
 
 ## 决策记录模板
 
@@ -81,11 +86,37 @@ M1 能表达题面要求的径向输出，并使用附录2给出的 `h、hm` 与
 
 ### 重新评估条件
 
-smoke test、时间/空间敏感性和 Baseline/M2/M3 对比已完成；仍需人工确认 OQ-005/OQ-006/OQ-007/OQ-008 后，才可决定是否接受 M1 为最终主模型并进入结果交付。
+smoke test、时间/空间敏感性和 Baseline/M2/M3 对比已完成；OQ-005/OQ-006/OQ-007/OQ-008 已登记解决，但 M1 是否成为最终主模型仍取决于最终数值精度门和人工冻结批准。
 
 ### 状态
 
 PENDING_CONFIRMATION
+
+## D-Q1-FREEZE-CANDIDATE Q1 结果交付冻结对象
+
+日期：2026-09-11
+
+问题：Q1
+
+### 背景
+
+人工授权要求在生成 `result1.xlsx` 前，对完整交付网格和论文展示点同时执行空间、时间及四位小数输出级收敛检查。
+
+### 最终决定
+
+只验证 M1 作为冻结候选；B0、M2、M3 仅作为 Baseline、消融和敏感性证据。候选配置必须同时通过完整 `1..1800 s × 0.0..2.0 cm` 网格和论文 7×5 点的四位小数稳定性；未通过时不得生成 candidate 或 final 文件。
+
+### 结果
+
+`EXP-Q1-FINAL-CONV` 已实际运行 `N=80/160/320`、`dt=1/0.5/0.25 s`。N160→N320 的完整网格仍有温度 `1398/37800`、水分 `4468/37800` 个四位小数差异；dt1→dt0.25 的完整网格仍有温度 `36498/37800`、水分 `6926/37800` 个差异。因此本冻结候选被数值准确性门阻塞，未生成 `result1.xlsx`。
+
+### 重新评估条件
+
+由人工审查决定后续数值精度整改方案；不得仅为通过门槛而放宽四舍五入稳定性标准或修改已接受的交付契约。
+
+### 状态
+
+BLOCKED_BY_NUMERICAL_ACCURACY
 
 ## D-Q1-M2 常扩散系数对照口径
 
@@ -193,4 +224,4 @@ EXP-005 的 Robin/Dirichlet 对照、EXP-007 的通量与守恒检查若显示�
 
 ### 状态
 
-PENDING_CONFIRMATION
+ACCEPTED_MODELING_ASSUMPTION

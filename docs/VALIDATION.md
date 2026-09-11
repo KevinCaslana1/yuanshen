@@ -23,7 +23,7 @@
 | template skeleton validation | `scripts/validate_templates.py` | PASS |
 | deliverable contract validation | `scripts/validate_deliverable_contract.py` | PASS |
 | environment reproducibility | `.venv`, requirements files, Python 3.12.14 | PASS |
-| tests | `pytest -q` | PASS: 23 passed |
+| tests | `pytest -q` | PASS: 24 passed |
 | Q1-Q4 registration | `docs/STATE.md`, `config/deliverables.json` | PASS |
 | candidate empty | `deliverables/candidate/` | PASS |
 | final empty | `deliverables/final/` | PASS |
@@ -44,7 +44,7 @@ Remaining Open Questions are classified by blocking phase in `docs/PROBLEM_SPEC.
 | Q1 input data audit | `docs/Q1_PLAN.md`; 241 rows, 60 s interval, no missing/duplicate/non-finite values | PASS |
 | result1 template audit | `scripts/validate_templates.py`; two sheets, 5×6 skeleton, blank data area | PASS |
 | variable and unit registration | `docs/Q1_PLAN.md` | PASS |
-| candidate assumptions | `docs/ASSUMPTIONS.md`; high-impact items marked `NEEDS_REVIEW` | PASS |
+| candidate assumptions | `docs/ASSUMPTIONS.md`; remaining unaccepted high-impact items marked `NEEDS_REVIEW`, OQ-006/OQ-008 separately accepted | PASS |
 | candidate models and Baseline | `docs/Q1_PLAN.md`, `docs/DECISIONS.md` | PASS |
 | numerical strategy design | `docs/Q1_PLAN.md`; no solver run | PASS |
 | validation plan | `docs/Q1_PLAN.md` | PASS |
@@ -62,7 +62,7 @@ Remaining Open Questions are classified by blocking phase in `docs/PROBLEM_SPEC.
 |---|---|---|
 | implementation scope | `src/q1/` contains M1 nonlinear-D, M2 constant-D, and M3 boundary comparison; `src/q1/baseline.py` contains B0 | PASS |
 | reusable numerical kernel | `src/common/numerics.py`; deterministic Thomas solver and radial grid | PASS |
-| implementation tests | `pytest -q` | PASS: 23 passed |
+| implementation tests | `pytest -q` | PASS: 24 passed |
 | EXP-001 smoke | `experiments/EXP-001/metrics.json` | PASS |
 | EXP-002 B0/M1/M2 comparison | `experiments/EXP-002/metrics.json` | PASS; comparison recorded, no model freeze |
 | EXP-003 time sensitivity | `experiments/EXP-003/metrics.json` | PASS; differences decrease under refinement |
@@ -74,7 +74,23 @@ Remaining Open Questions are classified by blocking phase in `docs/PROBLEM_SPEC.
 | final result isolation | `deliverables/candidate/`, `deliverables/final/` | PASS; no `result1.xlsx` generated |
 | Q2/Q3/Q4 boundary | `docs/STATE.md` | PASS; all remain `NOT STARTED` |
 
-`Q1 IMPLEMENTATION & NUMERICAL VALIDATION GATE = PASS`；当前等待人工授权进入 `Q1 RESULT & DELIVERABLE GATE`。该 Gate 不冻结最终主模型，不替代 OQ-005/OQ-006/OQ-007/OQ-008 的人工决定。
+`Q1 IMPLEMENTATION & NUMERICAL VALIDATION GATE = PASS`；OQ-005/OQ-006/OQ-007/OQ-008 已分别登记为交付决策、建模假设、数值决策和建模简化。最终结果交付仍须通过下方 `Q1 FINAL NUMERICAL ACCURACY & DELIVERABLE GATE`。
+
+## Q1 FINAL NUMERICAL ACCURACY & DELIVERABLE GATE
+
+| Gate Item | Evidence | Status |
+|---|---|---|
+| OQ-005/OQ-006/OQ-007/OQ-008 resolution | `docs/DECISIONS.md`、`docs/PROBLEM_SPEC.md` | PASS |
+| Q1 output contract freeze | `config/deliverables.json`、`docs/DELIVERABLE_SPEC.md` | PASS（Q1 contract frozen; Q2–Q4 remain open） |
+| Full output-grid convergence | `experiments/EXP-Q1-FINAL-CONV/metrics.json` | BLOCKED；N160→N320 后温度 1398/37800、水分 4468/37800 个四位小数差异 |
+| Paper-point convergence | `experiments/EXP-Q1-FINAL-CONV/metrics.json` | BLOCKED；N160→N320 温度 1/35、水分 4/35；dt1→dt0.25 温度 33/35、水分 7/35 |
+| Time-step convergence at selected spatial grid | `experiments/EXP-Q1-FINAL-CONV/metrics.json` | BLOCKED；dt1→dt0.25 完整网格温度 36498/37800、水分 6926/37800 |
+| Candidate generation | `deliverables/candidate/result1.xlsx` | NOT RUN；按阻塞规则不得生成 |
+| Freeze rerun | `Q1_FREEZE_RUN` | NOT RUN；精度门未通过，不得进入双跑确认 |
+| Candidate workbook validation | `scripts/validate_q1_candidate.py` | READY；候选不存在时 fail-closed |
+| Human audit package | `docs/Q1_RESULT_AUDIT.md` | READY；等待数值整改/人工审查 |
+
+`Q1 FINAL NUMERICAL ACCURACY & DELIVERABLE GATE = BLOCKED`。不得生成 candidate 或 final `result1.xlsx`，不得启动 Q2。
 
 ## 通用检查
 

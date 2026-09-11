@@ -9,7 +9,7 @@
 - Final Root: `deliverables/final`
 - Shape Policy: `TEMPLATE_SKELETON_IS_NOT_FINAL_OUTPUT_DIMENSION`
 - Decimal Precision: `4`
-- Contract Status: `OPEN_QUESTION`
+- Contract Status: `Q1_CONTRACT_FROZEN_Q2_Q4_OPEN`
 - Official templates are read-only. Candidate and final files must be separate copies.
 
 ## result1.xlsx
@@ -20,19 +20,19 @@
 - Sheet Name: `温度`, `水分浓度`
 - Time Header: A列（时间）
 - Time Unit: `s`
-- Time Sampling Rule: `STATEMENT_FACT`，每隔 `1 s` 至 `1800 s`
+- Time Sampling Rule: `ACCEPTED_TEAM_DELIVERABLE_DECISION`，A列为 `1,2,...,1800 s`，不写 `t=0` 行；不是官方事实
 - Spatial Header: 第1行（到药材中心的距离）
 - Spatial Unit: `cm`
 - Spatial Sampling Rule: `STATEMENT_FACT`，每隔 `0.1 cm`，题面范围至 `2 cm`
 - Value Unit: `温度=°C`；`水分浓度=kg/kg`
 - Decimal Precision: `4`
 - Skeleton Shape: `[5, 6]` per sheet，标记为 `TEMPLATE_SKELETON`
-- Expected Final Shape: `OPEN_QUESTION`；端点是否包含及最终行列计数待确认
+- Expected Final Shape: `FROZEN_Q1_CONTRACT`，`1801行 × 22列`（表头1行 + 1800个时间数据行；A列时间 + 21个空间列）
 - Expansion Rule: 按官方时间和空间采样规则展开模板，不把骨架尺寸当作最终尺寸
 - Required Cells: 完整时间-空间结果矩阵及官方要求的表头
 - Forbidden Changes: 修改官方模板；改变 Sheet 名称；覆盖 `A题/`；写入未验证的数值
-- Validation Status: `OPEN_QUESTION`
-- Open Questions: `OQ-001`
+- Validation Status: `Q1_CONTRACT_FROZEN_PENDING_ACCURACY`
+- Open Questions: 无；候选文件仍须通过 Final Numerical Accuracy Gate
 
 ## result2.xlsx
 

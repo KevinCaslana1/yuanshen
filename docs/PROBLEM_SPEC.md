@@ -110,7 +110,7 @@
 | OQ-002 | INTERPRETATION | Q2“3小时展示”与“烘干一般2-3天”的关系 | MODEL IMPLEMENTATION | 人工确认官方要求、背景描述和团队解释的边界 |
 | OQ-003 | DELIVERABLE | Q3/Q4 烘干结束时间行的写入格式 | DELIVERABLE GENERATION | 人工确认后登记到 Deliverable Contract |
 | OQ-004 | MODELING | Q4 半径变化与空间网格的同步方式 | MODEL IMPLEMENTATION | 建模负责人在进入 Q4 实现时处理；不阻塞当前 PRE-MODELING WORKFLOW |
-| OQ-005 | DELIVERABLE | Q1 `result1.xlsx` 完整结果是否包含 `t=0` 行；模板示例从1开始但不应替代题面要求 | DELIVERABLE GENERATION | Q1 实现前人工确认；不在设计阶段硬编码最终行数 |
-| OQ-006 | MODELING | Q1 对流传质系数 `hm` 与干基水分浓度 `C` 的 Robin 边界物理解释及符号约定 | RESULT GATE | 当前实现按团队口径直接作用于 `C`，EXP-005/007 已完成数值审查；仍需人工确认 |
-| OQ-007 | NUMERICAL | Q1 `r=0` 与 `r=R` 的完整输出值采用节点值、边界值还是插值值 | RESULT GATE | 内部网格节点值已实现并可复现；最终交付端点规则仍需人工确认 |
-| OQ-008 | MODELING | Q1 是否需要潜热、热质交叉耦合或内部源项 | RESULT GATE | 当前候选不自行扩展，EXP-007 仅验证简化方程；需人工确认高影响假设 |
+| OQ-005 | DELIVERABLE | Q1 `result1.xlsx` 完整结果是否包含 `t=0` 行；模板示例从1开始但不应替代题面要求 | RESOLVED BY TEAM DECISION | A列采用 `1..1800 s`，不写 `t=0`；登记为 `D-Q1-OQ005`，不是官方事实 |
+| OQ-006 | MODELING | Q1 对流传质系数 `hm` 与干基水分浓度 `C` 的 Robin 边界物理解释及符号约定 | RESOLVED BY MODELING ASSUMPTION | 直接作用于 `C`，不乘额外密度；登记为 `D-Q1-OQ006`，保留 M3 对照 |
+| OQ-007 | NUMERICAL | Q1 `r=0` 与 `r=R` 的完整输出值采用节点值、边界值还是插值值 | RESOLVED BY NUMERICAL DECISION | 使用严格对齐网格上的内部中心/表面节点；登记为 `D-Q1-OQ007` |
+| OQ-008 | MODELING | Q1 是否需要潜热、热质交叉耦合或内部源项 | RESOLVED BY MODELING SIMPLIFICATION | 不增加需要新参数的耦合项；登记为 `D-Q1-OQ008`，不得表述为真实过程不存在这些效应 |

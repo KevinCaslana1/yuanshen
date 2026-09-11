@@ -32,7 +32,8 @@
 | T-023 | P0 | Q1 | T-022 | DONE | `docs/Q1_PLAN.md`, `docs/DECISIONS.md` | Q1 Model Design Review 完成；实现候选仍等待 Result Gate 冻结 | 本轮 |
 | T-024 | P0 | Q1 | T-023 | DONE | `src/q1/`, `src/common/numerics.py`, `tests/test_q1_numerics.py` | M1、M2、B0、M3 可重复运行；中心、Robin、通量、单位、路径保护和确定性测试通过 | 本轮 |
 | T-025 | P0 | Q1 | T-024 | DONE | `docs/VALIDATION.md`, `experiments/EXP-001/`–`EXP-007/` | 烟雾、时间/空间敏感性、边界/插值敏感性、Baseline 和守恒/范围检查均有证据 | 本轮 |
-| T-026 | P0 | Q1 | T-025 | TODO | 人工确认与 `Q1 RESULT & DELIVERABLE GATE` | OQ-005/006/007/008 得到明确决策后，才允许 candidate 结果生成 | 等待人工 |
+| T-026 | P0 | Q1 | T-025 | BLOCKED | `Q1 FINAL NUMERICAL ACCURACY & DELIVERABLE GATE` | OQ-005/006/007/008 已解决，但完整输出网格四位小数稳定性未通过；不得生成 candidate | 等待人工数值审查 |
+| T-027 | P0 | Q1 | T-026 | TODO | 数值精度整改与重跑 | 由人工确认整改方案后，登记新 EXP 编号并使完整网格及论文点全量四位小数稳定 | 等待人工方案 |
 
 ## 任务记录模板
 
