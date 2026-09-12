@@ -1,0 +1,1635 @@
+{
+  "schema_version": "TABLE_1_6_TRACE_V1",
+  "status": "PASS",
+  "source_policy": "frozen final workbooks and existing full-precision Q3/Q4 production matrices; read-only source access",
+  "word_output": "deliverables/final/paper/tables_word",
+  "merged_word": "deliverables/final/paper/论文表1-表6_可直接复制.docx",
+  "tables": [
+    {
+      "table": "Table1",
+      "title": "表 1  30分钟内药材的温度",
+      "source": {
+        "path": "deliverables/final/result1.xlsx",
+        "sha256": "06b67b1f688d84a701ac4d2f4b0f47a1624069877df6724faf071a48af177b5c",
+        "sheet": "温度"
+      },
+      "radius_labels": [
+        "r_0.0_cm",
+        "r_0.5_cm",
+        "r_1.0_cm",
+        "r_1.5_cm",
+        "r_2.0_cm"
+      ],
+      "row_count": 7,
+      "valid_cell_count": 35,
+      "expected_cell_count": 35,
+      "trace": "35/35",
+      "rounding": "Decimal(str(value)).quantize(0.0001, ROUND_HALF_UP)",
+      "rows": [
+        {
+          "time_label": "100",
+          "time_source": 100.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "28.0001",
+              "rounded_value": "28.0001",
+              "word_value": "28.0001"
+            },
+            "r_0.5_cm": {
+              "raw_value": "28.0003",
+              "rounded_value": "28.0003",
+              "word_value": "28.0003"
+            },
+            "r_1.0_cm": {
+              "raw_value": "28.004",
+              "rounded_value": "28.0040",
+              "word_value": "28.0040"
+            },
+            "r_1.5_cm": {
+              "raw_value": "28.0327",
+              "rounded_value": "28.0327",
+              "word_value": "28.0327"
+            },
+            "r_2.0_cm": {
+              "raw_value": "28.1801",
+              "rounded_value": "28.1801",
+              "word_value": "28.1801"
+            }
+          }
+        },
+        {
+          "time_label": "300",
+          "time_source": 300.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "28.0408",
+              "rounded_value": "28.0408",
+              "word_value": "28.0408"
+            },
+            "r_0.5_cm": {
+              "raw_value": "28.0635",
+              "rounded_value": "28.0635",
+              "word_value": "28.0635"
+            },
+            "r_1.0_cm": {
+              "raw_value": "28.1514",
+              "rounded_value": "28.1514",
+              "word_value": "28.1514"
+            },
+            "r_1.5_cm": {
+              "raw_value": "28.3681",
+              "rounded_value": "28.3681",
+              "word_value": "28.3681"
+            },
+            "r_2.0_cm": {
+              "raw_value": "28.8488",
+              "rounded_value": "28.8488",
+              "word_value": "28.8488"
+            }
+          }
+        },
+        {
+          "time_label": "600",
+          "time_source": 600.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "28.4533",
+              "rounded_value": "28.4533",
+              "word_value": "28.4533"
+            },
+            "r_0.5_cm": {
+              "raw_value": "28.536",
+              "rounded_value": "28.5360",
+              "word_value": "28.5360"
+            },
+            "r_1.0_cm": {
+              "raw_value": "28.8039",
+              "rounded_value": "28.8039",
+              "word_value": "28.8039"
+            },
+            "r_1.5_cm": {
+              "raw_value": "29.3159",
+              "rounded_value": "29.3159",
+              "word_value": "29.3159"
+            },
+            "r_2.0_cm": {
+              "raw_value": "30.1652",
+              "rounded_value": "30.1652",
+              "word_value": "30.1652"
+            }
+          }
+        },
+        {
+          "time_label": "900",
+          "time_source": 900.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "29.3243",
+              "rounded_value": "29.3243",
+              "word_value": "29.3243"
+            },
+            "r_0.5_cm": {
+              "raw_value": "29.4582",
+              "rounded_value": "29.4582",
+              "word_value": "29.4582"
+            },
+            "r_1.0_cm": {
+              "raw_value": "29.8755",
+              "rounded_value": "29.8755",
+              "word_value": "29.8755"
+            },
+            "r_1.5_cm": {
+              "raw_value": "30.6161",
+              "rounded_value": "30.6161",
+              "word_value": "30.6161"
+            },
+            "r_2.0_cm": {
+              "raw_value": "31.7304",
+              "rounded_value": "31.7304",
+              "word_value": "31.7304"
+            }
+          }
+        },
+        {
+          "time_label": "1200",
+          "time_source": 1200.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "30.5427",
+              "rounded_value": "30.5427",
+              "word_value": "30.5427"
+            },
+            "r_0.5_cm": {
+              "raw_value": "30.7098",
+              "rounded_value": "30.7098",
+              "word_value": "30.7098"
+            },
+            "r_1.0_cm": {
+              "raw_value": "31.2223",
+              "rounded_value": "31.2223",
+              "word_value": "31.2223"
+            },
+            "r_1.5_cm": {
+              "raw_value": "32.1126",
+              "rounded_value": "32.1126",
+              "word_value": "32.1126"
+            },
+            "r_2.0_cm": {
+              "raw_value": "33.4276",
+              "rounded_value": "33.4276",
+              "word_value": "33.4276"
+            }
+          }
+        },
+        {
+          "time_label": "1500",
+          "time_source": 1500.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "31.9957",
+              "rounded_value": "31.9957",
+              "word_value": "31.9957"
+            },
+            "r_0.5_cm": {
+              "raw_value": "32.1867",
+              "rounded_value": "32.1867",
+              "word_value": "32.1867"
+            },
+            "r_1.0_cm": {
+              "raw_value": "32.766",
+              "rounded_value": "32.7660",
+              "word_value": "32.7660"
+            },
+            "r_1.5_cm": {
+              "raw_value": "33.7463",
+              "rounded_value": "33.7463",
+              "word_value": "33.7463"
+            },
+            "r_2.0_cm": {
+              "raw_value": "35.1203",
+              "rounded_value": "35.1203",
+              "word_value": "35.1203"
+            }
+          }
+        },
+        {
+          "time_label": "1800",
+          "time_source": 1800.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "33.5753",
+              "rounded_value": "33.5753",
+              "word_value": "33.5753"
+            },
+            "r_0.5_cm": {
+              "raw_value": "33.772",
+              "rounded_value": "33.7720",
+              "word_value": "33.7720"
+            },
+            "r_1.0_cm": {
+              "raw_value": "34.3642",
+              "rounded_value": "34.3642",
+              "word_value": "34.3642"
+            },
+            "r_1.5_cm": {
+              "raw_value": "35.3621",
+              "rounded_value": "35.3621",
+              "word_value": "35.3621"
+            },
+            "r_2.0_cm": {
+              "raw_value": "36.7856",
+              "rounded_value": "36.7856",
+              "word_value": "36.7856"
+            }
+          }
+        }
+      ],
+      "word_native_table": true,
+      "status": "PASS"
+    },
+    {
+      "table": "Table2",
+      "title": "表 2  30分钟内药材的水分浓度",
+      "source": {
+        "path": "deliverables/final/result1.xlsx",
+        "sha256": "06b67b1f688d84a701ac4d2f4b0f47a1624069877df6724faf071a48af177b5c",
+        "sheet": "水分浓度"
+      },
+      "radius_labels": [
+        "r_0.0_cm",
+        "r_0.5_cm",
+        "r_1.0_cm",
+        "r_1.5_cm",
+        "r_2.0_cm"
+      ],
+      "row_count": 7,
+      "valid_cell_count": 35,
+      "expected_cell_count": 35,
+      "trace": "35/35",
+      "rounding": "Decimal(str(value)).quantize(0.0001, ROUND_HALF_UP)",
+      "rows": [
+        {
+          "time_label": "100",
+          "time_source": 100.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "2.55",
+              "rounded_value": "2.5500",
+              "word_value": "2.5500"
+            },
+            "r_0.5_cm": {
+              "raw_value": "2.55",
+              "rounded_value": "2.5500",
+              "word_value": "2.5500"
+            },
+            "r_1.0_cm": {
+              "raw_value": "2.55",
+              "rounded_value": "2.5500",
+              "word_value": "2.5500"
+            },
+            "r_1.5_cm": {
+              "raw_value": "2.55",
+              "rounded_value": "2.5500",
+              "word_value": "2.5500"
+            },
+            "r_2.0_cm": {
+              "raw_value": "2.2471",
+              "rounded_value": "2.2471",
+              "word_value": "2.2471"
+            }
+          }
+        },
+        {
+          "time_label": "300",
+          "time_source": 300.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "2.55",
+              "rounded_value": "2.5500",
+              "word_value": "2.5500"
+            },
+            "r_0.5_cm": {
+              "raw_value": "2.55",
+              "rounded_value": "2.5500",
+              "word_value": "2.5500"
+            },
+            "r_1.0_cm": {
+              "raw_value": "2.55",
+              "rounded_value": "2.5500",
+              "word_value": "2.5500"
+            },
+            "r_1.5_cm": {
+              "raw_value": "2.5492",
+              "rounded_value": "2.5492",
+              "word_value": "2.5492"
+            },
+            "r_2.0_cm": {
+              "raw_value": "2.0509",
+              "rounded_value": "2.0509",
+              "word_value": "2.0509"
+            }
+          }
+        },
+        {
+          "time_label": "600",
+          "time_source": 600.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "2.55",
+              "rounded_value": "2.5500",
+              "word_value": "2.5500"
+            },
+            "r_0.5_cm": {
+              "raw_value": "2.55",
+              "rounded_value": "2.5500",
+              "word_value": "2.5500"
+            },
+            "r_1.0_cm": {
+              "raw_value": "2.55",
+              "rounded_value": "2.5500",
+              "word_value": "2.5500"
+            },
+            "r_1.5_cm": {
+              "raw_value": "2.5353",
+              "rounded_value": "2.5353",
+              "word_value": "2.5353"
+            },
+            "r_2.0_cm": {
+              "raw_value": "1.877",
+              "rounded_value": "1.8770",
+              "word_value": "1.8770"
+            }
+          }
+        },
+        {
+          "time_label": "900",
+          "time_source": 900.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "2.55",
+              "rounded_value": "2.5500",
+              "word_value": "2.5500"
+            },
+            "r_0.5_cm": {
+              "raw_value": "2.55",
+              "rounded_value": "2.5500",
+              "word_value": "2.5500"
+            },
+            "r_1.0_cm": {
+              "raw_value": "2.5497",
+              "rounded_value": "2.5497",
+              "word_value": "2.5497"
+            },
+            "r_1.5_cm": {
+              "raw_value": "2.5045",
+              "rounded_value": "2.5045",
+              "word_value": "2.5045"
+            },
+            "r_2.0_cm": {
+              "raw_value": "1.7547",
+              "rounded_value": "1.7547",
+              "word_value": "1.7547"
+            }
+          }
+        },
+        {
+          "time_label": "1200",
+          "time_source": 1200.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "2.55",
+              "rounded_value": "2.5500",
+              "word_value": "2.5500"
+            },
+            "r_0.5_cm": {
+              "raw_value": "2.55",
+              "rounded_value": "2.5500",
+              "word_value": "2.5500"
+            },
+            "r_1.0_cm": {
+              "raw_value": "2.5482",
+              "rounded_value": "2.5482",
+              "word_value": "2.5482"
+            },
+            "r_1.5_cm": {
+              "raw_value": "2.4646",
+              "rounded_value": "2.4646",
+              "word_value": "2.4646"
+            },
+            "r_2.0_cm": {
+              "raw_value": "1.6586",
+              "rounded_value": "1.6586",
+              "word_value": "1.6586"
+            }
+          }
+        },
+        {
+          "time_label": "1500",
+          "time_source": 1500.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "2.55",
+              "rounded_value": "2.5500",
+              "word_value": "2.5500"
+            },
+            "r_0.5_cm": {
+              "raw_value": "2.5499",
+              "rounded_value": "2.5499",
+              "word_value": "2.5499"
+            },
+            "r_1.0_cm": {
+              "raw_value": "2.5445",
+              "rounded_value": "2.5445",
+              "word_value": "2.5445"
+            },
+            "r_1.5_cm": {
+              "raw_value": "2.4206",
+              "rounded_value": "2.4206",
+              "word_value": "2.4206"
+            },
+            "r_2.0_cm": {
+              "raw_value": "1.5787",
+              "rounded_value": "1.5787",
+              "word_value": "1.5787"
+            }
+          }
+        },
+        {
+          "time_label": "1800",
+          "time_source": 1800.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "2.55",
+              "rounded_value": "2.5500",
+              "word_value": "2.5500"
+            },
+            "r_0.5_cm": {
+              "raw_value": "2.5497",
+              "rounded_value": "2.5497",
+              "word_value": "2.5497"
+            },
+            "r_1.0_cm": {
+              "raw_value": "2.5383",
+              "rounded_value": "2.5383",
+              "word_value": "2.5383"
+            },
+            "r_1.5_cm": {
+              "raw_value": "2.3755",
+              "rounded_value": "2.3755",
+              "word_value": "2.3755"
+            },
+            "r_2.0_cm": {
+              "raw_value": "1.5102",
+              "rounded_value": "1.5102",
+              "word_value": "1.5102"
+            }
+          }
+        }
+      ],
+      "word_native_table": true,
+      "status": "PASS"
+    },
+    {
+      "table": "Table3",
+      "title": "表 3  3小时内药材的温度",
+      "source": {
+        "path": "deliverables/final/result2.xlsx",
+        "sha256": "84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da",
+        "sheet": "温度"
+      },
+      "radius_labels": [
+        "r_0.0_cm",
+        "r_0.5_cm",
+        "r_1.0_cm",
+        "r_1.5_cm",
+        "r_2.0_cm"
+      ],
+      "row_count": 6,
+      "valid_cell_count": 30,
+      "expected_cell_count": 30,
+      "trace": "30/30",
+      "rounding": "Decimal(str(value)).quantize(0.0001, ROUND_HALF_UP)",
+      "rows": [
+        {
+          "time_label": "0.5",
+          "time_source": 1800.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "32.1892",
+              "rounded_value": "32.1892",
+              "word_value": "32.1892"
+            },
+            "r_0.5_cm": {
+              "raw_value": "32.3821",
+              "rounded_value": "32.3821",
+              "word_value": "32.3821"
+            },
+            "r_1.0_cm": {
+              "raw_value": "32.9659",
+              "rounded_value": "32.9659",
+              "word_value": "32.9659"
+            },
+            "r_1.5_cm": {
+              "raw_value": "33.9608",
+              "rounded_value": "33.9608",
+              "word_value": "33.9608"
+            },
+            "r_2.0_cm": {
+              "raw_value": "35.413",
+              "rounded_value": "35.4130",
+              "word_value": "35.4130"
+            }
+          }
+        },
+        {
+          "time_label": "1.0",
+          "time_source": 3600.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "40.3816",
+              "rounded_value": "40.3816",
+              "word_value": "40.3816"
+            },
+            "r_0.5_cm": {
+              "raw_value": "40.5536",
+              "rounded_value": "40.5536",
+              "word_value": "40.5536"
+            },
+            "r_1.0_cm": {
+              "raw_value": "41.0605",
+              "rounded_value": "41.0605",
+              "word_value": "41.0605"
+            },
+            "r_1.5_cm": {
+              "raw_value": "41.8782",
+              "rounded_value": "41.8782",
+              "word_value": "41.8782"
+            },
+            "r_2.0_cm": {
+              "raw_value": "42.9976",
+              "rounded_value": "42.9976",
+              "word_value": "42.9976"
+            }
+          }
+        },
+        {
+          "time_label": "1.5",
+          "time_source": 5400.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "45.8468",
+              "rounded_value": "45.8468",
+              "word_value": "45.8468"
+            },
+            "r_0.5_cm": {
+              "raw_value": "45.9348",
+              "rounded_value": "45.9348",
+              "word_value": "45.9348"
+            },
+            "r_1.0_cm": {
+              "raw_value": "46.193",
+              "rounded_value": "46.1930",
+              "word_value": "46.1930"
+            },
+            "r_1.5_cm": {
+              "raw_value": "46.6051",
+              "rounded_value": "46.6051",
+              "word_value": "46.6051"
+            },
+            "r_2.0_cm": {
+              "raw_value": "47.1401",
+              "rounded_value": "47.1401",
+              "word_value": "47.1401"
+            }
+          }
+        },
+        {
+          "time_label": "2.0",
+          "time_source": 7200.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "48.4502",
+              "rounded_value": "48.4502",
+              "word_value": "48.4502"
+            },
+            "r_0.5_cm": {
+              "raw_value": "48.4881",
+              "rounded_value": "48.4881",
+              "word_value": "48.4881"
+            },
+            "r_1.0_cm": {
+              "raw_value": "48.5984",
+              "rounded_value": "48.5984",
+              "word_value": "48.5984"
+            },
+            "r_1.5_cm": {
+              "raw_value": "48.7736",
+              "rounded_value": "48.7736",
+              "word_value": "48.7736"
+            },
+            "r_2.0_cm": {
+              "raw_value": "49.0033",
+              "rounded_value": "49.0033",
+              "word_value": "49.0033"
+            }
+          }
+        },
+        {
+          "time_label": "2.5",
+          "time_source": 9000.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "49.467",
+              "rounded_value": "49.4670",
+              "word_value": "49.4670"
+            },
+            "r_0.5_cm": {
+              "raw_value": "49.4792",
+              "rounded_value": "49.4792",
+              "word_value": "49.4792"
+            },
+            "r_1.0_cm": {
+              "raw_value": "49.5137",
+              "rounded_value": "49.5137",
+              "word_value": "49.5137"
+            },
+            "r_1.5_cm": {
+              "raw_value": "49.5653",
+              "rounded_value": "49.5653",
+              "word_value": "49.5653"
+            },
+            "r_2.0_cm": {
+              "raw_value": "49.6609",
+              "rounded_value": "49.6609",
+              "word_value": "49.6609"
+            }
+          }
+        },
+        {
+          "time_label": "3.0",
+          "time_source": 10800.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "49.8495",
+              "rounded_value": "49.8495",
+              "word_value": "49.8495"
+            },
+            "r_0.5_cm": {
+              "raw_value": "49.8553",
+              "rounded_value": "49.8553",
+              "word_value": "49.8553"
+            },
+            "r_1.0_cm": {
+              "raw_value": "49.8746",
+              "rounded_value": "49.8746",
+              "word_value": "49.8746"
+            },
+            "r_1.5_cm": {
+              "raw_value": "49.9101",
+              "rounded_value": "49.9101",
+              "word_value": "49.9101"
+            },
+            "r_2.0_cm": {
+              "raw_value": "49.9664",
+              "rounded_value": "49.9664",
+              "word_value": "49.9664"
+            }
+          }
+        }
+      ],
+      "word_native_table": true,
+      "status": "PASS"
+    },
+    {
+      "table": "Table4",
+      "title": "表 4  3小时内药材的水分浓度",
+      "source": {
+        "path": "deliverables/final/result2.xlsx",
+        "sha256": "84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da",
+        "sheet": "水分浓度"
+      },
+      "radius_labels": [
+        "r_0.0_cm",
+        "r_0.5_cm",
+        "r_1.0_cm",
+        "r_1.5_cm",
+        "r_2.0_cm"
+      ],
+      "row_count": 6,
+      "valid_cell_count": 30,
+      "expected_cell_count": 30,
+      "trace": "30/30",
+      "rounding": "Decimal(str(value)).quantize(0.0001, ROUND_HALF_UP)",
+      "rows": [
+        {
+          "time_label": "0.5",
+          "time_source": 1800.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "2.5499",
+              "rounded_value": "2.5499",
+              "word_value": "2.5499"
+            },
+            "r_0.5_cm": {
+              "raw_value": "2.5489",
+              "rounded_value": "2.5489",
+              "word_value": "2.5489"
+            },
+            "r_1.0_cm": {
+              "raw_value": "2.5256",
+              "rounded_value": "2.5256",
+              "word_value": "2.5256"
+            },
+            "r_1.5_cm": {
+              "raw_value": "2.3257",
+              "rounded_value": "2.3257",
+              "word_value": "2.3257"
+            },
+            "r_2.0_cm": {
+              "raw_value": "1.6486",
+              "rounded_value": "1.6486",
+              "word_value": "1.6486"
+            }
+          }
+        },
+        {
+          "time_label": "1.0",
+          "time_source": 3600.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "2.5257",
+              "rounded_value": "2.5257",
+              "word_value": "2.5257"
+            },
+            "r_0.5_cm": {
+              "raw_value": "2.4948",
+              "rounded_value": "2.4948",
+              "word_value": "2.4948"
+            },
+            "r_1.0_cm": {
+              "raw_value": "2.3578",
+              "rounded_value": "2.3578",
+              "word_value": "2.3578"
+            },
+            "r_1.5_cm": {
+              "raw_value": "2.023",
+              "rounded_value": "2.0230",
+              "word_value": "2.0230"
+            },
+            "r_2.0_cm": {
+              "raw_value": "1.4711",
+              "rounded_value": "1.4711",
+              "word_value": "1.4711"
+            }
+          }
+        },
+        {
+          "time_label": "1.5",
+          "time_source": 5400.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "2.3861",
+              "rounded_value": "2.3861",
+              "word_value": "2.3861"
+            },
+            "r_0.5_cm": {
+              "raw_value": "2.3256",
+              "rounded_value": "2.3256",
+              "word_value": "2.3256"
+            },
+            "r_1.0_cm": {
+              "raw_value": "2.1344",
+              "rounded_value": "2.1344",
+              "word_value": "2.1344"
+            },
+            "r_1.5_cm": {
+              "raw_value": "1.802",
+              "rounded_value": "1.8020",
+              "word_value": "1.8020"
+            },
+            "r_2.0_cm": {
+              "raw_value": "1.3476",
+              "rounded_value": "1.3476",
+              "word_value": "1.3476"
+            }
+          }
+        },
+        {
+          "time_label": "2.0",
+          "time_source": 7200.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "2.1709",
+              "rounded_value": "2.1709",
+              "word_value": "2.1709"
+            },
+            "r_0.5_cm": {
+              "raw_value": "2.1084",
+              "rounded_value": "2.1084",
+              "word_value": "2.1084"
+            },
+            "r_1.0_cm": {
+              "raw_value": "1.9236",
+              "rounded_value": "1.9236",
+              "word_value": "1.9236"
+            },
+            "r_1.5_cm": {
+              "raw_value": "1.6259",
+              "rounded_value": "1.6259",
+              "word_value": "1.6259"
+            },
+            "r_2.0_cm": {
+              "raw_value": "1.2311",
+              "rounded_value": "1.2311",
+              "word_value": "1.2311"
+            }
+          }
+        },
+        {
+          "time_label": "2.5",
+          "time_source": 9000.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "1.9566",
+              "rounded_value": "1.9566",
+              "word_value": "1.9566"
+            },
+            "r_0.5_cm": {
+              "raw_value": "1.9006",
+              "rounded_value": "1.9006",
+              "word_value": "1.9006"
+            },
+            "r_1.0_cm": {
+              "raw_value": "1.736",
+              "rounded_value": "1.7360",
+              "word_value": "1.7360"
+            },
+            "r_1.5_cm": {
+              "raw_value": "1.472",
+              "rounded_value": "1.4720",
+              "word_value": "1.4720"
+            },
+            "r_2.0_cm": {
+              "raw_value": "1.1166",
+              "rounded_value": "1.1166",
+              "word_value": "1.1166"
+            }
+          }
+        },
+        {
+          "time_label": "3.0",
+          "time_source": 10800.0,
+          "cells": {
+            "r_0.0_cm": {
+              "raw_value": "1.7662",
+              "rounded_value": "1.7662",
+              "word_value": "1.7662"
+            },
+            "r_0.5_cm": {
+              "raw_value": "1.7165",
+              "rounded_value": "1.7165",
+              "word_value": "1.7165"
+            },
+            "r_1.0_cm": {
+              "raw_value": "1.5702",
+              "rounded_value": "1.5702",
+              "word_value": "1.5702"
+            },
+            "r_1.5_cm": {
+              "raw_value": "1.3333",
+              "rounded_value": "1.3333",
+              "word_value": "1.3333"
+            },
+            "r_2.0_cm": {
+              "raw_value": "1.0081",
+              "rounded_value": "1.0081",
+              "word_value": "1.0081"
+            }
+          }
+        }
+      ],
+      "word_native_table": true,
+      "status": "PASS"
+    },
+    {
+      "table": "Table5",
+      "title": "表 5  药材烘干过程的水分浓度",
+      "source": {
+        "path": "experiments/Q3_PRODUCTION/q3_result3_matrix_full_precision.csv",
+        "sha256": "59067a64158843e282e3c59bf6c4ce12cd1152945de5828a6966324bcbe2bc4a",
+        "columns": [
+          "time_s",
+          "r_0.0_cm",
+          "r_0.1_cm",
+          "r_0.2_cm",
+          "r_0.3_cm",
+          "r_0.4_cm",
+          "r_0.5_cm",
+          "r_0.6_cm",
+          "r_0.7_cm",
+          "r_0.8_cm",
+          "r_0.9_cm",
+          "r_1.0_cm",
+          "r_1.1_cm",
+          "r_1.2_cm",
+          "r_1.3_cm",
+          "r_1.4_cm",
+          "r_1.5_cm",
+          "r_1.6_cm",
+          "r_1.7_cm",
+          "r_1.8_cm",
+          "r_1.9_cm",
+          "r_2.0_cm",
+          "cmax_kg_kg",
+          "critical_radius_cm",
+          "volume_mean_kg_kg"
+        ]
+      },
+      "radius_labels": [
+        "0",
+        "0.5",
+        "1",
+        "1.5",
+        "2"
+      ],
+      "row_count": 10,
+      "valid_cell_count": 50,
+      "expected_cell_count": 50,
+      "trace": "50/50",
+      "rounding": "Decimal(str(value)).quantize(0.0001, ROUND_HALF_UP)",
+      "rows": [
+        {
+          "time_label": "6",
+          "time_source": 6.0,
+          "cells": {
+            "0": {
+              "raw_value": "1.0170007391334328",
+              "rounded_value": "1.0170",
+              "word_value": "1.0170"
+            },
+            "0.5": {
+              "raw_value": "0.988168087245449",
+              "rounded_value": "0.9882",
+              "word_value": "0.9882"
+            },
+            "1": {
+              "raw_value": "0.9015485966170171",
+              "rounded_value": "0.9015",
+              "word_value": "0.9015"
+            },
+            "1.5": {
+              "raw_value": "0.7550151584152658",
+              "rounded_value": "0.7550",
+              "word_value": "0.7550"
+            },
+            "2": {
+              "raw_value": "0.5327620605243318",
+              "rounded_value": "0.5328",
+              "word_value": "0.5328"
+            }
+          }
+        },
+        {
+          "time_label": "12",
+          "time_source": 12.0,
+          "cells": {
+            "0": {
+              "raw_value": "0.4561805488049146",
+              "rounded_value": "0.4562",
+              "word_value": "0.4562"
+            },
+            "0.5": {
+              "raw_value": "0.4431942591994525",
+              "rounded_value": "0.4432",
+              "word_value": "0.4432"
+            },
+            "1": {
+              "raw_value": "0.4031018400358598",
+              "rounded_value": "0.4031",
+              "word_value": "0.4031"
+            },
+            "1.5": {
+              "raw_value": "0.32975652198492506",
+              "rounded_value": "0.3298",
+              "word_value": "0.3298"
+            },
+            "2": {
+              "raw_value": "0.16417682641692222",
+              "rounded_value": "0.1642",
+              "word_value": "0.1642"
+            }
+          }
+        },
+        {
+          "time_label": "18",
+          "time_source": 18.0,
+          "cells": {
+            "0": {
+              "raw_value": "0.2988648433051448",
+              "rounded_value": "0.2989",
+              "word_value": "0.2989"
+            },
+            "0.5": {
+              "raw_value": "0.29157328220180445",
+              "rounded_value": "0.2916",
+              "word_value": "0.2916"
+            },
+            "1": {
+              "raw_value": "0.26873072766483685",
+              "rounded_value": "0.2687",
+              "word_value": "0.2687"
+            },
+            "1.5": {
+              "raw_value": "0.22531643538236387",
+              "rounded_value": "0.2253",
+              "word_value": "0.2253"
+            },
+            "2": {
+              "raw_value": "0.08446742328763632",
+              "rounded_value": "0.0845",
+              "word_value": "0.0845"
+            }
+          }
+        },
+        {
+          "time_label": "24",
+          "time_source": 24.0,
+          "cells": {
+            "0": {
+              "raw_value": "0.23781653223286106",
+              "rounded_value": "0.2378",
+              "word_value": "0.2378"
+            },
+            "0.5": {
+              "raw_value": "0.2327560905324885",
+              "rounded_value": "0.2328",
+              "word_value": "0.2328"
+            },
+            "1": {
+              "raw_value": "0.21674087410267812",
+              "rounded_value": "0.2167",
+              "word_value": "0.2167"
+            },
+            "1.5": {
+              "raw_value": "0.18556182230431137",
+              "rounded_value": "0.1856",
+              "word_value": "0.1856"
+            },
+            "2": {
+              "raw_value": "0.06646330293313095",
+              "rounded_value": "0.0665",
+              "word_value": "0.0665"
+            }
+          }
+        },
+        {
+          "time_label": "30",
+          "time_source": 30.0,
+          "cells": {
+            "0": {
+              "raw_value": "0.20583796570020385",
+              "rounded_value": "0.2058",
+              "word_value": "0.2058"
+            },
+            "0.5": {
+              "raw_value": "0.20185884398031906",
+              "rounded_value": "0.2019",
+              "word_value": "0.2019"
+            },
+            "1": {
+              "raw_value": "0.18917986801204986",
+              "rounded_value": "0.1892",
+              "word_value": "0.1892"
+            },
+            "1.5": {
+              "raw_value": "0.16410207367645777",
+              "rounded_value": "0.1641",
+              "word_value": "0.1641"
+            },
+            "2": {
+              "raw_value": "0.0598296728556662",
+              "rounded_value": "0.0598",
+              "word_value": "0.0598"
+            }
+          }
+        },
+        {
+          "time_label": "36",
+          "time_source": 36.0,
+          "cells": {
+            "0": {
+              "raw_value": "0.18588991028173357",
+              "rounded_value": "0.1859",
+              "word_value": "0.1859"
+            },
+            "0.5": {
+              "raw_value": "0.1825416470689926",
+              "rounded_value": "0.1825",
+              "word_value": "0.1825"
+            },
+            "1": {
+              "raw_value": "0.17182203949666358",
+              "rounded_value": "0.1718",
+              "word_value": "0.1718"
+            },
+            "1.5": {
+              "raw_value": "0.1503839472024357",
+              "rounded_value": "0.1504",
+              "word_value": "0.1504"
+            },
+            "2": {
+              "raw_value": "0.056636914117275096",
+              "rounded_value": "0.0566",
+              "word_value": "0.0566"
+            }
+          }
+        },
+        {
+          "time_label": "42",
+          "time_source": 42.0,
+          "cells": {
+            "0": {
+              "raw_value": "0.1720768636039399",
+              "rounded_value": "0.1721",
+              "word_value": "0.1721"
+            },
+            "0.5": {
+              "raw_value": "0.1691430122222676",
+              "rounded_value": "0.1691",
+              "word_value": "0.1691"
+            },
+            "1": {
+              "raw_value": "0.15971697043072416",
+              "rounded_value": "0.1597",
+              "word_value": "0.1597"
+            },
+            "1.5": {
+              "raw_value": "0.14071009625485137",
+              "rounded_value": "0.1407",
+              "word_value": "0.1407"
+            },
+            "2": {
+              "raw_value": "0.05484144137939657",
+              "rounded_value": "0.0548",
+              "word_value": "0.0548"
+            }
+          }
+        },
+        {
+          "time_label": "48",
+          "time_source": 48.0,
+          "cells": {
+            "0": {
+              "raw_value": "0.16183725139161936",
+              "rounded_value": "0.1618",
+              "word_value": "0.1618"
+            },
+            "0.5": {
+              "raw_value": "0.15919784686838334",
+              "rounded_value": "0.1592",
+              "word_value": "0.1592"
+            },
+            "1": {
+              "raw_value": "0.15069448067471528",
+              "rounded_value": "0.1507",
+              "word_value": "0.1507"
+            },
+            "1.5": {
+              "raw_value": "0.13343758658150026",
+              "rounded_value": "0.1334",
+              "word_value": "0.1334"
+            },
+            "2": {
+              "raw_value": "0.05372310459050925",
+              "rounded_value": "0.0537",
+              "word_value": "0.0537"
+            }
+          }
+        },
+        {
+          "time_label": "54",
+          "time_source": 54.0,
+          "cells": {
+            "0": {
+              "raw_value": "0.15387611102967058",
+              "rounded_value": "0.1539",
+              "word_value": "0.1539"
+            },
+            "0.5": {
+              "raw_value": "0.15145774045200586",
+              "rounded_value": "0.1515",
+              "word_value": "0.1515"
+            },
+            "1": {
+              "raw_value": "0.1436491666765305",
+              "rounded_value": "0.1436",
+              "word_value": "0.1436"
+            },
+            "1.5": {
+              "raw_value": "0.12771972143524518",
+              "rounded_value": "0.1277",
+              "word_value": "0.1277"
+            },
+            "2": {
+              "raw_value": "0.052974427852616295",
+              "rounded_value": "0.0530",
+              "word_value": "0.0530"
+            }
+          }
+        },
+        {
+          "time_label": "烘干结束时间",
+          "time_source": 57.482007378472225,
+          "cells": {
+            "0": {
+              "raw_value": "0.14999999986492263",
+              "rounded_value": "0.1500",
+              "word_value": "0.1500"
+            },
+            "0.5": {
+              "raw_value": "0.14768666026933752",
+              "rounded_value": "0.1477",
+              "word_value": "0.1477"
+            },
+            "1": {
+              "raw_value": "0.14020893760421158",
+              "rounded_value": "0.1402",
+              "word_value": "0.1402"
+            },
+            "1.5": {
+              "raw_value": "0.12491476194157346",
+              "rounded_value": "0.1249",
+              "word_value": "0.1249"
+            },
+            "2": {
+              "raw_value": "0.05264611757685987",
+              "rounded_value": "0.0526",
+              "word_value": "0.0526"
+            }
+          }
+        }
+      ],
+      "word_native_table": true,
+      "status": "PASS"
+    },
+    {
+      "table": "Table6",
+      "title": "表 6  药材烘干过程的水分浓度",
+      "source": {
+        "path": "experiments/Q4_PRODUCTION/q4_result4_matrix_full_precision.csv",
+        "sha256": "a191b04df2358f5867028b94577aff24d4009089c578f9001981de0f5a3b91e7",
+        "columns": [
+          "time_s",
+          "r_0.0_cm",
+          "r_0.1_cm",
+          "r_0.2_cm",
+          "r_0.3_cm",
+          "r_0.4_cm",
+          "r_0.5_cm",
+          "r_0.6_cm",
+          "r_0.7_cm",
+          "r_0.8_cm",
+          "r_0.9_cm",
+          "r_1.0_cm",
+          "r_1.1_cm",
+          "r_1.2_cm",
+          "r_1.3_cm",
+          "r_1.4_cm",
+          "r_1.5_cm",
+          "r_1.6_cm",
+          "r_1.7_cm",
+          "r_1.8_cm",
+          "r_1.9_cm",
+          "surface",
+          "radius_cm",
+          "cmax_kg_kg",
+          "volume_mean_kg_kg"
+        ]
+      },
+      "radius_labels": [
+        "0",
+        "0.5",
+        "1",
+        "1.5",
+        "药材表面"
+      ],
+      "row_count": 9,
+      "valid_cell_count": 36,
+      "expected_cell_count": 36,
+      "trace": "36/36",
+      "rounding": "Decimal(str(value)).quantize(0.0001, ROUND_HALF_UP)",
+      "rows": [
+        {
+          "time_label": "6",
+          "time_source": 6.0,
+          "cells": {
+            "0": {
+              "raw_value": "1.9518899901078115",
+              "rounded_value": "1.9519",
+              "word_value": "1.9519"
+            },
+            "0.5": {
+              "raw_value": "1.7825078144484623",
+              "rounded_value": "1.7825",
+              "word_value": "1.7825"
+            },
+            "1": {
+              "raw_value": "1.2570702816808166",
+              "rounded_value": "1.2571",
+              "word_value": "1.2571"
+            },
+            "1.5": {
+              "raw_value": null,
+              "rounded_value": "",
+              "word_value": ""
+            },
+            "药材表面": {
+              "raw_value": "0.5669696935416461",
+              "rounded_value": "0.5670",
+              "word_value": "0.5670"
+            }
+          }
+        },
+        {
+          "time_label": "12",
+          "time_source": 12.0,
+          "cells": {
+            "0": {
+              "raw_value": "0.8736329854238157",
+              "rounded_value": "0.8736",
+              "word_value": "0.8736"
+            },
+            "0.5": {
+              "raw_value": "0.7765610975286101",
+              "rounded_value": "0.7766",
+              "word_value": "0.7766"
+            },
+            "1": {
+              "raw_value": "0.486119917138814",
+              "rounded_value": "0.4861",
+              "word_value": "0.4861"
+            },
+            "1.5": {
+              "raw_value": null,
+              "rounded_value": "",
+              "word_value": ""
+            },
+            "药材表面": {
+              "raw_value": "0.21445501887291904",
+              "rounded_value": "0.2145",
+              "word_value": "0.2145"
+            }
+          }
+        },
+        {
+          "time_label": "18",
+          "time_source": 18.0,
+          "cells": {
+            "0": {
+              "raw_value": "0.4595992764005864",
+              "rounded_value": "0.4596",
+              "word_value": "0.4596"
+            },
+            "0.5": {
+              "raw_value": "0.4133044599461062",
+              "rounded_value": "0.4133",
+              "word_value": "0.4133"
+            },
+            "1": {
+              "raw_value": "0.26571270536721314",
+              "rounded_value": "0.2657",
+              "word_value": "0.2657"
+            },
+            "1.5": {
+              "raw_value": null,
+              "rounded_value": "",
+              "word_value": ""
+            },
+            "药材表面": {
+              "raw_value": "0.10188046054503587",
+              "rounded_value": "0.1019",
+              "word_value": "0.1019"
+            }
+          }
+        },
+        {
+          "time_label": "24",
+          "time_source": 24.0,
+          "cells": {
+            "0": {
+              "raw_value": "0.3076086090169369",
+              "rounded_value": "0.3076",
+              "word_value": "0.3076"
+            },
+            "0.5": {
+              "raw_value": "0.28103034107268465",
+              "rounded_value": "0.2810",
+              "word_value": "0.2810"
+            },
+            "1": {
+              "raw_value": "0.19147287133677499",
+              "rounded_value": "0.1915",
+              "word_value": "0.1915"
+            },
+            "1.5": {
+              "raw_value": null,
+              "rounded_value": "",
+              "word_value": ""
+            },
+            "药材表面": {
+              "raw_value": "0.07106212170812116",
+              "rounded_value": "0.0711",
+              "word_value": "0.0711"
+            }
+          }
+        },
+        {
+          "time_label": "30",
+          "time_source": 30.0,
+          "cells": {
+            "0": {
+              "raw_value": "0.23866580570175583",
+              "rounded_value": "0.2387",
+              "word_value": "0.2387"
+            },
+            "0.5": {
+              "raw_value": "0.2205592071797519",
+              "rounded_value": "0.2206",
+              "word_value": "0.2206"
+            },
+            "1": {
+              "raw_value": "0.15721514401093817",
+              "rounded_value": "0.1572",
+              "word_value": "0.1572"
+            },
+            "1.5": {
+              "raw_value": null,
+              "rounded_value": "",
+              "word_value": ""
+            },
+            "药材表面": {
+              "raw_value": "0.06090763070296712",
+              "rounded_value": "0.0609",
+              "word_value": "0.0609"
+            }
+          }
+        },
+        {
+          "time_label": "36",
+          "time_source": 36.0,
+          "cells": {
+            "0": {
+              "raw_value": "0.20074462382900762",
+              "rounded_value": "0.2007",
+              "word_value": "0.2007"
+            },
+            "0.5": {
+              "raw_value": "0.18696803353622496",
+              "rounded_value": "0.1870",
+              "word_value": "0.1870"
+            },
+            "1": {
+              "raw_value": "0.13739406785737743",
+              "rounded_value": "0.1374",
+              "word_value": "0.1374"
+            },
+            "1.5": {
+              "raw_value": null,
+              "rounded_value": "",
+              "word_value": ""
+            },
+            "药材表面": {
+              "raw_value": "0.056721185338739016",
+              "rounded_value": "0.0567",
+              "word_value": "0.0567"
+            }
+          }
+        },
+        {
+          "time_label": "42",
+          "time_source": 42.0,
+          "cells": {
+            "0": {
+              "raw_value": "0.17688859541818483",
+              "rounded_value": "0.1769",
+              "word_value": "0.1769"
+            },
+            "0.5": {
+              "raw_value": "0.1656414454858932",
+              "rounded_value": "0.1656",
+              "word_value": "0.1656"
+            },
+            "1": {
+              "raw_value": "0.12426025804757726",
+              "rounded_value": "0.1243",
+              "word_value": "0.1243"
+            },
+            "1.5": {
+              "raw_value": null,
+              "rounded_value": "",
+              "word_value": ""
+            },
+            "药材表面": {
+              "raw_value": "0.054556305239759594",
+              "rounded_value": "0.0546",
+              "word_value": "0.0546"
+            }
+          }
+        },
+        {
+          "time_label": "48",
+          "time_source": 48.0,
+          "cells": {
+            "0": {
+              "raw_value": "0.1604417363801964",
+              "rounded_value": "0.1604",
+              "word_value": "0.1604"
+            },
+            "0.5": {
+              "raw_value": "0.15083693766297882",
+              "rounded_value": "0.1508",
+              "word_value": "0.1508"
+            },
+            "1": {
+              "raw_value": "0.11490169070015115",
+              "rounded_value": "0.1149",
+              "word_value": "0.1149"
+            },
+            "1.5": {
+              "raw_value": null,
+              "rounded_value": "",
+              "word_value": ""
+            },
+            "药材表面": {
+              "raw_value": "0.053312678200538616",
+              "rounded_value": "0.0533",
+              "word_value": "0.0533"
+            }
+          }
+        },
+        {
+          "time_label": "烘干结束时间",
+          "time_source": 53.08270378038297,
+          "cells": {
+            "0": {
+              "raw_value": "0.14999999999999525",
+              "rounded_value": "0.1500",
+              "word_value": "0.1500"
+            },
+            "0.5": {
+              "raw_value": "0.1413923336700157",
+              "rounded_value": "0.1414",
+              "word_value": "0.1414"
+            },
+            "1": {
+              "raw_value": "0.1088150551810459",
+              "rounded_value": "0.1088",
+              "word_value": "0.1088"
+            },
+            "1.5": {
+              "raw_value": null,
+              "rounded_value": "",
+              "word_value": ""
+            },
+            "药材表面": {
+              "raw_value": "0.052625199660647944",
+              "rounded_value": "0.0526",
+              "word_value": "0.0526"
+            }
+          }
+        }
+      ],
+      "word_native_table": true,
+      "status": "PASS"
+    }
+  ],
+  "counts": {
+    "Table1": "35/35",
+    "Table2": "35/35",
+    "Table3": "30/30",
+    "Table4": "30/30",
+    "Table5": "50/50",
+    "Table6": "36/36"
+  },
+  "table1_35_35": true,
+  "table2_35_35": true,
+  "table3_30_30": true,
+  "table4_30_30": true,
+  "table5_valid_cells": "50/50",
+  "table6_valid_cells": "36/36",
+  "workbooks": {
+    "result1.xlsx": "06b67b1f688d84a701ac4d2f4b0f47a1624069877df6724faf071a48af177b5c",
+    "result2.xlsx": "84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da",
+    "result3.xlsx": "08c67308b9b0e67cde2911dd4b701f12c4c024720ad257314bdf16a31d480461",
+    "result4.xlsx": "dc6897a80b71577cbcef082d31cf884285f8858f1e1ca8fd613b04feba480586"
+  },
+  "generated_files": [
+    "deliverables/final/paper/tables_word/表1_30分钟内药材的温度.docx",
+    "deliverables/final/paper/tables_word/表2_30分钟内药材的水分浓度.docx",
+    "deliverables/final/paper/tables_word/表3_3小时内药材的温度.docx",
+    "deliverables/final/paper/tables_word/表4_3小时内药材的水分浓度.docx",
+    "deliverables/final/paper/tables_word/表5_药材烘干过程的水分浓度_Q3.docx",
+    "deliverables/final/paper/tables_word/表6_药材烘干过程的水分浓度_Q4.docx",
+    "deliverables/final/paper/论文表1-表6_可直接复制.docx"
+  ]
+}

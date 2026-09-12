@@ -63,6 +63,8 @@
 | T-053 | P0 | Q3/Q4 human freeze | T-052 | DONE | Human Q3/Q4 freeze approval | 已获联合人工 final freeze approval；result3/result4、Table5/6、论文图表按 byte-copy/既有资产整理进入 final，manifest、审计和回归通过；不 push | 2026-09-12 |
 | T-054 | P0 | Q2 paper figures | T-050 | DONE | Q2 Chinese publication figure localization | 只用 frozen result2 的既有图源数据和后处理产物；11/11 PNG、11/11 SVG、PNG ≥300 DPI、data trace 11/11、中文文本 11/11；result2 SHA 前后不变；Q1/Q3/Q4 metadata check PASS | 2026-09-12 |
 | T-055 | P0 | 全局 GitHub sync | T-054 | DONE | Full GitHub sync + permanent workflow push policy | canonical policy 已写入 `AGENTS.md`、`docs/RUNBOOK.md`、`docs/GITHUB_SYNC_POLICY.md`；前一批 39 个本地提交已同步，本条记录随当前提交同步；LFS 66/66 上传并 fsck PASS，`q1-final` 已推送，local/remote HEAD 精确一致；无 force push、reset、rebase 或数值重算 | 2026-09-12 |
+| T-056 | P0 | 论文表 1–6 | T-054 | DONE | Native Word reproduction from frozen workbooks and Q3/Q4 full-precision matrices | 6 个独立 Word 表、合并 Word、Word 实际导出 PDF 预览、`TABLE_1_6_TRACE.json`；Table1/2 `35/35`，Table3/4 `30/30`，Table5 `50/50`，Table6 `36/36` | 2026-09-13 |
+| T-057 | P0 | Q3/Q4 | T-056 | DONE | PAPER TABLE REPRODUCTION + Q3/Q4 INDEPENDENT VERIFICATION GATE | Q3 independent PASS；Q4 independent HOLD：n=96/dt=4 复现冻结值，n=144/dt=2 为 `52.8302 h`，四位小时不稳定；final result3/result4 未修改，等待人工复核 | `experiments/Q34_INDEPENDENT_AUDIT/` |
 
 ## 任务记录模板
 

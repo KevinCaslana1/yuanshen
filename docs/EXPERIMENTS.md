@@ -226,3 +226,11 @@ Q2 中文 publication figure freeze 与 Q2 numerical/result freeze 分开记录�
 | Freeze audit | `FINAL_FREEZE_COMPLETE / APPROVED` | `experiments/Q3_Q4_CANDIDATE/final_freeze_audit.json` |
 
 Q3/Q4 final paper asset整理与数值冻结分开留痕；历史失败实验保留，未 push 远程。
+
+## Q3/Q4 Independent Verification Addendum（2026-09-13）
+
+本轮在已冻结数值资产之外新增独立审计实现，不修改 Q2 solver、冻结工作簿或官方源。Q3 独立扫描和局部细化通过；Q4 独立 n=96/dt=4 复现冻结 production，但 n=144/dt=2 的事件时刻为 `52.830168163752184 h`，与冻结 `53.08270378038297 h` 不满足四位小时稳定性，因此 Q4 独立验证标记 `HOLD`，不自动替换 Q4 final。
+
+| Experiment | Purpose | Key Config | Result | Status | Evidence |
+|---|---|---|---|---|---|
+| Q34_INDEPENDENT_AUDIT | 独立扫描 Q3 raw、独立 Q3 局部细化、Q4 moving-domain/FVM 方程审计、恒半径回归、PCHIP/linear 半径比较、Q4 网格/时间精化、守恒/Robin/Table6 审计 | Q3 raw 全时域；Q3 `n=20/40, dt=1/1024 s` 局部；Q4 `n=48/8, 96/4, 144/2` 从 `t=0`；线性半径 `n=48/8` 对照 | Q3 `PASS`；Q4 production reproduction `PASS`，但 finer round4 `52.8302` vs frozen `53.0827`，Q4 `HOLD`；恒半径 regression `PASS`，表面/外域 `PASS` | COMPLETED / Q4 HUMAN REVIEW | `experiments/Q34_INDEPENDENT_AUDIT/`、`docs/Q34_INDEPENDENT_AUDIT.md` |

@@ -63,6 +63,18 @@
 
 状态：SUPPORTED
 
+## FIND-Q34-001 Q3/Q4 独立核验结果
+
+问题：Q3/Q4
+
+发现：对冻结 Q3 输入 raw 的独立全时域扫描复现了 `206935 s` 仍不满足、`206936 s` 首次严格满足的阈值关系；独立 `n=20/40` 局部细化的 Q3 事件小时值均为 `57.4820 h`。对 Q4，独立 n=96、dt=4 s 从 `t=0` 得 `53.082703798850744 h`，与冻结 production 值一致到亚毫秒；但更细 n=144、dt=2 s 得 `52.830168163752184 h`，四位小时值不稳定。
+
+因此 Q3 独立核验为 PASS；Q4 只能记录为 `INDEPENDENT VERIFICATION HOLD`，现有 `deliverables/final/result4.xlsx` 保持不变，新精化结果不提升为 final，也不作为截图拟合目标。Q4 独立恒半径回归、方程项审计、Table6 外域空值和表面列审计通过，但不足以覆盖事件时刻未收敛这一阻断项。
+
+证据：`experiments/Q34_INDEPENDENT_AUDIT/audit.json`、`Q4_CONVERGENCE.csv`、`Q4_MOVING_DOMAIN_EQUATION_AUDIT.md`。
+
+状态：SUPPORTED（Q4 收敛阻断为事实；Q4 论文使用仍需人工决定）
+
 ## FIND-Q3-001 Q3 固定半径阈值夹逼与局部细化
 
 问题：Q3

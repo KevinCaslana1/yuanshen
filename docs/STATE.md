@@ -14,8 +14,8 @@
 |---|---|---|---|
 | Q1 | FROZEN / COMPLETE | r=1.9 cm 早期表面绝对误差谷值由 signed error zero-crossing/cancellation dip 造成，不是精度突然提高；final result1 未改 | `experiments/EXP-Q1-SURFACE-DECAY/`、`deliverables/final/result1.xlsx` |
 | Q2 | FROZEN | V3 Run1 是唯一 `PRODUCTION_CANONICAL` 生产来源；Run1/Run2 全量 raw、official sampled、diagnostics byte/hash identical；candidate 已按 byte-for-byte COPY 进入 final；工作簿和原冻结图表 final 验证 PASS；中文 publication 图已从既有图源数据独立生成并通过验证 | `experiments/Q2_FINAL_FREEZE/`、`experiments/Q2_CHINESE_FIGURE_LOCALIZATION/`、`deliverables/final/result2.xlsx`、`deliverables/final/figures/q2/`、`deliverables/final/paper/figures/q2/` |
-| Q3 | FROZEN / COMPLETE | 固定半径模型首次严格低于 `0.15 kg/kg` 的冻结时刻为 `206935.2265625 s`（`57.4820074 h`）；临界节点 `r=0.0 cm`；官方工作簿保持严格 60 s lattice | `docs/Q3_FINAL_FREEZE_AUDIT.md`、`deliverables/final/Q3_MANIFEST.json`、`deliverables/final/result3.xlsx` |
-| Q4 | FROZEN / COMPLETE | 附录4物性 + 附件2单调PCHIP半径 + 材料坐标模型首次严格低于 `0.15 kg/kg` 的冻结时刻为 `191097.7336094 s`（`53.0827038 h`），`R(t4)=1.2 cm`，临界 `ξ=0`；官方工作簿保持严格 60 s lattice | `docs/Q4_FINAL_FREEZE_AUDIT.md`、`deliverables/final/Q4_MANIFEST.json`、`deliverables/final/result4.xlsx` |
+| Q3 | FROZEN / COMPLETE; INDEPENDENT VERIFICATION PASS | 独立扫描冻结 Q2 raw 与独立 `n=20/40` 局部细化均复现严格阈值判断；四位小时值均为 `57.4820 h`；冻结工作簿保持严格 60 s lattice | `experiments/Q34_INDEPENDENT_AUDIT/audit.json`、`docs/Q3_FINAL_FREEZE_AUDIT.md`、`deliverables/final/result3.xlsx` |
+| Q4 | FROZEN / COMPLETE; INDEPENDENT VERIFICATION HOLD | 数值冻结工作簿仍为 complete，但独立 `n=96, dt=4 s` 复现冻结值 `53.0827 h`，更细 `n=144, dt=2 s` 得 `52.8302 h`；四位小时值不稳定，不能据此替换或强化现有 final 结果，等待人工决定 | `experiments/Q34_INDEPENDENT_AUDIT/audit.json`、`experiments/Q34_INDEPENDENT_AUDIT/Q4_CONVERGENCE.csv`、`deliverables/final/result4.xlsx` |
 
 ## 当前 Q2 方案
 
@@ -45,11 +45,11 @@
 - Q3 从冻结 Q2 raw official lattice 读取完整浮点值；粗夹逼为 `[206935,206936] s`，局部 BE/Picard `1/1024 s` 细化的首次严格低于时刻为 `206935.2265625 s`。`t=206935` 仍为 `0.1500000658293865`，`t=206936` 为 `0.14999977460230157`；端点全 21 个节点均低于阈值，critical node 为扫描结果而非预设。精确事件时刻不写入 result3 的 60 s lattice。
 - Q4 使用附录4：`rho=760+90C`、`cp=1850+2150C/(C+1)`、`k=0.12+0.20C/(C+1)`、`D=4.2e-4 exp(-0.30/C) exp(-3850/T_K)`；内部 `ξ=r/R(t)`，附件2节点 PCHIP 误差为 `0`，附件结束后保持 `R_last=1.198 cm`。粗夹逼 `[191096,191100] s`，局部细化后 `t4=191097.7336093787 s`。精确事件时刻不写入 result4 的 60 s lattice。
 - Q4 所有固定物理位置超过当前半径的单元均为空，surface 单列；最终工作簿无公式、四位小数显示、`result3` 为 `3449×22`，`result4` 为 `3185×22`。质量守恒诊断最大归一化逐步残差 `3.4553928505477293e-4`，Robin 独立通量差最大 `4.5474756348265686e-7`，均保留在最终 validation 证据中。
-- 最终状态：`Q1 = FROZEN`、`Q2 = FROZEN`、`Q3 = FROZEN`、`Q4 = FROZEN`。Q3/Q4 论文表、7 组 PNG/SVG、对比资产、final manifests 和审计文档均已完成；后续任务完成按永久 GitHub 同步闭环执行。
+- 当前交付状态：`Q1 = FROZEN`、`Q2 = FROZEN`、`Q3 = FROZEN / VERIFIED`、`Q4 = FROZEN NUMERICAL ARTIFACT / INDEPENDENT VERIFICATION HOLD`。Q4 不产生 final 数值替换；Q3/Q4 表格交付已生成，但 Q4 论文结论须等待收敛审计人工复核。后续任务完成按永久 GitHub 同步闭环执行。
 - 完整审计：`experiments/Q3_Q4_CANDIDATE/final_freeze_audit.json`；历史 Q2 失败实验仍保留。
 
 ## 交接
 
 - 当前最高优先级：保持 Q1/Q2/Q3/Q4 冻结交付可审计；未经新授权不得修改冻结数值结果。
 - 后续任务完成必须同步 `origin/main`、LFS 对象和正式标签，并验证远端 SHA 与本地 HEAD 一致。
-- 更新时间：2026-09-12。
+- 更新时间：2026-09-13。

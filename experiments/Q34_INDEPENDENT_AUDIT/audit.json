@@ -1,0 +1,716 @@
+{
+  "experiment": "Q34_INDEPENDENT_AUDIT",
+  "status": "HOLD",
+  "policy": {
+    "q2_solver_rerun": false,
+    "frozen_workbooks_modified": false,
+    "official_source_modified": false,
+    "event_screenshots_are_ground_truth": false
+  },
+  "protected_hashes": {
+    "result2_sha256": "84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da",
+    "result3_sha256": "08c67308b9b0e67cde2911dd4b701f12c4c024720ad257314bdf16a31d480461",
+    "result4_sha256": "dc6897a80b71577cbcef082d31cf884285f8858f1e1ca8fd613b04feba480586",
+    "attachment1_sha256": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+    "attachment2_sha256": "5563acbfa4b4afb10cc6c03e2207e5369bf39da27576672aff14cc5c32e704af"
+  },
+  "q3": {
+    "status": "PASS",
+    "raw_scan": {
+      "rows": 4799277,
+      "time_groups": 228537,
+      "last_fail": {
+        "time_s": 206935.0,
+        "cmax": 0.1500000658293865,
+        "critical_radius_cm": 0.0,
+        "strict_below": false
+      },
+      "first_pass": {
+        "time_s": 206936.0,
+        "cmax": 0.14999977460230157,
+        "critical_radius_cm": 0.0,
+        "strict_below": true
+      },
+      "snapshots": {
+        "206935.0": {
+          "time_s": 206935.0,
+          "fields": [
+            [
+              0.0,
+              0.1500000658293865,
+              323.1452499625609
+            ],
+            [
+              0.1,
+              0.1499089951982386,
+              323.1452499625382
+            ],
+            [
+              0.2,
+              0.14963507402182083,
+              323.14524996247053
+            ],
+            [
+              0.3,
+              0.14917614503906337,
+              323.1452499623571
+            ],
+            [
+              0.4,
+              0.14852850346042995,
+              323.14524996220456
+            ],
+            [
+              0.5,
+              0.14768672443892003,
+              323.14524996201555
+            ],
+            [
+              0.6,
+              0.1466433939499776,
+              323.14524996179637
+            ],
+            [
+              0.7,
+              0.14538871386840105,
+              323.14524996155586
+            ],
+            [
+              0.8,
+              0.14390993506491143,
+              323.14524996130035
+            ],
+            [
+              0.9,
+              0.1421905339401293,
+              323.1452499610298
+            ],
+            [
+              1.0,
+              0.1402089961068359,
+              323.1452499607406
+            ],
+            [
+              1.1,
+              0.13793699492086026,
+              323.14524996039194
+            ],
+            [
+              1.2,
+              0.13533653435369428,
+              323.1452499599391
+            ],
+            [
+              1.3,
+              0.1323553054623678,
+              323.145249959308
+            ],
+            [
+              1.4,
+              0.1289186707030044,
+              323.14524995843686
+            ],
+            [
+              1.5,
+              0.12491480889316316,
+              323.14524995732233
+            ],
+            [
+              1.6,
+              0.12016432963238327,
+              323.1452499560263
+            ],
+            [
+              1.7,
+              0.11434890083257553,
+              323.1452499543485
+            ],
+            [
+              1.8,
+              0.1068037971602196,
+              323.1452499506606
+            ],
+            [
+              1.9,
+              0.09562463406156037,
+              323.1452499417842
+            ],
+            [
+              2.0,
+              0.05264697172577441,
+              323.145249944793
+            ]
+          ],
+          "cmax": 0.1500000658293865,
+          "critical_radius_cm": 0.0
+        },
+        "206936.0": {
+          "time_s": 206936.0,
+          "fields": [
+            [
+              0.0,
+              0.14999977460230157,
+              323.1452499625416
+            ],
+            [
+              0.1,
+              0.14990870428099579,
+              323.145249962519
+            ],
+            [
+              0.2,
+              0.14963478403566555,
+              323.1452499624522
+            ],
+            [
+              0.3,
+              0.14917585660998636,
+              323.1452499623399
+            ],
+            [
+              0.4,
+              0.14852821722258605,
+              323.1452499621881
+            ],
+            [
+              0.5,
+              0.14768644103844053,
+              323.14524996200043
+            ],
+            [
+              0.6,
+              0.14664311404940275,
+              323.1452499617837
+            ],
+            [
+              0.7,
+              0.14538843815202074,
+              323.14524996154535
+            ],
+            [
+              0.8,
+              0.14390966424539733,
+              323.1452499612916
+            ],
+            [
+              0.9,
+              0.1421902687670427,
+              323.1452499610184
+            ],
+            [
+              1.0,
+              0.14020873737790338,
+              323.1452499607173
+            ],
+            [
+              1.1,
+              0.1379367434973532,
+              323.14524996036147
+            ],
+            [
+              1.2,
+              0.13533629118223814,
+              323.14524995989177
+            ],
+            [
+              1.3,
+              0.13235507160711737,
+              323.14524995924484
+            ],
+            [
+              1.4,
+              0.1289184473956028,
+              323.14524995837013
+            ],
+            [
+              1.5,
+              0.12491459761537627,
+              323.1452499572655
+            ],
+            [
+              1.6,
+              0.12016413226494328,
+              323.1452499559179
+            ],
+            [
+              1.7,
+              0.11434871995776108,
+              323.14524995388484
+            ],
+            [
+              1.8,
+              0.10680363680487757,
+              323.14524994955576
+            ],
+            [
+              1.9,
+              0.09562450230082921,
+              323.14524994235325
+            ],
+            [
+              2.0,
+              0.052646948015847725,
+              323.1452499393027
+            ]
+          ],
+          "cmax": 0.14999977460230157,
+          "critical_radius_cm": 0.0
+        }
+      },
+      "threshold": 0.15,
+      "source_sha256": "8da13480ea9bb4f752682e409e7f96ca7547c36db698a72696fc2f8229c7d6bf",
+      "event_definition": "F(t)=max over all raw Q2 radii of C(r,t)-0.15; pass requires F<0"
+    },
+    "appendix3": {
+      "rho": "650+128*C",
+      "cp": "1450+2736*C/(C+1)",
+      "k": "0.21+0.38*C/(C+1)",
+      "D": "2.4e-3*exp(-0.45/C)*exp(-3850/T_K)"
+    },
+    "local_independent_runs": [
+      {
+        "n_intervals": 20,
+        "dt_s": 0.0009765625,
+        "bracket_s": [
+          206935.2255859375,
+          206935.2265625
+        ],
+        "t_cross_linear_s": 206935.2260985608,
+        "first_strict_pass_s": 206935.2265625,
+        "cmax_before": 0.15000000014925188,
+        "cmax_after": 0.14999999986492263,
+        "critical_radius_after_cm": 0.0,
+        "steps": 232
+      },
+      {
+        "n_intervals": 40,
+        "dt_s": 0.0009765625,
+        "bracket_s": [
+          206935.1123046875,
+          206935.11328125
+        ],
+        "t_cross_linear_s": 206935.11305949945,
+        "first_strict_pass_s": 206935.11328125,
+        "cmax_before": 0.15000000043925518,
+        "cmax_after": 0.1499999998709545,
+        "critical_radius_after_cm": 0.0,
+        "steps": 116
+      }
+    ],
+    "frozen_t3_s": 206935.2265625,
+    "frozen_t3_h": 57.482007378472225,
+    "round4_frozen_t3_h": 57.482,
+    "local_round4": [
+      57.482,
+      57.482
+    ],
+    "four_decimal_stable": true,
+    "external_reference_h": 57.46681156,
+    "frozen_minus_external_h": 0.01519581847222895
+  },
+  "q4": {
+    "status": "HOLD",
+    "verification_reason": "finer n=144, dt=2 changes the event from 53.0827 h to 52.8302 h; four-decimal event time is not stable",
+    "appendix4": {
+      "rho": "760+90*C",
+      "cp": "1850+2150*C/(C+1)",
+      "k": "0.12+0.20*C/(C+1)",
+      "D": "4.2e-4*exp(-0.30/C)*exp(-3850/T_K)"
+    },
+    "radius_source_sha256": "5563acbfa4b4afb10cc6c03e2207e5369bf39da27576672aff14cc5c32e704af",
+    "radius_checks": [
+      {
+        "time_s": 0.0,
+        "pchip_radius_cm": 2.0,
+        "linear_radius_cm": 2.0,
+        "difference_cm": 0.0,
+        "pchip_rate_cm_s": -8.388888888888891e-05,
+        "linear_rate_cm_s": -7.055555555555556e-05
+      },
+      {
+        "time_s": 7200.0,
+        "pchip_radius_cm": 1.625,
+        "linear_radius_cm": 1.625,
+        "difference_cm": 0.0,
+        "pchip_rate_cm_s": -2.7368421052631606e-05,
+        "linear_rate_cm_s": -2.000000000000002e-05
+      },
+      {
+        "time_s": 43200.0,
+        "pchip_radius_cm": 1.248,
+        "linear_radius_cm": 1.248,
+        "difference_cm": 0.0,
+        "pchip_rate_cm_s": -2.469135802469114e-06,
+        "linear_rate_cm_s": -2.222222222222224e-06
+      },
+      {
+        "time_s": 191097.7336093787,
+        "pchip_radius_cm": 1.2,
+        "linear_radius_cm": 1.2,
+        "difference_cm": 0.0,
+        "pchip_rate_cm_s": 0.0,
+        "linear_rate_cm_s": 0.0
+      },
+      {
+        "time_s": 259200.0,
+        "pchip_radius_cm": 1.198,
+        "linear_radius_cm": 1.198,
+        "difference_cm": 0.0,
+        "pchip_rate_cm_s": 0.0,
+        "linear_rate_cm_s": 0.0
+      }
+    ],
+    "independent_runs": [
+      {
+        "name": "independent_coarse",
+        "n_intervals": 48,
+        "dt_s": 8.0,
+        "horizon_s": 230400.0,
+        "runtime_s": 27.339525699999285,
+        "event": {
+          "before_s": 197352.0,
+          "after_s": 197360.0,
+          "before_cmax": 0.15000132125622762,
+          "after_cmax": 0.149997509213124,
+          "t_cross_linear_s": 197354.7728043817,
+          "critical_radius_after_cm": 0.0
+        },
+        "sample": {
+          "7200": {
+            "center": 2.548823149479103,
+            "surface": 1.125461011355073,
+            "mean": 2.1212990359866417,
+            "radius_cm": 1.625
+          },
+          "43200": {
+            "center": 0.8739966792715287,
+            "surface": 0.2144093329754664,
+            "mean": 0.5669672982470244,
+            "radius_cm": 1.248
+          },
+          "86400": {
+            "center": 0.3087517016738636,
+            "surface": 0.0704181193127999,
+            "mean": 0.22417749118177027,
+            "radius_cm": 1.204
+          },
+          "172800": {
+            "center": 0.16361604155225717,
+            "surface": 0.05351856163780004,
+            "mean": 0.13109078267438873,
+            "radius_cm": 1.2
+          }
+        },
+        "conservation": {
+          "max_abs_step": 0.0008308814321019652,
+          "cumulative_abs_step": 0.45792728793153126,
+          "terminal_step": 3.886586755779885e-10,
+          "trend_basis": "smaller max/cumulative/terminal is better; compare refinements"
+        },
+        "robin": {
+          "max_abs_flux_residual": 1.8049088671750632e-06,
+          "terminal_flux_residual": 1.8722444326924942e-11
+        },
+        "picard": {
+          "max_iterations": 5.0,
+          "max_nonlinear_residual": 9.998525341003983e-10
+        },
+        "endpoint": {
+          "time_s": 197360.0,
+          "cmax": 0.149997509213124,
+          "radius_cm": 1.2
+        }
+      },
+      {
+        "name": "independent_production",
+        "n_intervals": 96,
+        "dt_s": 4.0,
+        "horizon_s": 230400.0,
+        "runtime_s": 84.19543359999989,
+        "event": {
+          "before_s": 191096.0,
+          "after_s": 191100.0,
+          "before_cmax": 0.15000087683231383,
+          "after_cmax": 0.14999885377291108,
+          "t_cross_linear_s": 191097.7336758627,
+          "critical_radius_after_cm": 0.0
+        },
+        "sample": {
+          "7200": {
+            "center": 2.5488596255956137,
+            "surface": 1.1247632731015131,
+            "mean": 2.1212878190441415,
+            "radius_cm": 1.625
+          },
+          "43200": {
+            "center": 0.8736329854238154,
+            "surface": 0.2144550188729203,
+            "mean": 0.5667105283602951,
+            "radius_cm": 1.248
+          },
+          "86400": {
+            "center": 0.3076086090169374,
+            "surface": 0.07106212170812197,
+            "mean": 0.22070983639079447,
+            "radius_cm": 1.204
+          },
+          "172800": {
+            "center": 0.1604417363801975,
+            "surface": 0.053312678200538595,
+            "mean": 0.12623801893517403,
+            "radius_cm": 1.2
+          }
+        },
+        "conservation": {
+          "max_abs_step": 0.00041469851322862216,
+          "cumulative_abs_step": 0.46175070006759233,
+          "terminal_step": 5.147882458399841e-11,
+          "trend_basis": "smaller max/cumulative/terminal is better; compare refinements"
+        },
+        "robin": {
+          "max_abs_flux_residual": 1.679485028232704e-06,
+          "terminal_flux_residual": 9.081945894369199e-12
+        },
+        "picard": {
+          "max_iterations": 5.0,
+          "max_nonlinear_residual": 9.99962460057624e-10
+        },
+        "endpoint": {
+          "time_s": 191100.0,
+          "cmax": 0.14999885377291108,
+          "radius_cm": 1.2
+        }
+      },
+      {
+        "name": "independent_finer",
+        "n_intervals": 144,
+        "dt_s": 2.0,
+        "horizon_s": 230400.0,
+        "runtime_s": 215.51132720000078,
+        "event": {
+          "before_s": 190188.0,
+          "after_s": 190190.0,
+          "before_cmax": 0.15000030891533567,
+          "after_cmax": 0.1499992883646599,
+          "t_cross_linear_s": 190188.60538950787,
+          "critical_radius_after_cm": 0.0
+        },
+        "sample": {
+          "7200": {
+            "center": 2.5488707425080697,
+            "surface": 1.1246009245513093,
+            "mean": 2.1212744644074393,
+            "radius_cm": 1.625
+          },
+          "43200": {
+            "center": 0.8735436283075988,
+            "surface": 0.2144544995652298,
+            "mean": 0.566647781410797,
+            "radius_cm": 1.248
+          },
+          "86400": {
+            "center": 0.30739990406238776,
+            "surface": 0.07120550959330375,
+            "mean": 0.22007564499703403,
+            "radius_cm": 1.204
+          },
+          "172800": {
+            "center": 0.1599626231469062,
+            "surface": 0.053270710683424184,
+            "mean": 0.12546922737151803,
+            "radius_cm": 1.2
+          }
+        },
+        "conservation": {
+          "max_abs_step": 0.00020895005815766386,
+          "cumulative_abs_step": 0.4625678018189138,
+          "terminal_step": 1.1542225912203643e-11,
+          "trend_basis": "smaller max/cumulative/terminal is better; compare refinements"
+        },
+        "robin": {
+          "max_abs_flux_residual": 1.661303508302199e-06,
+          "terminal_flux_residual": 6.005504241189791e-12
+        },
+        "picard": {
+          "max_iterations": 5.0,
+          "max_nonlinear_residual": 9.99958352232433e-10
+        },
+        "endpoint": {
+          "time_s": 190190.0,
+          "cmax": 0.1499992883646599,
+          "radius_cm": 1.2
+        }
+      },
+      {
+        "name": "independent_linear_radius",
+        "n_intervals": 48,
+        "dt_s": 8.0,
+        "horizon_s": 230400.0,
+        "runtime_s": 24.904715900000156,
+        "event": {
+          "before_s": 197376.0,
+          "after_s": 197384.0,
+          "before_cmax": 0.15000015371493197,
+          "after_cmax": 0.14999634177743967,
+          "t_cross_linear_s": 197376.3225969624,
+          "critical_radius_after_cm": 0.0
+        },
+        "sample": {
+          "7200": {
+            "center": 2.54885585793837,
+            "surface": 1.134006297392052,
+            "mean": 2.1245307767437036,
+            "radius_cm": 1.625
+          },
+          "43200": {
+            "center": 0.874704734333478,
+            "surface": 0.21473233562615368,
+            "mean": 0.5674418627900131,
+            "radius_cm": 1.248
+          },
+          "86400": {
+            "center": 0.3088481921456277,
+            "surface": 0.07061986994619454,
+            "mean": 0.22424672569169007,
+            "radius_cm": 1.204
+          },
+          "172800": {
+            "center": 0.1636299728867769,
+            "surface": 0.05351951459340418,
+            "mean": 0.13110092385618355,
+            "radius_cm": 1.2
+          }
+        },
+        "conservation": {
+          "max_abs_step": 0.0007002561496965245,
+          "cumulative_abs_step": 0.456531305966696,
+          "terminal_step": 3.8864822128813634e-10,
+          "trend_basis": "smaller max/cumulative/terminal is better; compare refinements"
+        },
+        "robin": {
+          "max_abs_flux_residual": 1.80439786832176e-06,
+          "terminal_flux_residual": 1.8721993731878363e-11
+        },
+        "picard": {
+          "max_iterations": 5.0,
+          "max_nonlinear_residual": 9.995216043723332e-10
+        },
+        "endpoint": {
+          "time_s": 197384.0,
+          "cmax": 0.14999634177743967,
+          "radius_cm": 1.2
+        }
+      }
+    ],
+    "constant_radius_regression": {
+      "n_intervals": 32,
+      "dt_s": 4.0,
+      "horizon_s": 7200.0,
+      "rows": [
+        {
+          "time_s": 60.0,
+          "max_abs_T": 0.0,
+          "max_abs_C": 0.0,
+          "center_C": 2.5500000000000003,
+          "surface_C": 2.2387899180367397
+        },
+        {
+          "time_s": 600.0,
+          "max_abs_T": 0.0,
+          "max_abs_C": 0.0,
+          "center_C": 2.549999999999998,
+          "surface_C": 1.449126225500091
+        },
+        {
+          "time_s": 3600.0,
+          "max_abs_T": 0.0,
+          "max_abs_C": 0.0,
+          "center_C": 2.5499999952260404,
+          "surface_C": 0.9634806607135874
+        },
+        {
+          "time_s": 7200.0,
+          "max_abs_T": 0.0,
+          "max_abs_C": 0.0,
+          "center_C": 2.5493366917992843,
+          "surface_C": 0.7978957090597524
+        }
+      ],
+      "max_abs_T": 0.0,
+      "max_abs_C": 0.0,
+      "status": "PASS"
+    },
+    "equation_audit": {
+      "status": "PASS",
+      "items": [
+        {
+          "check": "physical PDE",
+          "status": "MATCH",
+          "evidence": "Standalone reference uses cylindrical (1/r)d/dr(r D dC/dr) and heat analogue."
+        },
+        {
+          "check": "xi=r/R(t) transformation",
+          "status": "MATCH",
+          "evidence": "Reference uses physical control volumes at current R and adds (Rdot/R) xi u_xi on RHS."
+        },
+        {
+          "check": "Rdot/R mesh-advection sign",
+          "status": "MATCH",
+          "evidence": "Positive source alpha*xi*gradient corresponds to moving term on RHS."
+        },
+        {
+          "check": "1/r geometry",
+          "status": "MATCH",
+          "evidence": "Face radius and annular control-volume factors are included; center row is symmetry."
+        },
+        {
+          "check": "variable k and D",
+          "status": "MATCH",
+          "evidence": "Appendix 4 node properties and harmonic face coefficients are evaluated in Picard."
+        },
+        {
+          "check": "thermal Robin",
+          "status": "MATCH",
+          "evidence": "Surface transfer is h=25 W/(m2 K), with outward-positive flux convention."
+        },
+        {
+          "check": "moisture Robin",
+          "status": "MATCH",
+          "evidence": "Surface transfer is hm=8e-7 m/s and uses hm(C_s-C_inf)."
+        },
+        {
+          "check": "xi boundaries",
+          "status": "MATCH",
+          "evidence": "xi=0 uses center symmetry; xi=1 is the Robin surface control volume."
+        },
+        {
+          "check": "Jacobian/shrinking volume",
+          "status": "MATCH",
+          "evidence": "Current-R annular volumes are used every step; R^2 volume balance is audited."
+        },
+        {
+          "check": "official Attachment 2 tail",
+          "status": "MATCH",
+          "evidence": "After the last node the radius is held at the last prescribed value."
+        }
+      ]
+    },
+    "table6_surface_audit": {
+      "source": "experiments/Q4_PRODUCTION/q4_result4_matrix_full_precision.csv",
+      "rows": 3185,
+      "outside_domain_value_violations": 0,
+      "surface_missing": 0,
+      "surface_definition": "C(R(t),t) from the material-domain endpoint; not nearest fixed radius",
+      "status": "PASS"
+    },
+    "frozen_t4_s": 191097.7336093787,
+    "frozen_t4_h": 53.08270378038297,
+    "round4_frozen_t4_h": 53.0827,
+    "finer_round4_h": 52.8302,
+    "four_decimal_stable": false,
+    "external_reference_h": 51.0823,
+    "frozen_minus_external_h": 2.0004037803829746
+  },
+  "interpretation": "External screenshot values are comparison references only. No parameter or solver tuning was performed.",
+  "recommendation": "Independent audit evidence is recorded; frozen result3/result4 are not replaced by this audit output."
+}
