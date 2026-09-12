@@ -1,0 +1,18 @@
+{
+  "status": "PENDING_PRODUCTION_RUNS",
+  "fail_closed": true,
+  "candidate_workbook_generated": false,
+  "q1_regression": {
+    "command": [
+      "D:\\数学建模（原神）\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-q"
+    ],
+    "returncode": 0,
+    "status": "PASS"
+  },
+  "official_source_modified": false,
+  "q1_frozen_assets_modified": false,
+  "q3_q4_started": false
+}

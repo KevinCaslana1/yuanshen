@@ -1,0 +1,44 @@
+{
+  "source_path": "A题/附件/附件1.xlsx",
+  "source_sha256": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+  "interpolation": "linear",
+  "attachment_time_range_s": [
+    0.0,
+    14400.0
+  ],
+  "attachment_raw_count": 241,
+  "rule": "piecewise linear on Attachment 1; constant post-attachment environment",
+  "post_attachment_mode": "constant",
+  "post_temperature_c": 49.99525,
+  "post_moisture_kg_kg": 0.049988,
+  "transition_assertion": {
+    "at_14400_s": [
+      50.165,
+      0.04986
+    ],
+    "at_14400_plus_epsilon_s": [
+      49.99525,
+      0.049988
+    ],
+    "at_14400_plus_dt_s": [
+      49.99525,
+      0.049988
+    ],
+    "epsilon_s": 1e-09,
+    "boundary_jump_at_epsilon": [
+      -0.1697500000000005,
+      0.00012799999999999617
+    ],
+    "boundary_jump_at_dt": [
+      -0.1697500000000005,
+      0.00012799999999999617
+    ],
+    "no_smoothing": true
+  },
+  "frozen_transition_s": 14400.0,
+  "within_attachment_rule": "piecewise linear for 0 <= t <= 14400 s",
+  "post_transition_rule": "constant ENV-B values for t > 14400 s",
+  "post_transition_temperature_c": 49.99525,
+  "post_transition_moisture_kg_kg": 0.049988,
+  "no_smoothing_or_tail_replacement": true
+}

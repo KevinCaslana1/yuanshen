@@ -53,12 +53,12 @@
 - Expansion Rule: 按官方完整结果采样规则展开模板；论文表与 Excel 的时间单位分开处理
 - Required Cells: 两个官方 Sheet 的完整时间-空间结果矩阵及表头
 - Forbidden Changes: 修改官方模板；改变 Sheet 名称；覆盖 `A题/`；把论文小时直接写入要求为秒的 A 列
-- Validation Status: `OPEN_QUESTION`
-- Open Questions: `OQ-001`, `OQ-002`
+- Validation Status: `Q2_V3_CANDIDATE_VALIDATED_PENDING_HUMAN_FREEZE`
+- Open Questions: 无；仅保留 candidate→final 的人工确认门
 
 ### Q2 Design Gate Addendum
 
-Q2 的 `result2.xlsx` 仍处于契约草案阶段：官方 Sheet、时间/空间单位、每 `1 s`、每 `0.1 cm`、表3/4 的 `0.5..3.0 h` 追踪点和四位小数要求已核对；“整个烘干过程”的终止时间、是否含 `t=0`/终止事件行和最终行数仍为 `OQ-Q2-END-001`，不在本阶段冻结。Q2 solver、candidate/final `result2.xlsx` 均尚未生成。
+Q2 V3 契约已冻结并完成 candidate 验证：完整 Excel 为整数秒 `t=1..228536`，21 个半径 `0..2 cm` 每 `0.1 cm`，每张表 `228537×22`（含表头）；t=0 只保留在 raw internal source；表3/4 仍按 `1800..10800 s` 和 `0,0.5,1,1.5,2 cm` 追踪。`deliverables/candidate/result2.xlsx` 已生成并验证，尚未复制到 final。
 
 ## result3.xlsx
 

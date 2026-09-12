@@ -23,6 +23,10 @@
 | F-Q1-007 | EXP-Q1-CLUSTER-TEMPORAL | 初版参考键切片混入空间/时间比较，且未覆盖 base320 空间层级 | Richardson 参考不具备同一网格/同一物理时刻的可解释性 | 改为显式空间键和显式时间键，并加入 base320/base640/base1280 dt=.03125 | 任何新收敛脚本禁止依赖字典顺序切片 |
 | F-Q1-008 | EXP-Q1-SURFACE-DECAY audit | 初次审计脚本将字面表面标签与近表面标签混用，且旧 helper 只保存绝对误差 | 首次长时运行在写完短时表后因标签 KeyError 停止；不能证明数值失败 | 统一位置标签；所有审计数据同时保存 signed/absolute，补充直接 signed 图与 semilogy 图后完整重跑通过 | 保持 signed/absolute 字段并显式检查位置映射 |
 | F-Q2-009 | Q2_FREEZE_RUN | 独立时间/空间全时域精度确认 | 冻结候选 T/C L∞ 超过 `2.5e-5` gate；峰值分别位于 `14401 s` 环境跳变和 `1 s` 初始表面层 | 候选阻塞；当前证据不证明 solver assembly bug | 新人工决定 post-14400、dt/grid 或 accuracy gate 后重跑 |
+| F-Q2-012 | Q2_FREEZE_RUN_V3 | 预声明 horizon | 首次 fresh V3 attempt 完成到旧 endpoint `228635 s`，但独立 passive bracket 为 `[206935.0,206935.25] s` | 归档为 FAILED_PRODUCTION_ATTEMPT；未续跑、未用于交付 | 新目录按 bracket 重新 fresh run |
+| F-Q2-013 | Q2_FREEZE_RUN_V3 | 非数值 transition probe writer | Run1 数值完成后 probe writer 漏掉 `r=1.9 cm`，写出 partial probe 文件并停止后处理 | POSTPROCESSING_FAILURE_ONLY；数值源/solver 未变，partial 文件不作来源 | 修正 postprocess 后保留已完成 Run1，独立 Run2 通过 |
+| F-Q2-014 | Q2 candidate authoring | 超大 workbook 内存 | artifact-tool 默认 4 GB、提高至 8 GB 均在 workbook object/export 阶段 OOM | 记录工具限制；用 `openpyxl write_only=True` fallback 流式生成，结构/数值/溯源验证 PASS | 后续如需 artifact-tool，先确认大表内存模型 |
+| F-Q2-015 | Q2_FREEZE_RUN_V3 preflight | source-commit expectation | 初次 preflight 因脚本检查了 source commit 而非预期 HEAD，未进入数值运行 | 修正 preflight 判定并重新完成 fresh V3 production；该目录无交付数据 | 生产前同时记录 HEAD 与 `git log -- src/q2` |
 
 ## 失败记录模板
 
@@ -359,3 +363,43 @@ sampler只登记 21600/86400/172800/259200 s，因此后处理抛出 `KeyError: 
 影响：没有生成 result2；该记录不改变正式证书的 PASS，也不把 n=640 局部运行写成 full-horizon proof。
 
 状态：RESOLVED AS REFERENCE-RESOLUTION FOLLOW-UP
+
+## F-Q2-012 V3 首次 horizon 预声明错误
+
+对应实验：`Q2_FREEZE_RUN_V3`
+
+现象：首次从 t=0 完成的 V3 数值运行使用了携带的旧 endpoint `228635 s`，运行中独立观察到的首次 passive crossing 实为 `[206935.0,206935.25] s`。
+
+最终判断：按 fail-closed 规则，该次 attempt 归档为 `FAILED_PRODUCTION_ATTEMPT`，没有复用其结果、没有续跑；纠正后的 horizon 为 `ceil(206935.25)+21600=228536 s`，再以新目录完成 Run1/Run2。
+
+证据：`experiments/Q2_FREEZE_RUN_V3_FAILED_HORIZON_20260912/FAILURE.md`
+
+## F-Q2-013 V3 后处理 probe writer 失败
+
+对应实验：`Q2_FREEZE_RUN_V3`
+
+现象：Run1 已完成 t=0 到 228536 s 的 raw、official sampled、diagnostics 和 checkpoint 后，非生产 transition probe writer 因漏掉 `r=1.9 cm` 失败并产生 partial 文件。
+
+最终判断：这是后处理失败，不是 solver、环境、采样或数值失败；partial 文件移入独立 provenance 目录，Run1 数值结果保留，修正后 Run2 独立重跑并与 Run1 全量 byte/hash identical。
+
+证据：`experiments/Q2_FREEZE_RUN_V3_POSTPROCESS_FAILURE_20260912/FAILURE.md`、`experiments/Q2_FREEZE_RUN_V3/determinism.json`
+
+## F-Q2-014 artifact-tool 大工作簿堆限制
+
+对应实验：Q2 V3 candidate authoring
+
+现象：使用 artifact-tool 按批写入两张约 228537×22 表时，默认 V8 heap 和 `--max-old-space-size=8192` 均在 workbook object/export 阶段达到堆上限，未写出非模板候选。
+
+最终判断：官方模板、生产源和数值代码均未被修改；改用 `openpyxl.Workbook(write_only=True)` 逐层流式生成候选，并通过相同的结构、四位小数、无公式、100/100 与 60/60 trace 校验。该 fallback 只改变 workbook authoring engine，不改变生产数值。
+
+证据：`scripts/build_q2_v3_candidate.mjs`、`scripts/build_q2_v3_candidate_streaming.py`、`experiments/Q2_FREEZE_RUN_V3/candidate_validation.json`
+
+## F-Q2-015 V3 preflight source-commit expectation mismatch
+
+对应实验：`Q2_FREEZE_RUN_V3` preflight
+
+现象：首次 preflight 将数值源提交 `git log -- src/q2` 误当作冻结 HEAD 基线，因两者不同而提前阻断；该次未消费数值生产结果。
+
+最终判断：修正为同时记录并检查冻结 HEAD `8504b2b...` 与数值源提交 `83a0e3d...`，随后重新完成 fresh Run1/Run2；preflight-only 目录不作交付来源。
+
+证据：`experiments/Q2_FREEZE_RUN_V3_PREFLIGHT_BLOCKED_20260912/`、`experiments/Q2_FREEZE_RUN_V3/code_hashes.json`

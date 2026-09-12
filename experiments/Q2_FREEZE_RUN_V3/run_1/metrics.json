@@ -1,0 +1,221 @@
+{
+  "run": "run_1",
+  "status": "PASS_EXECUTION",
+  "fresh_start": true,
+  "postprocessing_recovery": "completed fresh t=0 integration was retained; only metadata finalization was rerun after a non-numerical probe-writer bug",
+  "initial_condition": "official uniform initial field at t=0; no checkpoint/field/data reuse",
+  "restart_path": null,
+  "runtime_s": 3852.7974588871,
+  "runtime_measurement": "filesystem creation-to-checkpoint interval; solver process wall-time was not persisted before the postprocessing failure",
+  "config": {
+    "end_time_s": 228536.0,
+    "time_step_s": 0.25,
+    "early_time_step_s": 0.015625,
+    "early_time_end_s": 5.0,
+    "candidate": "A",
+    "n_intervals": 320,
+    "cluster_power": 3.0,
+    "scheme": "bdf2",
+    "interface_mean": "harmonic",
+    "interpolation": "linear",
+    "post_attachment_mode": "constant",
+    "post_temperature_c": 49.99525,
+    "post_moisture_kg_kg": 0.049988,
+    "output_interval_s": 1.0,
+    "picard_tolerance": 1e-08,
+    "picard_max_iterations": 50,
+    "picard_relaxation": 1.0,
+    "reset_bdf2_at_environment_transition": true,
+    "input_path": "A题\\附件\\附件1.xlsx",
+    "parameters": {
+      "radius_m": 0.02,
+      "length_m": 0.25,
+      "heat_transfer_w_m2_k": 25.0,
+      "mass_transfer_m_s": 8e-07,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55
+    }
+  },
+  "grid": {
+    "grid_type": "NonuniformRadialGrid",
+    "requested_intervals": 320,
+    "actual_cell_count": 339,
+    "actual_node_count": 340,
+    "cluster_power": 3.0,
+    "min_dr_m": 6.103515609590104e-10,
+    "max_dr_m": 0.00018691467285156583,
+    "min_dr_cm": 6.103515609590104e-08,
+    "max_dr_cm": 0.018691467285156582,
+    "official_radii_cm": [
+      0.0,
+      0.1,
+      0.2,
+      0.30000000000000004,
+      0.4,
+      0.5,
+      0.6000000000000001,
+      0.7000000000000001,
+      0.8,
+      0.9,
+      1.0,
+      1.1,
+      1.2000000000000002,
+      1.3,
+      1.4000000000000001,
+      1.5,
+      1.6,
+      1.7000000000000002,
+      1.8,
+      1.9000000000000001,
+      2.0
+    ]
+  },
+  "method": {
+    "early_policy": "BE startup then BDF2 with fine dt=.015625 s through exactly t=5 s",
+    "five_second_transition": "the first dt=.25 s step after t=5 s is BE; certified BDF2 history handling is unchanged",
+    "environment_transition": "the first post-14400 s step is event-aligned BE; BDF2 resumes afterward",
+    "coupling": "temperature-moisture Picard",
+    "interface_mean": "harmonic"
+  },
+  "sampled_output": {
+    "path": "experiments/Q2_FREEZE_RUN_V3/run_1/official_samples.csv",
+    "t0_rows_removed": 21,
+    "sampled_rows": 4799256,
+    "time_start_s": 1,
+    "time_end_s": 228536,
+    "radii_cm": [
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      1.0,
+      1.1,
+      1.2,
+      1.3,
+      1.4,
+      1.5,
+      1.6,
+      1.7,
+      1.8,
+      1.9,
+      2.0
+    ]
+  },
+  "raw_output": {
+    "path": "experiments/Q2_FREEZE_RUN_V3/run_1/official_samples_raw.csv",
+    "rows_including_header": 4799278,
+    "includes_internal_t0_layer": true
+  },
+  "diagnostics": {
+    "path": "experiments/Q2_FREEZE_RUN_V3/run_1/diagnostics_1s.csv",
+    "summary": {
+      "steps": 228536,
+      "non_converged_steps": 0,
+      "picard_iterations": {
+        "min": 2.0,
+        "median": 2.0,
+        "p95": 3.0,
+        "max": 3.0
+      },
+      "temperature_range_k": [
+        301.1499999999917,
+        323.1898663024624
+      ],
+      "temperature_range_c": [
+        27.9999999999917,
+        50.03986630246243
+      ],
+      "moisture_range_kg_kg": [
+        0.052206290653170985,
+        2.550000000000054
+      ],
+      "property_ranges": {
+        "rho": [
+          656.6824052036059,
+          976.4000000000069
+        ],
+        "cp": [
+          1585.7494366797675,
+          3415.2957746478987
+        ],
+        "k": [
+          0.2288540884277455,
+          0.4829577464788749
+        ],
+        "D": [
+          2.9006553922158597e-12,
+          1.252186531453246e-08
+        ]
+      },
+      "picard_residual_max": {
+        "temperature": 7.232109110156724e-10,
+        "moisture": 9.999945677074962e-09
+      },
+      "linear_residual_max": {
+        "temperature": 0.025534825399518013,
+        "moisture": 4.794193788626444e-06
+      },
+      "mass_residual": {
+        "max_abs": 1.543877133753609e-08,
+        "rms": 2.1918875926655512e-09,
+        "cumulative_signed": 0.00019076192832995326,
+        "cumulative_abs": 0.00019076192832995326
+      },
+      "discrete_heat_residual": {
+        "max_abs_j": 1.2148866494281616,
+        "rms_j": 0.13797685420549796,
+        "cumulative_signed_j": -5252.758989258353,
+        "cumulative_abs_j": 5304.082909817318
+      },
+      "robin_residual": {
+        "heat_max_abs_w_m2": 0.0001252318828548482,
+        "moisture_max_abs_kg_m2_s": 4.541557986191563e-12
+      },
+      "center_symmetry": {
+        "heat_flux_max_abs_w_m2": 0.0,
+        "moisture_flux_max_abs_kg_m2_s": 0.0
+      },
+      "surface_D_range_m2_s": [
+        2.9006553922158597e-12,
+        1.0750793766765149e-08
+      ],
+      "time_step_residual": {
+        "temperature_max": 7.232109110156724e-10,
+        "moisture_max": 9.999945677074962e-09
+      }
+    }
+  },
+  "transition_internal_probes": {
+    "source": "experiments/Q2_ACCURACY_REMEDIATION/accuracy_confirmation_v3.json",
+    "classification": "SUPPORTED_INTERNAL_TRANSITION_DIAGNOSTIC",
+    "production_output_scope": "official integer-second lattice; non-integer probes remain in formal certification evidence"
+  },
+  "checkpoint": {
+    "path": "experiments/Q2_FREEZE_RUN_V3/run_1/checkpoint_final.json",
+    "count": 1,
+    "sha256": "6849f0cfd6505ed7ebf336b280370c67807dac2501e6be74d16d0c5d950856c0"
+  },
+  "passive_event_bracket_s": [
+    206935.0,
+    206935.25
+  ],
+  "passive_horizon_rule": "ceil(t_high)+21600 s",
+  "final_horizon_s": 228536,
+  "memory_storage": {
+    "solver_memory_estimate_bytes": 174080,
+    "raw_output_bytes": 323221871,
+    "sampled_output_bytes": 318422116,
+    "diagnostics_bytes": 176715221,
+    "checkpoint_bytes": 44276,
+    "total_run_artifact_bytes": 818403746,
+    "process_peak_rss_bytes": null
+  },
+  "output_sample_count": 4799256,
+  "checkpoint_count": 1
+}

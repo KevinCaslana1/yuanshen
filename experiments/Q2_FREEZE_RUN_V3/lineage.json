@@ -1,0 +1,102 @@
+{
+  "manifest_version": "Q2_V3_PRODUCTION_LINEAGE_V1",
+  "formal_result_source": "experiments/Q2_FREEZE_RUN_V3/run_1/official_samples.csv",
+  "run_1_status": "PRODUCTION_CANONICAL",
+  "run_2_status": "DETERMINISM_REFERENCE",
+  "old_data_delivery_status": "NOT_DELIVERY_SOURCE",
+  "entries": [
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/run_1/official_samples_raw.csv",
+      "status": "PRODUCTION_CANONICAL",
+      "sha256": "8da13480ea9bb4f752682e409e7f96ca7547c36db698a72696fc2f8229c7d6bf",
+      "run": "run_1",
+      "role": "internal_source"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/run_1/official_samples.csv",
+      "status": "PRODUCTION_CANONICAL",
+      "sha256": "141a7d6b9e4de11b9a5e52d50c194761f3d15661e14b4828929e1b320e1372fd",
+      "run": "run_1",
+      "role": "official_sampled_source"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/run_1/diagnostics_1s.csv",
+      "status": "PRODUCTION_CANONICAL",
+      "sha256": "c6c1deb41fe83b49a6252ac2d3d7dbce47bc6e923520512de750ce14f2ae8209",
+      "run": "run_1",
+      "role": "diagnostics"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/run_1/checkpoint_final.json",
+      "status": "PRODUCTION_CANONICAL",
+      "sha256": "6849f0cfd6505ed7ebf336b280370c67807dac2501e6be74d16d0c5d950856c0",
+      "run": "run_1",
+      "role": "checkpoint"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/run_1/metrics.json",
+      "status": "PRODUCTION_CANONICAL",
+      "sha256": "970d6359ca5c0daa4b6a89c851c925325fc93826e78efae784e7435d6c847edd",
+      "run": "run_1",
+      "role": "run_metrics"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/run_2/official_samples_raw.csv",
+      "status": "DETERMINISM_REFERENCE",
+      "sha256": "8da13480ea9bb4f752682e409e7f96ca7547c36db698a72696fc2f8229c7d6bf",
+      "run": "run_2",
+      "role": "internal_source"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/run_2/official_samples.csv",
+      "status": "DETERMINISM_REFERENCE",
+      "sha256": "141a7d6b9e4de11b9a5e52d50c194761f3d15661e14b4828929e1b320e1372fd",
+      "run": "run_2",
+      "role": "official_sampled_source"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/run_2/diagnostics_1s.csv",
+      "status": "DETERMINISM_REFERENCE",
+      "sha256": "c6c1deb41fe83b49a6252ac2d3d7dbce47bc6e923520512de750ce14f2ae8209",
+      "run": "run_2",
+      "role": "diagnostics"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/run_2/checkpoint_final.json",
+      "status": "DETERMINISM_REFERENCE",
+      "sha256": "6849f0cfd6505ed7ebf336b280370c67807dac2501e6be74d16d0c5d950856c0",
+      "run": "run_2",
+      "role": "checkpoint"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/run_2/metrics.json",
+      "status": "DETERMINISM_REFERENCE",
+      "sha256": "2c6ad318a2e6bd00ae34c96de34bb03030d35925666834996ed8c8baffca0940",
+      "run": "run_2",
+      "role": "run_metrics"
+    }
+  ],
+  "hashes": {
+    "config_sha256": "b8dc7500d96791366a012228bb350ff36a3b96972e9a882ca78d2efd9aee9b1a",
+    "environment_sha256": "a5d553bce9ab81b8e67173625b2872e9d798bfc0273c9c7455db4f9f250876d6",
+    "input_hashes_sha256": "f48e5b0df67f2f145cfd9b5d7eff38059111dadfe5e0cc4595c4c68d4d5e2357",
+    "code_hashes_sha256": "a0d276b66d6240ee79edcd3db009c8c0b944f74e168e6043677db35a2c38fc38",
+    "run_1": {
+      "internal_source_sha256": "8da13480ea9bb4f752682e409e7f96ca7547c36db698a72696fc2f8229c7d6bf",
+      "official_sampled_sha256": "141a7d6b9e4de11b9a5e52d50c194761f3d15661e14b4828929e1b320e1372fd",
+      "raw_output": "8da13480ea9bb4f752682e409e7f96ca7547c36db698a72696fc2f8229c7d6bf",
+      "sampled_output": "141a7d6b9e4de11b9a5e52d50c194761f3d15661e14b4828929e1b320e1372fd",
+      "diagnostics": "c6c1deb41fe83b49a6252ac2d3d7dbce47bc6e923520512de750ce14f2ae8209",
+      "checkpoint": "6849f0cfd6505ed7ebf336b280370c67807dac2501e6be74d16d0c5d950856c0"
+    },
+    "run_2": {
+      "internal_source_sha256": "8da13480ea9bb4f752682e409e7f96ca7547c36db698a72696fc2f8229c7d6bf",
+      "official_sampled_sha256": "141a7d6b9e4de11b9a5e52d50c194761f3d15661e14b4828929e1b320e1372fd",
+      "raw_output": "8da13480ea9bb4f752682e409e7f96ca7547c36db698a72696fc2f8229c7d6bf",
+      "sampled_output": "141a7d6b9e4de11b9a5e52d50c194761f3d15661e14b4828929e1b320e1372fd",
+      "diagnostics": "c6c1deb41fe83b49a6252ac2d3d7dbce47bc6e923520512de750ce14f2ae8209",
+      "checkpoint": "6849f0cfd6505ed7ebf336b280370c67807dac2501e6be74d16d0c5d950856c0"
+    }
+  },
+  "fail_closed_policy": "candidate workbook and formal figures require the V3 Run 1 production-canonical path and verified SHA-256"
+}

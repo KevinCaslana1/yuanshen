@@ -331,3 +331,22 @@ Agent 自动完成模型冻结。`result2.xlsx`、candidate/final workbook 均�
 | Q1/Q3/Q4 boundary | `docs/STATE.md`, `docs/HANDOFF.md` | PASS；Q1 frozen，Q3/Q4 not started |
 
 当前结论：`Q2 FORMAL-OUTPUT ACCURACY GATE COMPLETE / WAITING FOR Q2 V3 FREEZE RUN AUTHORIZATION`。证书不是 n=640 full-horizon proof，也不是 `result2.xlsx` 的生产来源；在 V3 授权前不得生成 result2 或启动 Q3/Q4。
+
+## CUMCM Q2 V3 PRODUCTION FREEZE RUN & RESULT CANDIDATE GATE（2026-09-12）
+
+| Gate item | Evidence | Status |
+|---|---|---|
+| V3 frozen config/baseline/environment/input | `experiments/Q2_FREEZE_RUN_V3/config.json`、`code_hashes.json`、`environment.json`、`input_hashes.json` | PASS |
+| Formal accuracy basis | `experiments/Q2_ACCURACY_REMEDIATION/accuracy_confirmation_v3.json` | PASS on declared formal lattice/selected points；not full-horizon n640 proof |
+| Fresh Run1/Run2 | `experiments/Q2_FREEZE_RUN_V3/metrics.json` | PASS；both t=0, no reuse |
+| Passive bracket and horizon | V3 metrics/config | PASS；`[206935.0,206935.25] s` → `228536 s` |
+| Full deterministic outputs | `determinism.json`、`output_hashes.json` | PASS；raw/sampled/diagnostics byte/hash identical |
+| Picard/finite fields/mass/heat/Robin/time-step residual | `run_1/metrics.json`、`diagnostics_1s.csv` | PASS；0 non-converged steps |
+| Official sampler | V3 official source and metrics | PASS；integer t=1..228536, 21 radii; raw retains t=0 |
+| Canonical lineage | `experiments/Q2_CANONICAL_DATA_MANIFEST.json`、`lineage.json` | PASS；Run1 only production canonical |
+| Result2 workbook | `candidate_validation.json` | PASS；two sheets, 4 decimals, no formulas, 100/100 random, 60/60 Table3/4 |
+| Q2 figures | `figures/q2/FIGURE_MANIFEST.json`、`figure_validation.json` | PASS；11 figure groups, PNG≥300 dpi + SVG, 30/30 trace |
+| Q1/A题 integrity | `validation.json`、preflight hashes | PASS |
+| Q3/Q4 boundary | `STATE.md`、`HANDOFF.md`、V3 validation | PASS；not started |
+
+当前结论：`Q2 RESULT & DELIVERABLE GATE COMPLETE`；`WAITING FOR HUMAN Q2 FREEZE APPROVAL`。`deliverables/candidate/result2.xlsx` 是 `VALIDATED CANDIDATE`，不进入 `deliverables/final/`，不自动升级；Q3/Q4 不启动。Q1 20–40 s 深谷仍只可写成 signed-error zero-crossing/cancellation dip。

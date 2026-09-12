@@ -1,0 +1,27 @@
+{
+  "raw_output": {
+    "status": "PASS",
+    "mode": "byte/hash identical",
+    "left_sha256": "8da13480ea9bb4f752682e409e7f96ca7547c36db698a72696fc2f8229c7d6bf",
+    "right_sha256": "8da13480ea9bb4f752682e409e7f96ca7547c36db698a72696fc2f8229c7d6bf",
+    "comparison_scope": "all rows and all numeric fields, not only final state"
+  },
+  "official_sampled_output": {
+    "status": "PASS",
+    "mode": "byte/hash identical",
+    "left_sha256": "141a7d6b9e4de11b9a5e52d50c194761f3d15661e14b4828929e1b320e1372fd",
+    "right_sha256": "141a7d6b9e4de11b9a5e52d50c194761f3d15661e14b4828929e1b320e1372fd",
+    "comparison_scope": "all rows and all numeric fields, not only final state"
+  },
+  "diagnostics": {
+    "status": "PASS",
+    "mode": "byte/hash identical",
+    "left_sha256": "c6c1deb41fe83b49a6252ac2d3d7dbce47bc6e923520512de750ce14f2ae8209",
+    "right_sha256": "c6c1deb41fe83b49a6252ac2d3d7dbce47bc6e923520512de750ce14f2ae8209",
+    "comparison_scope": "all rows and all numeric fields, not only final state"
+  },
+  "event_bracket_equal": true,
+  "final_horizon_equal": true,
+  "comparison_scope": "all rows and all numeric fields, not only final state",
+  "status": "PASS"
+}

@@ -36,4 +36,6 @@
 
 由 `scripts/validate_inputs.py` 和 `scripts/validate_templates.py` 检查文件存在性、哈希、Sheet 名称、行列骨架、表头和模板数据区空白状态。校验脚本不计算题目答案、不调用求解器、不写入官方资产。
 
-Q2 设计阶段补充：`result2.xlsx` 仍是官方只读模板，完整时间终点、是否含 `t=0`/终止事件行和最终行数保持 `OPEN_QUESTION`；候选结果只能先写入 `deliverables/candidate/`，本阶段没有 candidate/final Q2 文件。
+Q2 V3 补充：官方模板仍只读；V3 冻结的 candidate 规则为整数秒 `t=1..228536`、21 个半径，表头加数据区为 `228537 × 22 / Sheet`，t=0 只保留在 raw internal source。`deliverables/candidate/result2.xlsx` 已通过验证，仍须人工批准后才可进入 `deliverables/final/`。
+
+V3 交付证据：`experiments/Q2_FREEZE_RUN_V3/`、`experiments/Q2_CANONICAL_DATA_MANIFEST.json`。官方模板 `A题/附件/附件3/result2.xlsx` SHA-256 保持 `23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4`。

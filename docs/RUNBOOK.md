@@ -146,3 +146,19 @@ node scripts\\build_q2_candidate.mjs
 ```
 
 候选工作簿只有在 field L∞/L2、时间/空间参考、事件邻域、结构/格式/溯源和确定性全部 PASS 后才可生成；任何改变 post-14400 环境规则、dt/grid 或内部精度门的动作都必须先获得新的人工授权。当前只允许本地审计提交，不推送远端。
+
+### Authorized V3 completion
+
+本次实际使用的新目录 `experiments/Q2_FREEZE_RUN_V3/`，按顺序完成：
+
+```powershell
+.\.venv\Scripts\python.exe scripts\finalize_q2_v3_run1_and_run2.py
+.\.venv\Scripts\python.exe scripts\audit_q2_v3_postproduction.py
+.\.venv\Scripts\python.exe scripts\update_q2_v3_manifest.py
+.\.venv\Scripts\python.exe scripts\build_q2_v3_candidate_streaming.py
+.\.venv\Scripts\python.exe scripts\validate_q2_v3_candidate.py
+.\.venv\Scripts\python.exe scripts\generate_q2_v3_figures.py
+.\.venv\Scripts\python.exe scripts\validate_q2_v3_figures.py
+```
+
+artifact-tool 已先按技能要求尝试；因该超大工作簿在 4 GB 和 8 GB V8 heap 均 OOM，最终使用 `openpyxl.Workbook(write_only=True)` 流式 fallback。候选仍须人工 Q2 freeze approval 后才允许 candidate→final COPY ONLY；不得直接启动 Q3/Q4。

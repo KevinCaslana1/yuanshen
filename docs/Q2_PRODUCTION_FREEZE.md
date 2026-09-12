@@ -5,7 +5,7 @@
 
 ## 状态
 
-历史配置冻结和双跑仍保留为失败 provenance；本轮依据 `D-Q2-ACCURACY-SCOPE` 完成了 formal-output accuracy certification。Q2 当前状态为 `FORMAL-OUTPUT ACCURACY GATE COMPLETE / WAITING FOR V3 FREEZE RUN AUTHORIZATION`。在 V3 授权前仍不生成 `deliverables/candidate/result2.xlsx` 或 Q2 正式图表，不进入 `deliverables/final/`；Q1 保持 FROZEN，Q3/Q4 保持 NOT STARTED。
+历史配置冻结和双跑仍保留为失败 provenance；本轮已依据人工 `Q2 V3 FREEZE RUN AUTHORIZATION = APPROVED` 完成 V3 生产、候选工作簿和正式图表门禁。Q2 当前状态为 `VALIDATED CANDIDATE / WAITING FOR HUMAN Q2 FREEZE APPROVAL`；candidate 尚未进入 `deliverables/final/`，Q1 保持 FROZEN，Q3/Q4 保持 NOT STARTED。
 
 ## Frozen model and configuration
 
@@ -24,7 +24,7 @@
 - The explicit transition audit records raw `(50.165, 0.04986)` at `14400 s` and constant `(49.99525, 0.049988)` immediately after it; the resulting jump is `(-0.16975 °C,+0.000128 kg/kg)`.
 - `h=25 W/(m²·K)` and `hm=8e-7 m/s` are carried-forward modeling assumptions, not official Q2 parameters.
 
-### Numerical production candidate
+### Historical original numerical production candidate (not delivery source)
 
 - Candidate A: boundary-clustered conservative FVM, `cluster_power=2`.
 - Requested `n_intervals=80`; actual `98` cells and `99` nodes; `min dr=3.124999999999656e-6 m`, `max dr=4.968749999999988e-4 m`.
@@ -55,10 +55,22 @@ The full official output region is `t=1..228635 s` and 21 radii. The independent
 
 The time observed order from the frozen `dt=.5/.25/.125` comparison is `1.6685` for temperature and `3.0631` for moisture under the global L∞ metric; it is not sufficient to claim uniform first-order behavior for this production configuration.
 
-## Current formal-output disposition
+## Formal-output certificate disposition before V3 (historical)
 
 The formal-output candidate gate is complete on its declared points. Recommended `Q2_NUMERICAL_CONFIG_V3`: n=320/cluster_power=3, fine `dt=.015625 s` through5 s, production `dt=.25 s`, BE startup/BDF2, BE restart at the exact environment transition and step-policy change, harmonic interfaces, ENV-B. Transition formal T/C L∞ are `1.55375452663975e-5 °C`/`3.1402255240564614e-9 kg/kg`; early formal T/C L∞ are `7.116765686987492e-6 °C`/`1.0270424274150258e-5 kg/kg`. The targeted long certificate passes 3–48 h with a localized n=640 reference and covers passive/final points with the recorded moderate screen.
 
 The n=320 candidate's explicit non-output probe `14400.25 s,r=2.0 cm` remains `2.2991211631051556e-4 °C`; it is a bounded internal diagnostic and does not propagate to formal output points. The attempted n=640 V2 full run remains incomplete provenance and is not resumed. Do not generate `result2.xlsx` before V3 authorization, do not call the passive bracket a Q3 drying time, and do not start Q3/Q4.
 
 Evidence: `experiments/Q2_FREEZE_RUN/metrics.json`, `environment.json`, `determinism.json`, `accuracy_confirmation.json`, `accuracy_diagnosis.json`, `experiments/Q2_ACCURACY_REMEDIATION/accuracy_confirmation_v3.json`, `experiments/EXP-Q2-ACC-T-FORMAL/`, `experiments/EXP-Q2-ACC-C-FORMAL/`, `experiments/EXP-Q2-ACC-LONG-TARGETED/`, `experiments/EXP-Q2-V2-REGRESSION/`, and `experiments/Q2_FREEZE_RUN_V2/ABORTED_ATTEMPT.json`.
+
+## V3 production run and candidate disposition (2026-09-12)
+
+The authorized V3 run uses the frozen `Q2_NUMERICAL_CONFIG_V3` exactly: n=320/cluster3, harmonic interfaces, fine `dt=.015625 s` through 5 s, production `dt=.25 s`, BE startup/BDF2, BE restart at the 5 s step-policy transition and exact 14400 s environment transition, linear Attachment 1 input followed by constant ENV-B. Both runs started fresh at t=0 and independently derived the same passive bracket `[206935.0,206935.25] s`; therefore `final_horizon=228536 s`.
+
+Run 1 is the sole production source and Run 2 is a determinism reference. Raw internal output retains t=0; official output is the integer-second lattice t=1..228536 at 21 radii. Raw, official sampled, and 1 s diagnostics are byte/hash identical between runs. Run 1 diagnostics report 0 non-converged steps, Picard iterations 2–3, mass residual max `1.543877133753609e-8`, heat residual max `1.2148866494281616 J`, heat Robin residual max `1.252318826748482e-4 W/m²`, and moisture Robin residual max `4.541557986191563e-12 kg/(m²·s)`.
+
+The formal accuracy basis remains scoped to the declared integer-second/official-radius points and selected long-horizon points; it is not a full-horizon n=640 proof. The internal transition peak at 14400.25 s remains `SUPPORTED_INTERNAL_TRANSITION_DIAGNOSTIC` and is not an official output point.
+
+`deliverables/candidate/result2.xlsx` was generated from the canonical Run 1 source with a write-only streaming fallback after artifact-tool heap failures. The two sheets pass shape, 4-decimal, no-formula, 100/100 random trace, and Table 3/4 60/60 trace checks. Eleven Q2 figure groups pass PNG ≥300 dpi + SVG, source-hash, no-smoothing/no-interpolation, and 30/30 trace checks. The workbook is a `VALIDATED CANDIDATE` only; it must not be copied into `deliverables/final/` until human Q2 freeze approval.
+
+Evidence: `experiments/Q2_FREEZE_RUN_V3/`, `experiments/Q2_CANONICAL_DATA_MANIFEST.json`, `experiments/Q2_FREEZE_RUN_V3/candidate_validation.json`, `experiments/Q2_FREEZE_RUN_V3/figure_validation.json`, `figures/q2/FIGURE_MANIFEST.json`.

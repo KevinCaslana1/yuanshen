@@ -1,0 +1,253 @@
+{
+  "status": "PASS",
+  "random_seed": 20260912,
+  "random_trace_count": 30,
+  "random_trace_pass_count": 30,
+  "random_trace": [
+    {
+      "figure_id": "FIG-Q2-03",
+      "time_s": 1,
+      "radius_cm": 0.0,
+      "source_value": 27.99999999999983,
+      "plotted_value": 27.99999999999983,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-04",
+      "time_s": 5,
+      "radius_cm": 0.7,
+      "source_value": 2.5499999999999936,
+      "plotted_value": 2.5499999999999936,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-03",
+      "time_s": 10,
+      "radius_cm": 1.4,
+      "source_value": 28.00000011323243,
+      "plotted_value": 28.00000011323243,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-04",
+      "time_s": 10800,
+      "radius_cm": 0.0,
+      "source_value": 1.7661805257942447,
+      "plotted_value": 1.7661805257942447,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-03",
+      "time_s": 14399,
+      "radius_cm": 0.7,
+      "source_value": 49.999578980723584,
+      "plotted_value": 49.999578980723584,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-04",
+      "time_s": 14400,
+      "radius_cm": 1.4,
+      "source_value": 1.141711164371081,
+      "plotted_value": 1.141711164371081,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-03",
+      "time_s": 14401,
+      "radius_cm": 0.0,
+      "source_value": 49.99940877822837,
+      "plotted_value": 49.99940877822837,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-04",
+      "time_s": 86400,
+      "radius_cm": 0.7,
+      "source_value": 0.22777905926780678,
+      "plotted_value": 0.22777905926780678,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-03",
+      "time_s": 206935,
+      "radius_cm": 1.4,
+      "source_value": 49.99524995843689,
+      "plotted_value": 49.99524995843689,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-04",
+      "time_s": 228536,
+      "radius_cm": 0.0,
+      "source_value": 0.14427447439631758,
+      "plotted_value": 0.14427447439631758,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-03",
+      "time_s": 16292,
+      "radius_cm": 0.7,
+      "source_value": 49.994746183492964,
+      "plotted_value": 49.994746183492964,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-04",
+      "time_s": 179176,
+      "radius_cm": 1.4,
+      "source_value": 0.13600673595633697,
+      "plotted_value": 0.13600673595633697,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-03",
+      "time_s": 113078,
+      "radius_cm": 0.0,
+      "source_value": 49.995249978247784,
+      "plotted_value": 49.995249978247784,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-04",
+      "time_s": 56314,
+      "radius_cm": 0.7,
+      "source_value": 0.32377827708095763,
+      "plotted_value": 0.32377827708095763,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-03",
+      "time_s": 31318,
+      "radius_cm": 1.4,
+      "source_value": 49.99524995948309,
+      "plotted_value": 49.99524995948309,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-04",
+      "time_s": 7828,
+      "radius_cm": 0.0,
+      "source_value": 2.0939444653205417,
+      "plotted_value": 2.0939444653205417,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-03",
+      "time_s": 162960,
+      "radius_cm": 0.7,
+      "source_value": 49.995249979642324,
+      "plotted_value": 49.995249979642324,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-04",
+      "time_s": 183684,
+      "radius_cm": 1.4,
+      "source_value": 0.13471879712508442,
+      "plotted_value": 0.13471879712508442,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-03",
+      "time_s": 150285,
+      "radius_cm": 0.0,
+      "source_value": 49.99524997261216,
+      "plotted_value": 49.99524997261216,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-04",
+      "time_s": 177814,
+      "radius_cm": 0.7,
+      "source_value": 0.15467421937299575,
+      "plotted_value": 0.15467421937299575,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-03",
+      "time_s": 157000,
+      "radius_cm": 1.4,
+      "source_value": 49.995249990966954,
+      "plotted_value": 49.995249990966954,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-04",
+      "time_s": 218124,
+      "radius_cm": 0.0,
+      "source_value": 0.14690070937043367,
+      "plotted_value": 0.14690070937043367,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-03",
+      "time_s": 124497,
+      "radius_cm": 0.7,
+      "source_value": 49.99524997885908,
+      "plotted_value": 49.99524997885908,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-04",
+      "time_s": 21401,
+      "radius_cm": 1.4,
+      "source_value": 0.7971492864256783,
+      "plotted_value": 0.7971492864256783,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-03",
+      "time_s": 52273,
+      "radius_cm": 0.0,
+      "source_value": 49.995249996743496,
+      "plotted_value": 49.995249996743496,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-04",
+      "time_s": 182176,
+      "radius_cm": 0.7,
+      "source_value": 0.1531002614773104,
+      "plotted_value": 0.1531002614773104,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-03",
+      "time_s": 20587,
+      "radius_cm": 1.4,
+      "source_value": 49.99523935782537,
+      "plotted_value": 49.99523935782537,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-04",
+      "time_s": 127700,
+      "radius_cm": 0.0,
+      "source_value": 0.18734564381894792,
+      "plotted_value": 0.18734564381894792,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-03",
+      "time_s": 117303,
+      "radius_cm": 0.7,
+      "source_value": 49.995249962921434,
+      "plotted_value": 49.995249962921434,
+      "pass": true
+    },
+    {
+      "figure_id": "FIG-Q2-04",
+      "time_s": 146754,
+      "radius_cm": 1.4,
+      "source_value": 0.14751641641704294,
+      "plotted_value": 0.14751641641704294,
+      "pass": true
+    }
+  ],
+  "source_run": "experiments/Q2_FREEZE_RUN_V3/run_1",
+  "source_output": "experiments/Q2_FREEZE_RUN_V3/run_1/official_samples.csv",
+  "source_hash": "141a7d6b9e4de11b9a5e52d50c194761f3d15661e14b4828929e1b320e1372fd",
+  "no_smoothing": true,
+  "no_numeric_interpolation": true
+}

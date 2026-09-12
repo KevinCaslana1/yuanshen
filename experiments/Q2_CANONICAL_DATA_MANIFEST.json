@@ -1,14 +1,14 @@
 {
   "manifest_version": "Q2_CANONICAL_DATA_MANIFEST_V1",
-  "generated_by": "scripts/build_q2_production_manifest.py",
+  "generated_by": "scripts/update_q2_v3_manifest.py",
   "canonical_run": {
-    "run_id": "Q2_FREEZE_RUN/run_1",
-    "interpretation": "approved ENV-B tail40 mean, constant post-14400 s environment",
-    "horizon_s": 228635,
-    "status": "FAILED_PRODUCTION_ATTEMPT",
-    "delivery_status": "NOT_CANONICAL_FOR_DELIVERY",
-    "attempt_status": "FAILED_ACCURACY_GATE",
-    "production_result_source": null
+    "run_id": "Q2_FREEZE_RUN_V3/run_1",
+    "interpretation": "authorized V3 ENV-B production run; integer-second official lattice",
+    "horizon_s": 228536,
+    "status": "PRODUCTION_CANONICAL",
+    "delivery_status": "VALIDATED_CANDIDATE_PENDING_HUMAN_FREEZE_APPROVAL",
+    "attempt_status": "PASS_PRE_CANDIDATE_GATES",
+    "production_result_source": "experiments/Q2_FREEZE_RUN_V3/run_1/official_samples.csv"
   },
   "failed_production_attempts": [
     {
@@ -16,6 +16,24 @@
       "status": "FAILED_ACCURACY_GATE",
       "delivery_status": "NOT_DELIVERY_SOURCE",
       "reason": "The frozen production double run is retained for provenance, but its independent temporal/spatial accuracy confirmation exceeded the 2.5e-5 internal gate."
+    },
+    {
+      "root": "experiments/Q2_FREEZE_RUN_V3_FAILED_HORIZON_20260912",
+      "status": "FAILED_PRODUCTION_ATTEMPT",
+      "delivery_status": "NOT_DELIVERY_SOURCE",
+      "reason": "Fresh V3 numerical run used a carried-forward horizon before independently confirming the passive bracket; it completed to 228635 s but bracketed [206935.0,206935.25] s, so it was archived and not resumed."
+    },
+    {
+      "root": "experiments/Q2_FREEZE_RUN_V3_POSTPROCESS_FAILURE_20260912",
+      "status": "FAILED_PRODUCTION_ATTEMPT",
+      "delivery_status": "NOT_DELIVERY_SOURCE",
+      "reason": "A non-numerical transition-probe writer omitted r=1.9 cm after corrected Run 1 integration; the partial probe file is provenance only and the completed numerical outputs were retained."
+    },
+    {
+      "root": "experiments/Q2_FREEZE_RUN_V3_PREFLIGHT_BLOCKED_20260912",
+      "status": "FAILED_PRODUCTION_ATTEMPT",
+      "delivery_status": "NOT_DELIVERY_SOURCE",
+      "reason": "A preflight-only source-commit expectation mismatch stopped before numerical execution; no production result was consumed."
     }
   ],
   "remediation_attempts": [
@@ -60,18 +78,36 @@
     "confirmation": "experiments/Q2_ACCURACY_REMEDIATION/accuracy_confirmation_v3.json",
     "confirmation_sha256": "F94E7C2716DBD970D3158F864D233C730F4A4FB1F08EBDB02F6524D2571FA470",
     "scope_decision": "D-Q2-ACCURACY-SCOPE",
-    "delivery_source_established": false,
-    "result2_generated": false,
+    "delivery_source_established": true,
+    "result2_generated": true,
     "q3_q4_started": false,
     "metrics": {
-      "transition": {"path": "experiments/EXP-Q2-ACC-T-FORMAL/metrics.json", "sha256": "6C55261BAD7E0596B1775DCE7547C4C3A0B0F4D4E7D243C866C4402FD17F15BE"},
-      "early": {"path": "experiments/EXP-Q2-ACC-C-FORMAL/metrics.json", "sha256": "2C4C19D06BE474DFF96606E43EC81116DAE0DCF3AE7DD7D9FDF663A72ECFE32A"},
-      "targeted_long": {"path": "experiments/EXP-Q2-ACC-LONG-TARGETED/metrics.json", "sha256": "7338A736E5476839BAD1A8C834B9C11AA1ACB942A99D6F4BDAF08D16D60D3F73"}
+      "transition": {
+        "path": "experiments/EXP-Q2-ACC-T-FORMAL/metrics.json",
+        "sha256": "6C55261BAD7E0596B1775DCE7547C4C3A0B0F4D4E7D243C866C4402FD17F15BE"
+      },
+      "early": {
+        "path": "experiments/EXP-Q2-ACC-C-FORMAL/metrics.json",
+        "sha256": "2C4C19D06BE474DFF96606E43EC81116DAE0DCF3AE7DD7D9FDF663A72ECFE32A"
+      },
+      "targeted_long": {
+        "path": "experiments/EXP-Q2-ACC-LONG-TARGETED/metrics.json",
+        "sha256": "7338A736E5476839BAD1A8C834B9C11AA1ACB942A99D6F4BDAF08D16D60D3F73"
+      }
     },
     "comparison_tables": {
-      "transition": {"path": "experiments/EXP-Q2-ACC-T-FORMAL/comparison.csv", "sha256": "40170EACDF761CA1A8B807E76CC2DC0F1878041986377B60E41105EAD867DBA4"},
-      "early": {"path": "experiments/EXP-Q2-ACC-C-FORMAL/comparison.csv", "sha256": "80B6693885709284E4F29EEA486381F0A431E5BF0DBC6BEB40277AB24D3726CE"},
-      "long_3h_to_48h": {"path": "experiments/EXP-Q2-ACC-LONG-TARGETED/comparison_candidate_n320_vs_reference_n640_3h_to_48h.csv", "sha256": "A9955C4138B9EC83250DFA93A12487D4B42C248BA0A773562B38606A338D4324"}
+      "transition": {
+        "path": "experiments/EXP-Q2-ACC-T-FORMAL/comparison.csv",
+        "sha256": "40170EACDF761CA1A8B807E76CC2DC0F1878041986377B60E41105EAD867DBA4"
+      },
+      "early": {
+        "path": "experiments/EXP-Q2-ACC-C-FORMAL/comparison.csv",
+        "sha256": "80B6693885709284E4F29EEA486381F0A431E5BF0DBC6BEB40277AB24D3726CE"
+      },
+      "long_3h_to_48h": {
+        "path": "experiments/EXP-Q2-ACC-LONG-TARGETED/comparison_candidate_n320_vs_reference_n640_3h_to_48h.csv",
+        "sha256": "A9955C4138B9EC83250DFA93A12487D4B42C248BA0A773562B38606A338D4324"
+      }
     }
   },
   "validation_only_roots": [
@@ -89,9 +125,9 @@
   "consumer_policy": {
     "required_loader_for_formal_results": "src.q2.lineage.production_canonical_path / production_csv_path",
     "reject_noncanonical": true,
-    "formal_result_source_run": null,
-    "formal_result_source_status": "NOT_ESTABLISHED",
-    "failed_attempt_source_run": "experiments/Q2_FREEZE_RUN/run_1",
+    "formal_result_source_run": "experiments/Q2_FREEZE_RUN_V3/run_1",
+    "formal_result_source_status": "PRODUCTION_CANONICAL",
+    "failed_attempt_source_run": "experiments/Q2_FREEZE_RUN/run_1; experiments/Q2_FREEZE_RUN_V3_FAILED_HORIZON_20260912",
     "run_2_is_determinism_reference_only": true,
     "raw_files_retained": true
   },
@@ -352,6 +388,174 @@
       "status": "FAILED_PRODUCTION_ATTEMPT",
       "role": "q2_production",
       "reason": "production validation gate record"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/config.json",
+      "sha256": "b8dc7500d96791366a012228bb350ff36a3b96972e9a882ca78d2efd9aee9b1a",
+      "status": "VALIDATION_ONLY",
+      "role": "solver_config",
+      "reason": "V3 production audit artifact"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/environment.json",
+      "sha256": "a5d553bce9ab81b8e67173625b2872e9d798bfc0273c9c7455db4f9f250876d6",
+      "status": "VALIDATION_ONLY",
+      "role": "environment",
+      "reason": "V3 production audit artifact"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/input_hashes.json",
+      "sha256": "f48e5b0df67f2f145cfd9b5d7eff38059111dadfe5e0cc4595c4c68d4d5e2357",
+      "status": "VALIDATION_ONLY",
+      "role": "input_hashes",
+      "reason": "V3 production audit artifact"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/code_hashes.json",
+      "sha256": "a0d276b66d6240ee79edcd3db009c8c0b944f74e168e6043677db35a2c38fc38",
+      "status": "VALIDATION_ONLY",
+      "role": "code_hashes",
+      "reason": "V3 production audit artifact"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/accuracy_basis.json",
+      "sha256": "19a9e68c7ecabbe2398662aedc98f3be0ecf3d375c926859353deb91b562d9b3",
+      "status": "VALIDATION_EVIDENCE_ONLY",
+      "role": "accuracy_basis",
+      "reason": "V3 production audit artifact"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/preflight.json",
+      "sha256": "16597cdd421c619fa6eedbc7eedd010f1d1db3ab494c368a42a0164537bfa1e1",
+      "status": "VALIDATION_ONLY",
+      "role": "preflight",
+      "reason": "V3 production audit artifact"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/determinism.json",
+      "sha256": "9b415ae8fab904af0671c5129586835a2e150e75c95742ffcaf4c40a5030d525",
+      "status": "VALIDATION_ONLY",
+      "role": "determinism",
+      "reason": "V3 production audit artifact"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/output_hashes.json",
+      "sha256": "f463498c171b956b8c9de97676aaa45ac3d890989155b5065a62e1f01157a784",
+      "status": "VALIDATION_ONLY",
+      "role": "output_hashes",
+      "reason": "V3 production audit artifact"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/metrics.json",
+      "sha256": "439ae3449759437262b95de0bd2aa7e59fe9a35e56299e68cc213e2992e165ae",
+      "status": "VALIDATION_ONLY",
+      "role": "production_metrics",
+      "reason": "V3 production audit artifact"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/validation.json",
+      "sha256": "a06fac243bf4ca47c0220db16412e7963d529a302a943120de35b27faa68b227",
+      "status": "VALIDATION_ONLY",
+      "role": "validation",
+      "reason": "V3 production audit artifact"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/lineage.json",
+      "sha256": "799d3ba54365644ee0bc502a03d6139f74c0ad1ebe033e6d19f2d65e8f17a843",
+      "status": "VALIDATION_ONLY",
+      "role": "lineage",
+      "reason": "V3 production audit artifact"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/notes.md",
+      "sha256": "0f43be77c6aa75c88c1ff742e96137a6c0e2d5a184b556e36ac900e9994475b1",
+      "status": "VALIDATION_ONLY",
+      "role": "run_notes",
+      "reason": "V3 production audit artifact"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/run_1/official_samples_raw.csv",
+      "sha256": "8da13480ea9bb4f752682e409e7f96ca7547c36db698a72696fc2f8229c7d6bf",
+      "status": "PRODUCTION_CANONICAL",
+      "role": "internal_source",
+      "reason": "sole authorized V3 production source"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/run_1/official_samples.csv",
+      "sha256": "141a7d6b9e4de11b9a5e52d50c194761f3d15661e14b4828929e1b320e1372fd",
+      "status": "PRODUCTION_CANONICAL",
+      "role": "official_sampled_source",
+      "reason": "sole authorized V3 production source"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/run_1/diagnostics_1s.csv",
+      "sha256": "c6c1deb41fe83b49a6252ac2d3d7dbce47bc6e923520512de750ce14f2ae8209",
+      "status": "PRODUCTION_CANONICAL",
+      "role": "diagnostics",
+      "reason": "sole authorized V3 production source"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/run_1/checkpoint_final.json",
+      "sha256": "6849f0cfd6505ed7ebf336b280370c67807dac2501e6be74d16d0c5d950856c0",
+      "status": "PRODUCTION_CANONICAL",
+      "role": "checkpoint",
+      "reason": "sole authorized V3 production source"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/run_1/metrics.json",
+      "sha256": "970d6359ca5c0daa4b6a89c851c925325fc93826e78efae784e7435d6c847edd",
+      "status": "PRODUCTION_CANONICAL",
+      "role": "run_metrics",
+      "reason": "sole authorized V3 production source"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/run_2/official_samples_raw.csv",
+      "sha256": "8da13480ea9bb4f752682e409e7f96ca7547c36db698a72696fc2f8229c7d6bf",
+      "status": "DETERMINISM_REFERENCE",
+      "role": "internal_source",
+      "reason": "V3 production audit artifact"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/run_2/official_samples.csv",
+      "sha256": "141a7d6b9e4de11b9a5e52d50c194761f3d15661e14b4828929e1b320e1372fd",
+      "status": "DETERMINISM_REFERENCE",
+      "role": "official_sampled_source",
+      "reason": "V3 production audit artifact"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/run_2/diagnostics_1s.csv",
+      "sha256": "c6c1deb41fe83b49a6252ac2d3d7dbce47bc6e923520512de750ce14f2ae8209",
+      "status": "DETERMINISM_REFERENCE",
+      "role": "diagnostics",
+      "reason": "V3 production audit artifact"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/run_2/checkpoint_final.json",
+      "sha256": "6849f0cfd6505ed7ebf336b280370c67807dac2501e6be74d16d0c5d950856c0",
+      "status": "DETERMINISM_REFERENCE",
+      "role": "checkpoint",
+      "reason": "V3 production audit artifact"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/run_2/metrics.json",
+      "sha256": "2c6ad318a2e6bd00ae34c96de34bb03030d35925666834996ed8c8baffca0940",
+      "status": "DETERMINISM_REFERENCE",
+      "role": "run_metrics",
+      "reason": "V3 production audit artifact"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/candidate_validation.json",
+      "sha256": "a0b8f44b804beb7d5b77058854a26f58128dfe25c24bdc1012eb7b51e695cc21",
+      "status": "VALIDATION_ONLY",
+      "role": "candidate_validation",
+      "reason": "V3 production audit artifact"
+    },
+    {
+      "path": "experiments/Q2_FREEZE_RUN_V3/figure_validation.json",
+      "sha256": "398cba60bbfca1867f6bd545bb42ee08a9de53d9fe97f1eab4a163374cb5893c",
+      "status": "VALIDATION_ONLY",
+      "role": "figure_validation",
+      "reason": "V3 production audit artifact"
     }
   ]
 }

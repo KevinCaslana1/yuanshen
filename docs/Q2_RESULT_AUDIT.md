@@ -2,7 +2,7 @@
 
 日期：2026-09-12（accuracy remediation 更新）
 
-## Audit status
+## Historical audit status before authorized V3 run
 
 Current status: `Q2 FORMAL-OUTPUT ACCURACY GATE COMPLETE / WAITING FOR Q2 V3 FREEZE RUN AUTHORIZATION`.
 
@@ -26,13 +26,13 @@ This status certifies only the declared formal-output evidence chain. It does no
 | Q1/A题 integrity | PASS | Q1 hashes、`git diff -- A题` |
 | Q3/Q4 boundary | PASS | `docs/STATE.md`, `docs/HANDOFF.md` |
 
-## Reproducibility and source contract
+## Pre-V3 reproducibility and source contract (historical)
 
 `experiments/Q2_FREEZE_RUN/` is retained as `FAILED_PRODUCTION_ATTEMPT` and `NOT_DELIVERY_SOURCE`. Its Run1/Run2, hashes, metrics and accuracy evidence are provenance only; no formal result source is currently established. The partial `Q2_FREEZE_RUN_V2/` n=640 attempt is `ABORTED_INCOMPLETE_PERFORMANCE_REVIEW`, is not resumable, and is also not a result source. A future production attempt must use a new directory and start fresh from `t=0`.
 
 The old Run1 raw output retains `t=0`; its official sampled region contains `228635×21=4801335` rows for times 1 through 228635 s. No V2 official workbook or formal production output has been generated. The new formal audit artifacts are validation evidence only; the result source remains unset until a separately authorized V3 production run passes determinism, lineage, sampler and workbook validation.
 
-## Accuracy evidence and remediation disposition
+## Pre-V3 accuracy evidence and remediation disposition (historical)
 
 The original full-region comparison reported temporal raw differences against `dt=.125 s` of `1.9082196854469657e-4 °C` (T) and `1.0007524800181855e-4 kg/kg` (C), and spatial raw differences against `n=160` of `5.745306611970591e-5 °C` (T) and `2.0357404664261836e-4 kg/kg` (C). These are independent fine/coarse raw differences, not Richardson uncertainties. The conservative combined envelope is the componentwise maximum (`1.9082196854469657e-4 °C`, `2.0357404664261836e-4 kg/kg`), without summing or applying optimistic extrapolation.
 
@@ -42,10 +42,32 @@ The early moisture issue was independently recomputed as a Q2 initial compatibil
 
 The stronger-clustering formal audit is positive on the declared scope: n=320/cluster-power=3, candidate dt=.25 s, fine startup through `5 s`, versus same-policy n=640/cluster-power=2 dt=.125 s gives early formal T/C L∞ `7.116765686987492e-6 °C`/`1.0270424274150258e-5 kg/kg`. The transition integer lattice passes while the explicit `14400.25 s,r=2.0 cm` internal temperature probe remains `2.2991211631051556e-4 °C` and bounded. The targeted long certificate gives 3–48 h T/C L∞ `1.2509725024756335e-6 °C`/`2.987415287369899e-6 kg/kg` against the localized n=640 reference; passive-neighborhood and final points pass the separate n=160 screen. This is not a full-horizon n=640 run.
 
-## Candidate and figures disposition
+## Pre-V3 candidate and figures disposition (historical)
 
 Because no authorized V3 production run exists, `scripts/build_q2_candidate.mjs`, `scripts/validate_q2_candidate.py`, `scripts/generate_q2_figures.py`, and the Table 3/4 traceability audit remain intentionally unrun. `deliverables/candidate/result2.xlsx` does not exist; no Q2 formal figures were created. The localized audit figures/data are not production deliverables.
 
-## Claims restriction
+## Pre-V3 claims restriction (historical)
 
 No Q2 production result may be described as an accepted deliverable before V3. The localized formal-output evidence chain does meet the predeclared gate on its declared points. The passive bracket `[207034.5,207034.75] s` is an observer used by the frozen horizon rule, not a Q3 final drying time. The internal transition dip must not be described as sudden convergence or model superiority. Current final disposition: `Q2 FORMAL-OUTPUT ACCURACY GATE COMPLETE / WAITING FOR Q2 V3 FREEZE RUN AUTHORIZATION / RESULT2 NOT GENERATED`.
+
+## Authorized V3 freeze run and candidate gate (2026-09-12)
+
+The latest authorization explicitly approved the V3 freeze run. The new production directory is `experiments/Q2_FREEZE_RUN_V3/`; the earlier production, V2 aborted, wrong-horizon, and post-processing-failure directories remain provenance only.
+
+| Gate | Result | Evidence |
+|---|---|---|
+| Frozen V3 configuration | PASS | `Q2_FREEZE_RUN_V3/config.json`, `accuracy_basis.json` |
+| Source/environment/code/Q1 integrity | PASS | `code_hashes.json`, `environment.json`, `input_hashes.json`, `preflight.json`, `validation.json` |
+| Fresh Run1 and Run2 | PASS | `Q2_FREEZE_RUN_V3/metrics.json`; both fresh t=0, no restart/reuse |
+| Independent passive bracket and horizon | PASS | `[206935.0,206935.25] s`; `ceil(t_high)+21600=228536 s` |
+| Raw, official, diagnostic determinism | PASS | `determinism.json`, `output_hashes.json`; all byte/hash identical |
+| Picard, properties, mass, heat, Robin, center, time-step residuals | PASS | `run_1/metrics.json`, `run_1/diagnostics_1s.csv`; 0 non-converged steps |
+| Official sampler | PASS | `run_1/official_samples.csv`; 4,799,256 rows = 228,536×21; t=0 retained only in raw |
+| Production lineage | PASS | `Q2_CANONICAL_DATA_MANIFEST.json`, `lineage.json`; Run1 only `PRODUCTION_CANONICAL` |
+| Candidate result2 workbook | PASS | `candidate_validation.json`; two 228,537×22 sheets, no formulas, 4 decimals, trace 100/100 and Table3/4 60/60 |
+| Formal Q2 figures | PASS | `figures/q2/FIGURE_MANIFEST.json`, `figure_validation.json`; 11 figure groups, PNG≥300 dpi + SVG, trace 30/30 |
+| Q3/Q4 boundary | PASS | `STATE.md`, `HANDOFF.md`; Q3/Q4 not started |
+
+The V3 production source is established only for the validated candidate scope. The certificate remains scoped to its declared formal-output lattice and selected long-horizon points; it is not an n=640 full-horizon proof. The `14400.25 s` transition diagnostic remains `SUPPORTED_INTERNAL_TRANSITION_DIAGNOSTIC` and is not an official integer-second output.
+
+Current final disposition: `Q2 RESULT & DELIVERABLE GATE COMPLETE / WAITING FOR HUMAN Q2 FREEZE APPROVAL / RESULT2 VALIDATED CANDIDATE ONLY`. Do not copy to `deliverables/final/` or start Q3/Q4 before human approval.

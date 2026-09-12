@@ -48,6 +48,8 @@
 | FIND-Q2-025 | Formal-output scope 下 transition integer lattice、early official lattice 和 selected long points 均通过 2.5e-5 raw/conservative gate | Q2 | accuracy_confirmation_v3.json、EXP-Q2-ACC-T-FORMAL、EXP-Q2-ACC-C-FORMAL、EXP-Q2-ACC-LONG-TARGETED | SUPPORTED（localized certification；非 full-horizon n640） |
 | FIND-Q2-026 | 早期 fine startup 从 2 s 延长到 5 s 后，t=3 s/r=2 cm 的水分超限由 `4.723355270153107e-5` 降至全局 `1.0270424274150258e-5 kg/kg` | Q2 | EXP-Q2-ACC-C-FORMAL/metrics.json | SUPPORTED（step-policy transient evidence） |
 | FIND-Q2-027 | n=320/cluster3 与局部 n=640 参考的 3–48 h 定点比较通过，passive/final 的 n=160 screen 也低于门槛；未执行 n=640 full horizon | Q2 | EXP-Q2-ACC-LONG-TARGETED/metrics.json | SUPPORTED（targeted long-horizon only） |
+| FIND-Q2-028 | V3 Run1/Run2 均从 t=0 完成，raw/sampled/diagnostics/checkpoint 全量 byte/hash identical，228536 步 Picard non-converged=0 | Q2 | Q2_FREEZE_RUN_V3/metrics.json、determinism.json | SUPPORTED |
+| FIND-Q2-029 | V3 Run1 是唯一 PRODUCTION_CANONICAL 来源；candidate workbook 与 11 组图表完成独立结构、精度、溯源和分辨率验证 | Q2 | Q2_CANONICAL_DATA_MANIFEST.json、Q2_FREEZE_RUN_V3/candidate_validation.json、figures/q2/ | SUPPORTED（candidate pending human approval） |
 
 ## FIND-Q2-019 Q2 初始表面 Robin 不相容性已独立复算
 
@@ -58,6 +60,30 @@
 证据：`experiments/EXP-Q2-ACC-C-INITIAL/metrics.json`
 
 限制：这只是 Q2 numerical initial-layer finding，不是“真实药材一定形成物理边界层”的结论。
+
+状态：SUPPORTED
+
+## FIND-Q2-028 Q2 V3 生产双跑在正式输出范围内完成并确定性一致
+
+问题：Q2
+
+发现：在人工批准的 V3 冻结配置下，Run1 与 Run2 均从官方 t=0 初值独立启动；两次得到相同 passive bracket `[206935.0,206935.25] s` 和 `final_horizon=228536 s`。raw internal source、整数秒 official sampled source、1 s diagnostics 和 final checkpoint 均 byte/hash identical。Run1 的 228536 个时间步没有 non-converged step，Picard 迭代次数为 2–3。
+
+限制：该发现证明本次生产执行的可复现性与诊断完整性，不把 formal-output certificate 扩写成 n=640 full-horizon 收敛证明；passive bracket 不是 Q3 drying time。
+
+证据：`experiments/Q2_FREEZE_RUN_V3/metrics.json`、`determinism.json`、`output_hashes.json`、`lineage.json`
+
+状态：SUPPORTED
+
+## FIND-Q2-029 V3 Run1 是唯一 Q2 生产结果来源，候选交付通过独立溯源检查
+
+问题：Q2
+
+发现：canonical manifest 将 `experiments/Q2_FREEZE_RUN_V3/run_1/official_samples.csv` 标记为唯一 `PRODUCTION_CANONICAL` 来源，Run2 仅为 `DETERMINISM_REFERENCE`。从 Run1 生成的 `deliverables/candidate/result2.xlsx` 两张表均为 228537 行×22 列（含表头），无公式、四位小数；分层 trace 为 100/100，Table 3/4 trace 为 60/60。Q2 图表包包含 11 组 PNG/SVG，PNG 分辨率不低于 300 dpi，30/30 trace 通过。
+
+限制：candidate 尚未得到人工 Q2 freeze approval，不能复制进入 `deliverables/final/`；图表和工作簿均不得改写生产源。
+
+证据：`experiments/Q2_CANONICAL_DATA_MANIFEST.json`、`experiments/Q2_FREEZE_RUN_V3/candidate_validation.json`、`experiments/Q2_FREEZE_RUN_V3/figure_validation.json`、`figures/q2/FIGURE_MANIFEST.json`
 
 状态：SUPPORTED
 

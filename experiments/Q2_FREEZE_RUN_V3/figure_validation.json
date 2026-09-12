@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "manifest": "figures/q2/FIGURE_MANIFEST.json",
+  "manifest_sha256": "ed4a06902e042ec19681ffa4ef1d21f5754f2350a9120dba091e311b77cd456d",
+  "validation": "figures/q2/FIGURE_VALIDATION.json",
+  "validation_sha256": "5e1b69f32bc97fbb032bab8e4a0b00fe172c3662e7eccf882f79c9d52bc9edaf",
+  "figure_count": 11,
+  "random_trace": "30/30",
+  "errors": []
+}

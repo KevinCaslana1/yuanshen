@@ -1,0 +1,1428 @@
+{
+  "status": "PASS",
+  "candidate_sha256": "84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da",
+  "candidate": "deliverables/candidate/result2.xlsx",
+  "source": {
+    "path": "experiments/Q2_FREEZE_RUN_V3/run_1/official_samples.csv",
+    "sha256": "141a7d6b9e4de11b9a5e52d50c194761f3d15661e14b4828929e1b320e1372fd",
+    "rows": 4799256,
+    "lineage_status": "PRODUCTION_CANONICAL"
+  },
+  "authoring_mode": "openpyxl_write_only_streaming_fallback_after_artifact_tool_heap_failure",
+  "shape": {
+    "sheets": [
+      "温度",
+      "水分浓度"
+    ],
+    "rows_per_sheet": 228537,
+    "columns_per_sheet": 22
+  },
+  "random_seed": 20260912,
+  "random_trace_strategy": "seeded stratified trace: 10 audit strata x 5 official radii per sheet",
+  "random_cell_count_per_sheet": 50,
+  "random_trace_pass_count": 100,
+  "random_trace_total": 100,
+  "paper_tables": {
+    "temperature_C": {
+      "count": 30,
+      "pass_count": 30
+    },
+    "moisture_kg_kg": {
+      "count": 30,
+      "pass_count": 30
+    }
+  },
+  "formula_scan": {
+    "status": "PASS",
+    "data_only_false_scan": "no formula strings encountered"
+  },
+  "errors": [],
+  "trace": [
+    {
+      "sheet": "温度",
+      "time_s": 1,
+      "radius_cm": 0.0,
+      "candidate": "28",
+      "source_raw": "27.99999999999983",
+      "expected_round_half_up": "28.0000",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 1,
+      "radius_cm": 0.5,
+      "candidate": "28",
+      "source_raw": "27.99999999999983",
+      "expected_round_half_up": "28.0000",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 1,
+      "radius_cm": 1.0,
+      "candidate": "28",
+      "source_raw": "28.000000000000853",
+      "expected_round_half_up": "28.0000",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 1,
+      "radius_cm": 1.5,
+      "candidate": "28",
+      "source_raw": "28.000000000000057",
+      "expected_round_half_up": "28.0000",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 1,
+      "radius_cm": 2.0,
+      "candidate": "28.0001",
+      "source_raw": "28.00012967737507",
+      "expected_round_half_up": "28.0001",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 5,
+      "radius_cm": 0.0,
+      "candidate": "28",
+      "source_raw": "27.999999999999886",
+      "expected_round_half_up": "28.0000",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 5,
+      "radius_cm": 0.5,
+      "candidate": "28",
+      "source_raw": "27.99999999999983",
+      "expected_round_half_up": "28.0000",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 5,
+      "radius_cm": 1.0,
+      "candidate": "28",
+      "source_raw": "28.000000000000853",
+      "expected_round_half_up": "28.0000",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 5,
+      "radius_cm": 1.5,
+      "candidate": "28",
+      "source_raw": "28.00000000196195",
+      "expected_round_half_up": "28.0000",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 5,
+      "radius_cm": 2.0,
+      "candidate": "28.0014",
+      "source_raw": "28.001439620461667",
+      "expected_round_half_up": "28.0014",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 10,
+      "radius_cm": 0.0,
+      "candidate": "28",
+      "source_raw": "27.999999999999943",
+      "expected_round_half_up": "28.0000",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 10,
+      "radius_cm": 0.5,
+      "candidate": "28",
+      "source_raw": "27.999999999999147",
+      "expected_round_half_up": "28.0000",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 10,
+      "radius_cm": 1.0,
+      "candidate": "28",
+      "source_raw": "27.999999999994316",
+      "expected_round_half_up": "28.0000",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 10,
+      "radius_cm": 1.5,
+      "candidate": "28",
+      "source_raw": "28.00000120672121",
+      "expected_round_half_up": "28.0000",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 10,
+      "radius_cm": 2.0,
+      "candidate": "28.0041",
+      "source_raw": "28.00405214160412",
+      "expected_round_half_up": "28.0041",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 3600,
+      "radius_cm": 0.0,
+      "candidate": "40.3816",
+      "source_raw": "40.38156326640831",
+      "expected_round_half_up": "40.3816",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 3600,
+      "radius_cm": 0.5,
+      "candidate": "40.5536",
+      "source_raw": "40.55356372547283",
+      "expected_round_half_up": "40.5536",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 3600,
+      "radius_cm": 1.0,
+      "candidate": "41.0605",
+      "source_raw": "41.06048438149878",
+      "expected_round_half_up": "41.0605",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 3600,
+      "radius_cm": 1.5,
+      "candidate": "41.8782",
+      "source_raw": "41.878221121786396",
+      "expected_round_half_up": "41.8782",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 3600,
+      "radius_cm": 2.0,
+      "candidate": "42.9976",
+      "source_raw": "42.99761126926961",
+      "expected_round_half_up": "42.9976",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 10800,
+      "radius_cm": 0.0,
+      "candidate": "49.8495",
+      "source_raw": "49.84949708260967",
+      "expected_round_half_up": "49.8495",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 10800,
+      "radius_cm": 0.5,
+      "candidate": "49.8553",
+      "source_raw": "49.855341802410635",
+      "expected_round_half_up": "49.8553",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 10800,
+      "radius_cm": 1.0,
+      "candidate": "49.8746",
+      "source_raw": "49.87461285904817",
+      "expected_round_half_up": "49.8746",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 10800,
+      "radius_cm": 1.5,
+      "candidate": "49.9101",
+      "source_raw": "49.91014828218056",
+      "expected_round_half_up": "49.9101",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 10800,
+      "radius_cm": 2.0,
+      "candidate": "49.9664",
+      "source_raw": "49.96641328434782",
+      "expected_round_half_up": "49.9664",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 14400,
+      "radius_cm": 0.0,
+      "candidate": "49.9994",
+      "source_raw": "49.99939055835591",
+      "expected_round_half_up": "49.9994",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 14400,
+      "radius_cm": 0.5,
+      "candidate": "49.9998",
+      "source_raw": "49.99976276656997",
+      "expected_round_half_up": "49.9998",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 14400,
+      "radius_cm": 1.0,
+      "candidate": "49.9973",
+      "source_raw": "49.99734964342383",
+      "expected_round_half_up": "49.9973",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 14400,
+      "radius_cm": 1.5,
+      "candidate": "49.9876",
+      "source_raw": "49.987557504419215",
+      "expected_round_half_up": "49.9876",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 14400,
+      "radius_cm": 2.0,
+      "candidate": "49.9994",
+      "source_raw": "49.99944277841587",
+      "expected_round_half_up": "49.9994",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 14401,
+      "radius_cm": 0.0,
+      "candidate": "49.9994",
+      "source_raw": "49.99940877822837",
+      "expected_round_half_up": "49.9994",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 14401,
+      "radius_cm": 0.5,
+      "candidate": "49.9997",
+      "source_raw": "49.9997467639036",
+      "expected_round_half_up": "49.9997",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 14401,
+      "radius_cm": 1.0,
+      "candidate": "49.9973",
+      "source_raw": "49.997263155921644",
+      "expected_round_half_up": "49.9973",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 14401,
+      "radius_cm": 1.5,
+      "candidate": "49.9876",
+      "source_raw": "49.987634019448706",
+      "expected_round_half_up": "49.9876",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 14401,
+      "radius_cm": 2.0,
+      "candidate": "49.9951",
+      "source_raw": "49.99508997428114",
+      "expected_round_half_up": "49.9951",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 86400,
+      "radius_cm": 0.0,
+      "candidate": "49.9952",
+      "source_raw": "49.99524996650399",
+      "expected_round_half_up": "49.9952",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 86400,
+      "radius_cm": 0.5,
+      "candidate": "49.9952",
+      "source_raw": "49.99524996675149",
+      "expected_round_half_up": "49.9952",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 86400,
+      "radius_cm": 1.0,
+      "candidate": "49.9952",
+      "source_raw": "49.9952499678696",
+      "expected_round_half_up": "49.9952",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 86400,
+      "radius_cm": 1.5,
+      "candidate": "49.9952",
+      "source_raw": "49.99524997232146",
+      "expected_round_half_up": "49.9952",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 86400,
+      "radius_cm": 2.0,
+      "candidate": "49.9952",
+      "source_raw": "49.99524994018452",
+      "expected_round_half_up": "49.9952",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 206935,
+      "radius_cm": 0.0,
+      "candidate": "49.9952",
+      "source_raw": "49.99524996256093",
+      "expected_round_half_up": "49.9952",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 206935,
+      "radius_cm": 0.5,
+      "candidate": "49.9952",
+      "source_raw": "49.99524996201558",
+      "expected_round_half_up": "49.9952",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 206935,
+      "radius_cm": 1.0,
+      "candidate": "49.9952",
+      "source_raw": "49.99524996074064",
+      "expected_round_half_up": "49.9952",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 206935,
+      "radius_cm": 1.5,
+      "candidate": "49.9952",
+      "source_raw": "49.99524995732236",
+      "expected_round_half_up": "49.9952",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 206935,
+      "radius_cm": 2.0,
+      "candidate": "49.9952",
+      "source_raw": "49.995249944793045",
+      "expected_round_half_up": "49.9952",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 228536,
+      "radius_cm": 0.0,
+      "candidate": "49.9952",
+      "source_raw": "49.995249959410955",
+      "expected_round_half_up": "49.9952",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 228536,
+      "radius_cm": 0.5,
+      "candidate": "49.9952",
+      "source_raw": "49.995249958548925",
+      "expected_round_half_up": "49.9952",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 228536,
+      "radius_cm": 1.0,
+      "candidate": "49.9952",
+      "source_raw": "49.995249956577425",
+      "expected_round_half_up": "49.9952",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 228536,
+      "radius_cm": 1.5,
+      "candidate": "49.9952",
+      "source_raw": "49.995249955558165",
+      "expected_round_half_up": "49.9952",
+      "pass": true
+    },
+    {
+      "sheet": "温度",
+      "time_s": 228536,
+      "radius_cm": 2.0,
+      "candidate": "49.9952",
+      "source_raw": "49.99524991289513",
+      "expected_round_half_up": "49.9952",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 1,
+      "radius_cm": 0.0,
+      "candidate": "2.55",
+      "source_raw": "2.549999999999994",
+      "expected_round_half_up": "2.5500",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 1,
+      "radius_cm": 0.5,
+      "candidate": "2.55",
+      "source_raw": "2.5499999999999967",
+      "expected_round_half_up": "2.5500",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 1,
+      "radius_cm": 1.0,
+      "candidate": "2.55",
+      "source_raw": "2.5500000000000034",
+      "expected_round_half_up": "2.5500",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 1,
+      "radius_cm": 1.5,
+      "candidate": "2.55",
+      "source_raw": "2.549999999999996",
+      "expected_round_half_up": "2.5500",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 1,
+      "radius_cm": 2.0,
+      "candidate": "2.5198",
+      "source_raw": "2.519811808026018",
+      "expected_round_half_up": "2.5198",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 5,
+      "radius_cm": 0.0,
+      "candidate": "2.55",
+      "source_raw": "2.549999999999974",
+      "expected_round_half_up": "2.5500",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 5,
+      "radius_cm": 0.5,
+      "candidate": "2.55",
+      "source_raw": "2.5499999999999967",
+      "expected_round_half_up": "2.5500",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 5,
+      "radius_cm": 1.0,
+      "candidate": "2.55",
+      "source_raw": "2.5500000000000034",
+      "expected_round_half_up": "2.5500",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 5,
+      "radius_cm": 1.5,
+      "candidate": "2.55",
+      "source_raw": "2.549999999999976",
+      "expected_round_half_up": "2.5500",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 5,
+      "radius_cm": 2.0,
+      "candidate": "2.4831",
+      "source_raw": "2.483080327262944",
+      "expected_round_half_up": "2.4831",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 10,
+      "radius_cm": 0.0,
+      "candidate": "2.55",
+      "source_raw": "2.5499999999999816",
+      "expected_round_half_up": "2.5500",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 10,
+      "radius_cm": 0.5,
+      "candidate": "2.55",
+      "source_raw": "2.5499999999999945",
+      "expected_round_half_up": "2.5500",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 10,
+      "radius_cm": 1.0,
+      "candidate": "2.55",
+      "source_raw": "2.549999999999999",
+      "expected_round_half_up": "2.5500",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 10,
+      "radius_cm": 1.5,
+      "candidate": "2.55",
+      "source_raw": "2.5499999999999736",
+      "expected_round_half_up": "2.5500",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 10,
+      "radius_cm": 2.0,
+      "candidate": "2.456",
+      "source_raw": "2.4559862613580856",
+      "expected_round_half_up": "2.4560",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 3600,
+      "radius_cm": 0.0,
+      "candidate": "2.5257",
+      "source_raw": "2.525727271790593",
+      "expected_round_half_up": "2.5257",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 3600,
+      "radius_cm": 0.5,
+      "candidate": "2.4948",
+      "source_raw": "2.494781775168035",
+      "expected_round_half_up": "2.4948",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 3600,
+      "radius_cm": 1.0,
+      "candidate": "2.3578",
+      "source_raw": "2.357823608440262",
+      "expected_round_half_up": "2.3578",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 3600,
+      "radius_cm": 1.5,
+      "candidate": "2.023",
+      "source_raw": "2.022970792881454",
+      "expected_round_half_up": "2.0230",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 3600,
+      "radius_cm": 2.0,
+      "candidate": "1.4711",
+      "source_raw": "1.4710981275061958",
+      "expected_round_half_up": "1.4711",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 10800,
+      "radius_cm": 0.0,
+      "candidate": "1.7662",
+      "source_raw": "1.7661805257942447",
+      "expected_round_half_up": "1.7662",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 10800,
+      "radius_cm": 0.5,
+      "candidate": "1.7165",
+      "source_raw": "1.7165357390943923",
+      "expected_round_half_up": "1.7165",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 10800,
+      "radius_cm": 1.0,
+      "candidate": "1.5702",
+      "source_raw": "1.570199404821799",
+      "expected_round_half_up": "1.5702",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 10800,
+      "radius_cm": 1.5,
+      "candidate": "1.3333",
+      "source_raw": "1.3332637849561528",
+      "expected_round_half_up": "1.3333",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 10800,
+      "radius_cm": 2.0,
+      "candidate": "1.0081",
+      "source_raw": "1.0081231063560248",
+      "expected_round_half_up": "1.0081",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 14400,
+      "radius_cm": 0.0,
+      "candidate": "1.4536",
+      "source_raw": "1.4536083894838223",
+      "expected_round_half_up": "1.4536",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 14400,
+      "radius_cm": 0.5,
+      "candidate": "1.4133",
+      "source_raw": "1.4133174977718919",
+      "expected_round_half_up": "1.4133",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 14400,
+      "radius_cm": 1.0,
+      "candidate": "1.2935",
+      "source_raw": "1.2935241374000046",
+      "expected_round_half_up": "1.2935",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 14400,
+      "radius_cm": 1.5,
+      "candidate": "1.096",
+      "source_raw": "1.0959567271016655",
+      "expected_round_half_up": "1.0960",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 14400,
+      "radius_cm": 2.0,
+      "candidate": "0.8153",
+      "source_raw": "0.8153457556477514",
+      "expected_round_half_up": "0.8153",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 14401,
+      "radius_cm": 0.0,
+      "candidate": "1.4535",
+      "source_raw": "1.453532180408864",
+      "expected_round_half_up": "1.4535",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 14401,
+      "radius_cm": 0.5,
+      "candidate": "1.4132",
+      "source_raw": "1.4132433832986604",
+      "expected_round_half_up": "1.4132",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 14401,
+      "radius_cm": 1.0,
+      "candidate": "1.2935",
+      "source_raw": "1.2934560548281497",
+      "expected_round_half_up": "1.2935",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 14401,
+      "radius_cm": 1.5,
+      "candidate": "1.0959",
+      "source_raw": "1.0958978367962453",
+      "expected_round_half_up": "1.0959",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 14401,
+      "radius_cm": 2.0,
+      "candidate": "0.8153",
+      "source_raw": "0.8152983864846485",
+      "expected_round_half_up": "0.8153",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 86400,
+      "radius_cm": 0.0,
+      "candidate": "0.2378",
+      "source_raw": "0.23781653223286106",
+      "expected_round_half_up": "0.2378",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 86400,
+      "radius_cm": 0.5,
+      "candidate": "0.2328",
+      "source_raw": "0.2327560905324885",
+      "expected_round_half_up": "0.2328",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 86400,
+      "radius_cm": 1.0,
+      "candidate": "0.2167",
+      "source_raw": "0.21674087410267812",
+      "expected_round_half_up": "0.2167",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 86400,
+      "radius_cm": 1.5,
+      "candidate": "0.1856",
+      "source_raw": "0.18556182230431137",
+      "expected_round_half_up": "0.1856",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 86400,
+      "radius_cm": 2.0,
+      "candidate": "0.0665",
+      "source_raw": "0.06646330293313095",
+      "expected_round_half_up": "0.0665",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 206935,
+      "radius_cm": 0.0,
+      "candidate": "0.15",
+      "source_raw": "0.1500000658293865",
+      "expected_round_half_up": "0.1500",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 206935,
+      "radius_cm": 0.5,
+      "candidate": "0.1477",
+      "source_raw": "0.14768672443892003",
+      "expected_round_half_up": "0.1477",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 206935,
+      "radius_cm": 1.0,
+      "candidate": "0.1402",
+      "source_raw": "0.1402089961068359",
+      "expected_round_half_up": "0.1402",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 206935,
+      "radius_cm": 1.5,
+      "candidate": "0.1249",
+      "source_raw": "0.12491480889316316",
+      "expected_round_half_up": "0.1249",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 206935,
+      "radius_cm": 2.0,
+      "candidate": "0.0526",
+      "source_raw": "0.05264697172577441",
+      "expected_round_half_up": "0.0526",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 228536,
+      "radius_cm": 0.0,
+      "candidate": "0.1443",
+      "source_raw": "0.14427447439631758",
+      "expected_round_half_up": "0.1443",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 228536,
+      "radius_cm": 0.5,
+      "candidate": "0.1421",
+      "source_raw": "0.14211309741924147",
+      "expected_round_half_up": "0.1421",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 228536,
+      "radius_cm": 1.0,
+      "candidate": "0.1351",
+      "source_raw": "0.13511490913944976",
+      "expected_round_half_up": "0.1351",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 228536,
+      "radius_cm": 1.5,
+      "candidate": "0.1207",
+      "source_raw": "0.1207453392173635",
+      "expected_round_half_up": "0.1207",
+      "pass": true
+    },
+    {
+      "sheet": "水分浓度",
+      "time_s": 228536,
+      "radius_cm": 2.0,
+      "candidate": "0.0522",
+      "source_raw": "0.052206290653170985",
+      "expected_round_half_up": "0.0522",
+      "pass": true
+    }
+  ],
+  "paper_trace": {
+    "temperature_C": [
+      {
+        "time_s": 1800,
+        "radius_cm": 0.0,
+        "candidate": "32.1892",
+        "source_raw": "32.18923845515894",
+        "expected_round_half_up": "32.1892",
+        "pass": true
+      },
+      {
+        "time_s": 1800,
+        "radius_cm": 0.5,
+        "candidate": "32.3821",
+        "source_raw": "32.38210755075818",
+        "expected_round_half_up": "32.3821",
+        "pass": true
+      },
+      {
+        "time_s": 1800,
+        "radius_cm": 1.0,
+        "candidate": "32.9659",
+        "source_raw": "32.96593272683913",
+        "expected_round_half_up": "32.9659",
+        "pass": true
+      },
+      {
+        "time_s": 1800,
+        "radius_cm": 1.5,
+        "candidate": "33.9608",
+        "source_raw": "33.96077179788142",
+        "expected_round_half_up": "33.9608",
+        "pass": true
+      },
+      {
+        "time_s": 1800,
+        "radius_cm": 2.0,
+        "candidate": "35.413",
+        "source_raw": "35.41301412428243",
+        "expected_round_half_up": "35.4130",
+        "pass": true
+      },
+      {
+        "time_s": 3600,
+        "radius_cm": 0.0,
+        "candidate": "40.3816",
+        "source_raw": "40.38156326640831",
+        "expected_round_half_up": "40.3816",
+        "pass": true
+      },
+      {
+        "time_s": 3600,
+        "radius_cm": 0.5,
+        "candidate": "40.5536",
+        "source_raw": "40.55356372547283",
+        "expected_round_half_up": "40.5536",
+        "pass": true
+      },
+      {
+        "time_s": 3600,
+        "radius_cm": 1.0,
+        "candidate": "41.0605",
+        "source_raw": "41.06048438149878",
+        "expected_round_half_up": "41.0605",
+        "pass": true
+      },
+      {
+        "time_s": 3600,
+        "radius_cm": 1.5,
+        "candidate": "41.8782",
+        "source_raw": "41.878221121786396",
+        "expected_round_half_up": "41.8782",
+        "pass": true
+      },
+      {
+        "time_s": 3600,
+        "radius_cm": 2.0,
+        "candidate": "42.9976",
+        "source_raw": "42.99761126926961",
+        "expected_round_half_up": "42.9976",
+        "pass": true
+      },
+      {
+        "time_s": 5400,
+        "radius_cm": 0.0,
+        "candidate": "45.8468",
+        "source_raw": "45.846756470562525",
+        "expected_round_half_up": "45.8468",
+        "pass": true
+      },
+      {
+        "time_s": 5400,
+        "radius_cm": 0.5,
+        "candidate": "45.9348",
+        "source_raw": "45.93480858474123",
+        "expected_round_half_up": "45.9348",
+        "pass": true
+      },
+      {
+        "time_s": 5400,
+        "radius_cm": 1.0,
+        "candidate": "46.193",
+        "source_raw": "46.19295782785696",
+        "expected_round_half_up": "46.1930",
+        "pass": true
+      },
+      {
+        "time_s": 5400,
+        "radius_cm": 1.5,
+        "candidate": "46.6051",
+        "source_raw": "46.60507961661256",
+        "expected_round_half_up": "46.6051",
+        "pass": true
+      },
+      {
+        "time_s": 5400,
+        "radius_cm": 2.0,
+        "candidate": "47.1401",
+        "source_raw": "47.140054783510266",
+        "expected_round_half_up": "47.1401",
+        "pass": true
+      },
+      {
+        "time_s": 7200,
+        "radius_cm": 0.0,
+        "candidate": "48.4502",
+        "source_raw": "48.45023776012829",
+        "expected_round_half_up": "48.4502",
+        "pass": true
+      },
+      {
+        "time_s": 7200,
+        "radius_cm": 0.5,
+        "candidate": "48.4881",
+        "source_raw": "48.488063218493664",
+        "expected_round_half_up": "48.4881",
+        "pass": true
+      },
+      {
+        "time_s": 7200,
+        "radius_cm": 1.0,
+        "candidate": "48.5984",
+        "source_raw": "48.59844827033106",
+        "expected_round_half_up": "48.5984",
+        "pass": true
+      },
+      {
+        "time_s": 7200,
+        "radius_cm": 1.5,
+        "candidate": "48.7736",
+        "source_raw": "48.77355416749896",
+        "expected_round_half_up": "48.7736",
+        "pass": true
+      },
+      {
+        "time_s": 7200,
+        "radius_cm": 2.0,
+        "candidate": "49.0033",
+        "source_raw": "49.00332763244268",
+        "expected_round_half_up": "49.0033",
+        "pass": true
+      },
+      {
+        "time_s": 9000,
+        "radius_cm": 0.0,
+        "candidate": "49.467",
+        "source_raw": "49.466982022138154",
+        "expected_round_half_up": "49.4670",
+        "pass": true
+      },
+      {
+        "time_s": 9000,
+        "radius_cm": 0.5,
+        "candidate": "49.4792",
+        "source_raw": "49.479221622372506",
+        "expected_round_half_up": "49.4792",
+        "pass": true
+      },
+      {
+        "time_s": 9000,
+        "radius_cm": 1.0,
+        "candidate": "49.5137",
+        "source_raw": "49.51365191487827",
+        "expected_round_half_up": "49.5137",
+        "pass": true
+      },
+      {
+        "time_s": 9000,
+        "radius_cm": 1.5,
+        "candidate": "49.5653",
+        "source_raw": "49.56533374368422",
+        "expected_round_half_up": "49.5653",
+        "pass": true
+      },
+      {
+        "time_s": 9000,
+        "radius_cm": 2.0,
+        "candidate": "49.6609",
+        "source_raw": "49.66091169968223",
+        "expected_round_half_up": "49.6609",
+        "pass": true
+      },
+      {
+        "time_s": 10800,
+        "radius_cm": 0.0,
+        "candidate": "49.8495",
+        "source_raw": "49.84949708260967",
+        "expected_round_half_up": "49.8495",
+        "pass": true
+      },
+      {
+        "time_s": 10800,
+        "radius_cm": 0.5,
+        "candidate": "49.8553",
+        "source_raw": "49.855341802410635",
+        "expected_round_half_up": "49.8553",
+        "pass": true
+      },
+      {
+        "time_s": 10800,
+        "radius_cm": 1.0,
+        "candidate": "49.8746",
+        "source_raw": "49.87461285904817",
+        "expected_round_half_up": "49.8746",
+        "pass": true
+      },
+      {
+        "time_s": 10800,
+        "radius_cm": 1.5,
+        "candidate": "49.9101",
+        "source_raw": "49.91014828218056",
+        "expected_round_half_up": "49.9101",
+        "pass": true
+      },
+      {
+        "time_s": 10800,
+        "radius_cm": 2.0,
+        "candidate": "49.9664",
+        "source_raw": "49.96641328434782",
+        "expected_round_half_up": "49.9664",
+        "pass": true
+      }
+    ],
+    "moisture_kg_kg": [
+      {
+        "time_s": 1800,
+        "radius_cm": 0.0,
+        "candidate": "2.5499",
+        "source_raw": "2.549933563334972",
+        "expected_round_half_up": "2.5499",
+        "pass": true
+      },
+      {
+        "time_s": 1800,
+        "radius_cm": 0.5,
+        "candidate": "2.5489",
+        "source_raw": "2.5488819242096716",
+        "expected_round_half_up": "2.5489",
+        "pass": true
+      },
+      {
+        "time_s": 1800,
+        "radius_cm": 1.0,
+        "candidate": "2.5256",
+        "source_raw": "2.525556554075871",
+        "expected_round_half_up": "2.5256",
+        "pass": true
+      },
+      {
+        "time_s": 1800,
+        "radius_cm": 1.5,
+        "candidate": "2.3257",
+        "source_raw": "2.3257132580273274",
+        "expected_round_half_up": "2.3257",
+        "pass": true
+      },
+      {
+        "time_s": 1800,
+        "radius_cm": 2.0,
+        "candidate": "1.6486",
+        "source_raw": "1.6486250284491784",
+        "expected_round_half_up": "1.6486",
+        "pass": true
+      },
+      {
+        "time_s": 3600,
+        "radius_cm": 0.0,
+        "candidate": "2.5257",
+        "source_raw": "2.525727271790593",
+        "expected_round_half_up": "2.5257",
+        "pass": true
+      },
+      {
+        "time_s": 3600,
+        "radius_cm": 0.5,
+        "candidate": "2.4948",
+        "source_raw": "2.494781775168035",
+        "expected_round_half_up": "2.4948",
+        "pass": true
+      },
+      {
+        "time_s": 3600,
+        "radius_cm": 1.0,
+        "candidate": "2.3578",
+        "source_raw": "2.357823608440262",
+        "expected_round_half_up": "2.3578",
+        "pass": true
+      },
+      {
+        "time_s": 3600,
+        "radius_cm": 1.5,
+        "candidate": "2.023",
+        "source_raw": "2.022970792881454",
+        "expected_round_half_up": "2.0230",
+        "pass": true
+      },
+      {
+        "time_s": 3600,
+        "radius_cm": 2.0,
+        "candidate": "1.4711",
+        "source_raw": "1.4710981275061958",
+        "expected_round_half_up": "1.4711",
+        "pass": true
+      },
+      {
+        "time_s": 5400,
+        "radius_cm": 0.0,
+        "candidate": "2.3861",
+        "source_raw": "2.386059357226198",
+        "expected_round_half_up": "2.3861",
+        "pass": true
+      },
+      {
+        "time_s": 5400,
+        "radius_cm": 0.5,
+        "candidate": "2.3256",
+        "source_raw": "2.3256354760263953",
+        "expected_round_half_up": "2.3256",
+        "pass": true
+      },
+      {
+        "time_s": 5400,
+        "radius_cm": 1.0,
+        "candidate": "2.1344",
+        "source_raw": "2.1344125114286756",
+        "expected_round_half_up": "2.1344",
+        "pass": true
+      },
+      {
+        "time_s": 5400,
+        "radius_cm": 1.5,
+        "candidate": "1.802",
+        "source_raw": "1.8020210252485667",
+        "expected_round_half_up": "1.8020",
+        "pass": true
+      },
+      {
+        "time_s": 5400,
+        "radius_cm": 2.0,
+        "candidate": "1.3476",
+        "source_raw": "1.3475701577825516",
+        "expected_round_half_up": "1.3476",
+        "pass": true
+      },
+      {
+        "time_s": 7200,
+        "radius_cm": 0.0,
+        "candidate": "2.1709",
+        "source_raw": "2.170853167191055",
+        "expected_round_half_up": "2.1709",
+        "pass": true
+      },
+      {
+        "time_s": 7200,
+        "radius_cm": 0.5,
+        "candidate": "2.1084",
+        "source_raw": "2.1084359599220512",
+        "expected_round_half_up": "2.1084",
+        "pass": true
+      },
+      {
+        "time_s": 7200,
+        "radius_cm": 1.0,
+        "candidate": "1.9236",
+        "source_raw": "1.9236308462918683",
+        "expected_round_half_up": "1.9236",
+        "pass": true
+      },
+      {
+        "time_s": 7200,
+        "radius_cm": 1.5,
+        "candidate": "1.6259",
+        "source_raw": "1.625940691586869",
+        "expected_round_half_up": "1.6259",
+        "pass": true
+      },
+      {
+        "time_s": 7200,
+        "radius_cm": 2.0,
+        "candidate": "1.2311",
+        "source_raw": "1.2310940705109688",
+        "expected_round_half_up": "1.2311",
+        "pass": true
+      },
+      {
+        "time_s": 9000,
+        "radius_cm": 0.0,
+        "candidate": "1.9566",
+        "source_raw": "1.9566452378068278",
+        "expected_round_half_up": "1.9566",
+        "pass": true
+      },
+      {
+        "time_s": 9000,
+        "radius_cm": 0.5,
+        "candidate": "1.9006",
+        "source_raw": "1.9006001939197164",
+        "expected_round_half_up": "1.9006",
+        "pass": true
+      },
+      {
+        "time_s": 9000,
+        "radius_cm": 1.0,
+        "candidate": "1.736",
+        "source_raw": "1.7359818758367378",
+        "expected_round_half_up": "1.7360",
+        "pass": true
+      },
+      {
+        "time_s": 9000,
+        "radius_cm": 1.5,
+        "candidate": "1.472",
+        "source_raw": "1.471988064478668",
+        "expected_round_half_up": "1.4720",
+        "pass": true
+      },
+      {
+        "time_s": 9000,
+        "radius_cm": 2.0,
+        "candidate": "1.1166",
+        "source_raw": "1.1166481266017663",
+        "expected_round_half_up": "1.1166",
+        "pass": true
+      },
+      {
+        "time_s": 10800,
+        "radius_cm": 0.0,
+        "candidate": "1.7662",
+        "source_raw": "1.7661805257942447",
+        "expected_round_half_up": "1.7662",
+        "pass": true
+      },
+      {
+        "time_s": 10800,
+        "radius_cm": 0.5,
+        "candidate": "1.7165",
+        "source_raw": "1.7165357390943923",
+        "expected_round_half_up": "1.7165",
+        "pass": true
+      },
+      {
+        "time_s": 10800,
+        "radius_cm": 1.0,
+        "candidate": "1.5702",
+        "source_raw": "1.570199404821799",
+        "expected_round_half_up": "1.5702",
+        "pass": true
+      },
+      {
+        "time_s": 10800,
+        "radius_cm": 1.5,
+        "candidate": "1.3333",
+        "source_raw": "1.3332637849561528",
+        "expected_round_half_up": "1.3333",
+        "pass": true
+      },
+      {
+        "time_s": 10800,
+        "radius_cm": 2.0,
+        "candidate": "1.0081",
+        "source_raw": "1.0081231063560248",
+        "expected_round_half_up": "1.0081",
+        "pass": true
+      }
+    ]
+  }
+}

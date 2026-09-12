@@ -1,0 +1,24 @@
+{
+  "recorded_at_utc": "2026-09-12T07:06:51.303526+00:00",
+  "expected_numerical_baseline_commit": "8504b2b32aceed013e82486504d512e0f53f9b0b",
+  "numerical_source_commit_sha": "83a0e3f61985cecdf7a19665dd4f28fc3097ed3d",
+  "head_commit_sha_before_run_1": "8504b2b32aceed013e82486504d512e0f53f9b0b",
+  "git_status_before_run_1": "## main...origin/main [ahead 33]\n M .gitattributes\n?? experiments/Q2_FREEZE_RUN_V3/\n?? experiments/Q2_FREEZE_RUN_V3_FAILED_HORIZON_20260912/\n?? experiments/Q2_FREEZE_RUN_V3_PREFLIGHT_BLOCKED_20260912/\n?? scripts/run_q2_v3_production.py",
+  "source_files_sha256": {
+    "src/q2/__init__.py": "254eef7063ab7e34c4d5463c52c1945149462d8b382216c6398be7f32d27ef2a",
+    "src/q2/baseline.py": "b38cae2817c5aef42207d927ee9133c09baf6f10ed9c80be563099679d1a80f7",
+    "src/q2/benchmark.py": "a72ebb21c9dff16f07a1a8f4008923b511e5196e115c29c36fd89dd1462d2d30",
+    "src/q2/config.py": "b67440c7443fb951aa5ed476bf3bf02d5a45f9da003fac587e594482c5645b7e",
+    "src/q2/environment.py": "6bfe39c6921e1d3e91caa6f320192018db38ca0a26503065449efbc49db74e29",
+    "src/q2/lineage.py": "c97cc7a010bbf2dc962e7fa2647a1e9f8154ae4476e594ad7205e48d108a4f23",
+    "src/q2/model.py": "8517387c1173833b64f1dfb0b5af739a14b39af2bc1b0e58d6bc2d3d57d347d0",
+    "src/q2/properties.py": "9bf359d51e4534ae3df9d4c6fea81e39589822699f74c589e5396d9eeec79970",
+    "src/q2/solver.py": "f999356a81acce977239faadf056c30a887dbb66dfbc9d7de8c39c0b92f179e1",
+    "src/q2/validation.py": "1377bdb455e91d85ad457b0367c4adc88175fb04bb95671cd14c63fd1e86af71",
+    "src/common/numerics.py": "18d8443524188039be767a994a59ed11b6e25fc1bcc468c44784e01ee00cbdb3",
+    "src/q1/model.py": "bedd3ff04cb250d22586a98b96543a9b3445d7853affd45b8f76ad3bb87ca173",
+    "scripts/run_q2_v3_production.py": "bebb66f8e6c67ad6616a8fed73ff252b38925685d07f8049a3c7217e4c229346"
+  },
+  "source_tree_sha256": "684b887b3f52eb249ca81ab6f6d57709dc810c92d97a83656583a1745a5253ae",
+  "production_lock": "src/q2, production configuration, environment logic, and sampler are frozen after this record"
+}

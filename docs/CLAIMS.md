@@ -31,4 +31,4 @@ Status：UNVERIFIED / VERIFIED / OUTDATED
 
 ## Q2 Boundary
 
-Q2 当前仅完成设计 Gate 和只读输入审计，没有可登记的正式 Q2 论文主张。`EXP-Q2-PROPERTY-POINTS` 的公式点和 `EXP-Q2-ENV-TAIL` 的尾窗统计只用于实现前审计；不得据此宣称模型结果、环境充分性、耦合机制或 Q2 终点已经确定。
+Q2 已完成 V3 production candidate gate，但当前仍没有登记为论文 `VERIFIED` 的最终 Q2 主张。V3 Run1 的生产源、候选 workbook 和图表可用于后续人工批准后的论文取数；在批准前不得把 candidate 当作 final，不得把 passive bracket `[206935.0,206935.25] s` 当作 Q3 drying time，也不得把 formal-output certificate 写成 n=640 full-horizon proof。`14400.25 s` 只属于 `SUPPORTED_INTERNAL_TRANSITION_DIAGNOSTIC`。

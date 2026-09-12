@@ -524,6 +524,18 @@ ENV-A 主运行完成 0–72 h，最终阶段场有限且正，Picard `2/2/2/2`�
 
 证据：`docs/Q2_PRODUCTION_FREEZE.md`、`docs/Q2_RESULT_AUDIT.md`、`experiments/Q2_FREEZE_RUN/`。
 
+## D-Q2-V3-PRODUCTION-20260912 Q2 V3 production source and candidate freeze
+
+日期：2026-09-12
+
+人工批准 `Q2 V3 FREEZE RUN AUTHORIZATION = APPROVED` 后，按冻结的 `Q2_NUMERICAL_CONFIG_V3` 从全新 t=0 启动 Run1 与 Run2。两次均得到 `[206935.0,206935.25] s` passive bracket 和 `final_horizon=228536 s`；Run1 标记为唯一 `PRODUCTION_CANONICAL`，Run2 只作 `DETERMINISM_REFERENCE`。formal accuracy 仍按已批准的 integer-second/official-radius 与 selected long-point scope 解释，不扩写为 n=640 full-horizon proof。
+
+`deliverables/candidate/result2.xlsx` 及 `figures/q2/` 已完成独立结构、四位小数、无公式、traceability、PNG/SVG 分辨率和 source-hash 验证。candidate 不自动进入 final，必须等待人工 Q2 freeze approval。
+
+状态：`VALIDATED_CANDIDATE_WAITING_HUMAN_Q2_FREEZE_APPROVAL`
+
+证据：`experiments/Q2_FREEZE_RUN_V3/`、`experiments/Q2_CANONICAL_DATA_MANIFEST.json`、`docs/Q2_RESULT_AUDIT.md`
+
 ## D-Q2-ACCURACY-SCOPE Q2 Formal Output Accuracy Gate Scope
 
 日期：2026-09-12

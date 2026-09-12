@@ -1,0 +1,272 @@
+{
+  "status": "ALL_DELIVERABLE_GATES_PASS",
+  "experiment": "Q2_FREEZE_RUN_V3",
+  "audit_script": "scripts/audit_q2_v3_postproduction.py",
+  "accuracy_basis": {
+    "path": "experiments/Q2_ACCURACY_REMEDIATION/accuracy_confirmation_v3.json",
+    "sha256": "f94e7c2716dbd970d3158f864d233c730f4a4fb1f08ebdb02f6524d2571fa470",
+    "status": "FORMAL_OUTPUT_ACCURACY_CERTIFIED_WAITING_V3_FREEZE_RUN_AUTHORIZATION",
+    "scope": "integer-second output lattice, official radii 0.0..2.0 cm, certified transition/early/selected long points"
+  },
+  "checks": {
+    "v3_config_match": {
+      "status": "PASS",
+      "detail": {
+        "actual": {
+          "n_intervals": 320,
+          "cluster_power": 3.0,
+          "time_step_s": 0.25,
+          "early_time_step_s": 0.015625,
+          "early_time_end_s": 5.0,
+          "interface_mean": "harmonic",
+          "scheme": "BE startup then BDF2",
+          "environment": {
+            "within_attachment1": "piecewise linear",
+            "post_attachment_mode": "constant ENV-B",
+            "post_temperature_c": 49.99525,
+            "post_moisture_kg_kg": 0.049988
+          }
+        },
+        "expected": {
+          "n_intervals": 320,
+          "cluster_power": 3.0,
+          "time_step_s": 0.25,
+          "early_time_step_s": 0.015625,
+          "early_time_end_s": 5.0,
+          "interface_mean": "harmonic",
+          "scheme": "BE startup then BDF2",
+          "environment": {
+            "within_attachment1": "piecewise linear",
+            "post_attachment_mode": "constant ENV-B",
+            "post_temperature_c": 49.99525,
+            "post_moisture_kg_kg": 0.049988
+          }
+        },
+        "required_fields": {
+          "restart": "formal-output lattice, not all internal states",
+          "early_policy": "fine dt=.015625 s through exactly t=5 s; first dt=.25 s step is BE; certified BDF2 history handling is unchanged",
+          "transition_policy": "exact t=14400 s; first post-transition step is BE restart; BDF2 resumes afterward",
+          "official_sample_rule": "time_s=1..final_horizon, radius_cm=0.0..2.0 at 0.1 cm; t=0 retained only in raw internal output"
+        }
+      }
+    },
+    "code_hash_match": {
+      "status": "PASS",
+      "detail": {
+        "recorded_source_hashes_match": true,
+        "mismatches": {},
+        "current_head": "8504b2b32aceed013e82486504d512e0f53f9b0b",
+        "recorded_head": "8504b2b32aceed013e82486504d512e0f53f9b0b",
+        "current_src_q2_commit": "83a0e3f61985cecdf7a19665dd4f28fc3097ed3d",
+        "recorded_src_q2_commit": "83a0e3f61985cecdf7a19665dd4f28fc3097ed3d",
+        "post_run_runner_note": "run_q2_v3_production.py was only corrected for a non-numerical probe-writer postprocess issue after Run 1; src/q2 is unchanged"
+      }
+    },
+    "environment_hash_match": {
+      "status": "PASS",
+      "detail": {
+        "environment_sha256": "a5d553bce9ab81b8e67173625b2872e9d798bfc0273c9c7455db4f9f250876d6",
+        "recorded": "a5d553bce9ab81b8e67173625b2872e9d798bfc0273c9c7455db4f9f250876d6",
+        "input_sha256": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+        "recorded_input": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7"
+      }
+    },
+    "official_template_and_input": {
+      "status": "PASS",
+      "detail": {
+        "input": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+        "template": "23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4"
+      }
+    },
+    "q1_regression": {
+      "status": "PASS",
+      "detail": {
+        "preflight": {
+          "q1_final_sha256": "06b67b1f688d84a701ac4d2f4b0f47a1624069877df6724faf071a48af177b5c",
+          "q1_freeze_reference_sha256": "f13667b5fe8e4c1e1a7635b18ab4c7aaa9e3fef5111b893a9ce79b6deb3fad17",
+          "q1_figure_tree_sha256": "ea1e8213a87ed470ce38c5a05fee4dbb9f245b7ee3c20f46bc9e433105d025ca",
+          "official_source_tree_sha256": "dc5bf76b38a356bd4540a581a9de8a84f66747d4b774db91878460d555514c55",
+          "q1_final_tag_sha": "f3c7953725f1b2b87ca10aae02327ea4420eec78",
+          "attachment1_sha256": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+          "official_result2_template_sha256": "23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4"
+        },
+        "current": {
+          "q1_final_sha256": "06b67b1f688d84a701ac4d2f4b0f47a1624069877df6724faf071a48af177b5c",
+          "q1_freeze_reference_sha256": "f13667b5fe8e4c1e1a7635b18ab4c7aaa9e3fef5111b893a9ce79b6deb3fad17",
+          "q1_figure_tree_sha256": "ea1e8213a87ed470ce38c5a05fee4dbb9f245b7ee3c20f46bc9e433105d025ca",
+          "official_source_tree_sha256": "dc5bf76b38a356bd4540a581a9de8a84f66747d4b774db91878460d555514c55",
+          "q1_final_tag_sha": "f3c7953725f1b2b87ca10aae02327ea4420eec78",
+          "attachment1_sha256": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+          "official_result2_template_sha256": "23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4"
+        }
+      }
+    },
+    "official_source_modified": {
+      "status": "PASS",
+      "detail": {
+        "current": "dc5bf76b38a356bd4540a581a9de8a84f66747d4b774db91878460d555514c55",
+        "recorded": "dc5bf76b38a356bd4540a581a9de8a84f66747d4b774db91878460d555514c55"
+      }
+    },
+    "run_1_and_run_2": {
+      "status": "PASS",
+      "detail": {
+        "run_1": {
+          "internal_source_sha256": true,
+          "official_sampled_sha256": true,
+          "diagnostics": true,
+          "checkpoint": true,
+          "metrics_status": true,
+          "fresh_start": true,
+          "horizon": true,
+          "sample_count": true
+        },
+        "run_2": {
+          "internal_source_sha256": true,
+          "official_sampled_sha256": true,
+          "diagnostics": true,
+          "checkpoint": true,
+          "metrics_status": true,
+          "fresh_start": true,
+          "horizon": true,
+          "sample_count": true
+        }
+      }
+    },
+    "determinism": {
+      "status": "PASS",
+      "detail": {
+        "raw_output": {
+          "status": "PASS",
+          "mode": "byte/hash identical",
+          "left_sha256": "8da13480ea9bb4f752682e409e7f96ca7547c36db698a72696fc2f8229c7d6bf",
+          "right_sha256": "8da13480ea9bb4f752682e409e7f96ca7547c36db698a72696fc2f8229c7d6bf",
+          "comparison_scope": "all rows and all numeric fields, not only final state"
+        },
+        "official_sampled_output": {
+          "status": "PASS",
+          "mode": "byte/hash identical",
+          "left_sha256": "141a7d6b9e4de11b9a5e52d50c194761f3d15661e14b4828929e1b320e1372fd",
+          "right_sha256": "141a7d6b9e4de11b9a5e52d50c194761f3d15661e14b4828929e1b320e1372fd",
+          "comparison_scope": "all rows and all numeric fields, not only final state"
+        },
+        "diagnostics": {
+          "status": "PASS",
+          "mode": "byte/hash identical",
+          "left_sha256": "c6c1deb41fe83b49a6252ac2d3d7dbce47bc6e923520512de750ce14f2ae8209",
+          "right_sha256": "c6c1deb41fe83b49a6252ac2d3d7dbce47bc6e923520512de750ce14f2ae8209",
+          "comparison_scope": "all rows and all numeric fields, not only final state"
+        },
+        "event_bracket_equal": true,
+        "final_horizon_equal": true,
+        "comparison_scope": "all rows and all numeric fields, not only final state",
+        "status": "PASS"
+      }
+    },
+    "lineage": {
+      "status": "PASS",
+      "detail": {
+        "formal_result_source": "experiments/Q2_FREEZE_RUN_V3/run_1/official_samples.csv",
+        "run_1_status": "PRODUCTION_CANONICAL",
+        "run_2_status": "DETERMINISM_REFERENCE"
+      }
+    },
+    "picard": {
+      "status": "PASS",
+      "detail": {
+        "rows": 228536,
+        "finite": true,
+        "times_ok": true,
+        "max": 3.0,
+        "non_converged_steps": 0
+      }
+    },
+    "mass": {
+      "status": "PASS",
+      "detail": {
+        "max_abs": 1.543877133753609e-08,
+        "recorded": 1.543877133753609e-08,
+        "rms": 2.1918875926655512e-09
+      }
+    },
+    "heat": {
+      "status": "PASS",
+      "detail": {
+        "max_abs_j": 1.2148866494281616,
+        "recorded": 1.2148866494281616,
+        "rms_j": 0.13797685420549796
+      }
+    },
+    "robin": {
+      "status": "PASS",
+      "detail": {
+        "heat_max_abs_w_m2": 0.0001252318828548482,
+        "moisture_max_abs_kg_m2_s": 4.541557986191563e-12
+      }
+    },
+    "time_step_residual": {
+      "status": "PASS",
+      "detail": {
+        "temperature_max": 7.232109110156724e-10,
+        "moisture_max": 9.999945677074962e-09
+      }
+    },
+    "sampler": {
+      "status": "PASS",
+      "detail": {
+        "rows": 4799256,
+        "expected_rows": 4799256,
+        "finite": true,
+        "required_times_present": true
+      }
+    },
+    "q3_q4_not_started": {
+      "status": "PASS",
+      "detail": {
+        "q3_q4_started": false
+      }
+    }
+  },
+  "gates": {
+    "v3_config_match": true,
+    "code_hash_match": true,
+    "environment_hash_match": true,
+    "official_template_and_input": true,
+    "q1_regression": true,
+    "official_source_modified": true,
+    "run_1_and_run_2": true,
+    "determinism": true,
+    "lineage": true,
+    "picard": true,
+    "mass": true,
+    "heat": true,
+    "robin": true,
+    "time_step_residual": true,
+    "sampler": true,
+    "q3_q4_not_started": true
+  },
+  "candidate_workbook_generated": true,
+  "figures_generated": true,
+  "official_source_modified": false,
+  "q1_frozen_assets_modified": false,
+  "q3_q4_started": false,
+  "fail_closed": true,
+  "result2_policy": "generate only after every pre-candidate gate is PASS; candidate remains pending human Q2 freeze approval",
+  "candidate_validation": {
+    "status": "PASS",
+    "path": "experiments/Q2_FREEZE_RUN_V3/candidate_validation.json",
+    "sha256": "a0b8f44b804beb7d5b77058854a26f58128dfe25c24bdc1012eb7b51e695cc21",
+    "candidate_sha256": "84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da",
+    "authoring_mode": "openpyxl_write_only_streaming_fallback_after_artifact_tool_heap_failure"
+  },
+  "figures": {
+    "status": "PASS",
+    "manifest": "figures/q2/FIGURE_MANIFEST.json",
+    "manifest_sha256": "ed4a06902e042ec19681ffa4ef1d21f5754f2350a9120dba091e311b77cd456d",
+    "validation": "figures/q2/FIGURE_VALIDATION.json",
+    "validation_sha256": "5e1b69f32bc97fbb032bab8e4a0b00fe172c3662e7eccf882f79c9d52bc9edaf",
+    "figure_count": 11,
+    "random_trace": "30/30",
+    "errors": []
+  }
+}

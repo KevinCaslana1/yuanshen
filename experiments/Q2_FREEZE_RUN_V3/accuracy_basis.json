@@ -1,0 +1,26 @@
+{
+  "path": "experiments/Q2_ACCURACY_REMEDIATION/accuracy_confirmation_v3.json",
+  "sha256": "f94e7c2716dbd970d3158f864d233c730f4a4fb1f08ebdb02f6524d2571fa470",
+  "status_at_freeze": "FORMAL_OUTPUT_ACCURACY_CERTIFIED_WAITING_V3_FREEZE_RUN_AUTHORIZATION",
+  "scope_decision": "D-Q2-ACCURACY-SCOPE",
+  "gate": {
+    "temperature_C": 2.5e-05,
+    "moisture_kg_kg": 2.5e-05,
+    "uncertainty_definition": "conservative raw fine/coarse difference; no Richardson extrapolation",
+    "formal_output_definition": "integer-second output lattice, official radii 0.0..2.0 cm, certified transition/early/selected long points"
+  },
+  "recommended_numerical_config": {
+    "name": "Q2_NUMERICAL_CONFIG_V3",
+    "n_intervals": 320,
+    "cluster_power": 3.0,
+    "time_step_s": 0.25,
+    "early_time_step_s": 0.015625,
+    "early_time_end_s": 5.0,
+    "scheme": "BE startup then BDF2",
+    "restart": "BE restart at exact environment transition t=14400 s and at the early-to-production step-size change",
+    "interface_mean": "harmonic",
+    "environment": "ENV-B: Attachment 1 piecewise linear through 14400 s, then constants 49.99525 degC and 0.049988 kg/kg",
+    "all_other_physics": "unchanged frozen Q2-M1 values"
+  },
+  "production_basis": "formal-output certification is the accuracy basis; V3 Run 1 is the sole production source"
+}
