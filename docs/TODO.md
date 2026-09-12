@@ -62,6 +62,7 @@
 | T-052 | P0 | Q3/Q4 | T-051 | DONE | Q3/Q4 candidate deliverables and evidence | `result3.xlsx`、`result4.xlsx`、Table5/6、Fig5-12…18、metrics、validation、candidate manifest 完成；protected paths unchanged | 2026-09-12 |
 | T-053 | P0 | Q3/Q4 human freeze | T-052 | DONE | Human Q3/Q4 freeze approval | 已获联合人工 final freeze approval；result3/result4、Table5/6、论文图表按 byte-copy/既有资产整理进入 final，manifest、审计和回归通过；不 push | 2026-09-12 |
 | T-054 | P0 | Q2 paper figures | T-050 | DONE | Q2 Chinese publication figure localization | 只用 frozen result2 的既有图源数据和后处理产物；11/11 PNG、11/11 SVG、PNG ≥300 DPI、data trace 11/11、中文文本 11/11；result2 SHA 前后不变；Q1/Q3/Q4 metadata check PASS | 2026-09-12 |
+| T-055 | P0 | 全局 GitHub sync | T-054 | DONE | Full GitHub sync + permanent workflow push policy | canonical policy 已写入 `AGENTS.md`、`docs/RUNBOOK.md`、`docs/GITHUB_SYNC_POLICY.md`；前一批 39 个本地提交已同步，本条记录随当前提交同步；LFS 66/66 上传并 fsck PASS，`q1-final` 已推送，local/remote HEAD 精确一致；无 force push、reset、rebase 或数值重算 | 2026-09-12 |
 
 ## 任务记录模板
 
