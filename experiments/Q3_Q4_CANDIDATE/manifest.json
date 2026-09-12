@@ -1,0 +1,537 @@
+{
+  "status": "CANDIDATE_COMPLETE_WAITING_FOR_HUMAN_Q3_Q4_FREEZE_APPROVAL",
+  "q1": "FROZEN",
+  "q2": "FROZEN",
+  "q3": "CANDIDATE COMPLETE",
+  "q4": "CANDIDATE COMPLETE",
+  "q3_summary": {
+    "question": "Q3",
+    "status": "CANDIDATE",
+    "threshold_kg_kg": 0.15,
+    "source_q2_raw": "experiments\\Q2_FREEZE_RUN_V3\\run_1\\official_samples_raw.csv",
+    "source_q2_raw_sha256": "8da13480ea9bb4f752682e409e7f96ca7547c36db698a72696fc2f8229c7d6bf",
+    "frozen_q2_final_sha256": "84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da",
+    "official_lattice_radius_cm": [
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      1.0,
+      1.1,
+      1.2,
+      1.3,
+      1.4,
+      1.5,
+      1.6,
+      1.7,
+      1.8,
+      1.9,
+      2.0
+    ],
+    "coarse_bracket_s": [
+      206935.0,
+      206936.0
+    ],
+    "cmax_before": 0.1500000658293865,
+    "cmax_after": 0.14999977460230157,
+    "critical_radius_before_cm": 0.0,
+    "critical_radius_after_cm": 0.0,
+    "t3_s": 206935.2265625,
+    "t3_h": 57.482007378472225,
+    "endpoint_cmax": 0.14999999986492263,
+    "endpoint_critical_radius_cm": 0.0,
+    "endpoint_refinement": {
+      "method": "local BE/Picard continuation on reconstructed official 0.1 cm lattice",
+      "source_time_s": 206935.0,
+      "bracket_s": [
+        206935.2255859375,
+        206935.2265625
+      ],
+      "substeps_per_second": 1024,
+      "substeps_used_before_bracket": 232,
+      "root_fraction_in_local_bracket": 0.5249262473666397,
+      "root_estimate_s": 206935.2260985608,
+      "first_strictly_below_time_s": 206935.2265625,
+      "picard_iterations_at_endpoint": 2,
+      "cmax_at_bracket_before": 0.15000000014925188,
+      "cmax_at_bracket_after": 0.14999999986492263,
+      "threshold_kg_kg": 0.15
+    },
+    "prior_not_satisfied": true,
+    "endpoint_satisfied": true,
+    "overlap_source": "Q2_FREEZE_RUN_V3/run_1/official_samples_raw.csv; values copied by streaming selection and rounded only in candidate workbook",
+    "figures": {
+      "fig_5_12": {
+        "png": "deliverables\\candidate\\paper\\figures\\fig_5_12_q3_radial_moisture_profiles.png",
+        "svg": "deliverables\\candidate\\paper\\figures\\fig_5_12_q3_radial_moisture_profiles.svg",
+        "png_sha256": "863b4fb553836457c0e8d67d4f7906ff44190945100aeac221f7718980657db4",
+        "svg_sha256": "48bbedba320b23abec473be53f0146390b00c20ff1c70fd661458634fef0a5a4",
+        "png_dpi": 360
+      },
+      "fig_5_13": {
+        "png": "deliverables\\candidate\\paper\\figures\\fig_5_13_q3_moisture_histories.png",
+        "svg": "deliverables\\candidate\\paper\\figures\\fig_5_13_q3_moisture_histories.svg",
+        "png_sha256": "e28b7e5803627e39e96845da67af5fd21cdd927a631149581e17913db8c00e12",
+        "svg_sha256": "33de07ee4e0cde176c5ff27a1bf21d61463e8ac1ead70c01eba02d525bf72ced",
+        "png_dpi": 360
+      },
+      "fig_5_14": {
+        "png": "deliverables\\candidate\\paper\\figures\\fig_5_14_q3_threshold_sensitivity.png",
+        "svg": "deliverables\\candidate\\paper\\figures\\fig_5_14_q3_threshold_sensitivity.svg",
+        "png_sha256": "03b59da6aab7c21281191b91bcca561d3430e7561e8fda1285cbedb846a76f8b",
+        "svg_sha256": "e8ca9b74acfd20084d41be87a14d8435e93ca48c5c78120ae25aee6f76c10a36",
+        "png_dpi": 360
+      }
+    },
+    "threshold_sensitivity_discrete": [
+      [
+        0.14,
+        null
+      ],
+      [
+        0.15,
+        206935.2265625
+      ],
+      [
+        0.16,
+        177360.0
+      ]
+    ]
+  },
+  "q4_summary": {
+    "question": "Q4",
+    "status": "CANDIDATE",
+    "threshold_kg_kg": 0.15,
+    "appendix4": {
+      "rho": "760+90*C",
+      "cp": "1850+2150*C/(C+1)",
+      "k": "0.12+0.20*C/(C+1)",
+      "D": "4.2e-4*exp(-0.30/C)*exp(-3850/T_K)"
+    },
+    "radius_source": "A题\\附件\\附件2.xlsx",
+    "radius_source_sha256": "5563acbfa4b4afb10cc6c03e2207e5369bf39da27576672aff14cc5c32e704af",
+    "radius_interpolation": "PchipInterpolator-compatible Fritsch-Carlson monotone cubic",
+    "radius_nodes_exact_to_machine": true,
+    "post_attachment_radius_rule": "hold R_last=1.198 cm after t=259200.0 s",
+    "material_coordinate": "xi=r/R(t), uniform xi lattice",
+    "production": {
+      "n_intervals": 96,
+      "dt_s": 4.0,
+      "output_interval_s": 60.0,
+      "interface_mean": "harmonic",
+      "scheme": "backward Euler + coupled Picard"
+    },
+    "coarse_bracket_s": [
+      191096.0,
+      191100.0
+    ],
+    "cmax_before": 0.15000087683231333,
+    "cmax_after": 0.14999885377291058,
+    "t4_s": 191097.7336093787,
+    "t4_h": 53.08270378038297,
+    "radius_at_t4_cm": 1.2,
+    "endpoint_cmax": 0.14999999999999525,
+    "critical_xi_at_t4": 0.0,
+    "critical_radius_at_t4_cm": 0.0,
+    "prior_not_satisfied": true,
+    "endpoint_satisfied": true,
+    "delta_t4_minus_t3_s": -15837.492953121313,
+    "relative_delta_t4_minus_t3": -0.07653357630890342,
+    "constant_radius_regression": {
+      "max_radius_deviation_cm": 0.0,
+      "max_radius_rate_cm_s": 0.0,
+      "finite": true
+    },
+    "time_grid_sanity": {
+      "n32_dt8": {
+        "center": 2.5487845849554556,
+        "surface": 1.1263599407002352,
+        "mean": 2.121192707840067,
+        "radius_cm": 1.625
+      },
+      "n48_dt4": {
+        "center": 2.5488380411744638,
+        "surface": 1.1254287265277159,
+        "mean": 2.1213114954838597,
+        "radius_cm": 1.625
+      },
+      "differences_fine_minus_coarse": {
+        "center": 5.345621900820774e-05,
+        "surface": -0.0009312141725192902,
+        "mean": 0.00011878764379247286
+      }
+    },
+    "mass_conservation": {
+      "max_abs_normalized_step_residual": 0.00034553928505477293,
+      "definition": "moving-volume balance with Robin loss and prescribed boundary motion"
+    },
+    "robin_audit": {
+      "max_abs_flux_residual": 4.5474756348265686e-07,
+      "condition": "-D(C_s)*dC/dr = hm*(C_s-C_inf)"
+    },
+    "environment": {
+      "interpolation": "linear within Attachment 1",
+      "post_attachment_mode": "constant",
+      "post_temperature_c": 49.99525,
+      "post_moisture_kg_kg": 0.049988
+    },
+    "figures": {
+      "fig_5_15": {
+        "png": "deliverables\\candidate\\paper\\figures\\fig_5_15_q4_radius_pchip.png",
+        "svg": "deliverables\\candidate\\paper\\figures\\fig_5_15_q4_radius_pchip.svg",
+        "png_sha256": "c8995d1dafa118035318b1568b7a629dfe0980e1219d7fa5e2387078195a389e",
+        "svg_sha256": "27185bb245da13b9e7e1dd26b6621738c6eda56fe6e36d91f62d7239d1b36d6b",
+        "png_dpi": 360
+      },
+      "fig_5_16": {
+        "png": "deliverables\\candidate\\paper\\figures\\fig_5_16_q4_dynamic_radial_moisture.png",
+        "svg": "deliverables\\candidate\\paper\\figures\\fig_5_16_q4_dynamic_radial_moisture.svg",
+        "png_sha256": "3d12d1778759ed516de2cfcd6ec30151961f3dc91477100850a9e68a4770aaee",
+        "svg_sha256": "c8624090f5378070bbb1308ef671b633b4924a77ffdc69cc8349cf724889a3ac",
+        "png_dpi": 360
+      },
+      "fig_5_17": {
+        "png": "deliverables\\candidate\\paper\\figures\\fig_5_17_q4_radius_and_mean.png",
+        "svg": "deliverables\\candidate\\paper\\figures\\fig_5_17_q4_radius_and_mean.svg",
+        "png_sha256": "3accca75532f56c66b940f5dd1c9ab6abc1eea9cf8f714025aaa2ffc4fa12335",
+        "svg_sha256": "45f3c858065c502f7dbc2eea32464f9d8a89732b9a43541efb9bad3a123058b6",
+        "png_dpi": 360
+      },
+      "fig_5_18": {
+        "png": "deliverables\\candidate\\paper\\figures\\fig_5_18_q3_q4_drying_time_comparison.png",
+        "svg": "deliverables\\candidate\\paper\\figures\\fig_5_18_q3_q4_drying_time_comparison.svg",
+        "png_sha256": "55c668942877f4c4de7478f802138e9e9cd402221f71f5c6f8726df90cf21439",
+        "svg_sha256": "6273d45d7b061d0b8a390f498cc98de352e6d8e1638745bcc77ffc46567985c8",
+        "png_dpi": 360
+      }
+    }
+  },
+  "validation": {
+    "q2_final_sha256": "84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da",
+    "q3": {
+      "threshold": 0.15,
+      "coarse_bracket_s": [
+        206935.0,
+        206936.0
+      ],
+      "t3_s": 206935.2265625,
+      "t3_h": 57.482007378472225,
+      "t_before_cmax": 0.1500000658293865,
+      "t_after_cmax": 0.14999977460230157,
+      "critical_radius_before_cm": 0.0,
+      "critical_radius_after_cm": 0.0,
+      "endpoint_cmax": 0.14999999986492263,
+      "critical_radius_endpoint_cm": 0.0,
+      "prior_not_satisfied": true,
+      "endpoint_satisfied": true,
+      "source_trace": "3448/3448"
+    },
+    "q4": {
+      "coarse_bracket_s": [
+        191096.0,
+        191100.0
+      ],
+      "t4_s": 191097.7336093787,
+      "t4_h": 53.08270378038297,
+      "radius_at_t4_cm": 1.2,
+      "t_before_cmax": 0.15000087683231333,
+      "t_after_cmax": 0.14999885377291058,
+      "endpoint_cmax": 0.14999999999999525,
+      "critical_xi_at_t4": 0.0,
+      "critical_radius_at_t4_cm": 0.0,
+      "prior_not_satisfied": true,
+      "endpoint_satisfied": true,
+      "radius_node_max_abs_error_cm": 0.0,
+      "outside_domain_value_violations": 0,
+      "mass_residual_max": 0.00034553928505477293,
+      "robin_residual_max": 4.5474756348265686e-07
+    },
+    "workbooks": {
+      "result3": {
+        "path": "deliverables\\candidate\\result3.xlsx",
+        "sha256": "a1ad06d4073c8692cc6a7f289c2052910683a93491ff930e142c47049c29a720",
+        "size_bytes": 921531,
+        "sheets": [
+          {
+            "name": "Sheet1",
+            "rows": 3450,
+            "columns": 22
+          }
+        ],
+        "formula_count": 0,
+        "bad_numeric_format_count": 0,
+        "shape_ok": true
+      },
+      "result4": {
+        "path": "deliverables\\candidate\\result4.xlsx",
+        "sha256": "2f9c22956b0b634622344c4a26de20598e83cc77604f904e529e3822562b92e8",
+        "size_bytes": 656084,
+        "sheets": [
+          {
+            "name": "Sheet1",
+            "rows": 3186,
+            "columns": 22
+          }
+        ],
+        "formula_count": 0,
+        "bad_numeric_format_count": 0,
+        "shape_ok": true
+      },
+      "table5": {
+        "path": "deliverables\\candidate\\tables\\q3_table5.xlsx",
+        "sha256": "459989b94a3a7e8c574c833e06301ae53b5f7e7bf58c71be4e3dd75b3d9bf270",
+        "size_bytes": 4349,
+        "sheets": [
+          {
+            "name": "Table",
+            "rows": 11,
+            "columns": 7
+          }
+        ],
+        "formula_count": 0,
+        "bad_numeric_format_count": 0,
+        "shape_ok": true
+      },
+      "table6": {
+        "path": "deliverables\\candidate\\tables\\q4_table6.xlsx",
+        "sha256": "ea6cc28480d0b041e4d52213628d35cd1a9f667f2bd729ab72de639a0e8fd765",
+        "size_bytes": 4386,
+        "sheets": [
+          {
+            "name": "Table",
+            "rows": 10,
+            "columns": 9
+          }
+        ],
+        "formula_count": 0,
+        "bad_numeric_format_count": 0,
+        "shape_ok": true
+      }
+    },
+    "figures": {
+      "count": 7,
+      "all_png_dpi_ge_300": true,
+      "items": [
+        {
+          "stem": "fig_5_12_q3_radial_moisture_profiles",
+          "png": "deliverables\\candidate\\paper\\figures\\fig_5_12_q3_radial_moisture_profiles.png",
+          "svg": "deliverables\\candidate\\paper\\figures\\fig_5_12_q3_radial_moisture_profiles.svg",
+          "png_sha256": "863b4fb553836457c0e8d67d4f7906ff44190945100aeac221f7718980657db4",
+          "svg_sha256": "48bbedba320b23abec473be53f0146390b00c20ff1c70fd661458634fef0a5a4",
+          "png_dpi": [
+            359.9942,
+            359.9942
+          ],
+          "png_dpi_ok": true
+        },
+        {
+          "stem": "fig_5_13_q3_moisture_histories",
+          "png": "deliverables\\candidate\\paper\\figures\\fig_5_13_q3_moisture_histories.png",
+          "svg": "deliverables\\candidate\\paper\\figures\\fig_5_13_q3_moisture_histories.svg",
+          "png_sha256": "e28b7e5803627e39e96845da67af5fd21cdd927a631149581e17913db8c00e12",
+          "svg_sha256": "33de07ee4e0cde176c5ff27a1bf21d61463e8ac1ead70c01eba02d525bf72ced",
+          "png_dpi": [
+            359.9942,
+            359.9942
+          ],
+          "png_dpi_ok": true
+        },
+        {
+          "stem": "fig_5_14_q3_threshold_sensitivity",
+          "png": "deliverables\\candidate\\paper\\figures\\fig_5_14_q3_threshold_sensitivity.png",
+          "svg": "deliverables\\candidate\\paper\\figures\\fig_5_14_q3_threshold_sensitivity.svg",
+          "png_sha256": "03b59da6aab7c21281191b91bcca561d3430e7561e8fda1285cbedb846a76f8b",
+          "svg_sha256": "e8ca9b74acfd20084d41be87a14d8435e93ca48c5c78120ae25aee6f76c10a36",
+          "png_dpi": [
+            359.9942,
+            359.9942
+          ],
+          "png_dpi_ok": true
+        },
+        {
+          "stem": "fig_5_15_q4_radius_pchip",
+          "png": "deliverables\\candidate\\paper\\figures\\fig_5_15_q4_radius_pchip.png",
+          "svg": "deliverables\\candidate\\paper\\figures\\fig_5_15_q4_radius_pchip.svg",
+          "png_sha256": "c8995d1dafa118035318b1568b7a629dfe0980e1219d7fa5e2387078195a389e",
+          "svg_sha256": "27185bb245da13b9e7e1dd26b6621738c6eda56fe6e36d91f62d7239d1b36d6b",
+          "png_dpi": [
+            359.9942,
+            359.9942
+          ],
+          "png_dpi_ok": true
+        },
+        {
+          "stem": "fig_5_16_q4_dynamic_radial_moisture",
+          "png": "deliverables\\candidate\\paper\\figures\\fig_5_16_q4_dynamic_radial_moisture.png",
+          "svg": "deliverables\\candidate\\paper\\figures\\fig_5_16_q4_dynamic_radial_moisture.svg",
+          "png_sha256": "3d12d1778759ed516de2cfcd6ec30151961f3dc91477100850a9e68a4770aaee",
+          "svg_sha256": "c8624090f5378070bbb1308ef671b633b4924a77ffdc69cc8349cf724889a3ac",
+          "png_dpi": [
+            359.9942,
+            359.9942
+          ],
+          "png_dpi_ok": true
+        },
+        {
+          "stem": "fig_5_17_q4_radius_and_mean",
+          "png": "deliverables\\candidate\\paper\\figures\\fig_5_17_q4_radius_and_mean.png",
+          "svg": "deliverables\\candidate\\paper\\figures\\fig_5_17_q4_radius_and_mean.svg",
+          "png_sha256": "3accca75532f56c66b940f5dd1c9ab6abc1eea9cf8f714025aaa2ffc4fa12335",
+          "svg_sha256": "45f3c858065c502f7dbc2eea32464f9d8a89732b9a43541efb9bad3a123058b6",
+          "png_dpi": [
+            359.9942,
+            359.9942
+          ],
+          "png_dpi_ok": true
+        },
+        {
+          "stem": "fig_5_18_q3_q4_drying_time_comparison",
+          "png": "deliverables\\candidate\\paper\\figures\\fig_5_18_q3_q4_drying_time_comparison.png",
+          "svg": "deliverables\\candidate\\paper\\figures\\fig_5_18_q3_q4_drying_time_comparison.svg",
+          "png_sha256": "55c668942877f4c4de7478f802138e9e9cd402221f71f5c6f8726df90cf21439",
+          "svg_sha256": "6273d45d7b061d0b8a390f498cc98de352e6d8e1638745bcc77ffc46567985c8",
+          "png_dpi": [
+            359.9942,
+            359.9942
+          ],
+          "png_dpi_ok": true
+        }
+      ]
+    },
+    "figure_trace": {
+      "q3": "3/3",
+      "q4": "4/4",
+      "total": "7/7"
+    },
+    "status": "PASS"
+  },
+  "test_result": "60 passed",
+  "candidate_files": [
+    {
+      "path": "deliverables\\candidate\\result3.xlsx",
+      "size_bytes": 921531,
+      "sha256": "a1ad06d4073c8692cc6a7f289c2052910683a93491ff930e142c47049c29a720"
+    },
+    {
+      "path": "deliverables\\candidate\\result4.xlsx",
+      "size_bytes": 656084,
+      "sha256": "2f9c22956b0b634622344c4a26de20598e83cc77604f904e529e3822562b92e8"
+    },
+    {
+      "path": "deliverables\\candidate\\tables\\q3_table5.xlsx",
+      "size_bytes": 4349,
+      "sha256": "459989b94a3a7e8c574c833e06301ae53b5f7e7bf58c71be4e3dd75b3d9bf270"
+    },
+    {
+      "path": "deliverables\\candidate\\tables\\q3_table5.csv",
+      "size_bytes": 541,
+      "sha256": "03db9710fcbfda8081f6b9070c4f62a085eb93f82afbba0998f703d72e58055f"
+    },
+    {
+      "path": "deliverables\\candidate\\tables\\q3_table5.md",
+      "size_bytes": 762,
+      "sha256": "82a5b8aa68f65a3cc8fcff03fbf7155a7a3d62322fd7b327eafc947c22fc9cf2"
+    },
+    {
+      "path": "deliverables\\candidate\\tables\\q4_table6.xlsx",
+      "size_bytes": 4386,
+      "sha256": "ea6cc28480d0b041e4d52213628d35cd1a9f667f2bd729ab72de639a0e8fd765"
+    },
+    {
+      "path": "deliverables\\candidate\\tables\\q4_table6.csv",
+      "size_bytes": 530,
+      "sha256": "78d4cde050ff34a4d6229bf223d57cdd7a9bce8b11c0cafe3f6cf2521e3a7c5f"
+    },
+    {
+      "path": "deliverables\\candidate\\tables\\q4_table6.md",
+      "size_bytes": 787,
+      "sha256": "7822931b6b739c8c1b11b51a05a34666815c6c0cac3195a43be77cb2606755ad"
+    }
+  ],
+  "figure_files": [
+    {
+      "path": "deliverables\\candidate\\paper\\figures\\fig_5_12_q3_radial_moisture_profiles.png",
+      "size_bytes": 179648,
+      "sha256": "863b4fb553836457c0e8d67d4f7906ff44190945100aeac221f7718980657db4"
+    },
+    {
+      "path": "deliverables\\candidate\\paper\\figures\\fig_5_13_q3_moisture_histories.png",
+      "size_bytes": 170349,
+      "sha256": "e28b7e5803627e39e96845da67af5fd21cdd927a631149581e17913db8c00e12"
+    },
+    {
+      "path": "deliverables\\candidate\\paper\\figures\\fig_5_14_q3_threshold_sensitivity.png",
+      "size_bytes": 118940,
+      "sha256": "03b59da6aab7c21281191b91bcca561d3430e7561e8fda1285cbedb846a76f8b"
+    },
+    {
+      "path": "deliverables\\candidate\\paper\\figures\\fig_5_15_q4_radius_pchip.png",
+      "size_bytes": 109338,
+      "sha256": "c8995d1dafa118035318b1568b7a629dfe0980e1219d7fa5e2387078195a389e"
+    },
+    {
+      "path": "deliverables\\candidate\\paper\\figures\\fig_5_16_q4_dynamic_radial_moisture.png",
+      "size_bytes": 193755,
+      "sha256": "3d12d1778759ed516de2cfcd6ec30151961f3dc91477100850a9e68a4770aaee"
+    },
+    {
+      "path": "deliverables\\candidate\\paper\\figures\\fig_5_17_q4_radius_and_mean.png",
+      "size_bytes": 160686,
+      "sha256": "3accca75532f56c66b940f5dd1c9ab6abc1eea9cf8f714025aaa2ffc4fa12335"
+    },
+    {
+      "path": "deliverables\\candidate\\paper\\figures\\fig_5_18_q3_q4_drying_time_comparison.png",
+      "size_bytes": 162560,
+      "sha256": "55c668942877f4c4de7478f802138e9e9cd402221f71f5c6f8726df90cf21439"
+    },
+    {
+      "path": "deliverables\\candidate\\paper\\figures\\fig_5_12_q3_radial_moisture_profiles.svg",
+      "size_bytes": 49334,
+      "sha256": "48bbedba320b23abec473be53f0146390b00c20ff1c70fd661458634fef0a5a4"
+    },
+    {
+      "path": "deliverables\\candidate\\paper\\figures\\fig_5_13_q3_moisture_histories.svg",
+      "size_bytes": 43473,
+      "sha256": "33de07ee4e0cde176c5ff27a1bf21d61463e8ac1ead70c01eba02d525bf72ced"
+    },
+    {
+      "path": "deliverables\\candidate\\paper\\figures\\fig_5_14_q3_threshold_sensitivity.svg",
+      "size_bytes": 39032,
+      "sha256": "e8ca9b74acfd20084d41be87a14d8435e93ca48c5c78120ae25aee6f76c10a36"
+    },
+    {
+      "path": "deliverables\\candidate\\paper\\figures\\fig_5_15_q4_radius_pchip.svg",
+      "size_bytes": 58997,
+      "sha256": "27185bb245da13b9e7e1dd26b6621738c6eda56fe6e36d91f62d7239d1b36d6b"
+    },
+    {
+      "path": "deliverables\\candidate\\paper\\figures\\fig_5_16_q4_dynamic_radial_moisture.svg",
+      "size_bytes": 64983,
+      "sha256": "c8624090f5378070bbb1308ef671b633b4924a77ffdc69cc8349cf724889a3ac"
+    },
+    {
+      "path": "deliverables\\candidate\\paper\\figures\\fig_5_17_q4_radius_and_mean.svg",
+      "size_bytes": 44659,
+      "sha256": "45f3c858065c502f7dbc2eea32464f9d8a89732b9a43541efb9bad3a123058b6"
+    },
+    {
+      "path": "deliverables\\candidate\\paper\\figures\\fig_5_18_q3_q4_drying_time_comparison.svg",
+      "size_bytes": 46783,
+      "sha256": "6273d45d7b061d0b8a390f498cc98de352e6d8e1638745bcc77ffc46567985c8"
+    }
+  ],
+  "protected_paths": [
+    "A题/",
+    "src/q1/",
+    "src/q2/",
+    "deliverables/final/result2.xlsx",
+    "deliverables/final/figures/q2/"
+  ],
+  "no_remote_push": true
+}

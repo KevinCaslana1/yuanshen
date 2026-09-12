@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "contract_status": "Q1_CONTRACT_FROZEN_Q2_Q4_OPEN",
+  "contract_status": "Q1_Q2_FROZEN_Q3_Q4_CANDIDATE_WAITING_HUMAN_FREEZE",
   "official_source_root": "A题",
   "candidate_root": "deliverables/candidate",
   "final_root": "deliverables/final",
@@ -101,7 +101,7 @@
         {
           "name": "Sheet1",
           "time_unit": "s",
-          "time_sampling": {"status": "OPEN_QUESTION", "rule": "完整结果每隔60s，结束时间决定范围"},
+          "time_sampling": {"status": "CANDIDATE_VALIDATED", "rule": "完整结果每隔60s；候选端点为 t3=206935.2265625s"},
           "paper_time_unit": "h",
           "paper_time_sampling": {"status": "STATEMENT_FACT", "rule": "每隔6h，包含烘干结束时间行"},
           "space_unit": "cm",
@@ -110,11 +110,11 @@
           "value_unit": "kg/kg",
           "decimal_precision": 4,
           "skeleton_shape": [5, 6],
-          "expected_final_shape": {"status": "OPEN_QUESTION", "known_rule": "结束时间行和最终行数待确认"},
+          "expected_final_shape": {"status": "CANDIDATE_VALIDATED", "known_rule": "3450×22；表头 + 60s常规行 + 实际t3行"},
           "required_cells": ["水分浓度矩阵", "时间列", "距离表头", "烘干结束时间行"],
           "forbidden_changes": ["写入A题官方模板", "改变Sheet名称", "结束时间未确认前硬编码结束行"],
-          "validation_status": "OPEN_QUESTION",
-          "open_questions": ["OQ-003"]
+          "validation_status": "CANDIDATE_VALIDATED_WAITING_HUMAN_FREEZE",
+          "open_questions": []
         }
       ]
     },
@@ -128,20 +128,20 @@
         {
           "name": "Sheet1",
           "time_unit": "s",
-          "time_sampling": {"status": "OPEN_QUESTION", "rule": "完整结果每隔60s，结束时间决定范围"},
+          "time_sampling": {"status": "CANDIDATE_VALIDATED", "rule": "完整结果每隔60s；候选端点为 t4=191097.7336093787s"},
           "paper_time_unit": "h",
           "paper_time_sampling": {"status": "STATEMENT_FACT", "rule": "每隔6h，包含烘干结束时间行"},
           "space_unit": "cm",
-          "space_sampling": {"status": "OPEN_QUESTION", "rule": "完整结果每隔0.1cm，终点为药材表面"},
+          "space_sampling": {"status": "CANDIDATE_VALIDATED", "rule": "固定物理位置每隔0.1cm至1.9cm + 独立药材表面列；当前半径外留空"},
           "paper_space_sampling": {"status": "STATEMENT_FACT", "rule": "每隔0.5cm，终点为药材表面"},
           "value_unit": "kg/kg",
           "decimal_precision": 4,
           "skeleton_shape": [5, 6],
-          "expected_final_shape": {"status": "OPEN_QUESTION", "known_rule": "动态半径、表面列数、结束时间和最终行数待确认"},
+          "expected_final_shape": {"status": "CANDIDATE_VALIDATED", "known_rule": "3186×22；表头 + 60s常规行 + 实际t4行；20固定列 + 表面列"},
           "required_cells": ["水分浓度矩阵", "时间列", "距离表头", "药材表面列", "烘干结束时间行"],
           "forbidden_changes": ["写入A题官方模板", "改变Sheet名称", "未经确认写入固定空间终点"],
-          "validation_status": "OPEN_QUESTION",
-          "open_questions": ["OQ-003", "OQ-004"]
+          "validation_status": "CANDIDATE_VALIDATED_WAITING_HUMAN_FREEZE",
+          "open_questions": []
         }
       ]
     }

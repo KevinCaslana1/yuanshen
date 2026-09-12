@@ -63,6 +63,30 @@
 
 状态：SUPPORTED
 
+## FIND-Q3-001 Q3 固定半径阈值夹逼与局部细化
+
+问题：Q3
+
+发现：扫描冻结 Q2 V3 Run1 的 1 s、21 半径 raw lattice 得到 `Cmax(206935 s)=0.1500000658293865`，仍未满足 `C<0.15 kg/kg`；`Cmax(206936 s)=0.14999977460230157`，已满足。以 `t=206935 s` 状态做非 Excel 行插值的局部 BE/Picard 子步计算，在 `1/1024 s` 子步下首次严格低于阈值的 candidate endpoint 为 `t3=206935.2265625 s=57.4820073785 h`；端点全 21 个官方半径节点均低于阈值，critical node 由扫描得到为 `r=0.0 cm`。
+
+证据：`experiments/Q3_PRODUCTION/q3_summary.json`、`q3_result3_matrix_full_precision.csv`、`validation.json`。
+
+限制：Q2 没有保存 `206935 s` 的 n=320 restart state，故 endpoint 局部细化明确标记为 reconstructed official 0.1 cm lattice 的 candidate refinement；不得把它描述为 Q2 full-field restart 的严格复算。
+
+状态：SUPPORTED（Q3 candidate scope）
+
+## FIND-Q4-001 Q4 收缩半径候选的阈值与域映射
+
+问题：Q4
+
+发现：使用附录4物性、附件2单调 PCHIP 半径和材料坐标 `ξ=r/R(t)` 的 BE/Picard candidate 在 `[191096,191100] s` 发生阈值夹逼；局部细化得到 `t4=191097.7336093787 s=53.0827037804 h`，`R(t4)=1.2 cm`，`Cmax_before=0.15000087683231333`，`Cmax_after=0.14999885377291058`，critical material point 为 `ξ=0`（物理 `r=0 cm`）。附件2所有节点 PCHIP 回代误差为 `0`，固定物理位置超过当前半径的输出单元无伪值。
+
+证据：`experiments/Q4_PRODUCTION/q4_summary.json`、`q4_result4_matrix_full_precision.csv`、`validation.json`、`deliverables/candidate/paper/figures/fig_5_15_q4_radius_pchip.*`。
+
+限制：Q4 是 candidate model implementation，不是人工冻结结论；质量守恒诊断的最大归一化逐步残差为 `3.4553928505477293e-4`，Robin 独立离散通量差最大为 `4.5474756348265686e-7`，应随 final freeze 审查一并评估。Q3/Q4 之间的时间差只作候选比较，不写成模型优越性。
+
+状态：SUPPORTED（Q4 candidate scope）
+
 ## FIND-Q2-028 Q2 V3 生产双跑在正式输出范围内完成并确定性一致
 
 问题：Q2

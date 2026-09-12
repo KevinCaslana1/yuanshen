@@ -1,0 +1,57 @@
+{
+  "question": "Q3",
+  "status": "PASS",
+  "q3": {
+    "threshold": 0.15,
+    "coarse_bracket_s": [
+      206935.0,
+      206936.0
+    ],
+    "t3_s": 206935.2265625,
+    "t3_h": 57.482007378472225,
+    "t_before_cmax": 0.1500000658293865,
+    "t_after_cmax": 0.14999977460230157,
+    "critical_radius_before_cm": 0.0,
+    "critical_radius_after_cm": 0.0,
+    "endpoint_cmax": 0.14999999986492263,
+    "critical_radius_endpoint_cm": 0.0,
+    "prior_not_satisfied": true,
+    "endpoint_satisfied": true,
+    "source_trace": "3448/3448"
+  },
+  "result3": {
+    "path": "deliverables\\candidate\\result3.xlsx",
+    "sha256": "a1ad06d4073c8692cc6a7f289c2052910683a93491ff930e142c47049c29a720",
+    "size_bytes": 921531,
+    "sheets": [
+      {
+        "name": "Sheet1",
+        "rows": 3450,
+        "columns": 22
+      }
+    ],
+    "formula_count": 0,
+    "bad_numeric_format_count": 0,
+    "shape_ok": true
+  },
+  "table5": {
+    "path": "deliverables\\candidate\\tables\\q3_table5.xlsx",
+    "sha256": "459989b94a3a7e8c574c833e06301ae53b5f7e7bf58c71be4e3dd75b3d9bf270",
+    "size_bytes": 4349,
+    "sheets": [
+      {
+        "name": "Table",
+        "rows": 11,
+        "columns": 7
+      }
+    ],
+    "formula_count": 0,
+    "bad_numeric_format_count": 0,
+    "shape_ok": true
+  },
+  "figures": {
+    "count": 7,
+    "all_png_dpi_ge_300": true
+  },
+  "figure_trace": "3/3"
+}

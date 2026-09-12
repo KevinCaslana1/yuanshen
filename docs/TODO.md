@@ -58,7 +58,9 @@
 | T-048 | P0 | Q2 accuracy remediation decision and rerun | T-046 | DONE | `accuracy_confirmation_v3.json`、formal transition/early/targeted long experiments | `D-Q2-ACCURACY-SCOPE` 已登记；formal output gate 完成；内部 `14400.25 s` probe 有界且未传播 | 2026-09-12 |
 | T-049 | P0 | Q2 V3 freeze-run accuracy and deliverable validation | T-048 | DONE | 新 attempt 目录中的 fresh Run1/Run2、determinism、lineage、candidate workbook、Q2 figures | 人工授权后已完成；n320/cluster3 + early through5 s；未续跑 `Q2_FREEZE_RUN_V2`；candidate 等待下一次人工 freeze approval | `experiments/Q2_FREEZE_RUN_V3/` |
 | T-050 | P0 | Q2 | T-049 | DONE | Human Q2 freeze approval and candidate-to-final decision | 已获 `Q2 V3 production freeze = APPROVED`；candidate/final byte/hash 一致，工作簿、图表、manifest、freeze record 和全套测试通过；不启动 Q3/Q4 | 2026-09-12 |
-| T-051 | P0 | Q3/Q4 | T-050 | TODO | Start Q3/Q4 only after explicit authorization | Q3/Q4 保持 `NOT STARTED`；不得因 Q2 final freeze 自动启动 | 待人工授权 |
+| T-051 | P0 | Q3/Q4 | T-050 | DONE | Start Q3/Q4 after explicit authorization | 已获明确授权；Q3/Q4 candidate production、验证和纸面交付包完成，未进入 final | 2026-09-12 |
+| T-052 | P0 | Q3/Q4 | T-051 | DONE | Q3/Q4 candidate deliverables and evidence | `result3.xlsx`、`result4.xlsx`、Table5/6、Fig5-12…18、metrics、validation、candidate manifest 完成；protected paths unchanged | 2026-09-12 |
+| T-053 | P0 | Q3/Q4 human freeze | T-052 | TODO | Human Q3/Q4 freeze approval | 审查 candidate 数值、图表和模型假设后，明确批准是否 COPY ONLY 到 final；批准前不得写 final | 待人工批准 |
 
 ## 任务记录模板
 

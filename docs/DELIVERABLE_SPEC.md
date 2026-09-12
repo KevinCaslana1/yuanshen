@@ -75,12 +75,12 @@ Q2 V3 契约已冻结并完成 candidate 与 final 验证：完整 Excel 为整�
 - Value Unit: `kg/kg`
 - Decimal Precision: `4`
 - Skeleton Shape: `[5, 6]`，标记为 `TEMPLATE_SKELETON`
-- Expected Final Shape: `OPEN_QUESTION`；结束时间行和最终行数待确认
-- Expansion Rule: 按 `60 s` 与 `0.1 cm` 规则展开，结束时间由已确认的交付规则决定
+- Expected Final Shape: `3450 × 22`（表头 + `60 s` 常规样本 + 实际 `t3` 行）
+- Expansion Rule: 按 `60 s` 与 `0.1 cm` 规则展开，追加已验证实际 `t3` 行；数值计算保留完整浮点，工作簿显示四位小数
 - Required Cells: 水分浓度矩阵、时间列、距离表头和烘干结束时间行
 - Forbidden Changes: 修改官方模板；改变 Sheet 名称；覆盖 `A题/`；在结束时间未确认前硬编码结束行
-- Validation Status: `OPEN_QUESTION`
-- Open Questions: `OQ-003`
+- Validation Status: `Q3_CANDIDATE_VALIDATED_WAITING_HUMAN_FREEZE`
+- Open Questions: 无；candidate endpoint 为 `t3=206935.2265625 s`，final copy 仍需人工批准
 
 ## result4.xlsx
 
@@ -97,9 +97,9 @@ Q2 V3 契约已冻结并完成 candidate 与 final 验证：完整 Excel 为整�
 - Value Unit: `kg/kg`
 - Decimal Precision: `4`
 - Skeleton Shape: `[5, 6]`，标记为 `TEMPLATE_SKELETON`
-- Expected Final Shape: `OPEN_QUESTION`；动态半径、表面列数、结束时间和最终行数待确认
-- Expansion Rule: 按 `60 s` 与动态空间范围规则展开，未经确认不得定义空间列数
+- Expected Final Shape: `3186 × 22`（表头 + `60 s` 常规样本 + 实际 `t4` 行；20个固定物理半径列 + 表面列）
+- Expansion Rule: 按 `60 s` 输出、`0.0..1.9 cm` 固定物理位置加独立 `药材表面` 列；超过当前 `R(t)` 的固定位置留空，不外推
 - Required Cells: 水分浓度矩阵、时间列、距离表头、药材表面列和烘干结束时间行
 - Forbidden Changes: 修改官方模板；改变 Sheet 名称；覆盖 `A题/`；未经确认写入固定空间终点
-- Validation Status: `OPEN_QUESTION`
-- Open Questions: `OQ-003`, `OQ-004`
+- Validation Status: `Q4_CANDIDATE_VALIDATED_WAITING_HUMAN_FREEZE`
+- Open Questions: 无；candidate endpoint 为 `t4=191097.7336093787 s`，final copy 仍需人工批准

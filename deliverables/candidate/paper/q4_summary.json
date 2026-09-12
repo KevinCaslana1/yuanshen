@@ -1,0 +1,108 @@
+{
+  "question": "Q4",
+  "status": "CANDIDATE",
+  "threshold_kg_kg": 0.15,
+  "appendix4": {
+    "rho": "760+90*C",
+    "cp": "1850+2150*C/(C+1)",
+    "k": "0.12+0.20*C/(C+1)",
+    "D": "4.2e-4*exp(-0.30/C)*exp(-3850/T_K)"
+  },
+  "radius_source": "A题\\附件\\附件2.xlsx",
+  "radius_source_sha256": "5563acbfa4b4afb10cc6c03e2207e5369bf39da27576672aff14cc5c32e704af",
+  "radius_interpolation": "PchipInterpolator-compatible Fritsch-Carlson monotone cubic",
+  "radius_nodes_exact_to_machine": true,
+  "post_attachment_radius_rule": "hold R_last=1.198 cm after t=259200.0 s",
+  "material_coordinate": "xi=r/R(t), uniform xi lattice",
+  "production": {
+    "n_intervals": 96,
+    "dt_s": 4.0,
+    "output_interval_s": 60.0,
+    "interface_mean": "harmonic",
+    "scheme": "backward Euler + coupled Picard"
+  },
+  "coarse_bracket_s": [
+    191096.0,
+    191100.0
+  ],
+  "cmax_before": 0.15000087683231333,
+  "cmax_after": 0.14999885377291058,
+  "t4_s": 191097.7336093787,
+  "t4_h": 53.08270378038297,
+  "radius_at_t4_cm": 1.2,
+  "endpoint_cmax": 0.14999999999999525,
+  "critical_xi_at_t4": 0.0,
+  "critical_radius_at_t4_cm": 0.0,
+  "prior_not_satisfied": true,
+  "endpoint_satisfied": true,
+  "delta_t4_minus_t3_s": -15837.492953121313,
+  "relative_delta_t4_minus_t3": -0.07653357630890342,
+  "constant_radius_regression": {
+    "max_radius_deviation_cm": 0.0,
+    "max_radius_rate_cm_s": 0.0,
+    "finite": true
+  },
+  "time_grid_sanity": {
+    "n32_dt8": {
+      "center": 2.5487845849554556,
+      "surface": 1.1263599407002352,
+      "mean": 2.121192707840067,
+      "radius_cm": 1.625
+    },
+    "n48_dt4": {
+      "center": 2.5488380411744638,
+      "surface": 1.1254287265277159,
+      "mean": 2.1213114954838597,
+      "radius_cm": 1.625
+    },
+    "differences_fine_minus_coarse": {
+      "center": 5.345621900820774e-05,
+      "surface": -0.0009312141725192902,
+      "mean": 0.00011878764379247286
+    }
+  },
+  "mass_conservation": {
+    "max_abs_normalized_step_residual": 0.00034553928505477293,
+    "definition": "moving-volume balance with Robin loss and prescribed boundary motion"
+  },
+  "robin_audit": {
+    "max_abs_flux_residual": 4.5474756348265686e-07,
+    "condition": "-D(C_s)*dC/dr = hm*(C_s-C_inf)"
+  },
+  "environment": {
+    "interpolation": "linear within Attachment 1",
+    "post_attachment_mode": "constant",
+    "post_temperature_c": 49.99525,
+    "post_moisture_kg_kg": 0.049988
+  },
+  "figures": {
+    "fig_5_15": {
+      "png": "deliverables\\candidate\\paper\\figures\\fig_5_15_q4_radius_pchip.png",
+      "svg": "deliverables\\candidate\\paper\\figures\\fig_5_15_q4_radius_pchip.svg",
+      "png_sha256": "c8995d1dafa118035318b1568b7a629dfe0980e1219d7fa5e2387078195a389e",
+      "svg_sha256": "27185bb245da13b9e7e1dd26b6621738c6eda56fe6e36d91f62d7239d1b36d6b",
+      "png_dpi": 360
+    },
+    "fig_5_16": {
+      "png": "deliverables\\candidate\\paper\\figures\\fig_5_16_q4_dynamic_radial_moisture.png",
+      "svg": "deliverables\\candidate\\paper\\figures\\fig_5_16_q4_dynamic_radial_moisture.svg",
+      "png_sha256": "3d12d1778759ed516de2cfcd6ec30151961f3dc91477100850a9e68a4770aaee",
+      "svg_sha256": "c8624090f5378070bbb1308ef671b633b4924a77ffdc69cc8349cf724889a3ac",
+      "png_dpi": 360
+    },
+    "fig_5_17": {
+      "png": "deliverables\\candidate\\paper\\figures\\fig_5_17_q4_radius_and_mean.png",
+      "svg": "deliverables\\candidate\\paper\\figures\\fig_5_17_q4_radius_and_mean.svg",
+      "png_sha256": "3accca75532f56c66b940f5dd1c9ab6abc1eea9cf8f714025aaa2ffc4fa12335",
+      "svg_sha256": "45f3c858065c502f7dbc2eea32464f9d8a89732b9a43541efb9bad3a123058b6",
+      "png_dpi": 360
+    },
+    "fig_5_18": {
+      "png": "deliverables\\candidate\\paper\\figures\\fig_5_18_q3_q4_drying_time_comparison.png",
+      "svg": "deliverables\\candidate\\paper\\figures\\fig_5_18_q3_q4_drying_time_comparison.svg",
+      "png_sha256": "55c668942877f4c4de7478f802138e9e9cd402221f71f5c6f8726df90cf21439",
+      "svg_sha256": "6273d45d7b061d0b8a390f498cc98de352e6d8e1638745bcc77ffc46567985c8",
+      "png_dpi": 360
+    }
+  }
+}

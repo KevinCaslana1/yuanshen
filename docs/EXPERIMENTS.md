@@ -187,3 +187,15 @@ The numerical candidate is suitable for human review, but no open modeling choic
 
 Richardson 规则已加固：旧 production 的 T/C observed p=`1.6685/3.0631` 不被直接用于乐观外推；整改表中的 fine/coarse 数字均标为 raw difference 或 conservative bound。完整 V2 full-horizon accuracy confirmation 尚未建立。
 本轮正式证书已改为 `experiments/Q2_ACCURACY_REMEDIATION/accuracy_confirmation_v3.json`：它只认证声明的 formal output scope，不把 n=640 局部参考写成 full-horizon replay，也不建立 production result source。
+
+## Q3/Q4 Parallel Production Candidate（2026-09-12）
+
+Q2 final、`A题/`、`src/q1/`、`src/q2/` 保持只读。本阶段生成 Q3/Q4 candidate，不写 final，不 push；Q3/Q4 的模型与输出应在人工 freeze approval 后才可成为 final 交付。
+
+| Experiment | Purpose | Key Config / Scope | Key Result | Status | Evidence |
+|---|---|---|---|---|---|
+| Q3_PRODUCTION | 固定半径 Q3 阈值定位与 result3/Table5 | 读取 Q2 V3 Run1 raw official lattice；21 个半径；常规输出 `60 s`；Q2 `t=206935/206936 s` 粗夹逼；局部 BE/Picard `1/1024 s` | `Cmax(206935)=0.1500000658293865`，`Cmax(206936)=0.14999977460230157`；首次严格低于端点 `t3=206935.2265625 s=57.4820073785 h`；critical `r=0.0 cm`；全 21 节点端点均低于阈值 | CANDIDATE PASS | `experiments/Q3_PRODUCTION/`、`deliverables/candidate/result3.xlsx` |
+| Q4_PRODUCTION | 收缩半径 Q4 动态求解与 result4/Table6 | Appendix 4；Attachment 2 PCHIP；`ξ=r/R(t)`；uniform `n=96`；BE/Picard `dt=4 s`；输出 `60 s`；超出当前半径的物理位置留空 | 粗夹逼 `[191096,191100] s`；`t4=191097.7336093787 s=53.0827037804 h`；`R(t4)=1.2 cm`；critical `ξ=0`；PCHIP 节点误差 `0`；外域伪值 `0` | CANDIDATE PASS | `experiments/Q4_PRODUCTION/`、`deliverables/candidate/result4.xlsx` |
+| Q3_Q4_CANDIDATE | 统一 hash/交付清单 | workbook、Table5/6、Fig5-12…18、metrics 和 paper mirrors | candidate validation PASS；figures `7/7`，PNG ≥300 dpi；result3 `3450×22`，result4 `3186×22`；无公式、四位小数格式 | COMPLETE / HUMAN FREEZE PENDING | `experiments/Q3_Q4_CANDIDATE/manifest.json`、`deliverables/candidate/Q3_Q4_VALIDATION.json` |
+
+Q3 endpoint 的 `t3` 使用局部求解的第一个严格低于阈值子步时刻；连续根估计 `206935.2260985608 s` 仅作为 audit 字段。Q4 同理保留粗夹逼和局部细化证据。Q3/Q4 均未把候选数值登记为论文 `VERIFIED` 主张。

@@ -1,0 +1,14 @@
+{
+  "experiment": "Q4_PRODUCTION",
+  "status": "CANDIDATE",
+  "threshold_kg_kg": 0.15,
+  "properties": "Appendix 4",
+  "radius_input": "A题/附件/附件2.xlsx",
+  "radius_interpolation": "PchipInterpolator-compatible monotone cubic",
+  "coordinate": "xi=r/R(t)",
+  "n_intervals": 96,
+  "dt_s": 4.0,
+  "output_interval_s": 60.0,
+  "boundary": "Robin; fixed physical positions outside current radius are blank; surface separate",
+  "post_attachment_radius": "hold R_last=1.198 cm after 259200 s"
+}

@@ -32,3 +32,7 @@ Status：UNVERIFIED / VERIFIED / OUTDATED
 ## Q2 Boundary
 
 Q2 已完成 V3 production 与 final freeze gate，但当前仍没有登记为论文 `VERIFIED` 的最终 Q2 主张。V3 Run1 的生产源、final workbook 和图表可用于后续论文取数；不得把 passive bracket `[206935.0,206935.25] s` 当作 Q3 drying time，也不得把 formal-output certificate 写成 n=640 full-horizon proof。`14400.25 s` 只属于 `SUPPORTED_INTERNAL_TRANSITION_DIAGNOSTIC`。
+
+## Q3/Q4 Candidate Boundary
+
+Q3/Q4 candidate 已有数据支持的内部 findings 和交付验证，但在人工 freeze approval 前不登记为论文 `VERIFIED` 主张。特别是 `t3`、`t4` 及 Q3/Q4 的时间差只能按 candidate scope 报告；不得写成模型优越性、物理真实性或最终比赛结论。

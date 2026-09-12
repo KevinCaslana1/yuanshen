@@ -367,3 +367,23 @@ Agent 自动完成模型冻结。`result2.xlsx`、candidate/final workbook 均�
 | Protected paths and boundary | `A题/`、`src/q2/` unchanged；Q1 frozen；Q3/Q4 not started | PASS |
 
 最终记录：`experiments/Q2_FINAL_FREEZE/freeze_record.json`；final manifest：`deliverables/final/Q2_MANIFEST.json`。
+
+## CUMCM Q3/Q4 PARALLEL PRODUCTION CANDIDATE GATE（2026-09-12）
+
+| Gate item | Evidence | Status |
+|---|---|---|
+| Q2/Q1 protection | frozen Q2 SHA、`git diff -- A题 src/q1 src/q2 deliverables/final/result2.xlsx` | PASS；protected inputs/final unchanged |
+| Q3 threshold scan | `Q3_PRODUCTION/q3_summary.json`、raw 1 s/21-radii stream | PASS；`206935` 未满足、`206936` 满足，critical `r=0.0 cm` 为扫描结果 |
+| Q3 endpoint refinement | Q3 summary `endpoint_refinement` | PASS；局部 BE/Picard 首个 strict-below `t3=206935.2265625 s`，非两 Excel 行线性插值 |
+| Q3 result3 overlap | `q3_result3_matrix_full_precision.csv`、candidate workbook | PASS；3448/3448 regular rows traced to frozen Q2 raw source |
+| Q3 Table5/figures | candidate tables、`fig_5_12..fig_5_14.*` | PASS；Table5 6 h rows + actual t3；3/3 figure pairs，PNG ≥300 dpi |
+| Q4 Appendix 4 properties | `src/q4/properties.py`、`Q4_PRODUCTION/q4_summary.json` | PASS；公式、单位和 Kelvin temperature explicit |
+| Q4 Attachment 2 radius | `src/q4/radius.py`、`validation.json` | PASS；PCHIP node error `0`，monotone，post-tail hold recorded |
+| Q4 material-coordinate mapping | `src/q4/model.py`、result4 candidate | PASS；ξ=r/R(t)，surface separate，outside-domain blanks `0` violations |
+| Q4 threshold/endpoint | `Q4_PRODUCTION/q4_summary.json` | PASS；`[191096,191100] s` → `t4=191097.7336093787 s`，`R(t4)=1.2 cm`，critical ξ=0 |
+| Q4 mass/Robin/solver sanity | Q4 summary | PASS as candidate diagnostics；mass normalized max `3.4553928505477293e-4`，Robin max `4.5474756348265686e-7`，constant-R regression finite |
+| Workbooks | `scripts/validate_q3_q4_candidates.py` | PASS；result3 `3450×22`、result4 `3186×22`、no formulas、numeric format `0.0000` |
+| Unified paper package | `deliverables/candidate/paper/`、candidate manifest | PASS；Table5/6、Fig5-12…18、q3/q4 summary/comparison present |
+| Full test suite | `pytest -q` | PASS: `60 passed` |
+
+当前状态：`Q3 = CANDIDATE COMPLETE`、`Q4 = CANDIDATE COMPLETE`、`WAITING FOR HUMAN Q3/Q4 FREEZE APPROVAL`。Q3/Q4 candidate 未进入 final；Q1/Q2 保持冻结；不 push。

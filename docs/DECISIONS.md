@@ -569,3 +569,22 @@ early fine-step window 延长到 `5 s` 是数值启动策略修正；ENV-B、物
 ### 状态
 
 `ACTIVE_FOR_Q2_CERTIFICATION`; formal-output gate 已完成，等待人工授权执行从 `t=0` 开始的 `Q2_FREEZE_RUN_V3`。在该授权前不生成 `result2.xlsx`，不启动 Q3/Q4。
+
+## D-Q3-Q4-CANDIDATE-20260912 Q3/Q4 candidate production choices
+
+日期：2026-09-12
+
+### 决定
+
+1. Q3 只读冻结 Q2 V3 Run1 raw official lattice，阈值定义为所有当前节点 `C<0.15 kg/kg`；先报告 1 s 粗夹逼，再用 `t=206935 s` 的状态做局部 BE/Picard 子步细化。连续根估计与“首次严格低于”的 endpoint row 分开保存。
+2. Q4 使用附录4物性和附件2规定的半径，不复用 Q2 固定半径结果作为 Q4 数值场。半径采用仓库内 `PchipInterpolator`-compatible Fritsch–Carlson monotone cubic；数据节点必须 machine-exact，附件2结束后保持 `R_last`，不得产生回弹。
+3. Q4 内部坐标固定为 `ξ=r/R(t)`；动态半径通过物理网格系数和材料坐标运动项进入 BE/Picard。输出固定物理位置 `r>R(t)` 留空，`surface=R(t)` 单独列出，禁止外推填值。
+4. Q3/Q4 的完整 Excel 数值计算保持浮点精度，候选工作簿统一使用官方模板 Sheet 名称、四位小数显示、无公式；Table5/6 以 6 h 间隔并追加实际 endpoint。
+
+### 证据与限制
+
+- Q3 candidate `t3=206935.2265625 s`；粗夹逼和 21 节点全阈值检查见 `experiments/Q3_PRODUCTION/`。
+- Q4 candidate `t4=191097.7336093787 s`；PCHIP、域映射、质量/Robin、恒半径回归和时空 sanity 见 `experiments/Q4_PRODUCTION/`。
+- 这些决定只冻结 candidate implementation contract，不等同于 Q3/Q4 final human freeze，也不将候选时间登记为论文 VERIFIED claim。
+
+状态：`CANDIDATE_IMPLEMENTATION_ACTIVE; WAITING_FOR_HUMAN_Q3_Q4_FREEZE_APPROVAL`

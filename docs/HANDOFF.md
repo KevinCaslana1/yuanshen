@@ -1,6 +1,6 @@
 # Handoff
 
-Q1 已 FROZEN/COMPLETE，Q1 早期表面误差深谷已确认为 `pointwise error zero-crossing / cancellation dip`。Q2 V3 已完成 production freeze；Q3/Q4 未启动。
+Q1 已 FROZEN/COMPLETE，Q1 早期表面误差深谷已确认为 `pointwise error zero-crossing / cancellation dip`。Q2 V3 已完成 production freeze。Q3/Q4 candidate 已完成，等待人工 freeze approval；未进入 final、未 push。
 
 ## Q2 当前状态
 
@@ -28,3 +28,23 @@ Q1 已 FROZEN/COMPLETE，Q1 早期表面误差深谷已确认为 `pointwise erro
 - `Q2_FREEZE_RUN/`：原始 accuracy gate failed，非来源。
 - `Q2_FREEZE_RUN_V2/`：n=640 full-horizon attempt aborted，非来源。
 - `Q2_FREEZE_RUN_V3_FAILED_HORIZON_20260912/` 与 `Q2_FREEZE_RUN_V3_POSTPROCESS_FAILURE_20260912/`：V3 失败尝试/非数值后处理故障，非来源。
+
+## Q3 当前状态
+
+- 状态：`Q3 = CANDIDATE COMPLETE / WAITING FOR HUMAN FREEZE APPROVAL`。
+- 输入边界：只读 `deliverables/final/result2.xlsx` 与 `experiments/Q2_FREEZE_RUN_V3/run_1/official_samples_raw.csv`；Q2 final SHA=`84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da`。
+- 结果：粗夹逼 `[206935,206936] s`；`t=206935` 的 `Cmax=0.1500000658293865`，`t=206936` 的 `Cmax=0.14999977460230157`；局部 BE/Picard 首个严格低于端点 `t3=206935.2265625 s=57.4820073785 h`，全 21 节点满足阈值，critical `r=0.0 cm`。
+- 交付：`deliverables/candidate/result3.xlsx`、`deliverables/candidate/tables/q3_table5.*`、`deliverables/candidate/paper/figures/fig_5_12..fig_5_14.*`、`experiments/Q3_PRODUCTION/validation.json`。
+
+## Q4 当前状态
+
+- 状态：`Q4 = CANDIDATE COMPLETE / WAITING FOR HUMAN FREEZE APPROVAL`。
+- 方法：Appendix 4 properties；Attachment 2 `PchipInterpolator`-compatible monotone cubic；`ξ=r/R(t)` dynamic FVM/BE/Picard；Attachment 2 tail after `259200 s` holds at `R_last=1.198 cm`。
+- 结果：粗夹逼 `[191096,191100] s`；`t4=191097.7336093787 s=53.0827037804 h`，`R(t4)=1.2 cm`，`Cmax_before=0.15000087683231333`，`Cmax_after=0.14999885377291058`，critical `ξ=0`/`r=0 cm`。
+- 交付：`deliverables/candidate/result4.xlsx`、`deliverables/candidate/tables/q4_table6.*`、`deliverables/candidate/paper/figures/fig_5_15..fig_5_18.*`、`experiments/Q4_PRODUCTION/validation.json`。
+- 校验：candidate workbook 无公式、四位小数格式、`result3=3450×22`、`result4=3186×22`；固定半径外部单元均为空；PCHIP 节点误差 `0`；全量候选校验 PASS。
+
+## 下一步边界
+
+- 人工批准前，不把 Q3/Q4 candidate 复制到 `deliverables/final/`，不改变 Q1/Q2，不启动 Q3/Q4 后续扩展。
+- Q1 深谷文字保持 `pointwise error zero-crossing / cancellation dip`；Q2 失败历史目录继续保留。

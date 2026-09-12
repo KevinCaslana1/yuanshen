@@ -22,7 +22,7 @@ def test_contract_registers_four_questions_and_no_predictions() -> None:
 
 def test_open_questions_are_not_verified() -> None:
     config = json.loads((ROOT / "config" / "deliverables.json").read_text(encoding="utf-8"))
-    assert config["contract_status"] == "Q1_CONTRACT_FROZEN_Q2_Q4_OPEN"
+    assert config["contract_status"] == "Q1_Q2_FROZEN_Q3_Q4_CANDIDATE_WAITING_HUMAN_FREEZE"
     for item in config["deliverables"]:
         for sheet in item["sheets"]:
             if item["question"] == "Q1":
@@ -34,9 +34,13 @@ def test_open_questions_are_not_verified() -> None:
                     "known_rule": "表头1行 + 1800个时间数据行；A列时间 + 21个空间列",
                 }
                 assert sheet["open_questions"] == []
-            else:
+            elif item["question"] == "Q2":
                 assert sheet["validation_status"] == "OPEN_QUESTION"
                 assert sheet["expected_final_shape"]["status"] == "OPEN_QUESTION"
+            else:
+                assert item["question"] in {"Q3", "Q4"}
+                assert sheet["validation_status"] == "CANDIDATE_VALIDATED_WAITING_HUMAN_FREEZE"
+                assert sheet["expected_final_shape"]["status"] == "CANDIDATE_VALIDATED"
 
 
 def test_q1_candidate_validator_fails_closed_when_candidate_is_absent() -> None:
