@@ -1,0 +1,12 @@
+{
+  "experiment": "EXP-Q2-ACC-T-FORMAL",
+  "purpose": "formal integer-second transition output audit with separate internal probes",
+  "candidate": {"time_step_s": 0.25, "early_time_step_s": 0.015625, "early_time_end_s": 2.0, "n_intervals": 320, "cluster_power": 3.0, "end_time_s": 14500.0},
+  "reference": {"time_step_s": 0.125, "n_intervals": 320, "cluster_power": 3.0, "start_time_s": 0.0, "end_time_s": 14500.0},
+  "formal_times_s": [14395, 14500],
+  "formal_time_cadence_s": 1.0,
+  "formal_radii_cm": [0.0, 0.5, 1.0, 1.5, 1.9, 2.0],
+  "internal_probe_times_s": [14400.25, 14400.5, 14400.75],
+  "gate": {"temperature_C": 2.5e-5, "moisture_kg_kg": 2.5e-5},
+  "comparison_method": "raw candidate/reference difference; no Richardson extrapolation"
+}

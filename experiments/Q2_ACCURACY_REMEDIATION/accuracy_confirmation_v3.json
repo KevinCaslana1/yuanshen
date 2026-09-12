@@ -1,0 +1,149 @@
+{
+  "format": "Q2_ACCURACY_CONFIRMATION_V3",
+  "status": "FORMAL_OUTPUT_ACCURACY_CERTIFIED_WAITING_V3_FREEZE_RUN_AUTHORIZATION",
+  "scope_decision": "D-Q2-ACCURACY-SCOPE",
+  "gate": {
+    "temperature_C": 2.5e-05,
+    "moisture_kg_kg": 2.5e-05,
+    "uncertainty_definition": "conservative raw fine/coarse difference; no Richardson extrapolation",
+    "formal_output_definition": "integer-second output lattice, official radii 0.0..2.0 cm, certified transition/early/selected long points"
+  },
+  "formal_output_accuracy": {
+    "temperature": {
+      "max_uncertainty_C": 1.55375452663975e-05,
+      "time_s": 14401.0,
+      "radius_cm": 1.9,
+      "method": "EXP-Q2-ACC-T-FORMAL raw candidate dt=.25 versus same-grid dt=.125 on integer seconds 14395..14500",
+      "gate_pass": true
+    },
+    "moisture": {
+      "max_uncertainty_kg_kg": 1.0270424274150258e-05,
+      "time_s": 10.0,
+      "radius_cm": 2.0,
+      "method": "EXP-Q2-ACC-C-FORMAL raw n320/cluster3 dt=.25 with fine startup through 5 s versus same-policy n640/cluster2 dt=.125",
+      "gate_pass": true
+    },
+    "transition_formal_integer_outputs": {
+      "time_range_s": [14395.0, 14500.0],
+      "cadence_s": 1.0,
+      "radii_cm": [0.0, 0.5, 1.0, 1.5, 1.9, 2.0],
+      "temperature_Linf_C": 1.55375452663975e-05,
+      "moisture_Linf_kg_kg": 3.1402255240564614e-09,
+      "temperature_L2_RMS_C": 9.10898987426914e-07,
+      "moisture_L2_RMS_kg_kg": 2.8863595617007057e-10,
+      "gate_pass": true,
+      "comparison_csv": "experiments/EXP-Q2-ACC-T-FORMAL/comparison.csv"
+    },
+    "early_moisture_formal_outputs": {
+      "times_s": [1.0, 2.0, 3.0, 4.0, 5.0, 10.0, 20.0, 30.0, 60.0, 100.0, 300.0, 600.0, 1800.0],
+      "radii_cm": "0.0..2.0 at 0.1 cm",
+      "temperature_Linf_C": 7.116765686987492e-06,
+      "moisture_Linf_kg_kg": 1.0270424274150258e-05,
+      "moisture_max_time_s": 10.0,
+      "moisture_max_radius_cm": 2.0,
+      "gate_pass": true,
+      "comparison_csv": "experiments/EXP-Q2-ACC-C-FORMAL/comparison.csv",
+      "policy": "fine dt=.015625 s through t=5 s, then BE restart and production dt=.25 s"
+    },
+    "targeted_long_horizon": {
+      "status": "TARGETED_LONG_HORIZON_ACCURACY_CERTIFICATION",
+      "selected_times_s": [10800.0, 21600.0, 43200.0, 86400.0, 129600.0, 172800.0],
+      "passive_event_integer_seconds_s": [207033.0, 207034.0, 207035.0, 207036.0],
+      "final_production_point_s": 228635.0,
+      "3h_to_48h_reference": {
+        "temperature_Linf_C": 1.2509725024756335e-06,
+        "moisture_Linf_kg_kg": 2.987415287369899e-06,
+        "temperature_L2_RMS_C": 3.0425872346945004e-07,
+        "moisture_L2_RMS_kg_kg": 1.0968274347198882e-06,
+        "reference": "n640/cluster2, dt=1 s, continuous from t=0 through 48 h",
+        "gate_pass": true
+      },
+      "passive_and_final_screen": {
+        "reference": "n160/cluster2, dt=1 s, continuous from t=0 through final point",
+        "moisture_Linf_at_207033_s_kg_kg": 2.008097424559263e-05,
+        "moisture_Linf_at_228635_s_kg_kg": 1.892403267497733e-05,
+        "gate_pass": true
+      },
+      "not_n640_full_horizon": true,
+      "comparison_data": "experiments/EXP-Q2-ACC-LONG-TARGETED/"
+    }
+  },
+  "internal_diagnostics": {
+    "transition_internal_peak": {
+      "temperature_absolute_difference_C": 2.2991211631051556e-04,
+      "temperature_time_s": 14400.25,
+      "temperature_radius_cm": 2.0,
+      "moisture_absolute_difference_kg_kg": 5.0276404706117717e-08,
+      "moisture_time_s": 14400.25,
+      "moisture_radius_cm": 2.0,
+      "propagation_to_integer_formal_output": "NO",
+      "integer_14400_14401_temperature_errors_C": [7.671604862480308e-08, 1.55189842416803e-05],
+      "integer_14400_14401_moisture_errors_kg_kg": [2.2258528353802376e-10, 3.1402255240564614e-09],
+      "classification": "SUPPORTED_INTERNAL_TRANSITION_DIAGNOSTIC"
+    },
+    "early_layer_diagnostics": {
+      "policy2_moisture_Linf_kg_kg": 4.723355270153107e-05,
+      "policy2_peak_time_s": 3.0,
+      "policy2_peak_radius_cm": 2.0,
+      "policy5_moisture_Linf_kg_kg": 1.0270424274150258e-05,
+      "policy5_peak_time_s": 10.0,
+      "policy5_peak_radius_cm": 2.0,
+      "interpretation": "the t=3 s excess disappeared when the fine startup window was extended through 5 s; this supports a step-policy transient diagnosis, not a physical discontinuity"
+    },
+    "solver_diagnostics": {
+      "transition_candidate": "finite; Picard min/median/p95/max=2/3/3/3; nonlinear residual maxima below 1e-8 tolerance; mass and heat residuals finite",
+      "early_policy5_candidate": "finite; Picard min/median/p95/max=2/3/3/3; nonlinear residual maxima below 1e-8 tolerance; mass and heat residuals finite",
+      "targeted_long_candidate": "finite and positive; Picard min/median/p95/max=2/3/4/4; mass and heat residuals finite",
+      "targeted_long_n640_reference": "finite and positive; Picard min/median/p95/max=2/3/4/4; mass and heat residuals finite"
+    }
+  },
+  "gate_checks": {
+    "A_formal_temperature_points": true,
+    "B_formal_moisture_points": true,
+    "C_transition_integer_outputs": true,
+    "D_early_integer_moisture_outputs": true,
+    "E_selected_long_horizon_outputs": true,
+    "F_no_evidence_of_late_error_growth": true,
+    "G_mass_residual": true,
+    "H_heat_residual": true,
+    "I_picard_convergence": true,
+    "J_internal_spike_bounded_and_noncontaminating": true
+  },
+  "recommended_numerical_config": {
+    "name": "Q2_NUMERICAL_CONFIG_V3",
+    "n_intervals": 320,
+    "cluster_power": 3.0,
+    "time_step_s": 0.25,
+    "early_time_step_s": 0.015625,
+    "early_time_end_s": 5.0,
+    "scheme": "BE startup then BDF2",
+    "restart": "BE restart at exact environment transition t=14400 s and at the early-to-production step-size change",
+    "interface_mean": "harmonic",
+    "environment": "ENV-B: Attachment 1 piecewise linear through 14400 s, then constants 49.99525 degC and 0.049988 kg/kg",
+    "all_other_physics": "unchanged frozen Q2-M1 values"
+  },
+  "delivery_status": {
+    "q2_formal_output_accuracy_gate": "COMPLETE",
+    "q2_v3_freeze_run": "NOT_AUTHORIZED_IN_THIS_TURN",
+    "result2": "NOT_GENERATED",
+    "q1": "FROZEN",
+    "q3": "NOT_STARTED",
+    "q4": "NOT_STARTED"
+  },
+  "estimated_production_runtime": {
+    "basis": "measured targeted n320/cluster3 dt=1 continuous run: approximately 1163 s wall time for 228950 steps",
+    "v3_single_run_dt0.25_estimate_s": 4652.0,
+    "v3_run1_plus_run2_estimate_s": 9304.0,
+    "v3_run1_plus_run2_estimate_h": 2.5844444444444443,
+    "qualification": "estimate only; actual V3 runtime must be recorded after authorized production run"
+  },
+  "source_artifacts": [
+    "experiments/EXP-Q2-ACC-T-FORMAL/metrics.json",
+    "experiments/EXP-Q2-ACC-T-FORMAL/comparison.csv",
+    "experiments/EXP-Q2-ACC-C-FORMAL/metrics.json",
+    "experiments/EXP-Q2-ACC-C-FORMAL/comparison.csv",
+    "experiments/EXP-Q2-ACC-LONG-TARGETED/metrics.json",
+    "experiments/EXP-Q2-ACC-LONG-TARGETED/comparison_candidate_n320_vs_reference_n640_3h_to_48h.csv",
+    "experiments/EXP-Q2-ACC-LONG-TARGETED/comparison.csv"
+  ]
+}

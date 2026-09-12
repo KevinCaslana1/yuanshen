@@ -1,0 +1,3 @@
+# EXP-Q2-ACC-LONG-TARGETED
+
+This is a targeted long-horizon certification screen, not an n=640 full-horizon convergence run. The proposed n=320/cluster_power=3 configuration and a moderate n=160/cluster_power=2 comparator were both advanced continuously from t=0 to 228635 s. Selected official output times cover 3/6/12/24/36/48 h, the passive-event neighborhood, and the final production point. dt=1 s is used only to make this long-time spatial/stability screen affordable; formal time accuracy comes from EXP-Q2-ACC-T-FORMAL and EXP-Q2-ACC-C-FORMAL. Historical 0–72 h evidence is included as stability context and is not silently treated as a V3-grid accuracy proof.

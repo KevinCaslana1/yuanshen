@@ -345,3 +345,17 @@ sampler只登记 21600/86400/172800/259200 s，因此后处理抛出 `KeyError: 
 下一步：若继续，必须使用新 attempt 目录并在人工复核后选择运行成本可接受、且通过 local transition probe 的配置；不得续跑或覆盖本目录。
 
 状态：OPEN / BLOCKED_PENDING_HUMAN_REVIEW
+
+## FAIL-Q2-011 Targeted n=160 long screen was marginally above the moisture gate
+
+问题：Q2 formal-output accuracy certification
+
+症状：在新 n=320/cluster3 candidate 与连续 n=160/cluster2、dt=1 s 的 selected long screen 中，24 h、`r=1.9 cm` 的水分差为 `2.5118430864196073e-5 kg/kg`，比 `2.5e-5` 门槛高 `1.1843e-7 kg/kg`；36 h 也为 `2.5021430605745576e-5 kg/kg`。
+
+原因判断：该 screen 的参考网格是中等细化，不足以单独判断 n=320 候选失败；未发现求解器非收敛、非有限场或 late-time blow-up。
+
+修复/复核：按授权条件增加独立、从 `t=0` 连续推进的 n=640/cluster2 reference，但只推进到48 h。n=320 对该局部 reference 的 3/6/12/24/36/48 h 水分 L∞ 为 `2.987415287369899e-6 kg/kg`，通过门槛；passive/final 继续保留 n=160 screen 与历史长时稳定性证据，并在证书中明确分层来源。
+
+影响：没有生成 result2；该记录不改变正式证书的 PASS，也不把 n=640 局部运行写成 full-horizon proof。
+
+状态：RESOLVED AS REFERENCE-RESOLUTION FOLLOW-UP

@@ -5,7 +5,7 @@
 
 ## 状态
 
-历史配置冻结和双跑已完成；独立精度确认 `FAIL`。本轮数值整改已获得授权并完成局部诊断、局部候选短程/切换回归，但尚未建立完整 V2 full-horizon accuracy confirmation。因此 Q2 candidate/result gate 继续 fail-closed 阻塞，未生成 `deliverables/candidate/result2.xlsx`，未生成 Q2 正式图表，不进入 `deliverables/final/`。Q1 保持 FROZEN，Q3/Q4 保持 NOT STARTED。
+历史配置冻结和双跑仍保留为失败 provenance；本轮依据 `D-Q2-ACCURACY-SCOPE` 完成了 formal-output accuracy certification。Q2 当前状态为 `FORMAL-OUTPUT ACCURACY GATE COMPLETE / WAITING FOR V3 FREEZE RUN AUTHORIZATION`。在 V3 授权前仍不生成 `deliverables/candidate/result2.xlsx` 或 Q2 正式图表，不进入 `deliverables/final/`；Q1 保持 FROZEN，Q3/Q4 保持 NOT STARTED。
 
 ## Frozen model and configuration
 
@@ -42,7 +42,7 @@
 - Run1/run2 checkpoint SHA-256: `7a19676261efc9c2f96d4a8c34b6302a14a63d5cf84bcf408b90f623c6cbf104`.
 - `A题/` is unchanged; Q1 final SHA-256 remains `06b67b1f688d84a701ac4d2f4b0f47a1624069877df6724faf071a48af177b5c`.
 
-## Gate result
+## Historical original gate result
 
 The full official output region is `t=1..228635 s` and 21 radii. The independent references use the same inputs/code with `dt=0.125 s`, `dt=0.5 s`, and `n_intervals=160`, each from fresh `t=0` starts. The internal uncertainty gate is `2.5e-5` for both fields; it is not an official requirement, but it was explicitly frozen as a fail-closed production gate.
 
@@ -55,8 +55,10 @@ The full official output region is `t=1..228635 s` and 21 radii. The independent
 
 The time observed order from the frozen `dt=.5/.25/.125` comparison is `1.6685` for temperature and `3.0631` for moisture under the global L∞ metric; it is not sufficient to claim uniform first-order behavior for this production configuration.
 
-## Required disposition
+## Current formal-output disposition
 
-The result candidate gate remains blocked. The authorized numerical remediation is documented in `docs/Q2_ACCURACY_REMEDIATION.md`. The n=320/cluster-power=3 short candidate is promising for the early spatial layer, but its 14500 s regression has a `2.2991211631051556e-4 °C` candidate/reference difference at the explicit non-output probe `14400.25 s,r=2.0 cm`; the formal integer-time peak in the same window is `1.55375452663975e-5 °C`. This distinction is not enough to establish the full-horizon gate. The attempted n=640 V2 full run was stopped for impractical runtime at approximately `888 s` simulated time and is retained as incomplete provenance. Do not generate `result2.xlsx`, do not call the passive bracket a Q3 drying time, and do not start Q3/Q4.
+The formal-output candidate gate is complete on its declared points. Recommended `Q2_NUMERICAL_CONFIG_V3`: n=320/cluster_power=3, fine `dt=.015625 s` through5 s, production `dt=.25 s`, BE startup/BDF2, BE restart at the exact environment transition and step-policy change, harmonic interfaces, ENV-B. Transition formal T/C L∞ are `1.55375452663975e-5 °C`/`3.1402255240564614e-9 kg/kg`; early formal T/C L∞ are `7.116765686987492e-6 °C`/`1.0270424274150258e-5 kg/kg`. The targeted long certificate passes 3–48 h with a localized n=640 reference and covers passive/final points with the recorded moderate screen.
 
-Evidence: `experiments/Q2_FREEZE_RUN/metrics.json`, `environment.json`, `determinism.json`, `accuracy_confirmation.json`, `accuracy_diagnosis.json`, `experiments/Q2_ACCURACY_REMEDIATION/`, `experiments/EXP-Q2-V2-REGRESSION/`, and `experiments/Q2_FREEZE_RUN_V2/ABORTED_ATTEMPT.json`.
+The n=320 candidate's explicit non-output probe `14400.25 s,r=2.0 cm` remains `2.2991211631051556e-4 °C`; it is a bounded internal diagnostic and does not propagate to formal output points. The attempted n=640 V2 full run remains incomplete provenance and is not resumed. Do not generate `result2.xlsx` before V3 authorization, do not call the passive bracket a Q3 drying time, and do not start Q3/Q4.
+
+Evidence: `experiments/Q2_FREEZE_RUN/metrics.json`, `environment.json`, `determinism.json`, `accuracy_confirmation.json`, `accuracy_diagnosis.json`, `experiments/Q2_ACCURACY_REMEDIATION/accuracy_confirmation_v3.json`, `experiments/EXP-Q2-ACC-T-FORMAL/`, `experiments/EXP-Q2-ACC-C-FORMAL/`, `experiments/EXP-Q2-ACC-LONG-TARGETED/`, `experiments/EXP-Q2-V2-REGRESSION/`, and `experiments/Q2_FREEZE_RUN_V2/ABORTED_ATTEMPT.json`.

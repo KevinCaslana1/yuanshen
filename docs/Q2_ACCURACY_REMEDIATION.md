@@ -5,9 +5,9 @@
 
 ## Current status
 
-`Q2 NUMERICAL ACCURACY REMEDIATION GATE = BLOCKED`。
+`Q2 FORMAL-OUTPUT ACCURACY GATE = COMPLETE / WAITING FOR V3 FREEZE RUN AUTHORIZATION`。
 
-The original production attempt failed the frozen `2.5e-5` field criterion. The authorized local remediation identified useful numerical evidence, but it did not establish a full-horizon V2 accuracy confirmation. The V2 n=640 full run was stopped for impractical runtime, and the n=320/cluster-power=3 candidate still has a non-output first-post-transition temperature probe above the criterion. Do not generate `result2.xlsx` or formal Q2 figures.
+The original production attempt remains a historical failed provenance run. The authorized formal-output remediation now certifies the declared integer-second transition lattice, early official lattice and selected long-horizon points. The n=640 V2 full-horizon attempt remains aborted for impractical runtime and is not reused as a source. A non-output first-post-transition temperature probe remains above the field criterion, but it is bounded and does not propagate to formal output. `result2.xlsx` and formal Q2 figures remain intentionally ungenerated until a separate V3 freeze-run authorization.
 
 ## 1. Original accuracy metric audit
 
@@ -34,7 +34,7 @@ The original solver used BDF2 on the first post-transition step when history exi
 
 `EXP-Q2-ACC-T-TRANSITION` shows that event-aligned restart reduces the common-time local raw bounds. The finest adjacent common-time bound is T `8.143186960296589e-7 °C`, C `1.5011414333798712e-10 kg/kg`; the corresponding current-method bounds are T `4.2051636739870446e-5 °C`, C `1.0275578943286234e-8 kg/kg`. Residuals and Picard counts did not worsen in that study.
 
-The comparison is carefully scoped: each dt has a different first post-transition time. Therefore a common integer-time comparison does not certify the explicit `14400+dt` probe. In the later n=320 candidate regression, the candidate/reference temperature difference at `14400.25 s,r=2.0 cm` is `2.2991211631051556e-4 °C`, while the maximum over formal integer times `14390..14500 s` is `1.55375452663975e-5 °C`. The local probe remains uncertified.
+The comparison is carefully scoped: each dt has a different first post-transition time. Therefore a common integer-time comparison does not certify the explicit `14400+dt` probe. In the later n=320 candidate regression, the candidate/reference temperature difference at `14400.25 s,r=2.0 cm` is `2.2991211631051556e-4 °C`; it decays over the next internal steps. The maximum over formal integer times `14390..14500 s` is T `1.55375452663975e-5 °C` and C `3.1402255240564614e-9 kg/kg`, below the formal gate. The local probe is retained as an internal diagnostic and does not block delivery under the newly authorized scope.
 
 ## 3. Q2 initial compatibility
 
@@ -82,19 +82,34 @@ The early-time policy (`dt=.015625 s` through `2 s`, BE on the step-size change,
 
 `EXP-Q2-V2-REGRESSION` used n=320, `cluster_power=3`, candidate dt `.25 s`, early dt `.015625 s` through `2 s`, ENV-B, harmonic interfaces, and BE restarts at the step-size and environment transitions. Both candidate and dt `.125 s` reference ran fresh from `t=0` through `14500 s`, covering 0–3 h and the transition window.
 
-At formal integer output times in `14390..14500 s`, T/C maxima are `1.55375452663975e-5 °C` and `1.55189842416803e-5 kg/kg`. The explicit first-post-step probe at `14400.25 s,r=2.0 cm` has T raw difference `2.2991211631051556e-4 °C`; this prevents a claim that the transition is fully locally certified. The run itself completed with Picard histories `2/3/3/3` and `2/2/3/3` (min/median/p95/max); no nonconvergence occurred.
+At formal integer output times in `14390..14500 s`, T/C maxima are `1.55375452663975e-5 °C` and `3.1402255240564614e-9 kg/kg`. The explicit first-post-step probe at `14400.25 s,r=2.0 cm` has T raw difference `2.2991211631051556e-4 °C`, followed by bounded decay and no integer-second contamination. The run itself completed with Picard histories `2/3/3/3` and `2/2/3/3` (min/median/p95/max); no nonconvergence occurred.
 
 ## 6. Full-horizon and lineage disposition
 
 The old `Q2_FREEZE_RUN` remains the failed production provenance and is not a delivery source. The new n=640 `Q2_FREEZE_RUN_V2` attempt was fresh, reached approximately `888 s` simulated time, and was stopped because the measured runtime made a full-horizon double run impractical. It has no complete metrics, validation, Run2, candidate workbook, or formal result source. It must not be resumed or overwritten.
 
-Because the full-horizon V2 run and its formal all-points accuracy confirmation were not completed, no `accuracy_confirmation_v2.json` claiming PASS is written. A future attempt must use a new directory, fresh starts, the unchanged `2.5e-5` criterion, complete temporal/spatial formal-point checks, determinism, residual, sampler and lineage validation, and only then may it enter the candidate gate.
+Because the full-horizon V2 run was not completed, it is not a full-horizon n=640 proof and no production result source is established. The new certification is intentionally scoped according to `D-Q2-ACCURACY-SCOPE`; it does not silently promote the old failed run or the aborted V2 partial files into a result source. A future V3 attempt must use a new directory, fresh starts, the unchanged `2.5e-5` criterion, determinism, residual, sampler and lineage validation.
+
+## 7. Formal-output certification result
+
+`D-Q2-ACCURACY-SCOPE` separates delivery points from internal integrator probes. The complete evidence packet is `experiments/Q2_ACCURACY_REMEDIATION/accuracy_confirmation_v3.json`.
+
+| Certified scope | Temperature raw/conservative bound | Moisture raw/conservative bound | Result |
+|---|---:|---:|---|
+| Transition integer seconds 14395–14500, six radii | `1.55375452663975e-5 °C` | `3.1402255240564614e-9 kg/kg` | PASS |
+| Early formal times, all 21 official radii | `7.116765686987492e-6 °C` | `1.0270424274150258e-5 kg/kg` | PASS |
+| Targeted long 3–48 h, n=640 localized reference | `1.2509725024756335e-6 °C` | `2.987415287369899e-6 kg/kg` | PASS |
+| Passive-event integer neighborhood and final point, n=160 screen | finite and below gate | `2.008097424559263e-5` at 207033 s; `1.892403267497733e-5` at final | PASS |
+
+The internal transition peak is `2.2991211631051556e-4 °C` at `14400.25 s,r=2.0 cm`; it decays at the retained internal probes and does not contaminate `14401 s` or later formal points. The early same-policy audit with fine startup only through `2 s` had C L∞ `4.723355270153107e-5 kg/kg` at `t=3 s,r=2.0 cm`; extending the fine startup window through `5 s` reduced the certified maximum to `1.0270424274150258e-5 kg/kg`. This is evidence for a step-policy transient, not sudden physical accuracy improvement.
+
+The targeted long certificate is explicitly not an n=640 full-horizon convergence proof. It combines a new continuous n=320 candidate screen, a new n=640 reference through 48 h, a new n=160 screen for the passive/final tail, and previously completed 0–72 h stability evidence, with unchanged ENV-B, physics, IC, harmonic averaging and BDF2 elements recorded in the experiment metrics.
 
 ## Final disposition
 
-`Q2 NUMERICAL ACCURACY REMEDIATION GATE BLOCKED`  
-`DO NOT GENERATE RESULT2`  
-`WAITING FOR HUMAN REVIEW`
+`Q2 FORMAL-OUTPUT ACCURACY GATE COMPLETE`
+`WAITING FOR Q2 V3 FREEZE RUN AUTHORIZATION`
+`DO NOT GENERATE RESULT2 BEFORE THAT AUTHORIZATION`
 
 Q1 = FROZEN / COMPLETE  
 Q3 = NOT STARTED  

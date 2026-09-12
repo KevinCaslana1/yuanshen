@@ -1,0 +1,11 @@
+{
+  "experiment": "EXP-Q2-ACC-LONG-TARGETED",
+  "purpose": "targeted long-horizon selected-point spatial propagation and stability certification",
+  "candidate": {"time_step_s": 1.0, "n_intervals": 320, "cluster_power": 3.0, "early_time_step_s": 0.015625, "early_time_end_s": 5.0, "end_time_s": 228635.0},
+  "moderate_reference": {"time_step_s": 1.0, "n_intervals": 160, "cluster_power": 2.0, "early_time_step_s": 0.015625, "early_time_end_s": 5.0, "end_time_s": 228635.0},
+  "localized_reference": {"time_step_s": 1.0, "n_intervals": 640, "cluster_power": 2.0, "early_time_step_s": 0.015625, "early_time_end_s": 5.0, "end_time_s": 172800.0},
+  "selected_times_s": [10800, 21600, 43200, 86400, 129600, 172800, 207033, 207034, 207035, 207036, 228635],
+  "passive_event_bracket_s": [207034.5, 207034.75],
+  "gate": {"temperature_C": 2.5e-5, "moisture_kg_kg": 2.5e-5},
+  "comparison_method": "raw candidate/reference difference; localized long screen, not n640 full-horizon proof"
+}

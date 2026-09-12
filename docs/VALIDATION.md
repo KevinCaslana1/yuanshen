@@ -297,7 +297,7 @@ Agent 自动完成模型冻结。`result2.xlsx`、candidate/final workbook 均�
 
 结论：`Q2 PRODUCTION CONFIG FROZEN; ACCURACY GATE FAILED; RESULT CANDIDATE BLOCKED`。不得生成 candidate/final result2，不得把 passive event bracket 写成 Q3 最终烘干时间；数值整改已获授权，但尚未完成 V2 full-horizon gate。
 
-## CUMCM Q2 NUMERICAL ACCURACY REMEDIATION GATE（2026-09-12）
+## CUMCM Q2 NUMERICAL ACCURACY REMEDIATION GATE（历史起始状态，2026-09-12）
 
 | Gate item | Evidence | Status |
 |---|---|---|
@@ -313,4 +313,21 @@ Agent 自动完成模型冻结。`result2.xlsx`、candidate/final workbook 均�
 | Full-horizon `accuracy_confirmation_v2.json` | none | NOT ESTABLISHED；不得伪造 PASS |
 | result2/Q2 figures/Q3/Q4 | candidate/final、Q3/Q4 | BLOCKED / NOT STARTED |
 
-详细整改报告见 `docs/Q2_ACCURACY_REMEDIATION.md`。最终状态：`Q2 NUMERICAL ACCURACY REMEDIATION GATE BLOCKED / DO NOT GENERATE RESULT2 / WAITING FOR HUMAN REVIEW`。
+详细整改报告见 `docs/Q2_ACCURACY_REMEDIATION.md`。本节记录 formal scope 修正前的起始阻塞状态；当前状态见下节。
+
+## CUMCM Q2 FORMAL-OUTPUT ACCURACY CERTIFICATION GATE（2026-09-12）
+
+| Gate item | Evidence | Status |
+|---|---|---|
+| D-Q2-ACCURACY-SCOPE | `docs/DECISIONS.md`、v3 certificate | PASS；formal lattice 与 internal probes 分离 |
+| Transition integer output lattice | `EXP-Q2-ACC-T-FORMAL/comparison.csv` | PASS；T/C L∞=`1.55375452663975e-5`/`3.1402255240564614e-9` |
+| Transition internal probes | same experiment | PASS as diagnostic；`14400.25 s` T peak=`2.2991211631051556e-4`，未传播至 integer outputs |
+| Early official lattice | `EXP-Q2-ACC-C-FORMAL/comparison.csv` | PASS；T/C L∞=`7.116765686987492e-6`/`1.0270424274150258e-5` |
+| Selected long-horizon points | `EXP-Q2-ACC-LONG-TARGETED/` | PASS；3–48 h n640 localized reference，passive/final n160 screen |
+| No late error growth | targeted by-time metrics + old 0–72 h evidence | PASS on declared selected points；未声称 n640 full horizon |
+| Picard / mass / heat / finite field | case diagnostics and metrics | PASS；all complete cases finite，Picard bounded，residuals recorded |
+| Q2 V3 production run | no production attempt in this turn | WAITING FOR HUMAN AUTHORIZATION |
+| result2/Q2 formal production figures | candidate/final | NOT GENERATED；fail-closed until V3 authorization |
+| Q1/Q3/Q4 boundary | `docs/STATE.md`, `docs/HANDOFF.md` | PASS；Q1 frozen，Q3/Q4 not started |
+
+当前结论：`Q2 FORMAL-OUTPUT ACCURACY GATE COMPLETE / WAITING FOR Q2 V3 FREEZE RUN AUTHORIZATION`。证书不是 n=640 full-horizon proof，也不是 `result2.xlsx` 的生产来源；在 V3 授权前不得生成 result2 或启动 Q3/Q4。

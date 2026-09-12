@@ -29,6 +29,7 @@
 | D-Q2-END-001 | 2026-09-11 | Q2 | 不把 Q3 的 `C<0.15 kg/kg` 自动写成 Q2 官方终点；Q2 长时覆盖范围和最终行数待确认 | OPEN_INTERPRETATION | `docs/Q2_PLAN.md`、`docs/PROBLEM_SPEC.md` |
 | D-Q2-ACC-001 | 2026-09-11 | Q2 | Q1 `<5e-5` 只作为 Q2 精度候选起点；需重新检查长时累积误差、事件时刻、耦合误差和运行成本 | OPEN_TEAM_CRITERION | `docs/Q2_PLAN.md` |
 | D-Q2-IMPLEMENTATION-20260911 | 2026-09-11 | Q2 | implementation & short-horizon validation 完成；Candidate A BDF2 仅记为 `RECOMMENDED_FOR_Q2_FREEZE`；不生成 result2、不启动 Q3/Q4 | IMPLEMENTATION_COMPLETE_PENDING_HUMAN_FREEZE | `experiments/EXP-Q2-001/`–`EXP-Q2-011/` |
+| D-Q2-ACCURACY-SCOPE | 2026-09-12 | Q2 | 将 accuracy gate 正式限定为 integer-second official lattice、Table 3/4 points 和 final production point；非整数 integrator states 作为必须有界且不污染 formal output 的 internal diagnostics | ACTIVE_FOR_Q2_CERTIFICATION | `experiments/Q2_ACCURACY_REMEDIATION/accuracy_confirmation_v3.json` |
 
 ## D-Q1-HUMAN-FREEZE Q1 人工最终冻结与可视化交付
 
@@ -522,3 +523,29 @@ ENV-A 主运行完成 0–72 h，最终阶段场有限且正，Picard `2/2/2/2`�
 证据：`docs/Q2_ACCURACY_REMEDIATION.md`、`experiments/EXP-Q2-ACC-T-TRANSITION/`、`experiments/EXP-Q2-ACC-SPATIAL-CLUSTER3/`、`experiments/EXP-Q2-V2-REGRESSION/`、`experiments/Q2_FREEZE_RUN_V2/`。
 
 证据：`docs/Q2_PRODUCTION_FREEZE.md`、`docs/Q2_RESULT_AUDIT.md`、`experiments/Q2_FREEZE_RUN/`。
+
+## D-Q2-ACCURACY-SCOPE Q2 Formal Output Accuracy Gate Scope
+
+日期：2026-09-12
+问题：Q2
+
+### 决定
+
+Q2 delivery accuracy gate 只作用于已声明的 formal output lattice：整数秒时间点、官方半径 `0.0,0.1,...,2.0 cm`、Table 3/4 所需点和最终生产输出点。正式不确定度使用独立 reference 的原始 fine/coarse difference 作为 conservative bound，不使用乐观 Richardson 外推。
+
+非整数内部状态（本轮包括 `14400.25/14400.50/14400.75 s`）不单独触发 delivery FAIL，但必须有限、稳定、守恒、无振荡，并且不得把超限误差传播到 formal integer lattice。若传播到正式点，仍按 formal gate 判失败。
+
+### 证据与结果
+
+- Transition formal `14395..14500 s`、六个重点半径：T/C L∞=`1.55375452663975e-5 °C`/`3.1402255240564614e-9 kg/kg`，通过门槛。
+- Early formal times `1,2,3,4,5,10,20,30,60,100,300,600,1800 s`、全部21个官方半径：T/C L∞=`7.116765686987492e-6 °C`/`1.0270424274150258e-5 kg/kg`，通过门槛。
+- `14400.25 s,r=2.0 cm` 的温度内部峰值为 `2.2991211631051556e-4 °C`，在 `14400.50/14400.75/14401 s` 有界衰减且未污染 formal output，因此定性为 `SUPPORTED_INTERNAL_TRANSITION_DIAGNOSTIC`。
+- 定点长时证书覆盖 3/6/12/24/36/48 h、被动事件整数邻域和最终点；3–48 h 的 n=640 局部参考比较 T/C L∞=`1.2509725024756335e-6`/`2.987415287369899e-6`，未声称 n=640 全时域完成。
+
+### 配置影响
+
+early fine-step window 延长到 `5 s` 是数值启动策略修正；ENV-B、物理参数、初值、harmonic averaging 和 BDF2 production scheme 未变。n=320/cluster_power=3 通过早期、过渡和定点长时筛查；n=640 仅作为局部参考，不作为生产网格。
+
+### 状态
+
+`ACTIVE_FOR_Q2_CERTIFICATION`; formal-output gate 已完成，等待人工授权执行从 `t=0` 开始的 `Q2_FREEZE_RUN_V3`。在该授权前不生成 `result2.xlsx`，不启动 Q3/Q4。

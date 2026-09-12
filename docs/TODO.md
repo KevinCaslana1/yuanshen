@@ -55,8 +55,8 @@
 | T-045 | P0 | Human approval of Q2 production decisions | T-044 | DONE | D-Q2-ENVIRONMENT 等七项 | latest authorization approved production freeze decisions；不豁免 accuracy gate | 2026-09-12 |
 | T-046 | P0 | Q2 production candidate and result2 validation | T-045 | BLOCKED | `deliverables/candidate/result2.xlsx` | production accuracy gate FAIL；candidate 不得生成，Q3/Q4 不得启动 | `experiments/Q2_FREEZE_RUN/accuracy_confirmation.json` |
 | T-047 | P1 | Start Q3/Q4 after explicit authorization | T-045 | TODO | Q3/Q4 实验与计划 | Q3/Q4 仍 NOT STARTED；不得把 Q2 passive bracket 当作 Q3 answer | 待确认 |
-| T-048 | P0 | Q2 accuracy remediation decision and rerun | T-046 | BLOCKED | `docs/Q2_ACCURACY_REMEDIATION.md`、局部实验与回归已完成；V2 full-horizon 尚未建立 | 原配置失败已定位；transition restart、初始层、时空分离和 cluster3 候选均有证据；但 local `14400.25 s` probe 超门且 full-horizon 未确认，等待人工复核 | 2026-09-12 |
-| T-049 | P0 | Q2 V2 full-horizon accuracy confirmation | T-048 | BLOCKED | 新 attempt 目录中的 fresh Run1/Run2、完整 formal output accuracy、determinism、lineage 和 candidate gate | 仅在 local transition probe 解决/获人工接受且运行成本可接受后执行；不得续跑 `Q2_FREEZE_RUN_V2` | 待人工复核 |
+| T-048 | P0 | Q2 accuracy remediation decision and rerun | T-046 | DONE | `accuracy_confirmation_v3.json`、formal transition/early/targeted long experiments | `D-Q2-ACCURACY-SCOPE` 已登记；formal output gate 完成；内部 `14400.25 s` probe 有界且未传播 | 2026-09-12 |
+| T-049 | P0 | Q2 V3 freeze-run accuracy and deliverable validation | T-048 | TODO | 新 attempt 目录中的 fresh Run1/Run2、determinism、lineage、candidate workbook、Q2 figures | 仅在人工授权后执行；推荐 n320/cluster3 + early through5 s；不得续跑 `Q2_FREEZE_RUN_V2` | 待人工授权 |
 
 ## 任务记录模板
 

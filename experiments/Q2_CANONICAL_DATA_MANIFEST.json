@@ -32,8 +32,48 @@
       "delivery_status": "VALIDATION_EVIDENCE_ONLY",
       "formal_result_source": null,
       "reason": "n=320/cluster-power=3 candidate completed 0..14500 s regression, but the explicit 14400.25 s surface temperature probe exceeded the 2.5e-5 criterion."
+    },
+    {
+      "root": "experiments/EXP-Q2-ACC-T-FORMAL",
+      "status": "FORMAL_OUTPUT_ACCURACY_CERTIFIED",
+      "delivery_status": "VALIDATION_EVIDENCE_ONLY",
+      "formal_result_source": null,
+      "reason": "Transition integer-second output lattice 14395..14500 s passes; non-integer 14400.25/14400.50/14400.75 probes remain bounded internal diagnostics."
+    },
+    {
+      "root": "experiments/EXP-Q2-ACC-C-FORMAL",
+      "status": "FORMAL_OUTPUT_ACCURACY_CERTIFIED",
+      "delivery_status": "VALIDATION_EVIDENCE_ONLY",
+      "formal_result_source": null,
+      "reason": "Early formal times 1,2,3,4,5,10,20,30,60,100,300,600,1800 s on all official radii pass using the same-policy 5 s fine startup reference."
+    },
+    {
+      "root": "experiments/EXP-Q2-ACC-LONG-TARGETED",
+      "status": "TARGETED_LONG_HORIZON_ACCURACY_CERTIFICATION",
+      "delivery_status": "VALIDATION_EVIDENCE_ONLY",
+      "formal_result_source": null,
+      "reason": "3..48 h points use a localized n=640 reference; passive-event and final points use a continuous n=160 screen plus historical 0..72 h stability evidence. No n=640 full-horizon replay was claimed."
     }
   ],
+  "formal_certification": {
+    "status": "Q2_FORMAL_OUTPUT_ACCURACY_GATE_COMPLETE_WAITING_V3_FREEZE_RUN_AUTHORIZATION",
+    "confirmation": "experiments/Q2_ACCURACY_REMEDIATION/accuracy_confirmation_v3.json",
+    "confirmation_sha256": "F94E7C2716DBD970D3158F864D233C730F4A4FB1F08EBDB02F6524D2571FA470",
+    "scope_decision": "D-Q2-ACCURACY-SCOPE",
+    "delivery_source_established": false,
+    "result2_generated": false,
+    "q3_q4_started": false,
+    "metrics": {
+      "transition": {"path": "experiments/EXP-Q2-ACC-T-FORMAL/metrics.json", "sha256": "6C55261BAD7E0596B1775DCE7547C4C3A0B0F4D4E7D243C866C4402FD17F15BE"},
+      "early": {"path": "experiments/EXP-Q2-ACC-C-FORMAL/metrics.json", "sha256": "2C4C19D06BE474DFF96606E43EC81116DAE0DCF3AE7DD7D9FDF663A72ECFE32A"},
+      "targeted_long": {"path": "experiments/EXP-Q2-ACC-LONG-TARGETED/metrics.json", "sha256": "7338A736E5476839BAD1A8C834B9C11AA1ACB942A99D6F4BDAF08D16D60D3F73"}
+    },
+    "comparison_tables": {
+      "transition": {"path": "experiments/EXP-Q2-ACC-T-FORMAL/comparison.csv", "sha256": "40170EACDF761CA1A8B807E76CC2DC0F1878041986377B60E41105EAD867DBA4"},
+      "early": {"path": "experiments/EXP-Q2-ACC-C-FORMAL/comparison.csv", "sha256": "80B6693885709284E4F29EEA486381F0A431E5BF0DBC6BEB40277AB24D3726CE"},
+      "long_3h_to_48h": {"path": "experiments/EXP-Q2-ACC-LONG-TARGETED/comparison_candidate_n320_vs_reference_n640_3h_to_48h.csv", "sha256": "A9955C4138B9EC83250DFA93A12487D4B42C248BA0A773562B38606A338D4324"}
+    }
+  },
   "validation_only_roots": [
     "experiments/EXP-Q2-012-ENVIRONMENT",
     "experiments/EXP-Q2-013-INTERPOLATION",
@@ -67,6 +107,9 @@
     "NONCANONICAL_DUPLICATE",
     "ABORTED_INCOMPLETE_PERFORMANCE_REVIEW",
     "LOCAL_PROBE_BLOCKED",
+    "FORMAL_OUTPUT_ACCURACY_CERTIFIED",
+    "TARGETED_LONG_HORIZON_ACCURACY_CERTIFICATION",
+    "Q2_FORMAL_OUTPUT_ACCURACY_GATE_COMPLETE_WAITING_V3_FREEZE_RUN_AUTHORIZATION",
     "SHORT_CANDIDATE_STUDY",
     "CANONICAL",
     "RECOVERED_CANONICAL"

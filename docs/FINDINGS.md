@@ -43,8 +43,11 @@
 | FIND-Q2-020 | 环境跳变处 BE restart 降低了 common integer-time 局部 raw bound，但不自动证明全时域通过 | Q2 | EXP-Q2-ACC-T-TRANSITION | SUPPORTED（局部数值证据） |
 | FIND-Q2-021 | Q2 时间/空间误差已分离；细化后 raw L∞ 均下降，未使用乐观 Richardson | Q2 | EXP-Q2-ACC-SPATIAL*、EXP-Q2-ACC-TEMPORAL* | SUPPORTED（raw/conservative bound） |
 | FIND-Q2-022 | n=320、cluster_power=3 在 0–2 s 表面含水率相对 n=640、cluster_power=2 的差低于门槛 | Q2 | EXP-Q2-ACC-SPATIAL-CLUSTER3 | SUPPORTED（短时候选证据） |
-| FIND-Q2-023 | V2 候选在 formal integer-time transition points 低于门槛，但 `14400.25 s` 局部探针温度差仍为 `2.2991e-4 °C` | Q2 | EXP-Q2-V2-REGRESSION | SUPPORTED（local probe remains blocking） |
+| FIND-Q2-023 | V2 候选在 formal integer-time transition points 低于门槛；`14400.25 s` 局部探针温度差为 `2.2991e-4 °C` 且未传播到整数秒 | Q2 | EXP-Q2-V2-REGRESSION、EXP-Q2-ACC-T-FORMAL | SUPPORTED（internal diagnostic only） |
 | FIND-Q2-024 | n=640 V2 full-horizon 尝试因当前逐步求解成本过高而中止，不能作为完成或精度证据 | Q2 | Q2_FREEZE_RUN_V2/ABORTED_ATTEMPT.json | SUPPORTED（性能阻塞） |
+| FIND-Q2-025 | Formal-output scope 下 transition integer lattice、early official lattice 和 selected long points 均通过 2.5e-5 raw/conservative gate | Q2 | accuracy_confirmation_v3.json、EXP-Q2-ACC-T-FORMAL、EXP-Q2-ACC-C-FORMAL、EXP-Q2-ACC-LONG-TARGETED | SUPPORTED（localized certification；非 full-horizon n640） |
+| FIND-Q2-026 | 早期 fine startup 从 2 s 延长到 5 s 后，t=3 s/r=2 cm 的水分超限由 `4.723355270153107e-5` 降至全局 `1.0270424274150258e-5 kg/kg` | Q2 | EXP-Q2-ACC-C-FORMAL/metrics.json | SUPPORTED（step-policy transient evidence） |
+| FIND-Q2-027 | n=320/cluster3 与局部 n=640 参考的 3–48 h 定点比较通过，passive/final 的 n=160 screen 也低于门槛；未执行 n=640 full horizon | Q2 | EXP-Q2-ACC-LONG-TARGETED/metrics.json | SUPPORTED（targeted long-horizon only） |
 
 ## FIND-Q2-019 Q2 初始表面 Robin 不相容性已独立复算
 
@@ -98,11 +101,47 @@
 
 问题：Q2
 
-发现：n=320/cluster_power=3、candidate dt=.25 s、early dt=.015625 s through 2 s、event-aligned BE restart 的 14500 s regression 中，formal integer-time `14390..14500 s` 的 T/C 最大 raw differences 为 `1.55375452663975e-5 °C` 和 `1.55189842416803e-5 kg/kg`；但显式 `14400.25 s,r=2.0 cm` local probe 的温度 raw difference 为 `2.2991211631051556e-4 °C`。因此不能把 formal sampled points 的通过外推为 local transition fully certified。
+发现：n=320/cluster_power=3、candidate dt=.25 s、early dt=.015625 s through 2 s、event-aligned BE restart 的 14500 s regression 中，formal integer-time `14390..14500 s` 的 T/C 最大 raw differences 为 `1.55375452663975e-5 °C` 和 `3.1402255240564614e-9 kg/kg`；显式 `14400.25 s,r=2.0 cm` local probe 的温度 raw difference 为 `2.2991211631051556e-4 °C`，其后在 `14400.50/14400.75/14401 s` 保持有界并未污染 formal lattice。
 
 证据：`experiments/EXP-Q2-V2-REGRESSION/metrics.json`
 
-状态：SUPPORTED；local probe remains blocking
+状态：SUPPORTED；local probe is an internal diagnostic, not a delivery-point failure
+
+## FIND-Q2-025 Q2 formal-output accuracy gate 在声明范围内完成
+
+问题：Q2
+
+发现：按 `D-Q2-ACCURACY-SCOPE`，transition 整数秒 `14395..14500 s` 六个重点半径的 T/C L∞ 为 `1.55375452663975e-5 °C` / `3.1402255240564614e-9 kg/kg`；早期正式时刻 `1,2,3,4,5,10,20,30,60,100,300,600,1800 s`、全部21个官方半径的 T/C L∞ 为 `7.116765686987492e-6 °C` / `1.0270424274150258e-5 kg/kg`。定点长时 3–48 h 的局部 n=640 参考 T/C L∞ 为 `1.2509725024756335e-6 °C` / `2.987415287369899e-6 kg/kg`，passive 邻域和最终点的独立 n=160 screen 低于门槛。
+
+限制：该证书只覆盖声明的正式点集合，不是 n=640 全时域收敛证明，也不建立 `result2` production source；证据使用 raw fine/coarse difference，不使用 Richardson 外推。
+
+证据：`experiments/Q2_ACCURACY_REMEDIATION/accuracy_confirmation_v3.json`、`experiments/EXP-Q2-ACC-T-FORMAL/`、`experiments/EXP-Q2-ACC-C-FORMAL/`、`experiments/EXP-Q2-ACC-LONG-TARGETED/`
+
+状态：SUPPORTED
+
+## FIND-Q2-026 早期 t=3 s 超限随 fine startup window 延长而消失
+
+问题：Q2
+
+发现：同一 n=320/cluster3 候选与同策略 n=640/cluster2 reference 的早期 formal 比较中，fine startup 只到 `2 s` 时，最大水分差为 `4.723355270153107e-5 kg/kg`，发生在 `t=3 s,r=2.0 cm`；把相同 fine startup window 延长到 `5 s` 后，最大水分差变为 `1.0270424274150258e-5 kg/kg`，位置为 `t=10 s,r=2.0 cm`，正式门通过。
+
+解释：数据支持步长切换/多步启动策略引起的局部瞬态，而不是 20–40 s 的物理输入跳变或算法突然提高两个数量级。该解释不改变官方初值、环境和物理参数。
+
+证据：`experiments/EXP-Q2-ACC-C-FORMAL/metrics.json`、`comparison.csv`
+
+状态：SUPPORTED
+
+## FIND-Q2-027 定点长时证书未显示晚期误差放大
+
+问题：Q2
+
+发现：新 n=320/cluster3 candidate 从 `t=0` 连续推进至 `228635 s`；3–48 h 六个正式时刻用连续 n=640/cluster2 局部 reference 比较，T/C L∞ 为 `1.2509725024756335e-6 °C` / `2.987415287369899e-6 kg/kg`。被动事件整数邻域 `207033..207036 s` 和最终点使用连续 n=160/cluster2 screen，水分最大差分别不超过 `2.008097424559263e-5` 和 `1.892403267497733e-5 kg/kg`。所有相关运行有限且 Picard/质量/热量诊断有记录。
+
+限制：n=640 仅推进到48 h，因此不能写成 n=640 full-horizon convergence completed；历史 0–72 h 证据仅作为稳定性上下文。
+
+证据：`experiments/EXP-Q2-ACC-LONG-TARGETED/metrics.json`
+
+状态：SUPPORTED
 
 ## FIND-Q2-024 n640 V2 full-horizon 尝试因性能中止
 
