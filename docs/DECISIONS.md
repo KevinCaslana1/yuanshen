@@ -588,3 +588,22 @@ early fine-step window 延长到 `5 s` 是数值启动策略修正；ENV-B、物
 - 这些决定只冻结 candidate implementation contract，不等同于 Q3/Q4 final human freeze，也不将候选时间登记为论文 VERIFIED claim。
 
 状态：`CANDIDATE_IMPLEMENTATION_ACTIVE; WAITING_FOR_HUMAN_Q3_Q4_FREEZE_APPROVAL`
+
+## D-Q2-CHINESE-FIGURE-LOCALIZATION-20260912 Q2 中文 publication figure 与数值冻结隔离
+
+日期：2026-09-12
+
+### 决定
+
+1. Q2 `result2.xlsx` 和 `deliverables/final/figures/q2/` 作为已冻结数值/原始交付证据保持只读；中文 publication 图不得静默覆盖原冻结图。
+2. 中文版本只从现有 `figures/q2/data/` CSV/NPZ 和既有后处理产物重画，不导入、不运行 Q2 solver；所有 x/y/z 数组和采样保持原数组 hash。
+3. Q2 中文 publication figure freeze 与 Q2 numerical/result freeze 分开记录，输出目录为 `deliverables/final/paper/figures/q2/`；中文文本检查、DPI 和 trace 必须独立通过。
+
+### 证据与结果
+
+- 11/11 Q2 图组已生成 PNG/SVG；PNG `11/11 >=300 DPI`，实际写入 DPI 为 `300.101`。
+- source numeric array、x/y、sampling trace `11/11`；无 smoothing、无 numeric interpolation、无 error clip；中文 text validation `11/11`。
+- `result2.xlsx` SHA-256 before/after/current 均为 `84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da`，数值结果未改变；原冻结 Q2 图目录 hash 未变。
+- Q1/Q3/Q4 完成 metadata-only 语言检查；Q1 cancellation dip 解释、Q3/Q4 现有数学/算法记号均保持不变。
+
+状态：`Q2 NUMERICALLY FROZEN; CHINESE PUBLICATION FIGURE PACKAGE VALIDATED`

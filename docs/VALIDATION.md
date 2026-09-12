@@ -387,3 +387,23 @@ Agent 自动完成模型冻结。`result2.xlsx`、candidate/final workbook 均�
 | Full test suite | `pytest -q` | PASS: `60 passed` |
 
 当前状态：`Q3 = CANDIDATE COMPLETE`、`Q4 = CANDIDATE COMPLETE`、`WAITING FOR HUMAN Q3/Q4 FREEZE APPROVAL`。Q3/Q4 candidate 未进入 final；Q1/Q2 保持冻结；不 push。
+
+## Q2 Chinese Publication Figure Localization & Q3/Q4 Final-Freeze Audit（2026-09-12）
+
+本项严格使用 frozen `deliverables/final/result2.xlsx`、既有 `figures/q2/data/` 和既有 Q2 postprocess 产物；不重新运行 Q2 solver，不修改 `src/q2/`、Q2 numerical result、result2 workbook 或原 Q2 frozen figure directory。中文图输出到独立 publication 目录，数值冻结与 publication figure freeze 分开记录。
+
+| 检查项 | 方法/证据 | 结果 | 状态 |
+|---|---|---|---|
+| Q2 figure count | `Q2_CHINESE_FIGURE_MANIFEST.json` | 11 组 | PASS |
+| PNG/SVG completeness | output directory + manifest | PNG `11/11`；SVG `11/11` | PASS |
+| PNG DPI | Pillow metadata | `11/11 >=300 DPI`；全部写入值 `300.101` | PASS |
+| Chinese text | SVG text node check；无 `□`；title/xlabel/ylabel/legend/colorbar 均按 manifest 对照 | `11/11` | PASS |
+| Source numeric trace | 重读 CSV/NPZ；source byte hash、数组 shape/dtype/hash、x/y/sampling 对照 | figure data trace `11/11`；无 smoothing、无 numeric interpolation、无 clip | PASS |
+| Frozen Q2 workbook | SHA-256 before/after/current | `84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da`；numerical result changed = `NO` | PASS |
+| Original Q2 frozen figures | 对照 `deliverables/final/Q2_MANIFEST.json` 中 22 个文件 hash | unchanged；未静默覆盖 | PASS |
+| Q1/Q3/Q4 language metadata | Q1 manifest + Q3/Q4 existing label source；仅 metadata 检查 | 未发现明显英文描述标签；数学/算法记号 `PCHIP/Cmax/R(t)/t3/t4` 保留 | PASS |
+| Q3/Q4 final-freeze audit | existing `deliverables/candidate/Q3_Q4_VALIDATION.json` + Q2 localization validation 汇总 | Q3/Q4 candidate evidence PASS；audit record 已建立；仍等待人工 freeze approval，未写 final | PASS / HUMAN PENDING |
+| Protected paths | `git diff -- A题 src/q1 src/q2 deliverables/final/result2.xlsx deliverables/final/figures/q2` | empty | PASS |
+| Full tests | `pytest -q` | `64 passed` | PASS |
+
+证据：`scripts/generate_q2_chinese_publication_figures.py`、`scripts/validate_q2_chinese_publication_figures.py`、`scripts/build_q3_q4_freeze_audit.py`、`experiments/Q2_CHINESE_FIGURE_LOCALIZATION/validation.json`、`experiments/Q3_Q4_CANDIDATE/final_freeze_audit.json`。Q1 深谷仍只能表述为 `pointwise error zero-crossing / cancellation dip`，不得改写为突然精度提高。

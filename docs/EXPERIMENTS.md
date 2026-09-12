@@ -199,3 +199,15 @@ Q2 final、`A题/`、`src/q1/`、`src/q2/` 保持只读。本阶段生成 Q3/Q4 
 | Q3_Q4_CANDIDATE | 统一 hash/交付清单 | workbook、Table5/6、Fig5-12…18、metrics 和 paper mirrors | candidate validation PASS；figures `7/7`，PNG ≥300 dpi；result3 `3450×22`，result4 `3186×22`；无公式、四位小数格式 | COMPLETE / HUMAN FREEZE PENDING | `experiments/Q3_Q4_CANDIDATE/manifest.json`、`deliverables/candidate/Q3_Q4_VALIDATION.json` |
 
 Q3 endpoint 的 `t3` 使用局部求解的第一个严格低于阈值子步时刻；连续根估计 `206935.2260985608 s` 仅作为 audit 字段。Q4 同理保留粗夹逼和局部细化证据。Q3/Q4 均未把候选数值登记为论文 `VERIFIED` 主张。
+
+## Q2 Chinese Publication Figure Localization（2026-09-12）
+
+这是独立于 Q2 数值冻结的 publication figure 处理实验。未重新运行 Q2 solver，未读取或修改 `src/q2/`，未保存、格式化或改写 `deliverables/final/result2.xlsx`，也未覆盖 `deliverables/final/figures/q2/` 原冻结图。绘图程序只读取现有 `figures/q2/data/` 中的 8 组 CSV/NPZ 图源数据，并把中文版本写入独立目录 `deliverables/final/paper/figures/q2/`。
+
+| Experiment | Purpose | Source / Configuration | Result | Status | Evidence |
+|---|---|---|---|---|---|
+| Q2_CHINESE_FIGURE_LOCALIZATION | 将 Q2 全部论文图的标题、坐标轴、图例、色标和诊断标签中文化 | frozen Q2 postprocess CSV/NPZ；Matplotlib `Microsoft YaHei`；`axes.unicode_minus=False`；无平滑、无数值插值、无 error clip；PNG requested `300.1 DPI` | 11/11 figure groups；PNG `11/11`；SVG `11/11`；PNG `11/11 >=300 DPI`（写入值 `300.101`）；source numeric arrays/x/y/sampling trace `11/11`；中文 text `11/11`；result2 SHA before/after/current 均为 `84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da` | COMPLETED / NUMERIC FREEZE UNCHANGED | `experiments/Q2_CHINESE_FIGURE_LOCALIZATION/validation.json`、`deliverables/final/paper/figures/q2/Q2_CHINESE_FIGURE_MANIFEST.json` |
+
+Q1/Q3/Q4 只做了一次 paper-figure metadata 检查，没有数值重算或重画：Q1 manifest 未发现明显英文标题，Q3/Q4 现有 label source 未发现明显英文描述标签；`PCHIP`、`Cmax`、`R(t)`、`t3/t4` 保留为算法或数学记号。Q1 的 `pointwise error zero-crossing / cancellation dip` 解释不变。
+
+Q2 中文 publication figure freeze 与 Q2 numerical/result freeze 分开记录；原 `deliverables/final/figures/q2/` 文件哈希通过对照且未被覆盖。Q3/Q4 候选 final-freeze audit 同步完成，但仍等待人工批准，不把候选工作簿复制到 final。

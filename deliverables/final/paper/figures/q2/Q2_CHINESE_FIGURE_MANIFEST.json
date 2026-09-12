@@ -1,0 +1,693 @@
+{
+  "schema_version": "Q2_CHINESE_PUBLICATION_FIGURE_MANIFEST_V1",
+  "status": "PASS",
+  "purpose": "Chinese publication rendering from frozen Q2 postprocess artifacts",
+  "q2_numeric_freeze_unchanged": true,
+  "q2_solver_rerun": false,
+  "source_manifest": "figures/q2/FIGURE_MANIFEST.json",
+  "source_manifest_sha256": "ed4a06902e042ec19681ffa4ef1d21f5754f2350a9120dba091e311b77cd456d",
+  "source_root": "figures/q2/data",
+  "source_mode": "existing Q2 figure source data only; no solver import or execution",
+  "font": {
+    "selected": "Microsoft YaHei",
+    "preferred_order": [
+      "Microsoft YaHei",
+      "SimHei",
+      "SimSun",
+      "Noto Sans CJK SC",
+      "Source Han Sans CN"
+    ],
+    "axes_unicode_minus": false
+  },
+  "result2": {
+    "path": "deliverables/final/result2.xlsx",
+    "sha256_before": "84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da",
+    "sha256_after": "84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da",
+    "numerical_result_changed": false
+  },
+  "frozen_original_figure_root": "deliverables/final/figures/q2",
+  "frozen_original_figure_hashes_unchanged": true,
+  "figures": [
+    {
+      "figure_id": "FIG-Q2-01",
+      "stem": "FIG-Q2-01_temperature_radial_profiles",
+      "title": "不同时间下药材内部温度径向分布",
+      "xlabel": "距药材中心距离 r / cm",
+      "ylabel": "温度 T / ℃",
+      "legend_labels": [
+        "0.5 h",
+        "1 h",
+        "1.5 h",
+        "2 h",
+        "2.5 h",
+        "3 h",
+        "6 h",
+        "24 h",
+        "48 h",
+        "63.4822 h"
+      ],
+      "colorbar_label": null,
+      "source_data_file": "figures/q2/data/FIG-Q2-01_temperature_radial_profiles.csv",
+      "source_data_sha256": "fd222c9e1ad94da8de3985dff1eaf8cd13d5dbe66f238c0d7e2090deb60f8f39",
+      "source_arrays": [
+        {
+          "array": "time_s",
+          "shape": [
+            10
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "f530801c08a5f54f6fec5fd17d6bd3b5364f1b8ad83255c0f3f10017467f3fda",
+          "plotted_array_sha256": "f530801c08a5f54f6fec5fd17d6bd3b5364f1b8ad83255c0f3f10017467f3fda",
+          "identical": true
+        },
+        {
+          "array": "radius_cm",
+          "shape": [
+            21
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "60f5e4290a224db9459375ef9e5d8f918e38f5071498367a4bfd5693e5ff9d44",
+          "plotted_array_sha256": "60f5e4290a224db9459375ef9e5d8f918e38f5071498367a4bfd5693e5ff9d44",
+          "identical": true
+        },
+        {
+          "array": "temperature_C",
+          "shape": [
+            10,
+            21
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "a9740cfe1aeec0dd86396e7c4292ad3ae73deba4f292d766e4d1bc56f6519ec6",
+          "plotted_array_sha256": "a9740cfe1aeec0dd86396e7c4292ad3ae73deba4f292d766e4d1bc56f6519ec6",
+          "identical": true
+        }
+      ],
+      "data_trace": {
+        "status": "PASS",
+        "source_numeric_arrays_identical": true,
+        "x_data_identical": true,
+        "y_data_identical": true,
+        "sampling_identical": true
+      },
+      "png_path": "deliverables/final/paper/figures/q2/FIG-Q2-01_temperature_radial_profiles.png",
+      "png_sha256": "9f7110f102863d8c2d4790a1313001f0434446277831991a8f7890ea57041a45",
+      "svg_path": "deliverables/final/paper/figures/q2/FIG-Q2-01_temperature_radial_profiles.svg",
+      "svg_sha256": "6b1637b07f75ef24a8180a730efea4b68856419d18af7d647ce184196c7b435e",
+      "no_smoothing": true,
+      "no_numeric_interpolation": true,
+      "error_clip": null,
+      "generation_script": "scripts/generate_q2_chinese_publication_figures.py"
+    },
+    {
+      "figure_id": "FIG-Q2-02",
+      "stem": "FIG-Q2-02_moisture_radial_profiles",
+      "title": "不同时间下药材内部水分浓度径向分布",
+      "xlabel": "距药材中心距离 r / cm",
+      "ylabel": "水分浓度 C / (kg/kg)",
+      "legend_labels": [
+        "0.5 h",
+        "1 h",
+        "1.5 h",
+        "2 h",
+        "2.5 h",
+        "3 h",
+        "6 h",
+        "24 h",
+        "48 h",
+        "63.4822 h"
+      ],
+      "colorbar_label": null,
+      "source_data_file": "figures/q2/data/FIG-Q2-02_moisture_radial_profiles.csv",
+      "source_data_sha256": "1b1a6596465d9eae729b62fdecd30fd5327224b81293e9dc91dfd697e1a42dec",
+      "source_arrays": [
+        {
+          "array": "time_s",
+          "shape": [
+            10
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "f530801c08a5f54f6fec5fd17d6bd3b5364f1b8ad83255c0f3f10017467f3fda",
+          "plotted_array_sha256": "f530801c08a5f54f6fec5fd17d6bd3b5364f1b8ad83255c0f3f10017467f3fda",
+          "identical": true
+        },
+        {
+          "array": "radius_cm",
+          "shape": [
+            21
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "60f5e4290a224db9459375ef9e5d8f918e38f5071498367a4bfd5693e5ff9d44",
+          "plotted_array_sha256": "60f5e4290a224db9459375ef9e5d8f918e38f5071498367a4bfd5693e5ff9d44",
+          "identical": true
+        },
+        {
+          "array": "moisture_kg_kg",
+          "shape": [
+            10,
+            21
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "c7261db489b10c4a0a49a8e526ffda503f17419f8bb457c0ecfb0102a14586bf",
+          "plotted_array_sha256": "c7261db489b10c4a0a49a8e526ffda503f17419f8bb457c0ecfb0102a14586bf",
+          "identical": true
+        }
+      ],
+      "data_trace": {
+        "status": "PASS",
+        "source_numeric_arrays_identical": true,
+        "x_data_identical": true,
+        "y_data_identical": true,
+        "sampling_identical": true
+      },
+      "png_path": "deliverables/final/paper/figures/q2/FIG-Q2-02_moisture_radial_profiles.png",
+      "png_sha256": "7fe157cc925afca8f7c96b38de5c6bcffb4a55aa319585c01da41b43dc62eb49",
+      "svg_path": "deliverables/final/paper/figures/q2/FIG-Q2-02_moisture_radial_profiles.svg",
+      "svg_sha256": "ba9e8bdf4743d9f85bcb33405525fa34ce96b7581bbf068f55cab3edd30d858e",
+      "no_smoothing": true,
+      "no_numeric_interpolation": true,
+      "error_clip": null,
+      "generation_script": "scripts/generate_q2_chinese_publication_figures.py"
+    },
+    {
+      "figure_id": "FIG-Q2-03",
+      "stem": "FIG-Q2-03_temperature_time_radius_heatmap",
+      "title": "药材内部温度时空分布",
+      "xlabel": "距药材中心距离 r / cm",
+      "ylabel": "时间 t / s",
+      "legend_labels": [],
+      "colorbar_label": "温度 T / ℃",
+      "source_data_file": "figures/q2/data/FIG-Q2-03_temperature_time_radius_heatmap.npz",
+      "source_data_sha256": "f313e0c3a2bfcef00b7ac235a57293e94941c35dbddec748221e69ff76aed95e",
+      "source_arrays": [
+        {
+          "array": "time_s",
+          "shape": [
+            228536
+          ],
+          "dtype": "int64",
+          "source_array_sha256": "5be7f2d6e151b91b17cf6b4dfdbbf1f7f5b3d09cda0b49d882034c16afb16473",
+          "plotted_array_sha256": "5be7f2d6e151b91b17cf6b4dfdbbf1f7f5b3d09cda0b49d882034c16afb16473",
+          "identical": true
+        },
+        {
+          "array": "radius_cm",
+          "shape": [
+            21
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "60f5e4290a224db9459375ef9e5d8f918e38f5071498367a4bfd5693e5ff9d44",
+          "plotted_array_sha256": "60f5e4290a224db9459375ef9e5d8f918e38f5071498367a4bfd5693e5ff9d44",
+          "identical": true
+        },
+        {
+          "array": "temperature_C",
+          "shape": [
+            228536,
+            21
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "dfc2a5d4ba56c50f7505d597f7176c0a27acde4611991155ffbb92594b473bae",
+          "plotted_array_sha256": "dfc2a5d4ba56c50f7505d597f7176c0a27acde4611991155ffbb92594b473bae",
+          "identical": true
+        }
+      ],
+      "data_trace": {
+        "status": "PASS",
+        "source_numeric_arrays_identical": true,
+        "x_data_identical": true,
+        "y_data_identical": true,
+        "sampling_identical": true
+      },
+      "png_path": "deliverables/final/paper/figures/q2/FIG-Q2-03_temperature_time_radius_heatmap.png",
+      "png_sha256": "8a60734bc032fc99629537c1da0d389c9eb8932ce7f6b7c8d41e2a13ef69adcd",
+      "svg_path": "deliverables/final/paper/figures/q2/FIG-Q2-03_temperature_time_radius_heatmap.svg",
+      "svg_sha256": "bda0be1ab189ae86e61779b6eeee6fe4ce2038a8cf78497070628041f1269b7a",
+      "no_smoothing": true,
+      "no_numeric_interpolation": true,
+      "error_clip": null,
+      "generation_script": "scripts/generate_q2_chinese_publication_figures.py"
+    },
+    {
+      "figure_id": "FIG-Q2-04",
+      "stem": "FIG-Q2-04_moisture_time_radius_heatmap",
+      "title": "药材内部水分浓度时空分布",
+      "xlabel": "距药材中心距离 r / cm",
+      "ylabel": "时间 t / s",
+      "legend_labels": [],
+      "colorbar_label": "水分浓度 C / (kg/kg)",
+      "source_data_file": "figures/q2/data/FIG-Q2-04_moisture_time_radius_heatmap.npz",
+      "source_data_sha256": "a5bf529c55a959e4ce90011ca92db5c90865ed3b72a63e48d636cd8e7b7e2882",
+      "source_arrays": [
+        {
+          "array": "time_s",
+          "shape": [
+            228536
+          ],
+          "dtype": "int64",
+          "source_array_sha256": "5be7f2d6e151b91b17cf6b4dfdbbf1f7f5b3d09cda0b49d882034c16afb16473",
+          "plotted_array_sha256": "5be7f2d6e151b91b17cf6b4dfdbbf1f7f5b3d09cda0b49d882034c16afb16473",
+          "identical": true
+        },
+        {
+          "array": "radius_cm",
+          "shape": [
+            21
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "60f5e4290a224db9459375ef9e5d8f918e38f5071498367a4bfd5693e5ff9d44",
+          "plotted_array_sha256": "60f5e4290a224db9459375ef9e5d8f918e38f5071498367a4bfd5693e5ff9d44",
+          "identical": true
+        },
+        {
+          "array": "moisture_kg_kg",
+          "shape": [
+            228536,
+            21
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "6dc65dd60d2ef9540bfed2775819bf4bbe2815c4a62d05e584a83096ca53180e",
+          "plotted_array_sha256": "6dc65dd60d2ef9540bfed2775819bf4bbe2815c4a62d05e584a83096ca53180e",
+          "identical": true
+        }
+      ],
+      "data_trace": {
+        "status": "PASS",
+        "source_numeric_arrays_identical": true,
+        "x_data_identical": true,
+        "y_data_identical": true,
+        "sampling_identical": true
+      },
+      "png_path": "deliverables/final/paper/figures/q2/FIG-Q2-04_moisture_time_radius_heatmap.png",
+      "png_sha256": "9a51592da0ade2935408599440e4c1c4d1991638fa4038d410d10693fa3d5a93",
+      "svg_path": "deliverables/final/paper/figures/q2/FIG-Q2-04_moisture_time_radius_heatmap.svg",
+      "svg_sha256": "07a00e81919d31a673598c218e681f6dabbe753939e6fa1d3687cebd5b811771",
+      "no_smoothing": true,
+      "no_numeric_interpolation": true,
+      "error_clip": null,
+      "generation_script": "scripts/generate_q2_chinese_publication_figures.py"
+    },
+    {
+      "figure_id": "FIG-Q2-05",
+      "stem": "FIG-Q2-05_temperature_time_histories",
+      "title": "不同径向位置温度随时间变化",
+      "xlabel": "时间 t / s",
+      "ylabel": "温度 T / ℃",
+      "legend_labels": [
+        "中心 (r=0 cm)",
+        "r=0.5 cm",
+        "r=1 cm",
+        "r=1.5 cm",
+        "表面 (r=2 cm)"
+      ],
+      "colorbar_label": null,
+      "source_data_file": "figures/q2/data/FIG-Q2-05_temperature_time_histories.csv",
+      "source_data_sha256": "6662585f692826aeb8225c2d159fe9c7f4870fa707878fab3ed16a6d4e8bcd07",
+      "source_arrays": [
+        {
+          "array": "time_s",
+          "shape": [
+            228536
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "f622a27e7c249404585a0e3b310032186764b3b941c86e500fa3b84dc27eb224",
+          "plotted_array_sha256": "f622a27e7c249404585a0e3b310032186764b3b941c86e500fa3b84dc27eb224",
+          "identical": true
+        },
+        {
+          "array": "radius_cm",
+          "shape": [
+            5
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "541848f5765c53205a1e539c769bacf134cd4e53b742a068e2634c5575dd2774",
+          "plotted_array_sha256": "541848f5765c53205a1e539c769bacf134cd4e53b742a068e2634c5575dd2774",
+          "identical": true
+        },
+        {
+          "array": "temperature_C",
+          "shape": [
+            228536,
+            5
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "2fc6d6014ae0afedb80781f6966becab8be420fb0a37ea624750a3fd3a738f53",
+          "plotted_array_sha256": "2fc6d6014ae0afedb80781f6966becab8be420fb0a37ea624750a3fd3a738f53",
+          "identical": true
+        }
+      ],
+      "data_trace": {
+        "status": "PASS",
+        "source_numeric_arrays_identical": true,
+        "x_data_identical": true,
+        "y_data_identical": true,
+        "sampling_identical": true
+      },
+      "png_path": "deliverables/final/paper/figures/q2/FIG-Q2-05_temperature_time_histories.png",
+      "png_sha256": "958451e0376b0b1cea1e79f74b13f7653daed3817f3ba54b7b177d297bb6b6c8",
+      "svg_path": "deliverables/final/paper/figures/q2/FIG-Q2-05_temperature_time_histories.svg",
+      "svg_sha256": "26d98942027b7eac13dba4dc807b13ea6908e525fbb44885cc62998793ec7f02",
+      "no_smoothing": true,
+      "no_numeric_interpolation": true,
+      "error_clip": null,
+      "generation_script": "scripts/generate_q2_chinese_publication_figures.py"
+    },
+    {
+      "figure_id": "FIG-Q2-06",
+      "stem": "FIG-Q2-06_moisture_time_histories",
+      "title": "不同径向位置水分浓度随时间变化",
+      "xlabel": "时间 t / s",
+      "ylabel": "水分浓度 C / (kg/kg)",
+      "legend_labels": [
+        "中心 (r=0 cm)",
+        "r=0.5 cm",
+        "r=1 cm",
+        "r=1.5 cm",
+        "表面 (r=2 cm)"
+      ],
+      "colorbar_label": null,
+      "source_data_file": "figures/q2/data/FIG-Q2-06_moisture_time_histories.csv",
+      "source_data_sha256": "e4ba5d8aedff040f3d5042068ba6ef0e1c12060693ebdbe961a234d1ccdb0a34",
+      "source_arrays": [
+        {
+          "array": "time_s",
+          "shape": [
+            228536
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "f622a27e7c249404585a0e3b310032186764b3b941c86e500fa3b84dc27eb224",
+          "plotted_array_sha256": "f622a27e7c249404585a0e3b310032186764b3b941c86e500fa3b84dc27eb224",
+          "identical": true
+        },
+        {
+          "array": "radius_cm",
+          "shape": [
+            5
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "541848f5765c53205a1e539c769bacf134cd4e53b742a068e2634c5575dd2774",
+          "plotted_array_sha256": "541848f5765c53205a1e539c769bacf134cd4e53b742a068e2634c5575dd2774",
+          "identical": true
+        },
+        {
+          "array": "moisture_kg_kg",
+          "shape": [
+            228536,
+            5
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "a3e8c0d0d69b0c1e018fd76301ae16b80ac60f6e423f2c6d9d5a22fbf579e36d",
+          "plotted_array_sha256": "a3e8c0d0d69b0c1e018fd76301ae16b80ac60f6e423f2c6d9d5a22fbf579e36d",
+          "identical": true
+        }
+      ],
+      "data_trace": {
+        "status": "PASS",
+        "source_numeric_arrays_identical": true,
+        "x_data_identical": true,
+        "y_data_identical": true,
+        "sampling_identical": true
+      },
+      "png_path": "deliverables/final/paper/figures/q2/FIG-Q2-06_moisture_time_histories.png",
+      "png_sha256": "8e889c786ead0afcfe5979e30088e9245b22a98cb8d2848a29bf6c83e0541600",
+      "svg_path": "deliverables/final/paper/figures/q2/FIG-Q2-06_moisture_time_histories.svg",
+      "svg_sha256": "d1a8fb2fcc6442e29ae06dd844e331717d4abed57af3aefb8bbb5388073ed223",
+      "no_smoothing": true,
+      "no_numeric_interpolation": true,
+      "error_clip": null,
+      "generation_script": "scripts/generate_q2_chinese_publication_figures.py"
+    },
+    {
+      "figure_id": "FIG-Q2-07",
+      "stem": "FIG-Q2-07_center_surface_moisture_difference",
+      "title": "中心与表面水分浓度差",
+      "xlabel": "时间 t / s",
+      "ylabel": "中心-表面水分浓度差 / (kg/kg)",
+      "legend_labels": [],
+      "colorbar_label": null,
+      "source_data_file": "figures/q2/data/FIG-Q2-07_center_surface_moisture_difference.csv",
+      "source_data_sha256": "4e2f24c3b970ea3203916cee897762dc299789d3c890a5e247e2453b5c7f2f15",
+      "source_arrays": [
+        {
+          "array": "time_s",
+          "shape": [
+            228536
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "f622a27e7c249404585a0e3b310032186764b3b941c86e500fa3b84dc27eb224",
+          "plotted_array_sha256": "f622a27e7c249404585a0e3b310032186764b3b941c86e500fa3b84dc27eb224",
+          "identical": true
+        },
+        {
+          "array": "center_minus_surface_moisture_kg_kg",
+          "shape": [
+            228536
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "47013688dcbcc2b38e0afc51ab065d01387abac821f14803a55109e1f5294046",
+          "plotted_array_sha256": "47013688dcbcc2b38e0afc51ab065d01387abac821f14803a55109e1f5294046",
+          "identical": true
+        }
+      ],
+      "data_trace": {
+        "status": "PASS",
+        "source_numeric_arrays_identical": true,
+        "x_data_identical": true,
+        "y_data_identical": true,
+        "sampling_identical": true
+      },
+      "png_path": "deliverables/final/paper/figures/q2/FIG-Q2-07_center_surface_moisture_difference.png",
+      "png_sha256": "0673f7b0a62732b838d90d1c5fdae74222bc55b7fbf94325ef36e8e42f7f156b",
+      "svg_path": "deliverables/final/paper/figures/q2/FIG-Q2-07_center_surface_moisture_difference.svg",
+      "svg_sha256": "465159427b52bf948ea121e0ac07b2669bf2357b07f784e7391598990bb2c95b",
+      "no_smoothing": true,
+      "no_numeric_interpolation": true,
+      "error_clip": null,
+      "generation_script": "scripts/generate_q2_chinese_publication_figures.py"
+    },
+    {
+      "figure_id": "FIG-Q2-08",
+      "stem": "FIG-Q2-08_representative_diffusivity",
+      "title": "代表性位置水分扩散系数演化",
+      "xlabel": "时间 t / s",
+      "ylabel": "扩散系数 D / (m²/s)",
+      "legend_labels": [
+        "中心 (r=0 cm)",
+        "r=1 cm",
+        "表面 (r=2 cm)"
+      ],
+      "colorbar_label": null,
+      "source_data_file": "figures/q2/data/FIG-Q2-08_representative_diffusivity.csv",
+      "source_data_sha256": "bd84f26634a657e28a90daa07ffad0becdc36618e21f4ab1a05ffe65ceebf108",
+      "source_arrays": [
+        {
+          "array": "time_s",
+          "shape": [
+            228536
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "f622a27e7c249404585a0e3b310032186764b3b941c86e500fa3b84dc27eb224",
+          "plotted_array_sha256": "f622a27e7c249404585a0e3b310032186764b3b941c86e500fa3b84dc27eb224",
+          "identical": true
+        },
+        {
+          "array": "radius_cm",
+          "shape": [
+            3
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "de281d0f60f6d986dfc11ad919a781153ccb6c104caca416a21d2877d1d79e70",
+          "plotted_array_sha256": "de281d0f60f6d986dfc11ad919a781153ccb6c104caca416a21d2877d1d79e70",
+          "identical": true
+        },
+        {
+          "array": "D_C_T",
+          "shape": [
+            228536,
+            3
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "a50d9ab2ad3bdd0f263a5b5b4cf2f73f7255b17c731e0fb5ff7a3258375d70a8",
+          "plotted_array_sha256": "a50d9ab2ad3bdd0f263a5b5b4cf2f73f7255b17c731e0fb5ff7a3258375d70a8",
+          "identical": true
+        }
+      ],
+      "data_trace": {
+        "status": "PASS",
+        "source_numeric_arrays_identical": true,
+        "x_data_identical": true,
+        "y_data_identical": true,
+        "sampling_identical": true
+      },
+      "png_path": "deliverables/final/paper/figures/q2/FIG-Q2-08_representative_diffusivity.png",
+      "png_sha256": "8060b28c7ec321adff49dc7b91d3aa5b96ac50ee35e160fbd001221627839c3a",
+      "svg_path": "deliverables/final/paper/figures/q2/FIG-Q2-08_representative_diffusivity.svg",
+      "svg_sha256": "88240a199bb5758953c513a7f31b137090665e03e5f92e6d750cf9b789e74c92",
+      "no_smoothing": true,
+      "no_numeric_interpolation": true,
+      "error_clip": null,
+      "generation_script": "scripts/generate_q2_chinese_publication_figures.py"
+    },
+    {
+      "figure_id": "FIG-Q2-V01",
+      "stem": "FIG-Q2-V01_picard_iterations",
+      "title": "非线性迭代次数",
+      "xlabel": "时间 t / s",
+      "ylabel": "迭代次数",
+      "legend_labels": [],
+      "colorbar_label": null,
+      "source_data_file": "figures/q2/data/FIG-Q2-V01_picard_iterations.csv",
+      "source_data_sha256": "1852209f30614476240deaa36d2593bba6b35087ef7f10038f7d1b6612d10bf2",
+      "source_arrays": [
+        {
+          "array": "time_s",
+          "shape": [
+            228536
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "f622a27e7c249404585a0e3b310032186764b3b941c86e500fa3b84dc27eb224",
+          "plotted_array_sha256": "f622a27e7c249404585a0e3b310032186764b3b941c86e500fa3b84dc27eb224",
+          "identical": true
+        },
+        {
+          "array": "picard_iterations",
+          "shape": [
+            228536
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "616a556a4292abb989ed81ad3ad397520500331016b9a8934b9dcbfbfbb5b511",
+          "plotted_array_sha256": "616a556a4292abb989ed81ad3ad397520500331016b9a8934b9dcbfbfbb5b511",
+          "identical": true
+        }
+      ],
+      "data_trace": {
+        "status": "PASS",
+        "source_numeric_arrays_identical": true,
+        "x_data_identical": true,
+        "y_data_identical": true,
+        "sampling_identical": true
+      },
+      "png_path": "deliverables/final/paper/figures/q2/FIG-Q2-V01_picard_iterations.png",
+      "png_sha256": "f55f5a0607d26ca1e479f4485737414e424fdd96dba0c21b5c3faefa7bc6d6b8",
+      "svg_path": "deliverables/final/paper/figures/q2/FIG-Q2-V01_picard_iterations.svg",
+      "svg_sha256": "6dc01f3d52d3b14778500e0c15e408dd3ddfb43069f1fa0a3025a6a69cb61692",
+      "no_smoothing": true,
+      "no_numeric_interpolation": true,
+      "error_clip": null,
+      "generation_script": "scripts/generate_q2_chinese_publication_figures.py"
+    },
+    {
+      "figure_id": "FIG-Q2-V02",
+      "stem": "FIG-Q2-V02_mass_residual",
+      "title": "质量守恒误差",
+      "xlabel": "时间 t / s",
+      "ylabel": "质量守恒误差",
+      "legend_labels": [],
+      "colorbar_label": null,
+      "source_data_file": "figures/q2/data/FIG-Q2-V02_mass_residual.csv",
+      "source_data_sha256": "ddf612a9cd08f958ca226e7b9da18129fec49f34d468bd8d460b6bad2aa17e08",
+      "source_arrays": [
+        {
+          "array": "time_s",
+          "shape": [
+            228536
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "f622a27e7c249404585a0e3b310032186764b3b941c86e500fa3b84dc27eb224",
+          "plotted_array_sha256": "f622a27e7c249404585a0e3b310032186764b3b941c86e500fa3b84dc27eb224",
+          "identical": true
+        },
+        {
+          "array": "mass_step_residual",
+          "shape": [
+            228536
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "c93f45dea459dbab5344c0dd0b98feaf064e8796766f68912794f03678ee9f58",
+          "plotted_array_sha256": "c93f45dea459dbab5344c0dd0b98feaf064e8796766f68912794f03678ee9f58",
+          "identical": true
+        }
+      ],
+      "data_trace": {
+        "status": "PASS",
+        "source_numeric_arrays_identical": true,
+        "x_data_identical": true,
+        "y_data_identical": true,
+        "sampling_identical": true
+      },
+      "png_path": "deliverables/final/paper/figures/q2/FIG-Q2-V02_mass_residual.png",
+      "png_sha256": "092a2df8905ffb4effee316fe20cc855a9439b9f427faa5d3d29fcfcfb1ddd2b",
+      "svg_path": "deliverables/final/paper/figures/q2/FIG-Q2-V02_mass_residual.svg",
+      "svg_sha256": "4aa05e109751f365b9b002865502476155f057a73b6672ae6a8f3d7baba46134",
+      "no_smoothing": true,
+      "no_numeric_interpolation": true,
+      "error_clip": null,
+      "generation_script": "scripts/generate_q2_chinese_publication_figures.py"
+    },
+    {
+      "figure_id": "FIG-Q2-V03",
+      "stem": "FIG-Q2-V03_heat_residual",
+      "title": "能量残差",
+      "xlabel": "时间 t / s",
+      "ylabel": "能量残差 / J",
+      "legend_labels": [],
+      "colorbar_label": null,
+      "source_data_file": "figures/q2/data/FIG-Q2-V03_heat_residual.csv",
+      "source_data_sha256": "c06f4cc2a23baae982972bf1c36b5be3964988872532d957d6900256d84f28f6",
+      "source_arrays": [
+        {
+          "array": "time_s",
+          "shape": [
+            228536
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "f622a27e7c249404585a0e3b310032186764b3b941c86e500fa3b84dc27eb224",
+          "plotted_array_sha256": "f622a27e7c249404585a0e3b310032186764b3b941c86e500fa3b84dc27eb224",
+          "identical": true
+        },
+        {
+          "array": "heat_step_residual_j",
+          "shape": [
+            228536
+          ],
+          "dtype": "float64",
+          "source_array_sha256": "34124582dfcd61bb23fb0606e25417ccf632642fe66c991863d29c67de0ba07b",
+          "plotted_array_sha256": "34124582dfcd61bb23fb0606e25417ccf632642fe66c991863d29c67de0ba07b",
+          "identical": true
+        }
+      ],
+      "data_trace": {
+        "status": "PASS",
+        "source_numeric_arrays_identical": true,
+        "x_data_identical": true,
+        "y_data_identical": true,
+        "sampling_identical": true
+      },
+      "png_path": "deliverables/final/paper/figures/q2/FIG-Q2-V03_heat_residual.png",
+      "png_sha256": "6277c52a4ed877114f591f8444ceb8de8f7b2b24e92086151191cf369a5ccbb7",
+      "svg_path": "deliverables/final/paper/figures/q2/FIG-Q2-V03_heat_residual.svg",
+      "svg_sha256": "161d86ca4d2e02f9125845ef836cf296fabc9a0ca032a65d3eaabdee3142cbfa",
+      "no_smoothing": true,
+      "no_numeric_interpolation": true,
+      "error_clip": null,
+      "generation_script": "scripts/generate_q2_chinese_publication_figures.py"
+    }
+  ],
+  "figure_count": 11,
+  "png_count": 11,
+  "svg_count": 11,
+  "no_smoothing": true,
+  "no_numeric_interpolation": true,
+  "trace_contract": {
+    "source_numeric_arrays_identical": true,
+    "x_data_identical": true,
+    "y_data_identical": true,
+    "sampling_identical": true
+  },
+  "validation": {
+    "path": "experiments/Q2_CHINESE_FIGURE_LOCALIZATION/validation.json",
+    "status": "PASS",
+    "q2_figure_trace": "11/11",
+    "chinese_text_validation": "11/11",
+    "png_dpi_validation": true
+  }
+}

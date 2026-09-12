@@ -13,7 +13,7 @@
 | 问题 | 状态 | 当前结论 | 证据 |
 |---|---|---|---|
 | Q1 | FROZEN / COMPLETE | r=1.9 cm 早期表面绝对误差谷值由 signed error zero-crossing/cancellation dip 造成，不是精度突然提高；final result1 未改 | `experiments/EXP-Q1-SURFACE-DECAY/`、`deliverables/final/result1.xlsx` |
-| Q2 | FROZEN | V3 Run1 是唯一 `PRODUCTION_CANONICAL` 生产来源；Run1/Run2 全量 raw、official sampled、diagnostics byte/hash identical；candidate 已按 byte-for-byte COPY 进入 final；工作簿和图表 final 验证 PASS | `experiments/Q2_FINAL_FREEZE/`、`deliverables/final/result2.xlsx`、`deliverables/final/figures/q2/` |
+| Q2 | FROZEN | V3 Run1 是唯一 `PRODUCTION_CANONICAL` 生产来源；Run1/Run2 全量 raw、official sampled、diagnostics byte/hash identical；candidate 已按 byte-for-byte COPY 进入 final；工作簿和原冻结图表 final 验证 PASS；中文 publication 图已从既有图源数据独立生成并通过验证 | `experiments/Q2_FINAL_FREEZE/`、`experiments/Q2_CHINESE_FIGURE_LOCALIZATION/`、`deliverables/final/result2.xlsx`、`deliverables/final/figures/q2/`、`deliverables/final/paper/figures/q2/` |
 | Q3 | CANDIDATE COMPLETE | 固定半径候选首次严格低于 `0.15 kg/kg` 的局部细化时刻为 `206935.2265625 s`（`57.4820074 h`）；临界节点由数据扫描得到为 `r=0.0 cm` | `experiments/Q3_PRODUCTION/`、`deliverables/candidate/result3.xlsx`、`deliverables/candidate/paper/` |
 | Q4 | CANDIDATE COMPLETE | 附录4物性 + 附件2单调PCHIP半径 + 材料坐标候选首次严格低于 `0.15 kg/kg` 的时刻为 `191097.7336094 s`（`53.0827038 h`），`R(t4)=1.2 cm`，临界材料坐标 `ξ=0` | `experiments/Q4_PRODUCTION/`、`deliverables/candidate/result4.xlsx`、`deliverables/candidate/paper/` |
 
@@ -31,6 +31,7 @@
 - 候选工作簿：两张表均为 `228537×22`（含表头），4 位小数、无公式；Run1 分层 trace `100/100`，Table3/4 trace `60/60`。
 - 图表：FIG-Q2-01…08、FIG-Q2-V01…V03，共 11 组，PNG ≥300 dpi + SVG；30/30 trace；无 smoothing、无 numeric interpolation。
 - Q1/A题 integrity、Q3/Q4 boundary 均 PASS。
+- Q2 中文 publication figure localization：11/11 PNG、11/11 SVG、11/11 PNG `>=300 DPI`、数据 trace `11/11`、中文文本检查 `11/11`；`result2.xlsx` SHA-256 前后均为 `84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da`；原 Q2 冻结图目录未覆盖。
 
 ## 已知失败与边界
 
@@ -45,6 +46,7 @@
 - Q4 使用附录4：`rho=760+90C`、`cp=1850+2150C/(C+1)`、`k=0.12+0.20C/(C+1)`、`D=4.2e-4 exp(-0.30/C) exp(-3850/T_K)`；内部 `ξ=r/R(t)`，附件2节点 PCHIP 误差为 `0`，附件结束后保持 `R_last=1.198 cm`。粗夹逼 `[191096,191100] s`，局部细化后 `t4=191097.7336093787 s`。
 - Q4 所有固定物理位置超过当前半径的单元均为空，surface 单列；生产 candidate 工作簿无公式、四位小数显示、`result3` 为 `3450×22`，`result4` 为 `3186×22`。质量守恒诊断最大归一化逐步残差 `3.4553928505477293e-4`，Robin 独立通量差最大 `4.5474756348265686e-7`，均已保留在 validation 证据中。
 - 统一候选交付状态：`Q1 = FROZEN`、`Q2 = FROZEN`、`Q3 = CANDIDATE COMPLETE`、`Q4 = CANDIDATE COMPLETE`、`WAITING FOR HUMAN Q3/Q4 FREEZE APPROVAL`。本轮不写 `deliverables/final/result3.xlsx`/`result4.xlsx`，不启动 Q3/Q4 之后工作，不 push。
+- Q3/Q4 final-freeze audit 已完成候选证据复核并登记 `experiments/Q3_Q4_CANDIDATE/final_freeze_audit.json`；Q3/Q4 仍未获得人工 final freeze approval，未复制到 final。
 
 ## 交接
 

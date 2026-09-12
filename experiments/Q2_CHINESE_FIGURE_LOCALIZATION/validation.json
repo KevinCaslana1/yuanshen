@@ -1,0 +1,399 @@
+{
+  "experiment": "Q2_CHINESE_FIGURE_LOCALIZATION",
+  "status": "PASS",
+  "q2_chinese_figure_localization": {
+    "status": "PASS",
+    "figure_count": 11,
+    "png_count": 11,
+    "svg_count": 11,
+    "all_png_dpi_ge_300": true,
+    "data_trace": "11/11",
+    "chinese_text_validation": "11/11",
+    "no_smoothing": true,
+    "no_numeric_interpolation": true,
+    "items": [
+      {
+        "figure_id": "FIG-Q2-01",
+        "source_array_trace": "3/3",
+        "data_trace": "PASS",
+        "png": "deliverables/final/paper/figures/q2/FIG-Q2-01_temperature_radial_profiles.png",
+        "svg": "deliverables/final/paper/figures/q2/FIG-Q2-01_temperature_radial_profiles.svg",
+        "png_sha256": "9f7110f102863d8c2d4790a1313001f0434446277831991a8f7890ea57041a45",
+        "svg_sha256": "6b1637b07f75ef24a8180a730efea4b68856419d18af7d647ce184196c7b435e",
+        "png_dpi": [
+          300.101,
+          300.101
+        ],
+        "png_dpi_ok": true,
+        "chinese_text_check": "PASS",
+        "english_descriptive_labels": [],
+        "array_checks": [
+          {
+            "array": "time_s",
+            "status": "PASS",
+            "sha256": "f530801c08a5f54f6fec5fd17d6bd3b5364f1b8ad83255c0f3f10017467f3fda"
+          },
+          {
+            "array": "radius_cm",
+            "status": "PASS",
+            "sha256": "60f5e4290a224db9459375ef9e5d8f918e38f5071498367a4bfd5693e5ff9d44"
+          },
+          {
+            "array": "temperature_C",
+            "status": "PASS",
+            "sha256": "a9740cfe1aeec0dd86396e7c4292ad3ae73deba4f292d766e4d1bc56f6519ec6"
+          }
+        ]
+      },
+      {
+        "figure_id": "FIG-Q2-02",
+        "source_array_trace": "3/3",
+        "data_trace": "PASS",
+        "png": "deliverables/final/paper/figures/q2/FIG-Q2-02_moisture_radial_profiles.png",
+        "svg": "deliverables/final/paper/figures/q2/FIG-Q2-02_moisture_radial_profiles.svg",
+        "png_sha256": "7fe157cc925afca8f7c96b38de5c6bcffb4a55aa319585c01da41b43dc62eb49",
+        "svg_sha256": "ba9e8bdf4743d9f85bcb33405525fa34ce96b7581bbf068f55cab3edd30d858e",
+        "png_dpi": [
+          300.101,
+          300.101
+        ],
+        "png_dpi_ok": true,
+        "chinese_text_check": "PASS",
+        "english_descriptive_labels": [],
+        "array_checks": [
+          {
+            "array": "time_s",
+            "status": "PASS",
+            "sha256": "f530801c08a5f54f6fec5fd17d6bd3b5364f1b8ad83255c0f3f10017467f3fda"
+          },
+          {
+            "array": "radius_cm",
+            "status": "PASS",
+            "sha256": "60f5e4290a224db9459375ef9e5d8f918e38f5071498367a4bfd5693e5ff9d44"
+          },
+          {
+            "array": "moisture_kg_kg",
+            "status": "PASS",
+            "sha256": "c7261db489b10c4a0a49a8e526ffda503f17419f8bb457c0ecfb0102a14586bf"
+          }
+        ]
+      },
+      {
+        "figure_id": "FIG-Q2-03",
+        "source_array_trace": "3/3",
+        "data_trace": "PASS",
+        "png": "deliverables/final/paper/figures/q2/FIG-Q2-03_temperature_time_radius_heatmap.png",
+        "svg": "deliverables/final/paper/figures/q2/FIG-Q2-03_temperature_time_radius_heatmap.svg",
+        "png_sha256": "8a60734bc032fc99629537c1da0d389c9eb8932ce7f6b7c8d41e2a13ef69adcd",
+        "svg_sha256": "bda0be1ab189ae86e61779b6eeee6fe4ce2038a8cf78497070628041f1269b7a",
+        "png_dpi": [
+          300.101,
+          300.101
+        ],
+        "png_dpi_ok": true,
+        "chinese_text_check": "PASS",
+        "english_descriptive_labels": [],
+        "array_checks": [
+          {
+            "array": "time_s",
+            "status": "PASS",
+            "sha256": "5be7f2d6e151b91b17cf6b4dfdbbf1f7f5b3d09cda0b49d882034c16afb16473"
+          },
+          {
+            "array": "radius_cm",
+            "status": "PASS",
+            "sha256": "60f5e4290a224db9459375ef9e5d8f918e38f5071498367a4bfd5693e5ff9d44"
+          },
+          {
+            "array": "temperature_C",
+            "status": "PASS",
+            "sha256": "dfc2a5d4ba56c50f7505d597f7176c0a27acde4611991155ffbb92594b473bae"
+          }
+        ]
+      },
+      {
+        "figure_id": "FIG-Q2-04",
+        "source_array_trace": "3/3",
+        "data_trace": "PASS",
+        "png": "deliverables/final/paper/figures/q2/FIG-Q2-04_moisture_time_radius_heatmap.png",
+        "svg": "deliverables/final/paper/figures/q2/FIG-Q2-04_moisture_time_radius_heatmap.svg",
+        "png_sha256": "9a51592da0ade2935408599440e4c1c4d1991638fa4038d410d10693fa3d5a93",
+        "svg_sha256": "07a00e81919d31a673598c218e681f6dabbe753939e6fa1d3687cebd5b811771",
+        "png_dpi": [
+          300.101,
+          300.101
+        ],
+        "png_dpi_ok": true,
+        "chinese_text_check": "PASS",
+        "english_descriptive_labels": [],
+        "array_checks": [
+          {
+            "array": "time_s",
+            "status": "PASS",
+            "sha256": "5be7f2d6e151b91b17cf6b4dfdbbf1f7f5b3d09cda0b49d882034c16afb16473"
+          },
+          {
+            "array": "radius_cm",
+            "status": "PASS",
+            "sha256": "60f5e4290a224db9459375ef9e5d8f918e38f5071498367a4bfd5693e5ff9d44"
+          },
+          {
+            "array": "moisture_kg_kg",
+            "status": "PASS",
+            "sha256": "6dc65dd60d2ef9540bfed2775819bf4bbe2815c4a62d05e584a83096ca53180e"
+          }
+        ]
+      },
+      {
+        "figure_id": "FIG-Q2-05",
+        "source_array_trace": "3/3",
+        "data_trace": "PASS",
+        "png": "deliverables/final/paper/figures/q2/FIG-Q2-05_temperature_time_histories.png",
+        "svg": "deliverables/final/paper/figures/q2/FIG-Q2-05_temperature_time_histories.svg",
+        "png_sha256": "958451e0376b0b1cea1e79f74b13f7653daed3817f3ba54b7b177d297bb6b6c8",
+        "svg_sha256": "26d98942027b7eac13dba4dc807b13ea6908e525fbb44885cc62998793ec7f02",
+        "png_dpi": [
+          300.101,
+          300.101
+        ],
+        "png_dpi_ok": true,
+        "chinese_text_check": "PASS",
+        "english_descriptive_labels": [],
+        "array_checks": [
+          {
+            "array": "time_s",
+            "status": "PASS",
+            "sha256": "f622a27e7c249404585a0e3b310032186764b3b941c86e500fa3b84dc27eb224"
+          },
+          {
+            "array": "radius_cm",
+            "status": "PASS",
+            "sha256": "541848f5765c53205a1e539c769bacf134cd4e53b742a068e2634c5575dd2774"
+          },
+          {
+            "array": "temperature_C",
+            "status": "PASS",
+            "sha256": "2fc6d6014ae0afedb80781f6966becab8be420fb0a37ea624750a3fd3a738f53"
+          }
+        ]
+      },
+      {
+        "figure_id": "FIG-Q2-06",
+        "source_array_trace": "3/3",
+        "data_trace": "PASS",
+        "png": "deliverables/final/paper/figures/q2/FIG-Q2-06_moisture_time_histories.png",
+        "svg": "deliverables/final/paper/figures/q2/FIG-Q2-06_moisture_time_histories.svg",
+        "png_sha256": "8e889c786ead0afcfe5979e30088e9245b22a98cb8d2848a29bf6c83e0541600",
+        "svg_sha256": "d1a8fb2fcc6442e29ae06dd844e331717d4abed57af3aefb8bbb5388073ed223",
+        "png_dpi": [
+          300.101,
+          300.101
+        ],
+        "png_dpi_ok": true,
+        "chinese_text_check": "PASS",
+        "english_descriptive_labels": [],
+        "array_checks": [
+          {
+            "array": "time_s",
+            "status": "PASS",
+            "sha256": "f622a27e7c249404585a0e3b310032186764b3b941c86e500fa3b84dc27eb224"
+          },
+          {
+            "array": "radius_cm",
+            "status": "PASS",
+            "sha256": "541848f5765c53205a1e539c769bacf134cd4e53b742a068e2634c5575dd2774"
+          },
+          {
+            "array": "moisture_kg_kg",
+            "status": "PASS",
+            "sha256": "a3e8c0d0d69b0c1e018fd76301ae16b80ac60f6e423f2c6d9d5a22fbf579e36d"
+          }
+        ]
+      },
+      {
+        "figure_id": "FIG-Q2-07",
+        "source_array_trace": "2/2",
+        "data_trace": "PASS",
+        "png": "deliverables/final/paper/figures/q2/FIG-Q2-07_center_surface_moisture_difference.png",
+        "svg": "deliverables/final/paper/figures/q2/FIG-Q2-07_center_surface_moisture_difference.svg",
+        "png_sha256": "0673f7b0a62732b838d90d1c5fdae74222bc55b7fbf94325ef36e8e42f7f156b",
+        "svg_sha256": "465159427b52bf948ea121e0ac07b2669bf2357b07f784e7391598990bb2c95b",
+        "png_dpi": [
+          300.101,
+          300.101
+        ],
+        "png_dpi_ok": true,
+        "chinese_text_check": "PASS",
+        "english_descriptive_labels": [],
+        "array_checks": [
+          {
+            "array": "time_s",
+            "status": "PASS",
+            "sha256": "f622a27e7c249404585a0e3b310032186764b3b941c86e500fa3b84dc27eb224"
+          },
+          {
+            "array": "center_minus_surface_moisture_kg_kg",
+            "status": "PASS",
+            "sha256": "47013688dcbcc2b38e0afc51ab065d01387abac821f14803a55109e1f5294046"
+          }
+        ]
+      },
+      {
+        "figure_id": "FIG-Q2-08",
+        "source_array_trace": "3/3",
+        "data_trace": "PASS",
+        "png": "deliverables/final/paper/figures/q2/FIG-Q2-08_representative_diffusivity.png",
+        "svg": "deliverables/final/paper/figures/q2/FIG-Q2-08_representative_diffusivity.svg",
+        "png_sha256": "8060b28c7ec321adff49dc7b91d3aa5b96ac50ee35e160fbd001221627839c3a",
+        "svg_sha256": "88240a199bb5758953c513a7f31b137090665e03e5f92e6d750cf9b789e74c92",
+        "png_dpi": [
+          300.101,
+          300.101
+        ],
+        "png_dpi_ok": true,
+        "chinese_text_check": "PASS",
+        "english_descriptive_labels": [],
+        "array_checks": [
+          {
+            "array": "time_s",
+            "status": "PASS",
+            "sha256": "f622a27e7c249404585a0e3b310032186764b3b941c86e500fa3b84dc27eb224"
+          },
+          {
+            "array": "radius_cm",
+            "status": "PASS",
+            "sha256": "de281d0f60f6d986dfc11ad919a781153ccb6c104caca416a21d2877d1d79e70"
+          },
+          {
+            "array": "D_C_T",
+            "status": "PASS",
+            "sha256": "a50d9ab2ad3bdd0f263a5b5b4cf2f73f7255b17c731e0fb5ff7a3258375d70a8"
+          }
+        ]
+      },
+      {
+        "figure_id": "FIG-Q2-V01",
+        "source_array_trace": "2/2",
+        "data_trace": "PASS",
+        "png": "deliverables/final/paper/figures/q2/FIG-Q2-V01_picard_iterations.png",
+        "svg": "deliverables/final/paper/figures/q2/FIG-Q2-V01_picard_iterations.svg",
+        "png_sha256": "f55f5a0607d26ca1e479f4485737414e424fdd96dba0c21b5c3faefa7bc6d6b8",
+        "svg_sha256": "6dc01f3d52d3b14778500e0c15e408dd3ddfb43069f1fa0a3025a6a69cb61692",
+        "png_dpi": [
+          300.101,
+          300.101
+        ],
+        "png_dpi_ok": true,
+        "chinese_text_check": "PASS",
+        "english_descriptive_labels": [],
+        "array_checks": [
+          {
+            "array": "time_s",
+            "status": "PASS",
+            "sha256": "f622a27e7c249404585a0e3b310032186764b3b941c86e500fa3b84dc27eb224"
+          },
+          {
+            "array": "picard_iterations",
+            "status": "PASS",
+            "sha256": "616a556a4292abb989ed81ad3ad397520500331016b9a8934b9dcbfbfbb5b511"
+          }
+        ]
+      },
+      {
+        "figure_id": "FIG-Q2-V02",
+        "source_array_trace": "2/2",
+        "data_trace": "PASS",
+        "png": "deliverables/final/paper/figures/q2/FIG-Q2-V02_mass_residual.png",
+        "svg": "deliverables/final/paper/figures/q2/FIG-Q2-V02_mass_residual.svg",
+        "png_sha256": "092a2df8905ffb4effee316fe20cc855a9439b9f427faa5d3d29fcfcfb1ddd2b",
+        "svg_sha256": "4aa05e109751f365b9b002865502476155f057a73b6672ae6a8f3d7baba46134",
+        "png_dpi": [
+          300.101,
+          300.101
+        ],
+        "png_dpi_ok": true,
+        "chinese_text_check": "PASS",
+        "english_descriptive_labels": [],
+        "array_checks": [
+          {
+            "array": "time_s",
+            "status": "PASS",
+            "sha256": "f622a27e7c249404585a0e3b310032186764b3b941c86e500fa3b84dc27eb224"
+          },
+          {
+            "array": "mass_step_residual",
+            "status": "PASS",
+            "sha256": "c93f45dea459dbab5344c0dd0b98feaf064e8796766f68912794f03678ee9f58"
+          }
+        ]
+      },
+      {
+        "figure_id": "FIG-Q2-V03",
+        "source_array_trace": "2/2",
+        "data_trace": "PASS",
+        "png": "deliverables/final/paper/figures/q2/FIG-Q2-V03_heat_residual.png",
+        "svg": "deliverables/final/paper/figures/q2/FIG-Q2-V03_heat_residual.svg",
+        "png_sha256": "6277c52a4ed877114f591f8444ceb8de8f7b2b24e92086151191cf369a5ccbb7",
+        "svg_sha256": "161d86ca4d2e02f9125845ef836cf296fabc9a0ca032a65d3eaabdee3142cbfa",
+        "png_dpi": [
+          300.101,
+          300.101
+        ],
+        "png_dpi_ok": true,
+        "chinese_text_check": "PASS",
+        "english_descriptive_labels": [],
+        "array_checks": [
+          {
+            "array": "time_s",
+            "status": "PASS",
+            "sha256": "f622a27e7c249404585a0e3b310032186764b3b941c86e500fa3b84dc27eb224"
+          },
+          {
+            "array": "heat_step_residual_j",
+            "status": "PASS",
+            "sha256": "34124582dfcd61bb23fb0606e25417ccf632642fe66c991863d29c67de0ba07b"
+          }
+        ]
+      }
+    ]
+  },
+  "q2_frozen_integrity": {
+    "result2_path": "deliverables/final/result2.xlsx",
+    "sha256_before": "84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da",
+    "sha256_after": "84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da",
+    "sha256_current": "84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da",
+    "expected_sha256": "84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da",
+    "numerical_result_changed": false,
+    "frozen_original_q2_figures_unchanged": true
+  },
+  "q1_q3_q4_metadata_check": {
+    "status": "PASS",
+    "scope": "metadata-only check; no Q1/Q3/Q4 numerical rerun or redraw",
+    "Q1": {
+      "manifest": "figures/q1/FIGURE_MANIFEST.json",
+      "figure_count": 9,
+      "obvious_english_titles": []
+    },
+    "Q3_Q4": {
+      "label_source": "scripts/run_q3_q4_candidate.py",
+      "obvious_english_descriptive_labels": [],
+      "allowed_technical_tokens": [
+        "PCHIP",
+        "Cmax",
+        "R(t)",
+        "t3",
+        "t4",
+        "Q3",
+        "Q4",
+        "cm",
+        "kg/kg",
+        "h",
+        "s"
+      ]
+    },
+    "action": "no redraw required"
+  },
+  "q2_solver_rerun": false,
+  "numerical_result_changed": false,
+  "protected_paths_changed": []
+}

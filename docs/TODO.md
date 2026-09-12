@@ -61,6 +61,7 @@
 | T-051 | P0 | Q3/Q4 | T-050 | DONE | Start Q3/Q4 after explicit authorization | 已获明确授权；Q3/Q4 candidate production、验证和纸面交付包完成，未进入 final | 2026-09-12 |
 | T-052 | P0 | Q3/Q4 | T-051 | DONE | Q3/Q4 candidate deliverables and evidence | `result3.xlsx`、`result4.xlsx`、Table5/6、Fig5-12…18、metrics、validation、candidate manifest 完成；protected paths unchanged | 2026-09-12 |
 | T-053 | P0 | Q3/Q4 human freeze | T-052 | TODO | Human Q3/Q4 freeze approval | 审查 candidate 数值、图表和模型假设后，明确批准是否 COPY ONLY 到 final；批准前不得写 final | 待人工批准 |
+| T-054 | P0 | Q2 paper figures | T-050 | DONE | Q2 Chinese publication figure localization | 只用 frozen result2 的既有图源数据和后处理产物；11/11 PNG、11/11 SVG、PNG ≥300 DPI、data trace 11/11、中文文本 11/11；result2 SHA 前后不变；Q1/Q3/Q4 metadata check PASS | 2026-09-12 |
 
 ## 任务记录模板
 

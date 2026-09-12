@@ -1,0 +1,12 @@
+{
+  "experiment": "Q2_CHINESE_FIGURE_LOCALIZATION",
+  "status": "GENERATED_PENDING_VALIDATION",
+  "manifest": "deliverables/final/paper/figures/q2/Q2_CHINESE_FIGURE_MANIFEST.json",
+  "result2_sha256_before": "84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da",
+  "result2_sha256_after": "84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da",
+  "numerical_result_changed": false,
+  "frozen_original_q2_figures_unchanged": true,
+  "q2_solver_rerun": false,
+  "figure_count": 11,
+  "font": "Microsoft YaHei"
+}
