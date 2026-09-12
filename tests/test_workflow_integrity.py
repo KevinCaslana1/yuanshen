@@ -60,7 +60,8 @@ def test_formal_evidence_records_are_scoped_and_traceable() -> None:
         assert (evidence_dir / "metrics.json").is_file()
         assert (evidence_dir / "notes.md").is_file()
     assert all(path.name in {"result1.xlsx", "result2.xlsx", "result3.xlsx", "result4.xlsx"} for path in CANDIDATE_ROOT.glob("*.xlsx") if not path.name.startswith("~$"))
-    assert {path.name for path in FINAL_ROOT.glob("*.xlsx")} == {"result1.xlsx", "result2.xlsx", "result3.xlsx", "result4.xlsx"}
+    # Office/WPS may keep ignored temporary lock files beside an open workbook.
+    assert {path.name for path in FINAL_ROOT.glob("*.xlsx") if not path.name.startswith("~$")} == {"result1.xlsx", "result2.xlsx", "result3.xlsx", "result4.xlsx"}
 
 
 def test_state_preserves_question_boundaries() -> None:

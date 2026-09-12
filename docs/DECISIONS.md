@@ -629,3 +629,15 @@ early fine-step window 延长到 `5 s` 是数值启动策略修正；ENV-B、物
 ### 状态
 
 `Q3 = FROZEN`；`Q4 = FROZEN`；`LOCAL COMMIT ONLY`；`DO NOT PUSH`。
+
+## D-GITHUB-SYNC-POLICY-20260912 全量 GitHub 同步与永久工作流更新
+
+日期：2026-09-12
+
+人工明确批准：本仓库后续每项任务的完成条件必须包括验证、commit、`fetch`/divergence check、普通 `push origin main`、Git LFS 校验、正式标签同步和远端 SHA 精确核对。仓库 Public 不再作为跳过推送的理由；`LOCAL COMMIT ONLY`、`DO NOT PUSH` 仅在既有历史记录中保留为历史事实，不再作为未来工作流规则。
+
+禁止 force push、reset、rebase、覆盖式回退和历史改写。远端领先或发生 divergence 时必须 fail-closed；普通 push 或 LFS 同步失败时必须报告同步失败，不得伪造完成状态。冻结的 Q1–Q4 数值结果、`A题/` 官方源和失败实验审计记录继续按原规则保护。
+
+状态：`ACTIVE_PERMANENT_WORKFLOW_POLICY`
+
+证据：`AGENTS.md`、`docs/RUNBOOK.md`、`docs/GITHUB_SYNC_POLICY.md`

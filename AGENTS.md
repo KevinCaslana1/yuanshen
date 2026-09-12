@@ -98,6 +98,19 @@
 
 `STATE.md` 只表示当前真实状态，不积累历史；`HANDOFF.md` 只保留下一位 Agent 立即需要的信息。
 
+## 7.1 Mandatory GitHub Sync After Task Completion
+
+自 2026-09-12 起，经人工批准，任务完成的 Git 闭环必须包含 GitHub 同步。该规则适用于本仓库后续所有任务，详见 `docs/GITHUB_SYNC_POLICY.md`：
+
+1. 完成工作后先执行与任务相关的验证、受保护路径检查、敏感信息扫描和 staged diff 检查。
+2. 将所有应纳入版本控制的项目文件和本轮提交纳入普通 Git commit；需要追踪的 Git LFS 对象必须保持可上传状态。
+3. commit 后执行 `git fetch origin`，检查 `origin/main...HEAD` 的 ahead/behind。若远端领先或发生 divergence，停止同步并报告，不覆盖远端历史。
+4. 无冲突时执行普通 `git push origin main`；禁止 force push、reset、rebase、覆盖式回退和历史改写。
+5. 执行 `git lfs push --all origin main`、`git lfs fsck`，并用 `git push origin --tags` 同步正式标签。
+6. 最后用本地 `HEAD` 与 `git ls-remote origin refs/heads/main` 做 SHA 精确比较，确认工作树 clean，并报告同步结果。
+
+`LOCAL COMMIT ONLY`、`DO NOT PUSH` 以及“因为仓库为 Public 所以不推送”不再是未来任务策略，均已被本次人工批准的永久同步政策取代。历史审计记录中的原始表述不得改写；若普通 push 或 LFS 同步失败，任务必须明确标记为 GitHub sync failed，不得宣称闭环完成。
+
 ## 8. 文件地图
 
 - 当前状态：`docs/STATE.md`

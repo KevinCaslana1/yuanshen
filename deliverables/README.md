@@ -18,6 +18,6 @@ deliverables/final/result*.xlsx
 - 任何程序不得直接打开官方模板进行写入。
 - `candidate/` 是可检查、可丢弃的候选结果区。
 - 只有通过验证并获得人工确认的文件才能进入 `final/`。
-- 当前 Q1 状态：`deliverables/candidate/result1.xlsx` 已通过候选校验，人工批准后已按 COPY ONLY 规则写入 `deliverables/final/result1.xlsx`；final 工作簿和 `Q1_MANIFEST.json` 已通过最终验证。Q2 V3 已获人工 freeze approval，`deliverables/candidate/result2.xlsx` 已按字节原样复制到 `deliverables/final/result2.xlsx`，并由 `Q2_MANIFEST.json` 和 `experiments/Q2_FINAL_FREEZE/freeze_record.json` 记录；Q3/Q4 未启动。
+- 当前 Q1 状态：`deliverables/candidate/result1.xlsx` 已通过候选校验，人工批准后已按 COPY ONLY 规则写入 `deliverables/final/result1.xlsx`；final 工作簿和 `Q1_MANIFEST.json` 已通过最终验证。Q2 V3 已获人工 freeze approval，`deliverables/candidate/result2.xlsx` 已按字节原样复制到 `deliverables/final/result2.xlsx`，并由 `Q2_MANIFEST.json` 和 `experiments/Q2_FINAL_FREEZE/freeze_record.json` 记录。Q3/Q4 已获联合人工 freeze approval，candidate 工作簿已按 60 s lattice 规则整理并 COPY ONLY 进入 final，Table5/6、Q3/Q4/对比图和 manifests 也已完成。
 - 生成 Q1 图表时只读取冻结运行源，图表位于 `figures/q1/`，不修改工作簿或官方源。
-- 当前 Q3/Q4 已完成 candidate production：`deliverables/candidate/result3.xlsx`、`result4.xlsx`、Table5/6 和 `paper/figures/fig_5_12..fig_5_18.*` 均已验证；两者仍等待人工 freeze approval，未经批准不得复制到 `deliverables/final/`。
+- Q2 中文 publication 图位于 `deliverables/final/paper/figures/q2/`，与原冻结图目录分离；Q3/Q4 论文表和图位于 `deliverables/final/paper/`，均有对应 manifest 和审计记录。

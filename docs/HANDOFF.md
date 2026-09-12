@@ -1,6 +1,6 @@
 # Handoff
 
-Q1 已 FROZEN/COMPLETE，Q1 早期表面误差深谷已确认为 `pointwise error zero-crossing / cancellation dip`。Q2 V3 已完成 production freeze。Q3/Q4 已获联合人工批准并完成 final freeze；未 push。
+Q1 已 FROZEN/COMPLETE，Q1 早期表面误差深谷已确认为 `pointwise error zero-crossing / cancellation dip`。Q2 V3 已完成 production freeze。Q3/Q4 已获联合人工批准并完成 final freeze；仓库后续任务遵循 `docs/GITHUB_SYNC_POLICY.md` 的全量同步闭环。
 
 ## Q2 当前状态
 
@@ -22,7 +22,7 @@ Q1 已 FROZEN/COMPLETE，Q1 早期表面误差深谷已确认为 `pointwise erro
 - 不修改 `src/q2/*`、生产配置、环境逻辑、采样逻辑、官方 `A题/` 或 Q1 冻结资产。
 - 不把 formal-output 证书扩写为 n=640 full-horizon proof；不把 `14400.25 s` internal probe 写成正式输出失败或物理异常。
 - 不重新计算 Q2、不改写已验证 workbook/原冻结 figure 内容；中文 publication version 仅允许从既有 Q2 图源数据后处理生成，不能改变数值数组。Q2 final workbook 仍只接受已验证 candidate 的 COPY ONLY 结果。
-- 公共 Git 仅本地提交，不推送。
+- 未来任务完成必须执行 `validate → commit → fetch/divergence check → push origin main → LFS verify → remote SHA verify`；仓库为 Public 不构成跳过同步的理由。
 
 ## 历史 provenance
 
@@ -50,3 +50,4 @@ Q1 已 FROZEN/COMPLETE，Q1 早期表面误差深谷已确认为 `pointwise erro
 - Q3/Q4 已按批准完成 candidate→final byte copy；不改变 Q1/Q2，不启动新的 Q3/Q4 数值扩展。
 - Q1 深谷文字保持 `pointwise error zero-crossing / cancellation dip`；Q2 失败历史目录继续保留。
 - Q3/Q4 final-freeze audit 记录：`experiments/Q3_Q4_CANDIDATE/final_freeze_audit.json`；状态 `FINAL_FREEZE_COMPLETE`。
+- GitHub 同步策略已永久更新；历史 freeze 文档中的“本轮未 push”只作为历史事实保留，不作为未来任务指令。

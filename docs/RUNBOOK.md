@@ -74,7 +74,20 @@
 
 其中 `<python-3.12>` 表示已安装的 Python 3.12 解释器路径；不要把 `D:\python.exe` 这个无 pip 的 Python 3.8.10 当作冻结环境。
 
-仓库当前为 Public。此阶段不将 GitHub CI 作为 Gate 依赖，按本 Runbook 在本地执行全部校验即可。
+仓库当前为 Public；GitHub CI 不是本地 Gate 的依赖，但仓库同步本身是任务完成闭环的一部分。未来任务不得因仓库为 Public 而跳过推送；永久同步规则和失败处理见 `docs/GITHUB_SYNC_POLICY.md`。历史文档中出现的 `LOCAL COMMIT ONLY` / `DO NOT PUSH` 仅是当时阶段的审计事实，不再适用于未来任务。
+
+## Mandatory GitHub Sync Policy
+
+每项任务在交付前按以下顺序完成：
+
+1. 运行必要验证，检查 `A题/`、`data/raw/` 和其他冻结路径未被修改；扫描敏感信息并检查 staged diff。
+2. `git add -A` 后创建语义化 commit。
+3. `git fetch origin`，检查 `git rev-list --left-right --count origin/main...HEAD`；远端 ahead 或发生 divergence 时 fail-closed。
+4. 通过后执行普通 `git push origin main`，不使用 force、reset、rebase 或历史改写。
+5. 执行 `git lfs push --all origin main` 与 `git lfs fsck`，再执行 `git push origin --tags` 同步正式标签。
+6. 比较 `git rev-parse HEAD` 与 `git ls-remote origin refs/heads/main`，确认 `git status --short` 为空。
+
+任务只有在验证、commit、普通 push、LFS 检查、标签同步和远端 SHA 校验均成功后才算 GitHub 同步完成。若 push 失败，保留本地提交和错误信息，并报告 `WORK COMPLETE / GITHUB SYNC FAILED`，不得改用危险 Git 操作。
 
 ## Q2 Design Gate Audit
 
@@ -145,7 +158,7 @@ node scripts\\build_q2_candidate.mjs
 .\\.venv\\Scripts\\python.exe scripts\\generate_q2_figures.py
 ```
 
-候选工作簿只有在 field L∞/L2、时间/空间参考、事件邻域、结构/格式/溯源和确定性全部 PASS 后才可生成；任何改变 post-14400 环境规则、dt/grid 或内部精度门的动作都必须先获得新的人工授权。当前只允许本地审计提交，不推送远端。
+候选工作簿只有在 field L∞/L2、时间/空间参考、事件邻域、结构/格式/溯源和确定性全部 PASS 后才可生成；任何改变 post-14400 环境规则、dt/grid 或内部精度门的动作都必须先获得新的人工授权。该段所述“只允许本地审计提交、不推送远端”仅保留为 Q2 accuracy gate 失败阶段的历史事实；自 2026-09-12 起，未来任务按本 Runbook 前述永久同步政策执行。
 
 ### Authorized V3 completion
 
