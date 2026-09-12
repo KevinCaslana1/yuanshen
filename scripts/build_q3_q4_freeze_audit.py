@@ -22,6 +22,8 @@ def rel(path: Path) -> str:
 
 
 def main() -> int:
+    if (ROOT / "deliverables/final/Q3_MANIFEST.json").exists() or (ROOT / "deliverables/final/Q4_MANIFEST.json").exists():
+        raise RuntimeError("Q3/Q4 final freeze is already complete; do not overwrite the approved audit with a pending candidate audit")
     q2 = json.loads(Q2_VALIDATION.read_text(encoding="utf-8"))
     q34 = json.loads(Q34_VALIDATION.read_text(encoding="utf-8"))
     if q2["status"] != "PASS" or q34["status"] != "PASS":

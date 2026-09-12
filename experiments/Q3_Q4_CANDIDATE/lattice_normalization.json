@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "purpose": "official workbook 60 s lattice normalization; exact event rows remain paper/audit-only",
+  "records": [
+    {
+      "path": "deliverables/candidate/result3.xlsx",
+      "before_sha256": "a1ad06d4073c8692cc6a7f289c2052910683a93491ff930e142c47049c29a720",
+      "after_sha256": "08c67308b9b0e67cde2911dd4b701f12c4c024720ad257314bdf16a31d480461",
+      "original_rows": 3450,
+      "final_rows": 3449,
+      "removed_rows": [
+        {
+          "row": 3450,
+          "time_s": 206935.2265625
+        }
+      ],
+      "strict_60_s_lattice": true,
+      "first_time_s": 60.0,
+      "last_time_s": 206880.0,
+      "expected_last_time_s": 206880.0,
+      "solver_rerun": false
+    },
+    {
+      "path": "deliverables/candidate/result4.xlsx",
+      "before_sha256": "2f9c22956b0b634622344c4a26de20598e83cc77604f904e529e3822562b92e8",
+      "after_sha256": "dc6897a80b71577cbcef082d31cf884285f8858f1e1ca8fd613b04feba480586",
+      "original_rows": 3186,
+      "final_rows": 3185,
+      "removed_rows": [
+        {
+          "row": 3186,
+          "time_s": 191097.7336093787
+        }
+      ],
+      "strict_60_s_lattice": true,
+      "first_time_s": 60.0,
+      "last_time_s": 191040.0,
+      "expected_last_time_s": 191040.0,
+      "solver_rerun": false
+    }
+  ],
+  "solver_rerun": false
+}

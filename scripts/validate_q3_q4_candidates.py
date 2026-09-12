@@ -37,6 +37,7 @@ def workbook_audit(path: Path, expected_columns: int, expected_format: str = "0.
     sheets = []
     formula_count = 0
     bad_format = 0
+    nonfinite_numeric_count = 0
     total_rows = 0
     for ws in wb.worksheets:
         row_count = 0
@@ -47,12 +48,37 @@ def workbook_audit(path: Path, expected_columns: int, expected_format: str = "0.
             for cell in row:
                 if cell.data_type == "f" or (isinstance(cell.value, str) and cell.value.startswith("=")):
                     formula_count += 1
+                if isinstance(cell.value, (int, float)) and not math.isfinite(float(cell.value)):
+                    nonfinite_numeric_count += 1
                 if row_count > 1 and cell.value is not None and isinstance(cell.value, (int, float)) and cell.number_format != expected_format:
                     bad_format += 1
         total_rows += row_count
         sheets.append({"name": ws.title, "rows": row_count, "columns": col_count})
     wb.close()
-    return {"path": str(path.relative_to(ROOT)), "sha256": sha256(path), "size_bytes": path.stat().st_size, "sheets": sheets, "formula_count": formula_count, "bad_numeric_format_count": bad_format, "shape_ok": bool(sheets) and all(s["columns"] == expected_columns for s in sheets)}
+    return {"path": str(path.relative_to(ROOT)), "sha256": sha256(path), "size_bytes": path.stat().st_size, "sheets": sheets, "formula_count": formula_count, "bad_numeric_format_count": bad_format, "nonfinite_numeric_count": nonfinite_numeric_count, "shape_ok": bool(sheets) and all(s["columns"] == expected_columns for s in sheets)}
+
+
+def time_lattice_audit(path: Path, expected_last_s: float) -> Dict[str, object]:
+    wb = load_workbook(path, read_only=True, data_only=True)
+    ws = wb.active
+    values = [row[0] for row in ws.iter_rows(min_row=2, min_col=1, max_col=1, values_only=True)]
+    wb.close()
+    times = [float(value) for value in values]
+    lattice_ok = bool(times) and all(
+        time > 0 and abs(time / 60.0 - round(time / 60.0)) <= 1e-12 for time in times
+    )
+    monotone_ok = all(b > a for a, b in zip(times, times[1:]))
+    step_ok = all(abs((b - a) - 60.0) <= 1e-12 for a, b in zip(times, times[1:]))
+    last_ok = bool(times) and abs(times[-1] - expected_last_s) <= 1e-12
+    return {
+        "status": "PASS" if lattice_ok and monotone_ok and step_ok and last_ok else "FAIL",
+        "count": len(times),
+        "first_time_s": times[0] if times else None,
+        "last_time_s": times[-1] if times else None,
+        "expected_last_time_s": expected_last_s,
+        "strict_60_s_lattice": lattice_ok and monotone_ok and step_ok,
+        "last_time_matches_floor_event_lattice": last_ok,
+    }
 
 
 def read_matrix_csv(path: Path) -> List[List[str]]:
@@ -134,11 +160,15 @@ def main() -> None:
     q4 = q4_audit()
     result3 = workbook_audit(ROOT / "deliverables/candidate/result3.xlsx", 22)
     result4 = workbook_audit(ROOT / "deliverables/candidate/result4.xlsx", 22)
+    result3["time_lattice"] = time_lattice_audit(ROOT / "deliverables/candidate/result3.xlsx", math.floor(q3["t3_s"] / 60.0) * 60.0)
+    result4["time_lattice"] = time_lattice_audit(ROOT / "deliverables/candidate/result4.xlsx", math.floor(q4["t4_s"] / 60.0) * 60.0)
     table5 = workbook_audit(ROOT / "deliverables/candidate/tables/q3_table5.xlsx", 7)
     table6 = workbook_audit(ROOT / "deliverables/candidate/tables/q4_table6.xlsx", 9)
     for audit in (result3, result4, table5, table6):
-        if audit["formula_count"] or audit["bad_numeric_format_count"] or not audit["shape_ok"]:
+        if audit["formula_count"] or audit["bad_numeric_format_count"] or audit["nonfinite_numeric_count"] or not audit["shape_ok"]:
             raise AssertionError(f"workbook audit failed: {audit}")
+    if result3["time_lattice"]["status"] != "PASS" or result4["time_lattice"]["status"] != "PASS":
+        raise AssertionError(f"official 60 s lattice audit failed: {result3['time_lattice']} / {result4['time_lattice']}")
     figures = figure_audit(ROOT / "deliverables/candidate/paper/figures", ["fig_5_12_q3_radial_moisture_profiles", "fig_5_13_q3_moisture_histories", "fig_5_14_q3_threshold_sensitivity", "fig_5_15_q4_radius_pchip", "fig_5_16_q4_dynamic_radial_moisture", "fig_5_17_q4_radius_and_mean", "fig_5_18_q3_q4_drying_time_comparison"])
     if not figures["all_png_dpi_ge_300"]:
         raise AssertionError("PNG DPI validation failed")

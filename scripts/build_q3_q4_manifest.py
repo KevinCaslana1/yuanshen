@@ -43,7 +43,7 @@ def main() -> None:
         "q3_summary": json.loads((ROOT / "experiments/Q3_PRODUCTION/q3_summary.json").read_text(encoding="utf-8")),
         "q4_summary": json.loads((ROOT / "experiments/Q4_PRODUCTION/q4_summary.json").read_text(encoding="utf-8")),
         "validation": json.loads((ROOT / "deliverables/candidate/Q3_Q4_VALIDATION.json").read_text(encoding="utf-8")),
-        "test_result": "60 passed",
+        "test_result": "65 passed",
         "candidate_files": [file_entry(path) for path in candidate_files],
         "figure_files": [file_entry(path) for path in figure_files],
         "protected_paths": ["A题/", "src/q1/", "src/q2/", "deliverables/final/result2.xlsx", "deliverables/final/figures/q2/"],

@@ -1,0 +1,180 @@
+{
+  "schema_version": "Q3_FINAL_FREEZE_MANIFEST_V1",
+  "status": "FROZEN",
+  "freeze_approval_status": "APPROVED",
+  "solver_rerun_during_freeze": false,
+  "q2_final_sha256": "84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da",
+  "threshold_kg_kg": 0.15,
+  "drying_time_s": 206935.2265625,
+  "drying_time_h": 57.482007378472225,
+  "event_bracket_s": [
+    206935.0,
+    206936.0
+  ],
+  "event_refinement_bracket_s": [
+    206935.2255859375,
+    206935.2265625
+  ],
+  "event_time_uncertainty_s": 0.0009765625,
+  "event_time_uncertainty_method": "width of final local BE/Picard bracket",
+  "t_before_max_c": 0.1500000658293865,
+  "t_after_max_c": 0.14999977460230157,
+  "threshold_proof": "PASS",
+  "argmax_radius_before_cm": 0.0,
+  "argmax_radius_after_cm": 0.0,
+  "source": {
+    "q2_raw_path": "experiments\\Q2_FREEZE_RUN_V3\\run_1\\official_samples_raw.csv",
+    "q2_raw_sha256": "8da13480ea9bb4f752682e409e7f96ca7547c36db698a72696fc2f8229c7d6bf"
+  },
+  "workbook": {
+    "candidate_path": "deliverables/candidate/result3.xlsx",
+    "final_path": "deliverables/final/result3.xlsx",
+    "candidate_sha256": "08c67308b9b0e67cde2911dd4b701f12c4c024720ad257314bdf16a31d480461",
+    "final_sha256": "08c67308b9b0e67cde2911dd4b701f12c4c024720ad257314bdf16a31d480461",
+    "candidate_size_bytes": 904437,
+    "final_size_bytes": 904437,
+    "byte_identical": true,
+    "dimensions": [
+      {
+        "name": "Sheet1",
+        "rows": 3449,
+        "columns": 22
+      }
+    ],
+    "formula_count": 0,
+    "bad_numeric_format_count": 0,
+    "nonfinite_numeric_count": 0,
+    "time_lattice": {
+      "status": "PASS",
+      "count": 3448,
+      "first_time_s": 60.0,
+      "last_time_s": 206880.0,
+      "expected_last_time_s": 206880.0,
+      "strict_60_s_lattice": true,
+      "last_time_matches_floor_event_lattice": true
+    }
+  },
+  "table5": {
+    "source_csv": "experiments/Q3_PRODUCTION/table5.csv",
+    "trace": {
+      "status": "PASS",
+      "cells": "77/77",
+      "source_csv_sha256": "03db9710fcbfda8081f6b9070c4f62a085eb93f82afbba0998f703d72e58055f",
+      "final_xlsx_sha256": "459989b94a3a7e8c574c833e06301ae53b5f7e7bf58c71be4e3dd75b3d9bf270"
+    },
+    "outputs": {
+      "csv": {
+        "candidate_path": "deliverables/candidate/paper/tables/table5_q3.csv",
+        "final_path": "deliverables/final/paper/tables/table5_q3.csv",
+        "candidate_sha256": "03db9710fcbfda8081f6b9070c4f62a085eb93f82afbba0998f703d72e58055f",
+        "final_sha256": "03db9710fcbfda8081f6b9070c4f62a085eb93f82afbba0998f703d72e58055f",
+        "candidate_size_bytes": 541,
+        "final_size_bytes": 541,
+        "byte_identical": true
+      },
+      "md": {
+        "candidate_path": "deliverables/candidate/paper/tables/table5_q3.md",
+        "final_path": "deliverables/final/paper/tables/table5_q3.md",
+        "candidate_sha256": "82a5b8aa68f65a3cc8fcff03fbf7155a7a3d62322fd7b327eafc947c22fc9cf2",
+        "final_sha256": "82a5b8aa68f65a3cc8fcff03fbf7155a7a3d62322fd7b327eafc947c22fc9cf2",
+        "candidate_size_bytes": 762,
+        "final_size_bytes": 762,
+        "byte_identical": true
+      },
+      "xlsx": {
+        "candidate_path": "deliverables/candidate/paper/tables/table5_q3.xlsx",
+        "final_path": "deliverables/final/paper/tables/table5_q3.xlsx",
+        "candidate_sha256": "459989b94a3a7e8c574c833e06301ae53b5f7e7bf58c71be4e3dd75b3d9bf270",
+        "final_sha256": "459989b94a3a7e8c574c833e06301ae53b5f7e7bf58c71be4e3dd75b3d9bf270",
+        "candidate_size_bytes": 4349,
+        "final_size_bytes": 4349,
+        "byte_identical": true
+      }
+    }
+  },
+  "figures": {
+    "count": 3,
+    "trace": "3/3",
+    "items": [
+      {
+        "stem": "fig_5_12_q3_radial_moisture_profiles",
+        "png": {
+          "candidate_path": "deliverables/candidate/paper/figures/fig_5_12_q3_radial_moisture_profiles.png",
+          "final_path": "deliverables/final/paper/figures/q3/fig_5_12_q3_radial_moisture_profiles.png",
+          "candidate_sha256": "863b4fb553836457c0e8d67d4f7906ff44190945100aeac221f7718980657db4",
+          "final_sha256": "863b4fb553836457c0e8d67d4f7906ff44190945100aeac221f7718980657db4",
+          "candidate_size_bytes": 179648,
+          "final_size_bytes": 179648,
+          "byte_identical": true
+        },
+        "svg": {
+          "candidate_path": "deliverables/candidate/paper/figures/fig_5_12_q3_radial_moisture_profiles.svg",
+          "final_path": "deliverables/final/paper/figures/q3/fig_5_12_q3_radial_moisture_profiles.svg",
+          "candidate_sha256": "48bbedba320b23abec473be53f0146390b00c20ff1c70fd661458634fef0a5a4",
+          "final_sha256": "48bbedba320b23abec473be53f0146390b00c20ff1c70fd661458634fef0a5a4",
+          "candidate_size_bytes": 49334,
+          "final_size_bytes": 49334,
+          "byte_identical": true
+        },
+        "png_dpi": [
+          359.9942,
+          359.9942
+        ],
+        "trace": "3/3"
+      },
+      {
+        "stem": "fig_5_13_q3_moisture_histories",
+        "png": {
+          "candidate_path": "deliverables/candidate/paper/figures/fig_5_13_q3_moisture_histories.png",
+          "final_path": "deliverables/final/paper/figures/q3/fig_5_13_q3_moisture_histories.png",
+          "candidate_sha256": "e28b7e5803627e39e96845da67af5fd21cdd927a631149581e17913db8c00e12",
+          "final_sha256": "e28b7e5803627e39e96845da67af5fd21cdd927a631149581e17913db8c00e12",
+          "candidate_size_bytes": 170349,
+          "final_size_bytes": 170349,
+          "byte_identical": true
+        },
+        "svg": {
+          "candidate_path": "deliverables/candidate/paper/figures/fig_5_13_q3_moisture_histories.svg",
+          "final_path": "deliverables/final/paper/figures/q3/fig_5_13_q3_moisture_histories.svg",
+          "candidate_sha256": "33de07ee4e0cde176c5ff27a1bf21d61463e8ac1ead70c01eba02d525bf72ced",
+          "final_sha256": "33de07ee4e0cde176c5ff27a1bf21d61463e8ac1ead70c01eba02d525bf72ced",
+          "candidate_size_bytes": 43473,
+          "final_size_bytes": 43473,
+          "byte_identical": true
+        },
+        "png_dpi": [
+          359.9942,
+          359.9942
+        ],
+        "trace": "3/3"
+      },
+      {
+        "stem": "fig_5_14_q3_threshold_sensitivity",
+        "png": {
+          "candidate_path": "deliverables/candidate/paper/figures/fig_5_14_q3_threshold_sensitivity.png",
+          "final_path": "deliverables/final/paper/figures/q3/fig_5_14_q3_threshold_sensitivity.png",
+          "candidate_sha256": "03b59da6aab7c21281191b91bcca561d3430e7561e8fda1285cbedb846a76f8b",
+          "final_sha256": "03b59da6aab7c21281191b91bcca561d3430e7561e8fda1285cbedb846a76f8b",
+          "candidate_size_bytes": 118940,
+          "final_size_bytes": 118940,
+          "byte_identical": true
+        },
+        "svg": {
+          "candidate_path": "deliverables/candidate/paper/figures/fig_5_14_q3_threshold_sensitivity.svg",
+          "final_path": "deliverables/final/paper/figures/q3/fig_5_14_q3_threshold_sensitivity.svg",
+          "candidate_sha256": "e8ca9b74acfd20084d41be87a14d8435e93ca48c5c78120ae25aee6f76c10a36",
+          "final_sha256": "e8ca9b74acfd20084d41be87a14d8435e93ca48c5c78120ae25aee6f76c10a36",
+          "candidate_size_bytes": 39032,
+          "final_size_bytes": 39032,
+          "byte_identical": true
+        },
+        "png_dpi": [
+          359.9942,
+          359.9942
+        ],
+        "trace": "3/3"
+      }
+    ]
+  },
+  "paper_assets_manifest": "deliverables/final/paper/PAPER_ASSET_MANIFEST.json"
+}

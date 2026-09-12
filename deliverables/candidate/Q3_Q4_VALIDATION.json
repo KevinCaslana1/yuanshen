@@ -41,33 +41,53 @@
   "workbooks": {
     "result3": {
       "path": "deliverables\\candidate\\result3.xlsx",
-      "sha256": "a1ad06d4073c8692cc6a7f289c2052910683a93491ff930e142c47049c29a720",
-      "size_bytes": 921531,
+      "sha256": "08c67308b9b0e67cde2911dd4b701f12c4c024720ad257314bdf16a31d480461",
+      "size_bytes": 904437,
       "sheets": [
         {
           "name": "Sheet1",
-          "rows": 3450,
+          "rows": 3449,
           "columns": 22
         }
       ],
       "formula_count": 0,
       "bad_numeric_format_count": 0,
-      "shape_ok": true
+      "nonfinite_numeric_count": 0,
+      "shape_ok": true,
+      "time_lattice": {
+        "status": "PASS",
+        "count": 3448,
+        "first_time_s": 60.0,
+        "last_time_s": 206880.0,
+        "expected_last_time_s": 206880.0,
+        "strict_60_s_lattice": true,
+        "last_time_matches_floor_event_lattice": true
+      }
     },
     "result4": {
       "path": "deliverables\\candidate\\result4.xlsx",
-      "sha256": "2f9c22956b0b634622344c4a26de20598e83cc77604f904e529e3822562b92e8",
-      "size_bytes": 656084,
+      "sha256": "dc6897a80b71577cbcef082d31cf884285f8858f1e1ca8fd613b04feba480586",
+      "size_bytes": 655006,
       "sheets": [
         {
           "name": "Sheet1",
-          "rows": 3186,
+          "rows": 3185,
           "columns": 22
         }
       ],
       "formula_count": 0,
       "bad_numeric_format_count": 0,
-      "shape_ok": true
+      "nonfinite_numeric_count": 0,
+      "shape_ok": true,
+      "time_lattice": {
+        "status": "PASS",
+        "count": 3184,
+        "first_time_s": 60.0,
+        "last_time_s": 191040.0,
+        "expected_last_time_s": 191040.0,
+        "strict_60_s_lattice": true,
+        "last_time_matches_floor_event_lattice": true
+      }
     },
     "table5": {
       "path": "deliverables\\candidate\\tables\\q3_table5.xlsx",
@@ -82,6 +102,7 @@
       ],
       "formula_count": 0,
       "bad_numeric_format_count": 0,
+      "nonfinite_numeric_count": 0,
       "shape_ok": true
     },
     "table6": {
@@ -97,6 +118,7 @@
       ],
       "formula_count": 0,
       "bad_numeric_format_count": 0,
+      "nonfinite_numeric_count": 0,
       "shape_ok": true
     }
   },

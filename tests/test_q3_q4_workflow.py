@@ -27,10 +27,25 @@ def test_q3_result3_shape_and_monotonic_time() -> None:
     ws = wb.active
     rows = list(ws.iter_rows(values_only=True))
     wb.close()
-    assert len(rows) == 3450
+    assert len(rows) == 3449
     assert len(rows[0]) == 22
     assert list(rows[0][1:]) == [i / 10 for i in range(21)]
-    assert rows[-1][0] == json.loads((ROOT / "experiments/Q3_PRODUCTION/q3_summary.json").read_text(encoding="utf-8"))["t3_s"]
+    t3 = json.loads((ROOT / "experiments/Q3_PRODUCTION/q3_summary.json").read_text(encoding="utf-8"))["t3_s"]
+    assert rows[-1][0] == int(t3 // 60) * 60
+    assert all(rows[i][0] > 0 and rows[i][0] % 60 == 0 for i in range(1, len(rows)))
+    assert all(rows[i][0] < rows[i + 1][0] for i in range(1, len(rows) - 1))
+
+
+def test_q4_result4_uses_strict_60_second_lattice() -> None:
+    wb = load_workbook(ROOT / "deliverables/candidate/result4.xlsx", read_only=True, data_only=True)
+    ws = wb.active
+    rows = list(ws.iter_rows(values_only=True))
+    wb.close()
+    assert len(rows) == 3185
+    assert len(rows[0]) == 22
+    t4 = json.loads((ROOT / "experiments/Q4_PRODUCTION/q4_summary.json").read_text(encoding="utf-8"))["t4_s"]
+    assert rows[-1][0] == int(t4 // 60) * 60
+    assert all(rows[i][0] > 0 and rows[i][0] % 60 == 0 for i in range(1, len(rows)))
     assert all(rows[i][0] < rows[i + 1][0] for i in range(1, len(rows) - 1))
 
 

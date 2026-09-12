@@ -407,3 +407,22 @@ Agent 自动完成模型冻结。`result2.xlsx`、candidate/final workbook 均�
 | Full tests | `pytest -q` | `64 passed` | PASS |
 
 证据：`scripts/generate_q2_chinese_publication_figures.py`、`scripts/validate_q2_chinese_publication_figures.py`、`scripts/build_q3_q4_freeze_audit.py`、`experiments/Q2_CHINESE_FIGURE_LOCALIZATION/validation.json`、`experiments/Q3_Q4_CANDIDATE/final_freeze_audit.json`。Q1 深谷仍只能表述为 `pointwise error zero-crossing / cancellation dip`，不得改写为突然精度提高。
+
+## CUMCM Q3 + Q4 JOINT FINAL FREEZE GATE（2026-09-12）
+
+本 Gate 依据人工联合最终冻结授权执行。没有重新运行 Q3/Q4 全程 solver；对既有 candidate 进行只读审计、严格 60 s 官方工作簿契约修正、byte-identical COPY ONLY 和最终论文资产登记。
+
+| Gate item | Evidence | Status |
+|---|---|---|
+| Q3 threshold proof | `[206935,206936] s`；before/after `max C` 分别 `0.1500000658293865` / `0.14999977460230157`；`t3=206935.2265625 s` | PASS |
+| Q3 workbook contract | `3449×22`；`60..206880 s` strict 60 s lattice；no formulas; no NaN/Inf; `0.0000` | PASS |
+| Q3 candidate/final hash | `08c67308b9b0e67cde2911dd4b701f12c4c024720ad257314bdf16a31d480461` identical | PASS |
+| Q3 Table5 | canonical source trace `77/77`；exact event time only in table/audit | PASS |
+| Q3 figures | 3 PNG/SVG groups；PNG ≥300 DPI；trace `3/3` | PASS |
+| Q4 threshold proof | `[191096,191100] s`；before/after `max C` 分别 `0.15000087683231333` / `0.14999885377291058`；`t4=191097.7336093787 s` | PASS |
+| Q4 workbook contract | `3185×22`；`60..191040 s` strict 60 s lattice；no formulas; no NaN/Inf; `0.0000` | PASS |
+| Q4 candidate/final hash | `dc6897a80b71577cbcef082d31cf884285f8858f1e1ca8fd613b04feba480586` identical | PASS |
+| Q4 moving domain | PCHIP node error `0`；outside-domain violations `0`；surface uses `C(R(t),t)`；Table6 trace `90/90` | PASS |
+| Q4 figures/comparison | Q4 trace `4/4`；comparison trace `1/1`；PNG ≥300 DPI | PASS |
+| Q1/Q2/protected integrity | Q1/Q2 frozen assets and `A题/` unchanged | PASS |
+| Final manifests/audits | Q3/Q4 manifests、paper asset manifest、freeze audit and audit docs present | PASS |

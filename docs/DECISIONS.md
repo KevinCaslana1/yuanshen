@@ -607,3 +607,25 @@ early fine-step window 延长到 `5 s` 是数值启动策略修正；ENV-B、物
 - Q1/Q3/Q4 完成 metadata-only 语言检查；Q1 cancellation dip 解释、Q3/Q4 现有数学/算法记号均保持不变。
 
 状态：`Q2 NUMERICALLY FROZEN; CHINESE PUBLICATION FIGURE PACKAGE VALIDATED`
+
+## D-Q3-Q4-HUMAN-FINAL-FREEZE-20260912 Q3/Q4 联合最终冻结
+
+日期：2026-09-12
+问题：Q3/Q4
+
+### 最终决定
+
+人工批准 Q3/Q4 联合最终冻结。复用已验证 Q3/Q4 candidate 证据，不重跑全程 solver；将 candidate 工作簿按官方 60 s lattice 契约整理后，仅以字节原样复制进入 `deliverables/final/`，并冻结 Table5/6、Q3/Q4/对比图、final manifests 和审计文档。
+
+精确事件时刻只用于论文表格和 freeze audit，不强插入 `result3.xlsx` 或 `result4.xlsx` 的 60 s lattice。Q4 固定物理位置 `r>R(t)` 保持 blank/unavailable，表面值单独取 `C(R(t),t)`。
+
+### 证据
+
+- Q3 threshold proof、event bracket、局部不确定度、critical radius 和 source trace：`docs/Q3_FINAL_FREEZE_AUDIT.md`。
+- Q4 threshold proof、`R(t4)`、PCHIP 节点误差、moving-domain、surface extraction 和守恒/Robin：`docs/Q4_FINAL_FREEZE_AUDIT.md`。
+- final manifest：`deliverables/final/Q3_MANIFEST.json`、`deliverables/final/Q4_MANIFEST.json`、`deliverables/final/paper/PAPER_ASSET_MANIFEST.json`。
+- freeze record：`experiments/Q3_Q4_CANDIDATE/final_freeze_audit.json`。
+
+### 状态
+
+`Q3 = FROZEN`；`Q4 = FROZEN`；`LOCAL COMMIT ONLY`；`DO NOT PUSH`。

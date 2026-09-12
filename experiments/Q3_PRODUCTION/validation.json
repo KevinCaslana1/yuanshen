@@ -21,18 +21,28 @@
   },
   "result3": {
     "path": "deliverables\\candidate\\result3.xlsx",
-    "sha256": "a1ad06d4073c8692cc6a7f289c2052910683a93491ff930e142c47049c29a720",
-    "size_bytes": 921531,
+    "sha256": "08c67308b9b0e67cde2911dd4b701f12c4c024720ad257314bdf16a31d480461",
+    "size_bytes": 904437,
     "sheets": [
       {
         "name": "Sheet1",
-        "rows": 3450,
+        "rows": 3449,
         "columns": 22
       }
     ],
     "formula_count": 0,
     "bad_numeric_format_count": 0,
-    "shape_ok": true
+    "nonfinite_numeric_count": 0,
+    "shape_ok": true,
+    "time_lattice": {
+      "status": "PASS",
+      "count": 3448,
+      "first_time_s": 60.0,
+      "last_time_s": 206880.0,
+      "expected_last_time_s": 206880.0,
+      "strict_60_s_lattice": true,
+      "last_time_matches_floor_event_lattice": true
+    }
   },
   "table5": {
     "path": "deliverables\\candidate\\tables\\q3_table5.xlsx",
@@ -47,6 +57,7 @@
     ],
     "formula_count": 0,
     "bad_numeric_format_count": 0,
+    "nonfinite_numeric_count": 0,
     "shape_ok": true
   },
   "figures": {

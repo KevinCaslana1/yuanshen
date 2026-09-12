@@ -29,6 +29,13 @@ function numberOrBlank(value) {
   return Number.isFinite(n) ? n : value;
 }
 
+function isOfficialOutputTime(value) {
+  const time = Number(value);
+  if (!Number.isFinite(time) || time <= 0) return false;
+  const latticeIndex = Math.round(time / 60);
+  return Math.abs(time - latticeIndex * 60) <= 1e-9;
+}
+
 async function importTemplate(path) {
   const bytes = await fs.readFile(path);
   return SpreadsheetFile.importXlsx(bytes);
@@ -43,10 +50,20 @@ async function writeOfficialMatrix(templatePath, sourceCsv, outputPath, kind) {
   const rows = [];
   if (kind === "q3") {
     rows.push([templateHeader, ...Array.from({ length: 21 }, (_, i) => i / 10)]);
-    for (const source of parsed.slice(1)) rows.push([Number(source[0]), ...source.slice(1, 22).map(numberOrBlank)]);
+    for (const source of parsed.slice(1)) {
+      // The exact threshold event time belongs in the paper table and freeze
+      // audit, never in the official 60 s result workbook lattice.
+      if (!isOfficialOutputTime(source[0])) continue;
+      rows.push([Number(source[0]), ...source.slice(1, 22).map(numberOrBlank)]);
+    }
   } else {
     rows.push([templateHeader, ...Array.from({ length: 20 }, (_, i) => i / 10), templateSurface]);
-    for (const source of parsed.slice(1)) rows.push([Number(source[0]), ...source.slice(1, 22).map(numberOrBlank)]);
+    for (const source of parsed.slice(1)) {
+      // The exact threshold event time belongs in the paper table and freeze
+      // audit, never in the official 60 s result workbook lattice.
+      if (!isOfficialOutputTime(source[0])) continue;
+      rows.push([Number(source[0]), ...source.slice(1, 22).map(numberOrBlank)]);
+    }
   }
   const end = `${columnName(rows[0].length - 1)}${rows.length}`;
   sheet.getRange(`A1:${end}`).values = rows;

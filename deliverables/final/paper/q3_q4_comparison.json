@@ -1,0 +1,10 @@
+{
+  "status": "CANDIDATE",
+  "q3_t3_s": 206935.2265625,
+  "q3_t3_h": 57.482007378472225,
+  "q4_t4_s": 191097.7336093787,
+  "q4_t4_h": 53.08270378038297,
+  "delta_s_q4_minus_q3": -15837.492953121313,
+  "relative_delta": -0.07653357630890342,
+  "interpretation": "Q3 fixed-radius and Q4 prescribed-shrinkage candidates are reported separately; no superiority claim is frozen."
+}

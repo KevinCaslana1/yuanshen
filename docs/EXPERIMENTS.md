@@ -211,3 +211,18 @@ Q3 endpoint 的 `t3` 使用局部求解的第一个严格低于阈值子步时�
 Q1/Q3/Q4 只做了一次 paper-figure metadata 检查，没有数值重算或重画：Q1 manifest 未发现明显英文标题，Q3/Q4 现有 label source 未发现明显英文描述标签；`PCHIP`、`Cmax`、`R(t)`、`t3/t4` 保留为算法或数学记号。Q1 的 `pointwise error zero-crossing / cancellation dip` 解释不变。
 
 Q2 中文 publication figure freeze 与 Q2 numerical/result freeze 分开记录；原 `deliverables/final/figures/q2/` 文件哈希通过对照且未被覆盖。Q3/Q4 候选 final-freeze audit 同步完成，但仍等待人工批准，不把候选工作簿复制到 final。
+
+## Q3/Q4 Joint Final Freeze（2026-09-12）
+
+人工授权已批准 Q3/Q4 联合最终冻结。本阶段不重跑 Q3/Q4 solver；仅对已验证 candidate 做官方交付契约修正、byte-copy 和最终资产登记。精确事件时刻保留在论文 Table5/6 与 freeze audit，不写入严格 60 s workbook lattice。
+
+| Item | Result | Evidence |
+|---|---|---|
+| Q3 event proof | PASS；`t3=206935.2265625 s`，最终局部 bracket 宽度 `0.0009765625 s`，critical `r=0.0 cm` | `experiments/Q3_PRODUCTION/validation.json`、`docs/Q3_FINAL_FREEZE_AUDIT.md` |
+| Q4 event proof | PASS；`t4=191097.7336093787 s`，局部细化分辨率 `0.0625 s`，`R(t4)=1.2 cm`，critical `ξ=0` | `experiments/Q4_PRODUCTION/validation.json`、`docs/Q4_FINAL_FREEZE_AUDIT.md` |
+| Official workbooks | Q3 `3449×22`、Q4 `3185×22`；严格 60 s lattice；无公式、无 NaN/Inf、四位小数 | `deliverables/final/Q3_MANIFEST.json`、`deliverables/final/Q4_MANIFEST.json` |
+| Tables | Table5 trace `77/77`；Table6 trace `90/90` | `deliverables/final/paper/tables/` |
+| Figures | Q3 `3/3`、Q4 `4/4`、comparison `1/1`；PNG ≥300 DPI | `deliverables/final/paper/PAPER_ASSET_MANIFEST.json` |
+| Freeze audit | `FINAL_FREEZE_COMPLETE / APPROVED` | `experiments/Q3_Q4_CANDIDATE/final_freeze_audit.json` |
+
+Q3/Q4 final paper asset整理与数值冻结分开留痕；历史失败实验保留，未 push 远程。
