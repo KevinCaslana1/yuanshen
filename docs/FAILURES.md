@@ -318,6 +318,20 @@ sampler只登记 21600/86400/172800/259200 s，因此后处理抛出 `KeyError: 
 
 状态：RESOLVED；保留本记录作为审计 provenance。
 
+## FAIL-Q4-001 Q4 事件时刻未达到论文数值不确定度门
+
+问题：Q4
+
+症状：A/B/C/D 分离实验确认时间步影响约 `4.8 s`，而固定 `dt=2 s` 的空间细化从 `n=144` 到 `n=192` 仍改变事件 `285.3453534968 s`（`0.0792625982 h`）。`n=192,dt=2 s` 的 root 已局部细化至 `0.0625 s`，故该阻塞不是事件 root 定位分辨率造成。
+
+定位与影响：当前独立 field discretization uncertainty 的保守估计约 `0.0806158781 h`，超过 `0.00005 h` 论文门。独立 PCHIP/linear 差异为 `21.7324270228 s`，小于细层空间差异但不是零。Q4 当前不能标记为 numerical convergence PASS，不能生成 corrected candidate，也不能修改 final `result4.xlsx`、Table6 或 Q4 图。
+
+处理：按 `SPATIAL DOMINANT` 规则只完成最小必要 `n=192,dt=2 s` refinement；保留 PCHIP；未以外部 `51.0823 h` 拟合；未运行更高层级或 Richardson 外推。
+
+证据：`experiments/Q4_CONVERGENCE_FINAL/q4_error_decomposition.json`、`docs/Q4_CONVERGENCE_FINAL.md`。
+
+状态：SUPPORTED / BLOCKED_PENDING_HUMAN_DECISION；旧 Q4 freeze 与失败历史均保留。
+
 ## FAIL-Q2-009 Q2 production freeze accuracy gate failed
 
 问题：Q2

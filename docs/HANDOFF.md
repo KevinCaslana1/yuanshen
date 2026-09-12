@@ -1,6 +1,6 @@
 # Handoff
 
-Q1 已 FROZEN/COMPLETE，Q1 早期表面误差深谷已确认为 `pointwise error zero-crossing / cancellation dip`。Q2 V3 已完成 production freeze。Q3 final 通过独立核验；Q4 数值 final 保留但独立精化核验 HOLD（n=96,dt=4 与 n=144,dt=2 的事件时刻四位数不稳定），不得替换 final 或写成收敛证据；仓库后续任务遵循 `docs/GITHUB_SYNC_POLICY.md` 的全量同步闭环。
+Q1 已 FROZEN/COMPLETE，Q1 早期表面误差深谷已确认为 `pointwise error zero-crossing / cancellation dip`。Q2 V3 已完成 production freeze。Q3 final 通过独立核验；Q4 数值 final 保留，独立收敛终结审计以 A/B/C/D/E（含 `n=192,dt=2`）确认空间项主导，但细层 D→E 仍为 `0.0792625982 h`，保守不确定度 `0.0806158781 h`，因此 Q4 NUMERICAL CONVERGENCE HOLD，不得替换 final 或写成收敛证据；仓库后续任务遵循 `docs/GITHUB_SYNC_POLICY.md` 的全量同步闭环。
 
 ## Q2 当前状态
 
@@ -43,11 +43,11 @@ Q1 已 FROZEN/COMPLETE，Q1 早期表面误差深谷已确认为 `pointwise erro
 - 方法：Appendix 4 properties；Attachment 2 `PchipInterpolator`-compatible monotone cubic；`ξ=r/R(t)` dynamic FVM/BE/Picard；Attachment 2 tail after `259200 s` holds at `R_last=1.198 cm`。
 - 结果：粗夹逼 `[191096,191100] s`；`t4=191097.7336093787 s=53.0827037804 h`，`R(t4)=1.2 cm`，`Cmax_before=0.15000087683231333`，`Cmax_after=0.14999885377291058`，critical `ξ=0`/`r=0 cm`。
 - 交付：`deliverables/final/result4.xlsx`、`deliverables/final/paper/tables/table6_q4.*`、`deliverables/final/paper/figures/q4/`、`deliverables/final/paper/figures/comparison/`、`deliverables/final/Q4_MANIFEST.json`、`docs/Q4_FINAL_FREEZE_AUDIT.md`。
-- 冻结工作簿结构校验仍 PASS；新增独立核验为 HOLD：独立 n=96,dt=4 s 与冻结事件一致，但 n=144,dt=2 s 得 `52.8302 h`，相对 `53.0827 h` 不稳定。证据见 `experiments/Q34_INDEPENDENT_AUDIT/`；在人工复核前不更新 Q4 final。
+- 冻结工作簿结构校验仍 PASS；新增 A/B/C/D/E 收敛核验显示空间项主导，E=`n=192,dt=2 s` 得 `52.7509055656 h`，D→E=`0.0792625982 h`，根区间宽 `0.0625 s`，保守不确定度 `0.0806158781 h > 0.00005 h`。证据见 `experiments/Q4_CONVERGENCE_FINAL/` 与 `docs/Q4_CONVERGENCE_FINAL.md`；不创建 corrected candidate，不更新 Q4 final。
 
 ## 最终边界
 
-- Q3 已通过独立核验；Q4 保留已冻结 candidate→final byte copy，但独立核验 HOLD；不改变 Q1/Q2/Q4 final，不把更细审计候选提升为交付。
+- Q3 已通过独立核验；Q4 保留已冻结 candidate→final byte copy，但数值收敛 HOLD；不改变 Q1/Q2/Q4 final，不把 E 层审计结果提升为交付。
 - Q1 深谷文字保持 `pointwise error zero-crossing / cancellation dip`；Q2 失败历史目录继续保留。
 - Q3/Q4 final-freeze audit 记录：`experiments/Q3_Q4_CANDIDATE/final_freeze_audit.json`；状态 `FINAL_FREEZE_COMPLETE`。
 - GitHub 同步策略已永久更新；历史 freeze 文档中的“本轮未 push”只作为历史事实保留，不作为未来任务指令。

@@ -641,3 +641,15 @@ early fine-step window 延长到 `5 s` 是数值启动策略修正；ENV-B、物
 状态：`ACTIVE_PERMANENT_WORKFLOW_POLICY`
 
 证据：`AGENTS.md`、`docs/RUNBOOK.md`、`docs/GITHUB_SYNC_POLICY.md`
+
+## D-Q4-CONVERGENCE-FINAL-20260913 Q4 时空误差分离与收敛门
+
+问题：Q4
+
+人工授权要求先分离空间误差和时间误差，再按主导误差执行最小必要 refinement。独立 A/B/C/D 结果显示时间影响约 `4.8 s`，空间影响约 `904.3 s`，空间主导；因此选择 `n=192,dt=2 s`，不运行 `n=144,dt=1 s`。该层局部 root 分辨率为 `0.0625 s`，事件 `52.7509055656 h`，但 D→E 细层空间差仍为 `0.0792625982 h`，保守合成不确定度 `0.0806158781 h`，未通过 `0.00005 h` 论文门。
+
+决策：Q4 保持 `NUMERICAL CONVERGENCE = HOLD`；不建立 `deliverables/candidate_reaudit/result4.xlsx`，不修改 final result4、Table6、Q4 图或历史 freeze manifest。PCHIP 保留，linear 仅作一次敏感性对照；外部 `51.0823 h` 不是 target，当前因未收敛按分类 C 处理。
+
+状态：ACTIVE / HUMAN DECISION REQUIRED
+
+证据：`experiments/Q4_CONVERGENCE_FINAL/q4_error_decomposition.json`、`docs/Q4_CONVERGENCE_FINAL.md`

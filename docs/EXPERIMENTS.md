@@ -234,3 +234,12 @@ Q3/Q4 final paper asset整理与数值冻结分开留痕；历史失败实验保
 | Experiment | Purpose | Key Config | Result | Status | Evidence |
 |---|---|---|---|---|---|
 | Q34_INDEPENDENT_AUDIT | 独立扫描 Q3 raw、独立 Q3 局部细化、Q4 moving-domain/FVM 方程审计、恒半径回归、PCHIP/linear 半径比较、Q4 网格/时间精化、守恒/Robin/Table6 审计 | Q3 raw 全时域；Q3 `n=20/40, dt=1/1024 s` 局部；Q4 `n=48/8, 96/4, 144/2` 从 `t=0`；线性半径 `n=48/8` 对照 | Q3 `PASS`；Q4 production reproduction `PASS`，但 finer round4 `52.8302` vs frozen `53.0827`，Q4 `HOLD`；恒半径 regression `PASS`，表面/外域 `PASS` | COMPLETED / Q4 HUMAN REVIEW | `experiments/Q34_INDEPENDENT_AUDIT/`、`docs/Q34_INDEPENDENT_AUDIT.md` |
+
+## Q4 Numerical Convergence Finalization（2026-09-13）
+
+依据新的人工授权，仅补足 Q4 时间/空间误差分离和最小必要 refinement；不重做已通过审计，不修改 `src/q4/` 或任何 final 数值资产。A/B/C/D 均由独立实现从 `t=0` 运行，随后按 `SPATIAL DOMINANT` 只运行 `n=192, dt=2 s`，并在事件跨越步内细化 root 到 `0.0625 s`。
+
+| Experiment | Purpose | Key Config | Result | Status | Evidence |
+|---|---|---|---|---|---|
+| Q4_CONVERGENCE_FINAL | 分离时间误差、空间误差、事件根定位误差，并按主导误差选择最小下一层 | A `96/4`；B `96/2`；C `144/4`；D `144/2`；E `192/2`；全为独立 fresh `t=0` | `Δtime≈4.8 s`，`Δspace(A→D)≈904.3 s`；空间/时间约 `188.0`；E=`52.7509055656 h`，细层 D→E=`0.0792625982 h`；保守不确定度=`0.0806158781 h` > `0.00005 h` | COMPLETED / Q4 HOLD | `experiments/Q4_CONVERGENCE_FINAL/q4_error_decomposition.json`、`docs/Q4_CONVERGENCE_FINAL.md` |
+| Q4_INTERPOLATION_SENSITIVITY_FINAL | 在选定层级比较半径插值 | `n=192, dt=2 s`；PCHIP 与 linear；root 子步 `0.0625 s` | PCHIP=`52.7509055656 h`，linear=`52.7569423508 h`，差=`21.7324 s`；保留 PCHIP | COMPLETED / SENSITIVITY ONLY | `experiments/Q4_CONVERGENCE_FINAL/interpolation_sensitivity_n192_dt2.json` |

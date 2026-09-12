@@ -175,3 +175,17 @@ node scripts\\build_q2_candidate.mjs
 ```
 
 artifact-tool 已先按技能要求尝试；因该超大工作簿在 4 GB 和 8 GB V8 heap 均 OOM，最终使用 `openpyxl.Workbook(write_only=True)` 流式 fallback。Q2 已获人工 freeze approval，final 阶段仅允许将已验证 candidate 与已验证 PNG/SVG 执行 COPY ONLY；不得重新计算、重新绘图或直接启动 Q3/Q4。冻结记录见 `experiments/Q2_FINAL_FREEZE/freeze_record.json`。
+
+## Q4 Numerical Convergence Finalization（2026-09-13）
+
+本节记录 Q4 数值收敛终结审计的可复现入口。命令使用独立审计实现，从 `t=0` 运行新层级；只写入 `experiments/Q4_CONVERGENCE_FINAL/`，不调用或修改 `src/q4/`，不修改冻结工作簿和 final 交付物。
+
+```powershell
+.\.venv\Scripts\python.exe scripts\run_q4_convergence_final.py
+.\.venv\Scripts\python.exe scripts\build_q4_error_decomposition.py
+.\.venv\Scripts\python.exe scripts\run_q4_next_refinement.py
+.\.venv\Scripts\python.exe scripts\run_q4_interpolation_sensitivity_final.py
+.\.venv\Scripts\python.exe scripts\build_q4_error_decomposition.py
+```
+
+当前证据：A/B/C/D/E 已完成；空间项主导，PCHIP 保留，保守不确定度 `0.0806158781 h` 超过 `0.00005 h`，故 `Q4 NUMERICAL CONVERGENCE = HOLD`。未创建 corrected candidate，不得修改 `deliverables/final/result4.xlsx`。

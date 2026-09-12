@@ -1,0 +1,40 @@
+{
+  "experiment": "Q4_INTERPOLATION_SENSITIVITY_FINAL",
+  "status": "COMPLETED",
+  "configuration": "selected n=192, dt=2 s with 0.0625 s local root refinement",
+  "pchip": {
+    "t4_s": 189903.26003601108,
+    "t4_h": 52.75090556555863,
+    "source": "next_refinement_n192_dt2.json"
+  },
+  "linear": {
+    "name": "E_linear_n192_dt2",
+    "n_intervals": 192,
+    "dt_s": 2.0,
+    "runtime_s": 272.00311209999927,
+    "coarse_bracket_s": [
+      189924.0,
+      189926.0
+    ],
+    "root_bracket_s": [
+      189924.9375,
+      189925.0
+    ],
+    "root_bracket_width_s": 0.0625,
+    "t4_s": 189924.99246303388,
+    "t4_h": 52.75694235084274,
+    "cmax_before": 0.15000002812494634,
+    "cmax_after": 0.1499999961432848,
+    "critical_radius_after_cm": 0.0,
+    "max_abs_step_mass_residual": 0.00017492297586254137,
+    "max_abs_robin_residual": 1.490555880094391e-06,
+    "max_picard_iterations": 5.0
+  },
+  "difference_linear_minus_pchip": {
+    "delta_s": 21.73242702279822,
+    "absolute_s": 21.73242702279822,
+    "delta_h": 0.006036785284110616,
+    "absolute_h": 0.006036785284110616
+  },
+  "interpretation": "Retain PCHIP; linear interpolation is a sensitivity comparison, not a replacement or screenshot-fitting target."
+}

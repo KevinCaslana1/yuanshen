@@ -1,0 +1,229 @@
+{
+  "experiment": "Q4_CONVERGENCE_FINAL",
+  "status": "HOLD_MINIMUM_REFINEMENT_NOT_WITHIN_PAPER_UNCERTAINTY",
+  "method": "A/B/C/D crossed event times from independent fresh-t=0 standalone FVM/BE/Picard runs",
+  "definitions": {
+    "A": "n=96, dt=4 s",
+    "B": "n=96, dt=2 s",
+    "C": "n=144, dt=4 s",
+    "D": "n=144, dt=2 s",
+    "delta_time_n96": "B - A",
+    "delta_time_n144": "D - C",
+    "delta_space_dt4": "C - A",
+    "delta_space_dt2": "D - B"
+  },
+  "configs": {
+    "A_n96_dt4": {
+      "name": "A_n96_dt4",
+      "n_intervals": 96,
+      "dt_s": 4.0,
+      "runtime_s": 84.19543359999989,
+      "t4_s": 191097.7336758627,
+      "t4_h": 53.082703798850744,
+      "root_bracket_s": [
+        191096.0,
+        191100.0
+      ],
+      "root_bracket_width_s": 4.0,
+      "cmax_before": 0.15000087683231383,
+      "cmax_after": 0.14999885377291108,
+      "critical_radius_after_cm": 0.0,
+      "controlling_point": "center / xi=0",
+      "max_abs_step_mass_residual": 0.00041469851322862216,
+      "max_abs_robin_residual": 1.679485028232704e-06,
+      "max_picard_iterations": 5.0
+    },
+    "D_n144_dt2": {
+      "name": "D_n144_dt2",
+      "n_intervals": 144,
+      "dt_s": 2.0,
+      "runtime_s": 215.51132720000078,
+      "t4_s": 190188.60538950787,
+      "t4_h": 52.830168163752184,
+      "root_bracket_s": [
+        190188.0,
+        190190.0
+      ],
+      "root_bracket_width_s": 2.0,
+      "cmax_before": 0.15000030891533567,
+      "cmax_after": 0.1499992883646599,
+      "critical_radius_after_cm": 0.0,
+      "controlling_point": "center / xi=0",
+      "max_abs_step_mass_residual": 0.00020895005815766386,
+      "max_abs_robin_residual": 1.661303508302199e-06,
+      "max_picard_iterations": 5.0
+    },
+    "B_n96_dt2": {
+      "name": "B_n96_dt2",
+      "n_intervals": 96,
+      "dt_s": 2.0,
+      "runtime_s": 157.2324365000004,
+      "t4_s": 191092.92436837355,
+      "t4_h": 53.08136788010376,
+      "root_bracket_s": [
+        191092.0,
+        191094.0
+      ],
+      "root_bracket_width_s": 2.0,
+      "cmax_before": 0.15000046751971263,
+      "cmax_after": 0.1499994559755577,
+      "critical_radius_after_cm": 0.0,
+      "controlling_point": "center / xi=0",
+      "max_abs_step_mass_residual": 0.0002106792782684278,
+      "max_abs_robin_residual": 1.8286402895088162e-06,
+      "max_picard_iterations": 5.0
+    },
+    "C_n144_dt4": {
+      "name": "C_n144_dt4",
+      "n_intervals": 144,
+      "dt_s": 4.0,
+      "runtime_s": 120.255166500001,
+      "t4_s": 190193.41146321915,
+      "t4_h": 52.83150318422754,
+      "root_bracket_s": [
+        190192.0,
+        190196.0
+      ],
+      "root_bracket_width_s": 4.0,
+      "cmax_before": 0.15000072022439082,
+      "cmax_after": 0.14999867915273965,
+      "critical_radius_after_cm": 0.0,
+      "controlling_point": "center / xi=0",
+      "max_abs_step_mass_residual": 0.00041061395748611036,
+      "max_abs_robin_residual": 1.4404813070005822e-06,
+      "max_picard_iterations": 6.0
+    },
+    "E_n192_dt2": {
+      "name": "E_n192_dt2",
+      "n_intervals": 192,
+      "dt_s": 2.0,
+      "runtime_s": 301.62967150000077,
+      "t4_s": 189903.26003601108,
+      "t4_h": 52.75090556555863,
+      "root_bracket_s": [
+        189903.25,
+        189903.3125
+      ],
+      "root_bracket_width_s": 0.0625,
+      "cmax_before": 0.15000000513548917,
+      "cmax_after": 0.1499999731538512,
+      "critical_radius_after_cm": 0.0,
+      "controlling_point": "center / xi=0",
+      "max_abs_step_mass_residual": 0.0002078960040194412,
+      "max_abs_robin_residual": 1.491384711335097e-06,
+      "max_picard_iterations": 5.0
+    }
+  },
+  "deltas": {
+    "delta_time_n96": {
+      "signed_s": -4.8093074891367,
+      "absolute_s": 4.8093074891367,
+      "signed_h": -0.0013359187469824166,
+      "absolute_h": 0.0013359187469824166
+    },
+    "delta_time_n144": {
+      "signed_s": -4.8060737112828065,
+      "absolute_s": 4.8060737112828065,
+      "signed_h": -0.0013350204753563352,
+      "absolute_h": 0.0013350204753563352
+    },
+    "delta_space_dt4": {
+      "signed_s": -904.322212643543,
+      "absolute_s": 904.322212643543,
+      "signed_h": -0.2512006146232064,
+      "absolute_h": 0.2512006146232064
+    },
+    "delta_space_dt2": {
+      "signed_s": -904.3189788656891,
+      "absolute_s": 904.3189788656891,
+      "signed_h": -0.25119971635158034,
+      "absolute_h": 0.25119971635158034
+    },
+    "delta_space_dt2_n144_to_n192": {
+      "signed_s": -285.3453534967848,
+      "absolute_s": 285.3453534967848,
+      "signed_h": -0.07926259819355133,
+      "absolute_h": 0.07926259819355133
+    },
+    "delta_space_dt2_n96_to_n192": {
+      "signed_s": -1189.664332362474,
+      "absolute_s": 1189.664332362474,
+      "signed_h": -0.33046231454513164,
+      "absolute_h": 0.33046231454513164
+    }
+  },
+  "dominance": {
+    "max_abs_temporal_effect_h": 0.0013359187469824166,
+    "max_abs_spatial_effect_h": 0.2512006146232064,
+    "spatial_to_temporal_ratio": 188.0358481311983,
+    "classification": "SPATIAL DOMINANT",
+    "decision": "n=192, dt=2 s is the minimum necessary next refinement; no n=144, dt=1 s run was started."
+  },
+  "selected_refinement": {
+    "name": "E_n192_dt2",
+    "n_intervals": 192,
+    "dt_s": 2.0,
+    "runtime_s": 301.62967150000077,
+    "t4_s": 189903.26003601108,
+    "t4_h": 52.75090556555863,
+    "root_bracket_s": [
+      189903.25,
+      189903.3125
+    ],
+    "root_bracket_width_s": 0.0625,
+    "cmax_before": 0.15000000513548917,
+    "cmax_after": 0.1499999731538512,
+    "critical_radius_after_cm": 0.0,
+    "controlling_point": "center / xi=0",
+    "max_abs_step_mass_residual": 0.0002078960040194412,
+    "max_abs_robin_residual": 1.491384711335097e-06,
+    "max_picard_iterations": 5.0
+  },
+  "acceptance": {
+    "paper_round4_uncertainty_limit_h": 5e-05,
+    "current_best_estimate_h": 52.75090556555863,
+    "spatial_raw_error_estimate_h": 0.07926259819355133,
+    "temporal_raw_error_estimate_h": 0.0013359187469824166,
+    "event_root_resolution_h": 1.736111111111111e-05,
+    "conservative_uncertainty_h": 0.08061587805164486,
+    "criterion_pass": false,
+    "richardson_used": false,
+    "conclusion": "Current independent field discretization uncertainty remains far above the 0.00005 h paper criterion; do not build a corrected candidate."
+  },
+  "paired_spatial_sequence_dt2": {
+    "configs": [
+      "B_n96_dt2",
+      "D_n144_dt2",
+      "E_n192_dt2"
+    ],
+    "refinement_ratio_n": 1.5,
+    "observed_order_diagnostic": 2.8448364963791675,
+    "use": "trend diagnostic only; no Richardson extrapolation used for acceptance"
+  },
+  "event_root_error": {
+    "definition": "linear interpolation within the crossing time-step bracket; field runs are compared separately from root-location resolution",
+    "bracket_widths_s": {
+      "A_n96_dt4": 4.0,
+      "D_n144_dt2": 2.0,
+      "B_n96_dt2": 2.0,
+      "C_n144_dt4": 4.0,
+      "E_n192_dt2": 0.0625
+    },
+    "conclusion": "The approximately 904 s A→D spatial effect and 285 s D→E fine spatial change are not root-location artifacts; A–D brackets are 2–4 s and E is locally refined to 0.0625 s."
+  },
+  "external_reference": {
+    "value_h": 51.0823,
+    "role": "comparison reference only, not a target",
+    "selected_minus_external_h": 1.6686055655586358,
+    "conclusion": "C: the independent Q4 sequence is not converged, so no convergence-based judgment about the external value is made."
+  },
+  "interpolation_sensitivity": {
+    "delta_s": 21.73242702279822,
+    "absolute_s": 21.73242702279822,
+    "delta_h": 0.006036785284110616,
+    "absolute_h": 0.006036785284110616,
+    "pchip_t4_h": 52.75090556555863,
+    "linear_t4_h": 52.75694235084274,
+    "interpretation": "Retain PCHIP; linear interpolation is a sensitivity comparison, not a replacement or screenshot-fitting target."
+  }
+}

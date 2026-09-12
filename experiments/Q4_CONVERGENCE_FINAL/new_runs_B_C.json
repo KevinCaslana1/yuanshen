@@ -1,0 +1,131 @@
+{
+  "experiment": "Q4_CONVERGENCE_FINAL",
+  "status": "COMPLETED",
+  "purpose": "separate temporal and spatial effects before selecting minimum necessary refinement",
+  "implementation": "standalone FVM/BE/Picard reference imported from run_q34_independent_audit.py; no src/q4 import",
+  "initial_condition": "fresh t=0, T=301.15 K, C=2.55 kg/kg, R=2.0 cm",
+  "environment_source_sha256": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+  "radius_source_sha256": "5563acbfa4b4afb10cc6c03e2207e5369bf39da27576672aff14cc5c32e704af",
+  "runs": [
+    {
+      "name": "B_n96_dt2",
+      "n_intervals": 96,
+      "dt_s": 2.0,
+      "horizon_s": 230400.0,
+      "runtime_s": 157.2324365000004,
+      "event": {
+        "before_s": 191092.0,
+        "after_s": 191094.0,
+        "before_cmax": 0.15000046751971263,
+        "after_cmax": 0.1499994559755577,
+        "t_cross_linear_s": 191092.92436837355,
+        "critical_radius_after_cm": 0.0
+      },
+      "sample": {
+        "7200": {
+          "center": 2.548867038845624,
+          "surface": 1.1247463875277244,
+          "mean": 2.121294075734253,
+          "radius_cm": 1.625
+        },
+        "43200": {
+          "center": 0.8736042312369618,
+          "surface": 0.2144456399573935,
+          "mean": 0.5666920163016906,
+          "radius_cm": 1.248
+        },
+        "86400": {
+          "center": 0.30759632361716877,
+          "surface": 0.0710595505994861,
+          "mean": 0.2207023692676353,
+          "radius_cm": 1.204
+        },
+        "172800": {
+          "center": 0.16043878800153907,
+          "surface": 0.05331247478751258,
+          "mean": 0.12623599897001767,
+          "radius_cm": 1.2
+        }
+      },
+      "conservation": {
+        "max_abs_step": 0.0002106792782684278,
+        "cumulative_abs_step": 0.4616083100944134,
+        "terminal_step": 2.5739860122341825e-11,
+        "trend_basis": "smaller max/cumulative/terminal is better; compare refinements"
+      },
+      "robin": {
+        "max_abs_flux_residual": 1.8286402895088162e-06,
+        "terminal_flux_residual": 9.081959272360418e-12
+      },
+      "picard": {
+        "max_iterations": 5.0,
+        "max_nonlinear_residual": 9.999992910453334e-10
+      },
+      "endpoint": {
+        "time_s": 191094.0,
+        "cmax": 0.1499994559755577,
+        "radius_cm": 1.2
+      }
+    },
+    {
+      "name": "C_n144_dt4",
+      "n_intervals": 144,
+      "dt_s": 4.0,
+      "horizon_s": 230400.0,
+      "runtime_s": 120.255166500001,
+      "event": {
+        "before_s": 190192.0,
+        "after_s": 190196.0,
+        "before_cmax": 0.15000072022439082,
+        "after_cmax": 0.14999867915273965,
+        "t_cross_linear_s": 190193.41146321915,
+        "critical_radius_after_cm": 0.0
+      },
+      "sample": {
+        "7200": {
+          "center": 2.5488633309060362,
+          "surface": 1.1246177979725824,
+          "mean": 2.1212682343177987,
+          "radius_cm": 1.625
+        },
+        "43200": {
+          "center": 0.8735723875403466,
+          "surface": 0.21446387543993256,
+          "mean": 0.566666298313919,
+          "radius_cm": 1.248
+        },
+        "86400": {
+          "center": 0.3074121949913793,
+          "surface": 0.07120793018315191,
+          "mean": 0.22008315154733188,
+          "radius_cm": 1.204
+        },
+        "172800": {
+          "center": 0.1599655721240819,
+          "surface": 0.05327091417306433,
+          "mean": 0.12547122537444477,
+          "radius_cm": 1.2
+        }
+      },
+      "conservation": {
+        "max_abs_step": 0.00041061395748611036,
+        "cumulative_abs_step": 0.4627098524060692,
+        "terminal_step": 2.3084119957322068e-11,
+        "trend_basis": "smaller max/cumulative/terminal is better; compare refinements"
+      },
+      "robin": {
+        "max_abs_flux_residual": 1.4404813070005822e-06,
+        "terminal_flux_residual": 6.00558012177693e-12
+      },
+      "picard": {
+        "max_iterations": 6.0,
+        "max_nonlinear_residual": 9.999613914679628e-10
+      },
+      "endpoint": {
+        "time_s": 190196.0,
+        "cmax": 0.14999867915273965,
+        "radius_cm": 1.2
+      }
+    }
+  ]
+}

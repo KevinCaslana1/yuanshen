@@ -408,6 +408,26 @@ Agent 自动完成模型冻结。`result2.xlsx`、candidate/final workbook 均�
 
 证据：`scripts/generate_q2_chinese_publication_figures.py`、`scripts/validate_q2_chinese_publication_figures.py`、`scripts/build_q3_q4_freeze_audit.py`、`experiments/Q2_CHINESE_FIGURE_LOCALIZATION/validation.json`、`experiments/Q3_Q4_CANDIDATE/final_freeze_audit.json`。Q1 深谷仍只能表述为 `pointwise error zero-crossing / cancellation dip`，不得改写为突然精度提高。
 
+## CUMCM Q4 NUMERICAL CONVERGENCE FINALIZATION GATE（2026-09-13）
+
+本轮仅针对独立 Q4 事件时刻复现做收敛终结审计；不重新验证已经通过的 Appendix 4、Kelvin 温度、Attachment 2/PCHIP、PDE/Robin、Q1/Q2/Q3 及既有 Q4 交付检查。所有新运行均从 `t=0` 独立开始，未修改 `src/q4/`、冻结工作簿或 `deliverables/final/`。
+
+| Gate item | Evidence | Status |
+|---|---|---|
+| A/B/C/D 误差分解 | A `n=96,dt=4`；B `96/2`；C `144/4`；D `144/2`；均 fresh `t=0` | PASS（分解完成） |
+| 时间误差 | `Δ_time_n96 = -4.8093074891 s`；`Δ_time_n144 = -4.8060737113 s`，约 `0.001335 h` | PASS（时间项较小） |
+| 空间误差 | `Δ_space_dt4 = -904.3222126435 s`；`Δ_space_dt2 = -904.3189788657 s`，约 `0.251200 h` | PASS（SPATIAL DOMINANT） |
+| 最小下一层细化 | E：`n=192,dt=2 s`，fresh `t=0`；局部根区间宽 `0.0625 s` | PASS（运行完成） |
+| 细层空间趋势 | D→E=`-285.3453534968 s`=`-0.0792625982 h`；配对趋势观测阶 `2.8448364964`，仅作诊断，不做 Richardson | PASS（趋势记录） |
+| 控制位置 | A/B/C/D/E 均为中心 `ξ=0` | PASS |
+| 插值敏感性 | E 层 PCHIP `52.7509055656 h`；linear `52.7569423508 h`；差 `21.7324270 s`；保留 PCHIP | PASS（一次敏感性检查） |
+| 论文不确定度门 | 保守估计 `0.0806158781 h` > `0.00005 h` | FAIL；Q4 HOLD |
+| 事件根与场离散误差 | 根定位分辨率约 `0.0625 s`=`1.7361e-05 h`，与场离散误差分开记录 | PASS（口径分离） |
+| 外部 `51.0823 h` | 仅作数量级对照；当前 A→E 尚未收敛，不据此判断模型正确性 | C（不可作收敛结论） |
+| corrected candidate / final result4 | 未创建 corrected candidate；冻结 `result4.xlsx` 保持不变 | PASS（fail-closed） |
+
+结论：`Q4 NUMERICAL CONVERGENCE = HOLD`。在人工批准新的精度目标或接受可实现误差前，不改变 `deliverables/final/result4.xlsx`，不生成 `candidate_reaudit`，不把当前事件时刻写成已收敛结果。
+
 ## CUMCM Q3 + Q4 JOINT FINAL FREEZE GATE（2026-09-12）
 
 本 Gate 依据人工联合最终冻结授权执行。没有重新运行 Q3/Q4 全程 solver；对既有 candidate 进行只读审计、严格 60 s 官方工作簿契约修正、byte-identical COPY ONLY 和最终论文资产登记。

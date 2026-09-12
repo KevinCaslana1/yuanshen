@@ -99,6 +99,20 @@
 
 状态：SUPPORTED（Q4 candidate scope）
 
+## FIND-Q4-002 Q4 时空误差分解仍未达到论文不确定度门
+
+问题：Q4
+
+发现：独立 fresh-from-`t=0` A/B/C/D 运行显示，固定 `n=96` 或 `n=144` 时把 `dt` 从 `4 s` 减到 `2 s` 只改变事件约 `4.8 s`（`0.00134 h`）；固定 `dt=2 s` 时把 `n` 从 `96` 增至 `144` 改变事件约 `904.3 s`，增至 `192` 后仍改变 `285.3 s`（`0.07926 h`）。因此当前主导误差为 `SPATIAL DOMINANT`。
+
+最小必要 `n=192,dt=2 s` 的局部 root bracket 宽度为 `0.0625 s`，事件为 `52.7509055656 h`，控制点仍为中心 `r=0/xi=0`。PCHIP 与 linear 半径对照差为 `21.7324 s`；PCHIP 保留。
+
+限制：细层空间原始误差、时间误差和 root 分辨率合成的保守不确定度约 `0.0806158781 h`，超过人工规定的 `0.00005 h` 论文门；观测空间阶 `2.8448` 只作趋势诊断，未进行 Richardson 外推。因此不得生成 Q4 corrected candidate，不得用 `52.7509 h` 替换冻结 `result4.xlsx`，也不能据此判断其是否接近外部 `51.0823 h`。
+
+证据：`experiments/Q4_CONVERGENCE_FINAL/q4_error_decomposition.json`、`new_runs_B_C.json`、`next_refinement_n192_dt2.json`、`interpolation_sensitivity_n192_dt2.json`。
+
+状态：SUPPORTED（Q4 convergence blocker）
+
 ## FIND-Q2-028 Q2 V3 生产双跑在正式输出范围内完成并确定性一致
 
 问题：Q2
