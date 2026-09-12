@@ -13,6 +13,7 @@ experiments/Q2_FREEZE_RUN_V3_POSTPROCESS_FAILURE_20260912/**/*.csv filter=lfs di
 figures/q2/data/*.csv filter=lfs diff=lfs merge=lfs -text
 figures/q2/data/*.npz filter=lfs diff=lfs merge=lfs -text
 deliverables/candidate/result2.xlsx filter=lfs diff=lfs merge=lfs -text
+deliverables/final/result2.xlsx filter=lfs diff=lfs merge=lfs -text
 experiments/EXP-Q2-V2-REGRESSION/**/*.csv filter=lfs diff=lfs merge=lfs -text
 experiments/EXP-Q2-ACC-T-FORMAL/**/*.csv filter=lfs diff=lfs merge=lfs -text
 experiments/EXP-Q2-ACC-C-FORMAL/**/*.csv filter=lfs diff=lfs merge=lfs -text

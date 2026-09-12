@@ -6,7 +6,7 @@
     "interpretation": "authorized V3 ENV-B production run; integer-second official lattice",
     "horizon_s": 228536,
     "status": "PRODUCTION_CANONICAL",
-    "delivery_status": "VALIDATED_CANDIDATE_PENDING_HUMAN_FREEZE_APPROVAL",
+    "delivery_status": "FROZEN_FINAL_APPROVED",
     "attempt_status": "PASS_PRE_CANDIDATE_GATES",
     "production_result_source": "experiments/Q2_FREEZE_RUN_V3/run_1/official_samples.csv"
   },

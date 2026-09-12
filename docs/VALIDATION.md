@@ -11,7 +11,7 @@
 | 官方 Workbook Sheet 与行列骨架 | `scripts/validate_inputs.py` | 附件1/2与4个模板结构一致 | 脚本输出 | PASS |
 | 官方结果模板完整性 | `scripts/validate_templates.py` | Sheet、表头、占位时间和数据区空白通过 | 脚本输出 | PASS |
 | 官方源文件未被修改 | `git diff -- A题` | 无差异 | Git 状态 | PASS |
-| 交付隔离 | 人工检查 `deliverables/README.md` | candidate 与 final 均只含 Q1 结果交付；final 由 candidate COPY ONLY 产生 | 交付说明、`deliverables/candidate/result1.xlsx`、`deliverables/final/result1.xlsx` | PASS |
+| 交付隔离 | 人工检查 `deliverables/README.md` | Q1/Q2 final 均由已验证 candidate COPY ONLY 产生；Q3/Q4 无 final | 交付说明、`deliverables/final/result1.xlsx`、`deliverables/final/result2.xlsx` | PASS |
 
 ## PRE-MODELING GATE
 
@@ -25,8 +25,8 @@
 | environment reproducibility | `.venv`, requirements files, Python 3.12.14 | PASS |
 | tests | `pytest -q` | PASS: 32 passed |
 | Q1-Q4 registration | `docs/STATE.md`, `config/deliverables.json` | PASS |
-| candidate state | `deliverables/candidate/` | Q1 candidate 在最终门之后生成并已验证；Q2–Q4 无 candidate | PASS |
-| final state | `deliverables/final/` | PASS；Q1 final 已经人工批准并验证，Q2–Q4 无 final |
+| candidate state | `deliverables/candidate/` | Q1/Q2 candidate 均已验证；Q3/Q4 无 candidate | PASS |
+| final state | `deliverables/final/` | PASS；Q1/Q2 final 已人工批准并验证，Q3/Q4 无 final |
 | experiment scope | `docs/EXPERIMENTS.md`; internal Q1 evidence only after implementation authorization | PASS |
 | findings/claims boundary | `docs/FINDINGS.md`, `docs/CLAIMS.md`; no paper claims generated | PASS |
 | no generated answers | source/template/result audit | PASS |
@@ -349,4 +349,21 @@ Agent 自动完成模型冻结。`result2.xlsx`、candidate/final workbook 均�
 | Q1/A题 integrity | `validation.json`、preflight hashes | PASS |
 | Q3/Q4 boundary | `STATE.md`、`HANDOFF.md`、V3 validation | PASS；not started |
 
-当前结论：`Q2 RESULT & DELIVERABLE GATE COMPLETE`；`WAITING FOR HUMAN Q2 FREEZE APPROVAL`。`deliverables/candidate/result2.xlsx` 是 `VALIDATED CANDIDATE`，不进入 `deliverables/final/`，不自动升级；Q3/Q4 不启动。Q1 20–40 s 深谷仍只可写成 signed-error zero-crossing/cancellation dip。
+上述为 V3 candidate gate 在人工 final freeze 前的历史结论；Q1 20–40 s 深谷仍只可写成 signed-error zero-crossing/cancellation dip。当前 final freeze 结论见下节。
+
+## CUMCM Q2 V3 FINAL FREEZE（2026-09-12）
+
+| Gate item | Evidence | Status |
+|---|---|---|
+| Human freeze approval | `Q2 V3 production freeze = APPROVED` | PASS |
+| Candidate → final workbook | COPY ONLY；candidate/final SHA-256 identical；两者均 `30,303,454` bytes | PASS |
+| Final workbook structure | 两张表均 `228537×22`；无公式；数据区 `0.0000` | PASS |
+| Workbook trace | random trace `100/100`；Table3/4 `60/60` | PASS |
+| Final figures | 11 组、22 个 PNG/SVG；PNG ≥300 dpi；source/final hash identical | PASS |
+| Figure trace | `30/30`；无 smoothing、无 numeric interpolation | PASS |
+| Run lineage | Run1/Run2 独立从 `t=0`；raw/sampled/diagnostics byte/hash identical | PASS |
+| Passive interval / horizon | `[206935.0,206935.25] s`；`228536 s` | PASS |
+| Full test suite | `pytest -q` | PASS: 56 passed |
+| Protected paths and boundary | `A题/`、`src/q2/` unchanged；Q1 frozen；Q3/Q4 not started | PASS |
+
+最终记录：`experiments/Q2_FINAL_FREEZE/freeze_record.json`；final manifest：`deliverables/final/Q2_MANIFEST.json`。

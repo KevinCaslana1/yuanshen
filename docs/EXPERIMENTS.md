@@ -73,9 +73,15 @@ EXP-001 至 EXP-007 已在实现授权后按序完成。后续完成初始层诊
 
 | ID | Question | Model | Purpose | Key Config | Metrics | Status | Evidence |
 |---|---|---|---|---|---|---|---|
-| Q2_FREEZE_RUN_V3 | Q2 | Frozen Q2-M1 candidate A | 人工批准后的独立 Run1/Run2 生产、被动 horizon、determinism、official candidate 与图表 lineage | n=320/cluster3；harmonic；early `dt=.015625 s` through 5 s；production `dt=.25 s`；BE startup/BDF2；14400 s BE restart；ENV-B；official t=1..228536 s×21 radii | Run1/Run2 raw/sampled/diagnostics byte/hash identical；Picard non-converged=0；candidate trace 100/100、Table3/4 60/60；figure trace 30/30 | COMPLETED；VALIDATED CANDIDATE；等待人工 Q2 freeze approval | `experiments/Q2_FREEZE_RUN_V3/`、`deliverables/candidate/result2.xlsx`、`figures/q2/` |
+| Q2_FREEZE_RUN_V3 | Q2 | Frozen Q2-M1 candidate A | 人工批准后的独立 Run1/Run2 生产、被动 horizon、determinism、official candidate 与图表 lineage | n=320/cluster3；harmonic；early `dt=.015625 s` through 5 s；production `dt=.25 s`；BE startup/BDF2；14400 s BE restart；ENV-B；official t=1..228536 s×21 radii | Run1/Run2 raw/sampled/diagnostics byte/hash identical；Picard non-converged=0；candidate trace 100/100、Table3/4 60/60；figure trace 30/30 | COMPLETED；V3 production source and candidate gates PASS | `experiments/Q2_FREEZE_RUN_V3/`、`deliverables/candidate/result2.xlsx`、`figures/q2/` |
 
 V3 的唯一 production source 是 Run1；Run2 仅为 `DETERMINISM_REFERENCE`。旧 `Q2_FREEZE_RUN`、V2 aborted attempt、V3 错误 horizon attempt 和 V3 postprocessing failure 均仅保留 provenance，不得进入 workbook 或正式图表来源。
+
+## Q2 V3 Final Freeze（2026-09-12）
+
+人工批准 `Q2 V3 production freeze = APPROVED` 后，未重新计算 Q2 或重新生成图表，仅将已验证 candidate `result2.xlsx` 和 11 组 PNG/SVG 按字节原样复制到 final。candidate/final 工作簿 SHA-256 与大小一致；两张表均为 `228537×22`，无公式，数据区 `0.0000` 格式，workbook trace `100/100`、Table3/4 `60/60`。final 图表为 11 组/22 个文件，PNG ≥300 dpi，trace `30/30`。完整测试结果为 `56 passed`。
+
+证据：`experiments/Q2_FINAL_FREEZE/freeze_record.json`、`deliverables/final/Q2_MANIFEST.json`。历史失败实验 `Q2_FREEZE_RUN_V3_FAILED_HORIZON_20260912` 保持原样并继续标记为 `NOT_DELIVERY_SOURCE`。
 
 ## Q1 Surface Signed-Error Audit Addendum
 

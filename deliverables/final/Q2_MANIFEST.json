@@ -1,0 +1,57 @@
+{
+  "schema_version": "Q2_V3_FINAL_DELIVERY_MANIFEST_V1",
+  "status": "APPROVED",
+  "q2_version": "V3 production freeze",
+  "freeze_record": "experiments/Q2_FINAL_FREEZE/freeze_record.json",
+  "result2": {
+    "path": "deliverables/final/result2.xlsx",
+    "sha256": "84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da",
+    "size_bytes": 30303454
+  },
+  "figures_directory": "deliverables/final/figures/q2",
+  "figure_count": 11,
+  "figure_files": 22,
+  "figure_sha256": {
+    "deliverables/final/figures/q2/FIG-Q2-01_temperature_radial_profiles.png": "bcd5a623b5e0eeb57028c673239f1c6b1e60ce5948aa681d1f610ba828a3d4d5",
+    "deliverables/final/figures/q2/FIG-Q2-02_moisture_radial_profiles.png": "cc5c18b5d78e44b50f8d15a02a940f43ed2f0d3144d83876cb7955b56d508291",
+    "deliverables/final/figures/q2/FIG-Q2-03_temperature_time_radius_heatmap.png": "58c45bd65da782906e048724329fe6660458b388e54f406776819993ae04043a",
+    "deliverables/final/figures/q2/FIG-Q2-04_moisture_time_radius_heatmap.png": "e5a39478ebba505b0ce5a4cb96ae597b746a13feca79bb85d59453d77b50b546",
+    "deliverables/final/figures/q2/FIG-Q2-05_temperature_time_histories.png": "a0e7c7c9b763f622b8c8de872bf9cc0d368caf4aa13f78c4da3f55960ecaf4c3",
+    "deliverables/final/figures/q2/FIG-Q2-06_moisture_time_histories.png": "a4351f3c3e2549d140e3a634cbf6ae10eea3cc246353d799fe53c3fb6f26596d",
+    "deliverables/final/figures/q2/FIG-Q2-07_center_surface_moisture_difference.png": "4f6928825f1f7083d81de0ec0ad6f5ff0cd5fdb23e0edd233992c4be4a85b2c1",
+    "deliverables/final/figures/q2/FIG-Q2-08_representative_diffusivity.png": "4d71a47b2f52f4cb1170ee862555e0af7ffeb894fc514462434507b037b46874",
+    "deliverables/final/figures/q2/FIG-Q2-V01_picard_iterations.png": "d5ff11d76a373ee697a57166063180bd989f2970b6cec755c4eb0b7e6cd0a26f",
+    "deliverables/final/figures/q2/FIG-Q2-V02_mass_residual.png": "dc6a40d92853fbdb8d3da0194c75a7b4902c981aed7a21a001c8bbba20159795",
+    "deliverables/final/figures/q2/FIG-Q2-V03_heat_residual.png": "77b236100266b690ed43ac161c786d63b1855ab3dd662e361db958cb4fe21859",
+    "deliverables/final/figures/q2/FIG-Q2-01_temperature_radial_profiles.svg": "1619de7fe4ce9f2fe95c77c2c0238c097a2f43ea9f7720f4af4708b24782e265",
+    "deliverables/final/figures/q2/FIG-Q2-02_moisture_radial_profiles.svg": "c1b48557526e0154cc17df682ed2716f56703b50c3e02dab124b64c6f28e21c7",
+    "deliverables/final/figures/q2/FIG-Q2-03_temperature_time_radius_heatmap.svg": "321f7c97bcabb2c158158f17e01462493689db7bcd607be1e2bdb81b2ed12fca",
+    "deliverables/final/figures/q2/FIG-Q2-04_moisture_time_radius_heatmap.svg": "f70713d59d0c844eea5d7730abd82c3540e86e88621bd2d44f0779bbdac3216d",
+    "deliverables/final/figures/q2/FIG-Q2-05_temperature_time_histories.svg": "133452733f00abeca63657e3a7c0dd02b577b6a67fd9f061823d7350d9dd4a26",
+    "deliverables/final/figures/q2/FIG-Q2-06_moisture_time_histories.svg": "02dcc9f59b62485e9abed7b55868744c5dcaef5527950331359557e425ea12dc",
+    "deliverables/final/figures/q2/FIG-Q2-07_center_surface_moisture_difference.svg": "8facd2a3dd4267ca85ea0a236e2b17fd35ed41c91dc73b624f3379d2339c1b6e",
+    "deliverables/final/figures/q2/FIG-Q2-08_representative_diffusivity.svg": "194aa111110112c9dd905cf5b4953a6641d17fe2aba7ca52af8a2f31cbb70c9a",
+    "deliverables/final/figures/q2/FIG-Q2-V01_picard_iterations.svg": "758c7f7e58bdc320fad4b7a57b9fa28d565aa27b0cd34453a32257beeba55b94",
+    "deliverables/final/figures/q2/FIG-Q2-V02_mass_residual.svg": "f06fc6e06ba21be6c10c43cdcf59ed670b78d6bf3569e67635cef56738b89a9f",
+    "deliverables/final/figures/q2/FIG-Q2-V03_heat_residual.svg": "e9c79de3ecb998a999e030f85c29759043cb93da32cf12d6c8ec9e9ea1b35f6f"
+  },
+  "candidate_commit": "0172972",
+  "passive_interval_s": [
+    206935.0,
+    206935.25
+  ],
+  "final_horizon_s": 228536,
+  "trace": {
+    "workbook": "100/100",
+    "table3_table4": "60/60",
+    "figures": "30/30"
+  },
+  "tests": "56 passed",
+  "freeze_approval_status": "APPROVED",
+  "q1_q3_q4_status": {
+    "Q1": "FROZEN",
+    "Q2": "FROZEN",
+    "Q3": "NOT STARTED",
+    "Q4": "NOT STARTED"
+  }
+}

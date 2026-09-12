@@ -5,7 +5,7 @@
 
 ## 状态
 
-历史配置冻结和双跑仍保留为失败 provenance；本轮已依据人工 `Q2 V3 FREEZE RUN AUTHORIZATION = APPROVED` 完成 V3 生产、候选工作簿和正式图表门禁。Q2 当前状态为 `VALIDATED CANDIDATE / WAITING FOR HUMAN Q2 FREEZE APPROVAL`；candidate 尚未进入 `deliverables/final/`，Q1 保持 FROZEN，Q3/Q4 保持 NOT STARTED。
+历史配置冻结和双跑仍保留为失败 provenance；本轮已依据人工 `Q2 V3 FREEZE RUN AUTHORIZATION = APPROVED` 完成 V3 生产、候选工作簿和正式图表门禁，并在人工 `Q2 V3 production freeze = APPROVED` 后完成 final COPY ONLY。Q2 当前状态为 `FROZEN`，Q1 保持 FROZEN，Q3/Q4 保持 NOT STARTED。
 
 ## Frozen model and configuration
 
@@ -71,6 +71,10 @@ Run 1 is the sole production source and Run 2 is a determinism reference. Raw in
 
 The formal accuracy basis remains scoped to the declared integer-second/official-radius points and selected long-horizon points; it is not a full-horizon n=640 proof. The internal transition peak at 14400.25 s remains `SUPPORTED_INTERNAL_TRANSITION_DIAGNOSTIC` and is not an official output point.
 
-`deliverables/candidate/result2.xlsx` was generated from the canonical Run 1 source with a write-only streaming fallback after artifact-tool heap failures. The two sheets pass shape, 4-decimal, no-formula, 100/100 random trace, and Table 3/4 60/60 trace checks. Eleven Q2 figure groups pass PNG ≥300 dpi + SVG, source-hash, no-smoothing/no-interpolation, and 30/30 trace checks. The workbook is a `VALIDATED CANDIDATE` only; it must not be copied into `deliverables/final/` until human Q2 freeze approval.
+`deliverables/candidate/result2.xlsx` was generated from the canonical Run 1 source with a write-only streaming fallback after artifact-tool heap failures. The two sheets pass shape, 4-decimal, no-formula, 100/100 random trace, and Table 3/4 60/60 trace checks. Eleven Q2 figure groups pass PNG ≥300 dpi + SVG, source-hash, no-smoothing/no-interpolation, and 30/30 trace checks. Following human Q2 V3 freeze approval, the candidate workbook and existing figures were copied byte-for-byte into final without recomputation or re-rendering.
 
 Evidence: `experiments/Q2_FREEZE_RUN_V3/`, `experiments/Q2_CANONICAL_DATA_MANIFEST.json`, `experiments/Q2_FREEZE_RUN_V3/candidate_validation.json`, `experiments/Q2_FREEZE_RUN_V3/figure_validation.json`, `figures/q2/FIGURE_MANIFEST.json`.
+
+## V3 final freeze record
+
+Final result2 and figure hashes, workbook validation, trace validation, test result, protected-path checks, and approval status are recorded in `experiments/Q2_FINAL_FREEZE/freeze_record.json`; the final delivery index is `deliverables/final/Q2_MANIFEST.json`. The candidate/final workbook SHA-256 is `84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da`, and both files are `30,303,454` bytes. No Q2 numerical result or figure content was regenerated during this freeze.

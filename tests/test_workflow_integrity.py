@@ -23,6 +23,7 @@ def test_candidate_and_final_follow_q1_approval_state() -> None:
     assert not list(CANDIDATE_ROOT.glob("*.xls"))
     assert FINAL_ROOT.is_dir()
     assert (FINAL_ROOT / "result1.xlsx").is_file()
+    assert (FINAL_ROOT / "result2.xlsx").is_file()
     assert (FINAL_ROOT / "Q1_MANIFEST.json").is_file()
     assert not list(FINAL_ROOT.glob("*.xls"))
 
@@ -38,6 +39,7 @@ def test_path_guard_rejects_official_source() -> None:
 
     assert assert_deliverable_output(CANDIDATE_ROOT / "result1.xlsx") == CANDIDATE_ROOT / "result1.xlsx"
     assert assert_deliverable_output(FINAL_ROOT / "result1.xlsx") == FINAL_ROOT / "result1.xlsx"
+    assert assert_deliverable_output(FINAL_ROOT / "result2.xlsx") == FINAL_ROOT / "result2.xlsx"
 
 
 def test_formal_evidence_records_are_scoped_and_traceable() -> None:
@@ -50,13 +52,13 @@ def test_formal_evidence_records_are_scoped_and_traceable() -> None:
         assert (evidence_dir / "metrics.json").is_file()
         assert (evidence_dir / "notes.md").is_file()
     assert all(path.name in {"result1.xlsx", "result2.xlsx"} for path in CANDIDATE_ROOT.glob("*.xlsx"))
-    assert [path.name for path in FINAL_ROOT.glob("*.xlsx")] == ["result1.xlsx"]
+    assert {path.name for path in FINAL_ROOT.glob("*.xlsx")} == {"result1.xlsx", "result2.xlsx"}
 
 
 def test_state_preserves_question_boundaries() -> None:
     state = (ROOT / "docs" / "STATE.md").read_text(encoding="utf-8")
     assert "Q1" in state
     assert "Q2" in state
-    assert "VALIDATED CANDIDATE" in state
+    assert "Q2 | FROZEN" in state or "| Q2 | FROZEN" in state
     assert "Q3 | NOT STARTED" in state or "| Q3 | NOT STARTED" in state
     assert "Q4 | NOT STARTED" in state or "| Q4 | NOT STARTED" in state

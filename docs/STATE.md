@@ -6,14 +6,14 @@
 
 - 比赛：2026 高教社杯全国大学生数学建模竞赛；赛题：A题《药材的烘干问题》
 - 官方源：`A题/`（OFFICIAL_SOURCE / IMMUTABLE_SOURCE），本轮哈希未变化
-- 当前阶段：Q1 FROZEN；Q2 V3 已完成生产与候选交付门禁；Q3/Q4 未启动
+- 当前阶段：Q1 FROZEN；Q2 V3 production freeze 已完成；Q3/Q4 未启动
 
 ## 各问题状态
 
 | 问题 | 状态 | 当前结论 | 证据 |
 |---|---|---|---|
 | Q1 | FROZEN / COMPLETE | r=1.9 cm 早期表面绝对误差谷值由 signed error zero-crossing/cancellation dip 造成，不是精度突然提高；final result1 未改 | `experiments/EXP-Q1-SURFACE-DECAY/`、`deliverables/final/result1.xlsx` |
-| Q2 | VALIDATED CANDIDATE / WAITING FOR HUMAN Q2 FREEZE APPROVAL | V3 Run1 是唯一 `PRODUCTION_CANONICAL` 生产来源；Run1/Run2 全量 raw、official sampled、diagnostics byte/hash identical；candidate result2 与图表均 PASS；未进入 final | `experiments/Q2_FREEZE_RUN_V3/`、`deliverables/candidate/result2.xlsx`、`figures/q2/` |
+| Q2 | FROZEN | V3 Run1 是唯一 `PRODUCTION_CANONICAL` 生产来源；Run1/Run2 全量 raw、official sampled、diagnostics byte/hash identical；candidate 已按 byte-for-byte COPY 进入 final；工作簿和图表 final 验证 PASS | `experiments/Q2_FINAL_FREEZE/`、`deliverables/final/result2.xlsx`、`deliverables/final/figures/q2/` |
 | Q3 | NOT STARTED | 尚未建立模型 | — |
 | Q4 | NOT STARTED | 尚未建立模型 | — |
 
@@ -36,11 +36,11 @@
 
 - `Q2_FREEZE_RUN_V3_FAILED_HORIZON_20260912/`：旧 endpoint attempt，首次独立 bracket 与 carried-forward horizon 不一致，未作为来源。
 - `Q2_FREEZE_RUN_V3_POSTPROCESS_FAILURE_20260912/`：Run1 数值已完成后的非数值 probe-writer 失败，部分文件仅作 provenance；未改动 solver 或 Run1 数值。
-- artifact-tool 对超大工作簿两次达到 V8 heap 上限；最终按 `openpyxl write_only=True` 流式 fallback 完成并验证。候选仍仅为 VALIDATED CANDIDATE。
+- artifact-tool 对超大工作簿两次达到 V8 heap 上限；最终按 `openpyxl write_only=True` 流式 fallback 完成并验证；final 阶段仅对已验证 candidate 执行 byte-for-byte COPY。
 - Q1 的 20–40 s 误差深谷以及 Q2 的 `14400.25 s` internal diagnostic 均不得写成模型优越性或突然收敛证据。
 
 ## 交接
 
-- 当前最高优先级：人工审核并明确批准 Q2 candidate→final；批准前不得复制到 `deliverables/final/`，不得生成 Q3/Q4。
+- 当前最高优先级：保持 Q1/Q2 冻结交付可审计；未经新授权不得启动 Q3/Q4。
 - 本地提交，按用户要求不推送远程。
 - 更新时间：2026-09-12。

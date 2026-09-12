@@ -70,4 +70,14 @@ The latest authorization explicitly approved the V3 freeze run. The new producti
 
 The V3 production source is established only for the validated candidate scope. The certificate remains scoped to its declared formal-output lattice and selected long-horizon points; it is not an n=640 full-horizon proof. The `14400.25 s` transition diagnostic remains `SUPPORTED_INTERNAL_TRANSITION_DIAGNOSTIC` and is not an official integer-second output.
 
-Current final disposition: `Q2 RESULT & DELIVERABLE GATE COMPLETE / WAITING FOR HUMAN Q2 FREEZE APPROVAL / RESULT2 VALIDATED CANDIDATE ONLY`. Do not copy to `deliverables/final/` or start Q3/Q4 before human approval.
+Current final disposition before the final freeze was `Q2 RESULT & DELIVERABLE GATE COMPLETE / WAITING FOR HUMAN Q2 FREEZE APPROVAL / RESULT2 VALIDATED CANDIDATE ONLY`.
+
+## Q2 V3 final freeze approval (2026-09-12)
+
+人工批准 `Q2 V3 production freeze = APPROVED` 后，执行了严格的 COPY ONLY finalization：没有重新运行 Q2、没有重新生成图表、没有重新保存或格式化 `result2.xlsx`。`deliverables/candidate/result2.xlsx` 按字节原样复制到 `deliverables/final/result2.xlsx`；现有 `figures/q2/final/` 的 11 组 PNG/SVG 按字节原样同步到 `deliverables/final/figures/q2/`。
+
+最终只读验证结果：candidate/final `result2.xlsx` SHA-256 `84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da` 完全一致，大小均为 `30,303,454` bytes；两张表均为 `228537×22`，无公式，数据区数值格式为 `0.0000`；workbook trace `100/100`、Table3/4 `60/60`。最终图表为 11 组、22 个 PNG/SVG 文件，PNG DPI 不低于 300，图表 trace `30/30`。全仓测试为 `56 passed`。
+
+冻结记录：`experiments/Q2_FINAL_FREEZE/freeze_record.json`；最终清单：`deliverables/final/Q2_MANIFEST.json`。Run1/Run2 均独立从 `t=0` 运行且 raw/sampled/diagnostics byte/hash 一致；passive interval 为 `[206935.0,206935.25] s`，final horizon 为 `228536 s`。历史失败实验 `Q2_FREEZE_RUN_V3_FAILED_HORIZON_20260912` 仍保留为审计记录，未进入 final 交付。
+
+当前最终状态：`Q2 = FROZEN`。Q1 仍保持 `pointwise error zero-crossing / cancellation dip` 的深谷解释；Q3/Q4 仍为 `NOT STARTED`。

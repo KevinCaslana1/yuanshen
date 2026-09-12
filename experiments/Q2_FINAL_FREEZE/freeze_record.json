@@ -1,0 +1,289 @@
+{
+  "schema_version": "Q2_V3_FINAL_FREEZE_RECORD_V1",
+  "status": "APPROVED",
+  "q2_version": "V3 production freeze",
+  "freeze_approval_status": "APPROVED",
+  "candidate_commit": "0172972",
+  "run_lineage": {
+    "run_1": "independent fresh run from t=0",
+    "run_2": "independent fresh run from t=0",
+    "run_1_run_2_byte_hash_identical": true,
+    "determinism": {
+      "raw_output": {
+        "status": "PASS",
+        "mode": "byte/hash identical",
+        "left_sha256": "8da13480ea9bb4f752682e409e7f96ca7547c36db698a72696fc2f8229c7d6bf",
+        "right_sha256": "8da13480ea9bb4f752682e409e7f96ca7547c36db698a72696fc2f8229c7d6bf",
+        "comparison_scope": "all rows and all numeric fields, not only final state"
+      },
+      "official_sampled_output": {
+        "status": "PASS",
+        "mode": "byte/hash identical",
+        "left_sha256": "141a7d6b9e4de11b9a5e52d50c194761f3d15661e14b4828929e1b320e1372fd",
+        "right_sha256": "141a7d6b9e4de11b9a5e52d50c194761f3d15661e14b4828929e1b320e1372fd",
+        "comparison_scope": "all rows and all numeric fields, not only final state"
+      },
+      "diagnostics": {
+        "status": "PASS",
+        "mode": "byte/hash identical",
+        "left_sha256": "c6c1deb41fe83b49a6252ac2d3d7dbce47bc6e923520512de750ce14f2ae8209",
+        "right_sha256": "c6c1deb41fe83b49a6252ac2d3d7dbce47bc6e923520512de750ce14f2ae8209",
+        "comparison_scope": "all rows and all numeric fields, not only final state"
+      },
+      "event_bracket_equal": true,
+      "final_horizon_equal": true,
+      "comparison_scope": "all rows and all numeric fields, not only final state",
+      "status": "PASS"
+    }
+  },
+  "passive_interval_s": [
+    206935.0,
+    206935.25
+  ],
+  "final_horizon_s": 228536,
+  "workbook": {
+    "candidate_path": "deliverables/candidate/result2.xlsx",
+    "final_path": "deliverables/final/result2.xlsx",
+    "candidate_sha256": "84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da",
+    "final_sha256": "84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da",
+    "sha256_identical": true,
+    "candidate_size_bytes": 30303454,
+    "final_size_bytes": 30303454,
+    "size_identical": true,
+    "validation": {
+      "status": "PASS",
+      "sheet_count": 2,
+      "expected_shape_per_sheet": [
+        228537,
+        22
+      ],
+      "sheets": [
+        {
+          "sheet": "温度",
+          "rows": 228537,
+          "columns": 22,
+          "formula_count": 0,
+          "data_cell_count": 4799256,
+          "numeric_format": "0.0000",
+          "numeric_format_count": 4799256,
+          "numeric_format_status": true
+        },
+        {
+          "sheet": "水分浓度",
+          "rows": 228537,
+          "columns": 22,
+          "formula_count": 0,
+          "data_cell_count": 4799256,
+          "numeric_format": "0.0000",
+          "numeric_format_count": 4799256,
+          "numeric_format_status": true
+        }
+      ],
+      "no_formulas": true,
+      "four_decimal_numeric_format": true,
+      "errors": []
+    },
+    "trace": {
+      "random_trace": "100/100",
+      "table3_temperature": "30/30",
+      "table4_moisture": "30/30",
+      "basis": "validated candidate evidence plus byte-identical final copy"
+    }
+  },
+  "figures": {
+    "status": "PASS",
+    "figure_group_count": 11,
+    "figure_file_count": 22,
+    "png_svg_groups": "11/11",
+    "png_dpi_minimum": 300,
+    "trace": "30/30",
+    "no_smoothing": true,
+    "no_numeric_interpolation": true,
+    "files": [
+      {
+        "figure_id": "FIG-Q2-01",
+        "png_path": "deliverables/final/figures/q2/FIG-Q2-01_temperature_radial_profiles.png",
+        "png_sha256": "bcd5a623b5e0eeb57028c673239f1c6b1e60ce5948aa681d1f610ba828a3d4d5",
+        "png_size_bytes": 111641,
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "svg_path": "deliverables/final/figures/q2/FIG-Q2-01_temperature_radial_profiles.svg",
+        "svg_sha256": "1619de7fe4ce9f2fe95c77c2c0238c097a2f43ea9f7720f4af4708b24782e265",
+        "svg_size_bytes": 50077,
+        "source_png_sha256": "bcd5a623b5e0eeb57028c673239f1c6b1e60ce5948aa681d1f610ba828a3d4d5",
+        "source_svg_sha256": "1619de7fe4ce9f2fe95c77c2c0238c097a2f43ea9f7720f4af4708b24782e265"
+      },
+      {
+        "figure_id": "FIG-Q2-02",
+        "png_path": "deliverables/final/figures/q2/FIG-Q2-02_moisture_radial_profiles.png",
+        "png_sha256": "cc5c18b5d78e44b50f8d15a02a940f43ed2f0d3144d83876cb7955b56d508291",
+        "png_size_bytes": 194901,
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "svg_path": "deliverables/final/figures/q2/FIG-Q2-02_moisture_radial_profiles.svg",
+        "svg_sha256": "c1b48557526e0154cc17df682ed2716f56703b50c3e02dab124b64c6f28e21c7",
+        "svg_size_bytes": 47849,
+        "source_png_sha256": "cc5c18b5d78e44b50f8d15a02a940f43ed2f0d3144d83876cb7955b56d508291",
+        "source_svg_sha256": "c1b48557526e0154cc17df682ed2716f56703b50c3e02dab124b64c6f28e21c7"
+      },
+      {
+        "figure_id": "FIG-Q2-03",
+        "png_path": "deliverables/final/figures/q2/FIG-Q2-03_temperature_time_radius_heatmap.png",
+        "png_sha256": "58c45bd65da782906e048724329fe6660458b388e54f406776819993ae04043a",
+        "png_size_bytes": 88629,
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "svg_path": "deliverables/final/figures/q2/FIG-Q2-03_temperature_time_radius_heatmap.svg",
+        "svg_sha256": "321f7c97bcabb2c158158f17e01462493689db7bcd607be1e2bdb81b2ed12fca",
+        "svg_size_bytes": 314075,
+        "source_png_sha256": "58c45bd65da782906e048724329fe6660458b388e54f406776819993ae04043a",
+        "source_svg_sha256": "321f7c97bcabb2c158158f17e01462493689db7bcd607be1e2bdb81b2ed12fca"
+      },
+      {
+        "figure_id": "FIG-Q2-04",
+        "png_path": "deliverables/final/figures/q2/FIG-Q2-04_moisture_time_radius_heatmap.png",
+        "png_sha256": "e5a39478ebba505b0ce5a4cb96ae597b746a13feca79bb85d59453d77b50b546",
+        "png_size_bytes": 88482,
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "svg_path": "deliverables/final/figures/q2/FIG-Q2-04_moisture_time_radius_heatmap.svg",
+        "svg_sha256": "f70713d59d0c844eea5d7730abd82c3540e86e88621bd2d44f0779bbdac3216d",
+        "svg_size_bytes": 305695,
+        "source_png_sha256": "e5a39478ebba505b0ce5a4cb96ae597b746a13feca79bb85d59453d77b50b546",
+        "source_svg_sha256": "f70713d59d0c844eea5d7730abd82c3540e86e88621bd2d44f0779bbdac3216d"
+      },
+      {
+        "figure_id": "FIG-Q2-05",
+        "png_path": "deliverables/final/figures/q2/FIG-Q2-05_temperature_time_histories.png",
+        "png_sha256": "a0e7c7c9b763f622b8c8de872bf9cc0d368caf4aa13f78c4da3f55960ecaf4c3",
+        "png_size_bytes": 86316,
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "svg_path": "deliverables/final/figures/q2/FIG-Q2-05_temperature_time_histories.svg",
+        "svg_sha256": "133452733f00abeca63657e3a7c0dd02b577b6a67fd9f061823d7350d9dd4a26",
+        "svg_size_bytes": 40909,
+        "source_png_sha256": "a0e7c7c9b763f622b8c8de872bf9cc0d368caf4aa13f78c4da3f55960ecaf4c3",
+        "source_svg_sha256": "133452733f00abeca63657e3a7c0dd02b577b6a67fd9f061823d7350d9dd4a26"
+      },
+      {
+        "figure_id": "FIG-Q2-06",
+        "png_path": "deliverables/final/figures/q2/FIG-Q2-06_moisture_time_histories.png",
+        "png_sha256": "a4351f3c3e2549d140e3a634cbf6ae10eea3cc246353d799fe53c3fb6f26596d",
+        "png_size_bytes": 145657,
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "svg_path": "deliverables/final/figures/q2/FIG-Q2-06_moisture_time_histories.svg",
+        "svg_sha256": "02dcc9f59b62485e9abed7b55868744c5dcaef5527950331359557e425ea12dc",
+        "svg_size_bytes": 40131,
+        "source_png_sha256": "a4351f3c3e2549d140e3a634cbf6ae10eea3cc246353d799fe53c3fb6f26596d",
+        "source_svg_sha256": "02dcc9f59b62485e9abed7b55868744c5dcaef5527950331359557e425ea12dc"
+      },
+      {
+        "figure_id": "FIG-Q2-07",
+        "png_path": "deliverables/final/figures/q2/FIG-Q2-07_center_surface_moisture_difference.png",
+        "png_sha256": "4f6928825f1f7083d81de0ec0ad6f5ff0cd5fdb23e0edd233992c4be4a85b2c1",
+        "png_size_bytes": 95619,
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "svg_path": "deliverables/final/figures/q2/FIG-Q2-07_center_surface_moisture_difference.svg",
+        "svg_sha256": "8facd2a3dd4267ca85ea0a236e2b17fd35ed41c91dc73b624f3379d2339c1b6e",
+        "svg_size_bytes": 33007,
+        "source_png_sha256": "4f6928825f1f7083d81de0ec0ad6f5ff0cd5fdb23e0edd233992c4be4a85b2c1",
+        "source_svg_sha256": "8facd2a3dd4267ca85ea0a236e2b17fd35ed41c91dc73b624f3379d2339c1b6e"
+      },
+      {
+        "figure_id": "FIG-Q2-08",
+        "png_path": "deliverables/final/figures/q2/FIG-Q2-08_representative_diffusivity.png",
+        "png_sha256": "4d71a47b2f52f4cb1170ee862555e0af7ffeb894fc514462434507b037b46874",
+        "png_size_bytes": 122841,
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "svg_path": "deliverables/final/figures/q2/FIG-Q2-08_representative_diffusivity.svg",
+        "svg_sha256": "194aa111110112c9dd905cf5b4953a6641d17fe2aba7ca52af8a2f31cbb70c9a",
+        "svg_size_bytes": 43642,
+        "source_png_sha256": "4d71a47b2f52f4cb1170ee862555e0af7ffeb894fc514462434507b037b46874",
+        "source_svg_sha256": "194aa111110112c9dd905cf5b4953a6641d17fe2aba7ca52af8a2f31cbb70c9a"
+      },
+      {
+        "figure_id": "FIG-Q2-V01",
+        "png_path": "deliverables/final/figures/q2/FIG-Q2-V01_picard_iterations.png",
+        "png_sha256": "d5ff11d76a373ee697a57166063180bd989f2970b6cec755c4eb0b7e6cd0a26f",
+        "png_size_bytes": 54045,
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "svg_path": "deliverables/final/figures/q2/FIG-Q2-V01_picard_iterations.svg",
+        "svg_sha256": "758c7f7e58bdc320fad4b7a57b9fa28d565aa27b0cd34453a32257beeba55b94",
+        "svg_size_bytes": 28505,
+        "source_png_sha256": "d5ff11d76a373ee697a57166063180bd989f2970b6cec755c4eb0b7e6cd0a26f",
+        "source_svg_sha256": "758c7f7e58bdc320fad4b7a57b9fa28d565aa27b0cd34453a32257beeba55b94"
+      },
+      {
+        "figure_id": "FIG-Q2-V02",
+        "png_path": "deliverables/final/figures/q2/FIG-Q2-V02_mass_residual.png",
+        "png_sha256": "dc6a40d92853fbdb8d3da0194c75a7b4902c981aed7a21a001c8bbba20159795",
+        "png_size_bytes": 73547,
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "svg_path": "deliverables/final/figures/q2/FIG-Q2-V02_mass_residual.svg",
+        "svg_sha256": "f06fc6e06ba21be6c10c43cdcf59ed670b78d6bf3569e67635cef56738b89a9f",
+        "svg_size_bytes": 29581,
+        "source_png_sha256": "dc6a40d92853fbdb8d3da0194c75a7b4902c981aed7a21a001c8bbba20159795",
+        "source_svg_sha256": "f06fc6e06ba21be6c10c43cdcf59ed670b78d6bf3569e67635cef56738b89a9f"
+      },
+      {
+        "figure_id": "FIG-Q2-V03",
+        "png_path": "deliverables/final/figures/q2/FIG-Q2-V03_heat_residual.png",
+        "png_sha256": "77b236100266b690ed43ac161c786d63b1855ab3dd662e361db958cb4fe21859",
+        "png_size_bytes": 68350,
+        "png_dpi": [
+          299.9994,
+          299.9994
+        ],
+        "svg_path": "deliverables/final/figures/q2/FIG-Q2-V03_heat_residual.svg",
+        "svg_sha256": "e9c79de3ecb998a999e030f85c29759043cb93da32cf12d6c8ec9e9ea1b35f6f",
+        "svg_size_bytes": 37047,
+        "source_png_sha256": "77b236100266b690ed43ac161c786d63b1855ab3dd662e361db958cb4fe21859",
+        "source_svg_sha256": "e9c79de3ecb998a999e030f85c29759043cb93da32cf12d6c8ec9e9ea1b35f6f"
+      }
+    ],
+    "errors": []
+  },
+  "tests": {
+    "command": "pytest -q",
+    "returncode": 0,
+    "result": "56 passed"
+  },
+  "q1_status": "FROZEN; pointwise error zero-crossing / cancellation dip",
+  "q3_status": "NOT STARTED",
+  "q4_status": "NOT STARTED",
+  "historical_failure_retained": "experiments/Q2_FREEZE_RUN_V3_FAILED_HORIZON_20260912",
+  "protected_paths": {
+    "A题": "unchanged",
+    "src/q2": "unchanged"
+  },
+  "git": {
+    "candidate_commit": "0172972",
+    "protected_diff_paths": []
+  },
+  "errors": []
+}

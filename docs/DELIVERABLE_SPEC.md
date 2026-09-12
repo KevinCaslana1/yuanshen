@@ -58,7 +58,7 @@
 
 ### Q2 Design Gate Addendum
 
-Q2 V3 契约已冻结并完成 candidate 验证：完整 Excel 为整数秒 `t=1..228536`，21 个半径 `0..2 cm` 每 `0.1 cm`，每张表 `228537×22`（含表头）；t=0 只保留在 raw internal source；表3/4 仍按 `1800..10800 s` 和 `0,0.5,1,1.5,2 cm` 追踪。`deliverables/candidate/result2.xlsx` 已生成并验证，尚未复制到 final。
+Q2 V3 契约已冻结并完成 candidate 与 final 验证：完整 Excel 为整数秒 `t=1..228536`，21 个半径 `0..2 cm` 每 `0.1 cm`，每张表 `228537×22`（含表头）；t=0 只保留在 raw internal source；表3/4 仍按 `1800..10800 s` 和 `0,0.5,1,1.5,2 cm` 追踪。`deliverables/candidate/result2.xlsx` 已在人工批准后按字节原样复制到 `deliverables/final/result2.xlsx`，冻结记录见 `experiments/Q2_FINAL_FREEZE/freeze_record.json`。
 
 ## result3.xlsx
 

@@ -161,4 +161,4 @@ node scripts\\build_q2_candidate.mjs
 .\.venv\Scripts\python.exe scripts\validate_q2_v3_figures.py
 ```
 
-artifact-tool 已先按技能要求尝试；因该超大工作簿在 4 GB 和 8 GB V8 heap 均 OOM，最终使用 `openpyxl.Workbook(write_only=True)` 流式 fallback。候选仍须人工 Q2 freeze approval 后才允许 candidate→final COPY ONLY；不得直接启动 Q3/Q4。
+artifact-tool 已先按技能要求尝试；因该超大工作簿在 4 GB 和 8 GB V8 heap 均 OOM，最终使用 `openpyxl.Workbook(write_only=True)` 流式 fallback。Q2 已获人工 freeze approval，final 阶段仅允许将已验证 candidate 与已验证 PNG/SVG 执行 COPY ONLY；不得重新计算、重新绘图或直接启动 Q3/Q4。冻结记录见 `experiments/Q2_FINAL_FREEZE/freeze_record.json`。

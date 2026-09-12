@@ -530,9 +530,17 @@ ENV-A 主运行完成 0–72 h，最终阶段场有限且正，Picard `2/2/2/2`�
 
 人工批准 `Q2 V3 FREEZE RUN AUTHORIZATION = APPROVED` 后，按冻结的 `Q2_NUMERICAL_CONFIG_V3` 从全新 t=0 启动 Run1 与 Run2。两次均得到 `[206935.0,206935.25] s` passive bracket 和 `final_horizon=228536 s`；Run1 标记为唯一 `PRODUCTION_CANONICAL`，Run2 只作 `DETERMINISM_REFERENCE`。formal accuracy 仍按已批准的 integer-second/official-radius 与 selected long-point scope 解释，不扩写为 n=640 full-horizon proof。
 
-`deliverables/candidate/result2.xlsx` 及 `figures/q2/` 已完成独立结构、四位小数、无公式、traceability、PNG/SVG 分辨率和 source-hash 验证。candidate 不自动进入 final，必须等待人工 Q2 freeze approval。
+`deliverables/candidate/result2.xlsx` 及 `figures/q2/` 已完成独立结构、四位小数、无公式、traceability、PNG/SVG 分辨率和 source-hash 验证。随后已获得人工 `Q2 V3 production freeze = APPROVED`，并按 COPY ONLY 将 candidate workbook 与现有 PNG/SVG 同步进入 final；冻结细节见 `experiments/Q2_FINAL_FREEZE/freeze_record.json`。
 
-状态：`VALIDATED_CANDIDATE_WAITING_HUMAN_Q2_FREEZE_APPROVAL`
+状态：`FROZEN_FINAL_APPROVED`
+
+## D-Q2-FINAL-FREEZE-20260912 Q2 V3 final deliverable freeze
+
+日期：2026-09-12
+
+人工批准 Q2 V3 production freeze 后，禁止重新计算、重新绘图、重新保存或格式化已验证 Q2 结果。`deliverables/candidate/result2.xlsx` 以 candidate commit `0172972` 为源，按字节原样复制到 `deliverables/final/result2.xlsx`；11 组现有 PNG/SVG 也按字节原样同步。只读验证确认 workbook 两张表均为 `228537×22`、无公式、数据区四位小数、trace `100/100`、Table3/4 `60/60`；图表 `11/11`、PNG ≥300 dpi、trace `30/30`；全仓测试 `56 passed`。Run1/Run2 均独立从 `t=0` 启动且 raw/sampled/diagnostics byte/hash 一致；passive interval `[206935.0,206935.25] s`，final horizon `228536 s`。Q1 的误差深谷解释继续保持 `pointwise error zero-crossing / cancellation dip`，Q3/Q4 不启动。
+
+状态：`Q1 = FROZEN; Q2 = FROZEN; Q3 = NOT STARTED; Q4 = NOT STARTED`
 
 证据：`experiments/Q2_FREEZE_RUN_V3/`、`experiments/Q2_CANONICAL_DATA_MANIFEST.json`、`docs/Q2_RESULT_AUDIT.md`
 
