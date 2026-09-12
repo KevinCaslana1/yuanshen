@@ -295,4 +295,22 @@ Agent 自动完成模型冻结。`result2.xlsx`、candidate/final workbook 均�
 | Q1/A题 integrity | `git diff -- A题`、Q1 hashes | PASS |
 | Q3/Q4 boundary | `docs/STATE.md`、`docs/HANDOFF.md` | PASS；仍 NOT STARTED |
 
-结论：`Q2 PRODUCTION CONFIG FROZEN; ACCURACY GATE FAILED; RESULT CANDIDATE BLOCKED`。不得生成 candidate/final result2，不得把 passive event bracket 写成 Q3 最终烘干时间；后续整改需要新的人工数值/模型决定。
+结论：`Q2 PRODUCTION CONFIG FROZEN; ACCURACY GATE FAILED; RESULT CANDIDATE BLOCKED`。不得生成 candidate/final result2，不得把 passive event bracket 写成 Q3 最终烘干时间；数值整改已获授权，但尚未完成 V2 full-horizon gate。
+
+## CUMCM Q2 NUMERICAL ACCURACY REMEDIATION GATE（2026-09-12）
+
+| Gate item | Evidence | Status |
+|---|---|---|
+| Original raw metric audit | `docs/Q2_ACCURACY_REMEDIATION.md`、old `accuracy_confirmation.json` | PASS；空间/时间 raw difference 分开报告，未称 Richardson uncertainty |
+| Richardson rule hardening | remediation metrics and notes | PASS；不使用旧 `p=3.0631` 乐观外推，保留 fine/coarse bound |
+| Q2 initial Robin compatibility | `EXP-Q2-ACC-C-INITIAL` | COMPLETED；不相容性仅归类为数值初始层发现 |
+| Environment transition BDF2 diagnosis | `EXP-Q2-ACC-T-TRANSITION` | PASS as local evidence；BE restart 残差/Picard 未恶化 |
+| Spatial isolation | `EXP-Q2-ACC-SPATIAL*`、cluster3 study | PASS as short evidence；fixed dt，细化 raw L∞下降 |
+| Temporal isolation | `EXP-Q2-ACC-TEMPORAL*` | PASS as short evidence；fixed space，细化 raw L∞下降并记录 observed order |
+| Early-time policy | `EXP-Q2-NUM-REMEDY-C-TIME` | PASS as short evidence；无物理输入修改 |
+| 0–3 h + 14500 s V2 regression | `EXP-Q2-V2-REGRESSION` | PARTIAL；formal integer points低于门槛，但 `14400.25 s` local T probe=`2.2991e-4 °C` |
+| V2 full-horizon fresh double run | `Q2_FREEZE_RUN_V2/ABORTED_ATTEMPT.json` | BLOCKED；n640 attempt因运行成本中止，无Run2/完整accuracy confirmation |
+| Full-horizon `accuracy_confirmation_v2.json` | none | NOT ESTABLISHED；不得伪造 PASS |
+| result2/Q2 figures/Q3/Q4 | candidate/final、Q3/Q4 | BLOCKED / NOT STARTED |
+
+详细整改报告见 `docs/Q2_ACCURACY_REMEDIATION.md`。最终状态：`Q2 NUMERICAL ACCURACY REMEDIATION GATE BLOCKED / DO NOT GENERATE RESULT2 / WAITING FOR HUMAN REVIEW`。

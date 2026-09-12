@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "code_commit": "b7d53755c2a25d7c0ff50133106172f1b5cac700",
+  "git_status": "## main...origin/main [ahead 31]\n?? experiments/Q2_FREEZE_RUN_V2/",
+  "python": {
+    "executable": "D:\\数学建模（原神）\\.venv\\Scripts\\python.exe",
+    "version": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26220-SP0"
+  },
+  "dependencies": {
+    "openpyxl": "3.1.5",
+    "numpy": "2.5.3",
+    "matplotlib": "3.10.6"
+  },
+  "q1_integrity": {
+    "q1_final_sha256": "06b67b1f688d84a701ac4d2f4b0f47a1624069877df6724faf071a48af177b5c",
+    "q1_freeze_reference_sha256": "f13667b5fe8e4c1e1a7635b18ab4c7aaa9e3fef5111b893a9ce79b6deb3fad17",
+    "q1_figure_tree_sha256": "ea1e8213a87ed470ce38c5a05fee4dbb9f245b7ee3c20f46bc9e433105d025ca",
+    "official_source_tree_sha256": "dc5bf76b38a356bd4540a581a9de8a84f66747d4b774db91878460d555514c55",
+    "q1_final_tag_sha": "f3c7953725f1b2b87ca10aae02327ea4420eec78",
+    "attachment1_sha256": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+    "official_result2_template_sha256": "23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4"
+  },
+  "regression": {
+    "command": [
+      "D:\\数学建模（原神）\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-q"
+    ],
+    "returncode": 0,
+    "status": "PASS"
+  },
+  "production_source_rule": "Q2_FREEZE_RUN_V2 only after accuracy confirmation; old Q2_FREEZE_RUN is provenance-only"
+}

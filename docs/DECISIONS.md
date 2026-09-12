@@ -505,7 +505,7 @@ ENV-A 主运行完成 0–72 h，最终阶段场有限且正，Picard `2/2/2/2`�
 
 最新人工授权为 `Q2 HUMAN PRODUCTION FREEZE APPROVAL = APPROVED`。据此冻结并执行了 Candidate A 的正式双跑：ENV-B（Attachment 1 在 `0..14400 s` 分段线性，之后常值 `T_inf=49.99525 °C`、`C_inf=0.049988 kg/kg`）、linear、h/hm carried-forward、harmonic interface mean、`dt=.25 s`、实际 98-cell boundary-clustered FVM、BE startup/BDF2、`final_horizon=228635 s`。
 
-生产双跑从 `t=0` 新鲜启动，Run1/Run2 raw、sampled、diagnostics 和 checkpoint 均 byte/hash identical；生产场、Picard、有限性、属性范围、守恒/Robin、中心对称和事件 bracket 检查通过。正式来源固定为 `experiments/Q2_FREEZE_RUN/run_1`。
+生产双跑从 `t=0` 新鲜启动，Run1/Run2 raw、sampled、diagnostics 和 checkpoint 均 byte/hash identical；生产场、Picard、有限性、属性范围、守恒/Robin、中心对称和事件 bracket 检查通过。Run1 仅作为失败生产尝试 provenance，当前不建立 formal delivery source。
 
 但独立 `dt=.125/.5 s` 与 `n=160` 参考确认显示温度 L∞ `1.9082196854469657e-4 °C`、水分 L∞ `2.0357404664261836e-4 kg/kg`，均超过已批准的内部 `2.5e-5` 门；温度/水分 L2 RMS 分别为 `4.400124076121024e-6`、`3.0182278875418313e-5`。因此配置冻结不等于结果候选通过，候选工作簿和图表必须 fail-closed 阻止。
 
@@ -513,6 +513,12 @@ ENV-A 主运行完成 0–72 h，最终阶段场有限且正，Picard `2/2/2/2`�
 
 `PRODUCTION_CONFIG_FROZEN; ACCURACY_GATE_FAILED; RESULT_CANDIDATE_BLOCKED`
 
-后续若要改变 post-14400 处理、步长/网格或精度门，均属于新的人工数值/模型决定；在新授权前不得重跑生产、生成 `result2.xlsx` 或启动 Q3/Q4。
+人工随后授权了数值精度整改。本轮允许的最小数值变化为：14400 s 处 BE restart、经证据支持的 early-time refinement、以及 stronger surface clustering；ENV-B、物理参数、初值、harmonic interface 和 `2.5e-5` gate 保持不变。局部实验完成，但 n=320/cluster3 候选在显式 `14400.25 s` 探针仍有 `2.2991211631051556e-4 °C` raw difference，n=640 V2 full attempt 又因运行成本中止，因此不得关闭 accuracy gate。
+
+### 状态
+
+`PRODUCTION_CONFIG_FROZEN; ORIGINAL_ACCURACY_GATE_FAILED; REMEDIATION_PARTIAL; RESULT_CANDIDATE_BLOCKED`
+
+证据：`docs/Q2_ACCURACY_REMEDIATION.md`、`experiments/EXP-Q2-ACC-T-TRANSITION/`、`experiments/EXP-Q2-ACC-SPATIAL-CLUSTER3/`、`experiments/EXP-Q2-V2-REGRESSION/`、`experiments/Q2_FREEZE_RUN_V2/`。
 
 证据：`docs/Q2_PRODUCTION_FREEZE.md`、`docs/Q2_RESULT_AUDIT.md`、`experiments/Q2_FREEZE_RUN/`。

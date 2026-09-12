@@ -36,6 +36,7 @@ TRANSITION_OUT = ROOT / "experiments" / "EXP-Q2-ACC-T-TRANSITION"
 INITIAL_OUT = ROOT / "experiments" / "EXP-Q2-ACC-C-INITIAL"
 SPATIAL_OUT = ROOT / "experiments" / "EXP-Q2-ACC-SPATIAL"
 SPATIAL_FURTHER_OUT = ROOT / "experiments" / "EXP-Q2-ACC-SPATIAL-FURTHER"
+SPATIAL_CLUSTER3_OUT = ROOT / "experiments" / "EXP-Q2-ACC-SPATIAL-CLUSTER3"
 TEMPORAL_OUT = ROOT / "experiments" / "EXP-Q2-ACC-TEMPORAL"
 TEMPORAL_FURTHER_OUT = ROOT / "experiments" / "EXP-Q2-ACC-TEMPORAL-FURTHER"
 TIME_POLICY_OUT = ROOT / "experiments" / "EXP-Q2-NUM-REMEDY-C-TIME"
@@ -394,6 +395,61 @@ def spatial_further_refinement(base: Q2RunConfig) -> None:
     )
 
 
+def spatial_cluster3_study(base: Q2RunConfig) -> None:
+    """Test stronger surface clustering at the lower-cost n=320 grid.
+
+    The comparison is against the already completed n=640, cluster-power=2
+    run at identical dt and output times.  This is a numerical candidate
+    study only; it does not change the physical model or approve production.
+    """
+    SPATIAL_CLUSTER3_OUT.mkdir(parents=True, exist_ok=True)
+    dt = 0.015625
+    times = tuple(float(value) for value in (0.0, 0.25, 0.5, 1.0, 1.5, 2.0))
+    case_name = "n320_cluster3_dt0.015625"
+    case_dir = SPATIAL_CLUSTER3_OUT / case_name
+    if (case_dir / "snapshots.csv").is_file() and (case_dir / "metrics.json").is_file():
+        case_summary = json.loads((case_dir / "metrics.json").read_text(encoding="utf-8"))
+        cluster3 = {"summary": case_summary, "snapshots": load_snapshot_index(case_dir / "snapshots.csv")}
+    else:
+        cluster3 = run_short_case(
+            case_name,
+            make_config(base, end_time_s=2.0, dt=dt, n_intervals=320, cluster_power=3.0, reset=False),
+            SPATIAL_CLUSTER3_OUT,
+            times,
+            full_diagnostics=False,
+        )
+    reference_path = SPATIAL_FURTHER_OUT / "n640_dt0.015625" / "snapshots.csv"
+    if not reference_path.is_file():
+        raise RuntimeError(f"missing fixed-dt reference: {reference_path}")
+    reference = load_snapshot_index(reference_path)
+    comparison = compare_snapshot_maps(cluster3["snapshots"], reference)
+    reference_summary = json.loads((SPATIAL_FURTHER_OUT / "n640_dt0.015625" / "metrics.json").read_text(encoding="utf-8"))
+    metrics = {
+        "experiment": "EXP-Q2-ACC-SPATIAL-CLUSTER3",
+        "status": "SHORT_CANDIDATE_STUDY",
+        "fixed_time_step_s": dt,
+        "time_interval_s": [0.0, 2.0],
+        "radii_cm": list(RADII_CM),
+        "candidate": cluster3["summary"],
+        "reference": {
+            "path": str(reference_path.relative_to(ROOT)).replace("\\", "/"),
+            "grid": reference_summary["grid"],
+        },
+        "raw_pairwise_difference": comparison,
+        "gate": {"temperature_C": THRESHOLD_T, "moisture_kg_kg": THRESHOLD_C},
+        "interpretation": "candidate-only fixed-dt spatial comparison; no production approval",
+    }
+    write_json(SPATIAL_CLUSTER3_OUT / "metrics.json", metrics)
+    (SPATIAL_CLUSTER3_OUT / "notes.md").write_text(
+        "# EXP-Q2-ACC-SPATIAL-CLUSTER3\n\n"
+        "This short study keeps dt=0.015625 s and the frozen Q2 physics fixed, "
+        "then compares n=320 with cluster_power=3 against the completed n=640 "
+        "cluster_power=2 reference through t=2 s. It exists only to assess a "
+        "runtime-feasible production candidate; it is not a delivery approval.\n",
+        encoding="utf-8",
+    )
+
+
 def temporal_isolation(base: Q2RunConfig) -> None:
     TEMPORAL_OUT.mkdir(parents=True, exist_ok=False)
     times = tuple(float(value) for value in (0.0, 0.25, 0.5, 1.0, 1.5, 2.0))
@@ -512,7 +568,7 @@ def early_time_policy_study(base: Q2RunConfig) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--stage", choices=("initial", "transition", "spatial", "spatial-further", "temporal", "temporal-further", "time-policy", "all"), default="all")
+    parser.add_argument("--stage", choices=("initial", "transition", "spatial", "spatial-further", "spatial-cluster3", "temporal", "temporal-further", "time-policy", "all"), default="all")
     args = parser.parse_args()
     base = load_base_config()
     ROOT_OUT.mkdir(parents=True, exist_ok=True)
@@ -524,6 +580,8 @@ def main() -> int:
         spatial_isolation(base)
     if args.stage in {"spatial-further", "all"}:
         spatial_further_refinement(base)
+    if args.stage in {"spatial-cluster3", "all"}:
+        spatial_cluster3_study(base)
     if args.stage in {"temporal", "all"}:
         temporal_isolation(base)
     if args.stage in {"temporal-further", "all"}:
@@ -539,6 +597,7 @@ def main() -> int:
             "experiments/EXP-Q2-ACC-T-TRANSITION",
             "experiments/EXP-Q2-ACC-SPATIAL",
             "experiments/EXP-Q2-ACC-SPATIAL-FURTHER",
+            "experiments/EXP-Q2-ACC-SPATIAL-CLUSTER3",
             "experiments/EXP-Q2-ACC-TEMPORAL",
             "experiments/EXP-Q2-ACC-TEMPORAL-FURTHER",
             "experiments/EXP-Q2-NUM-REMEDY-C-TIME",

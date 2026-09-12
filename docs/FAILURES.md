@@ -326,6 +326,22 @@ sampler只登记 21600/86400/172800/259200 s，因此后处理抛出 `KeyError: 
 
 已检查：Run1/Run2 fresh start、raw/sampled/diagnostic/checkpoint hash、environment transition assertion、Picard/finite-range/property/mass/heat/Robin/center checks、逐点全时域对比和参考运行 lineage。未发现随机性、绘图平滑、误差插值或 source index shift 证据；当前证据不足以宣称 solver assembly bug。
 
-下一步：任何改变 post-14400 连续性、dt/grid 分辨率或 accuracy criterion 的 remediation 都需新的人工授权；在授权前不重跑 production、不生成 result2、不启动 Q3/Q4。
+下一步：人工已授权数值整改；整改证据见 `docs/Q2_ACCURACY_REMEDIATION.md`。旧目录仍不可覆盖，未达到 V2 full-horizon gate 前不生成 result2、不生成正式 Q2 图、不启动 Q3/Q4。
 
-状态：OPEN / BLOCKED_PENDING_HUMAN_REMEDIATION_DECISION
+状态：SUPPORTED / HISTORICAL_FAILURE; Q2 仍 BLOCKED_PENDING_V2_CONFIRMATION
+
+## FAIL-Q2-010 Q2 V2 n640 full-horizon attempt stopped for impractical runtime
+
+问题：Q2 numerical remediation
+
+症状：V2 fresh Run1 使用 n=640、cluster_power=2、early `dt=.015625 s` through `t=2 s`、main `dt=.25 s` 启动。实测推进约 `888 s` simulated time 后，当前环境中的单步成本显示 full-horizon 双跑将产生不可接受的长时间占用。
+
+原因：当前 solver 以 Python list 和逐步 Thomas sweep 执行每个 Picard step；n=640 与约 91 万个 main steps 的 full-horizon 组合成本过高。该判断只涉及运行成本，不改变数值方程或精度门。
+
+已尝试修复：安全停止该不完整进程；保留 `run_1/official_samples_raw.csv` 与 `run_1/diagnostics_1s.csv` 等部分文件；写入 `ABORTED_ATTEMPT.json`，明确不可恢复、不可消费、无 Run2、无 metrics/validation/workbook。转向 n=320/cluster_power=3 的短候选研究。
+
+影响：V2 full-horizon accuracy confirmation 尚未建立；部分目录不是生产结果源。`result2.xlsx` 未生成。
+
+下一步：若继续，必须使用新 attempt 目录并在人工复核后选择运行成本可接受、且通过 local transition probe 的配置；不得续跑或覆盖本目录。
+
+状态：OPEN / BLOCKED_PENDING_HUMAN_REVIEW

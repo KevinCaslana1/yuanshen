@@ -39,6 +39,82 @@
 | FIND-Q2-016 | Recovered canonical loader 已阻断 raw duplicate 消费 | Q2 | manifest、lineage guard、tests | SUPPORTED |
 | FIND-Q2-017 | 批准的 Q2 冻结生产双跑可重复但精度门未通过 | Q2 | Q2_FREEZE_RUN、accuracy_confirmation | SUPPORTED（候选阻塞） |
 | FIND-Q2-018 | 14400 s 环境跳变和 1 s 初始表面层分别主导最大误差峰 | Q2 | Q2_FREEZE_RUN/environment.json、accuracy_diagnosis | SUPPORTED（需新整改决定） |
+| FIND-Q2-019 | Q2 初始表面 Robin 不相容性已独立复算，限定为数值初始层发现 | Q2 | EXP-Q2-ACC-C-INITIAL | SUPPORTED（不改变初值或物理参数） |
+| FIND-Q2-020 | 环境跳变处 BE restart 降低了 common integer-time 局部 raw bound，但不自动证明全时域通过 | Q2 | EXP-Q2-ACC-T-TRANSITION | SUPPORTED（局部数值证据） |
+| FIND-Q2-021 | Q2 时间/空间误差已分离；细化后 raw L∞ 均下降，未使用乐观 Richardson | Q2 | EXP-Q2-ACC-SPATIAL*、EXP-Q2-ACC-TEMPORAL* | SUPPORTED（raw/conservative bound） |
+| FIND-Q2-022 | n=320、cluster_power=3 在 0–2 s 表面含水率相对 n=640、cluster_power=2 的差低于门槛 | Q2 | EXP-Q2-ACC-SPATIAL-CLUSTER3 | SUPPORTED（短时候选证据） |
+| FIND-Q2-023 | V2 候选在 formal integer-time transition points 低于门槛，但 `14400.25 s` 局部探针温度差仍为 `2.2991e-4 °C` | Q2 | EXP-Q2-V2-REGRESSION | SUPPORTED（local probe remains blocking） |
+| FIND-Q2-024 | n=640 V2 full-horizon 尝试因当前逐步求解成本过高而中止，不能作为完成或精度证据 | Q2 | Q2_FREEZE_RUN_V2/ABORTED_ATTEMPT.json | SUPPORTED（性能阻塞） |
+
+## FIND-Q2-019 Q2 初始表面 Robin 不相容性已独立复算
+
+问题：Q2
+
+发现：在不修改官方初值、`hm`、`D` 或表面环境的情况下，Q2 自身重算得到 `C0=2.55 kg/kg`、`C_inf(0)=0.01963 kg/kg`、`hm=8e-7 m/s`、`D(C0,T0)=5.641680373025664e-9 m²/s`。均匀初始离散扩散通量为 `0`，Robin 通量为 `2.0242959999999997e-6 kg/(m²·s)`，residual 为 `-2.0242959999999997e-6 kg/(m²·s)`。
+
+证据：`experiments/EXP-Q2-ACC-C-INITIAL/metrics.json`
+
+限制：这只是 Q2 numerical initial-layer finding，不是“真实药材一定形成物理边界层”的结论。
+
+状态：SUPPORTED
+
+## FIND-Q2-020 环境跳变处 BE restart 改善 common-time 局部误差
+
+问题：Q2
+
+发现：在相同冻结 ENV-B、物理参数和 harmonic FVM 下，跨 `14400 s` 的 event-aligned BE restart 相比当前跨跳变 BDF2，在 n=80 局部细化的 common integer-time raw differences 中显著降低温度与水分误差；最细相邻 raw bound 为 T `8.143186960296589e-7 °C`、C `1.5011414333798712e-10 kg/kg`。这些数值是 fine/coarse differences，不是 Richardson uncertainty。
+
+证据：`experiments/EXP-Q2-ACC-T-TRANSITION/metrics.json`
+
+限制：显式探针 `14400.25 s` 不属于 common integer-time comparison；新 n=320 candidate regression 仍在该探针出现超门温度差，因此不能宣布完整 V2 通过。
+
+状态：SUPPORTED
+
+## FIND-Q2-021 Q2 时间和空间误差已分离
+
+问题：Q2
+
+发现：固定 `dt=.015625 s` 的 n320→n640 空间比较中，含水率 L∞ 从 `5.1707227172848036e-5` 降至进一步 n640 comparison 的 `1.297979618852807e-5 kg/kg`；固定 n640 的 dt=.015625→.0078125 时间比较中含水率 L∞ 为 `2.652957554083457e-6 kg/kg`，温度为 `2.100205165334046e-8 °C`。误差随独立维度细化下降，表格仅使用 raw difference/conservative bound。
+
+证据：`experiments/EXP-Q2-ACC-SPATIAL/metrics.json`、`EXP-Q2-ACC-SPATIAL-FURTHER/metrics.json`、`EXP-Q2-ACC-TEMPORAL-FURTHER/metrics.json`
+
+限制：这些是短时隔离证据，不替代 full-horizon accuracy confirmation。
+
+状态：SUPPORTED
+
+## FIND-Q2-022 n320/cluster_power=3 是早期表面空间候选
+
+问题：Q2
+
+发现：固定 `dt=.015625 s`、0–2 s、冻结物理和 harmonic face mean，n=320/cluster_power=3 相对于已完成 n=640/cluster_power=2 参考的温度/含水率 L∞ 分别为 `1.0052019661088707e-8 °C` 和 `2.5626144490864533e-6 kg/kg`，均低于 `2.5e-5` 局部门槛。
+
+证据：`experiments/EXP-Q2-ACC-SPATIAL-CLUSTER3/metrics.json`
+
+限制：这是短时 spatial candidate evidence，不证明长时误差、transition local probe 或 full-horizon 门通过。
+
+状态：SUPPORTED
+
+## FIND-Q2-023 V2 候选的 formal 时间点与 local first-post-step 分离
+
+问题：Q2
+
+发现：n=320/cluster_power=3、candidate dt=.25 s、early dt=.015625 s through 2 s、event-aligned BE restart 的 14500 s regression 中，formal integer-time `14390..14500 s` 的 T/C 最大 raw differences 为 `1.55375452663975e-5 °C` 和 `1.55189842416803e-5 kg/kg`；但显式 `14400.25 s,r=2.0 cm` local probe 的温度 raw difference 为 `2.2991211631051556e-4 °C`。因此不能把 formal sampled points 的通过外推为 local transition fully certified。
+
+证据：`experiments/EXP-Q2-V2-REGRESSION/metrics.json`
+
+状态：SUPPORTED；local probe remains blocking
+
+## FIND-Q2-024 n640 V2 full-horizon 尝试因性能中止
+
+问题：Q2
+
+发现：n=640/cluster_power=2 的 V2 fresh Run1 在未完成 full horizon 前、约推进到 `888 s` simulated time 时被安全停止；没有写出完整 metrics、validation、Run2 或 workbook。部分 raw/diagnostic 文件保留作 provenance，不能恢复或消费。
+
+证据：`experiments/Q2_FREEZE_RUN_V2/ABORTED_ATTEMPT.json`、`experiments/Q2_FREEZE_RUN_V2/notes.md`
+
+限制：这是 execution-performance finding，不是物理或 accuracy PASS/FAIL 结论。
+
+状态：SUPPORTED
 
 ## 发现记录模板
 

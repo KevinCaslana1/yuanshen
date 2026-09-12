@@ -5,7 +5,7 @@
 
 ## 状态
 
-配置冻结和双跑已完成；独立精度确认 `FAIL`。因此 Q2 candidate/result gate 被 fail-closed 阻塞，未生成 `deliverables/candidate/result2.xlsx`，未生成 Q2 正式图表，不进入 `deliverables/final/`。Q1 保持 FROZEN，Q3/Q4 保持 NOT STARTED。
+历史配置冻结和双跑已完成；独立精度确认 `FAIL`。本轮数值整改已获得授权并完成局部诊断、局部候选短程/切换回归，但尚未建立完整 V2 full-horizon accuracy confirmation。因此 Q2 candidate/result gate 继续 fail-closed 阻塞，未生成 `deliverables/candidate/result2.xlsx`，未生成 Q2 正式图表，不进入 `deliverables/final/`。Q1 保持 FROZEN，Q3/Q4 保持 NOT STARTED。
 
 ## Frozen model and configuration
 
@@ -35,7 +35,7 @@
 ## Production lineage and integrity
 
 - Baseline commit: `828f27a96d2f2ed93184b30cc2379136553f73b5`.
-- Formal source: `experiments/Q2_FREEZE_RUN/run_1/official_samples.csv`.
+- Formal source: `NONE`；`experiments/Q2_FREEZE_RUN/run_1/official_samples.csv` is retained only as `FAILED_PRODUCTION_ATTEMPT` provenance.
 - Run1/run2 raw SHA-256: `48584714d347aed619d56b564f737668cc418d63067daca49b0bceaf75bd548c`.
 - Run1/run2 sampled SHA-256: `604a323955c2ab5cd1299975231997b3dc6e5c0c6a2e16d6e52d6314a6050eae`.
 - Run1/run2 diagnostics SHA-256: `219f7a38f130f11ad8c896278f2fc4ce4bc881196b7f0a7f2a133d9af14819b5`.
@@ -57,6 +57,6 @@ The time observed order from the frozen `dt=.5/.25/.125` comparison is `1.6685` 
 
 ## Required disposition
 
-The result candidate gate remains blocked. Any remediation that changes the discontinuous post-14400 rule, time-step alignment/refinement, boundary-cluster resolution, or accuracy criterion is a new human model/numerical decision and requires explicit authorization before another production run. Do not generate `result2.xlsx`, do not call the passive bracket a Q3 drying time, and do not start Q3/Q4.
+The result candidate gate remains blocked. The authorized numerical remediation is documented in `docs/Q2_ACCURACY_REMEDIATION.md`. The n=320/cluster-power=3 short candidate is promising for the early spatial layer, but its 14500 s regression has a `2.2991211631051556e-4 °C` candidate/reference difference at the explicit non-output probe `14400.25 s,r=2.0 cm`; the formal integer-time peak in the same window is `1.55375452663975e-5 °C`. This distinction is not enough to establish the full-horizon gate. The attempted n=640 V2 full run was stopped for impractical runtime at approximately `888 s` simulated time and is retained as incomplete provenance. Do not generate `result2.xlsx`, do not call the passive bracket a Q3 drying time, and do not start Q3/Q4.
 
-Evidence: `experiments/Q2_FREEZE_RUN/metrics.json`, `environment.json`, `determinism.json`, `accuracy_confirmation.json`, `accuracy_diagnosis.json`, and the three full by-time comparison CSVs.
+Evidence: `experiments/Q2_FREEZE_RUN/metrics.json`, `environment.json`, `determinism.json`, `accuracy_confirmation.json`, `accuracy_diagnosis.json`, `experiments/Q2_ACCURACY_REMEDIATION/`, `experiments/EXP-Q2-V2-REGRESSION/`, and `experiments/Q2_FREEZE_RUN_V2/ABORTED_ATTEMPT.json`.

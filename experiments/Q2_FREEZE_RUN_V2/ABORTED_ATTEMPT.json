@@ -1,0 +1,10 @@
+{
+  "status": "ABORTED_INCOMPLETE_PERFORMANCE_REVIEW",
+  "delivery_status": "NOT_DELIVERY_SOURCE",
+  "attempt": "Q2_FREEZE_RUN_V2",
+  "reason": "The n=640 full-horizon Run 1 was stopped at approximately 888 s before completion because the measured runtime was impractical for the current execution environment. The partial files are retained for provenance and must not be resumed or consumed as production data.",
+  "partial_run": "run_1",
+  "fresh_start": true,
+  "official_result2_generated": false,
+  "next_attempt_policy": "Use a new attempt directory after a stronger-clustering short study; never overwrite this directory."
+}

@@ -1,0 +1,12 @@
+{
+  "experiment": "EXP-Q2-ACC-SPATIAL-CLUSTER3",
+  "purpose": "fixed-dt stronger surface clustering candidate study",
+  "time_interval_s": [0.0, 2.0],
+  "time_step_s": 0.015625,
+  "candidate_grid": {
+    "requested_intervals": 320,
+    "cluster_power": 3.0
+  },
+  "reference": "experiments/EXP-Q2-ACC-SPATIAL-FURTHER/n640_dt0.015625",
+  "official_result2_generated": false
+}

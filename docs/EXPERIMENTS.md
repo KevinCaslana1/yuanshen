@@ -145,11 +145,27 @@ The numerical candidate is suitable for human review, but no open modeling choic
 
 ## Q2 Production Freeze Run and Accuracy Confirmation（2026-09-12）
 
-最新人工授权批准 Q2 production freeze 后，执行了独立 fresh-from-`t=0` Run1/Run2 及精度确认。正式来源固定为 Run1；Run2 只作确定性参考。配置为 Candidate A、实际 98-cell boundary-clustered conservative FVM、`dt=.25 s`、BE startup/BDF2、linear、harmonic、ENV-B post-14400 constants、`final_horizon=228635 s`。两次生产 raw/sampled/diagnostics/checkpoint 均 byte/hash identical，生产场和迭代/属性/守恒/Robin/中心对称检查通过。
+最新人工授权批准 Q2 production freeze 后，执行了独立 fresh-from-`t=0` Run1/Run2 及精度确认。Run1 仅作为失败尝试 provenance；Run2 只作确定性参考，当前没有 formal production source。配置为 Candidate A、实际 98-cell boundary-clustered conservative FVM、`dt=.25 s`、BE startup/BDF2、linear、harmonic、ENV-B post-14400 constants、`final_horizon=228635 s`。两次生产 raw/sampled/diagnostics/checkpoint 均 byte/hash identical，生产场和迭代/属性/守恒/Robin/中心对称检查通过。
 
 | Experiment | Purpose | Key result | Status | Evidence |
 |---|---|---|---|---|
-| Q2_FREEZE_RUN | Approved production freeze double run | Run1/Run2 complete and deterministic；formal source `run_1`；passive observer bracket `[207034.5,207034.75] s`；no workbook | BLOCKED at accuracy gate | `experiments/Q2_FREEZE_RUN/` |
+| Q2_FREEZE_RUN | Approved production freeze double run | Run1/Run2 complete and deterministic；failed provenance only；passive observer bracket `[207034.5,207034.75] s`；no workbook | BLOCKED at accuracy gate | `experiments/Q2_FREEZE_RUN/` |
 | Q2-ACCURACY-CONFIRMATION | Same-input temporal/spatial reference confirmation | Against dt=.125/n=160: T L∞ `1.9082196854469657e-4 °C`、C L∞ `2.0357404664261836e-4 kg/kg`；T/C L2 `4.400124076121024e-6`/`3.0182278875418313e-5`；observed order T/C `1.6685/3.0631` | FAILED | `experiments/Q2_FREEZE_RUN/accuracy_confirmation.json` |
 
 诊断显示 temporal 温度峰位于 `t=14401 s,r=2.0 cm`，与冻结环境在 `14400 s` 后的 `-0.16975 °C` 跳变一致；spatial 水分峰位于 `t=1 s,r=2.0 cm`，属于初始表面层分辨率敏感点。该结果证明当前候选未达到内部精度门，不证明存在随机性或绘图 artifact；未生成 candidate workbook、Q2 figures、Table 3/4 traceability 或 final result2。
+
+## Q2 Numerical Accuracy Remediation Addendum（2026-09-12）
+
+本阶段依据人工授权执行 Q2 数值精度整改；不改变 ENV-B、`h/hm`、官方初值、harmonic interface、物性公式或 horizon 规则，不生成 `result2.xlsx`，不生成 Q2 正式图，不启动 Q3/Q4。
+
+| Experiment | Purpose | Key result | Status | Evidence |
+|---|---|---|---|---|
+| EXP-Q2-ACC-C-INITIAL | 独立复算 Q2 初始表面 Robin 相容性 | `C0=2.55`、`C_inf(0)=.01963`、`D=5.641680373025664e-9`；初始 Robin residual `-2.0242959999999997e-6 kg/(m²·s)` | COMPLETED；仅数值初始层发现 | `experiments/EXP-Q2-ACC-C-INITIAL/` |
+| EXP-Q2-ACC-T-TRANSITION | 当前跨跳变 BDF2 与 event-aligned BE restart 局部细化 | event-aligned common-time fine/coarse raw bound T/C `8.1432e-7/1.5011e-10`；当前方案约 `4.2052e-5/1.0276e-8` | PASS as local remedy evidence；不等于 full-horizon PASS | `experiments/EXP-Q2-ACC-T-TRANSITION/` |
+| EXP-Q2-ACC-SPATIAL / TEMPORAL | 分离空间和时间误差 | n320→n640 fixed-dt C L∞ `1.29798e-5`；n640 dt=.015625→.0078125 C L∞ `2.65296e-6` | COMPLETED；raw bounds，不称 Richardson | `experiments/EXP-Q2-ACC-SPATIAL*/`, `EXP-Q2-ACC-TEMPORAL*/` |
+| EXP-Q2-ACC-SPATIAL-CLUSTER3 | n320 stronger surface clustering candidate | 对 n640/cluster2，T/C L∞ `1.0052e-8/2.5626e-6` through 2 s | SHORT CANDIDATE STUDY | `experiments/EXP-Q2-ACC-SPATIAL-CLUSTER3/` |
+| EXP-Q2-NUM-REMEDY-C-TIME | 早期时间细化政策 | t≤2 s 与 uniform dt=.015625 逐点一致；残差有限 | COMPLETED；未单独批准生产 | `experiments/EXP-Q2-NUM-REMEDY-C-TIME/` |
+| EXP-Q2-V2-REGRESSION | n320/cluster3 candidate 0–3 h + transition regression | formal integer-time transition T/C max `1.5538e-5/1.5519e-5`；explicit `14400.25 s` local probe T `2.2991e-4` | BLOCKED; local first-post-step not certified | `experiments/EXP-Q2-V2-REGRESSION/` |
+| Q2_FREEZE_RUN_V2 | n640/cluster2 full-horizon performance attempt | fresh Run1 stopped near `888 s` simulated time due impractical runtime; no metrics/validation/run2 | ABORTED INCOMPLETE; not a source | `experiments/Q2_FREEZE_RUN_V2/` |
+
+Richardson 规则已加固：旧 production 的 T/C observed p=`1.6685/3.0631` 不被直接用于乐观外推；整改表中的 fine/coarse 数字均标为 raw difference 或 conservative bound。完整 V2 full-horizon accuracy confirmation 尚未建立。

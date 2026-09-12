@@ -1,0 +1,19 @@
+{
+  "experiment": "EXP-Q2-V2-REGRESSION",
+  "purpose": "candidate short and environment-transition regression",
+  "time_interval_s": [0.0, 14500.0],
+  "transition_window_s": [14390.0, 14500.0],
+  "candidate": {
+    "time_step_s": 0.25,
+    "early_time_step_s": 0.015625,
+    "early_time_end_s": 2.0,
+    "requested_intervals": 320,
+    "cluster_power": 3.0,
+    "reset_bdf2_at_environment_transition": true
+  },
+  "reference": {
+    "time_step_s": 0.125,
+    "same_grid_and_physics": true
+  },
+  "official_result2_generated": false
+}

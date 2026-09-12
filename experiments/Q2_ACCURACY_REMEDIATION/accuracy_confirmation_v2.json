@@ -1,0 +1,27 @@
+{
+  "status": "BLOCKED_NOT_ESTABLISHED",
+  "scope": "Q2 V2 numerical remediation; not a formal production confirmation",
+  "criterion": {
+    "temperature_C": 2.5e-05,
+    "moisture_kg_kg": 2.5e-05
+  },
+  "formal_full_horizon": {
+    "status": "NOT_AVAILABLE",
+    "reason": "The V2 full-horizon fresh double run was not completed; no formal all-points maximum estimated uncertainty is claimed."
+  },
+  "local_evidence": {
+    "candidate": "experiments/EXP-Q2-V2-REGRESSION/dt0.25_n320_cluster3_early2s",
+    "reference": "experiments/EXP-Q2-V2-REGRESSION/dt0.125_n320_cluster3_early2s",
+    "formal_integer_transition_window_temperature_raw_Linf_C": 1.55375452663975e-05,
+    "formal_integer_transition_window_moisture_raw_Linf_kg_kg": 1.55189842416803e-05,
+    "explicit_14400.25s_surface_temperature_raw_difference_C": 2.2991211631051556e-04,
+    "interpretation": "The local first-post-transition probe remains above the criterion; the formal integer-time evidence is not extrapolated to full horizon."
+  },
+  "spatial_candidate_evidence": {
+    "path": "experiments/EXP-Q2-ACC-SPATIAL-CLUSTER3/metrics.json",
+    "temperature_raw_Linf_C": 1.0052019661088707e-08,
+    "moisture_raw_Linf_kg_kg": 2.5626144490864533e-06
+  },
+  "official_result2_generated": false,
+  "q3_q4_started": false
+}

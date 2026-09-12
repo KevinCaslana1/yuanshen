@@ -5,3 +5,4 @@ experiments/Q2_FREEZE_RUN/**/*.csv filter=lfs diff=lfs merge=lfs -text
 experiments/Q2_FREEZE_RUN/**/*.npz filter=lfs diff=lfs merge=lfs -text
 experiments/Q2_FREEZE_RUN_V2/**/*.csv filter=lfs diff=lfs merge=lfs -text
 experiments/Q2_FREEZE_RUN_V2/**/*.npz filter=lfs diff=lfs merge=lfs -text
+experiments/EXP-Q2-V2-REGRESSION/**/*.csv filter=lfs diff=lfs merge=lfs -text

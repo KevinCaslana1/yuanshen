@@ -1,12 +1,14 @@
 {
   "status": "COMPLETE",
   "script": "scripts/run_q2_accuracy_remediation.py",
-  "stages_requested": "time-policy",
+  "stages_requested": "spatial-cluster3",
+  "accuracy_confirmation_v2": "experiments/Q2_ACCURACY_REMEDIATION/accuracy_confirmation_v2.json",
   "experiments": [
     "experiments/EXP-Q2-ACC-C-INITIAL",
     "experiments/EXP-Q2-ACC-T-TRANSITION",
     "experiments/EXP-Q2-ACC-SPATIAL",
     "experiments/EXP-Q2-ACC-SPATIAL-FURTHER",
+    "experiments/EXP-Q2-ACC-SPATIAL-CLUSTER3",
     "experiments/EXP-Q2-ACC-TEMPORAL",
     "experiments/EXP-Q2-ACC-TEMPORAL-FURTHER",
     "experiments/EXP-Q2-NUM-REMEDY-C-TIME"

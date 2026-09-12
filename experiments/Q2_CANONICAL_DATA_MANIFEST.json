@@ -18,6 +18,22 @@
       "reason": "The frozen production double run is retained for provenance, but its independent temporal/spatial accuracy confirmation exceeded the 2.5e-5 internal gate."
     }
   ],
+  "remediation_attempts": [
+    {
+      "root": "experiments/Q2_FREEZE_RUN_V2",
+      "status": "ABORTED_INCOMPLETE_PERFORMANCE_REVIEW",
+      "delivery_status": "NOT_DELIVERY_SOURCE",
+      "formal_result_source": null,
+      "reason": "Fresh n=640 V2 Run1 was stopped near 888 s simulated time because full-horizon double-run cost was impractical; partial files are retained and must not be resumed or consumed."
+    },
+    {
+      "root": "experiments/EXP-Q2-V2-REGRESSION",
+      "status": "LOCAL_PROBE_BLOCKED",
+      "delivery_status": "VALIDATION_EVIDENCE_ONLY",
+      "formal_result_source": null,
+      "reason": "n=320/cluster-power=3 candidate completed 0..14500 s regression, but the explicit 14400.25 s surface temperature probe exceeded the 2.5e-5 criterion."
+    }
+  ],
   "validation_only_roots": [
     "experiments/EXP-Q2-012-ENVIRONMENT",
     "experiments/EXP-Q2-013-INTERPOLATION",
@@ -49,6 +65,9 @@
     "VALIDATION_ONLY",
     "NONCANONICAL_INTERRUPTED",
     "NONCANONICAL_DUPLICATE",
+    "ABORTED_INCOMPLETE_PERFORMANCE_REVIEW",
+    "LOCAL_PROBE_BLOCKED",
+    "SHORT_CANDIDATE_STUDY",
     "CANONICAL",
     "RECOVERED_CANONICAL"
   ],
