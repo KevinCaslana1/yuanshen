@@ -1,0 +1,19 @@
+{
+  "status": "COMPLETE",
+  "script": "scripts/run_q2_accuracy_remediation.py",
+  "stages_requested": "time-policy",
+  "experiments": [
+    "experiments/EXP-Q2-ACC-C-INITIAL",
+    "experiments/EXP-Q2-ACC-T-TRANSITION",
+    "experiments/EXP-Q2-ACC-SPATIAL",
+    "experiments/EXP-Q2-ACC-SPATIAL-FURTHER",
+    "experiments/EXP-Q2-ACC-TEMPORAL",
+    "experiments/EXP-Q2-ACC-TEMPORAL-FURTHER",
+    "experiments/EXP-Q2-NUM-REMEDY-C-TIME"
+  ],
+  "accuracy_gate_unchanged": {
+    "temperature_C": 2.5e-05,
+    "moisture_kg_kg": 2.5e-05
+  },
+  "official_result2_generated": false
+}

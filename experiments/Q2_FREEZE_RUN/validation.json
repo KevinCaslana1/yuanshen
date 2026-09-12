@@ -6,6 +6,8 @@
     "candidate_generation_blocked": true,
     "reason": "formal production uncertainty estimate exceeds the internal 2.5e-5 temperature/moisture gate"
   },
+  "attempt_status": "FAILED_ACCURACY_GATE",
+  "delivery_status": "NOT_DELIVERY_SOURCE",
   "run_determinism": {
     "raw_output": {
       "status": "PASS",

@@ -22,6 +22,8 @@ class Q2Parameters:
 class Q2RunConfig:
     end_time_s: float = 60.0
     time_step_s: float = 0.25
+    early_time_step_s: float | None = None
+    early_time_end_s: float = 0.0
     candidate: str = "A"
     n_intervals: int = 320
     cluster_power: float = 2.0
@@ -35,6 +37,7 @@ class Q2RunConfig:
     picard_tolerance: float = 1.0e-8
     picard_max_iterations: int = 50
     picard_relaxation: float = 1.0
+    reset_bdf2_at_environment_transition: bool = False
     input_path: Path = Path("A题/附件/附件1.xlsx")
     parameters: Q2Parameters = field(default_factory=Q2Parameters)
 
@@ -43,6 +46,16 @@ class Q2RunConfig:
             raise ValueError("end_time_s and time_step_s must be positive")
         if abs(self.end_time_s / self.time_step_s - round(self.end_time_s / self.time_step_s)) > 1e-10:
             raise ValueError("end_time_s must be an integer number of time steps")
+        if self.early_time_step_s is None:
+            if self.early_time_end_s != 0.0:
+                raise ValueError("early_time_end_s requires early_time_step_s")
+        else:
+            if self.early_time_step_s <= 0.0 or self.early_time_end_s <= 0.0 or self.early_time_end_s >= self.end_time_s:
+                raise ValueError("invalid early-time step policy")
+            if abs(self.early_time_end_s / self.early_time_step_s - round(self.early_time_end_s / self.early_time_step_s)) > 1e-10:
+                raise ValueError("early_time_end_s must be an integer number of early time steps")
+            if abs((self.end_time_s - self.early_time_end_s) / self.time_step_s - round((self.end_time_s - self.early_time_end_s) / self.time_step_s)) > 1e-10:
+                raise ValueError("end_time_s - early_time_end_s must be an integer number of main time steps")
         if self.candidate not in {"A", "B"}:
             raise ValueError("candidate must be A or B")
         if self.scheme not in {"be", "bdf2"}:

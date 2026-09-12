@@ -1,0 +1,173 @@
+{
+  "experiment": "EXP-Q2-V2-SHORT",
+  "candidate": {
+    "end_time_s": 1800.0,
+    "time_step_s": 0.25,
+    "early_time_step_s": 0.015625,
+    "early_time_end_s": 2.0,
+    "candidate": "A",
+    "n_intervals": 640,
+    "cluster_power": 2.0,
+    "scheme": "bdf2",
+    "interface_mean": "harmonic",
+    "interpolation": "linear",
+    "post_attachment_mode": "constant",
+    "post_temperature_c": 49.99525,
+    "post_moisture_kg_kg": 0.049988,
+    "output_interval_s": 1.0,
+    "picard_tolerance": 1e-08,
+    "picard_max_iterations": 50,
+    "picard_relaxation": 1.0,
+    "reset_bdf2_at_environment_transition": true,
+    "input_path": "A题\\附件\\附件1.xlsx",
+    "parameters": {
+      "radius_m": 0.02,
+      "length_m": 0.25,
+      "heat_transfer_w_m2_k": 25.0,
+      "mass_transfer_m_s": 8e-07,
+      "initial_temperature_c": 28.0,
+      "initial_moisture_kg_kg": 2.55
+    }
+  },
+  "reference_configs": {
+    "dt0.125": {
+      "end_time_s": 1800.0,
+      "time_step_s": 0.125,
+      "early_time_step_s": 0.015625,
+      "early_time_end_s": 2.0,
+      "candidate": "A",
+      "n_intervals": 640,
+      "cluster_power": 2.0,
+      "scheme": "bdf2",
+      "interface_mean": "harmonic",
+      "interpolation": "linear",
+      "post_attachment_mode": "constant",
+      "post_temperature_c": 49.99525,
+      "post_moisture_kg_kg": 0.049988,
+      "output_interval_s": 1.0,
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "picard_relaxation": 1.0,
+      "reset_bdf2_at_environment_transition": true,
+      "input_path": "A题\\附件\\附件1.xlsx",
+      "parameters": {
+        "radius_m": 0.02,
+        "length_m": 0.25,
+        "heat_transfer_w_m2_k": 25.0,
+        "mass_transfer_m_s": 8e-07,
+        "initial_temperature_c": 28.0,
+        "initial_moisture_kg_kg": 2.55
+      }
+    },
+    "dt0.0625": {
+      "end_time_s": 1800.0,
+      "time_step_s": 0.0625,
+      "early_time_step_s": 0.015625,
+      "early_time_end_s": 2.0,
+      "candidate": "A",
+      "n_intervals": 640,
+      "cluster_power": 2.0,
+      "scheme": "bdf2",
+      "interface_mean": "harmonic",
+      "interpolation": "linear",
+      "post_attachment_mode": "constant",
+      "post_temperature_c": 49.99525,
+      "post_moisture_kg_kg": 0.049988,
+      "output_interval_s": 1.0,
+      "picard_tolerance": 1e-08,
+      "picard_max_iterations": 50,
+      "picard_relaxation": 1.0,
+      "reset_bdf2_at_environment_transition": true,
+      "input_path": "A题\\附件\\附件1.xlsx",
+      "parameters": {
+        "radius_m": 0.02,
+        "length_m": 0.25,
+        "heat_transfer_w_m2_k": 25.0,
+        "mass_transfer_m_s": 8e-07,
+        "initial_temperature_c": 28.0,
+        "initial_moisture_kg_kg": 2.55
+      }
+    }
+  },
+  "time_points_s": [
+    0.0,
+    0.25,
+    0.5,
+    1.0,
+    1.5,
+    2.0,
+    60.0,
+    300.0,
+    1800.0
+  ],
+  "raw_pairwise_differences": {
+    "dt0.25_vs_dt0.125": {
+      "sample_count": 45,
+      "temperature_Linf_C": 3.0752886459595175e-07,
+      "temperature_L2_RMS_C": 9.228258010062645e-08,
+      "moisture_Linf_kg_kg": 2.048220602013373e-07,
+      "moisture_L2_RMS_kg_kg": 3.470864203189976e-08,
+      "by_radius": {
+        "0": {
+          "temperature_Linf_C": 1.4585879171136185e-07,
+          "moisture_Linf_kg_kg": 2.2576207570068618e-10
+        },
+        "1": {
+          "temperature_Linf_C": 1.6662988855387084e-07,
+          "moisture_Linf_kg_kg": 1.253204207074532e-09
+        },
+        "1.5": {
+          "temperature_Linf_C": 2.5495882027826156e-07,
+          "moisture_Linf_kg_kg": 1.24417360858331e-08
+        },
+        "1.9": {
+          "temperature_Linf_C": 3.0752886459595175e-07,
+          "moisture_Linf_kg_kg": 1.0667348204762561e-07
+        },
+        "2": {
+          "temperature_Linf_C": 2.9527313927246723e-07,
+          "moisture_Linf_kg_kg": 2.048220602013373e-07
+        }
+      }
+    },
+    "dt0.125_vs_dt0.0625": {
+      "sample_count": 45,
+      "temperature_Linf_C": 7.691619430261198e-08,
+      "temperature_L2_RMS_C": 2.3089650158399546e-08,
+      "moisture_Linf_kg_kg": 5.127900992718537e-08,
+      "moisture_L2_RMS_kg_kg": 8.679966165267516e-09,
+      "by_radius": {
+        "0": {
+          "temperature_Linf_C": 3.644726120910491e-08,
+          "moisture_Linf_kg_kg": 5.147038351083211e-11
+        },
+        "1": {
+          "temperature_Linf_C": 4.170874490228016e-08,
+          "moisture_Linf_kg_kg": 3.1271030209722994e-10
+        },
+        "1.5": {
+          "temperature_Linf_C": 6.369538141370867e-08,
+          "moisture_Linf_kg_kg": 3.1098918995553504e-09
+        },
+        "1.9": {
+          "temperature_Linf_C": 7.691619430261198e-08,
+          "moisture_Linf_kg_kg": 2.6568973243712435e-08
+        },
+        "2": {
+          "temperature_Linf_C": 7.400217327813152e-08,
+          "moisture_Linf_kg_kg": 5.127900992718537e-08
+        }
+      }
+    }
+  },
+  "short_regression_horizons_s": [
+    60.0,
+    1800.0
+  ],
+  "all_runs_complete": true,
+  "production_accuracy_gate": {
+    "temperature_C": 2.5e-05,
+    "moisture_kg_kg": 2.5e-05,
+    "status": "NOT_YET_FORMAL"
+  }
+}

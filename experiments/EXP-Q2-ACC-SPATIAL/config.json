@@ -1,0 +1,13 @@
+{
+  "experiment": "EXP-Q2-ACC-SPATIAL",
+  "scope": "fixed-dt spatial isolation",
+  "time_step_s": 0.015625,
+  "time_interval_s": [0.0, 2.0],
+  "requested_intervals": [80, 160, 320],
+  "cluster_power": 2.0,
+  "candidate": "A",
+  "interface_mean": "harmonic",
+  "interpolation": "linear",
+  "post_attachment_mode": "constant",
+  "reset_bdf2_at_environment_transition": false
+}

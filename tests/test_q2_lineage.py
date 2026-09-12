@@ -11,8 +11,10 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_project_q2_manifest_accepts_production_and_rejects_validation_artifacts() -> None:
     manifest = load_canonical_manifest(ROOT / "experiments" / "Q2_CANONICAL_DATA_MANIFEST.json")
-    production = production_csv_path("experiments/Q2_FREEZE_RUN/run_1/official_samples.csv", verify_hash=False)
-    assert production.is_file()
+    with pytest.raises(ValueError, match="refusing non-production"):
+        production_csv_path("experiments/Q2_FREEZE_RUN/run_1/official_samples.csv", verify_hash=False)
+    assert manifest["canonical_run"]["status"] == "FAILED_PRODUCTION_ATTEMPT"
+    assert manifest["consumer_policy"]["formal_result_source_run"] is None
     with pytest.raises(ValueError, match="refusing noncanonical"):
         canonical_csv_path("experiments/EXP-Q2-016-LONG-ENV-A-last-raw/official_samples_recovered.csv", verify_hash=False)
     with pytest.raises(ValueError, match="refusing noncanonical"):

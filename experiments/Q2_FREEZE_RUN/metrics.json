@@ -1,7 +1,17 @@
 {
-  "status": "PRODUCTION_RUNS_COMPLETE",
+  "status": "FAILED_ACCURACY_GATE",
   "experiment": "Q2_FREEZE_RUN",
-  "canonical_result_source": "experiments/Q2_FREEZE_RUN/run_1",
+  "attempt_type": "FAILED_PRODUCTION_ATTEMPT",
+  "delivery_status": "NOT_DELIVERY_SOURCE",
+  "canonical_result_source": null,
+  "accuracy_gate": {
+    "status": "FAIL",
+    "criterion_temperature_C": 2.5e-05,
+    "criterion_moisture_kg_kg": 2.5e-05,
+    "temperature_Linf_C": 0.00019082196854469657,
+    "moisture_Linf_kg_kg": 0.00020357404664261836,
+    "evidence": "accuracy_confirmation.json"
+  },
   "run_1": {
     "run": "run_1",
     "status": "PASS",

@@ -1,0 +1,12 @@
+{
+  "experiment": "EXP-Q2-ACC-TEMPORAL-FURTHER",
+  "scope": "supplemental fixed n640 temporal isolation",
+  "time_steps_s": [0.03125, 0.015625, 0.0078125],
+  "time_interval_s": [0.0, 2.0],
+  "n_intervals": 640,
+  "cluster_power": 2.0,
+  "candidate": "A",
+  "interface_mean": "harmonic",
+  "post_attachment_mode": "constant",
+  "reset_bdf2_at_environment_transition": false
+}

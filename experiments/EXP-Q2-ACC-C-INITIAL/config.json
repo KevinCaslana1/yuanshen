@@ -1,0 +1,17 @@
+{
+  "experiment": "EXP-Q2-ACC-C-INITIAL",
+  "scope": "Q2 numerical initial-layer compatibility",
+  "input_path": "A题\\附件\\附件1.xlsx",
+  "candidate": "A",
+  "n_intervals": 80,
+  "cluster_power": 2.0,
+  "scheme": "bdf2",
+  "interface_mean": "harmonic",
+  "interpolation": "linear",
+  "post_attachment_mode": "constant",
+  "post_temperature_c": 49.99525,
+  "post_moisture_kg_kg": 0.049988,
+  "mass_transfer_m_s": 8.0e-7,
+  "initial_temperature_c": 28.0,
+  "initial_moisture_kg_kg": 2.55
+}

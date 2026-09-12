@@ -1,0 +1,450 @@
+{
+  "experiment": "EXP-Q2-ACC-TEMPORAL",
+  "fixed_spatial_grid": {
+    "requested_intervals": 320,
+    "actual_cell_count": 338,
+    "actual_node_count": 339,
+    "min_dr_m": 1.953124999995448e-07,
+    "max_dr_m": 0.00012480468750000195,
+    "min_dr_cm": 1.953124999995448e-05,
+    "cluster_power": 2.0
+  },
+  "time_interval_s": [
+    0.0,
+    2.0
+  ],
+  "radii_cm": [
+    0.0,
+    1.0,
+    1.5,
+    1.9,
+    2.0
+  ],
+  "runs": {
+    "dt0.25_n320": {
+      "name": "dt0.25_n320",
+      "config": {
+        "end_time_s": 2.0,
+        "time_step_s": 0.25,
+        "candidate": "A",
+        "n_intervals": 320,
+        "cluster_power": 2.0,
+        "scheme": "bdf2",
+        "interface_mean": "harmonic",
+        "interpolation": "linear",
+        "post_attachment_mode": "constant",
+        "post_temperature_c": 49.99525,
+        "post_moisture_kg_kg": 0.049988,
+        "output_interval_s": 1.0,
+        "picard_tolerance": 1e-08,
+        "picard_max_iterations": 50,
+        "picard_relaxation": 1.0,
+        "reset_bdf2_at_environment_transition": false,
+        "input_path": "A题\\附件\\附件1.xlsx",
+        "parameters": {
+          "radius_m": 0.02,
+          "length_m": 0.25,
+          "heat_transfer_w_m2_k": 25.0,
+          "mass_transfer_m_s": 8e-07,
+          "initial_temperature_c": 28.0,
+          "initial_moisture_kg_kg": 2.55
+        }
+      },
+      "complete": true,
+      "grid": {
+        "requested_intervals": 320,
+        "actual_cell_count": 338,
+        "actual_node_count": 339,
+        "min_dr_m": 1.953124999995448e-07,
+        "max_dr_m": 0.00012480468750000195,
+        "min_dr_cm": 1.953124999995448e-05,
+        "cluster_power": 2.0
+      },
+      "diagnostic_summary": {
+        "steps": 8,
+        "picard_min": 3,
+        "picard_median": 3.0,
+        "picard_p95": 3.0,
+        "picard_max": 3,
+        "temperature_residual_max": 1.136302032334852e-13,
+        "moisture_residual_max": 2.6806583097074016e-10,
+        "temperature_boundary_residual_max_w_m2": 8.630957254601723e-05,
+        "moisture_boundary_residual_max_kg_m2_s": 5.225848596144886e-09,
+        "mass_step_residual_max": 1.5768274579297017e-08,
+        "heat_step_residual_max_j": 0.003383424941414863,
+        "temperature_linear_residual_max": 1.1030897439923137e-07,
+        "moisture_linear_residual_max": 2.5147439686179496e-11,
+        "temperature_boundary_residual_at_last_step_w_m2": 8.630957254601723e-05,
+        "moisture_boundary_residual_at_last_step_kg_m2_s": -1.016468098928463e-09,
+        "center_heat_flux_max_abs_w_m2": 0.0,
+        "center_moisture_flux_max_abs_kg_m2_s": 0.0,
+        "temperature_min_k": 301.1499999999899,
+        "temperature_max_k": 301.1503683610922,
+        "moisture_min_kg_kg": 2.5074795660981195,
+        "moisture_max_kg_kg": 2.550000000000004,
+        "rho_min": 970.9573844605593,
+        "cp_min": 3405.952690118263,
+        "k_min": 0.4816600958497588,
+        "D_min": 5.624910898862273e-09,
+        "rho_max": 976.4000000000005,
+        "cp_max": 3415.295774647888,
+        "k_max": 0.48295774647887335,
+        "D_max": 5.6416975575615886e-09
+      },
+      "snapshot_path": "experiments/EXP-Q2-ACC-TEMPORAL/dt0.25_n320/snapshots.csv",
+      "diagnostics_path": "experiments/EXP-Q2-ACC-TEMPORAL/dt0.25_n320/diagnostics_interval_0.25s.csv",
+      "diagnostics_sha256": "c5934ea4540709c7c935fc9015de57f488aa3a2b4546bf7097e9e51c5215506f"
+    },
+    "dt0.125_n320": {
+      "name": "dt0.125_n320",
+      "config": {
+        "end_time_s": 2.0,
+        "time_step_s": 0.125,
+        "candidate": "A",
+        "n_intervals": 320,
+        "cluster_power": 2.0,
+        "scheme": "bdf2",
+        "interface_mean": "harmonic",
+        "interpolation": "linear",
+        "post_attachment_mode": "constant",
+        "post_temperature_c": 49.99525,
+        "post_moisture_kg_kg": 0.049988,
+        "output_interval_s": 1.0,
+        "picard_tolerance": 1e-08,
+        "picard_max_iterations": 50,
+        "picard_relaxation": 1.0,
+        "reset_bdf2_at_environment_transition": false,
+        "input_path": "A题\\附件\\附件1.xlsx",
+        "parameters": {
+          "radius_m": 0.02,
+          "length_m": 0.25,
+          "heat_transfer_w_m2_k": 25.0,
+          "mass_transfer_m_s": 8e-07,
+          "initial_temperature_c": 28.0,
+          "initial_moisture_kg_kg": 2.55
+        }
+      },
+      "complete": true,
+      "grid": {
+        "requested_intervals": 320,
+        "actual_cell_count": 338,
+        "actual_node_count": 339,
+        "min_dr_m": 1.953124999995448e-07,
+        "max_dr_m": 0.00012480468750000195,
+        "min_dr_cm": 1.953124999995448e-05,
+        "cluster_power": 2.0
+      },
+      "diagnostic_summary": {
+        "steps": 16,
+        "picard_min": 3,
+        "picard_median": 3.0,
+        "picard_p95": 3.0,
+        "picard_max": 3,
+        "temperature_residual_max": 1.8705567284293144e-13,
+        "moisture_residual_max": 9.476289034516983e-11,
+        "temperature_boundary_residual_max_w_m2": 8.632912668304904e-05,
+        "moisture_boundary_residual_max_kg_m2_s": 7.3993628153680385e-09,
+        "mass_step_residual_max": 7.903197723483353e-09,
+        "heat_step_residual_max_j": 0.0016918977646523065,
+        "temperature_linear_residual_max": 4.4469743443187326e-08,
+        "moisture_linear_residual_max": 1.2083667400020204e-11,
+        "temperature_boundary_residual_at_last_step_w_m2": 8.632912668304904e-05,
+        "moisture_boundary_residual_at_last_step_kg_m2_s": -1.018866883727375e-09,
+        "center_heat_flux_max_abs_w_m2": 0.0,
+        "center_moisture_flux_max_abs_kg_m2_s": 0.0,
+        "temperature_min_k": 301.1499999999937,
+        "temperature_max_k": 301.1503664744839,
+        "moisture_min_kg_kg": 2.507450730637195,
+        "moisture_max_kg_kg": 2.5500000000000047,
+        "rho_min": 970.953693521561,
+        "cp_min": 3405.9462771917674,
+        "k_min": 0.4816592051655232,
+        "D_min": 5.624898839634432e-09,
+        "rho_max": 976.4000000000005,
+        "cp_max": 3415.2957746478883,
+        "k_max": 0.48295774647887335,
+        "D_max": 5.641698433520991e-09
+      },
+      "snapshot_path": "experiments/EXP-Q2-ACC-TEMPORAL/dt0.125_n320/snapshots.csv",
+      "diagnostics_path": "experiments/EXP-Q2-ACC-TEMPORAL/dt0.125_n320/diagnostics_interval_0.25s.csv",
+      "diagnostics_sha256": "c95f9bab7e0598fe9a9f32e83749670a6ac5d7c9eccae4863c013cf9d7da4804"
+    },
+    "dt0.0625_n320": {
+      "name": "dt0.0625_n320",
+      "config": {
+        "end_time_s": 2.0,
+        "time_step_s": 0.0625,
+        "candidate": "A",
+        "n_intervals": 320,
+        "cluster_power": 2.0,
+        "scheme": "bdf2",
+        "interface_mean": "harmonic",
+        "interpolation": "linear",
+        "post_attachment_mode": "constant",
+        "post_temperature_c": 49.99525,
+        "post_moisture_kg_kg": 0.049988,
+        "output_interval_s": 1.0,
+        "picard_tolerance": 1e-08,
+        "picard_max_iterations": 50,
+        "picard_relaxation": 1.0,
+        "reset_bdf2_at_environment_transition": false,
+        "input_path": "A题\\附件\\附件1.xlsx",
+        "parameters": {
+          "radius_m": 0.02,
+          "length_m": 0.25,
+          "heat_transfer_w_m2_k": 25.0,
+          "mass_transfer_m_s": 8e-07,
+          "initial_temperature_c": 28.0,
+          "initial_moisture_kg_kg": 2.55
+        }
+      },
+      "complete": true,
+      "grid": {
+        "requested_intervals": 320,
+        "actual_cell_count": 338,
+        "actual_node_count": 339,
+        "min_dr_m": 1.953124999995448e-07,
+        "max_dr_m": 0.00012480468750000195,
+        "min_dr_cm": 1.953124999995448e-05,
+        "cluster_power": 2.0
+      },
+      "diagnostic_summary": {
+        "steps": 32,
+        "picard_min": 3,
+        "picard_median": 3.0,
+        "picard_p95": 3.0,
+        "picard_max": 3,
+        "temperature_residual_max": 1.7535292069790765e-13,
+        "moisture_residual_max": 3.3483107354275505e-11,
+        "temperature_boundary_residual_max_w_m2": 8.61899024480195e-05,
+        "moisture_boundary_residual_max_kg_m2_s": 1.0469228401596021e-08,
+        "mass_step_residual_max": 3.958354767247047e-09,
+        "heat_step_residual_max_j": 0.0008459711131456145,
+        "temperature_linear_residual_max": 2.4567043510614894e-08,
+        "moisture_linear_residual_max": 1.0204725953144589e-11,
+        "temperature_boundary_residual_at_last_step_w_m2": 8.61899024480195e-05,
+        "moisture_boundary_residual_at_last_step_kg_m2_s": -1.0192294882669024e-09,
+        "center_heat_flux_max_abs_w_m2": 0.0,
+        "center_moisture_flux_max_abs_kg_m2_s": 0.0,
+        "temperature_min_k": 301.1499999999924,
+        "temperature_max_k": 301.15036601173574,
+        "moisture_min_kg_kg": 2.5074432189903924,
+        "moisture_max_kg_kg": 2.5500000000000065,
+        "rho_min": 970.9527320307702,
+        "cp_min": 3405.94460660505,
+        "k_min": 0.4816589731395903,
+        "D_min": 5.624895705018585e-09,
+        "rho_max": 976.4000000000008,
+        "cp_max": 3415.2957746478887,
+        "k_max": 0.48295774647887346,
+        "D_max": 5.641698829359214e-09
+      },
+      "snapshot_path": "experiments/EXP-Q2-ACC-TEMPORAL/dt0.0625_n320/snapshots.csv",
+      "diagnostics_path": "experiments/EXP-Q2-ACC-TEMPORAL/dt0.0625_n320/diagnostics_interval_0.25s.csv",
+      "diagnostics_sha256": "c5f3b9c55601ea728e714719c524486a63dc10d18ae44eafbe9a1b72c75ac8fe"
+    },
+    "dt0.03125_n320": {
+      "name": "dt0.03125_n320",
+      "config": {
+        "end_time_s": 2.0,
+        "time_step_s": 0.03125,
+        "candidate": "A",
+        "n_intervals": 320,
+        "cluster_power": 2.0,
+        "scheme": "bdf2",
+        "interface_mean": "harmonic",
+        "interpolation": "linear",
+        "post_attachment_mode": "constant",
+        "post_temperature_c": 49.99525,
+        "post_moisture_kg_kg": 0.049988,
+        "output_interval_s": 1.0,
+        "picard_tolerance": 1e-08,
+        "picard_max_iterations": 50,
+        "picard_relaxation": 1.0,
+        "reset_bdf2_at_environment_transition": false,
+        "input_path": "A题\\附件\\附件1.xlsx",
+        "parameters": {
+          "radius_m": 0.02,
+          "length_m": 0.25,
+          "heat_transfer_w_m2_k": 25.0,
+          "mass_transfer_m_s": 8e-07,
+          "initial_temperature_c": 28.0,
+          "initial_moisture_kg_kg": 2.55
+        }
+      },
+      "complete": true,
+      "grid": {
+        "requested_intervals": 320,
+        "actual_cell_count": 338,
+        "actual_node_count": 339,
+        "min_dr_m": 1.953124999995448e-07,
+        "max_dr_m": 0.00012480468750000195,
+        "min_dr_cm": 1.953124999995448e-05,
+        "cluster_power": 2.0
+      },
+      "diagnostic_summary": {
+        "steps": 64,
+        "picard_min": 3,
+        "picard_median": 3.0,
+        "picard_p95": 3.0,
+        "picard_max": 3,
+        "temperature_residual_max": 1.5194730083667966e-13,
+        "moisture_residual_max": 1.1809289929385382e-11,
+        "temperature_boundary_residual_max_w_m2": 8.617415439954312e-05,
+        "moisture_boundary_residual_max_kg_m2_s": 1.4802772314058797e-08,
+        "mass_step_residual_max": 1.981570222572288e-09,
+        "heat_step_residual_max_j": 0.0004229884887818575,
+        "temperature_linear_residual_max": 1.3415728972177021e-08,
+        "moisture_linear_residual_max": 3.622879773956811e-12,
+        "temperature_boundary_residual_at_last_step_w_m2": 8.617415439954312e-05,
+        "moisture_boundary_residual_at_last_step_kg_m2_s": -1.0192977339469378e-09,
+        "center_heat_flux_max_abs_w_m2": 0.0,
+        "center_moisture_flux_max_abs_kg_m2_s": 0.0,
+        "temperature_min_k": 301.149999999983,
+        "temperature_max_k": 301.1503658967374,
+        "moisture_min_kg_kg": 2.5074412966048767,
+        "moisture_max_kg_kg": 2.5500000000000167,
+        "rho_min": 970.9524859654242,
+        "cp_min": 3405.9441790662654,
+        "k_min": 0.48165891375920344,
+        "D_min": 5.624894903621718e-09,
+        "rho_max": 976.4000000000021,
+        "cp_max": 3415.295774647891,
+        "k_max": 0.4829577464788738,
+        "D_max": 5.641698937695473e-09
+      },
+      "snapshot_path": "experiments/EXP-Q2-ACC-TEMPORAL/dt0.03125_n320/snapshots.csv",
+      "diagnostics_path": "experiments/EXP-Q2-ACC-TEMPORAL/dt0.03125_n320/diagnostics_interval_0.25s.csv",
+      "diagnostics_sha256": "b39288fd7590679ebe669208da7f6ddc82beff72840aa9f9bc8c26efd5ebda03"
+    }
+  },
+  "raw_pairwise_differences": {
+    "dt0.25_n320_vs_dt0.125_n320": {
+      "sample_count": 30,
+      "temperature_Linf_C": 3.7888153769927158e-06,
+      "temperature_L2_RMS_C": 1.2453369243232007e-06,
+      "moisture_Linf_kg_kg": 0.001299097893888046,
+      "moisture_L2_RMS_kg_kg": 0.000256323904247077,
+      "by_radius": {
+        "0": {
+          "temperature_Linf_C": 3.979039320256561e-13,
+          "moisture_Linf_kg_kg": 1.3322676295501878e-15
+        },
+        "1": {
+          "temperature_Linf_C": 2.8421709430404007e-13,
+          "moisture_Linf_kg_kg": 8.881784197001252e-16
+        },
+        "1.5": {
+          "temperature_Linf_C": 5.115907697472721e-13,
+          "moisture_Linf_kg_kg": 3.1086244689504383e-15
+        },
+        "1.9": {
+          "temperature_Linf_C": 1.2093279337932472e-06,
+          "moisture_Linf_kg_kg": 2.3831381312788835e-10
+        },
+        "2": {
+          "temperature_Linf_C": 3.7888153769927158e-06,
+          "moisture_Linf_kg_kg": 0.001299097893888046
+        }
+      }
+    },
+    "dt0.125_n320_vs_dt0.0625_n320": {
+      "sample_count": 30,
+      "temperature_Linf_C": 1.3447110518427507e-06,
+      "temperature_L2_RMS_C": 3.657391315031221e-07,
+      "moisture_Linf_kg_kg": 0.00036776039694341733,
+      "moisture_L2_RMS_kg_kg": 6.851901776119861e-05,
+      "by_radius": {
+        "0": {
+          "temperature_Linf_C": 1.7053025658242404e-13,
+          "moisture_Linf_kg_kg": 8.881784197001252e-16
+        },
+        "1": {
+          "temperature_Linf_C": 5.115907697472721e-13,
+          "moisture_Linf_kg_kg": 4.440892098500626e-16
+        },
+        "1.5": {
+          "temperature_Linf_C": 7.958078640513122e-13,
+          "moisture_Linf_kg_kg": 2.220446049250313e-15
+        },
+        "1.9": {
+          "temperature_Linf_C": 3.032508857359062e-07,
+          "moisture_Linf_kg_kg": 1.390176862514636e-11
+        },
+        "2": {
+          "temperature_Linf_C": 1.3447110518427507e-06,
+          "moisture_Linf_kg_kg": 0.00036776039694341733
+        }
+      }
+    },
+    "dt0.0625_n320_vs_dt0.03125_n320": {
+      "sample_count": 30,
+      "temperature_Linf_C": 3.5803554965241347e-07,
+      "temperature_L2_RMS_C": 9.286194062498238e-08,
+      "moisture_Linf_kg_kg": 4.996966040682338e-05,
+      "moisture_L2_RMS_kg_kg": 9.565659476480299e-06,
+      "by_radius": {
+        "0": {
+          "temperature_Linf_C": 5.684341886080802e-14,
+          "moisture_Linf_kg_kg": 4.440892098500626e-15
+        },
+        "1": {
+          "temperature_Linf_C": 0.0,
+          "moisture_Linf_kg_kg": 1.3322676295501878e-15
+        },
+        "1.5": {
+          "temperature_Linf_C": 5.115907697472721e-13,
+          "moisture_Linf_kg_kg": 8.881784197001252e-15
+        },
+        "1.9": {
+          "temperature_Linf_C": 7.560856829513796e-08,
+          "moisture_Linf_kg_kg": 1.6262546864709293e-12
+        },
+        "2": {
+          "temperature_Linf_C": 3.5803554965241347e-07,
+          "moisture_Linf_kg_kg": 4.996966040682338e-05
+        }
+      }
+    }
+  },
+  "observed_order_from_nested_raw_differences": {
+    "dt0.25_n320_to_dt0.125_n320_vs_dt0.0625_n320": {
+      "temperature": 1.494450637930785,
+      "moisture": 1.8206721160150936
+    },
+    "dt0.125_n320_to_dt0.0625_n320_vs_dt0.03125_n320": {
+      "temperature": 1.9091214572465263,
+      "moisture": 2.87964180976332
+    }
+  },
+  "finest_grid_conservative_bound": {
+    "sample_count": 30,
+    "temperature_Linf_C": 3.5803554965241347e-07,
+    "temperature_L2_RMS_C": 9.286194062498238e-08,
+    "moisture_Linf_kg_kg": 4.996966040682338e-05,
+    "moisture_L2_RMS_kg_kg": 9.565659476480299e-06,
+    "by_radius": {
+      "0": {
+        "temperature_Linf_C": 5.684341886080802e-14,
+        "moisture_Linf_kg_kg": 4.440892098500626e-15
+      },
+      "1": {
+        "temperature_Linf_C": 0.0,
+        "moisture_Linf_kg_kg": 1.3322676295501878e-15
+      },
+      "1.5": {
+        "temperature_Linf_C": 5.115907697472721e-13,
+        "moisture_Linf_kg_kg": 8.881784197001252e-15
+      },
+      "1.9": {
+        "temperature_Linf_C": 7.560856829513796e-08,
+        "moisture_Linf_kg_kg": 1.6262546864709293e-12
+      },
+      "2": {
+        "temperature_Linf_C": 3.5803554965241347e-07,
+        "moisture_Linf_kg_kg": 4.996966040682338e-05
+      }
+    }
+  },
+  "interpretation": "pairwise fine/coarse bounds; no two-level difference is labelled Richardson uncertainty"
+}

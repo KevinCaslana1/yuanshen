@@ -5,9 +5,19 @@
     "run_id": "Q2_FREEZE_RUN/run_1",
     "interpretation": "approved ENV-B tail40 mean, constant post-14400 s environment",
     "horizon_s": 228635,
-    "status": "PRODUCTION_CANONICAL",
-    "production_result_source": "experiments/Q2_FREEZE_RUN/run_1/official_samples.csv"
+    "status": "FAILED_PRODUCTION_ATTEMPT",
+    "delivery_status": "NOT_CANONICAL_FOR_DELIVERY",
+    "attempt_status": "FAILED_ACCURACY_GATE",
+    "production_result_source": null
   },
+  "failed_production_attempts": [
+    {
+      "root": "experiments/Q2_FREEZE_RUN",
+      "status": "FAILED_ACCURACY_GATE",
+      "delivery_status": "NOT_DELIVERY_SOURCE",
+      "reason": "The frozen production double run is retained for provenance, but its independent temporal/spatial accuracy confirmation exceeded the 2.5e-5 internal gate."
+    }
+  ],
   "validation_only_roots": [
     "experiments/EXP-Q2-012-ENVIRONMENT",
     "experiments/EXP-Q2-013-INTERPOLATION",
@@ -23,13 +33,19 @@
   "consumer_policy": {
     "required_loader_for_formal_results": "src.q2.lineage.production_canonical_path / production_csv_path",
     "reject_noncanonical": true,
-    "formal_result_source_run": "experiments/Q2_FREEZE_RUN/run_1",
+    "formal_result_source_run": null,
+    "formal_result_source_status": "NOT_ESTABLISHED",
+    "failed_attempt_source_run": "experiments/Q2_FREEZE_RUN/run_1",
     "run_2_is_determinism_reference_only": true,
     "raw_files_retained": true
   },
   "status_vocabulary": [
     "PRODUCTION_CANONICAL",
     "DETERMINISM_REFERENCE",
+    "FAILED_PRODUCTION_ATTEMPT",
+    "VALIDATION_EVIDENCE_ONLY",
+    "NOT_DELIVERY_SOURCE",
+    "NOT_CANONICAL_FOR_DELIVERY",
     "VALIDATION_ONLY",
     "NONCANONICAL_INTERRUPTED",
     "NONCANONICAL_DUPLICATE",
@@ -187,91 +203,91 @@
     {
       "path": "experiments/Q2_FREEZE_RUN/config.json",
       "sha256": "5ff7d36f62028aa2cfa1ec66d61cc46ac234cce69b327dc1bf6ac668dfbb6fd3",
-      "status": "PRODUCTION_CANONICAL",
+      "status": "FAILED_PRODUCTION_ATTEMPT",
       "role": "q2_production",
       "reason": "frozen production configuration"
     },
     {
       "path": "experiments/Q2_FREEZE_RUN/environment.json",
       "sha256": "369479b8b3f0aad47aaed54a8e12c1e752b773d48aa4fb2699e3e246381f0c26",
-      "status": "PRODUCTION_CANONICAL",
+      "status": "FAILED_PRODUCTION_ATTEMPT",
       "role": "q2_production",
       "reason": "frozen production environment rule"
     },
     {
       "path": "experiments/Q2_FREEZE_RUN/metrics.json",
-      "sha256": "b2d7766787bc9b384982cfdfcefd6327f3963b91451ab37d1e20cd062f2b6ebb",
-      "status": "PRODUCTION_CANONICAL",
+      "sha256": "f2c81195203e66ce4908b3cf0123d7d7d7c06f9a05f6b40592dc1bad9036a571",
+      "status": "FAILED_PRODUCTION_ATTEMPT",
       "role": "q2_production",
       "reason": "production run metrics"
     },
     {
       "path": "experiments/Q2_FREEZE_RUN/output_hashes.json",
       "sha256": "a3218fb0b8da738c24f87afe78112722c686788194c936fadce0988f9e40865e",
-      "status": "PRODUCTION_CANONICAL",
+      "status": "FAILED_PRODUCTION_ATTEMPT",
       "role": "q2_production",
       "reason": "production output hashes"
     },
     {
       "path": "experiments/Q2_FREEZE_RUN/run_1/checkpoint_final.json",
       "sha256": "7a19676261efc9c2f96d4a8c34b6302a14a63d5cf84bcf408b90f623c6cbf104",
-      "status": "PRODUCTION_CANONICAL",
+      "status": "FAILED_PRODUCTION_ATTEMPT",
       "role": "q2_production",
       "reason": "run 1 final checkpoint"
     },
     {
       "path": "experiments/Q2_FREEZE_RUN/run_1/diagnostics_1s.csv",
       "sha256": "219f7a38f130f11ad8c896278f2fc4ce4bc881196b7f0a7f2a133d9af14819b5",
-      "status": "PRODUCTION_CANONICAL",
+      "status": "FAILED_PRODUCTION_ATTEMPT",
       "role": "q2_production",
       "reason": "run 1 one-second diagnostics"
     },
     {
       "path": "experiments/Q2_FREEZE_RUN/run_1/official_samples.csv",
       "sha256": "604a323955c2ab5cd1299975231997b3dc6e5c0c6a2e16d6e52d6314a6050eae",
-      "status": "PRODUCTION_CANONICAL",
+      "status": "FAILED_PRODUCTION_ATTEMPT",
       "role": "q2_production",
       "reason": "sole formal Q2 result source; t=1..final_horizon official grid"
     },
     {
       "path": "experiments/Q2_FREEZE_RUN/run_1/official_samples_raw.csv",
       "sha256": "48584714d347aed619d56b564f737668cc418d63067daca49b0bceaf75bd548c",
-      "status": "PRODUCTION_CANONICAL",
+      "status": "FAILED_PRODUCTION_ATTEMPT",
       "role": "q2_production",
       "reason": "run 1 raw sampled output including internal t=0 layer"
     },
     {
       "path": "experiments/Q2_FREEZE_RUN/run_2/checkpoint_final.json",
       "sha256": "7a19676261efc9c2f96d4a8c34b6302a14a63d5cf84bcf408b90f623c6cbf104",
-      "status": "DETERMINISM_REFERENCE",
+      "status": "VALIDATION_EVIDENCE_ONLY",
       "role": "q2_production",
       "reason": "independent run 2 final checkpoint"
     },
     {
       "path": "experiments/Q2_FREEZE_RUN/run_2/diagnostics_1s.csv",
       "sha256": "219f7a38f130f11ad8c896278f2fc4ce4bc881196b7f0a7f2a133d9af14819b5",
-      "status": "DETERMINISM_REFERENCE",
+      "status": "VALIDATION_EVIDENCE_ONLY",
       "role": "q2_production",
       "reason": "independent run 2 diagnostics"
     },
     {
       "path": "experiments/Q2_FREEZE_RUN/run_2/official_samples.csv",
       "sha256": "604a323955c2ab5cd1299975231997b3dc6e5c0c6a2e16d6e52d6314a6050eae",
-      "status": "DETERMINISM_REFERENCE",
+      "status": "VALIDATION_EVIDENCE_ONLY",
       "role": "q2_production",
       "reason": "independent run 2 sampled output"
     },
     {
       "path": "experiments/Q2_FREEZE_RUN/run_2/official_samples_raw.csv",
       "sha256": "48584714d347aed619d56b564f737668cc418d63067daca49b0bceaf75bd548c",
-      "status": "DETERMINISM_REFERENCE",
+      "status": "VALIDATION_EVIDENCE_ONLY",
       "role": "q2_production",
       "reason": "independent run 2 raw output"
     },
     {
       "path": "experiments/Q2_FREEZE_RUN/validation.json",
-      "sha256": "ad3c45ad3eedc442187696f31e4f8495bfc626945331cd836249363adbb824da",
-      "status": "PRODUCTION_CANONICAL",
+      "sha256": "2c6a509f0cab3a5b01179526af655452f70053b037759d3f8951633e44749ed8",
+      "status": "FAILED_PRODUCTION_ATTEMPT",
       "role": "q2_production",
       "reason": "production validation gate record"
     }

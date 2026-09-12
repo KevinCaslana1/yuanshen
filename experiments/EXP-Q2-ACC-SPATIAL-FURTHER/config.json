@@ -1,0 +1,12 @@
+{
+  "experiment": "EXP-Q2-ACC-SPATIAL-FURTHER",
+  "scope": "fixed-dt supplemental n320-to-n640 spatial isolation",
+  "time_step_s": 0.015625,
+  "time_interval_s": [0.0, 2.0],
+  "requested_intervals": [320, 640],
+  "cluster_power": 2.0,
+  "candidate": "A",
+  "interface_mean": "harmonic",
+  "post_attachment_mode": "constant",
+  "reset_bdf2_at_environment_transition": false
+}

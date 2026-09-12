@@ -221,7 +221,7 @@ def _write_diag(writer, row: StepDiagnostic) -> None:
     ])
 
 
-def save_checkpoint(path: str | Path, *, config: Q2RunConfig, env: EnvironmentProvider, grid, time_s: float, temperature_k: Sequence[float], moisture: Sequence[float], previous_temperature_k: Sequence[float] | None, previous_moisture: Sequence[float] | None, output_cursor: float, diagnostics: Sequence[StepDiagnostic], steps_completed: int | None = None) -> Path:
+def save_checkpoint(path: str | Path, *, config: Q2RunConfig, env: EnvironmentProvider, grid, time_s: float, temperature_k: Sequence[float], moisture: Sequence[float], previous_temperature_k: Sequence[float] | None, previous_moisture: Sequence[float] | None, previous_step_s: float | None = None, output_cursor: float, diagnostics: Sequence[StepDiagnostic], steps_completed: int | None = None) -> Path:
     """Write a versioned JSON checkpoint without storing the full trajectory."""
 
     path = resolve_project_path(path)
@@ -235,6 +235,7 @@ def save_checkpoint(path: str | Path, *, config: Q2RunConfig, env: EnvironmentPr
         "moisture_kg_kg": list(map(float, moisture)),
         "previous_temperature_k": None if previous_temperature_k is None else list(map(float, previous_temperature_k)),
         "previous_moisture_kg_kg": None if previous_moisture is None else list(map(float, previous_moisture)),
+        "previous_step_s": None if previous_step_s is None else float(previous_step_s),
         "output_cursor_s": float(output_cursor),
         "grid_nodes_m": list(map(float, grid.nodes_m)),
         "config": config.as_dict(),
@@ -317,6 +318,7 @@ def run_q2(
     previous_moisture = None
     current_time = 0.0
     start_time = 0.0
+    previous_step_s = None
     if restart_path is not None:
         payload = _load_checkpoint(restart_path, config, env, grid)
         current_time = float(payload["time_s"])
@@ -325,6 +327,7 @@ def run_q2(
         initial_moisture = list(map(float, payload["moisture_kg_kg"]))
         previous_temperature = None if payload["previous_temperature_k"] is None else list(map(float, payload["previous_temperature_k"]))
         previous_moisture = None if payload["previous_moisture_kg_kg"] is None else list(map(float, payload["previous_moisture_kg_kg"]))
+        previous_step_s = payload.get("previous_step_s")
         if current_time >= run_end - 1.0e-12:
             raise ValueError("restart checkpoint is already at or beyond the requested end")
     _finite_vector(initial_temperature, "initial temperature")
@@ -388,10 +391,18 @@ def run_q2(
         old_C = C
         old_previous_T = previous_temperature
         old_previous_C = previous_moisture
-        next_time = current_time + config.time_step_s
+        step_s = config.time_step_s
+        if config.early_time_step_s is not None and current_time < config.early_time_end_s - 1.0e-12:
+            step_s = config.early_time_step_s
+            if current_time + step_s > config.early_time_end_s:
+                step_s = config.early_time_end_s - current_time
+        next_time = current_time + step_s
         env_temp_c, env_moisture = env.at(next_time)
         env_temp_k = env_temp_c + 273.15
-        scheme = "bdf2" if config.scheme == "bdf2" and old_previous_T is not None else "be"
+        at_environment_transition = abs(current_time - env.last_time_s) <= 1.0e-9
+        at_step_size_transition = previous_step_s is not None and abs(step_s - previous_step_s) > 1.0e-12
+        transition_restart = (config.reset_bdf2_at_environment_transition and at_environment_transition) or at_step_size_transition
+        scheme = "bdf2" if config.scheme == "bdf2" and old_previous_T is not None and not transition_restart else "be"
         T_guess = list(old_T)
         C_guess = list(old_C)
         picard_history: List[Tuple[float, float]] = []
@@ -402,11 +413,11 @@ def run_q2(
             heat_capacity = [rho * value for rho, value in zip(density, cp_array(C_guess))]
             k_nodes = conductivity_array(C_guess)
             k_faces = interface_values(k_nodes, config.interface_mean)
-            heat_system = assemble_variable_radial_system(old_T, grid, config.time_step_s, heat_capacity, k_faces, params.heat_transfer_w_m2_k, env_temp_k, scheme=scheme, previous_values=old_previous_T)
+            heat_system = assemble_variable_radial_system(old_T, grid, step_s, heat_capacity, k_faces, params.heat_transfer_w_m2_k, env_temp_k, scheme=scheme, previous_values=old_previous_T)
             T_linear = solve_system(heat_system)
             d_nodes = diffusivity_array(C_guess, T_linear)
             d_faces = interface_values(d_nodes, config.interface_mean)
-            moisture_system = assemble_variable_radial_system(old_C, grid, config.time_step_s, [1.0] * n, d_faces, params.mass_transfer_m_s, env_moisture, scheme=scheme, previous_values=old_previous_C)
+            moisture_system = assemble_variable_radial_system(old_C, grid, step_s, [1.0] * n, d_faces, params.mass_transfer_m_s, env_moisture, scheme=scheme, previous_values=old_previous_C)
             C_linear = solve_system(moisture_system)
             if any(value <= 0.0 or not math.isfinite(value) for value in C_linear):
                 raise Q2NonConvergenceError(f"non-positive/non-finite moisture at t={next_time:g} s, Picard iteration {iteration + 1}")
@@ -436,11 +447,11 @@ def run_q2(
         if scheme == "bdf2":
             t_difference = [1.5 * T[i] - 2.0 * old_T[i] + 0.5 * old_previous_T[i] for i in range(n)]
             c_difference = [1.5 * C[i] - 2.0 * old_C[i] + 0.5 * old_previous_C[i] for i in range(n)]
-            balance_scale = 2.0 * config.time_step_s
+            balance_scale = 2.0 * step_s
         else:
             t_difference = [T[i] - old_T[i] for i in range(n)]
             c_difference = [C[i] - old_C[i] for i in range(n)]
-            balance_scale = config.time_step_s
+            balance_scale = step_s
         mass_step_residual = geometry * (_weighted(c_difference, volumes) + params.radius_m * moisture_robin * balance_scale)
         heat_step_residual = geometry * (_weighted([heat_capacity[i] * t_difference[i] for i in range(n)], volumes) + params.radius_m * heat_robin * balance_scale)
         property_values = {
@@ -503,11 +514,12 @@ def run_q2(
             # g_now < 0 is eligible for the saved bracket.  This keeps the
             # Q2 horizon controller separate from Q3 root refinement.
             if passive_event_bracket is None and previous_event_value is not None and previous_event_value >= 0.0 and event_value < 0.0:
-                passive_event_bracket = (current_time - config.time_step_s, current_time)
+                passive_event_bracket = (current_time - step_s, current_time)
             previous_event_value = event_value
         step_count += 1
         previous_temperature = list(old_T)
         previous_moisture = list(old_C)
+        previous_step_s = step_s
         if abs(current_time / config.output_interval_s - round(current_time / config.output_interval_s)) < 1.0e-9:
             if sampler is not None:
                 sampler.write(current_time, T, C)
@@ -521,7 +533,7 @@ def run_q2(
         diag_handle.close()
     saved_checkpoint = ""
     if checkpoint_path is not None:
-        saved_checkpoint = str(save_checkpoint(checkpoint_path, config=config, env=env, grid=grid, time_s=current_time, temperature_k=T, moisture=C, previous_temperature_k=previous_temperature, previous_moisture=previous_moisture, output_cursor=current_time, diagnostics=diagnostics, steps_completed=int(round(current_time / config.time_step_s))))
+        saved_checkpoint = str(save_checkpoint(checkpoint_path, config=config, env=env, grid=grid, time_s=current_time, temperature_k=T, moisture=C, previous_temperature_k=previous_temperature, previous_moisture=previous_moisture, previous_step_s=previous_step_s, output_cursor=current_time, diagnostics=diagnostics, steps_completed=step_count))
     if requested and any(abs(target - current_time) < 1.0e-9 for target in requested):
         snapshots[round(current_time, 12)] = (tuple(T), tuple(C))
     diagnostic_summary = {
