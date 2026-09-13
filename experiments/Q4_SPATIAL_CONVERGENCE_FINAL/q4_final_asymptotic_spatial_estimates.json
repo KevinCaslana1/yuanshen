@@ -1,0 +1,369 @@
+{
+  "experiment": "Q4_FINAL_ASYMPTOTIC_CERTIFICATION",
+  "status": "SPATIAL_ASYMPTOTIC_RECORDED_TEMPORAL_VERIFICATION_PENDING",
+  "method": "dt=2 s; fresh t=0 spatial runs; non-equidistant direct fits",
+  "available_runs": [
+    96,
+    144,
+    192,
+    256,
+    320,
+    384,
+    512
+  ],
+  "runs": {
+    "96": {
+      "n": 96,
+      "dt_s": 2.0,
+      "t4_s": 191092.92436837355,
+      "t4_h": 53.08136788010376,
+      "root_bracket_width_s": 2.0,
+      "R_t4_cm": 1.2,
+      "controlling_point": "center / xi=0",
+      "max_abs_step_mass_residual": 0.0002106792782684278,
+      "max_abs_robin_residual": 1.8286402895088162e-06,
+      "max_picard_iterations": 5.0,
+      "source": "experiments/Q4_CONVERGENCE_FINAL/q4_error_decomposition.json"
+    },
+    "144": {
+      "n": 144,
+      "dt_s": 2.0,
+      "t4_s": 190188.60538950787,
+      "t4_h": 52.830168163752184,
+      "root_bracket_width_s": 2.0,
+      "R_t4_cm": 1.2,
+      "controlling_point": "center / xi=0",
+      "max_abs_step_mass_residual": 0.00020895005815766386,
+      "max_abs_robin_residual": 1.661303508302199e-06,
+      "max_picard_iterations": 5.0,
+      "source": "experiments/Q4_CONVERGENCE_FINAL/q4_error_decomposition.json"
+    },
+    "192": {
+      "n": 192,
+      "dt_s": 2.0,
+      "t4_s": 189903.26003601108,
+      "t4_h": 52.75090556555863,
+      "root_bracket_width_s": 0.0625,
+      "R_t4_cm": 1.2,
+      "controlling_point": "center / xi=0",
+      "max_abs_step_mass_residual": 0.0002078960040194412,
+      "max_abs_robin_residual": 1.491384711335097e-06,
+      "max_picard_iterations": 5.0,
+      "source": "experiments/Q4_CONVERGENCE_FINAL/q4_error_decomposition.json"
+    },
+    "256": {
+      "n": 256,
+      "dt_s": 2.0,
+      "t4_s": 189752.21918926245,
+      "t4_h": 52.70894977479512,
+      "root_bracket_width_s": 0.0625,
+      "R_t4_cm": 1.2,
+      "controlling_point": "center / xi=0",
+      "max_abs_step_mass_residual": 0.00020712223130785624,
+      "max_abs_robin_residual": 1.2874205416506899e-06,
+      "max_picard_iterations": 5.0,
+      "max_nonlinear_residual": 9.999031255758517e-10,
+      "runtime_s": 345.4671970999989,
+      "source": "experiments/Q4_SPATIAL_CONVERGENCE_FINAL/spatial_run_F_n256_dt2.json"
+    },
+    "320": {
+      "n": 320,
+      "dt_s": 2.0,
+      "t4_s": 189685.12377940913,
+      "t4_h": 52.69031216094698,
+      "root_bracket_width_s": 0.0625,
+      "R_t4_cm": 1.2000000000000002,
+      "controlling_point": "center / xi=0",
+      "max_abs_step_mass_residual": 0.00020675035602106756,
+      "max_abs_robin_residual": 1.11812880276297e-06,
+      "max_picard_iterations": 5.0,
+      "max_nonlinear_residual": 9.999415045980342e-10,
+      "runtime_s": 417.73881790000087,
+      "source": "experiments/Q4_SPATIAL_CONVERGENCE_FINAL/spatial_run_G_n320_dt2.json"
+    },
+    "384": {
+      "n": 384,
+      "dt_s": 2.0,
+      "t4_s": 189649.54588051673,
+      "t4_h": 52.68042941125465,
+      "root_bracket_width_s": 0.0625,
+      "R_t4_cm": 1.2,
+      "controlling_point": "center / xi=0",
+      "max_abs_step_mass_residual": 0.00020658233091182243,
+      "max_abs_robin_residual": 9.809420829590522e-07,
+      "max_picard_iterations": 5.0,
+      "max_nonlinear_residual": 9.99923893685306e-10,
+      "runtime_s": 512.7532535999999,
+      "source": "experiments/Q4_SPATIAL_CONVERGENCE_FINAL/spatial_run_H_n384_dt2.json"
+    },
+    "512": {
+      "n": 512,
+      "dt_s": 2.0,
+      "t4_s": 189614.85238398053,
+      "t4_h": 52.67079232888348,
+      "root_bracket_width_s": 0.0625,
+      "R_t4_cm": 1.2000000000000002,
+      "controlling_point": "center / xi=0",
+      "max_abs_step_mass_residual": 0.00020650105660515762,
+      "max_abs_robin_residual": 7.792812477557213e-07,
+      "max_picard_iterations": 6.0,
+      "max_nonlinear_residual": 9.998455882676005e-10,
+      "runtime_s": 804.483790000002,
+      "source": "experiments/Q4_SPATIAL_CONVERGENCE_FINAL/spatial_run_I_n512_dt2.json"
+    }
+  },
+  "spatial_continuum_estimates": [
+    {
+      "family": "A_free_p",
+      "fit": {
+        "n": [
+          192,
+          256,
+          320,
+          384,
+          512
+        ],
+        "p": 2.1329581336801047,
+        "t_inf_s": 189574.406280474,
+        "t_inf_h": 52.65955730013167,
+        "coefficients_scaled_s": [
+          40.585299574548
+        ],
+        "predicted_t4_s": [
+          189903.21416893345,
+          189752.41986024124,
+          189685.00449942655,
+          189649.37116053008,
+          189614.99158004855
+        ],
+        "residuals_s": [
+          -0.04586707762791775,
+          0.20067097878200002,
+          -0.11927998258033767,
+          -0.1747199866513256,
+          0.13919606801937334
+        ],
+        "max_abs_fit_residual_s": 0.20067097878200002,
+        "l2_fit_residual_s": 0.326347918435694,
+        "method": "free-p nonlinear fit: t(n)=t_inf+a*n^(-p)",
+        "p_search_interval": [
+          0.5,
+          4.0
+        ]
+      }
+    },
+    {
+      "family": "A_free_p",
+      "fit": {
+        "n": [
+          256,
+          320,
+          384,
+          512
+        ],
+        "p": 2.1031763600124807,
+        "t_inf_s": 189573.2033734733,
+        "t_inf_h": 52.65922315929814,
+        "coefficients_scaled_s": [
+          41.663202271757775
+        ],
+        "predicted_t4_s": [
+          189752.2111168267,
+          189685.16081602286,
+          189649.50272457427,
+          189614.86657574508
+        ],
+        "residuals_s": [
+          -0.008072435768553987,
+          0.037036613735836,
+          -0.04315594246145338,
+          0.014191764552379027
+        ],
+        "max_abs_fit_residual_s": 0.04315594246145338,
+        "l2_fit_residual_s": 0.059166853280374666,
+        "method": "free-p nonlinear fit: t(n)=t_inf+a*n^(-p)",
+        "p_search_interval": [
+          0.5,
+          4.0
+        ]
+      }
+    },
+    {
+      "family": "B_fixed_p2",
+      "fit": {
+        "n": [
+          320,
+          384,
+          512
+        ],
+        "p": 2.0,
+        "t_inf_s": 189569.6918434374,
+        "t_inf_h": 52.65824773428817,
+        "coefficients_scaled_s": [
+          45.046182813220994
+        ],
+        "predicted_t4_s": [
+          189685.01007143926,
+          189649.77394621648,
+          189614.73802625062
+        ],
+        "residuals_s": [
+          -0.11370796986739151,
+          0.2280656997463666,
+          -0.11435772990807891
+        ],
+        "max_abs_fit_residual_s": 0.2280656997463666,
+        "l2_fit_residual_s": 0.27932267398457394,
+        "method": "fixed-p=2 fit: t(n)=t_inf+a*n^(-2)"
+      }
+    },
+    {
+      "family": "B_fixed_p2",
+      "fit": {
+        "n": [
+          256,
+          320,
+          384,
+          512
+        ],
+        "p": 2.0,
+        "t_inf_s": 189568.42452195619,
+        "t_inf_h": 52.657895700543385,
+        "coefficients_scaled_s": [
+          45.839937031139314
+        ],
+        "predicted_t4_s": [
+          189751.78427008074,
+          189685.7747607559,
+          189649.91774334488,
+          189614.26445898734
+        ],
+        "residuals_s": [
+          -0.43491918171639554,
+          0.6509813467855565,
+          0.37186282814946026,
+          -0.5879249931895174
+        ],
+        "max_abs_fit_residual_s": 0.6509813467855565,
+        "l2_fit_residual_s": 1.047315219532212,
+        "method": "fixed-p=2 fit: t(n)=t_inf+a*n^(-2)"
+      }
+    },
+    {
+      "family": "B_fixed_p2",
+      "fit": {
+        "n": [
+          192,
+          256,
+          320,
+          384,
+          512
+        ],
+        "p": 2.0,
+        "t_inf_s": 189565.38820708817,
+        "t_inf_h": 52.657052279746715,
+        "coefficients_scaled_s": [
+          47.301689432933756
+        ],
+        "predicted_t4_s": [
+          189901.75577638904,
+          189754.5949648199,
+          189686.48053203648,
+          189649.48009941337,
+          189612.6898965211
+        ],
+        "residuals_s": [
+          -1.5042596220446285,
+          2.3757755574479233,
+          1.356752627354581,
+          -0.06578110335976817,
+          -2.1624874594272114
+        ],
+        "max_abs_fit_residual_s": 2.3757755574479233,
+        "l2_fit_residual_s": 3.7984948818517026,
+        "method": "fixed-p=2 fit: t(n)=t_inf+a*n^(-2)"
+      }
+    },
+    {
+      "family": "C_p2_plus_p3",
+      "fit": {
+        "n": [
+          256,
+          320,
+          384,
+          512
+        ],
+        "p": 2.0,
+        "t_inf_s": 189571.88585980746,
+        "t_inf_h": 52.65885718327985,
+        "coefficients_scaled_s": [
+          40.860717236409315,
+          2.1109992689327055
+        ],
+        "predicted_t4_s": [
+          189752.21672290456,
+          189685.1359489382,
+          189649.53098501335,
+          189614.8575763128
+        ],
+        "residuals_s": [
+          -0.0024663578951731324,
+          0.012169529072707519,
+          -0.014895503380103037,
+          0.005192332260776311
+        ],
+        "max_abs_fit_residual_s": 0.014895503380103037,
+        "l2_fit_residual_s": 0.02007527569851821,
+        "method": "fixed p=2 plus n^(-3) correction"
+      }
+    },
+    {
+      "family": "C_p2_plus_p3",
+      "fit": {
+        "n": [
+          192,
+          256,
+          320,
+          384,
+          512
+        ],
+        "p": 2.0,
+        "t_inf_s": 189572.16512234433,
+        "t_inf_h": 52.65893475620676,
+        "coefficients_scaled_s": [
+          40.43603583371471,
+          2.2959432922200196
+        ],
+        "predicted_t4_s": [
+          189903.24815366618,
+          189752.27681201696,
+          189685.08555780357,
+          189649.49364422288,
+          189614.89710147027
+        ],
+        "residuals_s": [
+          -0.011882344901096076,
+          0.057622754509793594,
+          -0.03822160555864684,
+          -0.05223629385000095,
+          0.04471748974174261
+        ],
+        "max_abs_fit_residual_s": 0.057622754509793594,
+        "l2_fit_residual_s": 0.0982382174772722,
+        "method": "fixed p=2 plus n^(-3) correction"
+      }
+    }
+  ],
+  "spatial_estimate": {
+    "recommended_method": "median of free-p, fixed-p=2 and p=2+n^-3 reasonable fit estimates",
+    "recommended_t_inf_h": 52.65885718327985,
+    "recommended_t_inf_s": 189571.88585980746,
+    "method_envelope_h": 0.002505020384951706,
+    "last_grid_n512_t4_h": 52.67079232888348,
+    "max_last_grid_to_continuum_relation_h": 0.013740049136764299,
+    "conservative_spatial_uncertainty_h": 0.016245069521716005,
+    "target_reporting_resolution_h": 5e-05
+  },
+  "fit_residual_note": "Free-p fits use 4/5 points; fixed-p=2 and p=2+n^-3 fits report residuals. No three-point zero-residual claim is used as evidence.",
+  "next_required": "run n=384, dt=1 s fresh from t=0; do not run n=640"
+}

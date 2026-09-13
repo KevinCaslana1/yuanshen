@@ -203,3 +203,16 @@ artifact-tool 已先按技能要求尝试；因该超大工作簿在 4 GB 和 8 
 ```
 
 当前证据：四组 triplet 的 `t_inf` 最近差为 `0.0007180914 h`，p 仍漂移，故 `Q4 CONTINUUM CONVERGENCE = HOLD`；暂缓 `dt=1 s` 和二维外推，不自动跳到 `n=512`，不得创建 corrected candidate 或修改 `deliverables/final/result4.xlsx`。
+
+## Q4 Final Asymptotic Certification（2026-09-13）
+
+最终 gate 已授权的最小新增运行和后处理顺序如下。`n=512`、`n=384,dt=1` 均从 `t=0` 完整运行；只写入隔离实验目录，不修改 `src/q4/`、冻结 workbook 或 final 图表。
+
+```powershell
+.\.venv\Scripts\python.exe scripts\run_q4_spatial_n256_dt2.py 512
+.\.venv\Scripts\python.exe scripts\fit_q4_final_asymptotic.py
+.\.venv\Scripts\python.exe scripts\run_q4_temporal_n384_dt1.py
+.\.venv\Scripts\python.exe scripts\build_q4_final_certification.py
+```
+
+当前证据：free-p、fixed-p=2、p=2+n^-3 方法和 supporting temporal order 已记录；audit estimate=`52.6575227799 h`，保守总不确定度=`60.9467 s`，高于插值敏感性，故 `Q4 FINAL NUMERICAL CERTIFICATION = HOLD`。不运行 `n=640` 或 `dt=0.5`，不创建 corrected candidate。

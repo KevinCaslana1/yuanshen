@@ -127,6 +127,20 @@
 
 状态：SUPPORTED（Q4 spatial convergence blocker）
 
+## FIND-Q4-004 Q4 最终渐近认证仍未通过
+
+问题：Q4
+
+发现：新增 `n=512,dt=2 s` fresh run 得 `52.6707923289 h`；固定 `dt=2 s` 的多种合理空间外推方法给出 `t_inf` 范围约 `52.6570522797–52.6595573001 h`。采用方法中心 `52.6588571833 h`，并以 n=512 有限网格到 continuum 的关系与方法包络构造保守空间不确定度 `0.0162450695 h`。
+
+新增 `n=384,dt=1 s` 得 `52.6797622096 h`；与 dt=2 的差 `-2.4019260 s`，和历史 dt=4→2 的方向一致，supporting temporal order 为 `1.0006671`。时间一阶外推后 audit estimate 为 `52.6575227799 h`，但空间不确定度仍高于 PCHIP/linear 的 `21.7324 s` 建模敏感性，且空间阶仍有漂移。
+
+限制：该值是连续极限审计估计，不是 final workbook 值。不得创建 corrected candidate，不得覆盖旧 Q4 final，不得运行 n=640 或 dt=0.5；外部 `51.0823 h` 未进入拟合或调参。
+
+证据：`experiments/Q4_FINAL_ASYMPTOTIC_CERTIFICATION/q4_final_asymptotic_certification.json`、`experiments/Q4_SPATIAL_CONVERGENCE_FINAL/q4_final_asymptotic_spatial_estimates.json`。
+
+状态：SUPPORTED（Q4 final numerical certification blocker）
+
 ## FIND-Q2-028 Q2 V3 生产双跑在正式输出范围内完成并确定性一致
 
 问题：Q2

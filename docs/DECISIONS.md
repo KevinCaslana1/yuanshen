@@ -665,3 +665,15 @@ early fine-step window 延长到 `5 s` 是数值启动策略修正；ENV-B、物
 状态：ACTIVE / HUMAN DECISION REQUIRED
 
 证据：`experiments/Q4_SPATIAL_CONVERGENCE_FINAL/spatial_continuum_fits.json`、`docs/Q4_SPATIAL_CONVERGENCE_FINAL.md`
+
+## D-Q4-FINAL-ASYMPTOTIC-20260913 Q4 最终渐近认证保持 HOLD
+
+问题：Q4
+
+人工 gate 授权完成最后空间层 `n=512,dt=2 s` 和唯一时间层 `n=384,dt=1 s`。实际 free-p、fixed-p=2、p=2+n^-3 外推结果的空间方法包络与 n=512 到 continuum 的关系仍导致保守总数值不确定度约 `60.9467 s`，高于 `21.7324 s` 的 PCHIP/linear 敏感性；时间 supporting order `q=1.0006671`，但空间阶仍漂移。
+
+决策：Q4 `FINAL NUMERICAL CERTIFICATION = HOLD`。连续极限审计估计 `52.6575227799 h` 只作为 audit evidence，不写入 workbook；不创建 corrected candidate，不修改 final result4、manifest、Table6 或图表，不自动运行 n=640/dt=0.5，等待人工判断。
+
+状态：ACTIVE / HUMAN DECISION REQUIRED
+
+证据：`experiments/Q4_FINAL_ASYMPTOTIC_CERTIFICATION/q4_final_asymptotic_certification.json`、`docs/Q4_FINAL_ASYMPTOTIC_CERTIFICATION.md`

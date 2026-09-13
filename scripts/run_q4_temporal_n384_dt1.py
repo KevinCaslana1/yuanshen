@@ -1,31 +1,23 @@
-"""Run the Q4 n=256, dt=2 s spatial refinement from a fresh t=0 state.
-
-This is an isolated convergence run.  It deliberately uses the standalone
-independent audit implementation rather than src/q4 and never resumes from a
-checkpoint or an earlier field.  The crossing step is locally refined only to
-separate root-location resolution from the spatial field error.
-"""
+"""Run the Q4 temporal verification at n=384, dt=1 s from fresh t=0."""
 
 from __future__ import annotations
 
 import json
-import sys
 import time
 from pathlib import Path
 
 from run_q34_independent_audit import ATT1, ATT2, ROOT, LinearEnvironment, PchipRadius, THRESHOLD, advance, initial
 
 
-OUT = ROOT / "experiments" / "Q4_SPATIAL_CONVERGENCE_FINAL"
+OUT = ROOT / "experiments" / "Q4_FINAL_ASYMPTOTIC_CERTIFICATION"
 
 
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     env = LinearEnvironment(ATT1)
     radius = PchipRadius(ATT2)
-    n = int(sys.argv[1]) if len(sys.argv) > 1 else 256
-    label = {256: "F", 320: "G", 384: "H", 512: "I"}.get(n, f"n{n}")
-    dt = 2.0
+    n = 384
+    dt = 1.0
     horizon = 230400.0
     state = initial(n)
     started = time.perf_counter()
@@ -51,10 +43,11 @@ def main() -> None:
             break
 
     if coarse_bracket is None:
-        raise RuntimeError("n=256, dt=2 s did not cross the Q4 threshold")
+        raise RuntimeError("n=384, dt=1 s did not cross the Q4 threshold")
 
     low, high = coarse_bracket
-    root_dt = dt / 32.0
+    # Keep the root-location scale common with the dt=2 spatial runs.
+    root_dt = 0.0625
     root_prev = low
     refined = None
     root_steps = 0
@@ -75,11 +68,11 @@ def main() -> None:
     t_cross = root_low.t + max(0.0, min(1.0, fraction)) * (root_high.t - root_low.t)
     elapsed = time.perf_counter() - started
     result = {
-        "name": f"{label}_n{n}_dt2",
+        "name": "J_n384_dt1",
         "n_intervals": n,
         "dt_s": dt,
         "horizon_s": horizon,
-        "initial_state": "fresh t=0; no checkpoint or E-state reuse",
+        "initial_state": "fresh t=0; no checkpoint or H-state reuse",
         "runtime_s": elapsed,
         "full_steps_to_event": steps,
         "coarse_bracket_s": [low.t, high.t],
@@ -107,7 +100,7 @@ def main() -> None:
         "sources": {"environment_sha256": env.source_sha256, "radius_sha256": radius.source_sha256},
         "status": "COMPLETED",
     }
-    output = OUT / f"spatial_run_{label}_n{n}_dt2.json"
+    output = OUT / "temporal_run_J_n384_dt1.json"
     output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(result, ensure_ascii=False))
 

@@ -1,6 +1,6 @@
 # Handoff
 
-Q1 已 FROZEN/COMPLETE，Q1 早期表面误差深谷已确认为 `pointwise error zero-crossing / cancellation dip`。Q2 V3 已完成 production freeze。Q3 final 通过独立核验；Q4 数值 final 保留。空间连续极限 gate 已完成 `n=256/320/384`，固定 `dt=2 s` 的四组非等比 triplet 外推最近差仍为 `0.0007180914 h`，观测阶仍漂移，因此 Q4 CONTINUUM CONVERGENCE HOLD；不得替换 final 或写成已收敛证据；仓库后续任务遵循 `docs/GITHUB_SYNC_POLICY.md` 的全量同步闭环。
+Q1 已 FROZEN/COMPLETE，Q1 早期表面误差深谷已确认为 `pointwise error zero-crossing / cancellation dip`。Q2 V3 已完成 production freeze。Q3 final 通过独立核验；Q4 数值 final 保留。最终渐近 gate 已完成 `n=512,dt=2` 和 `n=384,dt=1`，多种空间外推与一阶时间验证已记录，但保守总数值不确定度约 `60.9467 s`，仍高于 `21.7324 s` 插值敏感性，因此 Q4 FINAL NUMERICAL CERTIFICATION HOLD；不得替换 final 或写成已认证结果；仓库后续任务遵循 `docs/GITHUB_SYNC_POLICY.md` 的全量同步闭环。
 
 ## Q2 当前状态
 
@@ -43,7 +43,7 @@ Q1 已 FROZEN/COMPLETE，Q1 早期表面误差深谷已确认为 `pointwise erro
 - 方法：Appendix 4 properties；Attachment 2 `PchipInterpolator`-compatible monotone cubic；`ξ=r/R(t)` dynamic FVM/BE/Picard；Attachment 2 tail after `259200 s` holds at `R_last=1.198 cm`。
 - 结果：粗夹逼 `[191096,191100] s`；`t4=191097.7336093787 s=53.0827037804 h`，`R(t4)=1.2 cm`，`Cmax_before=0.15000087683231333`，`Cmax_after=0.14999885377291058`，critical `ξ=0`/`r=0 cm`。
 - 交付：`deliverables/final/result4.xlsx`、`deliverables/final/paper/tables/table6_q4.*`、`deliverables/final/paper/figures/q4/`、`deliverables/final/paper/figures/comparison/`、`deliverables/final/Q4_MANIFEST.json`、`docs/Q4_FINAL_FREEZE_AUDIT.md`。
-- 冻结工作簿结构校验仍 PASS；空间外推新增 F/G/H=`n=256/320/384,dt=2 s`，最新 triplet `[256,320,384]` 得 `p=2.1173963902`、`t_inf=52.6594537782 h`，与上一 triplet 极限差 `0.0007180914 h`，仍未达到 `0.00005 h`。证据见 `experiments/Q4_SPATIAL_CONVERGENCE_FINAL/` 与 `docs/Q4_SPATIAL_CONVERGENCE_FINAL.md`；暂缓 dt=1，不创建 corrected candidate，不更新 Q4 final。
+- 冻结工作簿结构校验仍 PASS；最终渐近审计新增 I=`n=512,dt=2 s` 与 J=`n=384,dt=1 s`。空间 audit estimate 加一阶时间修正为 `52.6575227799 h`，但仅为 audit evidence；保守总不确定度 `60.9467 s`，不能认证 PASS。证据见 `experiments/Q4_FINAL_ASYMPTOTIC_CERTIFICATION/` 与 `docs/Q4_FINAL_ASYMPTOTIC_CERTIFICATION.md`；不创建 corrected candidate，不更新 Q4 final。
 
 ## 最终边界
 

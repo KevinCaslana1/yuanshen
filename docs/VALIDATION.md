@@ -446,6 +446,24 @@ Agent 自动完成模型冻结。`result2.xlsx`、candidate/final workbook 均�
 
 结论：`Q4 CONTINUUM CONVERGENCE = HOLD`。按 gate 不自动跳到 `n=512`，不得修改 `deliverables/final/result4.xlsx`。
 
+## CUMCM Q4 FINAL ASYMPTOTIC CERTIFICATION GATE（2026-09-13）
+
+| Gate item | Evidence | Status |
+|---|---|---|
+| n=512 spatial run | `n=512,dt=2 s`，fresh `t=0`；`t4=52.6707923289 h`；`R(t4)=1.2 cm`；center | PASS（运行完成） |
+| Spatial Method A | free-p on `[192..512]` and `[256..512]`；p=`2.1329581/2.1031764` | RECORDED；p 仍漂移 |
+| Spatial Method B | fixed p=2 on last 3/4/5 grids | RECORDED |
+| Spatial Method C | p=2 plus n^-3 on last 4/5 grids | RECORDED |
+| Spatial estimate | 中位数 `52.6588571833 h`；method envelope `0.0025050204 h`；n=512-to-limit relation `0.0137400491 h` | RECORDED |
+| n=384 dt=1 | fresh `t=0`；`t4=52.6797622096 h`；`dt2→dt1=-2.4019260 s` | PASS（运行完成） |
+| Temporal order | supporting `q=1.0006671`；方向与历史 dt4→dt2 一致；dt0=`52.6790950079 h` | PASS（supporting） |
+| Final audit estimate | space-first + time correction：`52.6575227799 h`，paper display `52.6575 h` | AUDIT ONLY；不写 workbook |
+| Numerical uncertainty | spatial `0.0162450695 h`；temporal `0.0006672017 h`；root `0.0000173611 h`；total `0.0169296323 h=60.9467 s` | FAIL；高于插值敏感性 `21.7324 s` |
+| Corrected delivery | 未创建 candidate_reaudit；final result4、manifest、Table6、图表不变 | PASS（fail-closed） |
+| Automatic continuation | 不运行 n=640、dt=0.5；停止并等待人工决定 | PASS |
+
+结论：`Q4 FINAL NUMERICAL CERTIFICATION = HOLD`。连续极限 audit estimate 不等于已认证 final paper result。
+
 ## CUMCM Q3 + Q4 JOINT FINAL FREEZE GATE（2026-09-12）
 
 本 Gate 依据人工联合最终冻结授权执行。没有重新运行 Q3/Q4 全程 solver；对既有 candidate 进行只读审计、严格 60 s 官方工作簿契约修正、byte-identical COPY ONLY 和最终论文资产登记。

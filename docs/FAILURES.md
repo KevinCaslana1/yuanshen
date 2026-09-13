@@ -346,6 +346,22 @@ sampler只登记 21600/86400/172800/259200 s，因此后处理抛出 `KeyError: 
 
 状态：SUPPORTED / BLOCKED_PENDING_HUMAN_DECISION；Q4 保持 `CONTINUUM CONVERGENCE = HOLD`。
 
+## FAIL-Q4-003 Q4 最终渐近认证不满足保守不确定度与稳定性要求
+
+问题：Q4
+
+症状：n=512 空间运行完成后，free-p、fixed-p=2、p=2+n^-3 方法的 continuum estimates 仍有 `0.0025050204 h` 包络；按 gate 加入 n=512 到 continuum 的关系后，空间不确定度为 `0.0162450695 h`。free-p 阶从约 `2.1330` 变为 `2.1032`，仍未完全稳定。
+
+时间验证本身支持一阶趋势：n=384 的 dt=2→1 改变 `-2.4019260 s`，supporting `q=1.0006671`；但这不能消除空间不确定度。
+
+影响：保守数值总不确定度约 `60.9467 s`，高于 PCHIP/linear `21.7324 s` 建模敏感性；Q4 不能标记 FINAL NUMERICAL CERTIFICATION PASS，不能生成 corrected result4、Table6 或新 Q4 图。
+
+处理：完成 gate 指定的 n=512 和 n=384 dt=1 后停止自动细化；不运行 n=640 或 dt=0.5，不使用外部值调参，保留旧 Q4 final 作为历史 artifact。
+
+证据：`docs/Q4_FINAL_ASYMPTOTIC_CERTIFICATION.md`、`experiments/Q4_FINAL_ASYMPTOTIC_CERTIFICATION/`。
+
+状态：SUPPORTED / BLOCKED_PENDING_HUMAN_DECISION。
+
 ## FAIL-Q2-009 Q2 production freeze accuracy gate failed
 
 问题：Q2

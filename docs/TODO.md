@@ -67,6 +67,7 @@
 | T-057 | P0 | Q3/Q4 | T-056 | DONE | PAPER TABLE REPRODUCTION + Q3/Q4 INDEPENDENT VERIFICATION GATE | Q3 independent PASS；Q4 independent HOLD：n=96/dt=4 复现冻结值，n=144/dt=2 为 `52.8302 h`，四位小时不稳定；final result3/result4 未修改，等待人工复核 | `experiments/Q34_INDEPENDENT_AUDIT/` |
 | T-058 | P0 | Q4 | T-057 | DONE | Q4 NUMERICAL CONVERGENCE FINALIZATION GATE | A/B/C/D 分离时间/空间误差；n=192,dt=2 最小下一层完成；PCHIP/linear 一次敏感性检查；保守不确定度 `0.0806158781 h > 0.00005 h`，Q4 HOLD；final result4 未修改 | `experiments/Q4_CONVERGENCE_FINAL/` |
 | T-059 | P0 | Q4 | T-058 | DONE | Q4 SPATIAL CONVERGENCE EXTRAPOLATION & CORRECTED RESULT FINALIZATION GATE | 固定 dt=2 完成 n=256/320/384；非等比 triplet 外推 t_inf 最近差 `0.0007180914 h > 0.00005 h`，p 仍漂移；暂缓 dt=1、二维外推和 corrected candidate；final result4 未修改 | `experiments/Q4_SPATIAL_CONVERGENCE_FINAL/` |
+| T-060 | P0 | Q4 | T-059 | DONE | Q4 FINAL ASYMPTOTIC CERTIFICATION & CORRECTED PAPER RESULT GATE | 完成 n=512/dt=2 与 n=384/dt=1；free-p/fixed-p2/p2+n^-3 外推、时间 q=`1.0006671`；保守总不确定度 `60.9467 s` 高于插值敏感性 `21.7324 s`；Q4 FINAL CERTIFICATION HOLD；未创建 corrected candidate，停止自动细化 | `experiments/Q4_FINAL_ASYMPTOTIC_CERTIFICATION/` |
 
 ## 任务记录模板
 

@@ -251,3 +251,11 @@ Q3/Q4 final paper asset整理与数值冻结分开留痕；历史失败实验保
 | Experiment | Purpose | Key Config | Result | Status | Evidence |
 |---|---|---|---|---|---|
 | Q4_SPATIAL_CONVERGENCE_FINAL | 建立连续空间极限并检查 triplet 稳定性 | `dt=2 s`；B/D/E/F/G/H=`n=96/144/192/256/320/384`；均 fresh `t=0` | `t_inf`: `52.6657612843`、`52.6617656682`、`52.6601718696`、`52.6594537782 h`；最近差 `0.0007180914 h` > `0.00005 h`；p 仍漂移 | COMPLETED / Q4 HOLD | `experiments/Q4_SPATIAL_CONVERGENCE_FINAL/`、`docs/Q4_SPATIAL_CONVERGENCE_FINAL.md` |
+
+## Q4 Final Asymptotic Certification（2026-09-13）
+
+最终 gate 完成指定的 `n=512,dt=2 s` 和 `n=384,dt=1 s`，并以实际数据比较 free-p、fixed-p=2、p=2+n^-3。空间外推方法包络及 n=512 到 continuum 的关系仍使保守数值不确定度约 `0.0169296323 h`（含时间/root），高于 `21.7324 s` 插值敏感性；Q4 保持 HOLD，不创建 corrected candidate。
+
+| Experiment | Purpose | Key Config | Result | Status | Evidence |
+|---|---|---|---|---|---|
+| Q4_FINAL_ASYMPTOTIC_CERTIFICATION | 最终空间/时间渐近认证和连续极限审计 | spatial `dt=2`，n=`96..512`；temporal `n=384,dt=1`；free-p/fixed-p2/p2+n^-3 | spatial estimate=`52.6588571833 h`；time-corrected audit estimate=`52.6575227799 h`；total uncertainty=`60.9467 s`；空间阶仍漂移 | COMPLETED / FINAL HOLD | `experiments/Q4_FINAL_ASYMPTOTIC_CERTIFICATION/`、`docs/Q4_FINAL_ASYMPTOTIC_CERTIFICATION.md` |
