@@ -243,3 +243,11 @@ Q3/Q4 final paper asset整理与数值冻结分开留痕；历史失败实验保
 |---|---|---|---|---|---|
 | Q4_CONVERGENCE_FINAL | 分离时间误差、空间误差、事件根定位误差，并按主导误差选择最小下一层 | A `96/4`；B `96/2`；C `144/4`；D `144/2`；E `192/2`；全为独立 fresh `t=0` | `Δtime≈4.8 s`，`Δspace(A→D)≈904.3 s`；空间/时间约 `188.0`；E=`52.7509055656 h`，细层 D→E=`0.0792625982 h`；保守不确定度=`0.0806158781 h` > `0.00005 h` | COMPLETED / Q4 HOLD | `experiments/Q4_CONVERGENCE_FINAL/q4_error_decomposition.json`、`docs/Q4_CONVERGENCE_FINAL.md` |
 | Q4_INTERPOLATION_SENSITIVITY_FINAL | 在选定层级比较半径插值 | `n=192, dt=2 s`；PCHIP 与 linear；root 子步 `0.0625 s` | PCHIP=`52.7509055656 h`，linear=`52.7569423508 h`，差=`21.7324 s`；保留 PCHIP | COMPLETED / SENSITIVITY ONLY | `experiments/Q4_CONVERGENCE_FINAL/interpolation_sensitivity_n192_dt2.json` |
+
+## Q4 Spatial Convergence Extrapolation（2026-09-13）
+
+空间收敛 gate 在固定 `dt=2 s` 下新增 F/G/H 三次 fresh-from-`t=0` 运行。非等比网格使用直接三参数 `t(n)=t_inf+a*n^(-p)` 拟合；不使用等比 Richardson 简化公式。Triplet 外推极限仍漂移，Q4 保持 HOLD，不创建 corrected candidate。
+
+| Experiment | Purpose | Key Config | Result | Status | Evidence |
+|---|---|---|---|---|---|
+| Q4_SPATIAL_CONVERGENCE_FINAL | 建立连续空间极限并检查 triplet 稳定性 | `dt=2 s`；B/D/E/F/G/H=`n=96/144/192/256/320/384`；均 fresh `t=0` | `t_inf`: `52.6657612843`、`52.6617656682`、`52.6601718696`、`52.6594537782 h`；最近差 `0.0007180914 h` > `0.00005 h`；p 仍漂移 | COMPLETED / Q4 HOLD | `experiments/Q4_SPATIAL_CONVERGENCE_FINAL/`、`docs/Q4_SPATIAL_CONVERGENCE_FINAL.md` |

@@ -428,6 +428,24 @@ Agent 自动完成模型冻结。`result2.xlsx`、candidate/final workbook 均�
 
 结论：`Q4 NUMERICAL CONVERGENCE = HOLD`。在人工批准新的精度目标或接受可实现误差前，不改变 `deliverables/final/result4.xlsx`，不生成 `candidate_reaudit`，不把当前事件时刻写成已收敛结果。
 
+## CUMCM Q4 SPATIAL CONVERGENCE EXTRAPOLATION GATE（2026-09-13）
+
+| Gate item | Evidence | Status |
+|---|---|---|
+| 固定时间步空间序列 | B/D/E/F/G/H：`dt=2 s`，`n=96/144/192/256/320/384`；F/G/H 均 fresh `t=0` | PASS（序列完成） |
+| 非等比空间拟合 | 直接拟合 `t(n)=t_inf+a*n^(-p)`，不使用等比 Richardson 简化式 | PASS（方法符合要求） |
+| Triplet 1 | `[96,144,192]`：`p=2.2872370118`，`t_inf=52.6657612843 h` | RECORDED |
+| Triplet 2 | `[144,192,256]`：`p=2.2112949180`，`t_inf=52.6617656682 h` | RECORDED |
+| Triplet 3 | `[192,256,320]`：`p=2.1574210187`，`t_inf=52.6601718696 h` | RECORDED |
+| Triplet 4 | `[256,320,384]`：`p=2.1173963902`，`t_inf=52.6594537782 h` | RECORDED |
+| Extrapolated-limit stability | 最近差 `0.0007180914 h`，目标 `0.00005 h`；p 仍漂移 | FAIL；Q4 HOLD |
+| 控制点与物理诊断 | F/G/H 均 center；`R(t4)=1.2 cm`；质量残差总体改善；Robin 残差下降 | PASS（诊断） |
+| Temporal verification | 空间极限未稳定，暂缓 `dt=1 s` 与二维外推 | DEFERRED |
+| Corrected candidate | 未创建，final result4、manifest、Table6、图表不变 | PASS（fail-closed） |
+| 外部 `51.0823 h` | 未进入拟合/调参/验收；当前尚未收敛，不作模型判断 | PASS |
+
+结论：`Q4 CONTINUUM CONVERGENCE = HOLD`。按 gate 不自动跳到 `n=512`，不得修改 `deliverables/final/result4.xlsx`。
+
 ## CUMCM Q3 + Q4 JOINT FINAL FREEZE GATE（2026-09-12）
 
 本 Gate 依据人工联合最终冻结授权执行。没有重新运行 Q3/Q4 全程 solver；对既有 candidate 进行只读审计、严格 60 s 官方工作簿契约修正、byte-identical COPY ONLY 和最终论文资产登记。

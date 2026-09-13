@@ -113,6 +113,20 @@
 
 状态：SUPPORTED（Q4 convergence blocker）
 
+## FIND-Q4-003 Q4 空间连续极限外推尚未稳定
+
+问题：Q4
+
+发现：固定 `dt=2 s`，独立 fresh-from-`t=0` 的 B/D/E/F/G/H 网格序列为 `n=96/144/192/256/320/384`。用非等比网格直接拟合 `t(n)=t_inf+a*n^(-p)` 得到四组连续极限：`52.6657612843`、`52.6617656682`、`52.6601718696`、`52.6594537782 h`；最近两组差为 `0.0007180914 h`（约 `2.5851 s`）。
+
+观测阶从 `2.2872370118`、`2.2112949180`、`2.1574210187` 变为 `2.1173963902`，仍有漂移。F/G/H 控制点均为中心，`R(t4)=1.2 cm`，质量残差总体改善，Robin 残差下降；但这不足以证明连续极限已稳定。拟合残差为零是三点三参数模型的代数结果，不作为独立精度证明。
+
+限制：空间外推稳定性仍超过 `0.00005 h`，因此暂缓 `dt=1 s` 时间验证、二维连续极限和 corrected candidate。旧 Q4 `53.0827 h` 保留为历史冻结 artifact，不用外部 `51.0823 h` 拟合或调参。
+
+证据：`experiments/Q4_SPATIAL_CONVERGENCE_FINAL/spatial_continuum_fits.json`、`spatial_run_F_n256_dt2.json`、`spatial_run_G_n320_dt2.json`、`spatial_run_H_n384_dt2.json`。
+
+状态：SUPPORTED（Q4 spatial convergence blocker）
+
 ## FIND-Q2-028 Q2 V3 生产双跑在正式输出范围内完成并确定性一致
 
 问题：Q2

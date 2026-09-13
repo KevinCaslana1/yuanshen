@@ -1,0 +1,47 @@
+{
+  "name": "G_n320_dt2",
+  "n_intervals": 320,
+  "dt_s": 2.0,
+  "horizon_s": 230400.0,
+  "initial_state": "fresh t=0; no checkpoint or E-state reuse",
+  "runtime_s": 417.73881790000087,
+  "full_steps_to_event": 94843,
+  "coarse_bracket_s": [
+    189684.0,
+    189686.0
+  ],
+  "root_refinement": {
+    "substeps": 18,
+    "substep_dt_s": 0.0625,
+    "bracket_s": [
+      189685.0625,
+      189685.125
+    ],
+    "bracket_width_s": 0.0625,
+    "t_cross_linear_s": 189685.12377940913,
+    "t_cross_linear_h": 52.69031216094698,
+    "R_t4_cm": 1.2000000000000002,
+    "R_t4_rate_cm_s": 0.0,
+    "cmax_before": 0.1500000314234701,
+    "cmax_after": 0.14999999937409317,
+    "critical_radius_after_cm": 0.0,
+    "controlling_point": "center / xi=0"
+  },
+  "conservation": {
+    "max_abs_step": 0.00020675035602106756,
+    "cumulative_abs_step": 0.46327046433065544,
+    "definition": "moving-volume balance with Robin loss and prescribed boundary motion"
+  },
+  "robin": {
+    "max_abs_flux_residual": 1.11812880276297e-06
+  },
+  "picard": {
+    "max_iterations": 5.0,
+    "max_nonlinear_residual": 9.999415045980342e-10
+  },
+  "sources": {
+    "environment_sha256": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+    "radius_sha256": "5563acbfa4b4afb10cc6c03e2207e5369bf39da27576672aff14cc5c32e704af"
+  },
+  "status": "COMPLETED"
+}

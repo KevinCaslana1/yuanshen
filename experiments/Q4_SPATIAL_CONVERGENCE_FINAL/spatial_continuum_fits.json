@@ -1,0 +1,300 @@
+{
+  "experiment": "Q4_SPATIAL_CONVERGENCE_FINAL",
+  "status": "HOLD_SPATIAL_EXTRAPOLATED_LIMIT_NOT_STABLE",
+  "method": "all runs dt=2 s; fresh t=0; t(n)=t_inf+a*n^(-p); non-equidistant direct fit",
+  "available_runs": [
+    96,
+    144,
+    192,
+    256,
+    320,
+    384
+  ],
+  "runs": {
+    "96": {
+      "name": "B_n96_dt2",
+      "n_intervals": 96,
+      "dt_s": 2.0,
+      "t4_s": 191092.92436837355,
+      "t4_h": 53.08136788010376,
+      "root_bracket_width_s": 2.0,
+      "R_t4_cm": 1.2,
+      "controlling_point": "center / xi=0",
+      "max_abs_step_mass_residual": 0.0002106792782684278,
+      "max_abs_robin_residual": 1.8286402895088162e-06,
+      "max_picard_iterations": 5.0,
+      "source": "Q4_CONVERGENCE_FINAL/q4_error_decomposition.json"
+    },
+    "144": {
+      "name": "D_n144_dt2",
+      "n_intervals": 144,
+      "dt_s": 2.0,
+      "t4_s": 190188.60538950787,
+      "t4_h": 52.830168163752184,
+      "root_bracket_width_s": 2.0,
+      "R_t4_cm": 1.2,
+      "controlling_point": "center / xi=0",
+      "max_abs_step_mass_residual": 0.00020895005815766386,
+      "max_abs_robin_residual": 1.661303508302199e-06,
+      "max_picard_iterations": 5.0,
+      "source": "Q4_CONVERGENCE_FINAL/q4_error_decomposition.json"
+    },
+    "192": {
+      "name": "E_n192_dt2",
+      "n_intervals": 192,
+      "dt_s": 2.0,
+      "t4_s": 189903.26003601108,
+      "t4_h": 52.75090556555863,
+      "root_bracket_width_s": 0.0625,
+      "R_t4_cm": 1.2,
+      "controlling_point": "center / xi=0",
+      "max_abs_step_mass_residual": 0.0002078960040194412,
+      "max_abs_robin_residual": 1.491384711335097e-06,
+      "max_picard_iterations": 5.0,
+      "source": "Q4_CONVERGENCE_FINAL/q4_error_decomposition.json"
+    },
+    "256": {
+      "name": "F_n256_dt2",
+      "n_intervals": 256,
+      "dt_s": 2.0,
+      "t4_s": 189752.21918926245,
+      "t4_h": 52.70894977479512,
+      "root_bracket_width_s": 0.0625,
+      "R_t4_cm": 1.2,
+      "controlling_point": "center / xi=0",
+      "max_abs_step_mass_residual": 0.00020712223130785624,
+      "max_abs_robin_residual": 1.2874205416506899e-06,
+      "max_picard_iterations": 5.0,
+      "source": "experiments/Q4_SPATIAL_CONVERGENCE_FINAL/spatial_run_F_n256_dt2.json",
+      "runtime_s": 345.4671970999989
+    },
+    "320": {
+      "name": "G_n320_dt2",
+      "n_intervals": 320,
+      "dt_s": 2.0,
+      "t4_s": 189685.12377940913,
+      "t4_h": 52.69031216094698,
+      "root_bracket_width_s": 0.0625,
+      "R_t4_cm": 1.2000000000000002,
+      "controlling_point": "center / xi=0",
+      "max_abs_step_mass_residual": 0.00020675035602106756,
+      "max_abs_robin_residual": 1.11812880276297e-06,
+      "max_picard_iterations": 5.0,
+      "source": "experiments/Q4_SPATIAL_CONVERGENCE_FINAL/spatial_run_G_n320_dt2.json",
+      "runtime_s": 417.73881790000087
+    },
+    "384": {
+      "name": "H_n384_dt2",
+      "n_intervals": 384,
+      "dt_s": 2.0,
+      "t4_s": 189649.54588051673,
+      "t4_h": 52.68042941125465,
+      "root_bracket_width_s": 0.0625,
+      "R_t4_cm": 1.2,
+      "controlling_point": "center / xi=0",
+      "max_abs_step_mass_residual": 0.00020658233091182243,
+      "max_abs_robin_residual": 9.809420829590522e-07,
+      "max_picard_iterations": 5.0,
+      "source": "experiments/Q4_SPATIAL_CONVERGENCE_FINAL/spatial_run_H_n384_dt2.json",
+      "runtime_s": 512.7532535999999
+    }
+  },
+  "triplet_fits": [
+    {
+      "n": [
+        96,
+        144,
+        192
+      ],
+      "dt_s": 2.0,
+      "observed_ratio": 3.1692087072161796,
+      "p": 2.287237011767713,
+      "a_s": 51157470.633604944,
+      "t_inf_s": 189596.74062362823,
+      "t_inf_h": 52.66576128434117,
+      "predicted_t4_s": [
+        191092.92436837355,
+        190188.60538950787,
+        189903.26003601108
+      ],
+      "residuals_s": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "max_abs_fit_residual_s": 0.0,
+      "l2_fit_residual_s": 0.0,
+      "fit_model": "t(n)=t_inf+a*n^(-p); direct non-equidistant three-parameter fit"
+    },
+    {
+      "n": [
+        144,
+        192,
+        256
+      ],
+      "dt_s": 2.0,
+      "observed_ratio": 1.8891932853877427,
+      "p": 2.2112949180412107,
+      "a_s": 35927502.9605523,
+      "t_inf_s": 189582.3564055115,
+      "t_inf_h": 52.66176566819764,
+      "predicted_t4_s": [
+        190188.60538950787,
+        189903.26003601108,
+        189752.21918926245
+      ],
+      "residuals_s": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "max_abs_fit_residual_s": 0.0,
+      "l2_fit_residual_s": 0.0,
+      "fit_model": "t(n)=t_inf+a*n^(-p); direct non-equidistant three-parameter fit"
+    },
+    {
+      "n": [
+        192,
+        256,
+        320
+      ],
+      "dt_s": 2.0,
+      "observed_ratio": 2.251135317286391,
+      "p": 2.157421018687211,
+      "a_s": 27549464.757663894,
+      "t_inf_s": 189576.61873040695,
+      "t_inf_h": 52.66017186955749,
+      "predicted_t4_s": [
+        189903.26003601108,
+        189752.21918926245,
+        189685.12377940913
+      ],
+      "residuals_s": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "max_abs_fit_residual_s": 0.0,
+      "l2_fit_residual_s": 0.0,
+      "fit_model": "t(n)=t_inf+a*n^(-p); direct non-equidistant three-parameter fit"
+    },
+    {
+      "n": [
+        256,
+        320,
+        384
+      ],
+      "dt_s": 2.0,
+      "observed_ratio": 1.8858733073655307,
+      "p": 2.117396390218892,
+      "a_s": 22390881.070612524,
+      "t_inf_s": 189574.0336015354,
+      "t_inf_h": 52.65945377820427,
+      "predicted_t4_s": [
+        189752.21918926245,
+        189685.12377940913,
+        189649.54588051673
+      ],
+      "residuals_s": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "max_abs_fit_residual_s": 0.0,
+      "l2_fit_residual_s": 0.0,
+      "fit_model": "t(n)=t_inf+a*n^(-p); direct non-equidistant three-parameter fit"
+    }
+  ],
+  "adjacent_extrapolated_limit_differences": [
+    {
+      "from_triplet": [
+        96,
+        144,
+        192
+      ],
+      "to_triplet": [
+        144,
+        192,
+        256
+      ],
+      "signed_h": -0.003995616143534164,
+      "absolute_h": 0.003995616143534164
+    },
+    {
+      "from_triplet": [
+        144,
+        192,
+        256
+      ],
+      "to_triplet": [
+        192,
+        256,
+        320
+      ],
+      "signed_h": -0.0015937986401510784,
+      "absolute_h": 0.0015937986401510784
+    },
+    {
+      "from_triplet": [
+        192,
+        256,
+        320
+      ],
+      "to_triplet": [
+        256,
+        320,
+        384
+      ],
+      "signed_h": -0.0007180913532138788,
+      "absolute_h": 0.0007180913532138788
+    }
+  ],
+  "adjacent_observed_order_differences": [
+    {
+      "from_triplet": [
+        96,
+        144,
+        192
+      ],
+      "to_triplet": [
+        144,
+        192,
+        256
+      ],
+      "signed": -0.07594209372650251,
+      "absolute": 0.07594209372650251
+    },
+    {
+      "from_triplet": [
+        144,
+        192,
+        256
+      ],
+      "to_triplet": [
+        192,
+        256,
+        320
+      ],
+      "signed": -0.053873899353999555,
+      "absolute": 0.053873899353999555
+    },
+    {
+      "from_triplet": [
+        192,
+        256,
+        320
+      ],
+      "to_triplet": [
+        256,
+        320,
+        384
+      ],
+      "signed": -0.040024628468319,
+      "absolute": 0.040024628468319
+    }
+  ],
+  "spatial_extrapolation_uncertainty_h": 0.0007180913532138788,
+  "target_uncertainty_h": 5e-05,
+  "fit_residual_interpretation": "Three points determine three parameters exactly; residual is a consistency check, while triplet-to-triplet limit stability is the uncertainty diagnostic.",
+  "next_action": "assess spatial stability before any temporal dt=1 verification"
+}

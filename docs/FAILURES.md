@@ -332,6 +332,20 @@ sampler只登记 21600/86400/172800/259200 s，因此后处理抛出 `KeyError: 
 
 状态：SUPPORTED / BLOCKED_PENDING_HUMAN_DECISION；旧 Q4 freeze 与失败历史均保留。
 
+## FAIL-Q4-002 Q4 连续空间极限仍未达到稳定门
+
+问题：Q4
+
+症状：在固定 `dt=2 s` 的 `n=96/144/192/256/320/384` 序列上，直接非等比 triplet 外推的 `t_inf` 最近差仍为 `0.0007180914 h`，超过 `0.00005 h`；观测阶仍从 `2.2872` 漂移到 `2.1174`。
+
+影响：空间连续极限尚未可信稳定，不能进行最终时间校正、二维 `t_star` 估计或生成 corrected `result4.xlsx`。旧 final result4、manifest、Table6 和图表继续保持冻结，不作替换。
+
+处理：按 gate 完成 `n=256`、`n=320`，在未满足条件时继续完成指定的 `n=384`；不自动跳到 `n=512`，不使用外部 `51.0823 h` 调参，不做 Richardson 外推。
+
+证据：`experiments/Q4_SPATIAL_CONVERGENCE_FINAL/spatial_continuum_fits.json`、`docs/Q4_SPATIAL_CONVERGENCE_FINAL.md`。
+
+状态：SUPPORTED / BLOCKED_PENDING_HUMAN_DECISION；Q4 保持 `CONTINUUM CONVERGENCE = HOLD`。
+
 ## FAIL-Q2-009 Q2 production freeze accuracy gate failed
 
 问题：Q2

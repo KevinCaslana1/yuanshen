@@ -189,3 +189,17 @@ artifact-tool 已先按技能要求尝试；因该超大工作簿在 4 GB 和 8 
 ```
 
 当前证据：A/B/C/D/E 已完成；空间项主导，PCHIP 保留，保守不确定度 `0.0806158781 h` 超过 `0.00005 h`，故 `Q4 NUMERICAL CONVERGENCE = HOLD`。未创建 corrected candidate，不得修改 `deliverables/final/result4.xlsx`。
+
+## Q4 Spatial Convergence Extrapolation（2026-09-13）
+
+本节记录连续空间极限 gate 的可复现入口。所有新增层级固定 `dt=2 s`，从 `t=0` 独立运行；非等比网格直接拟合 `t(n)=t_inf+a*n^(-p)`，不使用固定 refinement ratio 的简化 Richardson 公式。命令只写入 `experiments/Q4_SPATIAL_CONVERGENCE_FINAL/`，不修改 `src/q4/` 或冻结交付。
+
+```powershell
+.\.venv\Scripts\python.exe scripts\run_q4_spatial_n256_dt2.py 256
+.\.venv\Scripts\python.exe scripts\run_q4_spatial_n256_dt2.py 320
+.\.venv\Scripts\python.exe scripts\fit_q4_spatial_continuum.py
+.\.venv\Scripts\python.exe scripts\run_q4_spatial_n256_dt2.py 384
+.\.venv\Scripts\python.exe scripts\fit_q4_spatial_continuum.py
+```
+
+当前证据：四组 triplet 的 `t_inf` 最近差为 `0.0007180914 h`，p 仍漂移，故 `Q4 CONTINUUM CONVERGENCE = HOLD`；暂缓 `dt=1 s` 和二维外推，不自动跳到 `n=512`，不得创建 corrected candidate 或修改 `deliverables/final/result4.xlsx`。

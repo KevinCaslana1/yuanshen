@@ -653,3 +653,15 @@ early fine-step window 延长到 `5 s` 是数值启动策略修正；ENV-B、物
 状态：ACTIVE / HUMAN DECISION REQUIRED
 
 证据：`experiments/Q4_CONVERGENCE_FINAL/q4_error_decomposition.json`、`docs/Q4_CONVERGENCE_FINAL.md`
+
+## D-Q4-SPATIAL-EXTRAPOLATION-20260913 Q4 连续空间极限仍保持 HOLD
+
+问题：Q4
+
+根据新的人工 gate，在固定 `dt=2 s` 下完成 `n=256`、`n=320` 和指定的 `n=384` fresh-from-`t=0` 运行。对非等比网格分别拟合 `t(n)=t_inf+a*n^(-p)`，四组 triplet 的 `t_inf` 为 `52.6657612843`、`52.6617656682`、`52.6601718696`、`52.6594537782 h`；最近两组差 `0.0007180914 h`，且 `p` 仍漂移。
+
+决策：Q4 继续 `CONTINUUM CONVERGENCE = HOLD`；暂缓 `dt=1 s` 和二维连续极限，禁止创建 corrected candidate，不修改 final result4、manifest、Table6 或图表。下一步不得自动跳到 `n=512`，需等待人工新授权或接受当前限制。
+
+状态：ACTIVE / HUMAN DECISION REQUIRED
+
+证据：`experiments/Q4_SPATIAL_CONVERGENCE_FINAL/spatial_continuum_fits.json`、`docs/Q4_SPATIAL_CONVERGENCE_FINAL.md`
