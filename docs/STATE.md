@@ -6,7 +6,7 @@
 
 - 比赛：2026 高教社杯全国大学生数学建模竞赛；赛题：A题《药材的烘干问题》
 - 官方源：`A题/`（OFFICIAL_SOURCE / IMMUTABLE_SOURCE），本轮哈希未变化
-- 当前阶段：Q1 FROZEN；Q2 V3 production freeze 已完成；Q3 FROZEN / INDEPENDENT VERIFICATION PASS；Q4 FROZEN NUMERICAL ARTIFACT / FINAL NUMERICAL CERTIFICATION HOLD
+- 当前阶段：Q1 FROZEN；Q2 FROZEN；Q3 FROZEN；Q4 PAPER FINAL；Q1–Q4 论文交付包已完成最后冻结审计
 
 ## 各问题状态
 
@@ -15,7 +15,7 @@
 | Q1 | FROZEN / COMPLETE | r=1.9 cm 早期表面绝对误差谷值由 signed error zero-crossing/cancellation dip 造成，不是精度突然提高；final result1 未改 | `experiments/EXP-Q1-SURFACE-DECAY/`、`deliverables/final/result1.xlsx` |
 | Q2 | FROZEN | V3 Run1 是唯一 `PRODUCTION_CANONICAL` 生产来源；Run1/Run2 全量 raw、official sampled、diagnostics byte/hash identical；candidate 已按 byte-for-byte COPY 进入 final；工作簿和原冻结图表 final 验证 PASS；中文 publication 图已从既有图源数据独立生成并通过验证 | `experiments/Q2_FINAL_FREEZE/`、`experiments/Q2_CHINESE_FIGURE_LOCALIZATION/`、`deliverables/final/result2.xlsx`、`deliverables/final/figures/q2/`、`deliverables/final/paper/figures/q2/` |
 | Q3 | FROZEN / COMPLETE; INDEPENDENT VERIFICATION PASS | 独立扫描冻结 Q2 raw 与独立 `n=20/40` 局部细化均复现严格阈值判断；四位小时值均为 `57.4820 h`；冻结工作簿保持严格 60 s lattice | `experiments/Q34_INDEPENDENT_AUDIT/audit.json`、`docs/Q3_FINAL_FREEZE_AUDIT.md`、`deliverables/final/result3.xlsx` |
-| Q4 | FROZEN / COMPLETE; INDEPENDENT VERIFICATION HOLD; FINAL NUMERICAL CERTIFICATION HOLD | 已完成 n=512/dt=2 与 n=384/dt=1；free-p、fixed-p=2、p=2+n^-3 外推及一阶时间验证均记录；audit estimate=`52.6575227799 h`，保守总不确定度=`60.9467 s`，高于插值敏感性，未创建 corrected candidate，final result4 不变 | `experiments/Q4_FINAL_ASYMPTOTIC_CERTIFICATION/`、`docs/Q4_FINAL_ASYMPTOTIC_CERTIFICATION.md`、`deliverables/final/result4.xlsx` |
+| Q4 | FROZEN / COMPLETE; PAPER FINAL | deadline fast-final gate 完成 K=`n=640,dt=2 s` 与 L=`n=768,dt=2 s` fresh-from-`t=0`；I→K→L 事件时刻单调下降；L=`52.6640375959 h`；result4、Table6、Q4 图和合并论文文档已通过候选审计并进入 final | `experiments/Q4_PAPER_FINAL_N640/`、`experiments/Q4_PAPER_FINAL_N768/`、`deliverables/final/Q4_MANIFEST.json`、`deliverables/final/Q4_FREEZE_RECORD.json` |
 
 ## 当前 Q2 方案
 
@@ -45,7 +45,7 @@
 - Q3 从冻结 Q2 raw official lattice 读取完整浮点值；粗夹逼为 `[206935,206936] s`，局部 BE/Picard `1/1024 s` 细化的首次严格低于时刻为 `206935.2265625 s`。`t=206935` 仍为 `0.1500000658293865`，`t=206936` 为 `0.14999977460230157`；端点全 21 个节点均低于阈值，critical node 为扫描结果而非预设。精确事件时刻不写入 result3 的 60 s lattice。
 - Q4 使用附录4：`rho=760+90C`、`cp=1850+2150C/(C+1)`、`k=0.12+0.20C/(C+1)`、`D=4.2e-4 exp(-0.30/C) exp(-3850/T_K)`；内部 `ξ=r/R(t)`，附件2节点 PCHIP 误差为 `0`，附件结束后保持 `R_last=1.198 cm`。粗夹逼 `[191096,191100] s`，局部细化后 `t4=191097.7336093787 s`。精确事件时刻不写入 result4 的 60 s lattice。
 - Q4 所有固定物理位置超过当前半径的单元均为空，surface 单列；最终工作簿无公式、四位小数显示、`result3` 为 `3449×22`，`result4` 为 `3185×22`。质量守恒诊断最大归一化逐步残差 `3.4553928505477293e-4`，Robin 独立通量差最大 `4.5474756348265686e-7`，均保留在最终 validation 证据中。
-- 当前交付状态：`Q1 = FROZEN`、`Q2 = FROZEN`、`Q3 = FROZEN / INDEPENDENT VERIFICATION PASS`、`Q4 = FROZEN NUMERICAL ARTIFACT / FINAL NUMERICAL CERTIFICATION HOLD`。Q4 不产生 final 数值替换；`52.6575 h` 仅为连续极限 audit estimate，不写入 workbook；后续任务完成按永久 GitHub 同步闭环执行。
+- 先前渐近认证的 HOLD 结论属于历史审计记录；已由 2026-09-13 人工批准的 deadline fast-final gate supersede。当前 Q4 final 以 L=`n=768,dt=2 s` 直接生产值 `52.6640375959 h` 为准，详见下方 current record；后续任务完成按永久 GitHub 同步闭环执行。
 - 完整审计：`experiments/Q3_Q4_CANDIDATE/final_freeze_audit.json`；历史 Q2 失败实验仍保留。
 
 ## 交接
@@ -53,3 +53,12 @@
 - 当前最高优先级：保持 Q1/Q2/Q3/Q4 冻结交付可审计；未经新授权不得修改冻结数值结果。
 - 后续任务完成必须同步 `origin/main`、LFS 对象和正式标签，并验证远端 SHA 与本地 HEAD 一致。
 - 更新时间：2026-09-13。
+
+## Q4 deadline fast-final current record（2026-09-13）
+
+- K：`n=640, dt=2 s`，fresh from `t=0`，`t4=189599.04773429973 s=52.6664021484 h`。
+- L：`n=768, dt=2 s`，fresh from `t=0`，`t4=189590.53534526424 s=52.6640375959 h`；`R(t4)=1.2 cm`，控制点为中心 `ξ=0`。
+- 既有 I=`n=512,dt=2 s` 为 `52.6707923289 h`；I→K→L 严格单调下降，按授权使用 L 作为 Q4 论文直接生产结果。
+- 候选验证：result4 `3160×22`、全量 trace `48746/48746`（抽查 `100/100`）、无公式/非有限值、数值格式 `0.0000`；Table6 `54/54`；Q4 相关图 `4` 组、PNG/SVG 各 `4`、DPI `4/4`、数据 trace `4/4`、中文文本 `4/4`。
+- Q1/Q2/Q3 工作簿哈希未变；历史 `Q2_FREEZE_RUN_V3_FAILED_HORIZON_20260912` 保留；未发现 bug，因此未新增 failure 记录。
+- 当前最终状态：`Q1 = FROZEN`、`Q2 = FROZEN`、`Q3 = FROZEN`、`Q4 = PAPER FINAL`。

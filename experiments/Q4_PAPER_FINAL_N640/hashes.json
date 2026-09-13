@@ -1,0 +1,28 @@
+{
+  "inputs": {
+    "attachment1_sha256": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+    "attachment2_sha256": "5563acbfa4b4afb10cc6c03e2207e5369bf39da27576672aff14cc5c32e704af"
+  },
+  "outputs": {
+    "config.json": {
+      "sha256": "6674ce96b8b4a2f753a52c8cb3b0be54fc366b676b9b1a8367fb3aee94778908",
+      "size_bytes": 129
+    },
+    "event.json": {
+      "sha256": "ee3d08baec39c1b1ee2492805bd5d1bfed524fd8cf0033ec7c91d4d1d39b83eb",
+      "size_bytes": 533
+    },
+    "inputs.json": {
+      "sha256": "fcefc672ab819a7756f4361466c8b3d9ba6e116b3505f08ed8569aba66312a4c",
+      "size_bytes": 921
+    },
+    "lineage.json": {
+      "sha256": "946ce1a0abcb2caaf713831d35a5a8a3bd173c3ec09ad31258b659f3500086c1",
+      "size_bytes": 185
+    },
+    "metrics.json": {
+      "sha256": "ddcd83bec0578641003dd806a9337ea54865051e5d5d86187b062ca52c5ef19f",
+      "size_bytes": 1186
+    }
+  }
+}

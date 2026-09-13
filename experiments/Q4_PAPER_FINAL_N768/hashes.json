@@ -1,0 +1,60 @@
+{
+  "inputs": {
+    "attachment1_sha256": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+    "attachment2_sha256": "5563acbfa4b4afb10cc6c03e2207e5369bf39da27576672aff14cc5c32e704af"
+  },
+  "outputs": {
+    "config.json": {
+      "sha256": "8bfde9b1996c138b5d2caab8a41d237511bdb2148660c28632f832828e91b849",
+      "size_bytes": 128
+    },
+    "event.json": {
+      "sha256": "02c5ddd5ee6d3dad8e052a76de6302f802dec99dd02bbfd5c088ec769d4b32e2",
+      "size_bytes": 530
+    },
+    "event_states.npz": {
+      "sha256": "4d257831266ab4af159c94f84651d17238a26822aaa8ff70cdbb3cb2cac2bc5f",
+      "size_bytes": 21286
+    },
+    "inputs.json": {
+      "sha256": "fcefc672ab819a7756f4361466c8b3d9ba6e116b3505f08ed8569aba66312a4c",
+      "size_bytes": 921
+    },
+    "lineage.json": {
+      "sha256": "61b62727e43f297416e3ea7cc728b965aa7dbd9ecabad2efd1b79d9f6c07f39c",
+      "size_bytes": 186
+    },
+    "metrics.json": {
+      "sha256": "082a68c196639bc64bb911fd930aa15c75fd3500c1bbcc98779ab347a4ff2f35",
+      "size_bytes": 1180
+    },
+    "official_samples_raw.csv": {
+      "sha256": "bf8d50cc37757abe85006bd302f7f798090a084bddf061cc4f3a762652b82068",
+      "size_bytes": 1101675
+    },
+    "official_samples_with_endpoint_raw.csv": {
+      "sha256": "4ce46a801061da4e4ed7648889bca095c86d9def32968fda443b893df4ff5416",
+      "size_bytes": 1102022
+    },
+    "paper_samples.csv": {
+      "sha256": "a1912e523b0ef0afea2eb1f5b0c5b3639a877ddbebc4e3d70cf8be8a3ee68fed",
+      "size_bytes": 956
+    },
+    "q4_result4_matrix_full_precision.csv": {
+      "sha256": "2b80b297743694469d9d5e44f0a4cc891fe48bbd8865c2127ff67faad74c6e87",
+      "size_bytes": 1098853
+    },
+    "q4_timeseries.csv": {
+      "sha256": "3baddb1e297780877b41a637a310c44eb8a176462d698f5442bbca00334b36b0",
+      "size_bytes": 650179
+    },
+    "representative_snapshots.csv": {
+      "sha256": "583427ab1fd329395b92adc019723577717eb7b49539f6c7665f7c6e38dccc59",
+      "size_bytes": 603511
+    },
+    "surface_samples.csv": {
+      "sha256": "3baddb1e297780877b41a637a310c44eb8a176462d698f5442bbca00334b36b0",
+      "size_bytes": 650179
+    }
+  }
+}

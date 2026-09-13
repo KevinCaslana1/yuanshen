@@ -216,3 +216,21 @@ artifact-tool 已先按技能要求尝试；因该超大工作簿在 4 GB 和 8 
 ```
 
 当前证据：free-p、fixed-p=2、p=2+n^-3 方法和 supporting temporal order 已记录；audit estimate=`52.6575227799 h`，保守总不确定度=`60.9467 s`，高于插值敏感性，故 `Q4 FINAL NUMERICAL CERTIFICATION = HOLD`。不运行 `n=640` 或 `dt=0.5`，不创建 corrected candidate。
+
+## Q4 Deadline Fast-Final Production（2026-09-13）
+
+最新人工 gate 仅允许以下两个 fresh-from-`t=0` 运行：
+
+```powershell
+.\.venv\Scripts\python.exe scripts\run_q4_paper_final.py --n 640 --output experiments\Q4_PAPER_FINAL_N640 --minimal
+.\.venv\Scripts\python.exe scripts\run_q4_paper_final.py --n 768 --output experiments\Q4_PAPER_FINAL_N768
+.\.venv\Scripts\python.exe scripts\build_q4_n768_delivery.py
+.\.venv\Scripts\python.exe scripts\generate_q4_n768_figures.py
+.\.venv\Scripts\python.exe scripts\generate_q4_n768_table_package.py
+.\.venv\Scripts\python.exe scripts\validate_q4_n768_candidate.py
+.\.venv\Scripts\python.exe scripts\finalize_q4_n768_freeze.py
+```
+
+L 的 `official_samples_with_endpoint_raw.csv` 是 workbook/Table6/论文图表的 canonical source；后处理不得再次调用 solver。官方 result4 只保留 `60..floor(t4/60)*60` 的 60 s lattice，精确 `t4` 只用于 Table6、审计和比较记录。完成后必须检查 Q1/Q2/Q3 hashes、`A题/`、`src/q2/`、历史失败实验、candidate/final 哈希、图 trace、Word/PDF 和全套测试。
+
+当前结果：K=`52.6664021484 h`，L=`52.6640375959 h`，I→K→L 单调；L 已冻结为 Q4 PAPER FINAL。旧渐近 HOLD 章节是历史证据，不删除、不作为当前生产入口。

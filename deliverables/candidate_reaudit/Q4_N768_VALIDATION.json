@@ -1,0 +1,194 @@
+{
+  "status": "PASS",
+  "workbook": {
+    "path": "deliverables/candidate_reaudit/result4.xlsx",
+    "sha256": "30286c16a862e87cd421bebd8185e4245f0ac83be112f0f98e181768b2e4a9ed",
+    "size_bytes": 652042,
+    "shape": "3160x22",
+    "shape_pass": true,
+    "header_pass": true,
+    "time_lattice_pass": true,
+    "formula_count": 0,
+    "nonfinite_count": 0,
+    "number_format_bad_count": 0,
+    "trace_all": "48746/48746",
+    "trace_100": "100/100",
+    "status": "PASS"
+  },
+  "table6": {
+    "csv_rows": 9,
+    "valid_cells": "54/54",
+    "xlsx_shape": "10x9",
+    "formula_count": 0,
+    "status": "PASS"
+  },
+  "figures": {
+    "figure_groups": 4,
+    "png": 4,
+    "svg": 4,
+    "dpi": "4/4",
+    "data_trace": "4/4",
+    "chinese_text": "4/4",
+    "details": [
+      {
+        "figure": "fig_5_15_q4_radius_pchip",
+        "dpi": [
+          300.101,
+          300.101
+        ],
+        "dpi_pass": true,
+        "size_pass": true,
+        "chinese_text_pass": true,
+        "hash_pass": true,
+        "trace": [
+          {
+            "name": "半径 R(t)",
+            "x_count": 3160,
+            "y_count": 3160,
+            "xy_sha256": "91d634ba19047f5f9d932c269c3eaccafde517e8e1c42751eae9e0ed0b39ee72"
+          }
+        ]
+      },
+      {
+        "figure": "fig_5_16_q4_dynamic_radial_moisture",
+        "dpi": [
+          300.101,
+          300.101
+        ],
+        "dpi_pass": true,
+        "size_pass": true,
+        "chinese_text_pass": true,
+        "hash_pass": true,
+        "trace": [
+          {
+            "name": "6 h",
+            "x_count": 769,
+            "y_count": 769,
+            "xy_sha256": "dafd8f7f5c923e89f14bbc576258ecbff5da603c8b4bf7fca69df6993f4fd195"
+          },
+          {
+            "name": "12 h",
+            "x_count": 769,
+            "y_count": 769,
+            "xy_sha256": "bac2e0c9db62b9b2de392c4768f135c72629d90a5375beab89e92d1ce95108d2"
+          },
+          {
+            "name": "18 h",
+            "x_count": 769,
+            "y_count": 769,
+            "xy_sha256": "00edbf567d934f144cf9596c912a995b73e638c62eedbd0e30bf34a656655b69"
+          },
+          {
+            "name": "24 h",
+            "x_count": 769,
+            "y_count": 769,
+            "xy_sha256": "70bc6c636e894432fa436c75fdb4773c8366632ddfaac6e0db17307b85080645"
+          },
+          {
+            "name": "30 h",
+            "x_count": 769,
+            "y_count": 769,
+            "xy_sha256": "0490dec570d4ba5117b1df86664a4757e4b94ad6bd90e0ede9f60142439c08cd"
+          },
+          {
+            "name": "36 h",
+            "x_count": 769,
+            "y_count": 769,
+            "xy_sha256": "87ba63cd14b08f6db8fa0d881eb7d1075d9530c3c1399fe591ccf06a36dfd046"
+          },
+          {
+            "name": "42 h",
+            "x_count": 769,
+            "y_count": 769,
+            "xy_sha256": "71f33f4754ae5e2e22d45fdb025084d56d65454222e91ec21507217c71c817e7"
+          },
+          {
+            "name": "48 h",
+            "x_count": 769,
+            "y_count": 769,
+            "xy_sha256": "4520a0a7b2ff03f443da690acf32c924720d1257b7f93fff8da30ce72157af64"
+          },
+          {
+            "name": "烘干结束时刻",
+            "x_count": 769,
+            "y_count": 769,
+            "xy_sha256": "06879299762ab16d60f490754c31d01096111eea939f607d1b14a2713d8e7214"
+          }
+        ]
+      },
+      {
+        "figure": "fig_5_17_q4_radius_and_mean",
+        "dpi": [
+          300.101,
+          300.101
+        ],
+        "dpi_pass": true,
+        "size_pass": true,
+        "chinese_text_pass": true,
+        "hash_pass": true,
+        "trace": [
+          {
+            "name": "半径 R(t)",
+            "x_count": 3160,
+            "y_count": 3160,
+            "xy_sha256": "91d634ba19047f5f9d932c269c3eaccafde517e8e1c42751eae9e0ed0b39ee72"
+          },
+          {
+            "name": "体积加权平均值 C",
+            "x_count": 3160,
+            "y_count": 3160,
+            "xy_sha256": "89b1389c69d5e6966bc8beabef903ba894be619195523bd802947591b2e569a5"
+          }
+        ]
+      },
+      {
+        "figure": "fig_5_18_q3_q4_drying_time_comparison",
+        "dpi": [
+          300.101,
+          300.101
+        ],
+        "dpi_pass": true,
+        "size_pass": true,
+        "chinese_text_pass": true,
+        "hash_pass": true,
+        "trace": [
+          {
+            "name": "问题三（固定半径）",
+            "x_count": 3449,
+            "y_count": 3449,
+            "xy_sha256": "b7c65186593a978a712b8e602f9a8e3323c28952abbed68508d2f8fbad15de93"
+          },
+          {
+            "name": "问题四（收缩半径）",
+            "x_count": 3160,
+            "y_count": 3160,
+            "xy_sha256": "824eac2874c454b8a47736549e4562b7213d201bc174e8693a637e4c24bb774d"
+          }
+        ]
+      }
+    ],
+    "status": "PASS"
+  },
+  "frozen_tables": {
+    "table1_5_trace_unchanged": true,
+    "old_counts": {
+      "Table1": "35/35",
+      "Table2": "35/35",
+      "Table3": "30/30",
+      "Table4": "30/30",
+      "Table5": "50/50"
+    },
+    "new_counts": {
+      "Table1": "35/35",
+      "Table2": "35/35",
+      "Table3": "30/30",
+      "Table4": "30/30",
+      "Table5": "50/50"
+    },
+    "status": "PASS"
+  },
+  "merged_documents": {
+    "word": true,
+    "pdf": true
+  }
+}

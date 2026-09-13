@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "experiment": "Q4_DEADLINE_FAST_FINAL",
+  "runs": [
+    {
+      "label": "I",
+      "n": 512,
+      "dt_s": 2.0,
+      "t4_s": 189614.85238398053,
+      "t4_h": 52.67079232888348,
+      "source": "experiments/Q4_SPATIAL_CONVERGENCE_FINAL/spatial_run_I_n512_dt2.json"
+    },
+    {
+      "label": "K",
+      "n": 640,
+      "dt_s": 2.0,
+      "t4_s": 189599.04773429973,
+      "t4_h": 52.666402148416594,
+      "source": "experiments/Q4_PAPER_FINAL_N640/metrics.json"
+    },
+    {
+      "label": "L",
+      "n": 768,
+      "dt_s": 2.0,
+      "t4_s": 189590.53534526424,
+      "t4_h": 52.664037595906734,
+      "source": "experiments/Q4_PAPER_FINAL_N768/metrics.json"
+    }
+  ],
+  "differences_s": {
+    "K_minus_I": -15.804649680794682,
+    "L_minus_K": -8.512389035488013
+  },
+  "direct_production_run": "L_n768_dt2",
+  "rule": "Use n=768, dt=2 s as direct Q4 paper production result after monotone convergence and sanity checks.",
+  "fresh_from_t0": true,
+  "no_solver_rerun_after_L": true
+}

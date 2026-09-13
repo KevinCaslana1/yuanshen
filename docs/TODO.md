@@ -68,6 +68,7 @@
 | T-058 | P0 | Q4 | T-057 | DONE | Q4 NUMERICAL CONVERGENCE FINALIZATION GATE | A/B/C/D 分离时间/空间误差；n=192,dt=2 最小下一层完成；PCHIP/linear 一次敏感性检查；保守不确定度 `0.0806158781 h > 0.00005 h`，Q4 HOLD；final result4 未修改 | `experiments/Q4_CONVERGENCE_FINAL/` |
 | T-059 | P0 | Q4 | T-058 | DONE | Q4 SPATIAL CONVERGENCE EXTRAPOLATION & CORRECTED RESULT FINALIZATION GATE | 固定 dt=2 完成 n=256/320/384；非等比 triplet 外推 t_inf 最近差 `0.0007180914 h > 0.00005 h`，p 仍漂移；暂缓 dt=1、二维外推和 corrected candidate；final result4 未修改 | `experiments/Q4_SPATIAL_CONVERGENCE_FINAL/` |
 | T-060 | P0 | Q4 | T-059 | DONE | Q4 FINAL ASYMPTOTIC CERTIFICATION & CORRECTED PAPER RESULT GATE | 完成 n=512/dt=2 与 n=384/dt=1；free-p/fixed-p2/p2+n^-3 外推、时间 q=`1.0006671`；保守总不确定度 `60.9467 s` 高于插值敏感性 `21.7324 s`；Q4 FINAL CERTIFICATION HOLD；未创建 corrected candidate，停止自动细化 | `experiments/Q4_FINAL_ASYMPTOTIC_CERTIFICATION/` |
+| T-061 | P0 | Q4 | T-060 | DONE | Q4 DEADLINE FAST-FINAL MODE | 按最新人工授权完成 K=`n=640,dt=2` 与 L=`n=768,dt=2` fresh-from-`t=0`；I→K→L 单调；L canonical raw 生成 result4、Table6、Q4/对比图和 Word/PDF；候选审计、保护路径检查、65 项测试通过；已进入 final | `deliverables/final/Q4_MANIFEST.json`、`deliverables/final/Q4_FREEZE_RECORD.json` |
 
 ## 任务记录模板
 

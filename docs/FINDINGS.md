@@ -63,6 +63,30 @@
 
 状态：SUPPORTED
 
+## FIND-Q4-003 Deadline fast-final spatial trend and direct production
+
+问题：Q4
+
+发现：在相同 `dt=2 s`、相同已审计求解方案、均从 `t=0` 独立启动的 I/K/L 序列中，事件时刻分别为 `52.6707923289 h`（n=512）、`52.6664021484 h`（n=640）和 `52.6640375959 h`（n=768），严格单调下降。K 与 L 的终止控制点均为中心 `ξ=0`，`R(t4)=1.2 cm`；L 的终止值满足 `Cmax=0.1499999999999938 < 0.15`。
+
+证据：`experiments/Q4_SPATIAL_CONVERGENCE_FINAL/spatial_run_I_n512_dt2.json`、`experiments/Q4_PAPER_FINAL_N640/metrics.json`、`experiments/Q4_PAPER_FINAL_N768/metrics.json`、`experiments/Q4_PAPER_FINAL_N768/convergence_summary.json`。
+
+限制：该结论是人工 deadline gate 允许的直接生产选择，不等同于此前连续极限外推已达到更严格的 `0.00005 h` 渐近认证门；旧渐近 HOLD 记录继续保留。
+
+状态：SUPPORTED / PAPER PRODUCTION FROZEN
+
+## FIND-Q4-004 L 原始数据交付审计
+
+问题：Q4
+
+发现：L canonical raw 直接生成的官方 60 s lattice workbook 为 `3160×22`，全量有效数值 trace 为 `48746/48746`，无公式、非有限值或格式异常；Table6 有效数值单元为 `54/54`；4 组 Q4 相关图的 PNG/SVG、DPI、中文文本和数据 trace 均通过。Table1–5 的 trace 与冻结记录一致。
+
+证据：`deliverables/final/Q4_MANIFEST.json`、`deliverables/final/Q4_FREEZE_RECORD.json`、`deliverables/final/paper/Q4_N768_FIGURE_TRACE.json`、`deliverables/final/paper/TABLE_1_6_TRACE.json`。
+
+限制：图像是出版后处理产物，不能被用作额外数值实验；Q1 深谷结论仍为 `pointwise error zero-crossing / cancellation dip`。
+
+状态：SUPPORTED
+
 ## FIND-Q34-001 Q3/Q4 独立核验结果
 
 问题：Q3/Q4

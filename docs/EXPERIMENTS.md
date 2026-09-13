@@ -259,3 +259,13 @@ Q3/Q4 final paper asset整理与数值冻结分开留痕；历史失败实验保
 | Experiment | Purpose | Key Config | Result | Status | Evidence |
 |---|---|---|---|---|---|
 | Q4_FINAL_ASYMPTOTIC_CERTIFICATION | 最终空间/时间渐近认证和连续极限审计 | spatial `dt=2`，n=`96..512`；temporal `n=384,dt=1`；free-p/fixed-p2/p2+n^-3 | spatial estimate=`52.6588571833 h`；time-corrected audit estimate=`52.6575227799 h`；total uncertainty=`60.9467 s`；空间阶仍漂移 | COMPLETED / FINAL HOLD | `experiments/Q4_FINAL_ASYMPTOTIC_CERTIFICATION/`、`docs/Q4_FINAL_ASYMPTOTIC_CERTIFICATION.md` |
+
+## Q4 Deadline Fast-Final（2026-09-13）
+
+根据新的人工 deadline gate，完成 K/L 两次 fresh-from-`t=0` 生产运行；不改变 `src/q4/` 算法、边界、插值或时间步。I→K→L 事件时刻单调下降，按 gate 使用 L 作为直接论文生产结果。此前 `Q4_FINAL_ASYMPTOTIC_CERTIFICATION` 的 HOLD 保留为历史审计，不伪装成当前生产来源。
+
+| Experiment | Purpose | Key Config | Result | Status | Evidence |
+|---|---|---|---|---|---|
+| Q4_PAPER_FINAL_N640 | K 支持性空间趋势确认 | `n=640, dt=2 s`；fresh `t=0`；minimal diagnostics | `t4=189599.04773429973 s=52.6664021484 h`；`R=1.2 cm`；center；max Robin=`6.4203e-7`；max Picard=`6` | COMPLETED | `experiments/Q4_PAPER_FINAL_N640/` |
+| Q4_PAPER_FINAL_N768 | L 论文生产原始数据 | `n=768, dt=2 s`；fresh `t=0`；60 s samples + exact event + full snapshots | `t4=189590.53534526424 s=52.6640375959 h`；`R=1.2 cm`；center；max Robin=`5.4413e-7`；max Picard=`6` | COMPLETED / PAPER FINAL | `experiments/Q4_PAPER_FINAL_N768/` |
+| Q4_N768_DELIVERY | 从 L 原始数据生成候选 workbook、Table6、图和 Word/PDF | official 60 s lattice；event only in paper data | result4 `3160×22`；workbook trace `48746/48746`；Table6 `54/54`；4 组图数据 trace `4/4` | PASS / FROZEN | `deliverables/final/Q4_MANIFEST.json`、`deliverables/final/Q4_FREEZE_RECORD.json` |

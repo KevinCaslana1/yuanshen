@@ -482,3 +482,23 @@ Agent 自动完成模型冻结。`result2.xlsx`、candidate/final workbook 均�
 | Q4 figures/comparison | Q4 trace `4/4`；comparison trace `1/1`；PNG ≥300 DPI | PASS |
 | Q1/Q2/protected integrity | Q1/Q2 frozen assets and `A题/` unchanged | PASS |
 | Final manifests/audits | Q3/Q4 manifests、paper asset manifest、freeze audit and audit docs present | PASS |
+
+## CUMCM Q4 DEADLINE FAST-FINAL AUDIT（2026-09-13）
+
+本节是最新人工授权后的当前交付审计；此前 Q4 渐近 HOLD 章节为历史记录。K/L 均从 `t=0` 独立运行，未修改 solver、边界、插值或 Q1/Q2/Q3 资产。
+
+| Gate item | Evidence | Status |
+|---|---|---|
+| K supporting run | `n=640,dt=2 s`；`t4=52.6664021484 h`；center；`R=1.2 cm` | PASS |
+| L production run | `n=768,dt=2 s`；`t4=52.6640375959 h`；center；`R=1.2 cm`；endpoint `Cmax<0.15` | PASS |
+| Monotone trend | I=`52.6707923289 h` > K=`52.6664021484 h` > L=`52.6640375959 h` | PASS |
+| L canonical raw | 60 s samples、exact event、time series、snapshots、event states 均已保存 | PASS |
+| result4 workbook | `3160×22`；60 s lattice `60..189540 s`；full trace `48746/48746`；抽查 `100/100`；no formula/nonfinite；`0.0000` | PASS |
+| Table5 preservation | Table1–5 trace unchanged；Table5=`50/50` | PASS |
+| Table6 | 9 rows；有效数值 `54/54`；超出半径位置 blank；no formula | PASS |
+| Q4 figures | 4 groups；PNG/SVG 各 `4`；DPI `4/4`；data trace `4/4`；Chinese text `4/4` | PASS |
+| merged paper files | Word and Word-exported PDF present | PASS |
+| frozen workbook integrity | result1/result2/result3 hashes unchanged；result2=`84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da` | PASS |
+| tests | `65 passed in 1.80s` at freeze finalization | PASS |
+
+结论：`Q4 PAPER FINAL = PASS / FROZEN`；生产值来自 L，不把旧连续极限 audit estimate 写入 workbook。详见 `deliverables/final/Q4_MANIFEST.json` 和 `deliverables/final/Q4_FREEZE_RECORD.json`。

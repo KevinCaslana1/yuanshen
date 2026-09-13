@@ -1,0 +1,23 @@
+{
+  "threshold_kg_kg": 0.15,
+  "coarse_bracket_s": [
+    189590.0,
+    189592.0
+  ],
+  "root_bracket_s": [
+    189590.5,
+    189590.5625
+  ],
+  "root_bracket_width_s": 0.0625,
+  "t4_s": 189590.53534526424,
+  "t4_h": 52.664037595906734,
+  "R_t4_cm": 1.2,
+  "R_t4_rate_cm_s": 0.0,
+  "cmax_before": 0.1500000181412243,
+  "cmax_after": 0.1499999860626264,
+  "endpoint_cmax": 0.1499999999999938,
+  "critical_xi": 0.0,
+  "critical_radius_cm": 0.0,
+  "controlling_point": "center / xi=0",
+  "endpoint_R_cm": 1.2
+}

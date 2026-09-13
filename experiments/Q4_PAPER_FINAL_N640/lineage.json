@@ -1,0 +1,7 @@
+{
+  "status": "Q4_SPATIAL_CONFIRMATION",
+  "run": "K_n640_dt2",
+  "source": "src/q4/model.py; fresh initial_state(t=0)",
+  "no_checkpoint": true,
+  "no_prior_grid_state": true
+}

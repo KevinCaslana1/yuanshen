@@ -1,0 +1,7 @@
+{
+  "n_intervals": 640,
+  "dt_s": 2.0,
+  "output_interval_s": 60.0,
+  "threshold_kg_kg": 0.15,
+  "full_raw_mode": false
+}

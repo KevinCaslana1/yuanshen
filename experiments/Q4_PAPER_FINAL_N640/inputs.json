@@ -1,0 +1,25 @@
+{
+  "attachment1": "A题/附件/附件1.xlsx",
+  "attachment2": "A题/附件/附件2.xlsx",
+  "attachment1_sha256": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+  "attachment2_sha256": "5563acbfa4b4afb10cc6c03e2207e5369bf39da27576672aff14cc5c32e704af",
+  "environment": {
+    "interpolation": "linear within Attachment 1",
+    "post_attachment_mode": "constant",
+    "post_temperature_c": 49.99525,
+    "post_moisture_kg_kg": 0.049988
+  },
+  "radius": {
+    "interpolation": "PchipInterpolator-compatible Fritsch-Carlson monotone cubic",
+    "tail": "hold R_last=1.198 cm after t=259200.0 s"
+  },
+  "solver": {
+    "model": "Appendix 4 Q4 moving-domain moisture-temperature coupling",
+    "coordinate": "xi=r/R(t)",
+    "interface": "harmonic",
+    "time_scheme": "backward Euler",
+    "nonlinear_solver": "Picard",
+    "h_m_W_m2K": 25.0,
+    "h_moisture_m_s": 8e-07
+  }
+}

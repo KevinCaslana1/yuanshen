@@ -30,6 +30,9 @@ FINAL = ROOT / "deliverables" / "final"
 OUT = FINAL / "paper" / "tables_word"
 PAPER = FINAL / "paper"
 TRACE = PAPER / "TABLE_1_6_TRACE.json"
+Q4_MATRIX_SOURCE = ROOT / "experiments/Q4_PRODUCTION/q4_result4_matrix_full_precision.csv"
+RESULT4_FOR_TRACE = FINAL / "result4.xlsx"
+Q4_EVENT_HOURS = 53.08270378038297
 
 FONT_CN = "宋体"
 FONT_LATIN = "Times New Roman"
@@ -270,7 +273,7 @@ def make_table_spec() -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     q1 = FINAL / "result1.xlsx"
     q2 = FINAL / "result2.xlsx"
     q3 = ROOT / "experiments/Q3_PRODUCTION/q3_result3_matrix_full_precision.csv"
-    q4 = ROOT / "experiments/Q4_PRODUCTION/q4_result4_matrix_full_precision.csv"
+    q4 = Q4_MATRIX_SOURCE
     radii = [0, 5, 10, 15, 20]
     q1_times = [100, 300, 600, 900, 1200, 1500, 1800]
     q2_times = [1800, 3600, 5400, 7200, 9000, 10800]
@@ -304,7 +307,7 @@ def make_table_spec() -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     trace.append(trace_table("Table5", q3_title, q3_src, q3_rows, ["0", "0.5", "1", "1.5", "2"], q3_keys))
     specs.append({"id": "Table5", "title": q3_title, "time_header": "时间/h", "radii": ["0", "0.5", "1", "1.5", "2"], "value_keys": q3_keys, "rows": [{"time_label": x["time_label"], "values": [fmt4(v) for v in x["values"]]} for x in q3_rows], "note": None})
 
-    q4_items, q4_src = full_matrix_rows(q4, [6, 12, 18, 24, 30, 36, 42, 48, 53.08270378038297], ["r_0.0_cm", "r_0.5_cm", "r_1.0_cm", "r_1.5_cm", "surface"])
+    q4_items, q4_src = full_matrix_rows(q4, [6, 12, 18, 24, 30, 36, 42, 48, Q4_EVENT_HOURS], ["r_0.0_cm", "r_0.5_cm", "r_1.0_cm", "r_1.5_cm", "surface"])
     q4_rows = q4_items
     q4_title = "表 6  药材烘干过程的水分浓度"
     q4_keys = ["r_0.0_cm", "r_0.5_cm", "r_1.0_cm", "r_1.5_cm", "surface"]
@@ -356,7 +359,7 @@ def main() -> int:
         "table4_30_30": trace[3]["trace"] == "30/30",
         "table5_valid_cells": trace[4]["trace"],
         "table6_valid_cells": trace[5]["trace"],
-        "workbooks": {name: sha256(FINAL / name) for name in ("result1.xlsx", "result2.xlsx", "result3.xlsx", "result4.xlsx")},
+        "workbooks": {name: sha256(RESULT4_FOR_TRACE if name == "result4.xlsx" else FINAL / name) for name in ("result1.xlsx", "result2.xlsx", "result3.xlsx", "result4.xlsx")},
         "generated_files": [str((OUT / names[item["id"]]).relative_to(ROOT)).replace("\\", "/") for item in specs] + [str(merged_path.relative_to(ROOT)).replace("\\", "/")],
     }
     TRACE.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

@@ -1,0 +1,370 @@
+{
+  "record_type": "Q4_FINAL_FREEZE_RECORD",
+  "status": "APPROVED",
+  "manifest": "deliverables/final/Q4_MANIFEST.json",
+  "candidate_validation": "deliverables/candidate_reaudit/Q4_N768_VALIDATION.json",
+  "candidate_commit_base": "b3753824c43803bf46fc73670c40705e3d8a5e73",
+  "q4": {
+    "schema_version": "Q4_FINAL_FREEZE_MANIFEST_V2",
+    "status": "FROZEN",
+    "freeze_approval_status": "APPROVED",
+    "q4_version": "DEADLINE FAST-FINAL; direct paper production L",
+    "solver_rerun_during_postprocess": false,
+    "production": {
+      "run": "L_n768_dt2",
+      "n_intervals": 768,
+      "dt_s": 2.0,
+      "initial_state": "fresh t=0; no checkpoint or prior-grid state reuse",
+      "horizon_s": 230400.0
+    },
+    "supporting_run": {
+      "run": "K_n640_dt2",
+      "n_intervals": 640,
+      "dt_s": 2.0,
+      "initial_state": "fresh t=0; no checkpoint or prior-grid state reuse"
+    },
+    "convergence": {
+      "I_n512_dt2_h": 52.67079232888348,
+      "K_n640_dt2_h": 52.666402148416594,
+      "L_n768_dt2_h": 52.664037595906734,
+      "monotone_decreasing": true,
+      "differences_s": {
+        "K_minus_I": -15.804649680794682,
+        "L_minus_K": -8.512389035488013
+      }
+    },
+    "event": {
+      "threshold_kg_kg": 0.15,
+      "coarse_bracket_s": [
+        189590.0,
+        189592.0
+      ],
+      "root_bracket_s": [
+        189590.5,
+        189590.5625
+      ],
+      "root_bracket_width_s": 0.0625,
+      "t4_s": 189590.53534526424,
+      "t4_h": 52.664037595906734,
+      "R_t4_cm": 1.2,
+      "R_t4_rate_cm_s": 0.0,
+      "cmax_before": 0.1500000181412243,
+      "cmax_after": 0.1499999860626264,
+      "endpoint_cmax": 0.1499999999999938,
+      "critical_xi": 0.0,
+      "critical_radius_cm": 0.0,
+      "controlling_point": "center / xi=0",
+      "endpoint_R_cm": 1.2
+    },
+    "workbook": {
+      "candidate": {
+        "path": "deliverables/candidate_reaudit/result4.xlsx",
+        "sha256": "30286c16a862e87cd421bebd8185e4245f0ac83be112f0f98e181768b2e4a9ed",
+        "size_bytes": 652042
+      },
+      "final": {
+        "path": "deliverables/final/result4.xlsx",
+        "sha256": "30286c16a862e87cd421bebd8185e4245f0ac83be112f0f98e181768b2e4a9ed",
+        "size_bytes": 652042
+      },
+      "byte_identical": true,
+      "validation": {
+        "path": "deliverables/candidate_reaudit/result4.xlsx",
+        "sha256": "30286c16a862e87cd421bebd8185e4245f0ac83be112f0f98e181768b2e4a9ed",
+        "size_bytes": 652042,
+        "shape": "3160x22",
+        "shape_pass": true,
+        "header_pass": true,
+        "time_lattice_pass": true,
+        "formula_count": 0,
+        "nonfinite_count": 0,
+        "number_format_bad_count": 0,
+        "trace_all": "48746/48746",
+        "trace_100": "100/100",
+        "status": "PASS"
+      }
+    },
+    "table5": {
+      "status": "UNCHANGED",
+      "trace": "50/50"
+    },
+    "table6": {
+      "source": "experiments/Q4_PAPER_FINAL_N768/paper_samples.csv",
+      "source_sha256": "a1912e523b0ef0afea2eb1f5b0c5b3639a877ddbebc4e3d70cf8be8a3ee68fed",
+      "trace": "36/36",
+      "csv_numeric_trace": "54/54",
+      "trace_definition": "paper radius-value cells only; CSV numeric fields including time_h and radius_cm are 54/54",
+      "outputs": [
+        {
+          "path": "deliverables/final/paper/tables/table6_q4.csv",
+          "sha256": "392f7367af8aec385b40d3d4f1edcde4d2d947c9faca2ee76474390eb519e945",
+          "size_bytes": 553
+        },
+        {
+          "path": "deliverables/final/paper/tables/table6_q4.md",
+          "sha256": "2cdd332a9a3c53814370943dd6dc078b30f447068606daeabb636e78974edc0c",
+          "size_bytes": 792
+        },
+        {
+          "path": "deliverables/final/paper/tables/table6_q4.xlsx",
+          "sha256": "593a64b461766347e0f4f0b78286cea8915c5ca527d57e6738c8c8fc78c050ea",
+          "size_bytes": 5786
+        }
+      ]
+    },
+    "figures": {
+      "run": "L_n768_dt2",
+      "manifest": "deliverables/final/paper/Q4_N768_FIGURE_TRACE.json",
+      "figure_groups": 4,
+      "png": 4,
+      "svg": 4,
+      "png_ge_300_dpi": "4/4",
+      "data_trace": "4/4",
+      "chinese_text": "4/4",
+      "files": [
+        {
+          "path": "deliverables/final/paper/figures/q4/fig_5_15_q4_radius_pchip.png",
+          "sha256": "2d7b5818b8a295dc8c5a69d388a8c2da65c45a5045520d91cc7793f3bab7d3f2",
+          "size_bytes": 94366
+        },
+        {
+          "path": "deliverables/final/paper/figures/q4/fig_5_15_q4_radius_pchip.svg",
+          "sha256": "7b4d2666a63572c2e4990456a4b31466aaadc89093cc58769372d9be7118f75c",
+          "size_bytes": 15195
+        },
+        {
+          "path": "deliverables/final/paper/figures/q4/fig_5_16_q4_dynamic_radial_moisture.png",
+          "sha256": "a3d2a76e082e9a9bb1b842234257e28976472394f225429b8569ada3daae1163",
+          "size_bytes": 193833
+        },
+        {
+          "path": "deliverables/final/paper/figures/q4/fig_5_16_q4_dynamic_radial_moisture.svg",
+          "sha256": "a27c740024a7b950c548168035b9e0056738c09e12cef036bf8949d4748008e1",
+          "size_bytes": 25278
+        },
+        {
+          "path": "deliverables/final/paper/figures/q4/fig_5_17_q4_radius_and_mean.png",
+          "sha256": "6bea2203d3aa659939633f5c0f46b3e423f1e03d2f455b609a38842f89364530",
+          "size_bytes": 157543
+        },
+        {
+          "path": "deliverables/final/paper/figures/q4/fig_5_17_q4_radius_and_mean.svg",
+          "sha256": "9fc4de8e5f1ff7d16330ae2ea67d03511e36daeca259866f818002f354a6d7ad",
+          "size_bytes": 20939
+        },
+        {
+          "path": "deliverables/final/paper/figures/comparison/fig_5_18_q3_q4_drying_time_comparison.png",
+          "sha256": "af4ca099b824dbb28fe9f8fde7ab5709e488ff72228b468465a4b58d5ad99045",
+          "size_bytes": 156022
+        },
+        {
+          "path": "deliverables/final/paper/figures/comparison/fig_5_18_q3_q4_drying_time_comparison.svg",
+          "sha256": "60f2ab7e6415d60bef0e80bd0bec390093577d220f2b6a5e4c4aea8742469731",
+          "size_bytes": 16936
+        }
+      ]
+    },
+    "merged_documents": {
+      "word": {
+        "path": "deliverables/final/paper/论文表1-表6_可直接复制.docx",
+        "sha256": "e69cd576bdd7bccdf7b955c166f5a1c9942acb9d2fd9e39ff87da6fab07aacae",
+        "size_bytes": 40341
+      },
+      "pdf": {
+        "path": "deliverables/final/paper/论文表1-表6_预览.pdf",
+        "sha256": "1f02df218cb89944271396d38c1887eae3077c37270bb5936c2bd96299ca1b6f",
+        "size_bytes": 153965
+      }
+    },
+    "q3_q4_comparison": {
+      "path": "deliverables/final/paper/q3_q4_comparison.json",
+      "q3_t3_h": 57.482007378472225,
+      "q4_t4_h": 52.664037595906734
+    },
+    "q1_q2_q3_protection": {
+      "result1_sha256": "06b67b1f688d84a701ac4d2f4b0f47a1624069877df6724faf071a48af177b5c",
+      "result2_sha256": "84fb32457193e158debdf569d34f5f41b97e78496b30dd9b2e134385439e10da",
+      "result3_sha256": "08c67308b9b0e67cde2911dd4b701f12c4c024720ad257314bdf16a31d480461",
+      "q1_status": "FROZEN",
+      "q2_status": "FROZEN",
+      "q3_status": "FROZEN"
+    },
+    "historical_failed_experiment": "Q2_FREEZE_RUN_V3_FAILED_HORIZON_20260912 retained; not part of final Q4 delivery",
+    "superseded_final_snapshot": "experiments/Q4_PAPER_FINAL_N768/superseded_final_artifacts.json",
+    "pytest": {
+      "status": "PASS",
+      "summary": "65 passed in 1.80s"
+    },
+    "table_trace": "deliverables/final/paper/TABLE_1_6_TRACE.json"
+  },
+  "figure_trace": {
+    "schema_version": "Q4_N768_PAPER_FIGURE_TRACE_V1",
+    "status": "PASS",
+    "run": "L_n768_dt2",
+    "font": "Microsoft YaHei",
+    "no_solver_rerun": true,
+    "no_interpolation": true,
+    "no_smoothing": true,
+    "figures": [
+      {
+        "figure": "fig_5_15_q4_radius_pchip",
+        "source": "experiments/Q4_PAPER_FINAL_N768/q4_timeseries.csv",
+        "source_sha256": "3baddb1e297780877b41a637a310c44eb8a176462d698f5442bbca00334b36b0",
+        "series": [
+          {
+            "name": "半径 R(t)",
+            "x_count": 3160,
+            "y_count": 3160,
+            "xy_sha256": "91d634ba19047f5f9d932c269c3eaccafde517e8e1c42751eae9e0ed0b39ee72"
+          }
+        ],
+        "output": {
+          "png": "deliverables/candidate_reaudit/paper/figures/q4/fig_5_15_q4_radius_pchip.png",
+          "svg": "deliverables/candidate_reaudit/paper/figures/q4/fig_5_15_q4_radius_pchip.svg",
+          "png_sha256": "2d7b5818b8a295dc8c5a69d388a8c2da65c45a5045520d91cc7793f3bab7d3f2",
+          "svg_sha256": "7b4d2666a63572c2e4990456a4b31466aaadc89093cc58769372d9be7118f75c",
+          "dpi": 300.1
+        },
+        "chinese_text_check": "PASS"
+      },
+      {
+        "figure": "fig_5_16_q4_dynamic_radial_moisture",
+        "source": "experiments/Q4_PAPER_FINAL_N768/representative_snapshots.csv",
+        "source_sha256": "583427ab1fd329395b92adc019723577717eb7b49539f6c7665f7c6e38dccc59",
+        "series": [
+          {
+            "name": "6 h",
+            "x_count": 769,
+            "y_count": 769,
+            "xy_sha256": "dafd8f7f5c923e89f14bbc576258ecbff5da603c8b4bf7fca69df6993f4fd195"
+          },
+          {
+            "name": "12 h",
+            "x_count": 769,
+            "y_count": 769,
+            "xy_sha256": "bac2e0c9db62b9b2de392c4768f135c72629d90a5375beab89e92d1ce95108d2"
+          },
+          {
+            "name": "18 h",
+            "x_count": 769,
+            "y_count": 769,
+            "xy_sha256": "00edbf567d934f144cf9596c912a995b73e638c62eedbd0e30bf34a656655b69"
+          },
+          {
+            "name": "24 h",
+            "x_count": 769,
+            "y_count": 769,
+            "xy_sha256": "70bc6c636e894432fa436c75fdb4773c8366632ddfaac6e0db17307b85080645"
+          },
+          {
+            "name": "30 h",
+            "x_count": 769,
+            "y_count": 769,
+            "xy_sha256": "0490dec570d4ba5117b1df86664a4757e4b94ad6bd90e0ede9f60142439c08cd"
+          },
+          {
+            "name": "36 h",
+            "x_count": 769,
+            "y_count": 769,
+            "xy_sha256": "87ba63cd14b08f6db8fa0d881eb7d1075d9530c3c1399fe591ccf06a36dfd046"
+          },
+          {
+            "name": "42 h",
+            "x_count": 769,
+            "y_count": 769,
+            "xy_sha256": "71f33f4754ae5e2e22d45fdb025084d56d65454222e91ec21507217c71c817e7"
+          },
+          {
+            "name": "48 h",
+            "x_count": 769,
+            "y_count": 769,
+            "xy_sha256": "4520a0a7b2ff03f443da690acf32c924720d1257b7f93fff8da30ce72157af64"
+          },
+          {
+            "name": "烘干结束时刻",
+            "x_count": 769,
+            "y_count": 769,
+            "xy_sha256": "06879299762ab16d60f490754c31d01096111eea939f607d1b14a2713d8e7214"
+          }
+        ],
+        "output": {
+          "png": "deliverables/candidate_reaudit/paper/figures/q4/fig_5_16_q4_dynamic_radial_moisture.png",
+          "svg": "deliverables/candidate_reaudit/paper/figures/q4/fig_5_16_q4_dynamic_radial_moisture.svg",
+          "png_sha256": "a3d2a76e082e9a9bb1b842234257e28976472394f225429b8569ada3daae1163",
+          "svg_sha256": "a27c740024a7b950c548168035b9e0056738c09e12cef036bf8949d4748008e1",
+          "dpi": 300.1
+        },
+        "chinese_text_check": "PASS"
+      },
+      {
+        "figure": "fig_5_17_q4_radius_and_mean",
+        "source": "experiments/Q4_PAPER_FINAL_N768/q4_timeseries.csv",
+        "source_sha256": "3baddb1e297780877b41a637a310c44eb8a176462d698f5442bbca00334b36b0",
+        "series": [
+          {
+            "name": "半径 R(t)",
+            "x_count": 3160,
+            "y_count": 3160,
+            "xy_sha256": "91d634ba19047f5f9d932c269c3eaccafde517e8e1c42751eae9e0ed0b39ee72"
+          },
+          {
+            "name": "体积加权平均值 C",
+            "x_count": 3160,
+            "y_count": 3160,
+            "xy_sha256": "89b1389c69d5e6966bc8beabef903ba894be619195523bd802947591b2e569a5"
+          }
+        ],
+        "output": {
+          "png": "deliverables/candidate_reaudit/paper/figures/q4/fig_5_17_q4_radius_and_mean.png",
+          "svg": "deliverables/candidate_reaudit/paper/figures/q4/fig_5_17_q4_radius_and_mean.svg",
+          "png_sha256": "6bea2203d3aa659939633f5c0f46b3e423f1e03d2f455b609a38842f89364530",
+          "svg_sha256": "9fc4de8e5f1ff7d16330ae2ea67d03511e36daeca259866f818002f354a6d7ad",
+          "dpi": 300.1
+        },
+        "chinese_text_check": "PASS"
+      },
+      {
+        "figure": "fig_5_18_q3_q4_drying_time_comparison",
+        "source": [
+          "experiments/Q3_PRODUCTION/q3_result3_matrix_full_precision.csv",
+          "experiments/Q4_PAPER_FINAL_N768/q4_timeseries.csv"
+        ],
+        "source_sha256": {
+          "q3": "59067a64158843e282e3c59bf6c4ce12cd1152945de5828a6966324bcbe2bc4a",
+          "q4": "3baddb1e297780877b41a637a310c44eb8a176462d698f5442bbca00334b36b0"
+        },
+        "series": [
+          {
+            "name": "问题三（固定半径）",
+            "x_count": 3449,
+            "y_count": 3449,
+            "xy_sha256": "b7c65186593a978a712b8e602f9a8e3323c28952abbed68508d2f8fbad15de93"
+          },
+          {
+            "name": "问题四（收缩半径）",
+            "x_count": 3160,
+            "y_count": 3160,
+            "xy_sha256": "824eac2874c454b8a47736549e4562b7213d201bc174e8693a637e4c24bb774d"
+          }
+        ],
+        "output": {
+          "png": "deliverables/candidate_reaudit/paper/figures/comparison/fig_5_18_q3_q4_drying_time_comparison.png",
+          "svg": "deliverables/candidate_reaudit/paper/figures/comparison/fig_5_18_q3_q4_drying_time_comparison.svg",
+          "png_sha256": "af4ca099b824dbb28fe9f8fde7ab5709e488ff72228b468465a4b58d5ad99045",
+          "svg_sha256": "60f2ab7e6415d60bef0e80bd0bec390093577d220f2b6a5e4c4aea8742469731",
+          "dpi": 300.1
+        },
+        "chinese_text_check": "PASS"
+      }
+    ],
+    "counts": {
+      "figure_groups": 4,
+      "png": 4,
+      "svg": 4,
+      "png_ge_300_dpi": "4/4",
+      "data_trace": "4/4",
+      "chinese_text": "4/4"
+    }
+  },
+  "created_by": "scripts/finalize_q4_n768_freeze.py"
+}

@@ -677,3 +677,17 @@ early fine-step window 延长到 `5 s` 是数值启动策略修正；ENV-B、物
 状态：ACTIVE / HUMAN DECISION REQUIRED
 
 证据：`experiments/Q4_FINAL_ASYMPTOTIC_CERTIFICATION/q4_final_asymptotic_certification.json`、`docs/Q4_FINAL_ASYMPTOTIC_CERTIFICATION.md`
+
+## D-Q4-DEADLINE-FAST-FINAL-20260913 Q4 直接论文生产冻结
+
+问题：Q4
+
+人工批准 deadline fast-final 模式，允许且仅允许新增 `n=640,dt=2 s` 与 `n=768,dt=2 s` 两次 fresh-from-`t=0` 运行。I→K→L 事件时刻单调下降且 K/L sanity 通过，因此选择 L=`n=768,dt=2 s` 作为 Q4 直接论文生产结果；不进行 n>768、dt 改变、solver 改动、外部值调参或重复仿真。
+
+候选交付物只从 L 已保存 raw/postprocess 数据生成。官方 workbook 保持 60 s lattice，精确事件时刻只进入 Table6、原始数据和 freeze audit；固定物理位置超出 `R(t)` 继续留空，surface 单列。
+
+决策：Q4=`PAPER FINAL / FROZEN`。旧渐近认证 HOLD 文档不删除、不改写，作为历史审计保留；新增 final manifest、freeze record、superseded snapshot 和 Q4 N768 图 trace。
+
+证据：`experiments/Q4_PAPER_FINAL_N640/`、`experiments/Q4_PAPER_FINAL_N768/`、`deliverables/final/Q4_MANIFEST.json`、`deliverables/final/Q4_FREEZE_RECORD.json`。
+
+状态：APPROVED / ACTIVE
